@@ -1,7 +1,99 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "frontend": {
+      "root": "libs/frontend",
+      "sourceRoot": "libs/frontend/src",
+      "projectType": "library",
+      "generators": {
+        "@nxext/stencil:component": {
+          "style": "scss"
+        }
+      },
+      "targets": {
+        "test": {
+          "executor": "@nxext/stencil:test",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "projectType": "library",
+            "tsConfig": "libs/frontend/tsconfig.lib.json",
+            "configPath": "libs/frontend/stencil.config.ts",
+            "outputPath": "dist/libs/frontend"
+          }
+        },
+        "build": {
+          "executor": "@nxext/stencil:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "projectType": "library",
+            "tsConfig": "libs/frontend/tsconfig.lib.json",
+            "configPath": "libs/frontend/stencil.config.ts",
+            "outputPath": "dist/libs/frontend"
+          },
+          "configurations": {
+            "production": {
+              "dev": false,
+              "prod": true
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nxext/stencil:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "projectType": "library",
+            "tsConfig": "libs/frontend/tsconfig.lib.json",
+            "configPath": "libs/frontend/stencil.config.ts",
+            "outputPath": "dist/libs/frontend",
+            "serve": true,
+            "watch": true
+          }
+        },
+        "e2e": {
+          "executor": "@nxext/stencil:e2e",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "projectType": "library",
+            "tsConfig": "libs/frontend/tsconfig.lib.json",
+            "configPath": "libs/frontend/stencil.config.ts",
+            "outputPath": "dist/libs/frontend"
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/html",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/frontend/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/html",
+            "outputPath": "dist/storybook/frontend",
+            "config": {
+              "configFolder": "libs/frontend/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nxext/stencil"
   }
 }

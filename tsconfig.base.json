@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@themeful/frontend": ["dist/libs/frontend"],
+      "@themeful/frontend/loader": ["dist/libs/frontend/loader"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
