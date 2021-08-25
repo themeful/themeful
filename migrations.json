@@ -1,0 +1,12 @@
+{
+  "migrations": [
+    {
+      "version": "12.8.0-beta.11",
+      "cli": "nx",
+      "description": "Adjust Storybook tsconfig to add styled-jsx typings",
+      "factory": "./src/migrations/update-12-8-0/update-storybook-styled-jsx-typings",
+      "package": "@nrwl/storybook",
+      "name": "update-12-8.0"
+    }
+  ]
+}
