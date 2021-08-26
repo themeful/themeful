@@ -1,4 +1,4 @@
-import { h } from '@stencil/core';
+import { h } from '@stencil/core'
 
 export default {
   title: 'TfOverlay',
@@ -7,8 +7,8 @@ export default {
     middle: 'S',
     last: 'Doe',
   },
-};
+}
 
 export const Primary = (args) => {
-  return <tf-overlay {...args}></tf-overlay>;
-};
+  return <tf-overlay {...args}></tf-overlay>
+}
