@@ -1,4 +1,4 @@
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
   stories: [],
@@ -8,13 +8,9 @@ module.exports = {
       ...config,
       plugins: [
         ...config.plugins,
-        [
-          require.resolve('@babel/plugin-transform-react-jsx'),
-          { pragma: 'h' },
-          'preset',
-        ],
+        [require.resolve('@babel/plugin-transform-react-jsx'), { pragma: 'h' }, 'preset'],
       ],
-    };
+    }
   },
   webpackFinal: async (config, { configType }) => {
     // Make whatever fine-grained changes you need
@@ -37,13 +33,13 @@ module.exports = {
 
     const tsPaths = new TsconfigPathsPlugin({
       configFile: './tsconfig.base.json',
-    });
+    })
 
     config.resolve.plugins
       ? config.resolve.plugins.push(tsPaths)
-      : (config.resolve.plugins = [tsPaths]);
+      : (config.resolve.plugins = [tsPaths])
 
     // Return the altered config
-    return config;
+    return config
   },
-};
+}

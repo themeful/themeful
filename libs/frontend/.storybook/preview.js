@@ -1,23 +1,19 @@
-import {
-  renderVdom,
-  registerHost,
-  getHostRef,
-} from '@stencil/core/internal/client';
+import { renderVdom, registerHost, getHostRef } from '@stencil/core/internal/client'
 
-import { defineCustomElements } from '../../../dist/libs/frontend/loader';
+import { defineCustomElements } from '../../../dist/libs/frontend/loader'
 
-defineCustomElements();
+defineCustomElements()
 
-const rootElement = document.getElementById('root');
-const storyRoot = document.createElement('div');
-rootElement.parentElement.appendChild(storyRoot);
+const rootElement = document.getElementById('root')
+const storyRoot = document.createElement('div')
+rootElement.parentElement.appendChild(storyRoot)
 
-registerHost(storyRoot, { $flags$: 0, $tagName$: 'story-root' });
-const hostRef = getHostRef(storyRoot);
+registerHost(storyRoot, { $flags$: 0, $tagName$: 'story-root' })
+const hostRef = getHostRef(storyRoot)
 
 export const decorators = [
   (Story) => {
-    renderVdom(hostRef, Story());
-    return '<div />';
+    renderVdom(hostRef, Story())
+    return '<div />'
   },
-];
+]

@@ -27,11 +27,7 @@
     "build:frontend": "nx run frontend:build",
     "watch:frontend": "yarn build:frontend -- --watch",
     "storybook": "nx run frontend:storybook",
-    "lint:old": "nx workspace-lint && nx lint",
-    "lint": "npm run lint:code -- --fix && npm run lint:style -- --fix",
-    "lint:ci": "npm run lint:code && npm run lint:style",
-    "lint:code": "eslint libs/**/*{.ts,.tsx} --quiet",
-    "lint:style": "stylelint libs/**/*{.css,.scss}"
+    "lint": "nx workspace-lint && nx lint"
   },
   "private": true,
   "dependencies": {
@@ -54,22 +50,25 @@
     "@storybook/addon-essentials": "~6.3.7",
     "@storybook/html": "~6.3.7",
     "@types/jest": "26.0.24",
-    "@types/node": "16.7.2",
-    "@typescript-eslint/eslint-plugin": "^4.29.3",
-    "@typescript-eslint/parser": "^4.29.3",
+    "@types/node": "16.7.7",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
     "dotenv": "~10.0.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "^3.4.1",
-    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react": "^7.25.1",
     "jest": "26.6.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-no-unsupported-browser-features": "^5.0.1",
     "stylelint-prettier": "^1.2.0",
+    "stylelint-scss": "^3.19.0",
     "ts-jest": "26.5.6",
     "ts-node": "~10.2.1",
-    "typescript": "~4.3.5"
+    "typescript": "~4.4.2"
   }
 }
