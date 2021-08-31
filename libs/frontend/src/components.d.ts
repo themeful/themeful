@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ButtonKind } from "./atoms/tf-button/interfaces";
 export namespace Components {
     interface PreviewBox {
         /**
@@ -19,6 +20,24 @@ export namespace Components {
           * The middle name
          */
         "middle": string;
+    }
+    interface TfButton {
+        /**
+          * Active state
+         */
+        "active": false;
+        /**
+          * Disabled state
+         */
+        "disabled": false;
+        /**
+          * Button kind
+         */
+        "kind": ButtonKind;
+        /**
+          * Button type
+         */
+        "type": string;
     }
     interface TfOverlay {
         /**
@@ -42,6 +61,12 @@ declare global {
         prototype: HTMLPreviewBoxElement;
         new (): HTMLPreviewBoxElement;
     };
+    interface HTMLTfButtonElement extends Components.TfButton, HTMLStencilElement {
+    }
+    var HTMLTfButtonElement: {
+        prototype: HTMLTfButtonElement;
+        new (): HTMLTfButtonElement;
+    };
     interface HTMLTfOverlayElement extends Components.TfOverlay, HTMLStencilElement {
     }
     var HTMLTfOverlayElement: {
@@ -50,6 +75,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "preview-box": HTMLPreviewBoxElement;
+        "tf-button": HTMLTfButtonElement;
         "tf-overlay": HTMLTfOverlayElement;
     }
 }
@@ -68,6 +94,28 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface TfButton {
+        /**
+          * Active state
+         */
+        "active"?: false;
+        /**
+          * Disabled state
+         */
+        "disabled"?: false;
+        /**
+          * Button kind
+         */
+        "kind"?: ButtonKind;
+        /**
+          * Event emitted when the item is clicked
+         */
+        "onClicked"?: (event: CustomEvent<any>) => void;
+        /**
+          * Button type
+         */
+        "type"?: string;
+    }
     interface TfOverlay {
         /**
           * The first name
@@ -84,6 +132,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "preview-box": PreviewBox;
+        "tf-button": TfButton;
         "tf-overlay": TfOverlay;
     }
 }
@@ -92,6 +141,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "preview-box": LocalJSX.PreviewBox & JSXBase.HTMLAttributes<HTMLPreviewBoxElement>;
+            "tf-button": LocalJSX.TfButton & JSXBase.HTMLAttributes<HTMLTfButtonElement>;
             "tf-overlay": LocalJSX.TfOverlay & JSXBase.HTMLAttributes<HTMLTfOverlayElement>;
         }
     }

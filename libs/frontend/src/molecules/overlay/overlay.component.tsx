@@ -21,11 +21,20 @@ export class TfOverlay {
    */
   @Prop() last: string
 
-  private getText(): string {
-    return `${this.first} ${this.middle} ${this.last}`
-  }
+  // private getText(): string {
+  //   return `${this.first} ${this.middle} ${this.last}`
+  // }
 
   render() {
-    return <div>Hello, World! {this.getText()}</div>
+    return (
+      <div class="overlay__backdrop">
+        <div class="overlay">
+          <button class="m4-button m4-button--icon overlay__close">
+            <i class="gg-close"></i>
+          </button>
+          <slot />
+        </div>
+      </div>
+    )
   }
 }
