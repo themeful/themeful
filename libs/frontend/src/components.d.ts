@@ -6,6 +6,20 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface PreviewBox {
+        /**
+          * The first name
+         */
+        "first": string;
+        /**
+          * The last name
+         */
+        "last": string;
+        /**
+          * The middle name
+         */
+        "middle": string;
+    }
     interface TfOverlay {
         /**
           * The first name
@@ -22,6 +36,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLPreviewBoxElement extends Components.PreviewBox, HTMLStencilElement {
+    }
+    var HTMLPreviewBoxElement: {
+        prototype: HTMLPreviewBoxElement;
+        new (): HTMLPreviewBoxElement;
+    };
     interface HTMLTfOverlayElement extends Components.TfOverlay, HTMLStencilElement {
     }
     var HTMLTfOverlayElement: {
@@ -29,10 +49,25 @@ declare global {
         new (): HTMLTfOverlayElement;
     };
     interface HTMLElementTagNameMap {
+        "preview-box": HTMLPreviewBoxElement;
         "tf-overlay": HTMLTfOverlayElement;
     }
 }
 declare namespace LocalJSX {
+    interface PreviewBox {
+        /**
+          * The first name
+         */
+        "first"?: string;
+        /**
+          * The last name
+         */
+        "last"?: string;
+        /**
+          * The middle name
+         */
+        "middle"?: string;
+    }
     interface TfOverlay {
         /**
           * The first name
@@ -48,6 +83,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "preview-box": PreviewBox;
         "tf-overlay": TfOverlay;
     }
 }
@@ -55,6 +91,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "preview-box": LocalJSX.PreviewBox & JSXBase.HTMLAttributes<HTMLPreviewBoxElement>;
             "tf-overlay": LocalJSX.TfOverlay & JSXBase.HTMLAttributes<HTMLTfOverlayElement>;
         }
     }
