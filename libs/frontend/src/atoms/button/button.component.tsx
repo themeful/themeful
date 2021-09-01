@@ -4,9 +4,8 @@ import { ButtonKind } from './interfaces'
 @Component({
   tag: 'tf-button',
   styleUrl: 'button.component.scss',
-  shadow: true,
 })
-export class TfButton {
+export class TfButtonComponent {
   /** Button type*/
   @Prop() type = 'button'
 
@@ -20,13 +19,13 @@ export class TfButton {
   @Prop() disabled: false
 
   /** Event emitted when the item is clicked */
-  @Event() clicked: EventEmitter
+  @Event({ bubbles: true, composed: true }) clicked: EventEmitter
 
   render() {
     return (
       <button
         type={this.type}
-        class={`${this.kind}${this.active ? ' active' : ''}`}
+        class={`button ${this.kind}${this.active ? ' active' : ''}`}
         disabled={this.disabled}
         onClick={() => {
           this.clicked.emit()

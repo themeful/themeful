@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { ButtonKind } from "./atoms/tf-button/interfaces";
+import { ButtonKind } from "./atoms/button/interfaces";
 export namespace Components {
     interface PreviewBox {
         /**
@@ -39,6 +39,16 @@ export namespace Components {
          */
         "type": string;
     }
+    interface TfIcon {
+        /**
+          * The icon name
+         */
+        "icon": string;
+        /**
+          * The icon size
+         */
+        "size": 'small' | 'large';
+    }
     interface TfOverlay {
         /**
           * The first name
@@ -67,6 +77,12 @@ declare global {
         prototype: HTMLTfButtonElement;
         new (): HTMLTfButtonElement;
     };
+    interface HTMLTfIconElement extends Components.TfIcon, HTMLStencilElement {
+    }
+    var HTMLTfIconElement: {
+        prototype: HTMLTfIconElement;
+        new (): HTMLTfIconElement;
+    };
     interface HTMLTfOverlayElement extends Components.TfOverlay, HTMLStencilElement {
     }
     var HTMLTfOverlayElement: {
@@ -76,6 +92,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "preview-box": HTMLPreviewBoxElement;
         "tf-button": HTMLTfButtonElement;
+        "tf-icon": HTMLTfIconElement;
         "tf-overlay": HTMLTfOverlayElement;
     }
 }
@@ -116,6 +133,16 @@ declare namespace LocalJSX {
          */
         "type"?: string;
     }
+    interface TfIcon {
+        /**
+          * The icon name
+         */
+        "icon"?: string;
+        /**
+          * The icon size
+         */
+        "size"?: 'small' | 'large';
+    }
     interface TfOverlay {
         /**
           * The first name
@@ -133,6 +160,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "preview-box": PreviewBox;
         "tf-button": TfButton;
+        "tf-icon": TfIcon;
         "tf-overlay": TfOverlay;
     }
 }
@@ -142,6 +170,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "preview-box": LocalJSX.PreviewBox & JSXBase.HTMLAttributes<HTMLPreviewBoxElement>;
             "tf-button": LocalJSX.TfButton & JSXBase.HTMLAttributes<HTMLTfButtonElement>;
+            "tf-icon": LocalJSX.TfIcon & JSXBase.HTMLAttributes<HTMLTfIconElement>;
             "tf-overlay": LocalJSX.TfOverlay & JSXBase.HTMLAttributes<HTMLTfOverlayElement>;
         }
     }
