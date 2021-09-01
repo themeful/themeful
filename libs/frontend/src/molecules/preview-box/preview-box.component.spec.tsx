@@ -1,36 +1,36 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { PreviewBox } from './preview-box'
+import { PreviewBoxComponent } from './preview-box.component'
 
-describe('preview-box', () => {
+describe('tf-preview-box', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [PreviewBox],
-      html: '<preview-box></preview-box>',
+      components: [PreviewBoxComponent],
+      html: '<tf-preview-box></tf-preview-box>',
     })
     expect(root).toEqualHtml(`
-      <preview-box>
+      <tf-preview-box>
         <mock:shadow-root>
           <div>
             Hello, World! I'm
           </div>
         </mock:shadow-root>
-      </preview-box>
+      </tf-preview-box>
     `)
   })
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [PreviewBox],
-      html: `<preview-box first="Stencil" last="'Don't call me a framework' JS"></preview-box>`,
+      components: [PreviewBoxComponent],
+      html: `<tf-preview-box first="Stencil" last="'Don't call me a framework' JS"></tf-preview-box>`,
     })
     expect(root).toEqualHtml(`
-      <preview-box first="Stencil" last="'Don't call me a framework' JS">
+      <tf-preview-box first="Stencil" last="'Don't call me a framework' JS">
         <mock:shadow-root>
           <div>
             Hello, World! I'm Stencil 'Don't call me a framework' JS
           </div>
         </mock:shadow-root>
-      </preview-box>
+      </tf-preview-box>
     `)
   })
 })

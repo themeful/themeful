@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { TfIconComponent } from './icon.component'
+import { IconComponent } from './icon.component'
 
 describe('tf-icon', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [TfIconComponent],
+      components: [IconComponent],
       html: '<tf-icon></tf-icon>',
     })
     expect(root).toEqualHtml(`
@@ -20,7 +20,7 @@ describe('tf-icon', () => {
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [TfIconComponent],
+      components: [IconComponent],
       html: `<tf-icon first="Stencil" last="'Don't call me a framework' JS"></tf-icon>`,
     })
     expect(root).toEqualHtml(`

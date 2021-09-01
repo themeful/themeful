@@ -5,7 +5,7 @@ import { Component, h, Prop } from '@stencil/core'
   styleUrl: 'overlay.component.scss',
   shadow: true,
 })
-export class TfOverlay {
+export class OverlayComponent {
   /**
    * The first name
    */

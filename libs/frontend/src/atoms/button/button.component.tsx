@@ -1,16 +1,19 @@
-import { Component, Event, h, EventEmitter, Prop } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
 import { ButtonKind } from './interfaces'
 
 @Component({
   tag: 'tf-button',
   styleUrl: 'button.component.scss',
 })
-export class TfButtonComponent {
+export class ButtonComponent {
   /** Button type*/
   @Prop() type = 'button'
 
   /** Button kind */
   @Prop() kind: ButtonKind = 'primary'
+
+  /** Button size */
+  @Prop() size: 'small' | 'large'
 
   /** Active state */
   @Prop() active: false
@@ -25,7 +28,7 @@ export class TfButtonComponent {
     return (
       <button
         type={this.type}
-        class={`button ${this.kind}${this.active ? ' active' : ''}`}
+        class={`button ${this.kind} ${this.size ?? ''}${this.active ? ' active' : ''}`}
         disabled={this.disabled}
         onClick={() => {
           this.clicked.emit()

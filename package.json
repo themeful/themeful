@@ -25,7 +25,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "build:frontend": "nx run frontend:build",
-    "watch:frontend": "yarn build:frontend -- --watch",
+    "watch:frontend": "yarn build:frontend --watch",
     "storybook": "nx run frontend:storybook",
     "lint": "nx workspace-lint && nx lint"
   },

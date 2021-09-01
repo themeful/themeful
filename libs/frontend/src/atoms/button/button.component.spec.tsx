@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { TfButtonComponent } from './button.component'
+import { ButtonComponent } from './button.component'
 
 describe('tf-button', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [TfButtonComponent],
+      components: [ButtonComponent],
       html: '<tf-button></tf-button>',
     })
     expect(root).toEqualHtml(`
@@ -20,7 +20,7 @@ describe('tf-button', () => {
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [TfButtonComponent],
+      components: [ButtonComponent],
       html: `<tf-button first="Stencil" last="'Don't call me a framework' JS"></tf-button>`,
     })
     expect(root).toEqualHtml(`

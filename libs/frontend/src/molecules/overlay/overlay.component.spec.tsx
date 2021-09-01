@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { TfOverlay } from './overlay.component'
+import { OverlayComponent } from './overlay.component'
 
 describe('tf-overlay', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [TfOverlay],
+      components: [OverlayComponent],
       html: '<tf-overlay></tf-overlay>',
     })
     expect(root).toEqualHtml(`
@@ -20,7 +20,7 @@ describe('tf-overlay', () => {
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [TfOverlay],
+      components: [OverlayComponent],
       html: `<tf-overlay first="Stencil" last="'Don't call me a framework' JS"></tf-overlay>`,
     })
     expect(root).toEqualHtml(`

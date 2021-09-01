@@ -1,11 +1,11 @@
 import { Component, h, Prop } from '@stencil/core'
 
 @Component({
-  tag: 'preview-box',
-  styleUrl: 'preview-box.scss',
+  tag: 'tf-preview-box',
+  styleUrl: 'preview-box.component.scss',
   shadow: true,
 })
-export class PreviewBox {
+export class PreviewBoxComponent {
   /**
    * The first name
    */

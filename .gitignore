@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+libs/frontend/src/components.d.ts
 
 # dependencies
 /node_modules

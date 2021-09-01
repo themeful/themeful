@@ -3,9 +3,9 @@ import { Component, h, Prop } from '@stencil/core'
 @Component({
   tag: 'tf-icon',
   styleUrl: 'icon.component.scss',
-  // shadow: true,
+  shadow: true,
 })
-export class TfIconComponent {
+export class IconComponent {
   /**
    * The icon name
    */
