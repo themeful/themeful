@@ -24,7 +24,7 @@ export class ButtonComponent {
   /** Event emitted when the item is clicked */
   @Event({ bubbles: true, composed: true }) clicked: EventEmitter
 
-  render() {
+  render(): HTMLTfButtonElement {
     return (
       <button
         type={this.type}

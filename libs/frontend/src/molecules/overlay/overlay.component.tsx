@@ -25,7 +25,7 @@ export class OverlayComponent {
   //   return `${this.first} ${this.middle} ${this.last}`
   // }
 
-  render() {
+  render(): HTMLTfOverlayElement {
     return (
       <div class="overlay__backdrop">
         <div class="overlay">

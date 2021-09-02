@@ -25,7 +25,7 @@ export class ToastComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
-  render() {
+  render(): HTMLTfToastElement {
     return <div>Hello, World! I'm {this.getText()}</div>
   }
 }

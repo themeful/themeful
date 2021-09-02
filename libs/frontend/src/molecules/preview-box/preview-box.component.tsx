@@ -25,7 +25,7 @@ export class PreviewBoxComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
-  render() {
+  render(): HTMLTfPreviewBoxElement {
     return <div>Hello, World! I'm {this.getText()}</div>
   }
 }
