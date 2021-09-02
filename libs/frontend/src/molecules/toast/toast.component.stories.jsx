@@ -1,7 +1,7 @@
 import { h } from '@stencil/core'
 
 export default {
-  title: 'Molecules/Preview Box',
+  title: 'Molecules/Toast',
   args: {
     first: 'John',
     middle: 'S',
@@ -9,6 +9,6 @@ export default {
   },
 }
 
-export const previewBox = (args) => {
-  return <tf-preview-box {...args}></tf-preview-box>
+export const toast = (args) => {
+  return <tf-toast {...args}></tf-toast>
 }

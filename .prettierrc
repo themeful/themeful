@@ -6,6 +6,7 @@
   "trailingComma": "es5",
   "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
+  "importOrderSeparation": true,
   "insertPragma": false,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",

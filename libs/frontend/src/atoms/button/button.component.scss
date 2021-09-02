@@ -24,7 +24,14 @@
     font-weight: 400;
     font-size: 0.75rem;
     line-height: 0.875rem;
-    padding: 0.25rem 0.25rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  &.icon {
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 0.875rem;
+    padding: 0.125rem;
   }
 
   &.active {
@@ -61,17 +68,6 @@
     filter: brightness(0.75);
   }
 }
-
-//   &--icon {
-//     padding: 2px;
-//     width: 24px;
-//     height: 24px;
-//   }
-
-//   &--small {
-//     padding: 4px 8px;
-//     font-weight: 400;
-//   }
 
 //   & + .m4-button {
 //     margin-left: 4px;

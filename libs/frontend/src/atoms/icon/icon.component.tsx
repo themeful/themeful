@@ -16,7 +16,7 @@ export class IconComponent {
    */
   @Prop() size: 'small' | 'large'
 
-  render() {
+  render(): JSX.Element {
     return (
       <div class={`icon ${this.size ?? ''}`}>
         <i class={`gg-${this.icon}`} />

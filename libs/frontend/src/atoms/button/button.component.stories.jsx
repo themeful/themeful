@@ -85,6 +85,24 @@ export const buttons = ({ buttons }) => {
             </tf-button>
           </td>
         </tr>
+        <tr>
+          <td>icon</td>
+          <td>
+            <tf-button kind="secondary" size="icon">
+              <tf-icon icon="sync"></tf-icon>Some Text
+            </tf-button>
+          </td>
+          <td>
+            <tf-button kind="secondary" size="icon">
+              Some Text<tf-icon icon="sync"></tf-icon>
+            </tf-button>
+          </td>
+          <td>
+            <tf-button kind="secondary" size="icon">
+              <tf-icon icon="sync"></tf-icon>
+            </tf-button>
+          </td>
+        </tr>
       </table>
     </div>
   )

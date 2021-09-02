@@ -1,3 +1,5 @@
+import '!style-loader!css-loader!sass-loader!./styles.scss'
+
 import { renderVdom, registerHost, getHostRef } from '@stencil/core/internal/client'
 
 import { defineCustomElements } from '../../../dist/libs/frontend/loader'
