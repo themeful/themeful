@@ -17,7 +17,7 @@ export default {
   },
 }
 
-export const icon = ({ icons }): JSX.Element => {
+export const icon = ({ icons }): HTMLElement => {
   return (
     <div>
       <h1>Icons</h1>

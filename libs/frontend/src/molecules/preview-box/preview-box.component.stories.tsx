@@ -9,6 +9,6 @@ export default {
   },
 }
 
-export const previewBox = (args) => {
+export const previewBox = (args): HTMLElement => {
   return <tf-preview-box {...args}></tf-preview-box>
 }

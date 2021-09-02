@@ -11,7 +11,7 @@ export default {
   },
 }
 
-export const buttons = ({ buttons }) => {
+export const buttons = ({ buttons }): HTMLElement => {
   return (
     <div>
       <h1>Buttons</h1>

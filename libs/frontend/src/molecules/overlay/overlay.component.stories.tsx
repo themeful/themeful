@@ -4,6 +4,6 @@ export default {
   title: 'Molecules/Overlay',
 }
 
-export const overlay = () => {
+export const overlay = (): HTMLElement => {
   return <tf-overlay>Some content</tf-overlay>
 }

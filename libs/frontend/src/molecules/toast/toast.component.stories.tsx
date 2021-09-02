@@ -9,6 +9,6 @@ export default {
   },
 }
 
-export const toast = (args) => {
+export const toast = (args): HTMLElement => {
   return <tf-toast {...args}></tf-toast>
 }

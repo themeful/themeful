@@ -1,13 +1,17 @@
-import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
-import { rootMain } from '../../../.storybook/main'
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const rootMain = require('../../../.storybook/main')
 
-export default {
+module.exports = {
   ...rootMain,
 
   core: { ...rootMain.core },
 
   stories: [...rootMain.stories, '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [...rootMain.addons],
+  babel: async options => ({
+    ...options,
+    presets: [["@babel/typescript", { jsxPragma: "h" }]],
+  }),
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js
     if (rootMain.webpackFinal) {
