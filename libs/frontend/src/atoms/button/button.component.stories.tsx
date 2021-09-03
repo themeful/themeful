@@ -52,17 +52,17 @@ export const buttons = ({ buttons }): HTMLElement => {
         <tr>
           <td>default</td>
           <td>
-            <tf-button kind="secondary">
+            <tf-button>
               <tf-icon icon="sync"></tf-icon>Some Text
             </tf-button>
           </td>
           <td>
-            <tf-button kind="secondary">
+            <tf-button>
               Some Text<tf-icon icon="sync"></tf-icon>
             </tf-button>
           </td>
           <td>
-            <tf-button kind="secondary">
+            <tf-button>
               <tf-icon icon="sync"></tf-icon>
             </tf-button>
           </td>
@@ -70,17 +70,17 @@ export const buttons = ({ buttons }): HTMLElement => {
         <tr>
           <td>small</td>
           <td>
-            <tf-button kind="secondary" size="small">
+            <tf-button size="small">
               <tf-icon icon="sync"></tf-icon>Some Text
             </tf-button>
           </td>
           <td>
-            <tf-button kind="secondary" size="small">
+            <tf-button size="small">
               Some Text<tf-icon icon="sync"></tf-icon>
             </tf-button>
           </td>
           <td>
-            <tf-button kind="secondary" size="small">
+            <tf-button size="small">
               <tf-icon icon="sync"></tf-icon>
             </tf-button>
           </td>
@@ -88,17 +88,17 @@ export const buttons = ({ buttons }): HTMLElement => {
         <tr>
           <td>icon</td>
           <td>
-            <tf-button kind="secondary" size="icon">
+            <tf-button size="icon">
               <tf-icon icon="sync"></tf-icon>Some Text
             </tf-button>
           </td>
           <td>
-            <tf-button kind="secondary" size="icon">
+            <tf-button size="icon">
               Some Text<tf-icon icon="sync"></tf-icon>
             </tf-button>
           </td>
           <td>
-            <tf-button kind="secondary" size="icon">
+            <tf-button size="icon">
               <tf-icon icon="sync"></tf-icon>
             </tf-button>
           </td>

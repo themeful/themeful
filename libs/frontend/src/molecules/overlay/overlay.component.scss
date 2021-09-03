@@ -1,3 +1,42 @@
-:host {
-  display: block;
+.overlay {
+  position: relative;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 4px;
+  min-width: 300px;
+  min-height: 250px;
+  font-size: 0.75rem;
+  z-index: 101;
+
+  &__wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__backdrop {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  &__close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+
+    button {
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
 }

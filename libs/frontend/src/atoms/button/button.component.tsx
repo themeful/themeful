@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
+import { Component, h, Prop } from '@stencil/core'
 import { ButtonKind } from './interfaces'
 
 @Component({
@@ -10,7 +10,7 @@ export class ButtonComponent {
   @Prop() type = 'button'
 
   /** Button kind */
-  @Prop() kind: ButtonKind = 'primary'
+  @Prop() kind: ButtonKind = 'secondary'
 
   /** Button size */
   @Prop() size: 'small' | 'large' | 'icon'
@@ -21,18 +21,12 @@ export class ButtonComponent {
   /** Disabled state */
   @Prop() disabled: false
 
-  /** Event emitted when the item is clicked */
-  @Event({ bubbles: true, composed: true }) clicked: EventEmitter
-
   render(): HTMLTfButtonElement {
     return (
       <button
         type={this.type}
         class={`button ${this.kind} ${this.size ?? ''}${this.active ? ' active' : ''}`}
         disabled={this.disabled}
-        onClick={() => {
-          this.clicked.emit()
-        }}
       >
         <slot />
       </button>

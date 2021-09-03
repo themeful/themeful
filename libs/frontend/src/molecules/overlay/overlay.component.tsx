@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
 
 @Component({
   tag: 'tf-overlay',
@@ -6,35 +6,26 @@ import { Component, h, Prop } from '@stencil/core'
   shadow: true,
 })
 export class OverlayComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string
+  /** Overlay visiblity */
+  @Prop() show = false
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string
+  /** Event emitted when the item is clicked */
+  @Event() close: EventEmitter
 
-  /**
-   * The last name
-   */
-  @Prop() last: string
-
-  // private getText(): string {
-  //   return `${this.first} ${this.middle} ${this.last}`
-  // }
+  public click = (): void => {
+    this.close.emit()
+  }
 
   render(): HTMLTfOverlayElement {
-    return (
-      <div class="overlay__backdrop">
-        <div class="overlay">
-          <button class="m4-button m4-button--icon overlay__close">
-            <i class="gg-close"></i>
-          </button>
-          <slot />
+    if (this.show){
+      return (
+        <div class="overlay__wrapper">
+          <div class="overlay__backdrop" onClick={this.click}></div>
+          <div class="overlay">
+            <tf-button class='overlay__close' size='icon' onClick={this.click}><tf-icon icon='close' /></tf-button>
+            <slot />
+          </div>
         </div>
-      </div>
-    )
+      )}
   }
 }
