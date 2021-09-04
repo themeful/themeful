@@ -2,7 +2,7 @@ import { color } from "./color.type"
 import { font } from "./font.type"
 
 
-export const typeMap = {
+export const properties = {
   font,
   color
 }

@@ -1,1 +1,1 @@
-export * from './lib/property-types';
+export * from './lib/propery.map'

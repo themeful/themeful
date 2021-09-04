@@ -1,5 +1,5 @@
 import { Component, h, Prop } from '@stencil/core'
-import { typeMap } from './types/types.map'
+import { properties } from '@properties'
 
 @Component({
   tag: 'tf-preview-box',
@@ -18,7 +18,7 @@ export class PreviewBoxComponent {
   }
 
   private getTemplate(): HTMLElement {
-    return typeMap[this.type]?.template(this.data) ?? this.defaultTemplate(this.data)
+    return properties[this.type]?.template(this.data) ?? this.defaultTemplate(this.data)
   }
 
   render(): HTMLTfPreviewBoxElement {
