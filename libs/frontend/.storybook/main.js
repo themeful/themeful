@@ -1,5 +1,6 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const rootMain = require('../../../.storybook/main')
+const path = require('path');
 
 module.exports = {
   ...rootMain,
@@ -13,7 +14,12 @@ module.exports = {
     presets: [["@babel/typescript", { jsxPragma: "h" }]],
   }),
   webpackFinal: async (config, { configType }) => {
-    // apply any global webpack configs that might have been specified in .storybook/main.js
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+      include: path.resolve(__dirname, '../'),
+    });
+    
     if (rootMain.webpackFinal) {
       config = await rootMain.webpackFinal(config, { configType })
     }
