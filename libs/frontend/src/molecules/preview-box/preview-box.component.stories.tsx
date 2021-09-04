@@ -10,5 +10,10 @@ export default {
 }
 
 export const previewBox = (args): HTMLElement => {
-  return <tf-preview-box {...args}></tf-preview-box>
+  return (
+  <div>
+    <tf-preview-box type='color'></tf-preview-box>
+    <tf-preview-box type='font'></tf-preview-box>
+    <tf-preview-box></tf-preview-box>
+  </div>)
 }

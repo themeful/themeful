@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core'
+import { typeMap } from './types/types.map'
 
 @Component({
   tag: 'tf-preview-box',
@@ -6,26 +7,23 @@ import { Component, h, Prop } from '@stencil/core'
   shadow: true,
 })
 export class PreviewBoxComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string
+  /** The type */
+  @Prop() type: string
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string
+  /** Some data */
+  @Prop() data: string = 'My Name'
 
-  /**
-   * The last name
-   */
-  @Prop() last: string
+  private defaultTemplate(name): HTMLElement {
+    return <div> Default Box {name}</div>
+  }
 
-  private getText(): string {
-    return `${this.first} ${this.middle} ${this.last}`
+  private getTemplate(): HTMLElement {
+    return typeMap[this.type]?.template(this.data) ?? this.defaultTemplate(this.data)
   }
 
   render(): HTMLTfPreviewBoxElement {
-    return <div>Hello, World! I'm {this.getText()}</div>
+    return <div>
+      {this.getTemplate()}
+      </div>
   }
 }

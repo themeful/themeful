@@ -29,6 +29,9 @@
   "projects": {
     "frontend": {
       "tags": ["frontend"]
+    },
+    "property-types": {
+      "tags": []
     }
   }
 }
