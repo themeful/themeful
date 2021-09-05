@@ -13,24 +13,6 @@ module.exports = {
     }
   },
   webpackFinal: async (config, { configType }) => {
-    // Make whatever fine-grained changes you need
-
-    // config.module.rules = config.module.rules.map((rule) => {
-    //   if ('.scss'.match(rule.test)) {
-    //     rule.use = rule.use.map((use) => {
-    //       if (use.loader.includes('sass-loader')) {
-    //         use.options = {
-    //           sassOptions: {
-    //             includePaths: ['libs/components/src/assets/generated'],
-    //           },
-    //         }
-    //       }
-    //       return use
-    //     })
-    //   }
-    //   return rule
-    // })
-
     const tsPaths = new TsconfigPathsPlugin({
       configFile: './tsconfig.base.json',
     })

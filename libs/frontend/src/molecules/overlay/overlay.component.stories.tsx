@@ -8,7 +8,12 @@ export default {
 export const overlay = (args): HTMLElement => {
   return (
     <div>
-      <tf-overlay {...args} onClose={action('close')}>Some content</tf-overlay>
+      <div class='header'>
+        <h1>Overlay</h1>
+      </div>
+      <div class='content'>
+        <tf-overlay {...args} onClose={action('close')}>Some content</tf-overlay>
+      </div>
     </div>
   )
 }

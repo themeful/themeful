@@ -10,5 +10,14 @@ export default {
 }
 
 export const toast = (args): HTMLElement => {
-  return <tf-toast {...args}></tf-toast>
+  return (
+    <div>
+      <div class='header'>
+        <h1>Toast</h1>
+      </div>
+      <div class='content'>
+        <tf-toast {...args}></tf-toast>
+      </div>
+    </div>
+  )
 }

@@ -14,96 +14,100 @@ export default {
 export const buttons = ({ buttons }): HTMLElement => {
   return (
     <div>
-      <h1>Buttons</h1>
-      <table style={{ borderSpacing: '1rem' }}>
-        <tr>
-          <td>
-            <h3>default</h3>
-          </td>
-          <td>
-            <h3>active</h3>
-          </td>
-          <td>
-            <h3>disabled</h3>
-          </td>
-        </tr>
-        {buttons.map((button) => {
-          return (
-            <tr>
-              <td>
-                <tf-button {...button.args}>{button.label}</tf-button>
-              </td>
-              <td>
-                <tf-button {...button.args} active>
-                  {button.label}
-                </tf-button>
-              </td>
-              <td>
-                <tf-button {...button.args} disabled>
-                  {button.label}
-                </tf-button>
-              </td>
-            </tr>
-          )
-        })}
-      </table>
-      <h1>With Icon</h1>
-      <table>
-        <tr>
-          <td>default</td>
-          <td>
-            <tf-button>
-              <tf-icon icon="sync"></tf-icon>Some Text
-            </tf-button>
-          </td>
-          <td>
-            <tf-button>
-              Some Text<tf-icon icon="sync"></tf-icon>
-            </tf-button>
-          </td>
-          <td>
-            <tf-button>
-              <tf-icon icon="sync"></tf-icon>
-            </tf-button>
-          </td>
-        </tr>
-        <tr>
-          <td>small</td>
-          <td>
-            <tf-button size="small">
-              <tf-icon icon="sync"></tf-icon>Some Text
-            </tf-button>
-          </td>
-          <td>
-            <tf-button size="small">
-              Some Text<tf-icon icon="sync"></tf-icon>
-            </tf-button>
-          </td>
-          <td>
-            <tf-button size="small">
-              <tf-icon icon="sync"></tf-icon>
-            </tf-button>
-          </td>
-        </tr>
-        <tr>
-          <td>icon</td>
-          <td>
-            <tf-button size="icon">
-              <tf-icon icon="sync"></tf-icon>Some Text
-            </tf-button>
-          </td>
-          <td>
-            <tf-button size="icon">
-              Some Text<tf-icon icon="sync"></tf-icon>
-            </tf-button>
-          </td>
-          <td>
-            <tf-button size="icon">
-              <tf-icon icon="sync"></tf-icon>
-            </tf-button>
-          </td>
-        </tr>
-      </table>
+      <div class='header'>
+        <h1>Buttons</h1>
+      </div>
+      <div class='content'>
+        <table style={{ borderSpacing: '1rem' }}>
+          <tr>
+            <td>
+              <h3>default</h3>
+            </td>
+            <td>
+              <h3>active</h3>
+            </td>
+            <td>
+              <h3>disabled</h3>
+            </td>
+          </tr>
+          {buttons.map((button) => {
+            return (
+              <tr>
+                <td>
+                  <tf-button {...button.args}>{button.label}</tf-button>
+                </td>
+                <td>
+                  <tf-button {...button.args} active>
+                    {button.label}
+                  </tf-button>
+                </td>
+                <td>
+                  <tf-button {...button.args} disabled>
+                    {button.label}
+                  </tf-button>
+                </td>
+              </tr>
+            )
+          })}
+        </table>
+        <h1>With Icon</h1>
+        <table>
+          <tr>
+            <td>default</td>
+            <td>
+              <tf-button>
+                <tf-icon icon="sync"></tf-icon>Some Text
+              </tf-button>
+            </td>
+            <td>
+              <tf-button>
+                Some Text<tf-icon icon="sync"></tf-icon>
+              </tf-button>
+            </td>
+            <td>
+              <tf-button>
+                <tf-icon icon="sync"></tf-icon>
+              </tf-button>
+            </td>
+          </tr>
+          <tr>
+            <td>small</td>
+            <td>
+              <tf-button size="small">
+                <tf-icon icon="sync"></tf-icon>Some Text
+              </tf-button>
+            </td>
+            <td>
+              <tf-button size="small">
+                Some Text<tf-icon icon="sync"></tf-icon>
+              </tf-button>
+            </td>
+            <td>
+              <tf-button size="small">
+                <tf-icon icon="sync"></tf-icon>
+              </tf-button>
+            </td>
+          </tr>
+          <tr>
+            <td>icon</td>
+            <td>
+              <tf-button size="icon">
+                <tf-icon icon="sync"></tf-icon>Some Text
+              </tf-button>
+            </td>
+            <td>
+              <tf-button size="icon">
+                Some Text<tf-icon icon="sync"></tf-icon>
+              </tf-button>
+            </td>
+            <td>
+              <tf-button size="icon">
+                <tf-icon icon="sync"></tf-icon>
+              </tf-button>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   )
 }

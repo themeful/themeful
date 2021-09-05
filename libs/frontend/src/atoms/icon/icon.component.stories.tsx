@@ -20,29 +20,33 @@ export default {
 export const icon = ({ icons }): HTMLElement => {
   return (
     <div>
-      <h1>Icons</h1>
-      <table style={{ borderSpacing: '1rem' }}>
-        <tr>
-          <th></th>
-          <th>small</th>
-          <th>default</th>
-          <th>large</th>
-        </tr>
-        {icons.map((icon) => (
+      <div class='header'>
+        <h1>Icons</h1>
+      </div>
+      <div class='content'>
+        <table style={{ borderSpacing: '1rem' }}>
           <tr>
-            <td>{icon}</td>
-            <td>
-              <tf-icon icon={icon} size="small" />
-            </td>
-            <td>
-              <tf-icon icon={icon} />
-            </td>
-            <td>
-              <tf-icon icon={icon} size="large" />
-            </td>
+            <th></th>
+            <th>small</th>
+            <th>default</th>
+            <th>large</th>
           </tr>
-        ))}
-      </table>
+          {icons.map((icon) => (
+            <tr>
+              <td>{icon}</td>
+              <td>
+                <tf-icon icon={icon} size="small" />
+              </td>
+              <td>
+                <tf-icon icon={icon} />
+              </td>
+              <td>
+                <tf-icon icon={icon} size="large" />
+              </td>
+            </tr>
+          ))}
+        </table>
+      </div>
     </div>
   )
 }

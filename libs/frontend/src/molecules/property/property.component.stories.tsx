@@ -11,7 +11,7 @@ export const propertyBox = ({properties}): HTMLElement => {
     <div class='header'>
       <h1>Property Box</h1>
     </div>
-    <div style={{display: 'flex', gap: '1rem' }}>
+    <div class='content' style={{display: 'flex', gap: '1rem' }}>
       {properties.map((args) => <tf-property {...args} onEdit={action('edit')}></tf-property>)}
     </div>
   </div>)
