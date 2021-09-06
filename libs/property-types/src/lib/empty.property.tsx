@@ -1,7 +1,7 @@
 import { h } from '@stencil/core'
+import { fallback } from './fallback.property'
 
 export const empty = {
-  validation: (value) => !!value,
+  ...fallback,
   template: () => <div>empty</div>,
-  sort: (a, b) => a > b ? 1 : -1
 }

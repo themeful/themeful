@@ -1,8 +1,9 @@
 import { h } from '@stencil/core'
+import { fallback } from './fallback.property'
 
 export const color = {
-  validation: (value) => !!value,
-  template: ({value, name}): HTMLElement => {
+  ...fallback,
+  template: ({ value, name }): HTMLElement => {
     const formated = value.replace('rgba(', '').replace(')', '')
     return (
       <div>
@@ -10,6 +11,5 @@ export const color = {
         <pre>{formated}</pre>
       </div>
     )
-    },
-  sort: (a, b) => a > b ? 1 : -1
+  },
 }
