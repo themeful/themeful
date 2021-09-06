@@ -4,10 +4,12 @@
 }
 
 pre {
-  width: 100%;
+  display: inline-block;
   text-align: center;
   white-space: pre-line;
   margin: 0.5rem 0;
+  padding: 2px;
+  border-radius: 2px;
 }
 
 .property {
@@ -20,6 +22,8 @@ pre {
 
   &__value {
     padding: 1rem;
+    display: flex;
+    justify-content: center;
   }
 
   &__name {

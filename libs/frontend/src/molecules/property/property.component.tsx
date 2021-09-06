@@ -1,5 +1,5 @@
-import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
 import { properties } from '@properties'
+import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
 
 @Component({
   tag: 'tf-property',
@@ -41,7 +41,7 @@ export class PropertyComponent {
         {this.getTemplate()}
 
         {this.property.name && (
-          <div class="property__name">
+          <div class="property__name" style={{}}>
             {this.property?.global && <tf-icon size="small" icon="globe" />}
             <span>{this.getName()}</span>
           </div>

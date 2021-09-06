@@ -21,7 +21,6 @@ module.exports = {
       ? config.resolve.plugins.push(tsPaths)
       : (config.resolve.plugins = [tsPaths])
 
-    // Return the altered config
     return config
   },
 }
