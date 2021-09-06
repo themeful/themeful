@@ -1,7 +1,7 @@
 import { h } from '@stencil/core'
 import { fallback } from './fallback.property'
 
-export const font = {
+export const mediaquery = {
   ...fallback,
   template: (value): HTMLElement => {
     return (

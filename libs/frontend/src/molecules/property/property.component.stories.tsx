@@ -61,7 +61,16 @@ propertyBox.args = {
       property: { name: 'Stuff', group: 'base', type: 'display', value: 'flex' },
     },
     {
-      section: 'Fallback',
+      section: 'fallback',
+      property: {
+        name: 'Unknown',
+        group: 'base',
+        type: 'mediaquery',
+        value: 'screen and (min-width: 664px)',
+      },
+    },
+    {
+      section: 'fallback',
       property: { name: 'Unknown', group: 'base', type: 'unknown', value: 'flex' },
     },
     {

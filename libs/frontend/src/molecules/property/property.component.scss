@@ -1,21 +1,37 @@
 :host {
   display: block;
-  overflow: hidden;
   background-color: #fff;
 }
 
 pre {
-  max-width: 200px;
+  width: 100%;
+  text-align: center;
   white-space: pre-line;
+  margin: 0.5rem 0;
 }
 
 .property {
   border-radius: 4px;
-  border: 1px solid #333;
+  box-shadow: 0 0 0 1px rgba(200, 200, 200, 0.55);
   position: relative;
+  min-width: 120px;
+  max-width: 200px;
+  overflow: hidden;
+
+  &__value {
+    padding: 1rem;
+  }
 
   &__name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
     font: var(--tf-small-font);
+    background-color: #fff;
   }
 
   &__edit {

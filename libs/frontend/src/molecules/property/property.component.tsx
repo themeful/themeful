@@ -42,7 +42,7 @@ export class PropertyComponent {
 
         {this.property.name && (
           <div class="property__name">
-            {this.property?.global && <tf-icon icon="globe" />}
+            {this.property?.global && <tf-icon size="small" icon="globe" />}
             <span>{this.getName()}</span>
           </div>
         )}

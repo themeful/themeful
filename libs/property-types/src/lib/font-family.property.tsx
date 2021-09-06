@@ -5,7 +5,7 @@ export const fontFamily = {
   ...fallback,
   template: (value): HTMLElement => {
     return (
-      <div>
+      <div class="property__value">
         <pre>{value}</pre>
       </div>
     )

@@ -5,8 +5,9 @@ export const color = {
   ...fallback,
   template: (value): HTMLElement => {
     const formated = value.replace('rgba(', '').replace(')', '')
+    const styles = { background: value }
     return (
-      <div>
+      <div class="property__value" style={styles}>
         <pre>{formated}</pre>
       </div>
     )

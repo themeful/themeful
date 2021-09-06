@@ -3,5 +3,5 @@ import { fallback } from './fallback.property'
 
 export const empty = {
   ...fallback,
-  template: () => <div>empty</div>,
+  template: () => <div class="property__value">empty</div>,
 }
