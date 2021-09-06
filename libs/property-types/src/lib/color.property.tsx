@@ -3,11 +3,10 @@ import { fallback } from './fallback.property'
 
 export const color = {
   ...fallback,
-  template: ({ value, name }): HTMLElement => {
+  template: (value): HTMLElement => {
     const formated = value.replace('rgba(', '').replace(')', '')
     return (
       <div>
-        <label>{name}</label>
         <pre>{formated}</pre>
       </div>
     )

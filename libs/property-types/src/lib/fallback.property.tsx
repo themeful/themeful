@@ -2,10 +2,9 @@ import { h } from '@stencil/core'
 
 export const fallback = {
   validation: (value) => !!value,
-  template: ({ value, name }): HTMLElement => {
+  template: (value): HTMLElement => {
     return (
       <div>
-        <label>{name}</label>
         <pre>{value}</pre>
       </div>
     )

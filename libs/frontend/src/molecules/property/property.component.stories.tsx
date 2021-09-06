@@ -24,15 +24,20 @@ propertyBox.args = {
   properties: [
     {
       section: 'global',
-      value: { name: 'Content', group: 'Color', type: 'color', value: '#ff0000' },
+      property: { name: 'Content', global: true, group: 'Color', type: 'color', value: '#ff0000' },
     },
     {
       section: 'global',
-      value: { name: 'Background', group: 'Color', type: 'color', value: 'rgba(100,100,100,0.5)' },
+      property: {
+        name: 'Background',
+        group: 'Color',
+        type: 'color',
+        value: 'rgba(100,100,100,0.5)',
+      },
     },
     {
       section: 'Client 1',
-      value: {
+      property: {
         name: 'Default',
         group: 'Fonts',
         type: 'font',
@@ -41,21 +46,27 @@ propertyBox.args = {
     },
     {
       section: 'Client 2',
-      value: { name: 'Stuff', group: 'base', type: 'font-size', value: '1rem' },
+      property: { name: 'Stuff', group: 'base', type: 'font-size', value: '1rem' },
     },
     {
       section: 'global',
-      value: { name: 'Stuff', group: 'base', type: 'font-weight', value: '400' },
+      property: { name: 'Stuff', group: 'base', type: 'font-weight', value: '400' },
     },
     {
       section: 'global',
-      value: { name: 'Stuff', group: 'base', type: 'font-family', value: 'Arial' },
+      property: { name: 'Stuff', group: 'base', type: 'font-family', value: 'Arial' },
     },
-    { section: 'global', value: { name: 'Stuff', group: 'base', type: 'display', value: 'flex' } },
+    {
+      section: 'global',
+      property: { name: 'Stuff', group: 'base', type: 'display', value: 'flex' },
+    },
     {
       section: 'Fallback',
-      value: { name: 'Unknown', group: 'base', type: 'unknown', value: 'flex' },
+      property: { name: 'Unknown', group: 'base', type: 'unknown', value: 'flex' },
     },
-    { section: 'global', value: { name: 'Stuff', group: 'base', type: undefined, value: 'flex' } },
+    {
+      section: 'global',
+      property: {},
+    },
   ],
 }

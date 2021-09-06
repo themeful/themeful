@@ -7,8 +7,8 @@ import { properties } from '@properties'
   shadow: true,
 })
 export class PropertyComponent {
-  /** The value */
-  @Prop() value: any
+  /** The property */
+  @Prop() property: any
 
   /** The section */
   @Prop() section!: string
@@ -24,21 +24,28 @@ export class PropertyComponent {
 
   private click = () => this.edit.emit()
 
-  private mappedData = () => ({
-    value: this.value.value,
-    global: this.value.global,
-    name: `${this.showGroup ? this.value.group + ' ' : ''}${this.value.name}`
-  })
+  private getName = () => `${this.showGroup ? this.property.group + ' ' : ''}${this.property.name}`
 
   private getTemplate(): HTMLElement {
-    return properties(this.value?.type).template(this.mappedData())
+    return properties(this.property?.type).template(this.property.value)
   }
 
   render(): HTMLTfPropertyElement {
     return (
-      <div class='property'>
-        {this.showButton && <tf-button class='property__edit' size='icon' onClick={this.click}><tf-icon icon='pen' /></tf-button>}
+      <div class="property">
+        {this.showButton && (
+          <tf-button class="property__edit" size="icon" onClick={this.click}>
+            <tf-icon icon="pen" />
+          </tf-button>
+        )}
         {this.getTemplate()}
+
+        {this.property.name && (
+          <div class="property__name">
+            {this.property?.global && <tf-icon icon="globe" />}
+            <span>{this.getName()}</span>
+          </div>
+        )}
       </div>
     )
   }

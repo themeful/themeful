@@ -3,10 +3,9 @@ import { fallback } from './fallback.property'
 
 export const fontFamily = {
   ...fallback,
-  template: ({ value, name }): HTMLElement => {
+  template: (value): HTMLElement => {
     return (
       <div>
-        <label>{name}</label>
         <pre>{value}</pre>
       </div>
     )
