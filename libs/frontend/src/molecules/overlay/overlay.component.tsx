@@ -17,15 +17,18 @@ export class OverlayComponent {
   }
 
   render(): HTMLTfOverlayElement {
-    if (this.show){
+    if (this.show) {
       return (
         <div class="overlay__wrapper">
           <div class="overlay__backdrop" onClick={this.click}></div>
           <div class="overlay">
-            <tf-button class='overlay__close' size='icon' onClick={this.click}><tf-icon icon='close' /></tf-button>
+            <tf-button class="overlay__close" size="icon" onClick={this.click}>
+              <tf-icon icon="close" />
+            </tf-button>
             <slot />
           </div>
         </div>
-      )}
+      )
+    }
   }
 }

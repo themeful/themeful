@@ -14,10 +14,10 @@ export default {
 export const buttons = ({ buttons }): HTMLElement => {
   return (
     <div>
-      <div class='header'>
+      <div class="header">
         <h1>Buttons</h1>
       </div>
-      <div class='content'>
+      <div class="content">
         <table style={{ borderSpacing: '1rem' }}>
           <tr>
             <td>

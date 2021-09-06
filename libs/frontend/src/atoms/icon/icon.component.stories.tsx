@@ -20,10 +20,10 @@ export default {
 export const icon = ({ icons }): HTMLElement => {
   return (
     <div>
-      <div class='header'>
+      <div class="header">
         <h1>Icons</h1>
       </div>
-      <div class='content'>
+      <div class="content">
         <table style={{ borderSpacing: '1rem' }}>
           <tr>
             <th></th>

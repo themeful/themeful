@@ -8,9 +8,9 @@ module.exports = {
 
   stories: [...rootMain.stories, '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [...rootMain.addons],
-  babel: async options => ({
+  babel: async (options) => ({
     ...options,
-    presets: [["@babel/typescript", { jsxPragma: "h" }]],
+    presets: [['@babel/typescript', { jsxPragma: 'h' }]],
   }),
   webpackFinal: async (config, { configType }) => {
     if (rootMain.webpackFinal) {

@@ -28,10 +28,10 @@
   },
   "projects": {
     "frontend": {
-      "tags": ["frontend"]
+      "tags": ["scope:frontend"]
     },
     "property-types": {
-      "tags": []
+      "tags": ["scope:properties"]
     }
   }
 }
