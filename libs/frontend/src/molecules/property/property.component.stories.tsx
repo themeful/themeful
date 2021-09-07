@@ -27,16 +27,21 @@ propertyBox.args = {
   properties: [
     {
       section: 'global',
-      property: { name: 'Content', global: true, group: 'Color', type: 'color', value: '#ff0000' },
-    },
-    {
-      section: 'global',
       property: {
         name: 'Background color',
         global: true,
         group: 'Very long named nice',
         type: 'color',
-        value: 'rgba(100,100,100,0.5)',
+        value: '#ff0000',
+      },
+    },
+    {
+      section: 'global',
+      property: {
+        name: 'Content',
+        group: 'Color',
+        type: 'color',
+        value: 'rgba(23, 124, 124, 0.5)',
       },
     },
     {

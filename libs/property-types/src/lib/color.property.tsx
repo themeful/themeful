@@ -7,17 +7,29 @@ export const color = {
   template: (value): HTMLElement => {
     const formated = value.replace('rgba(', '').replace(')', '')
     const styles = {
-      background: `linear-gradient(90deg, ${toHEX(value)} 50%, ${toRGBA(value)} 50%)`,
+      position: 'absolute',
+      top: '0',
+      bottom: '0',
+      left: '50%',
+      right: '0',
+      background: '#fff',
+      zIndex: '-1',
     }
-    const preStyles = { backgroundColor: 'rgba(100, 100, 100, 0.7)', color: '#fff' }
     return (
-      <div class="property__value" style={styles}>
-        <pre style={preStyles}>{formated}</pre>
+      <div
+        class="property__value"
+        style={{
+          background: `linear-gradient(0deg, ${toHEX(value)} 50%, ${toRGBA(value)} 50%)`,
+        }}
+      >
+        <div style={styles}></div>
+        <pre style={{ backgroundColor: 'rgba(100, 100, 100, 0.7)', color: '#eee' }}>{formated}</pre>
       </div>
     )
   },
-  nameStyles: { backgroundColor: 'rgba(100, 100, 100, 0.7)', color: '#fff' },
+  nameStyles: { backgroundColor: 'rgba(100, 100, 100, 0.7)', color: '#eee' },
   wrapperStyles: {
-    backgroundColor: 'repeating-conic-gradient(#aaa 0% 25%, transparent 0% 50%) 50% / 10px 10px',
+    background: 'repeating-conic-gradient(#aaa 0% 25%, #fff 0% 50%) 50% / 10px 10px',
+    zIndex: 0,
   },
 }
