@@ -5,19 +5,27 @@ export default {
   title: 'Molecules/Property Box',
 }
 
-export const propertyBox = ({ properties }): HTMLElement => {
+export const propertyBox = ({ properties, wrappers }): HTMLElement => {
   return (
     <div>
       <div class="header">
         <h1>Property Box</h1>
       </div>
-      <div
-        class="content"
-        style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', maxWidth: '100%' }}
-      >
-        {properties.map((args) => (
-          <tf-property {...args} onEdit={action('edit')}></tf-property>
-        ))}
+      <div class="content">
+        <h2>Types</h2>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', maxWidth: '100%' }}>
+          {properties.map((args) => (
+            <tf-property {...args} onEdit={action('edit')}></tf-property>
+          ))}
+        </div>
+        <h2>Context</h2>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', maxWidth: '100%' }}>
+          {wrappers.map(({ item, wrapperClass }) => (
+            <div class={wrapperClass}>
+              <tf-property {...item} onEdit={action('edit')}></tf-property>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -70,6 +78,18 @@ propertyBox.args = {
       property: { name: 'Stuff', group: 'base', type: 'display', value: 'flex' },
     },
     {
+      section: 'global',
+      property: { name: 'Normal', group: 'Size', type: 'size', value: '1rem' },
+    },
+    {
+      section: 'global',
+      property: { name: 'Small', group: 'Size', type: 'size', value: '4px' },
+    },
+    {
+      section: 'global',
+      property: { name: 'Large', group: 'Size', type: 'size', value: '20px' },
+    },
+    {
       section: 'fallback',
       property: {
         name: 'Unknown',
@@ -85,6 +105,30 @@ propertyBox.args = {
     {
       section: 'global',
       property: {},
+    },
+  ],
+  wrappers: [
+    {
+      item: {
+        section: 'global',
+        property: { value: '.property--grouped', type: 'unknown' },
+      },
+      wrapperClass: 'property--grouped',
+    },
+    {
+      item: {
+        section: 'global',
+        property: { value: '.property--selectable', type: 'unknown' },
+      },
+      wrapperClass: 'property--selectable',
+    },
+    {
+      item: {
+        section: 'global',
+        property: { value: '.property--selected', type: 'unknown' },
+        class: 'property--selected',
+      },
+      wrapperClass: 'property--selectable',
     },
   ],
 }

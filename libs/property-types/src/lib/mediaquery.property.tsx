@@ -6,7 +6,7 @@ export const mediaquery = {
   template: (value): HTMLElement => {
     return (
       <div class="property__value">
-        <pre>{value}</pre>
+        <pre style={{ fontSize: '0.75rem' }}>{value}</pre>
       </div>
     )
   },

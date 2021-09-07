@@ -7,6 +7,7 @@ import { fontSize } from './font-szie.property'
 import { fontWeight } from './font-weight.property'
 import { font } from './font.property'
 import { mediaquery } from './mediaquery.property'
+import { size } from './size.property'
 
 const map = {
   font: font,
@@ -16,6 +17,7 @@ const map = {
   'font-family': fontFamily,
   mediaquery: mediaquery,
   display: display,
+  size: size,
 }
 
 export const properties = (property: string) => {

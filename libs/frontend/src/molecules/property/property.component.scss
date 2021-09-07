@@ -30,7 +30,7 @@ pre {
     align-items: center;
     min-height: 60px;
     width: 100%;
-    padding: 1rem;
+    padding: 0.5rem 0.5rem 1rem;
     box-sizing: border-box;
   }
 
@@ -70,5 +70,18 @@ pre {
 
   &:hover .property__edit {
     display: block;
+  }
+}
+
+:host-context(.property--grouped) .property {
+  box-shadow: none;
+}
+
+:host-context(.property--selectable) {
+  .property {
+    box-shadow: 0 0 0 2px rgba(200, 200, 200, 0.55);
+  }
+  &:host(.property--selected) .property {
+    box-shadow: 0 0 0 2px rgba(50, 90, 240, 0.55);
   }
 }

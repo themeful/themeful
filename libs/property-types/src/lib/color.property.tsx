@@ -6,7 +6,7 @@ export const color = {
   ...fallback,
   template: (value): HTMLElement => {
     const formated = value.replace('rgba(', '').replace(')', '')
-    const styles = {
+    const middleLayer = {
       position: 'absolute',
       top: '0',
       bottom: '0',
@@ -22,7 +22,7 @@ export const color = {
           background: `linear-gradient(0deg, ${toHEX(value)} 50%, ${toRGBA(value)} 50%)`,
         }}
       >
-        <div style={styles}></div>
+        <div style={middleLayer}></div>
         <pre style={{ backgroundColor: 'rgba(100, 100, 100, 0.7)', color: '#eee' }}>{formated}</pre>
       </div>
     )

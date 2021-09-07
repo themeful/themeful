@@ -4,11 +4,9 @@ import { fallback } from './fallback.property'
 export const fontFamily = {
   ...fallback,
   template: (value): HTMLElement => {
-    const valueStyles = { paddingTop: '0.5rem' }
-    const styles = { fontFamily: value, fontSize: '1.5rem' }
     return (
-      <div class="property__value" style={valueStyles}>
-        <span style={styles}>Aa</span>
+      <div class="property__value">
+        <span style={{ fontFamily: value, fontSize: '1.5rem' }}>Aa</span>
         <pre>{value}</pre>
       </div>
     )

@@ -17,6 +17,10 @@
                 "onlyDependOnLibsWithTags": ["scope:properties", "scope:utils"]
               },
               {
+                "sourceTag": "scope:properties",
+                "onlyDependOnLibsWithTags": ["scope:utils"]
+              },
+              {
                 "sourceTag": "*",
                 "onlyDependOnLibsWithTags": ["*"]
               }
