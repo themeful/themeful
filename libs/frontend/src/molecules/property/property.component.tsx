@@ -1,5 +1,5 @@
 import { properties } from '@properties'
-import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 
 @Component({
   tag: 'tf-property',
@@ -22,12 +22,19 @@ export class PropertyComponent {
   /** Edit event*/
   @Event() edit: EventEmitter
 
+  /** Mapped property */
+  @State() mappedProperty: any
+
   private click = () => this.edit.emit()
 
   private getName = () => `${this.showGroup ? this.property.group + ' ' : ''}${this.property.name}`
 
   private getTemplate(): HTMLElement {
-    return properties(this.property?.type).template(this.property.value)
+    return this.mappedProperty.template(this.property.value)
+  }
+
+  componentWillLoad() {
+    this.mappedProperty = properties(this.property?.type)
   }
 
   render(): HTMLTfPropertyElement {
@@ -41,7 +48,7 @@ export class PropertyComponent {
         {this.getTemplate()}
 
         {this.property.name && (
-          <div class="property__name" style={{}}>
+          <div class="property__name" style={this.mappedProperty.nameStyles}>
             {this.property?.global && <tf-icon size="small" icon="globe" />}
             <span>{this.getName()}</span>
           </div>
