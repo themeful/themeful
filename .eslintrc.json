@@ -14,7 +14,7 @@
             "depConstraints": [
               {
                 "sourceTag": "scope:frontend",
-                "onlyDependOnLibsWithTags": ["scope:properties"]
+                "onlyDependOnLibsWithTags": ["scope:properties", "scope:utils"]
               },
               {
                 "sourceTag": "*",

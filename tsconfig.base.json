@@ -17,7 +17,8 @@
     "paths": {
       "@properties": ["libs/property-types/src/index.ts"],
       "@themeful/frontend": ["dist/libs/frontend"],
-      "@themeful/frontend/loader": ["dist/libs/frontend/loader"]
+      "@themeful/frontend/loader": ["dist/libs/frontend/loader"],
+      "@utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

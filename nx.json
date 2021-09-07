@@ -32,6 +32,9 @@
     },
     "property-types": {
       "tags": ["scope:properties"]
+    },
+    "utils": {
+      "tags": ["scope:utils"]
     }
   }
 }
