@@ -41,7 +41,7 @@ export class PropertyComponent {
     return (
       <div class="property">
         {this.showButton && (
-          <tf-button class="property__edit" size="icon" onClick={this.click}>
+          <tf-button class="property__edit" size="icon" onClick={this.click} title="close">
             <tf-icon icon="pen" />
           </tf-button>
         )}

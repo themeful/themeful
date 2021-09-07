@@ -54,7 +54,7 @@ propertyBox.args = {
     },
     {
       section: 'global',
-      property: { name: 'Stuff', group: 'base', type: 'font-weight', value: '400' },
+      property: { name: 'Stuff', group: 'base', type: 'font-weight', value: '600' },
     },
     {
       section: 'global',

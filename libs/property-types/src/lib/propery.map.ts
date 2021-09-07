@@ -1,4 +1,5 @@
 import { color } from './color.property'
+import { display } from './display.property'
 import { empty } from './empty.property'
 import { fallback } from './fallback.property'
 import { fontFamily } from './font-family.property'
@@ -14,6 +15,7 @@ const map = {
   'font-weight': fontWeight,
   'font-family': fontFamily,
   mediaquery: mediaquery,
+  display: display,
 }
 
 export const properties = (property: string) => {
