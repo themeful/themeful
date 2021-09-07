@@ -11,7 +11,10 @@ export const propertyBox = ({ properties }): HTMLElement => {
       <div class="header">
         <h1>Property Box</h1>
       </div>
-      <div class="content" style={{ display: 'flex', gap: '1rem' }}>
+      <div
+        class="content"
+        style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', maxWidth: '100%' }}
+      >
         {properties.map((args) => (
           <tf-property {...args} onEdit={action('edit')}></tf-property>
         ))}
@@ -29,8 +32,9 @@ propertyBox.args = {
     {
       section: 'global',
       property: {
-        name: 'Background',
-        group: 'Color',
+        name: 'Background color',
+        global: true,
+        group: 'Very long named nice',
         type: 'color',
         value: 'rgba(100,100,100,0.5)',
       },
