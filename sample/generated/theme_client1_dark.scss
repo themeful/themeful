@@ -1,0 +1,13 @@
+@import './baseValues.scss';
+
+& {
+  --dtActionBg: #{$client1_action_tertiary};
+  --dtActionBgHover: #{$client1_action_secondary};
+  --dtControlBorderRadius: #{$global_space_tiny};
+  --dtFontColorPrimary: #{$global_base_lIght};
+  --dtFontSize100: #{$client1_content_primary};
+  --dtPrimaryFont: #{$client1_font_primary};
+  @include client1_mediaQuery_aboveSmallDesktop {
+    --dtFontSize100: 13px;
+  }
+}

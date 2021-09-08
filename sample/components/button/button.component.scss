@@ -1,0 +1,23 @@
+@import 'designTokens';
+
+$atButtonBackground: #11f !default;
+$atButtonFontColor: #fff !default;
+$atButtonFontSize: 14px !default;
+$atButtonBackgroundHover: #88f !default;
+$atButtonVerticalSpace: 8px !default;
+$atButtonHorizontalSpace: 16px !default;
+$atButtonBorderRadius: 16px !default;
+
+button {
+  background-color: $atButtonBackground;
+  font-size: $atButtonFontSize;
+  color: $atButtonFontColor;
+  padding: $atButtonVerticalSpace $atButtonHorizontalSpace;
+  border-radius: $atButtonBorderRadius;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    background-color: $atButtonBackgroundHover;
+  }
+}

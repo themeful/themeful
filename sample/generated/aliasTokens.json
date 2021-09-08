@@ -1,0 +1,115 @@
+{
+  "atBaseFontColor": {
+    "component": null,
+    "files": null,
+    "properties": [
+      "color"
+    ],
+    "extern": true,
+    "crawled": false
+  },
+  "atButtonBackground": {
+    "component": [
+      "Button"
+    ],
+    "files": [
+      "libs/components/src/lib/button/button.component.scss"
+    ],
+    "properties": [
+      "background-color"
+    ],
+    "extern": true,
+    "crawled": true
+  },
+  "atButtonBackgroundHover": {
+    "component": [
+      "Button"
+    ],
+    "files": [
+      "sample/components/button/button.component.scss"
+    ],
+    "properties": [
+      "background-color"
+    ],
+    "extern": false,
+    "crawled": true
+  },
+  "atButtonBorderRadius": {
+    "component": [
+      "Button"
+    ],
+    "files": [
+      "sample/components/button/button.component.scss"
+    ],
+    "properties": [
+      "border-radius"
+    ],
+    "extern": false,
+    "crawled": true
+  },
+  "atButtonFontColor": {
+    "component": [
+      "Button"
+    ],
+    "files": [
+      "sample/components/button/button.component.scss"
+    ],
+    "properties": [
+      "color"
+    ],
+    "extern": false,
+    "crawled": true
+  },
+  "atButtonFontSize": {
+    "component": [
+      "Button"
+    ],
+    "files": [
+      "sample/components/button/button.component.scss"
+    ],
+    "properties": [
+      "font-size"
+    ],
+    "extern": false,
+    "crawled": true
+  },
+  "atButtonHorizontalSpace": {
+    "component": [
+      "Button"
+    ],
+    "files": [
+      "sample/components/button/button.component.scss"
+    ],
+    "properties": [
+      "padding"
+    ],
+    "extern": false,
+    "crawled": true
+  },
+  "atButtonVerticalSpace": {
+    "component": [
+      "Button"
+    ],
+    "files": [
+      "sample/components/button/button.component.scss"
+    ],
+    "properties": [
+      "padding"
+    ],
+    "extern": false,
+    "crawled": true
+  },
+  "atCardBackground": {
+    "component": [
+      "Card"
+    ],
+    "files": [
+      "sample/components/card/card.component.scss"
+    ],
+    "properties": [
+      "background-color"
+    ],
+    "extern": false,
+    "crawled": true
+  }
+}

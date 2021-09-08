@@ -1,3 +1,43 @@
 :host {
   display: block;
 }
+
+.toast {
+  &__wrapper {
+    box-shadow: 0px -4px 4px -3px rgba(30, 30, 30, 0.2);
+    margin-left: calc(50vw - 150px);
+    width: 300px;
+    position: absolute;
+    overflow: hidden;
+    height: 30px;
+    top: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+  }
+  &__msg {
+    position: absolute;
+    color: #fff;
+    padding: 4px 8px;
+    text-align: center;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    transition: opacity 300ms ease-in-out, top 300ms ease-in-out;
+    opacity: 0;
+    top: -30px;
+    min-width: 100px;
+
+    &--error {
+      background-color: rgba(224, 73, 62, 0.8);
+    }
+
+    &--success {
+      background-color: rgba(95, 192, 17, 0.8);
+    }
+
+    &--open {
+      top: 0;
+      opacity: 1;
+    }
+  }
+}

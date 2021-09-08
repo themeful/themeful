@@ -1,0 +1,15 @@
+html[data-brand-theme='client1_dark'] {
+  @import './theme_client1_dark';
+}
+html[data-brand-theme='client1_light'] {
+  @import './theme_client1_light';
+}
+html[data-brand-theme='client2_dark'] {
+  @import './theme_client2_dark';
+}
+html[data-brand-theme='client2_light'] {
+  @import './theme_client2_light';
+}
+html[data-brand-theme='client3_default'] {
+  @import './theme_client3_default';
+}

@@ -1,0 +1,210 @@
+{
+  "client1_dark": {
+    "name": "Dark",
+    "client": "client1",
+    "values": {
+      "dtActionBg": {
+        "default": {
+          "baseValue": "client1_action_tertiary"
+        }
+      },
+      "dtActionBgHover": {
+        "default": {
+          "baseValue": "client1_action_secondary"
+        }
+      },
+      "dtControlBorderRadius": {
+        "default": {
+          "baseValue": "global_space_tiny"
+        }
+      },
+      "dtFontColorPrimary": {
+        "default": {
+          "baseValue": "global_base_lIght"
+        }
+      },
+      "dtFontSize100": {
+        "default": {
+          "baseValue": "client1_content_primary"
+        },
+        "client1_mediaQuery_aboveSmallDesktop": {
+          "directValue": {
+            "value": "13px",
+            "type": "font-size"
+          }
+        }
+      },
+      "dtPrimaryFont": {
+        "default": {
+          "baseValue": "client1_font_primary"
+        }
+      }
+    }
+  },
+  "client1_light": {
+    "name": "Light",
+    "client": "client1",
+    "values": {
+      "dtActionBg": {
+        "default": {
+          "baseValue": "client1_action_primary"
+        }
+      },
+      "dtActionBgHover": {
+        "default": {
+          "baseValue": "client1_action_secondary"
+        }
+      },
+      "dtControlBorderRadius": {
+        "default": {
+          "baseValue": "global_space_small"
+        }
+      },
+      "dtFontColorPrimary": {
+        "default": {
+          "baseValue": "global_base_black"
+        }
+      },
+      "dtFontSize100": {
+        "default": {
+          "baseValue": "client1_content_primary"
+        }
+      },
+      "dtPrimaryFont": {
+        "default": {
+          "baseValue": "client1_font_primary"
+        }
+      }
+    }
+  },
+  "client2_dark": {
+    "name": "Dark",
+    "client": "client2",
+    "values": {
+      "dtActionBg": {
+        "default": {
+          "baseValue": "client2_brand_tertiary"
+        }
+      },
+      "dtActionBgHover": {
+        "default": {
+          "baseValue": "client2_brand_secondary"
+        }
+      },
+      "dtControlBorderRadius": {
+        "default": {
+          "baseValue": "global_space_small"
+        }
+      },
+      "dtFontColorPrimary": {
+        "default": {
+          "baseValue": "global_base_lIght"
+        }
+      },
+      "dtFontSize100": {
+        "default": {
+          "baseValue": "client2_content_normal"
+        }
+      },
+      "dtPrimaryFont": {
+        "default": {
+          "baseValue": "client2_font_primary"
+        }
+      }
+    }
+  },
+  "client2_light": {
+    "name": "Light",
+    "client": "client2",
+    "values": {
+      "dtActionBg": {
+        "default": {
+          "baseValue": "client2_brand_primary"
+        }
+      },
+      "dtActionBgHover": {
+        "default": {
+          "baseValue": "client2_brand_secondary"
+        }
+      },
+      "dtControlBorderRadius": {
+        "default": {
+          "baseValue": "global_space_tiny"
+        }
+      },
+      "dtFontColorPrimary": {
+        "default": {
+          "baseValue": "global_base_black"
+        }
+      },
+      "dtFontSize100": {
+        "default": {
+          "baseValue": "client2_content_normal"
+        }
+      },
+      "dtPrimaryFont": {
+        "default": {
+          "baseValue": "client2_font_primary"
+        }
+      }
+    }
+  },
+  "client3_default": {
+    "name": "Default",
+    "client": "client3",
+    "values": {
+      "dtActionBg": {
+        "default": {
+          "directValue": {
+            "value": "#aaaaaa",
+            "type": "color"
+          }
+        },
+        "global_mediaQuery_aboveSmallMobile": {
+          "directValue": {
+            "value": "rgba(180, 180, 180, 0.8)",
+            "type": "color"
+          }
+        }
+      },
+      "dtActionBgHover": {
+        "default": {
+          "baseValue": "client3_base_primary"
+        }
+      },
+      "dtControlBorderRadius": {
+        "default": {
+          "baseValue": "global_space_tiny"
+        },
+        "global_mediaQuery_aboveSmallMobile": {
+          "baseValue": "global_space_small"
+        },
+        "global_mediaQuery_aboveMobile": {
+          "baseValue": "global_space_medium"
+        },
+        "global_mediaQuery_aboveTablet": {
+          "baseValue": "global_space_large"
+        }
+      },
+      "dtFontColorPrimary": {
+        "default": {
+          "baseValue": "client3_base_primary"
+        }
+      },
+      "dtFontSize100": {
+        "global_mediaQuery_aboveSmallMobile": {
+          "directValue": {
+            "type": "font-size",
+            "value": "1rem"
+          }
+        },
+        "global_mediaQuery_aboveMobile": {
+          "directValue": {
+            "type": "font-size",
+            "value": "2rem"
+          }
+        }
+      }
+    }
+  }
+}

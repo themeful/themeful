@@ -1,0 +1,10 @@
+@import './baseValues.scss';
+
+& {
+  --dtActionBg: #{$client2_brand_primary};
+  --dtActionBgHover: #{$client2_brand_secondary};
+  --dtControlBorderRadius: #{$global_space_tiny};
+  --dtFontColorPrimary: #{$global_base_black};
+  --dtFontSize100: #{$client2_content_normal};
+  --dtPrimaryFont: #{$client2_font_primary};
+}

@@ -14,11 +14,19 @@
             "depConstraints": [
               {
                 "sourceTag": "scope:frontend",
-                "onlyDependOnLibsWithTags": ["scope:properties", "scope:utils"]
+                "onlyDependOnLibsWithTags": ["scope:properties", "scope:utils", "scope:typings"]
+              },
+              {
+                "sourceTag": "scope:backend",
+                "onlyDependOnLibsWithTags": ["scope:properties", "scope:utils", "scope:typings"]
               },
               {
                 "sourceTag": "scope:properties",
-                "onlyDependOnLibsWithTags": ["scope:utils"]
+                "onlyDependOnLibsWithTags": ["scope:utils", "scope:typings"]
+              },
+              {
+                "sourceTag": "scope:utils",
+                "onlyDependOnLibsWithTags": ["scope:typings"]
               },
               {
                 "sourceTag": "*",
