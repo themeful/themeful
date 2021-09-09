@@ -7,8 +7,10 @@ import {
   DesignTokens,
   Theme,
   Themes,
+  ThemeValue,
 } from '@typings'
-import { from, Observable } from 'rxjs'
+import { http } from '@utils'
+import { Observable } from 'rxjs'
 
 export class APIService {
   private static _instance: APIService
@@ -20,140 +22,167 @@ export class APIService {
 
   // Themes
   public getThemes(): Observable<Themes> {
-    return from(
-      fetch('http://localhost:3333/api/theme') as unknown as Promise<Themes>
-    ) as Observable<Themes>
+    return http.get<Themes>('http://localhost:3333/api/theme')
   }
 
-  public createTheme({ theme }: any): Observable<Theme> {
-    return from(
-      fetch(`http://localhost:3333/api/theme`, {
-        method: 'POST',
-        body: JSON.stringify(theme),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }) as unknown as Promise<Theme>
-    ) as Observable<Theme>
+  public createTheme({ theme }: { theme: Theme }): Observable<Theme> {
+    return http.post<Theme, Theme>('http://localhost:3333/api/theme', theme)
   }
 
-  public updateTheme({ key, theme }: any): Observable<Theme> {
-    return this.http.patch(`http://localhost:3333/api/theme/${key}`, theme) as Observable<Theme>
+  public updateTheme({ key, theme }: { key: string; theme: Theme }): Observable<Theme> {
+    return http.patch<Theme, Theme>(`http://localhost:3333/api/theme/${key}`, theme)
   }
 
-  public deleteTheme({ key }: any): Observable<boolean> {
-    return this.http.delete(`http://localhost:3333/api/theme/${key}`) as Observable<boolean>
+  public deleteTheme({ key }: { key: string }): Observable<boolean> {
+    return http.delete<boolean>(`http://localhost:3333/api/theme/${key}`)
   }
 
   // ThemeValues
-  public createThemeValue({ theme, token, value }: any): Observable<Theme> {
-    return this.http.post(
+  public createThemeValue({
+    theme,
+    token,
+    value,
+  }: {
+    theme: string
+    token: string
+    value: ThemeValue
+  }): Observable<Theme> {
+    return http.post<Theme, ThemeValue>(
       `http://localhost:3333/api/theme/value/${theme}/${token}`,
       value
-    ) as Observable<Theme>
+    )
   }
 
-  public updateThemeValue({ theme, token, media, value }: any): Observable<boolean> {
-    return this.http.patch(
+  public updateThemeValue({
+    theme,
+    token,
+    media,
+    value,
+  }: {
+    theme: string
+    token: string
+    media: string
+    value: ThemeValue
+  }): Observable<boolean> {
+    return http.patch<boolean, ThemeValue>(
       `http://localhost:3333/api/theme/value/${theme}/${token}/${media}`,
       value
-    ) as Observable<boolean>
+    )
   }
 
-  public deleteThemeValue({ theme, token, media }: any): Observable<boolean> {
-    return this.http.delete(
-      `http://localhost:3333/api/theme/value/${theme}/${token}/${media}`
-    ) as Observable<boolean>
+  public deleteThemeValue({
+    theme,
+    token,
+    media,
+  }: {
+    theme: string
+    token: string
+    media: string
+  }): Observable<boolean> {
+    return http.delete<boolean>(`http://localhost:3333/api/theme/value/${theme}/${token}/${media}`)
   }
 
   // BaseValues
   public getBaseValues(): Observable<BaseValues> {
-    return from(
-      fetch('http://localhost:3333/api/base-value') as unknown as Promise<BaseValues>
-    ) as Observable<BaseValues>
+    return http.get<BaseValues>('http://localhost:3333/api/base-value')
   }
 
-  public createBaseValue({ baseValue, client }: any): Observable<BaseValue> {
-    return this.http.post(
+  public createBaseValue({
+    baseValue,
+    client,
+  }: {
+    baseValue: BaseValue
+    client?: string
+  }): Observable<BaseValue> {
+    return http.post<BaseValue, BaseValue>(
       `http://localhost:3333/api/base-value/${client ?? ''}`,
       baseValue
-    ) as Observable<BaseValue>
+    )
   }
 
-  public updateBaseValue({ key, baseValue, client }: any): Observable<BaseValue> {
-    return this.http.patch(
+  public updateBaseValue({
+    key,
+    baseValue,
+    client,
+  }: {
+    key: string
+    client?: string
+    baseValue: BaseValue
+  }): Observable<BaseValue> {
+    return http.patch<BaseValue, BaseValue>(
       `http://localhost:3333/api/base-value/${key}/${client ?? ''}`,
       baseValue
-    ) as Observable<BaseValue>
+    )
   }
 
-  public deleteBaseValue({ key, client }: any): Observable<boolean> {
-    return this.http.delete(
-      `http://localhost:3333/api/base-value/${key}/${client ?? ''}`
-    ) as Observable<boolean>
+  public deleteBaseValue({ key, client }: { key: string; client?: string }): Observable<boolean> {
+    return http.delete<boolean>(`http://localhost:3333/api/base-value/${key}/${client ?? ''}`)
   }
 
   // DesignTokens
   public getDesignTokens(): Observable<DesignTokens> {
-    return from(
-      fetch('http://localhost:3333/api/design-token') as unknown as Promise<DesignTokens>
-    ) as Observable<DesignTokens>
+    return http.get<DesignTokens>('http://localhost:3333/api/design-token')
   }
 
-  public createDesignToken({ designToken }: any): Observable<DesignToken> {
-    return this.http.post(
+  public createDesignToken({ designToken }: { designToken: DesignToken }): Observable<DesignToken> {
+    return http.post<DesignToken, DesignToken>(
       `http://localhost:3333/api/design-token`,
       designToken
-    ) as Observable<DesignToken>
+    )
   }
 
-  public selectAliasTokens({ key, aliasTokens }: any): Observable<boolean> {
-    return this.http.patch(
+  public selectAliasTokens({
+    key,
+    aliasTokens,
+  }: {
+    key: string
+    aliasTokens: AliasTokens
+  }): Observable<boolean> {
+    return http.patch<boolean, AliasTokens>(
       `http://localhost:3333/api/design-token/${key}/aliasTokens`,
       aliasTokens
-    ) as Observable<boolean>
+    )
   }
 
-  public updateDesignToken({ key, designToken }: any): Observable<DesignToken> {
-    return this.http.patch(
+  public updateDesignToken({
+    key,
+    designToken,
+  }: {
+    key: string
+    designToken: DesignToken
+  }): Observable<DesignToken> {
+    return http.patch<DesignToken, DesignToken>(
       `http://localhost:3333/api/design-token/${key}`,
       designToken
-    ) as Observable<DesignToken>
+    )
   }
 
-  public deleteDesignToken({ key }: any): Observable<boolean> {
-    return this.http.delete(`http://localhost:3333/api/design-token/${key}`) as Observable<boolean>
+  public deleteDesignToken({ key }: { key: string }): Observable<boolean> {
+    return http.delete<boolean>(`http://localhost:3333/api/design-token/${key}`)
   }
 
   // Clients
-  public createClient({ name, baseFontSize }: Client): Observable<boolean> {
-    return this.http.post(`http://localhost:3333/api/client`, {
-      name,
-      baseFontSize,
-    }) as Observable<boolean>
+  public createClient(client: Client): Observable<boolean> {
+    return http.post<boolean, Client>(`http://localhost:3333/api/client`, client)
   }
 
   public updateClient({ key, name, baseFontSize }: Client): Observable<boolean> {
-    return this.http.patch(`http://localhost:3333/api/client/${key}`, {
+    return http.patch<boolean, Client>(`http://localhost:3333/api/client/${key}`, {
       name,
       baseFontSize,
-    }) as Observable<boolean>
+    })
   }
 
-  public deleteClient({ key }: any): Observable<boolean> {
-    return this.http.delete(`http://localhost:3333/api/client/${key}`) as Observable<boolean>
+  public deleteClient({ key }: { key: string }): Observable<boolean> {
+    return http.delete<boolean>(`http://localhost:3333/api/client/${key}`)
   }
 
   // AliasTokens
   public getAliasTokens(): Observable<AliasTokens> {
-    return from(
-      fetch('http://localhost:3333/api/alias-token') as unknown as Promise<AliasTokens>
-    ) as Observable<AliasTokens>
+    return http.get<AliasTokens>('http://localhost:3333/api/alias-token')
   }
 
   public rescanAliasTokens(): Observable<boolean> {
-    return from(
-      fetch('http://localhost:3333/api/alias-token/rescan') as unknown as Promise<boolean>
-    ) as Observable<boolean>
+    return http.get<boolean>('http://localhost:3333/api/alias-token/rescan')
   }
 }

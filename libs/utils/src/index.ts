@@ -1,6 +1,7 @@
 export * from './lib/array.util'
 export * from './lib/color-translator.util'
 export * from './lib/convertSize.util'
+export * from './lib/http.util'
 export * from './lib/object.util'
 export * from './lib/slug.util'
 export * from './lib/sort.util'
