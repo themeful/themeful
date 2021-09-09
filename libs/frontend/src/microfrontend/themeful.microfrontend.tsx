@@ -1,4 +1,5 @@
-import { Component, h, Prop } from '@stencil/core'
+import { Component, h } from '@stencil/core'
+import { APIService } from '../services/'
 
 @Component({
   tag: 'themeful-component',
@@ -6,26 +7,17 @@ import { Component, h, Prop } from '@stencil/core'
   shadow: true,
 })
 export class ThemefulComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string
+  private apiService: APIService
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string
-
-  /**
-   * The last name
-   */
-  @Prop() last: string
+  constructor() {
+    this.apiService = APIService.Instance
+  }
 
   private getText(): string {
-    return `${this.first} ${this.middle} ${this.last}`
+    return this.apiService.getHello()
   }
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>
+    return <div>Hello, World! {this.getText()}</div>
   }
 }
