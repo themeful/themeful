@@ -1,7 +1,7 @@
 import { h } from '@stencil/core'
 
 export default {
-  title: 'Atoms/Buttons',
+  title: 'Components/Buttons',
   args: {
     buttons: [
       { label: 'Primary', args: { type: 'button', kind: 'primary' } },

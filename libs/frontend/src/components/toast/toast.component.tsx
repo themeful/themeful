@@ -1,5 +1,6 @@
 import { Component, h, Host, Prop, State } from '@stencil/core'
-import { Observable, Subject, Subscription, delay, filter, tap } from 'rxjs'
+import { Observable, Subject, Subscription } from 'rxjs'
+import { filter, delay, tap } from 'rxjs/operators'
 
 @Component({
   tag: 'tf-toast',

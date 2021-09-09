@@ -2,7 +2,7 @@ import { h } from '@stencil/core'
 import { action } from '@storybook/addon-actions'
 
 export default {
-  title: 'Molecules/Overlay',
+  title: 'Components/Overlay',
 }
 
 export const overlay = (args): HTMLElement => {

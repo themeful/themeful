@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { AliasToken, AliasTokens } from '@typings'
-import { FindResults, findSync, sortMap, unique } from '@utils'
+import { sortMap, unique } from '@utils'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import { FindResults, findSync } from '../utils'
 import { ConfigService } from './config.service'
 import { SyncService } from './sync.service'
 

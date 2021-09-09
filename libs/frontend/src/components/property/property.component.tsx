@@ -16,9 +16,6 @@ export class PropertyComponent {
   /** Show group */
   @Prop() showGroup = true
 
-  /** Show edit button */
-  @Prop() showButton = true
-
   /** Edit event*/
   @Event() edit: EventEmitter
 
@@ -40,11 +37,9 @@ export class PropertyComponent {
   render(): HTMLTfPropertyElement {
     return (
       <div class="property" style={this.mappedProperty.wrapperStyles}>
-        {this.showButton && (
-          <tf-button class="property__edit" size="icon" onClick={this.click} title="close">
-            <tf-icon icon="pen" />
-          </tf-button>
-        )}
+        <tf-button class="property__edit" size="icon" onClick={this.click} title="close">
+          <tf-icon icon="pen" />
+        </tf-button>
         {this.getTemplate()}
 
         {this.property.name && (

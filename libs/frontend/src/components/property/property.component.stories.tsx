@@ -2,7 +2,7 @@ import { h } from '@stencil/core'
 import { action } from '@storybook/addon-actions'
 
 export default {
-  title: 'Molecules/Property Box',
+  title: 'Components/Property Box',
 }
 
 export const propertyBox = ({ properties, wrappers }): HTMLElement => {

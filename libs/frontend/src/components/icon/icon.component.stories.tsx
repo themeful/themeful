@@ -1,7 +1,7 @@
 import { h } from '@stencil/core'
 
 export default {
-  title: 'Atoms/Icon',
+  title: 'Components/Icon',
   args: {
     icons: [
       'chevron-right',

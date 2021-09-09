@@ -1,8 +1,9 @@
 import { h } from '@stencil/core'
-import { interval, mapTo } from 'rxjs'
+import { timer } from 'rxjs'
+import { mapTo } from 'rxjs/operators'
 
 export default {
-  title: 'Molecules/Toast',
+  title: 'Components/Toast',
 }
 
 export const toast = ({ first, second }): HTMLElement => {
@@ -12,10 +13,10 @@ export const toast = ({ first, second }): HTMLElement => {
         <h1>Toast</h1>
       </div>
       <div class="content">
-        <div style={{ position: 'relative', width: '400px', height: '200px' }}>
+        <div style={{ position: 'relative', width: '400px', height: '100px' }}>
           <tf-toast {...first}></tf-toast>
         </div>
-        <div style={{ position: 'relative', width: '400px', height: '200px' }}>
+        <div style={{ position: 'relative', width: '400px', height: '100px' }}>
           <tf-toast {...second}></tf-toast>
         </div>
       </div>
@@ -25,7 +26,7 @@ export const toast = ({ first, second }): HTMLElement => {
 
 toast.args = {
   first: {
-    msg$: interval(5000).pipe(
+    msg$: timer(0, 5000).pipe(
       mapTo({
         text: 'Hello World',
         status: 'success',
@@ -33,7 +34,7 @@ toast.args = {
     ),
   },
   second: {
-    msg$: interval(5000).pipe(
+    msg$: timer(0, 5000).pipe(
       mapTo({
         text: 'Hello World',
         status: 'error',
