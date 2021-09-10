@@ -1,8 +1,9 @@
 import { h } from '@stencil/core'
 import { toHEX, toRGBA } from '@utils'
 import { fallback } from './fallback.property'
+import { PropertyType } from '@typings'
 
-export const color = {
+export const color: PropertyType = {
   ...fallback,
   template: (value): HTMLElement => {
     const formated = value.replace('rgba(', '').replace(')', '')
@@ -30,6 +31,6 @@ export const color = {
   nameStyles: { backgroundColor: 'rgba(100, 100, 100, 0.7)', color: '#eee' },
   wrapperStyles: {
     background: 'repeating-conic-gradient(#aaa 0% 25%, #fff 0% 50%) 50% / 10px 10px',
-    zIndex: 0,
+    zIndex: '0',
   },
 }

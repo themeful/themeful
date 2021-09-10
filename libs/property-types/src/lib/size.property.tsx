@@ -1,7 +1,8 @@
 import { h } from '@stencil/core'
 import { fallback } from './fallback.property'
+import { PropertyType } from '@typings'
 
-export const size = {
+export const size: PropertyType = {
   ...fallback,
   template: (value): HTMLElement => {
     return (

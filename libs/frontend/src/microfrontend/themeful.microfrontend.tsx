@@ -14,7 +14,7 @@ export class ThemefulComponent {
   }
 
   private getText(): string {
-    return this.apiService.getHello()
+    return 'Hello' //this.apiService.getHello()
   }
 
   render() {

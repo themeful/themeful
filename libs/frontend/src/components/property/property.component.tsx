@@ -1,5 +1,6 @@
 import { properties } from '@properties'
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
+import { PropertyType, Property } from '@typings'
 
 @Component({
   tag: 'tf-property',
@@ -8,7 +9,7 @@ import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 })
 export class PropertyComponent {
   /** The property */
-  @Prop() property: any
+  @Prop() property: Property
 
   /** The section */
   @Prop() section!: string
@@ -20,7 +21,7 @@ export class PropertyComponent {
   @Event() edit: EventEmitter
 
   /** Mapped property */
-  @State() mappedProperty: any
+  @State() mappedProperty: PropertyType
 
   private click = () => this.edit.emit()
 
