@@ -20,6 +20,10 @@ export class APIService {
     return this._instance || (this._instance = new this())
   }
 
+  public test(): string {
+    return 'Hello'
+  }
+
   // Themes
   public getThemes(): Observable<Themes> {
     return http.get<Themes>('http://localhost:3333/api/theme')

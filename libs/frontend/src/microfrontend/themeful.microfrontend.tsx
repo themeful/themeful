@@ -1,5 +1,5 @@
 import { Component, h } from '@stencil/core'
-import { APIService } from '../services/'
+// import { APIService } from '../services/'
 
 @Component({
   tag: 'themeful-component',
@@ -7,14 +7,17 @@ import { APIService } from '../services/'
   shadow: true,
 })
 export class ThemefulComponent {
-  private apiService: APIService
+  // private apiService: APIService
 
   constructor() {
-    this.apiService = APIService.Instance
+    // this.apiService = APIService.Instance
   }
 
   private getText(): string {
-    return 'Hello' //this.apiService.getHello()
+    // this.apiService.getThemes().subscribe((data) => {
+    //   console.log(data)
+    // })
+    return 'done'
   }
 
   render() {
