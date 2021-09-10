@@ -10,13 +10,16 @@ import {
   ThemeValue,
 } from '@typings'
 import { http } from '@utils'
-import { Observable } from 'rxjs'
+import { Observable, Subject, tap } from 'rxjs'
 
 export class APIService {
   private static _instance: APIService
+  public themes = new Subject<Themes>()
+  public designTokens = new Subject<DesignTokens>()
+  public baseValues = new Subject<BaseValues>()
+  public aliasTokens = new Subject<AliasTokens>()
 
   public static get Instance(): APIService {
-    // Do you need arguments? Make it a regular method instead.
     return this._instance || (this._instance = new this())
   }
 
@@ -26,7 +29,11 @@ export class APIService {
 
   // Themes
   public getThemes(): Observable<Themes> {
-    return http.get<Themes>('http://localhost:3333/api/theme')
+    return http.get<Themes>('http://localhost:3333/api/theme').pipe(
+      tap((data) => {
+        this.themes.next(data)
+      })
+    )
   }
 
   public createTheme({ theme }: { theme: Theme }): Observable<Theme> {
@@ -88,7 +95,11 @@ export class APIService {
 
   // BaseValues
   public getBaseValues(): Observable<BaseValues> {
-    return http.get<BaseValues>('http://localhost:3333/api/base-value')
+    return http.get<BaseValues>('http://localhost:3333/api/base-value').pipe(
+      tap((data) => {
+        this.baseValues.next(data)
+      })
+    )
   }
 
   public createBaseValue({
@@ -125,7 +136,11 @@ export class APIService {
 
   // DesignTokens
   public getDesignTokens(): Observable<DesignTokens> {
-    return http.get<DesignTokens>('http://localhost:3333/api/design-token')
+    return http.get<DesignTokens>('http://localhost:3333/api/design-token').pipe(
+      tap((data) => {
+        this.designTokens.next(data)
+      })
+    )
   }
 
   public createDesignToken({ designToken }: { designToken: DesignToken }): Observable<DesignToken> {
@@ -183,7 +198,11 @@ export class APIService {
 
   // AliasTokens
   public getAliasTokens(): Observable<AliasTokens> {
-    return http.get<AliasTokens>('http://localhost:3333/api/alias-token')
+    return http.get<AliasTokens>('http://localhost:3333/api/alias-token').pipe(
+      tap((data) => {
+        this.aliasTokens.next(data)
+      })
+    )
   }
 
   public rescanAliasTokens(): Observable<boolean> {
