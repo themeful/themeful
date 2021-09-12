@@ -17,3 +17,17 @@ export const decorators = [
     return '<div />'
   },
 ]
+
+export const parameters = {
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+  options: {
+    storySort: {
+      order: ['Microfrontend', 'Forms', 'Components'],
+    },
+  },
+}
