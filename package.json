@@ -51,6 +51,7 @@
     "@storybook/addon-docs": "^6.3.8",
     "@storybook/addon-essentials": "~6.3.8",
     "@storybook/html": "~6.3.8",
+    "@storybook/theming": "^6.3.8",
     "@types/jest": "26.0.24",
     "@types/node": "16.9.1",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
