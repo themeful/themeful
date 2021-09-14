@@ -54,8 +54,8 @@
     "@storybook/theming": "^6.3.8",
     "@types/jest": "26.0.24",
     "@types/node": "16.9.1",
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
-    "@typescript-eslint/parser": "^4.31.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
     "colortranslator": "^1.7.1",
     "css-loader": "^5.2.7",
     "dotenv": "~10.0.0",
@@ -69,13 +69,13 @@
     "prettier": "^2.4.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "rxjs": "^7.3.0",
-    "sass": "^1.39.2",
+    "sass": "^1.40.1",
     "sass-loader": "^10.2.0",
-    "short-unique-id": "^4.4.0",
+    "short-unique-id": "^4.4.2",
     "sort-media-queries": "^0.2.2",
     "style-loader": "^2.0.0",
     "ts-jest": "26.5.6",
-    "typescript": "~4.4.2"
+    "typescript": "~4.4.3"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.6",
