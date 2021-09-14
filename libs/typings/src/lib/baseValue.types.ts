@@ -1,3 +1,8 @@
+export interface BaseValues {
+  global: { [key: string]: BaseValue }
+  clients: { [key: string]: BaseClient }
+}
+
 export interface BaseValue {
   key?: string
   type: string
@@ -12,11 +17,6 @@ export interface BaseClient {
   client: string
   baseFontSize: number
   values: { [key: string]: BaseValue }
-}
-
-export interface BaseValues {
-  global: { [key: string]: BaseValue }
-  clients: { [key: string]: BaseClient }
 }
 
 export type InternalGroups = { [key: string]: BaseValue[] }

@@ -1,6 +1,6 @@
 import { properties } from '@properties'
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { PropertyType, Property } from '@typings'
+import { PropertyType, PropertyValue } from '@typings'
 
 @Component({
   tag: 'tf-property',
@@ -9,7 +9,7 @@ import { PropertyType, Property } from '@typings'
 })
 export class PropertyComponent {
   /** The property */
-  @Prop() property: Property
+  @Prop() property: PropertyValue
 
   /** The section */
   @Prop() section!: string
@@ -37,14 +37,14 @@ export class PropertyComponent {
 
   render(): HTMLTfPropertyElement {
     return (
-      <div class="property" style={this.mappedProperty.wrapperStyles}>
+      <div class="property" style={this.mappedProperty.styles.wrapper}>
         <tf-button class="property__edit" size="icon" onClick={this.click} title="close">
           <tf-icon icon="pen" />
         </tf-button>
         {this.getTemplate()}
 
         {this.property.name && (
-          <div class="property__name" style={this.mappedProperty.nameStyles}>
+          <div class="property__name" style={this.mappedProperty.styles.name}>
             {this.property?.global && <tf-icon size="small" icon="globe" />}
             <span>{this.getName()}</span>
           </div>

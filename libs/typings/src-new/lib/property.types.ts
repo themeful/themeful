@@ -1,9 +1,9 @@
 export interface PropertyValue {
-  name: string
-  global?: boolean
-  group: string
-  type: string
   value: string
+  type: string
+  name?: string
+  group?: string
+  global?: boolean
 }
 
 export interface PropertyType {

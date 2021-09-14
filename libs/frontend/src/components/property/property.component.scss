@@ -80,11 +80,15 @@ pre {
 :host-context(.property--selectable) {
   .property {
     box-shadow: 0 0 0 2px rgba(200, 200, 200, 0.55);
+    cursor: pointer;
+
+    &__edit {
+      display: none;
+    }
   }
+
+  .property:hover,
   &:host(.property--selected) .property {
     box-shadow: 0 0 0 2px rgba(50, 90, 240, 0.55);
-  }
-  .property__edit {
-    display: none;
   }
 }

@@ -12,7 +12,7 @@ export class OverlayComponent {
   /** Event emitted when the item is clicked */
   @Event() close: EventEmitter
 
-  public click = (): void => {
+  private click = (): void => {
     this.close.emit()
   }
 

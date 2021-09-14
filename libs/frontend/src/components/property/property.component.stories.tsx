@@ -5,7 +5,7 @@ export default {
   title: 'Components/Property Box',
 }
 
-export const propertyBox = ({ properties, wrappers }): HTMLElement => {
+export const propertyBox = ({ properties, wrappers, grouped }): HTMLElement => {
   return (
     <div>
       <div class="header">
@@ -25,6 +25,11 @@ export const propertyBox = ({ properties, wrappers }): HTMLElement => {
               <tf-property {...item} onEdit={action('edit')}></tf-property>
             </div>
           ))}
+          <div class="property--grouped">
+            <tf-property {...grouped} onEdit={action('edit')}></tf-property>
+            <tf-property {...grouped} onEdit={action('edit')}></tf-property>
+            <tf-property {...grouped} onEdit={action('edit')}></tf-property>
+          </div>
         </div>
       </div>
     </div>
@@ -111,13 +116,6 @@ propertyBox.args = {
     {
       item: {
         section: 'global',
-        property: { value: '.property--grouped', type: 'unknown' },
-      },
-      wrapperClass: 'property--grouped',
-    },
-    {
-      item: {
-        section: 'global',
         property: { value: '.property--selectable', type: 'unknown' },
       },
       wrapperClass: 'property--selectable',
@@ -131,4 +129,8 @@ propertyBox.args = {
       wrapperClass: 'property--selectable',
     },
   ],
+  grouped: {
+    section: 'global',
+    property: { value: '.property--grouped', type: 'unknown' },
+  },
 }

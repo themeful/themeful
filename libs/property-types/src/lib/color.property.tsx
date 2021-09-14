@@ -28,9 +28,11 @@ export const color: PropertyType = {
       </div>
     )
   },
-  nameStyles: { backgroundColor: 'rgba(100, 100, 100, 0.7)', color: '#eee' },
-  wrapperStyles: {
-    background: 'repeating-conic-gradient(#aaa 0% 25%, #fff 0% 50%) 50% / 10px 10px',
-    zIndex: '0',
+  styles: {
+    name: { backgroundColor: 'rgba(100, 100, 100, 0.7)', color: '#eee' },
+    wrapper: {
+      background: 'repeating-conic-gradient(#aaa 0% 25%, #fff 0% 50%) 50% / 10px 10px',
+      zIndex: '0',
+    },
   },
 }

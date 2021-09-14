@@ -1,16 +1,17 @@
 import { BaseValue } from './baseValue.types'
 
-export interface ThemeValues {
-  [key: string]: ThemeValue
+export interface Themes {
+  [key: string]: Theme
 }
+
 export interface Theme {
   name: string
   client: string
   values: ThemeValues
 }
 
-export interface Themes {
-  [key: string]: Theme
+export interface ThemeValues {
+  [key: string]: ThemeValue
 }
 
 export interface ThemeValue {

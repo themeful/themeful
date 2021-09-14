@@ -11,6 +11,8 @@ export const fallback: PropertyType = {
     )
   },
   sort: (a, b) => (a > b ? 1 : -1),
-  nameStyles: {},
-  wrapperStyles: {},
+  styles: {
+    name: {},
+    wrapper: {},
+  },
 }
