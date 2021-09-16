@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { SyncData } from '@typings'
-
 import { SyncService } from './sync.service'
 
 describe('SyncService', () => {
@@ -72,9 +71,9 @@ describe('SyncService', () => {
     }
 
     service.register('aliasTokens', myCallBack1)
-    service.register('baseValues', myCallBack2)
+    service.register('styleGuides', myCallBack2)
     service.aliasTokens(syncData)
-    service.baseValues(updateData)
+    service.styleGuides(updateData)
   })
 
   it('should register one callback', (done) => {
@@ -89,9 +88,9 @@ describe('SyncService', () => {
     }
 
     service.register('aliasTokens', myCallBack1)
-    service.register('baseValues', myCallBack1)
+    service.register('styleGuides', myCallBack1)
     service.register('aliasTokens', myCallBack2)
-    service.baseValues(deleteData)
+    service.styleGuides(deleteData)
     service.aliasTokens(deleteData)
   })
 })

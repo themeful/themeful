@@ -1,7 +1,7 @@
 export const themes = [
-  { name: 'Client 1 - Dark', slug: 'client1_dark' },
-  { name: 'Client 1 - Light', slug: 'client1_light' },
-  { name: 'Client 2 - Dark', slug: 'client2_dark' },
-  { name: 'Client 2 - Light', slug: 'client2_light' },
-  { name: 'Client 3 - Default', slug: 'client3_default' },
+  { name: 'StyleGuide 1 - Dark', slug: 'styleGuide1_dark' },
+  { name: 'StyleGuide 1 - Light', slug: 'styleGuide1_light' },
+  { name: 'StyleGuide 2 - Dark', slug: 'styleGuide2_dark' },
+  { name: 'StyleGuide 2 - Light', slug: 'styleGuide2_light' },
+  { name: 'StyleGuide 3 - Default', slug: 'styleGuide3_default' },
 ]

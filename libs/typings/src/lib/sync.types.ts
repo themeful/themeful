@@ -2,7 +2,7 @@ export type Callback = (data: SyncData) => void
 
 export type Action = 'create' | 'update' | 'delete' | 'sync'
 
-export type Scope = 'aliasTokens' | 'clients' | 'designTokens' | 'baseValues'
+export type Scope = 'aliasTokens' | 'styleGuides' | 'designTokens' | 'styleGuideBases'
 
 export type SyncStack = {
   [scope in Scope]?: Callback[]

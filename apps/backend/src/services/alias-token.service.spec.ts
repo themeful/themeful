@@ -1,7 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { AliasToken, AliasTokens } from '@typings'
-import { clone, FindResults } from '@utils'
+import { AliasTokenAPI, AliasTokens } from '@typings'
+import { clone } from '@utils'
 import * as jsonfile from 'jsonfile'
+import { FindResults } from '../utils'
 import * as utils from '../utils/system.util'
 import { AliasTokenService } from './alias-token.service'
 import { ConfigService } from './config.service'
@@ -57,7 +58,12 @@ describe('AliasTokenService', () => {
     })
 
     it('should not create one', () => {
-      expect(service.create(clone(aliasTokens).atTestButtonFontSize)).toEqual(null)
+      expect(
+        service.create({
+          ...clone(aliasTokens).atTestButtonFontSize,
+          token: 'atTestButtonFontSize',
+        })
+      ).toEqual(null)
     })
 
     it('should not create one with extern false', () => {
@@ -89,8 +95,10 @@ describe('AliasTokenService', () => {
     })
 
     it('should not update to existing one', () => {
-      const existingOne = clone(aliasTokens).atTestButtonFontColor
-      existingOne.token = 'atTestButtonFontColor'
+      const existingOne = {
+        ...clone(aliasTokens).atTestButtonFontColor,
+        token: 'atTestButtonFontColor',
+      }
       expect(service.update('atTestBaseFontColor', existingOne)).toEqual(null)
     })
 
@@ -176,20 +184,22 @@ describe('AliasTokenService', () => {
   })
 })
 
-const newAliasToken: AliasToken = {
+const newAliasToken: AliasTokenAPI = {
   token: 'atTestTabFontWeight',
   component: [],
   files: [],
   properties: ['font-weight'],
   extern: true,
+  crawled: false,
 }
 
-const updatedAliasToken: AliasToken = {
+const updatedAliasToken: AliasTokenAPI = {
   token: 'atTestTabFontWeight',
   component: ['Tab'],
   files: ['libs/components/src/lib/tab/tab.component.scss'],
   properties: ['font-weight'],
   extern: true,
+  crawled: false,
 }
 
 const aliasTokens: AliasTokens = {

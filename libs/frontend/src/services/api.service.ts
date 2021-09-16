@@ -1,10 +1,10 @@
 import {
   AliasTokens,
-  BaseValue,
-  BaseValues,
-  Client,
   DesignToken,
   DesignTokens,
+  Style,
+  StyleGuideBase,
+  StyleGuides,
   Theme,
   Themes,
   ThemeValue,
@@ -16,7 +16,7 @@ export class APIService {
   private static _instance: APIService
   public themes = new Subject<Themes>()
   public designTokens = new Subject<DesignTokens>()
-  public baseValues = new Subject<BaseValues>()
+  public styleGuides = new Subject<StyleGuides>()
   public aliasTokens = new Subject<AliasTokens>()
 
   public static get Instance(): APIService {
@@ -94,44 +94,47 @@ export class APIService {
   }
 
   // BaseValues
-  public getBaseValues(): Observable<BaseValues> {
-    return http.get<BaseValues>('http://localhost:3333/api/base-value').pipe(
+  public getStyleGuides(): Observable<StyleGuides> {
+    return http.get<StyleGuides>('http://localhost:3333/api/style').pipe(
       tap((data) => {
-        this.baseValues.next(data)
+        this.styleGuides.next(data)
       })
     )
   }
 
-  public createBaseValue({
-    baseValue,
-    client,
+  public createStyle({
+    style,
+    styleGuide,
   }: {
-    baseValue: BaseValue
-    client?: string
-  }): Observable<BaseValue> {
-    return http.post<BaseValue, BaseValue>(
-      `http://localhost:3333/api/base-value/${client ?? ''}`,
-      baseValue
-    )
+    style: Style
+    styleGuide?: string
+  }): Observable<boolean> {
+    return http.post<boolean, Style>(`http://localhost:3333/api/style/${styleGuide ?? ''}`, style)
   }
 
-  public updateBaseValue({
+  public updateStyle({
     key,
-    baseValue,
-    client,
+    styleGuide,
+    style,
   }: {
     key: string
-    client?: string
-    baseValue: BaseValue
-  }): Observable<BaseValue> {
-    return http.patch<BaseValue, BaseValue>(
-      `http://localhost:3333/api/base-value/${key}/${client ?? ''}`,
-      baseValue
+    styleGuide?: string
+    style: Style
+  }): Observable<boolean> {
+    return http.patch<boolean, Style>(
+      `http://localhost:3333/api/style/${key}/${styleGuide ?? ''}`,
+      style
     )
   }
 
-  public deleteBaseValue({ key, client }: { key: string; client?: string }): Observable<boolean> {
-    return http.delete<boolean>(`http://localhost:3333/api/base-value/${key}/${client ?? ''}`)
+  public deleteStyle({
+    key,
+    styleGuide,
+  }: {
+    key: string
+    styleGuide?: string
+  }): Observable<boolean> {
+    return http.delete<boolean>(`http://localhost:3333/api/style/${key}/${styleGuide ?? ''}`)
   }
 
   // DesignTokens
@@ -143,11 +146,8 @@ export class APIService {
     )
   }
 
-  public createDesignToken({ designToken }: { designToken: DesignToken }): Observable<DesignToken> {
-    return http.post<DesignToken, DesignToken>(
-      `http://localhost:3333/api/design-token`,
-      designToken
-    )
+  public createDesignToken({ designToken }: { designToken: DesignToken }): Observable<boolean> {
+    return http.post<boolean, DesignToken>(`http://localhost:3333/api/design-token`, designToken)
   }
 
   public selectAliasTokens({
@@ -169,8 +169,8 @@ export class APIService {
   }: {
     key: string
     designToken: DesignToken
-  }): Observable<DesignToken> {
-    return http.patch<DesignToken, DesignToken>(
+  }): Observable<boolean> {
+    return http.patch<boolean, DesignToken>(
       `http://localhost:3333/api/design-token/${key}`,
       designToken
     )
@@ -181,19 +181,22 @@ export class APIService {
   }
 
   // Clients
-  public createClient(client: Client): Observable<boolean> {
-    return http.post<boolean, Client>(`http://localhost:3333/api/client`, client)
+  public createClient(styleGuideBase: StyleGuideBase): Observable<boolean> {
+    return http.post<boolean, StyleGuideBase>(
+      `http://localhost:3333/api/style-guide`,
+      styleGuideBase
+    )
   }
 
-  public updateClient({ key, name, baseFontSize }: Client): Observable<boolean> {
-    return http.patch<boolean, Client>(`http://localhost:3333/api/client/${key}`, {
-      name,
-      baseFontSize,
-    })
+  public updateClient(key: string, styleGuideBase: StyleGuideBase): Observable<boolean> {
+    return http.patch<boolean, StyleGuideBase>(
+      `http://localhost:3333/api/style-guide/${key}`,
+      styleGuideBase
+    )
   }
 
   public deleteClient({ key }: { key: string }): Observable<boolean> {
-    return http.delete<boolean>(`http://localhost:3333/api/client/${key}`)
+    return http.delete<boolean>(`http://localhost:3333/api/style-guide/${key}`)
   }
 
   // AliasTokens

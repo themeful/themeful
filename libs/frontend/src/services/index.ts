@@ -1,2 +1,2 @@
-export * from './clientValue.service'
 export * from './designToken.service'
+export * from './styleGuide.service'

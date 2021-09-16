@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common'
 import { Config } from '@typings'
-
 import { config } from '../config'
 
 @Injectable()
@@ -25,10 +24,6 @@ export class ConfigService {
 
   public get libPath() {
     return this.config.paths.libPath
-  }
-
-  public get globalBaseFontSize() {
-    return this.config.global.baseFontSize
   }
 
   public get shortDesignTokens() {

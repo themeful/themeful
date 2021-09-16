@@ -1,33 +1,33 @@
 {
-  "client1_dark": {
+  "styleGuide1_dark": {
     "name": "Dark",
-    "client": "client1",
-    "values": {
+    "styleGuide": "styleGuide1",
+    "styles": {
       "dtActionBg": {
         "default": {
-          "baseValue": "client1_action_tertiary"
+          "style": "styleGuide1_action_tertiary"
         }
       },
       "dtActionBgHover": {
         "default": {
-          "baseValue": "client1_action_secondary"
+          "style": "styleGuide1_action_secondary"
         }
       },
       "dtControlBorderRadius": {
         "default": {
-          "baseValue": "global_space_tiny"
+          "style": "global_space_tiny"
         }
       },
       "dtFontColorPrimary": {
         "default": {
-          "baseValue": "global_base_lIght"
+          "style": "global_base_lIght"
         }
       },
       "dtFontSize100": {
         "default": {
-          "baseValue": "client1_content_primary"
+          "style": "styleGuide1_content_primary"
         },
-        "client1_mediaQuery_aboveSmallDesktop": {
+        "styleGuide1_mediaQuery_aboveSmallDesktop": {
           "directValue": {
             "value": "13px",
             "type": "font-size"
@@ -36,123 +36,123 @@
       },
       "dtPrimaryFont": {
         "default": {
-          "baseValue": "client1_font_primary"
+          "style": "styleGuide1_font_primary"
         }
       }
     }
   },
-  "client1_light": {
+  "styleGuide1_light": {
     "name": "Light",
-    "client": "client1",
-    "values": {
+    "styleGuide": "styleGuide1",
+    "styles": {
       "dtActionBg": {
         "default": {
-          "baseValue": "client1_action_primary"
+          "style": "styleGuide1_action_primary"
         }
       },
       "dtActionBgHover": {
         "default": {
-          "baseValue": "client1_action_secondary"
+          "style": "styleGuide1_action_secondary"
         }
       },
       "dtControlBorderRadius": {
         "default": {
-          "baseValue": "global_space_small"
+          "style": "global_space_small"
         }
       },
       "dtFontColorPrimary": {
         "default": {
-          "baseValue": "global_base_black"
+          "style": "global_base_black"
         }
       },
       "dtFontSize100": {
         "default": {
-          "baseValue": "client1_content_primary"
+          "style": "styleGuide1_content_primary"
         }
       },
       "dtPrimaryFont": {
         "default": {
-          "baseValue": "client1_font_primary"
+          "style": "styleGuide1_font_primary"
         }
       }
     }
   },
-  "client2_dark": {
+  "styleGuide2_dark": {
     "name": "Dark",
-    "client": "client2",
-    "values": {
+    "styleGuide": "styleGuide2",
+    "styles": {
       "dtActionBg": {
         "default": {
-          "baseValue": "client2_brand_tertiary"
+          "style": "styleGuide2_brand_tertiary"
         }
       },
       "dtActionBgHover": {
         "default": {
-          "baseValue": "client2_brand_secondary"
+          "style": "styleGuide2_brand_secondary"
         }
       },
       "dtControlBorderRadius": {
         "default": {
-          "baseValue": "global_space_small"
+          "style": "global_space_small"
         }
       },
       "dtFontColorPrimary": {
         "default": {
-          "baseValue": "global_base_lIght"
+          "style": "global_base_lIght"
         }
       },
       "dtFontSize100": {
         "default": {
-          "baseValue": "client2_content_normal"
+          "style": "styleGuide2_content_normal"
         }
       },
       "dtPrimaryFont": {
         "default": {
-          "baseValue": "client2_font_primary"
+          "style": "styleGuide2_font_primary"
         }
       }
     }
   },
-  "client2_light": {
+  "styleGuide2_light": {
     "name": "Light",
-    "client": "client2",
-    "values": {
+    "styleGuide": "styleGuide2",
+    "styles": {
       "dtActionBg": {
         "default": {
-          "baseValue": "client2_brand_primary"
+          "style": "styleGuide2_brand_primary"
         }
       },
       "dtActionBgHover": {
         "default": {
-          "baseValue": "client2_brand_secondary"
+          "style": "styleGuide2_brand_secondary"
         }
       },
       "dtControlBorderRadius": {
         "default": {
-          "baseValue": "global_space_tiny"
+          "style": "global_space_tiny"
         }
       },
       "dtFontColorPrimary": {
         "default": {
-          "baseValue": "global_base_black"
+          "style": "global_base_black"
         }
       },
       "dtFontSize100": {
         "default": {
-          "baseValue": "client2_content_normal"
+          "style": "styleGuide2_content_normal"
         }
       },
       "dtPrimaryFont": {
         "default": {
-          "baseValue": "client2_font_primary"
+          "style": "styleGuide2_font_primary"
         }
       }
     }
   },
-  "client3_default": {
+  "styleGuide3_default": {
     "name": "Default",
-    "client": "client3",
-    "values": {
+    "styleGuide": "styleGuide3",
+    "styles": {
       "dtActionBg": {
         "default": {
           "directValue": {
@@ -169,26 +169,26 @@
       },
       "dtActionBgHover": {
         "default": {
-          "baseValue": "client3_base_primary"
+          "style": "styleGuide3_base_primary"
         }
       },
       "dtControlBorderRadius": {
         "default": {
-          "baseValue": "global_space_tiny"
+          "style": "global_space_tiny"
         },
         "global_mediaQuery_aboveSmallMobile": {
-          "baseValue": "global_space_small"
+          "style": "global_space_small"
         },
         "global_mediaQuery_aboveMobile": {
-          "baseValue": "global_space_medium"
+          "style": "global_space_medium"
         },
         "global_mediaQuery_aboveTablet": {
-          "baseValue": "global_space_large"
+          "style": "global_space_large"
         }
       },
       "dtFontColorPrimary": {
         "default": {
-          "baseValue": "client3_base_primary"
+          "style": "styleGuide3_base_primary"
         }
       },
       "dtFontSize100": {

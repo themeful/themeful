@@ -1,12 +1,15 @@
+export interface AliasTokens {
+  [token: string]: AliasToken
+}
+
 export interface AliasToken {
-  token?: string
   extern: boolean
-  crawled?: boolean
+  crawled: boolean
   files: string[] | null
   component: string[] | null
   properties: string[] | null
 }
 
-export interface AliasTokens {
-  [key: string]: AliasToken
+export interface AliasTokenAPI extends AliasToken {
+  token: string
 }

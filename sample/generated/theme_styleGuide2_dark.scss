@@ -1,0 +1,10 @@
+@import './styleGuides.scss';
+
+& {
+  --dtActionBg: #{$styleGuide2_brand_tertiary};
+  --dtActionBgHover: #{$styleGuide2_brand_secondary};
+  --dtControlBorderRadius: #{$global_space_small};
+  --dtFontColorPrimary: #{$global_base_lIght};
+  --dtFontSize100: #{$styleGuide2_content_normal};
+  --dtPrimaryFont: #{$styleGuide2_font_primary};
+}

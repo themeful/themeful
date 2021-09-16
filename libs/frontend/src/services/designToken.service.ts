@@ -15,7 +15,7 @@ export class DesignTokenSerive {
 
   public combined(): Observable<any> {
     return combineLatest([
-      this.apiService.baseValues,
+      this.apiService.styleGuides,
       this.apiService.designTokens,
       this.apiService.aliasTokens,
       this.apiService.themes,

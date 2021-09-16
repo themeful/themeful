@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
-import { AliasToken } from '@typings'
-
+import { AliasTokenAPI } from '@typings'
 import { AliasTokenService } from '../services/alias-token.service'
 
 @Controller('alias-token')
@@ -8,7 +7,7 @@ export class AliasTokenController {
   constructor(private readonly aliasTokenService: AliasTokenService) {}
 
   @Post()
-  create(@Body() aliasToken: AliasToken) {
+  create(@Body() aliasToken: AliasTokenAPI) {
     return this.aliasTokenService.create(aliasToken)
   }
 
@@ -23,7 +22,7 @@ export class AliasTokenController {
   }
 
   @Patch(':token')
-  update(@Param('token') token: string, @Body() aliasToken: AliasToken) {
+  update(@Param('token') token: string, @Body() aliasToken: AliasTokenAPI) {
     return this.aliasTokenService.update(token, aliasToken)
   }
 

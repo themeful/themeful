@@ -116,7 +116,7 @@ describe('ThemeService', () => {
       )
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './libs/components/src/assets/generated/theme_test1_light.scss',
-        `@import './baseValues.scss';
+        `@import './styleGuides.scss';
 
 & {
   --dtActionBG: #{$test1_brand_secondary};
@@ -127,7 +127,7 @@ describe('ThemeService', () => {
       )
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './libs/components/src/assets/generated/theme_test1_dark.scss',
-        `@import './baseValues.scss';
+        `@import './styleGuides.scss';
 
 & {
   --dtActionBG: #{$test1_brand_secondary};
@@ -138,7 +138,7 @@ describe('ThemeService', () => {
       )
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './libs/components/src/assets/generated/theme_test2_light.scss',
-        `@import './baseValues.scss';
+        `@import './styleGuides.scss';
 
 & {
   --dtActionBG: #{$test2_brand_primary};
@@ -149,7 +149,7 @@ describe('ThemeService', () => {
       )
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './libs/components/src/assets/generated/theme_test2_dark.scss',
-        `@import './baseValues.scss';
+        `@import './styleGuides.scss';
 
 & {
   --dtActionBG: #{$test2_brand_secondary};
@@ -219,9 +219,9 @@ describe('ThemeService', () => {
     })
   })
 
-  describe('get baseValue changes from sync', () => {
+  describe('get styleGuide changes from sync', () => {
     it('should not change anything', () => {
-      syncService.baseValues({
+      syncService.styleGuides({
         action: 'create',
         primary: 'test1_brandnew_secondary',
         values: [
@@ -243,7 +243,7 @@ describe('ThemeService', () => {
 
       withUpdatedClient['test2_dark'].values['dtActionBG'] = 'test2_brandnew_secondary'
 
-      syncService.baseValues({
+      syncService.styleGuides({
         action: 'update',
         primary: 'test2_brand_secondary',
         secondary: 'test2_brandnew_secondary',
@@ -266,7 +266,7 @@ describe('ThemeService', () => {
       deletedClient['test1_dark'].values['dtFontColorPrimary'] = null
       deletedClient['test2_dark'].values['dtFontColorPrimary'] = null
 
-      syncService.baseValues({
+      syncService.styleGuides({
         action: 'delete',
         primary: 'global_base_white',
         values: [

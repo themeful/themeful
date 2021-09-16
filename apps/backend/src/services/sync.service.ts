@@ -18,15 +18,15 @@ export class SyncService {
     this.stack.aliasTokens?.forEach((callback) => callback(data))
   }
 
-  public clients(data: SyncData) {
-    this.stack.clients?.forEach((callback) => callback(data))
+  public styleGuideBases(data: SyncData) {
+    this.stack.styleGuideBases?.forEach((callback) => callback(data))
   }
 
   public designTokens(data: SyncData) {
     this.stack.designTokens?.forEach((callback) => callback(data))
   }
 
-  public baseValues(data: SyncData) {
-    this.stack.baseValues?.forEach((callback) => callback(data))
+  public styleGuides(data: SyncData) {
+    this.stack.styleGuides?.forEach((callback) => callback(data))
   }
 }

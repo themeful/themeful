@@ -1,26 +1,17 @@
-import { ThemeMedias } from './theme.types'
+export interface DesignTokens {
+  [token: string]: DesignToken
+}
 
 export interface DesignToken {
-  short?: string
-  token?: string
   type: string
   name: string
   group: string
   description: string
   properties: string[]
   aliasTokens: string[]
+  short: string
 }
 
-export interface DesignTokens {
-  [key: string]: DesignToken
-}
-
-export interface DesignTokenRow {
-  name: string
+export interface DesignTokenAPI extends DesignToken {
   token: string
-  type: string
-  description: string
-  aliasTokens: string[]
-  properties: string[]
-  themeValues?: ThemeMedias[]
 }

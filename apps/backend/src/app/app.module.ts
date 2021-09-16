@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common'
-
 import { AliasTokenController } from '../controllers/alias-token.controller'
-import { BaseValueController } from '../controllers/base-value.controller'
-import { ClientController } from '../controllers/client.controller'
 import { DesignTokenController } from '../controllers/design-token.controller'
+import { ClientController } from '../controllers/style-guide.controller'
+import { StyleGuideController } from '../controllers/style.controller'
 import { ThemeController } from '../controllers/theme.controller'
 import { AliasTokenService } from '../services/alias-token.service'
-import { BaseValueService } from '../services/base-value.service'
 import { ConfigService } from '../services/config.service'
 import { DesignTokenService } from '../services/design-token.service'
+import { StyleGuideService } from '../services/style-guide.service'
 import { SyncService } from '../services/sync.service'
 import { ThemeService } from '../services/theme.service'
 import { AppController } from './app.controller'
@@ -18,7 +17,7 @@ import { AppController } from './app.controller'
   controllers: [
     AppController,
     AliasTokenController,
-    BaseValueController,
+    StyleGuideController,
     ClientController,
     DesignTokenController,
     ThemeController,
@@ -26,7 +25,7 @@ import { AppController } from './app.controller'
   providers: [
     AliasTokenService,
     DesignTokenService,
-    BaseValueService,
+    StyleGuideService,
     ThemeService,
     SyncService,
     ConfigService,

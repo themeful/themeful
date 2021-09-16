@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { AliasToken, AliasTokens } from '@typings'
+import { AliasTokenAPI, AliasTokens } from '@typings'
 import { sortMap, unique } from '@utils'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
 import { FindResults, findSync } from '../utils'
@@ -16,9 +16,9 @@ export class AliasTokenService {
     this.refresh()
   }
 
-  public create(aliasToken: AliasToken): AliasToken | null {
+  public create(aliasToken: AliasTokenAPI): boolean {
     if (this.aliasTokens[aliasToken.token] || !aliasToken.extern) {
-      return null
+      return false
     }
     aliasToken.crawled = false
     const token = aliasToken.token
@@ -31,21 +31,21 @@ export class AliasTokenService {
       action: 'create',
       primary: token,
     })
-    return aliasToken
+    return true
   }
 
   public read(): AliasTokens {
     return this.aliasTokens
   }
 
-  public update(token: string, aliasToken: AliasToken): AliasToken | null {
+  public update(token: string, aliasToken: AliasTokenAPI): boolean {
     if (!this.aliasTokens[token] || !this.aliasTokens[token].extern) {
-      return null
+      return false
     }
 
     if (token !== aliasToken.token) {
       if (this.aliasTokens[aliasToken.token]) {
-        return null
+        return false
       }
       delete this.aliasTokens[token]
     }
@@ -60,7 +60,7 @@ export class AliasTokenService {
       primary: token,
       secondary: newToken,
     })
-    return aliasToken
+    return true
   }
 
   public delete(token: string): boolean {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { DesignToken, DesignTokens, SyncData } from '@typings'
+import { DesignToken, DesignTokenAPI, DesignTokens, SyncData } from '@typings'
 import { slugify, sortMap, uuid } from '@utils'
 import { writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
@@ -20,9 +20,9 @@ export class DesignTokenService {
     this.generateAt2DtMap(this.designTokensJson)
   }
 
-  public create(designToken: DesignToken): DesignToken | null {
+  public create(designToken: DesignTokenAPI): boolean {
     if (this.designTokensJson[designToken.token]) {
-      return null
+      return false
     }
 
     const token = this.unifyToken(designToken.token)
@@ -44,7 +44,7 @@ export class DesignTokenService {
       action: 'create',
       primary: token,
     })
-    return designTokenData
+    return true
   }
 
   public read(): DesignTokens {
@@ -58,12 +58,12 @@ export class DesignTokenService {
     }, {})
   }
 
-  public update(token: string, designToken: DesignToken): DesignToken | null {
+  public update(token: string, designToken: DesignTokenAPI): boolean {
     if (
       !this.designTokensJson[token] ||
       (token !== designToken.token && !!this.designTokensJson[designToken.token])
     ) {
-      return null
+      return false
     }
     const properties = this.designTokensJson[token].properties
     const aliasTokens = this.designTokensJson[token].aliasTokens
@@ -93,7 +93,7 @@ export class DesignTokenService {
       primary: token,
       secondary: newToken,
     })
-    return designTokenData
+    return true
   }
 
   public selectAliasTokens(token: string, aliasTokens: string[]): boolean {
