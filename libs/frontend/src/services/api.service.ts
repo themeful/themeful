@@ -36,12 +36,12 @@ export class APIService {
     )
   }
 
-  public createTheme({ theme }: { theme: Theme }): Observable<Theme> {
-    return http.post<Theme, Theme>('http://localhost:3333/api/theme', theme)
+  public createTheme({ theme }: { theme: Theme }): Observable<boolean> {
+    return http.post<Theme, boolean>('http://localhost:3333/api/theme', theme)
   }
 
-  public updateTheme({ key, theme }: { key: string; theme: Theme }): Observable<Theme> {
-    return http.patch<Theme, Theme>(`http://localhost:3333/api/theme/${key}`, theme)
+  public updateTheme({ key, theme }: { key: string; theme: Theme }): Observable<boolean> {
+    return http.patch<Theme, boolean>(`http://localhost:3333/api/theme/${key}`, theme)
   }
 
   public deleteTheme({ key }: { key: string }): Observable<boolean> {
@@ -57,8 +57,8 @@ export class APIService {
     theme: string
     token: string
     value: ThemeValue
-  }): Observable<Theme> {
-    return http.post<Theme, ThemeValue>(
+  }): Observable<boolean> {
+    return http.post<ThemeValue, boolean>(
       `http://localhost:3333/api/theme/value/${theme}/${token}`,
       value
     )
@@ -75,7 +75,7 @@ export class APIService {
     media: string
     value: ThemeValue
   }): Observable<boolean> {
-    return http.patch<boolean, ThemeValue>(
+    return http.patch<ThemeValue, boolean>(
       `http://localhost:3333/api/theme/value/${theme}/${token}/${media}`,
       value
     )
@@ -93,7 +93,7 @@ export class APIService {
     return http.delete<boolean>(`http://localhost:3333/api/theme/value/${theme}/${token}/${media}`)
   }
 
-  // BaseValues
+  // StyleGuides
   public getStyleGuides(): Observable<StyleGuides> {
     return http.get<StyleGuides>('http://localhost:3333/api/style').pipe(
       tap((data) => {
@@ -109,7 +109,7 @@ export class APIService {
     style: Style
     styleGuide?: string
   }): Observable<boolean> {
-    return http.post<boolean, Style>(`http://localhost:3333/api/style/${styleGuide ?? ''}`, style)
+    return http.post<Style, boolean>(`http://localhost:3333/api/style/${styleGuide ?? ''}`, style)
   }
 
   public updateStyle({
@@ -121,7 +121,7 @@ export class APIService {
     styleGuide?: string
     style: Style
   }): Observable<boolean> {
-    return http.patch<boolean, Style>(
+    return http.patch<Style, boolean>(
       `http://localhost:3333/api/style/${key}/${styleGuide ?? ''}`,
       style
     )
@@ -147,7 +147,7 @@ export class APIService {
   }
 
   public createDesignToken({ designToken }: { designToken: DesignToken }): Observable<boolean> {
-    return http.post<boolean, DesignToken>(`http://localhost:3333/api/design-token`, designToken)
+    return http.post<DesignToken, boolean>(`http://localhost:3333/api/design-token`, designToken)
   }
 
   public selectAliasTokens({
@@ -157,7 +157,7 @@ export class APIService {
     key: string
     aliasTokens: AliasTokens
   }): Observable<boolean> {
-    return http.patch<boolean, AliasTokens>(
+    return http.patch<AliasTokens, boolean>(
       `http://localhost:3333/api/design-token/${key}/aliasTokens`,
       aliasTokens
     )
@@ -170,7 +170,7 @@ export class APIService {
     key: string
     designToken: DesignToken
   }): Observable<boolean> {
-    return http.patch<boolean, DesignToken>(
+    return http.patch<DesignToken, boolean>(
       `http://localhost:3333/api/design-token/${key}`,
       designToken
     )
@@ -180,16 +180,16 @@ export class APIService {
     return http.delete<boolean>(`http://localhost:3333/api/design-token/${key}`)
   }
 
-  // Clients
+  // StyleGuideBase
   public createClient(styleGuideBase: StyleGuideBase): Observable<boolean> {
-    return http.post<boolean, StyleGuideBase>(
+    return http.post<StyleGuideBase, boolean>(
       `http://localhost:3333/api/style-guide`,
       styleGuideBase
     )
   }
 
   public updateClient(key: string, styleGuideBase: StyleGuideBase): Observable<boolean> {
-    return http.patch<boolean, StyleGuideBase>(
+    return http.patch<StyleGuideBase, boolean>(
       `http://localhost:3333/api/style-guide/${key}`,
       styleGuideBase
     )

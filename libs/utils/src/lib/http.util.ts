@@ -11,7 +11,7 @@ function _get<T>(url: string): Observable<T> {
   )
 }
 
-function _post<T, U>(url: string, data: U): Observable<T> {
+function _post<U, T>(url: string, data: U): Observable<T> {
   return fromFetch(url, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -24,7 +24,7 @@ function _post<T, U>(url: string, data: U): Observable<T> {
   )
 }
 
-function _patch<T, U>(url: string, data: U): Observable<T> {
+function _patch<U, T>(url: string, data: U): Observable<T> {
   return fromFetch(url, {
     method: 'PATCH',
     body: JSON.stringify(data),
