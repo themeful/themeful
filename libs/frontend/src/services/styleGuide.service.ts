@@ -12,6 +12,7 @@ export class StyleGuideService {
 
   private constructor() {
     this.apiService = APIService.Instance
+    this.apiService.test()
   }
 
   public styleGuides(): Observable<StyleGuides> {

@@ -4,6 +4,7 @@ import { PropertyType } from '@typings'
 
 export const mediaquery: PropertyType = {
   ...fallback,
+  name: 'MediaQuery',
   template: (value): HTMLElement => {
     return (
       <div class="property__value">

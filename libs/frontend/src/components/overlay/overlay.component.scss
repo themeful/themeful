@@ -1,6 +1,7 @@
 .overlay {
   position: relative;
-  background-color: #fff;
+  background-color: var(--tf-tile-bg-color);
+  color: var(--tf-font-color);
   padding: 16px;
   border-radius: 4px;
   min-width: 300px;
@@ -26,7 +27,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--tf-backdrop-color);
   }
   &__close {
     position: absolute;

@@ -4,6 +4,7 @@ import { PropertyType } from '@typings'
 
 export const size: PropertyType = {
   ...fallback,
+  name: 'Size',
   template: (value): HTMLElement => {
     return (
       <div class="property__value">

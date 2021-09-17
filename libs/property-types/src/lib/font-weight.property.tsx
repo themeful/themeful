@@ -4,6 +4,7 @@ import { PropertyType } from '@typings'
 
 export const fontWeight: PropertyType = {
   ...fallback,
+  name: 'Font Weight',
   template: (value): HTMLElement => {
     return (
       <div class="property__value">

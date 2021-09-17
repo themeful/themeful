@@ -10,5 +10,16 @@ export default {
 }
 
 export const style = (args) => {
-  return <tf-style-form {...args}></tf-style-form>
+  return (
+    <div>
+      <div class="header">
+        <h1>Style Form</h1>
+      </div>
+      <div class="content">
+        <div style={{ position: 'relative', width: '600px' }}>
+          <tf-style-form {...args}></tf-style-form>
+        </div>
+      </div>
+    </div>
+  )
 }

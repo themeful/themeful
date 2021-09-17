@@ -1,4 +1,4 @@
-import { properties } from '@properties'
+import { getProperty } from '@properties'
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import { PropertyType, PropertyValue } from '@typings'
 
@@ -32,7 +32,7 @@ export class PropertyComponent {
   }
 
   componentWillLoad() {
-    this.mappedProperty = properties(this.property?.type)
+    this.mappedProperty = getProperty(this.property?.type)
   }
 
   render(): HTMLTfPropertyElement {

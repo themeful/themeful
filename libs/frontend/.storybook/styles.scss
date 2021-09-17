@@ -1,7 +1,18 @@
 @import '../src/global.scss';
 
+:root {
+  --header-bg-color: #505050;
+  --font-color: #ddd;
+}
+
+body.light {
+  --header-bg-color: #d4d4d4;
+  --font-color: #333;
+}
+
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--font-color);
 
   &.sb-main-padded.sb-show-main {
     padding: 0;
@@ -9,7 +20,7 @@ body {
 }
 
 .header {
-  background-color: rgb(212, 212, 212);
+  background-color: var(--header-bg-color);
   padding: 2rem 1rem 1rem;
 
   h1 {

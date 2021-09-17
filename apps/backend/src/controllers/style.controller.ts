@@ -16,6 +16,11 @@ export class StyleGuideController {
     return this.styleGuideService.create(data, styleGuide)
   }
 
+  @Get('formatted')
+  readFormatted() {
+    return this.styleGuideService.readFormatted()
+  }
+
   @Get()
   read() {
     return this.styleGuideService.read()

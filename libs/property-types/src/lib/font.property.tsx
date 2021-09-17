@@ -1,9 +1,10 @@
 import { h } from '@stencil/core'
-import { fallback } from './fallback.property'
 import { PropertyType } from '@typings'
+import { fallback } from './fallback.property'
 
 export const font: PropertyType = {
   ...fallback,
+  name: 'Font',
   template: (value): HTMLElement => {
     return (
       <div class="property__value">

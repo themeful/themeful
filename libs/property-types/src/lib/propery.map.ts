@@ -20,9 +20,11 @@ const map = {
   size: size,
 }
 
-export const properties = (property: string) => {
+export const getProperty = (property: string) => {
   if (!property) {
     return empty
   }
   return map[property] ?? fallback
 }
+
+export const propertyTypes = Object.keys(map)

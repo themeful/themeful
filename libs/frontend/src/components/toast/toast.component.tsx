@@ -1,4 +1,5 @@
 import { Component, h, Host, Prop, State } from '@stencil/core'
+import { Toast } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
 import { filter, delay, tap } from 'rxjs/operators'
 
@@ -9,16 +10,12 @@ import { filter, delay, tap } from 'rxjs/operators'
 })
 export class ToastComponent {
   /** Toast msg */
-  @Prop() msg$: Observable<any>
+  @Prop() msg$: Observable<Toast>
 
   @State() sub?: Subscription
-
   @State() active$ = new Subject<boolean>()
-
   @State() open = false
-
   @State() text = ''
-
   @State() status = ''
 
   componentWillLoad() {

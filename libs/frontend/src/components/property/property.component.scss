@@ -1,6 +1,8 @@
 :host {
   display: block;
-  background-color: #fff;
+  height: fit-content;
+  border-radius: 4px;
+  color: var(--tf-font-color);
 }
 
 pre {
@@ -17,11 +19,11 @@ pre {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(200, 200, 200, 0.55);
   max-width: 200px;
   min-width: 150px;
   overflow: hidden;
+  border-radius: 4px;
 
   &__value {
     display: flex;
@@ -73,8 +75,12 @@ pre {
   }
 }
 
-:host-context(.property--grouped) .property {
-  box-shadow: none;
+:host-context(.property--grouped) {
+  border-radius: 0;
+  .property {
+    box-shadow: none;
+    border-radius: 0;
+  }
 }
 
 :host-context(.property--selectable) {

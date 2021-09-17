@@ -1,4 +1,6 @@
-import { Component, h, Prop } from '@stencil/core'
+import { Component, h, Prop, State } from '@stencil/core'
+import { Observable, Subscription } from 'rxjs'
+import { StyleGuideService } from '../..'
 
 @Component({
   tag: 'tf-style-guides',
@@ -6,26 +8,33 @@ import { Component, h, Prop } from '@stencil/core'
   shadow: true,
 })
 export class StyleGuidesComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string
+  /** Style Guides*/
+  @Prop() styleGuides$: Observable<any>
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string
+  @State() sub?: Subscription
+  @State() styleGuides: any
 
-  /**
-   * The last name
-   */
-  @Prop() last: string
+  componentWillLoad() {
+    const xx = StyleGuideService.Instance
+    console.log(xx)
+    this.sub = this.styleGuides$?.subscribe((styleGuides) => {
+      console.log(styleGuides)
+      this.styleGuides = styleGuides
+    })
+  }
 
-  private getText(): string {
-    return `${this.first} ${this.middle} ${this.last}`
+  disconnectedCallback() {
+    this.sub?.unsubscribe()
   }
 
   render() {
-    return <div>Hello, World! {this.getText()}</div>
+    return (
+      <div>
+        {this.styleGuides &&
+          this.styleGuides.map((styleGuide) => {
+            return <span>{styleGuide.name}</span>
+          })}
+      </div>
+    )
   }
 }

@@ -24,6 +24,9 @@ export class APIService {
   }
 
   public test(): string {
+    this.getFormattedStyleGuides().subscribe(() => {
+      console.log('done')
+    })
     return 'Hello'
   }
 
@@ -98,6 +101,15 @@ export class APIService {
     return http.get<StyleGuides>('http://localhost:3333/api/style').pipe(
       tap((data) => {
         this.styleGuides.next(data)
+      })
+    )
+  }
+
+  public getFormattedStyleGuides(): Observable<any> {
+    return http.get<any>('http://localhost:3333/api/style/formatted').pipe(
+      tap((data) => {
+        // this.styleGuides.next(data)
+        console.log(data)
       })
     )
   }

@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common'
-import { Style, StyleGuideBase, StyleGuides } from '@typings'
+import { getProperty, propertyTypes } from '@properties'
+import { Style, StyleGuide, StyleGuideBase, StyleGuides } from '@typings'
 import { convertCSSLength, slugify, sortMap } from '@utils'
 import { ColorTranslator } from 'colortranslator'
 import { writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import { sentenceCase } from 'sentence-case'
 import * as smq from 'sort-media-queries'
 import { ConfigService } from './config.service'
 import { SyncService } from './sync.service'
@@ -17,6 +19,66 @@ export class StyleGuideService {
   constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
     this.styleGuidesJson = this.loadJson()
     this.generateStyleGuides(this.styleGuidesJson)
+  }
+
+  public readFormatted(): any {
+    return Object.entries(this.styleGuidesJson).map(([slug, data]: [string, StyleGuide]) => ({
+      name: data.name,
+      slug,
+      baseFontSize: data.baseFontSize,
+      types: this.transformValues(data.styles),
+    }))
+  }
+
+  private transformValues(data: { [key: string]: Style }): any[] {
+    const types: any[] = []
+    propertyTypes.forEach((propertyType) => {
+      const typeBVs = Object.keys(data).reduce((result: any, key: string) => {
+        if (data[key].type === propertyType) {
+          result[key] = data[key]
+        }
+        return result
+      }, {})
+      if (Object.keys(typeBVs).length) {
+        const groups = this.transformGroupValues(typeBVs)
+        types.push({
+          name: getProperty(propertyType).name,
+          groups,
+        })
+      }
+    })
+    return types
+  }
+
+  private transformGroupValues(data: {
+    [key: string]: Style
+  }): { name: string; styles: Style[] }[] {
+    const noSortTypes = ['mediaquery', 'size', 'font-size']
+    const groups: { name: string; styles: Style[] }[] = []
+    const groupObj: { [key: string]: Style[] } = Object.keys(data).reduce(
+      (result: { [key: string]: any[] }, key: string) => {
+        const value = data[key] as any
+        value.slug = key
+        if (!result[value.group]) {
+          result[value.group] = []
+        }
+        result[value.group].push(value)
+        return result
+      },
+      {}
+    )
+    Object.keys(groupObj).forEach((group) => {
+      groups.push({
+        name: sentenceCase(group),
+        styles: groupObj[group].sort((a, b) => {
+          if (noSortTypes.includes(a.type)) {
+            return 1
+          }
+          return a.name > b.name ? 1 : -1
+        }),
+      })
+    })
+    return groups.sort((a, b) => (a.name > b.name ? 1 : -1))
   }
 
   public create(style: Style, styleGuide = 'global'): Style | null {

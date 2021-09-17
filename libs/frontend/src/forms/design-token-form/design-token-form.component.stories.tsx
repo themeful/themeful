@@ -10,5 +10,16 @@ export default {
 }
 
 export const designToken = (args) => {
-  return <tf-design-token-form {...args}></tf-design-token-form>
+  return (
+    <div>
+      <div class="header">
+        <h1>Design Token Form</h1>
+      </div>
+      <div class="content">
+        <div style={{ position: 'relative', width: '600px' }}>
+          <tf-design-token-form {...args}></tf-design-token-form>
+        </div>
+      </div>
+    </div>
+  )
 }

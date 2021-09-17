@@ -2,6 +2,7 @@ import { h } from '@stencil/core'
 import { PropertyType } from '@typings'
 
 export const fallback: PropertyType = {
+  name: 'Fallback',
   validation: (value) => !!value,
   template: (value): HTMLElement => {
     return (

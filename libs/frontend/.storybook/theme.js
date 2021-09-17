@@ -2,7 +2,7 @@ import { create } from '@storybook/theming'
 import themefulLogo from './themeful.svg'
 
 export default create({
-  base: 'light',
+  base: 'dark',
   brandTitle: 'themeful',
   brandUrl: 'https://themeful.io/',
   brandImage: themefulLogo,

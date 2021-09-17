@@ -10,5 +10,16 @@ export default {
 }
 
 export const themes = (args) => {
-  return <tf-themes {...args}></tf-themes>
+  return (
+    <div>
+      <div class="header">
+        <h1>Themes</h1>
+      </div>
+      <div class="content">
+        <div style={{ position: 'relative' }}>
+          <tf-themes {...args}></tf-themes>
+        </div>
+      </div>
+    </div>
+  )
 }

@@ -1,4 +1,4 @@
 export interface Toast {
-  msg: string
+  text: string
   status: string
 }

@@ -5,6 +5,7 @@ import { PropertyType } from '@typings'
 
 export const color: PropertyType = {
   ...fallback,
+  name: 'Color',
   template: (value): HTMLElement => {
     const formated = value.replace('rgba(', '').replace(')', '')
     const middleLayer = {
