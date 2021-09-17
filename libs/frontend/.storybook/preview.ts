@@ -27,7 +27,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Microfrontend', 'Forms', 'Components'],
+      order: ['Microfrontend', 'Pages', 'Forms', 'Components'],
     },
   },
 }
