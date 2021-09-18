@@ -1,11 +1,3 @@
-export interface PropertyValue {
-  value: string
-  type: string
-  name?: string
-  group?: string
-  global?: boolean
-}
-
 export interface PropertyType {
   name: string
   validation: (value: string) => boolean

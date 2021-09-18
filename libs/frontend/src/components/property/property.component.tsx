@@ -1,6 +1,6 @@
 import { getProperty } from '@properties'
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { PropertyType, PropertyValue } from '@typings'
+import { ExtendedStyle, PropertyType } from '@typings'
 
 @Component({
   tag: 'tf-property',
@@ -9,7 +9,7 @@ import { PropertyType, PropertyValue } from '@typings'
 })
 export class PropertyComponent {
   /** The property */
-  @Prop() property: PropertyValue
+  @Prop() property!: ExtendedStyle
 
   /** The styleGuide */
   @Prop() styleGuide!: string

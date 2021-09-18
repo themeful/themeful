@@ -1,4 +1,11 @@
 import { Component, h, Prop, State } from '@stencil/core'
+import {
+  ExtendedStyle,
+  ExtendedStyleGuide,
+  ExtendedStyleGuides,
+  StyleGroup,
+  StyleTypeGroup,
+} from '@typings'
 import { Observable, Subscription } from 'rxjs'
 
 @Component({
@@ -8,10 +15,10 @@ import { Observable, Subscription } from 'rxjs'
 })
 export class StyleGuidesComponent {
   /** Style Guides*/
-  @Prop() styleGuides$: Observable<any>
+  @Prop() styleGuides$: Observable<ExtendedStyleGuides>
 
   @State() sub?: Subscription
-  @State() styleGuides: any
+  @State() styleGuides: ExtendedStyleGuides
 
   componentWillLoad() {
     this.sub = this.styleGuides$?.subscribe((styleGuides) => {
@@ -32,7 +39,7 @@ export class StyleGuidesComponent {
     )
   }
 
-  private renderStyleGuide(styleGuide: any): HTMLElement {
+  private renderStyleGuide(styleGuide: ExtendedStyleGuide): HTMLElement {
     return (
       <div class="style-guide">
         <h3>{styleGuide.name}</h3>
@@ -41,7 +48,7 @@ export class StyleGuidesComponent {
     )
   }
 
-  private renderType(type: any, styleGuideSlug: string): HTMLElement {
+  private renderType(type: StyleTypeGroup, styleGuideSlug: string): HTMLElement {
     return (
       <div class="style-guide__type">
         <h4>{type.name}</h4>
@@ -53,7 +60,7 @@ export class StyleGuidesComponent {
     )
   }
 
-  private renderGroup(group: any, styleGuideSlug: string, showGroup: boolean): HTMLElement {
+  private renderGroup(group: StyleGroup, styleGuideSlug: string, showGroup: boolean): HTMLElement {
     return (
       <div class="style-guide__group property--grouped">
         {showGroup && <h5>{group.name}</h5>}
@@ -62,7 +69,7 @@ export class StyleGuidesComponent {
     )
   }
 
-  private renderStyle(style: any, styleGuideSlug: string): HTMLElement {
-    return <tf-property property={style} styleGuide={styleGuideSlug} showGroup={false} />
+  private renderStyle(property: ExtendedStyle, styleGuide: string): HTMLTfPropertyElement {
+    return <tf-property {...{ property, styleGuide, showGroup: false }} />
   }
 }

@@ -18,3 +18,29 @@ export interface Style {
   name: string
   value: string
 }
+
+export interface ExtendedStyle {
+  type: string
+  value: string
+  slug?: string
+  name?: string
+  group?: string
+  global?: boolean
+}
+
+export interface StyleGroup {
+  name: string
+  styles: ExtendedStyle[]
+}
+
+export interface StyleTypeGroup {
+  name: string
+  groups: StyleGroup[]
+}
+
+export interface ExtendedStyleGuide extends StyleGuideBase {
+  slug: string
+  types: StyleTypeGroup[]
+}
+
+export type ExtendedStyleGuides = ExtendedStyleGuide[]
