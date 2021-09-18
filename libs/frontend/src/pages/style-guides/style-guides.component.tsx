@@ -1,6 +1,5 @@
 import { Component, h, Prop, State } from '@stencil/core'
 import { Observable, Subscription } from 'rxjs'
-import { StyleGuideService } from '../..'
 
 @Component({
   tag: 'tf-style-guides',
@@ -15,10 +14,7 @@ export class StyleGuidesComponent {
   @State() styleGuides: any
 
   componentWillLoad() {
-    const xx = StyleGuideService.Instance
-    console.log(xx)
     this.sub = this.styleGuides$?.subscribe((styleGuides) => {
-      console.log(styleGuides)
       this.styleGuides = styleGuides
     })
   }
@@ -27,14 +23,46 @@ export class StyleGuidesComponent {
     this.sub?.unsubscribe()
   }
 
-  render() {
+  public render(): HTMLTfStyleGuidesElement {
     return (
-      <div>
+      <main class="style-guide__wrapper">
         {this.styleGuides &&
-          this.styleGuides.map((styleGuide) => {
-            return <span>{styleGuide.name}</span>
-          })}
+          this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
+      </main>
+    )
+  }
+
+  private renderStyleGuide(styleGuide: any): HTMLElement {
+    return (
+      <div class="style-guide">
+        <h3>{styleGuide.name}</h3>
+        {styleGuide.types && styleGuide.types.map((type) => this.renderType(type, styleGuide.slug))}
       </div>
     )
+  }
+
+  private renderType(type: any, styleGuideSlug: string): HTMLElement {
+    return (
+      <div class="style-guide__type">
+        <h4>{type.name}</h4>
+        {type.groups &&
+          type.groups.map((group) =>
+            this.renderGroup(group, styleGuideSlug, type.groups.length > 1)
+          )}
+      </div>
+    )
+  }
+
+  private renderGroup(group: any, styleGuideSlug: string, showGroup: boolean): HTMLElement {
+    return (
+      <div class="style-guide__group property--grouped">
+        {showGroup && <h5>{group.name}</h5>}
+        {group.styles && group.styles.map((style) => this.renderStyle(style, styleGuideSlug))}
+      </div>
+    )
+  }
+
+  private renderStyle(style: any, styleGuideSlug: string): HTMLElement {
+    return <tf-property property={style} styleGuide={styleGuideSlug} showGroup={false} />
   }
 }

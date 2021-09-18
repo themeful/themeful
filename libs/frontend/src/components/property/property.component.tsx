@@ -11,8 +11,8 @@ export class PropertyComponent {
   /** The property */
   @Prop() property: PropertyValue
 
-  /** The section */
-  @Prop() section!: string
+  /** The styleGuide */
+  @Prop() styleGuide!: string
 
   /** Show group */
   @Prop() showGroup = true
