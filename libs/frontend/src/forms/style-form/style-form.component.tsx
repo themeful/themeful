@@ -19,7 +19,10 @@ export class StyleFormComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
+  // All used Groups -> Name Slug
+  // all Types -> Name Slug
+
   render() {
-    return <div>Hello, World! {this.getText()}</div>
+    return <div>Type, Name, Group, Value {this.getText()}</div>
   }
 }

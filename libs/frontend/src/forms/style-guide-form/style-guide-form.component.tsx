@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core'
+import { StyleGuideBase } from '@typings'
 
 @Component({
   tag: 'tf-style-guide-form',
@@ -6,26 +7,14 @@ import { Component, h, Prop } from '@stencil/core'
   shadow: true,
 })
 export class StyleGuideFormComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string
-
-  /**
-   * The middle name
-   */
-  @Prop() middle: string
-
-  /**
-   * The last name
-   */
-  @Prop() last: string
+  /** Data for the form */
+  @Prop() formData: StyleGuideBase
 
   private getText(): string {
-    return `${this.first} ${this.middle} ${this.last}`
+    return `${this.formData.name} ${this.formData.baseFontSize}`
   }
 
   render() {
-    return <div>Hello, World! {this.getText()}</div>
+    return <div>Name / BaseFontSize {this.getText()}</div>
   }
 }

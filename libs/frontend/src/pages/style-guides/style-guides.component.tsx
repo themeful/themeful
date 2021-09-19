@@ -69,7 +69,7 @@ export class StyleGuidesComponent {
     )
   }
 
-  private renderStyle(property: ExtendedStyle, styleGuide: string): HTMLTfPropertyElement {
-    return <tf-property {...{ property, styleGuide, showGroup: false }} />
+  private renderStyle(extendedStyle: ExtendedStyle, styleGuide: string): HTMLTfPropertyElement {
+    return <tf-property {...{ extendedStyle, styleGuide, showGroup: false }} />
   }
 }

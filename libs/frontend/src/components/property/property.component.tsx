@@ -8,8 +8,8 @@ import { ExtendedStyle, PropertyType } from '@typings'
   shadow: true,
 })
 export class PropertyComponent {
-  /** The property */
-  @Prop() property!: ExtendedStyle
+  /** The extendedStyle */
+  @Prop() extendedStyle?: ExtendedStyle
 
   /** The styleGuide */
   @Prop() styleGuide!: string
@@ -25,14 +25,15 @@ export class PropertyComponent {
 
   private click = () => this.edit.emit()
 
-  private getName = () => `${this.showGroup ? this.property.group + ' ' : ''}${this.property.name}`
+  private getName = () =>
+    `${this.showGroup ? this.extendedStyle.group + ' ' : ''}${this.extendedStyle.name}`
 
   private getTemplate(): HTMLElement {
-    return this.mappedProperty.template(this.property.value)
+    return this.mappedProperty.template(this.extendedStyle.value)
   }
 
   componentWillLoad() {
-    this.mappedProperty = getProperty(this.property?.type)
+    this.mappedProperty = getProperty(this.extendedStyle?.type)
   }
 
   render(): HTMLTfPropertyElement {
@@ -43,9 +44,9 @@ export class PropertyComponent {
         </tf-button>
         {this.getTemplate()}
 
-        {this.property.name && (
+        {this.extendedStyle.name && (
           <div class="property__name" style={this.mappedProperty.styles.name}>
-            {this.property?.global && <tf-icon size="small" icon="globe" />}
+            {this.extendedStyle?.global && <tf-icon size="small" icon="globe" />}
             <span>{this.getName()}</span>
           </div>
         )}
