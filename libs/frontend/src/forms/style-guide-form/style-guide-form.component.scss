@@ -2,3 +2,11 @@
   display: block;
   color: var(--tf-font-color);
 }
+
+.form {
+  &__controls {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+}

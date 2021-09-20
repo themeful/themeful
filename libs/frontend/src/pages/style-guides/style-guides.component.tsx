@@ -14,7 +14,7 @@ import { Observable, Subscription } from 'rxjs'
   shadow: true,
 })
 export class StyleGuidesComponent {
-  /** Style Guides*/
+  /** Style Guides */
   @Prop() styleGuides$: Observable<ExtendedStyleGuides>
 
   @State() sub?: Subscription
