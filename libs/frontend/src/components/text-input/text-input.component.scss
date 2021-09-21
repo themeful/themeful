@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+.text-input {
+  color: var(--tf-font-color);
+
+  &--error {
+    color: red;
+  }
+  &--valid {
+    color: green;
+  }
+}
