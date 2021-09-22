@@ -5,10 +5,33 @@
 .text-input {
   color: var(--tf-font-color);
 
-  &--error {
+  &__hint {
+    display: block;
+    min-height: 1rem;
+    width: 100%;
+  }
+
+  &__input {
+    width: 100%;
+    color: var(--tf-font-color);
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1px solid currentColor;
+
+    &:focus {
+      outline: 0 !important;
+      border-bottom: 1px solid blue;
+    }
+  }
+
+  &__label {
+    width: 100%;
+  }
+
+  &--error .text-input__hint {
     color: red;
   }
-  &--valid {
+  &--valid .text-input__hint {
     color: green;
   }
 }

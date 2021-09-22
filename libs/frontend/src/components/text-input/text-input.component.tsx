@@ -32,7 +32,7 @@ export class TextInputComponent {
 
   @State() touched = false
   @State() changed = false
-  @State() valid = true
+  @State() valid: boolean
   @State() errorHint = ''
 
   @Watch('value')
@@ -65,7 +65,6 @@ export class TextInputComponent {
       const result = this.validation(this.value)
       state = result === null
       error = state ? '' : result
-      console.log(result, state, error)
     }
     if (state && this.required) {
       state = this.value !== ''
@@ -73,11 +72,11 @@ export class TextInputComponent {
     }
     if (state && this.minLength !== undefined) {
       state = this.value.length >= this.minLength
-      error = `The min length is ${this.minLength}`
+      error = state ? '' : `The min length is ${this.minLength}`
     }
     if (state && this.maxLength !== undefined) {
       state = this.value.length <= this.maxLength
-      error = `The max length is ${this.maxLength}`
+      error = state ? '' : `The max length is ${this.maxLength}`
     }
     this.errorHint = error
     this.valid = state
@@ -85,24 +84,21 @@ export class TextInputComponent {
 
   render(): HTMLTfTextInputElement {
     return (
-      <div
+      <label
         class={`text-input${this.valid && this.changed ? ' text-input--valid' : ''}${
           !this.valid && this.touched ? ' text-input--error' : ''
         }`}
       >
-        <label>
-          {this.label}
-          <div>
-            <input
-              value={this.value}
-              type={this.type}
-              onInput={this.inputChanged}
-              onBlur={this.blur}
-            ></input>
-          </div>
-        </label>
-        <p>{this.errorHint}</p>
-      </div>
+        <span class="text-input__label">{this.label}</span>
+        <input
+          class="text-input__input"
+          value={this.value}
+          type={this.type}
+          onInput={this.inputChanged}
+          onBlur={this.blur}
+        ></input>
+        <p class="text-input__hint">{this.errorHint}</p>
+      </label>
     )
   }
 }
