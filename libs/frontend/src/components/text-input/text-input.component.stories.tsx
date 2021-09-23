@@ -1,40 +1,57 @@
 import { h } from '@stencil/core'
 import { action } from '@storybook/addon-actions'
+import Fragment from 'stencil-fragment'
 
 export default {
   title: 'Components/Text Input',
   args: {
-    args: {
-      type: 'text',
-      label: 'the label',
-      value: 'My Text',
-    },
-    validation: (value) => (Number(value) > 0 ? null : 'Please enter a number'),
+    samples: [
+      {
+        label: 'Empty',
+      },
+      {
+        label: 'With Test',
+        value: 'My Text',
+      },
+      {
+        label: 'Min Length',
+        'min-length': 10,
+      },
+      {
+        label: 'Extra Validation',
+        value: '123',
+        validation: (value) => (Number(value) > 0 ? null : 'Please enter a number'),
+      },
+    ],
   },
 }
 
-export const textInput = ({ args, validation }) => {
+export const textInput = ({ samples }) => {
   return (
     <div>
       <div class="header">
-        <h1>Alias Token Form</h1>
+        <h1>Text Input</h1>
       </div>
-      <div class="content">
-        <div style={{ position: 'relative', width: '300px', padding: '16px' }}>
-          <tf-text-input {...args} onInputChange={action('change')} />
-        </div>
-        <div
-          class="tf-light"
-          style={{ position: 'relative', width: '300px', background: '#fff', padding: '16px' }}
-        >
-          <tf-text-input {...args} onInputChange={action('change')} />
-        </div>
-        <div style={{ position: 'relative', width: '300px', padding: '16px' }}>
-          <tf-text-input {...args} min-length="10" onInputChange={action('change')} />
-        </div>
-        <div style={{ position: 'relative', width: '300px', padding: '16px' }}>
-          <tf-text-input {...args} validation={validation} onInputChange={action('change')} />
-        </div>
+      <div
+        class="content"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '300px 300px',
+          gridAutoRows: '100px',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {samples.map((args) => (
+          <Fragment>
+            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+              <tf-text-input {...args} onInputChange={action('change')} />
+            </div>
+            <div style={{ padding: '1rem' }}>
+              <tf-text-input {...args} onInputChange={action('change')} />
+            </div>
+          </Fragment>
+        ))}
       </div>
     </div>
   )

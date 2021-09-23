@@ -40,7 +40,7 @@ propertyBox.args = {
   properties: [
     {
       section: 'global',
-      property: {
+      extendedStyle: {
         name: 'Background color',
         global: true,
         group: 'Very long named nice',
@@ -50,7 +50,7 @@ propertyBox.args = {
     },
     {
       section: 'global',
-      property: {
+      extendedStyle: {
         name: 'Content',
         group: 'Color',
         type: 'color',
@@ -59,7 +59,7 @@ propertyBox.args = {
     },
     {
       section: 'Client 1',
-      property: {
+      extendedStyle: {
         name: 'Default',
         group: 'Fonts',
         type: 'font',
@@ -68,35 +68,35 @@ propertyBox.args = {
     },
     {
       section: 'Client 2',
-      property: { name: 'Stuff', group: 'base', type: 'font-size', value: '1rem' },
+      extendedStyle: { name: 'Stuff', group: 'base', type: 'font-size', value: '1rem' },
     },
     {
       section: 'global',
-      property: { name: 'Stuff', group: 'base', type: 'font-weight', value: '600' },
+      extendedStyle: { name: 'Stuff', group: 'base', type: 'font-weight', value: '600' },
     },
     {
       section: 'global',
-      property: { name: 'Stuff', group: 'base', type: 'font-family', value: 'Arial' },
+      extendedStyle: { name: 'Stuff', group: 'base', type: 'font-family', value: 'Arial' },
     },
     {
       section: 'global',
-      property: { name: 'Stuff', group: 'base', type: 'display', value: 'flex' },
+      extendedStyle: { name: 'Stuff', group: 'base', type: 'display', value: 'flex' },
     },
     {
       section: 'global',
-      property: { name: 'Normal', group: 'Size', type: 'size', value: '1rem' },
+      extendedStyle: { name: 'Normal', group: 'Size', type: 'size', value: '1rem' },
     },
     {
       section: 'global',
-      property: { name: 'Small', group: 'Size', type: 'size', value: '4px' },
+      extendedStyle: { name: 'Small', group: 'Size', type: 'size', value: '4px' },
     },
     {
       section: 'global',
-      property: { name: 'Large', group: 'Size', type: 'size', value: '20px' },
+      extendedStyle: { name: 'Large', group: 'Size', type: 'size', value: '20px' },
     },
     {
       section: 'fallback',
-      property: {
+      extendedStyle: {
         name: 'Unknown',
         group: 'base',
         type: 'mediaquery',
@@ -105,25 +105,25 @@ propertyBox.args = {
     },
     {
       section: 'fallback',
-      property: { name: 'Unknown', group: 'base', type: 'unknown', value: 'flex' },
+      extendedStyle: { name: 'Unknown', group: 'base', type: 'unknown', value: 'flex' },
     },
     {
       section: 'global',
-      property: {},
+      extendedStyle: {},
     },
   ],
   wrappers: [
     {
       item: {
         section: 'global',
-        property: { value: '.property--selectable', type: 'unknown' },
+        extendedStyle: { value: '.property--selectable', type: 'unknown' },
       },
       wrapperClass: 'property--selectable',
     },
     {
       item: {
         section: 'global',
-        property: { value: '.property--selected', type: 'unknown' },
+        extendedStyle: { value: '.property--selected', type: 'unknown' },
         class: 'property--selected',
       },
       wrapperClass: 'property--selectable',
@@ -131,6 +131,6 @@ propertyBox.args = {
   ],
   grouped: {
     section: 'global',
-    property: { value: '.property--grouped', type: 'unknown' },
+    extendedStyle: { value: '.property--grouped', type: 'unknown' },
   },
 }

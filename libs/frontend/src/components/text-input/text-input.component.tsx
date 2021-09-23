@@ -71,11 +71,11 @@ export class TextInputComponent {
       error = `This value is required`
     }
     if (state && this.minLength !== undefined) {
-      state = this.value.length >= this.minLength
+      state = this.value?.length >= this.minLength
       error = state ? '' : `The min length is ${this.minLength}`
     }
     if (state && this.maxLength !== undefined) {
-      state = this.value.length <= this.maxLength
+      state = this.value?.length <= this.maxLength
       error = state ? '' : `The max length is ${this.maxLength}`
     }
     this.errorHint = error
@@ -85,7 +85,7 @@ export class TextInputComponent {
   render(): HTMLTfTextInputElement {
     return (
       <label
-        class={`text-input${this.valid && this.changed ? ' text-input--valid' : ''}${
+        class={`text-input${this.valid && this.touched ? ' text-input--valid' : ''}${
           !this.valid && this.touched ? ' text-input--error' : ''
         }`}
       >
