@@ -25,28 +25,26 @@ export const styleGuide = ({ editMode, newMode }) => {
       <div class="header">
         <h1>Style Guide Form</h1>
       </div>
-      <div class="content" style={{ display: 'flex', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <div style={{ position: 'relative', width: '600px' }}>
-            <tf-style-guide-form {...newMode} />
-          </div>
-          <div
-            class="tf-light"
-            style={{ position: 'relative', width: '600px', background: '#fff' }}
-          >
-            <tf-style-guide-form {...newMode} />
-          </div>
+      <div
+        class="content"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '500px 500px',
+          gridAutoRows: '300px',
+          gap: '1rem',
+        }}
+      >
+        <div class="tf-light" style={{ background: '#fff' }}>
+          <tf-style-guide-form {...newMode} />
         </div>
-        <div class="content" style={{ display: 'flex', flexDirection: 'row' }}>
-          <div style={{ position: 'relative', width: '600px' }}>
-            <tf-style-guide-form {...editMode} />
-          </div>
-          <div
-            class="tf-light"
-            style={{ position: 'relative', width: '600px', background: '#fff' }}
-          >
-            <tf-style-guide-form {...editMode} />
-          </div>
+        <div style={{ padding: '1rem' }}>
+          <tf-style-guide-form {...newMode} />
+        </div>
+        <div class="tf-light" style={{ background: '#fff' }}>
+          <tf-style-guide-form {...editMode} />
+        </div>
+        <div style={{ padding: '1rem' }}>
+          <tf-style-guide-form {...editMode} />
         </div>
       </div>
     </div>

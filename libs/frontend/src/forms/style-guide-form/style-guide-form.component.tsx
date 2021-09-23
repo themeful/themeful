@@ -60,15 +60,14 @@ export class StyleGuideFormComponent {
 
   render() {
     return (
-      <div>
-        <label>
-          Name
-          <input value={this.name} onInput={this.changeName} />
-        </label>
-        <label>
-          BaseFontSize
-          <input value={this.baseFontSize} onInput={this.changeFontSize} />
-        </label>
+      <form class="form">
+        <tf-text-input label="Name" value={this.name} onInput={this.changeName} required />
+        <tf-text-input
+          label="Base Font Size"
+          value={this.baseFontSize}
+          onInput={this.changeFontSize}
+          required
+        />
         <div class="form__controls">
           {this.editMode && (
             <tf-button kind="danger" onClick={this.remove}>
@@ -82,7 +81,7 @@ export class StyleGuideFormComponent {
             Save
           </tf-button>
         </div>
-      </div>
+      </form>
     )
   }
 }

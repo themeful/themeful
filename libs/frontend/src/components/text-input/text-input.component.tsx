@@ -22,7 +22,7 @@ export class TextInputComponent {
   @Prop() maxLength: number
 
   /** Input value */
-  @Prop({ mutable: true }) value: string
+  @Prop({ mutable: true }) value: string | number
 
   /** validation function */
   @Prop() validation: (string) => string | null
@@ -39,7 +39,7 @@ export class TextInputComponent {
   valueChanged() {
     const inputEl = this.el.querySelector('input')
     if (inputEl.value !== this.value) {
-      inputEl.value = this.value
+      inputEl.value = this.value.toString()
     }
   }
 
@@ -64,21 +64,22 @@ export class TextInputComponent {
     if (this.validation !== undefined) {
       const result = this.validation(this.value)
       state = result === null
-      error = state ? '' : result
+      error = result
     }
     if (state && this.required) {
+      console.log(this.required)
       state = this.value !== ''
       error = `This value is required`
     }
     if (state && this.minLength !== undefined) {
-      state = this.value?.length >= this.minLength
-      error = state ? '' : `The min length is ${this.minLength}`
+      state = this.value?.toString().length >= this.minLength
+      error = `The min length is ${this.minLength}`
     }
     if (state && this.maxLength !== undefined) {
-      state = this.value?.length <= this.maxLength
-      error = state ? '' : `The max length is ${this.maxLength}`
+      state = this.value?.toString().length <= this.maxLength
+      error = `The max length is ${this.maxLength}`
     }
-    this.errorHint = error
+    this.errorHint = state ? '' : error
     this.valid = state
   }
 

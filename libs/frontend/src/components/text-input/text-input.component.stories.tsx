@@ -38,8 +38,6 @@ export const textInput = ({ samples }) => {
           display: 'grid',
           gridTemplateColumns: '300px 300px',
           gridAutoRows: '100px',
-          alignItems: 'center',
-          justifyContent: 'center',
         }}
       >
         {samples.map((args) => (

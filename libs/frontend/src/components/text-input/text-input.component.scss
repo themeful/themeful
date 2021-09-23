@@ -1,8 +1,5 @@
-:host {
-  display: block;
-}
-
 .text-input {
+  display: block;
   color: var(--tf-font-color);
 
   &__label {
@@ -13,9 +10,10 @@
   &__hint {
     font: var(--tf-small-font);
     display: block;
-    min-height: 1rem;
+    min-height: 0.875rem;
     width: 100%;
     color: #ff6464;
+    margin: 1px 0 4px;
   }
 
   &__input {
@@ -25,6 +23,7 @@
     border: 0;
     background-color: rgba(128, 128, 128, 0.1);
     border-bottom: 1px solid currentColor;
+    box-sizing: border-box;
 
     &:focus {
       outline: 0 !important;
