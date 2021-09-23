@@ -17,16 +17,17 @@ export class StyleGuidesComponent {
   /** Style Guides */
   @Prop() styleGuides$: Observable<ExtendedStyleGuides>
 
-  @State() sub?: Subscription
   @State() styleGuides: ExtendedStyleGuides
 
-  componentWillLoad() {
+  private sub?: Subscription
+
+  public componentWillLoad() {
     this.sub = this.styleGuides$?.subscribe((styleGuides) => {
       this.styleGuides = styleGuides
     })
   }
 
-  disconnectedCallback() {
+  public disconnectedCallback() {
     this.sub?.unsubscribe()
   }
 

@@ -25,7 +25,7 @@ export class AliasTokenFormComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
-  render() {
+  public render() {
     return <div>Hello, World! {this.getText()}</div>
   }
 }

@@ -25,7 +25,7 @@ export class ThemeValueFormComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
-  render() {
+  public render() {
     return <div>Hello, World! {this.getText()}</div>
   }
 }

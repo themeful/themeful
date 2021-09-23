@@ -38,13 +38,19 @@ export class TextInputComponent {
 
   /** Validate value */
   @Method()
-  validate(): Promise<boolean> {
+  public validate(): Promise<boolean> {
     this.touched = true
     return Promise.resolve(this.internalValidation())
   }
 
+  /** Changed value */
+  @Method()
+  public dirty(): Promise<boolean> {
+    return Promise.resolve(this.changed)
+  }
+
   @Watch('value')
-  valueChanged() {
+  public valueChanged() {
     if (this.input.value !== this.value) {
       this.input.value = this.value.toString()
     }
@@ -79,7 +85,7 @@ export class TextInputComponent {
     return this.valid
   }
 
-  render(): HTMLTfTextInputElement {
+  public render(): HTMLTfTextInputElement {
     return (
       <Host>
         <label

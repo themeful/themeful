@@ -25,7 +25,7 @@ export class ThemesComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
-  render() {
+  public render() {
     return <div>Hello, World! m {this.getText()}</div>
   }
 }

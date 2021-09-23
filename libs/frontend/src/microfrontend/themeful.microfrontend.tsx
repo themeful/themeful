@@ -20,7 +20,7 @@ export class ThemefulComponent {
     return 'done'
   }
 
-  render() {
+  public render() {
     return <div>Hello, World! {this.getText()}</div>
   }
 }

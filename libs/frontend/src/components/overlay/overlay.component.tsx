@@ -16,7 +16,7 @@ export class OverlayComponent {
     this.close.emit()
   }
 
-  render(): HTMLTfOverlayElement {
+  public render(): HTMLTfOverlayElement {
     if (this.show) {
       return (
         <div class="overlay__wrapper">

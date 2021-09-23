@@ -16,7 +16,7 @@ export class IconComponent {
    */
   @Prop() size: 'small' | 'large'
 
-  render(): HTMLTfIconElement {
+  public render(): HTMLTfIconElement {
     return (
       <div class={`icon ${this.size ?? ''}`}>
         <i class={`gg-${this.icon}`} />

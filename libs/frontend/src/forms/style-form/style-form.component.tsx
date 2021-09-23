@@ -22,7 +22,7 @@ export class StyleFormComponent {
   // All used Groups -> Name Slug
   // all Types -> Name Slug
 
-  render() {
+  public render() {
     return <div>Type, Name, Group, Value {this.getText()}</div>
   }
 }

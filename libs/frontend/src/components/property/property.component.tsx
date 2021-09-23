@@ -32,11 +32,11 @@ export class PropertyComponent {
     return this.mappedProperty.template(this.extendedStyle.value)
   }
 
-  componentWillLoad() {
+  public componentWillLoad() {
     this.mappedProperty = getProperty(this.extendedStyle?.type)
   }
 
-  render(): HTMLTfPropertyElement {
+  public render(): HTMLTfPropertyElement {
     return (
       <div class="property" style={this.mappedProperty.styles.wrapper}>
         <tf-button class="property__edit" size="icon" onClick={this.click} title="close">

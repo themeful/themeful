@@ -21,7 +21,7 @@ export class ButtonComponent {
   /** Disabled state */
   @Prop() disabled: false
 
-  render(): HTMLTfButtonElement {
+  public render(): HTMLTfButtonElement {
     return (
       <button
         type={this.type}

@@ -7,8 +7,6 @@ import { StyleGuideBase } from '@typings'
   shadow: true,
 })
 export class StyleGuideFormComponent {
-  private nameCtrl: HTMLTfTextInputElement
-  private baseFontSizeCtrl: HTMLTfTextInputElement
   /** Data for the form */
   @Prop() formData: StyleGuideBase
 
@@ -19,39 +17,42 @@ export class StyleGuideFormComponent {
   @Event() close: EventEmitter
 
   @State() changed = false
-  @State() name: string
-  @State() baseFontSize: number
   @State() editMode: boolean
 
-  componentDidLoad(): void {
+  private controls: { [key: string]: HTMLTfTextInputElement } = {}
+
+  public componentDidLoad(): void {
     this.editMode = this.styleGuide && true
-    this.name = this.formData.name
-    this.baseFontSize = this.formData.baseFontSize
   }
 
-  private changeName = (event): void => {
-    this.changed = true
-    this.name = event.target.value
-  }
+  private formValues = (): { [key: string]: string | number } =>
+    Object.entries(this.controls).reduce((result, [key, control]) => {
+      result[key] = control.value
+      return result
+    }, {})
 
-  private changeFontSize = (event): void => {
-    this.changed = true
-    this.baseFontSize = event.target.value
-  }
+  private validate = (): Promise<boolean> =>
+    Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
+      (controls) => controls.every((valid) => valid)
+    )
 
-  private validate = (): Promise<boolean> => {
-    return Promise.resolve(true) // Promise.all([this.nameCtrl.validate(), this.baseFontSizeCtrl.validate()]).map(([name, baseFontSize]))
-  }
+  private dirty = (): Promise<boolean> =>
+    Promise.all(Object.values(this.controls).map((control) => control.dirty())).then((controls) =>
+      controls.some((valid) => valid)
+    )
 
-  private save = (event: Event): void => {
+  private save = async (event: Event): Promise<void> => {
     event.preventDefault()
-    console.log(this.nameCtrl.validate(), this.baseFontSizeCtrl.validate())
-    if (this.changed && this.validate()) {
-      console.log('save')
-    }
+    Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
+      console.log(dirty, valid)
+      if (dirty && valid) {
+        console.log('save', this.formValues())
+      }
+    })
   }
 
   private cancel = (): void => {
+    console.log('close')
     this.close.emit()
   }
 
@@ -64,21 +65,19 @@ export class StyleGuideFormComponent {
   private baseFontSizeValidation = (value): string | null =>
     Number(value) > 0 ? null : 'Please enter a number'
 
-  render() {
+  public render() {
     return (
       <form class="form" onSubmit={this.save}>
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.nameCtrl = el)}
+          ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
           label="Name"
-          value={this.name}
-          onInput={this.changeName}
+          value={this.formData.name}
           minLength={4}
         />
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.baseFontSizeCtrl = el)}
+          ref={(el: HTMLTfTextInputElement) => (this.controls['baseFontSize'] = el)}
           label="Base Font Size"
-          value={this.baseFontSize}
-          onInput={this.changeFontSize}
+          value={this.formData.baseFontSize}
           validation={this.baseFontSizeValidation}
         />
         <div class="form__controls">
