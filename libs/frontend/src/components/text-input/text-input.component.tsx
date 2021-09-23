@@ -1,4 +1,5 @@
-import { Component, Event, EventEmitter, h, Host, Prop, State, Watch } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core'
+
 @Component({
   tag: 'tf-text-input',
   styleUrl: 'text-input.component.scss',
@@ -33,7 +34,14 @@ export class TextInputComponent {
   @State() touched = false
   @State() changed = false
   @State() valid: boolean
-  @State() errorHint = ''
+  @State() error = ''
+
+  /** Validate value */
+  @Method()
+  validate(): Promise<boolean> {
+    this.touched = true
+    return Promise.resolve(this.internalValidation())
+  }
 
   @Watch('value')
   valueChanged() {
@@ -46,29 +54,29 @@ export class TextInputComponent {
     this.changed = true
     this.value = this.input.value
     this.inputChange.emit(this.value)
-    if (!this.valid) {
-      this.validate()
+    if (!this.valid && this.touched) {
+      this.internalValidation()
     }
   }
 
   private blur = (): void => {
-    this.validate()
+    this.internalValidation()
     this.touched = true
   }
 
-  private validate = (): void => {
-    let error = ''
-    if (this.validation !== undefined && this.validation(this.value) !== null) {
-      error = this.validation(this.value)
-    } else if (this.required && this.value !== '') {
-      error = `This value is required`
-    } else if (this.value?.toString().length < this.minLength) {
-      error = `The min length is ${this.minLength}`
-    } else if (this.value?.toString().length > this.maxLength) {
-      error = `The max length is ${this.maxLength}`
+  private internalValidation = (): boolean => {
+    this.error = (this.validation && this.validation(this.value)) || ''
+    if (this.error === '') {
+      if (this.required && this.value !== '') {
+        this.error = `This value is required`
+      } else if ((this.value?.toString().length || 0) < this.minLength) {
+        this.error = `The min length is ${this.minLength}`
+      } else if (this.value?.toString().length > this.maxLength) {
+        this.error = `The max length is ${this.maxLength}`
+      }
     }
-    this.errorHint = error
-    this.valid = error === ''
+    this.valid = this.error === ''
+    return this.valid
   }
 
   render(): HTMLTfTextInputElement {
@@ -88,7 +96,7 @@ export class TextInputComponent {
             onInput={this.inputChanged}
             onBlur={this.blur}
           ></input>
-          <p class="text-input__hint">{this.errorHint}</p>
+          <p class="text-input__hint">{this.error}</p>
         </label>
       </Host>
     )
