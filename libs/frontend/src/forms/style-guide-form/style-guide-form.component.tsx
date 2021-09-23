@@ -41,7 +41,8 @@ export class StyleGuideFormComponent {
     return this.name.length > 3 && Number(this.baseFontSize) > 0
   }
 
-  private save = (): void => {
+  private save = (event: Event): void => {
+    event.preventDefault()
     console.log(this.changed, this.validate(), this.name, this.baseFontSize)
     if (this.changed && this.validate()) {
       console.log('save')
@@ -58,15 +59,18 @@ export class StyleGuideFormComponent {
     }
   }
 
+  private baseFontSizeValidation = (value): string | null =>
+    Number(value) > 0 ? null : 'Please enter a number'
+
   render() {
     return (
-      <form class="form">
-        <tf-text-input label="Name" value={this.name} onInput={this.changeName} required />
+      <form class="form" onSubmit={this.save}>
+        <tf-text-input label="Name" value={this.name} onInput={this.changeName} minLength={4} />
         <tf-text-input
           label="Base Font Size"
           value={this.baseFontSize}
           onInput={this.changeFontSize}
-          required
+          validation={this.baseFontSizeValidation}
         />
         <div class="form__controls">
           {this.editMode && (

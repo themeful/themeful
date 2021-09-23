@@ -3,14 +3,13 @@ import { h } from '@stencil/core'
 export default {
   title: 'Forms/Style Guide',
   args: {
-    editMode: {
-      styleGuide: 'styleGuide1',
+    newMode: {
       formData: {
-        name: 'StyleGuide Name',
         baseFontSize: 16,
       },
     },
-    newMode: {
+    editMode: {
+      styleGuide: 'styleGuide1',
       formData: {
         name: 'StyleGuide Name',
         baseFontSize: 16,
@@ -37,13 +36,13 @@ export const styleGuide = ({ editMode, newMode }) => {
         <div class="tf-light" style={{ background: '#fff' }}>
           <tf-style-guide-form {...newMode} />
         </div>
-        <div style={{ padding: '1rem' }}>
+        <div>
           <tf-style-guide-form {...newMode} />
         </div>
         <div class="tf-light" style={{ background: '#fff' }}>
           <tf-style-guide-form {...editMode} />
         </div>
-        <div style={{ padding: '1rem' }}>
+        <div>
           <tf-style-guide-form {...editMode} />
         </div>
       </div>

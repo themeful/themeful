@@ -1,10 +1,10 @@
-import { Component, Element, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Host, Prop, State, Watch } from '@stencil/core'
 @Component({
   tag: 'tf-text-input',
   styleUrl: 'text-input.component.scss',
 })
 export class TextInputComponent {
-  @Element() el: HTMLTfTextInputElement
+  @State() input: HTMLInputElement
 
   /** Input type */
   @Prop() type = 'text'
@@ -37,16 +37,14 @@ export class TextInputComponent {
 
   @Watch('value')
   valueChanged() {
-    const inputEl = this.el.querySelector('input')
-    if (inputEl.value !== this.value) {
-      inputEl.value = this.value.toString()
+    if (this.input.value !== this.value) {
+      this.input.value = this.value.toString()
     }
   }
 
-  private inputChanged = (event: Event) => {
-    const val = event.target && (event.target as HTMLInputElement).value
+  private inputChanged = () => {
     this.changed = true
-    this.value = val
+    this.value = this.input.value
     this.inputChange.emit(this.value)
     if (!this.valid) {
       this.validate()
@@ -59,47 +57,40 @@ export class TextInputComponent {
   }
 
   private validate = (): void => {
-    let state = true
     let error = ''
-    if (this.validation !== undefined) {
-      const result = this.validation(this.value)
-      state = result === null
-      error = result
-    }
-    if (state && this.required) {
-      console.log(this.required)
-      state = this.value !== ''
+    if (this.validation !== undefined && this.validation(this.value) !== null) {
+      error = this.validation(this.value)
+    } else if (this.required && this.value !== '') {
       error = `This value is required`
-    }
-    if (state && this.minLength !== undefined) {
-      state = this.value?.toString().length >= this.minLength
+    } else if (this.value?.toString().length < this.minLength) {
       error = `The min length is ${this.minLength}`
-    }
-    if (state && this.maxLength !== undefined) {
-      state = this.value?.toString().length <= this.maxLength
+    } else if (this.value?.toString().length > this.maxLength) {
       error = `The max length is ${this.maxLength}`
     }
-    this.errorHint = state ? '' : error
-    this.valid = state
+    this.errorHint = error
+    this.valid = error === ''
   }
 
   render(): HTMLTfTextInputElement {
     return (
-      <label
-        class={`text-input${this.valid && this.touched ? ' text-input--valid' : ''}${
-          !this.valid && this.touched ? ' text-input--error' : ''
-        }`}
-      >
-        <span class="text-input__label">{this.label}</span>
-        <input
-          class="text-input__input"
-          value={this.value}
-          type={this.type}
-          onInput={this.inputChanged}
-          onBlur={this.blur}
-        ></input>
-        <p class="text-input__hint">{this.errorHint}</p>
-      </label>
+      <Host>
+        <label
+          class={`text-input${this.valid && this.touched ? ' text-input--valid' : ''}${
+            !this.valid && this.touched ? ' text-input--error' : ''
+          }`}
+        >
+          <span class="text-input__label">{this.label}</span>
+          <input
+            ref={(el: HTMLInputElement) => (this.input = el)}
+            class="text-input__input"
+            value={this.value}
+            type={this.type}
+            onInput={this.inputChanged}
+            onBlur={this.blur}
+          ></input>
+          <p class="text-input__hint">{this.errorHint}</p>
+        </label>
+      </Host>
     )
   }
 }
