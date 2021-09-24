@@ -5,6 +5,12 @@
 .style-guide {
   text-align: center;
 
+  h3 {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+  }
+
   &__wrapper {
     display: flex;
     flex-direction: row;

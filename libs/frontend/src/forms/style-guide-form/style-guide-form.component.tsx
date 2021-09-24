@@ -44,7 +44,6 @@ export class StyleGuideFormComponent {
   private save = async (event: Event): Promise<void> => {
     event.preventDefault()
     Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
-      console.log(dirty, valid)
       if (dirty && valid) {
         console.log('save', this.formValues())
       }

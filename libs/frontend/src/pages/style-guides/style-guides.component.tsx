@@ -1,9 +1,10 @@
-import { Component, h, Prop, State } from '@stencil/core'
+import { Component, h, Host, Prop, State } from '@stencil/core'
 import {
   ExtendedStyle,
   ExtendedStyleGuide,
   ExtendedStyleGuides,
   StyleGroup,
+  StyleGuideBase,
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subscription } from 'rxjs'
@@ -21,6 +22,14 @@ export class StyleGuidesComponent {
 
   private sub?: Subscription
 
+  private openStyleGuideForm = (styleGuide?: string, styleGuideBase?: StyleGuideBase): void => {
+    console.log('openStyleGuideForm', styleGuideBase, styleGuide)
+  }
+
+  private openStyleForm = (styleGuide: string, extendedStyle?: ExtendedStyle): void => {
+    console.log('openStyleForm', extendedStyle, styleGuide)
+  }
+
   public componentWillLoad() {
     this.sub = this.styleGuides$?.subscribe((styleGuides) => {
       this.styleGuides = styleGuides
@@ -33,17 +42,48 @@ export class StyleGuidesComponent {
 
   public render(): HTMLTfStyleGuidesElement {
     return (
-      <main class="style-guide__wrapper">
-        {this.styleGuides &&
-          this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
-      </main>
+      <Host>
+        <nav>
+          <tf-button {...{ onClick: () => this.openStyleGuideForm(), title: 'add style guide' }}>
+            Add Style Guide
+          </tf-button>
+        </nav>
+        <main class="style-guide__wrapper">
+          {this.styleGuides &&
+            this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
+        </main>
+      </Host>
     )
   }
 
   private renderStyleGuide(styleGuide: ExtendedStyleGuide): HTMLElement {
     return (
       <div class="style-guide">
-        <h3>{styleGuide.name}</h3>
+        <h3>
+          {styleGuide.name}
+          <tf-button
+            {...{
+              size: 'icon',
+              onClick: () =>
+                this.openStyleGuideForm(styleGuide.slug, {
+                  name: styleGuide.name,
+                  baseFontSize: styleGuide.baseFontSize,
+                }),
+              title: 'edit style guide',
+            }}
+          >
+            <tf-icon icon="pen" />
+          </tf-button>
+          <tf-button
+            {...{
+              size: 'icon',
+              onClick: () => this.openStyleForm(styleGuide.slug),
+              title: 'add style',
+            }}
+          >
+            <tf-icon icon="plus" />
+          </tf-button>
+        </h3>
         {styleGuide.types && styleGuide.types.map((type) => this.renderType(type, styleGuide.slug))}
       </div>
     )
@@ -71,6 +111,15 @@ export class StyleGuidesComponent {
   }
 
   private renderStyle(extendedStyle: ExtendedStyle, styleGuide: string): HTMLTfPropertyElement {
-    return <tf-property {...{ extendedStyle, styleGuide, showGroup: false }} />
+    return (
+      <tf-property
+        {...{
+          extendedStyle,
+          styleGuide,
+          showGroup: false,
+          onEdit: () => this.openStyleForm(styleGuide, extendedStyle),
+        }}
+      />
+    )
   }
 }
