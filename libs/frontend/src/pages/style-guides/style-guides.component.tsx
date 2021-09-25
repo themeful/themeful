@@ -7,7 +7,7 @@ import {
   StyleGuideBase,
   StyleTypeGroup,
 } from '@typings'
-import { Observable, Subscription } from 'rxjs'
+import { Observable, Subject, Subscription } from 'rxjs'
 
 @Component({
   tag: 'tf-style-guides',
@@ -19,11 +19,17 @@ export class StyleGuidesComponent {
   @Prop() styleGuides$: Observable<ExtendedStyleGuides>
 
   @State() styleGuides: ExtendedStyleGuides
+  @State() formData$ = new Subject()
 
   private sub?: Subscription
 
   private openStyleGuideForm = (styleGuide?: string, styleGuideBase?: StyleGuideBase): void => {
     console.log('openStyleGuideForm', styleGuideBase, styleGuide)
+    this.formData$.next({
+      form: 'styleguide',
+      identifier: styleGuide,
+      fields: styleGuideBase,
+    })
   }
 
   private openStyleForm = (styleGuide: string, extendedStyle?: ExtendedStyle): void => {
@@ -52,6 +58,7 @@ export class StyleGuidesComponent {
           {this.styleGuides &&
             this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
         </main>
+        <tf-form-integration {...{ formData$: this.formData$ }} />
       </Host>
     )
   }

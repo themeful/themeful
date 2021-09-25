@@ -1,4 +1,31 @@
+/* eslint-disable react/jsx-no-bind */
 import { h } from '@stencil/core'
+import { action } from '@storybook/addon-actions'
+import { Subject } from 'rxjs'
+
+const triggerOverlay = new Subject()
+const openOverlay = (form) => {
+  triggerOverlay.next(formDatas[form])
+}
+
+const formDatas = {
+  styleguide: {
+    form: 'styleguide',
+    identifier: 'styleGuide1',
+    fields: {
+      name: 'StyleGuide Name',
+      baseFontSize: 16,
+    },
+  },
+  empty: {
+    form: 'empty',
+    identifier: 'styleGuide1',
+    fields: {
+      name: 'StyleGuide Name',
+      baseFontSize: 16,
+    },
+  },
+}
 
 export default {
   title: 'Forms/Form Integration',
@@ -12,7 +39,9 @@ export const formIntegration = (args) => {
       </div>
       <div class="content">
         <div style={{ width: '600px' }}>
-          <tf-form-integration {...args}></tf-form-integration>
+          <tf-button onClick={() => openOverlay('styleguide')}>Open Style Guide Form</tf-button>
+          <tf-button onClick={() => openOverlay('empty')}>Open Empty</tf-button>
+          <tf-form-integration {...args} />
         </div>
       </div>
     </div>
@@ -20,13 +49,6 @@ export const formIntegration = (args) => {
 }
 
 formIntegration.args = {
-  show: true,
-  formData: {
-    form: 'styleguide',
-    identifier: 'styleGuide1',
-    fields: {
-      name: 'StyleGuide Name',
-      baseFontSize: 16,
-    },
-  },
+  formData$: triggerOverlay,
+  onAction: action('triggered action'),
 }

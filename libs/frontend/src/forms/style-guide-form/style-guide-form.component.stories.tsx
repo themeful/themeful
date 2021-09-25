@@ -1,4 +1,5 @@
 import { h } from '@stencil/core'
+import { action } from '@storybook/addon-actions'
 
 export default {
   title: 'Forms/Style Guide',
@@ -9,6 +10,7 @@ export default {
           baseFontSize: 16,
         },
       },
+      onAction: action('triggered action'),
     },
     editMode: {
       formData: {
@@ -18,6 +20,7 @@ export default {
           baseFontSize: 16,
         },
       },
+      onAction: action('triggered action'),
     },
   },
 }

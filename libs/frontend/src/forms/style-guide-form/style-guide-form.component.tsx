@@ -43,7 +43,7 @@ export class StyleGuideFormComponent {
     Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
       if (dirty && valid) {
         this.action.emit({
-          action: 'delete',
+          action: 'create',
           identifier: this.formData.identifier,
           fields: this.formValues(),
         })

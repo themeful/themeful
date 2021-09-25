@@ -1,4 +1,5 @@
-import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
+import { Subject } from 'rxjs'
 
 @Component({
   tag: 'tf-form-integration',
@@ -6,11 +7,10 @@ import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
   shadow: true,
 })
 export class FormIntegrationComponent {
-  /** Show overlay with form */
-  @Prop() show = false
-
-  /** Form data */
-  @Prop() formData: any
+  /** FormData */
+  @Prop() formData$ = new Subject()
+  @State() show = false
+  @State() formData: any
 
   /** Event emitted when an action is triggered */
   @Event() action: EventEmitter<any>
@@ -30,7 +30,12 @@ export class FormIntegrationComponent {
   private args = {}
 
   public componentWillLoad(): void {
-    this.args = { formData: this.formData, onAction: this.onAction }
+    this.formData$.subscribe((formData) => {
+      console.log(formData)
+      this.formData = formData
+      this.args = { formData, onAction: this.onAction }
+      this.show = true
+    })
   }
 
   private renderForm(form: string): HTMLElement {
@@ -45,7 +50,7 @@ export class FormIntegrationComponent {
   public render(): HTMLTfFormIntegrationElement {
     return (
       <tf-overlay {...{ show: this.show, onClose: this.close }}>
-        {this.renderForm(this.formData.form)}
+        {this.show && this.renderForm(this.formData.form)}
       </tf-overlay>
     )
   }
