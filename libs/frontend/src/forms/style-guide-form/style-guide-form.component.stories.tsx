@@ -5,14 +5,18 @@ export default {
   args: {
     newMode: {
       formData: {
-        baseFontSize: 16,
+        fields: {
+          baseFontSize: 16,
+        },
       },
     },
     editMode: {
-      styleGuide: 'styleGuide1',
       formData: {
-        name: 'StyleGuide Name',
-        baseFontSize: 16,
+        styleGuide: 'styleGuide1',
+        fields: {
+          name: 'StyleGuide Name',
+          baseFontSize: 16,
+        },
       },
     },
   },
@@ -33,16 +37,16 @@ export const styleGuide = ({ editMode, newMode }) => {
           gap: '1rem',
         }}
       >
-        <div class="tf-light" style={{ background: '#fff' }}>
+        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
           <tf-style-guide-form {...newMode} />
         </div>
-        <div>
+        <div style={{ padding: '1rem' }}>
           <tf-style-guide-form {...newMode} />
         </div>
-        <div class="tf-light" style={{ background: '#fff' }}>
+        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
           <tf-style-guide-form {...editMode} />
         </div>
-        <div>
+        <div style={{ padding: '1rem' }}>
           <tf-style-guide-form {...editMode} />
         </div>
       </div>

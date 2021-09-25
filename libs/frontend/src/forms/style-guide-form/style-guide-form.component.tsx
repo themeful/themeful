@@ -8,10 +8,7 @@ import { StyleGuideBase } from '@typings'
 })
 export class StyleGuideFormComponent {
   /** Data for the form */
-  @Prop() formData: StyleGuideBase
-
-  /** StyleGuide slug */
-  @Prop() styleGuide: string
+  @Prop() formData: { styleGuide?: string; fields?: StyleGuideBase }
 
   /** Event emitted when the item is clicked */
   @Event() close: EventEmitter
@@ -22,7 +19,7 @@ export class StyleGuideFormComponent {
   private controls: { [key: string]: HTMLTfTextInputElement } = {}
 
   public componentDidLoad(): void {
-    this.editMode = this.styleGuide && true
+    this.editMode = this.formData.styleGuide && true
   }
 
   private formValues = (): { [key: string]: string | number } =>
@@ -67,16 +64,17 @@ export class StyleGuideFormComponent {
   public render() {
     return (
       <form class="form" onSubmit={this.save}>
+        <h3>{this.editMode ? 'Edit' : 'Create'} Style Guide</h3>
         <tf-text-input
           ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
           label="Name"
-          value={this.formData.name}
+          value={this.formData.fields.name}
           minLength={4}
         />
         <tf-text-input
           ref={(el: HTMLTfTextInputElement) => (this.controls['baseFontSize'] = el)}
           label="Base Font Size"
-          value={this.formData.baseFontSize}
+          value={this.formData.fields.baseFontSize}
           validation={this.baseFontSizeValidation}
         />
         <div class="form__controls">
