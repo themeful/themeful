@@ -22,7 +22,8 @@ export const formIntegration = (args) => {
 formIntegration.args = {
   show: true,
   formData: {
-    styleGuide: 'styleGuide1',
+    form: 'styleguide',
+    identifier: 'styleGuide1',
     fields: {
       name: 'StyleGuide Name',
       baseFontSize: 16,

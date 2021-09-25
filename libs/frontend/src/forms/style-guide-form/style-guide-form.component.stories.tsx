@@ -12,7 +12,7 @@ export default {
     },
     editMode: {
       formData: {
-        styleGuide: 'styleGuide1',
+        identifier: 'styleGuide1',
         fields: {
           name: 'StyleGuide Name',
           baseFontSize: 16,

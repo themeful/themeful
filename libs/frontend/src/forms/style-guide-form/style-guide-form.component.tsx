@@ -8,10 +8,10 @@ import { StyleGuideBase } from '@typings'
 })
 export class StyleGuideFormComponent {
   /** Data for the form */
-  @Prop() formData: { styleGuide?: string; fields?: StyleGuideBase }
+  @Prop() formData: { identifier?: string; fields?: StyleGuideBase }
 
-  /** Event emitted when the item is clicked */
-  @Event() close: EventEmitter
+  /** Event emitted when an action is triggered */
+  @Event() action: EventEmitter<any>
 
   @State() changed = false
   @State() editMode: boolean
@@ -19,7 +19,7 @@ export class StyleGuideFormComponent {
   private controls: { [key: string]: HTMLTfTextInputElement } = {}
 
   public componentDidLoad(): void {
-    this.editMode = this.formData.styleGuide && true
+    this.editMode = this.formData.identifier && true
   }
 
   private formValues = (): { [key: string]: string | number } =>
@@ -42,26 +42,29 @@ export class StyleGuideFormComponent {
     event.preventDefault()
     Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
       if (dirty && valid) {
-        console.log('save', this.formValues())
+        this.action.emit({
+          action: 'delete',
+          identifier: this.formData.identifier,
+          fields: this.formValues(),
+        })
       }
     })
   }
 
   private cancel = (): void => {
-    console.log('close')
-    this.close.emit()
+    this.action.emit({ action: 'close' })
   }
 
   private remove = (): void => {
     if (this.editMode) {
-      console.log('remove')
+      this.action.emit({ action: 'delete', identifier: this.formData.identifier })
     }
   }
 
   private baseFontSizeValidation = (value): string | null =>
     Number(value) > 0 ? null : 'Please enter a number'
 
-  public render() {
+  public render(): HTMLTfStyleGuideFormElement {
     return (
       <form class="form" onSubmit={this.save}>
         <h3>{this.editMode ? 'Edit' : 'Create'} Style Guide</h3>

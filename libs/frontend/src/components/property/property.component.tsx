@@ -32,7 +32,7 @@ export class PropertyComponent {
     return this.mappedProperty.template(this.extendedStyle.value)
   }
 
-  public componentWillLoad() {
+  public componentWillLoad(): void {
     this.mappedProperty = getProperty(this.extendedStyle?.type)
   }
 

@@ -25,7 +25,7 @@ export class ThemeFormComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
-  public render() {
+  public render(): HTMLTfThemeFormElement {
     return <div>Hello, World! {this.getText()}</div>
   }
 }

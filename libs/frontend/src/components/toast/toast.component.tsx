@@ -19,7 +19,7 @@ export class ToastComponent {
   private sub?: Subscription
   private active$ = new Subject<boolean>()
 
-  public componentWillLoad() {
+  public componentWillLoad(): void {
     this.sub = this.msg$?.subscribe(({ text, status }) => {
       this.status = status
       this.text = text
@@ -47,7 +47,7 @@ export class ToastComponent {
     )
   }
 
-  public disconnectedCallback() {
+  public disconnectedCallback(): void {
     this.sub?.unsubscribe()
   }
 

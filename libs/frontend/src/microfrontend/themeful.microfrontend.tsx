@@ -2,11 +2,11 @@ import { Component, h } from '@stencil/core'
 // import { APIService } from '../services/'
 
 @Component({
-  tag: 'themeful-component',
+  tag: 'themeful-microfrontend',
   styleUrl: 'themeful.microfrontend.scss',
   shadow: true,
 })
-export class ThemefulComponent {
+export class ThemefulMicrofrontend {
   // private apiService: APIService
 
   constructor() {
@@ -20,7 +20,7 @@ export class ThemefulComponent {
     return 'done'
   }
 
-  public render() {
+  public render(): HTMLThemefulMicrofrontendElement {
     return <div>Hello, World! {this.getText()}</div>
   }
 }

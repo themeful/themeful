@@ -30,13 +30,13 @@ export class StyleGuidesComponent {
     console.log('openStyleForm', extendedStyle, styleGuide)
   }
 
-  public componentWillLoad() {
+  public componentWillLoad(): void {
     this.sub = this.styleGuides$?.subscribe((styleGuides) => {
       this.styleGuides = styleGuides
     })
   }
 
-  public disconnectedCallback() {
+  public disconnectedCallback(): void {
     this.sub?.unsubscribe()
   }
 

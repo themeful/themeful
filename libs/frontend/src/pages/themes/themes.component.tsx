@@ -25,7 +25,7 @@ export class ThemesComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
-  public render() {
+  public render(): HTMLTfThemesElement {
     return <div>Hello, World! m {this.getText()}</div>
   }
 }

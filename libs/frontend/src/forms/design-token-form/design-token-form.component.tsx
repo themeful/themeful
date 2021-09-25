@@ -25,7 +25,7 @@ export class DesignTokenFormComponent {
     return `${this.first} ${this.middle} ${this.last}`
   }
 
-  public render() {
+  public render(): HTMLTfDesignTokenFormElement {
     return <div>Hello, World! {this.getText()}</div>
   }
 }

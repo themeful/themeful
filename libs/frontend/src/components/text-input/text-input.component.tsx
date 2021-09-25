@@ -50,7 +50,7 @@ export class TextInputComponent {
   }
 
   @Watch('value')
-  public valueChanged() {
+  public valueChanged(): void {
     if (this.input.value !== this.value) {
       this.input.value = this.value.toString()
     }

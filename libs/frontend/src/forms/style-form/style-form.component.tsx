@@ -22,7 +22,7 @@ export class StyleFormComponent {
   // All used Groups -> Name Slug
   // all Types -> Name Slug
 
-  public render() {
+  public render(): HTMLTfStyleFormElement {
     return <div>Type, Name, Group, Value {this.getText()}</div>
   }
 }
