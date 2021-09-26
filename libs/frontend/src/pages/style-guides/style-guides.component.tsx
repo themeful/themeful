@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, State } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
 import {
   ExtendedStyle,
   ExtendedStyleGuide,
@@ -20,6 +20,16 @@ export class StyleGuidesComponent {
 
   @State() styleGuides: ExtendedStyleGuides
   @State() formData$ = new Subject()
+
+  /** Event emitted when an action is triggered */
+  @Event({ bubbles: false }) action: EventEmitter<any>
+
+  private onAction = ({ detail }): void => {
+    console.log(detail)
+    if (detail.action !== 'close') {
+      this.action.emit(detail)
+    }
+  }
 
   private sub?: Subscription
 
@@ -58,7 +68,7 @@ export class StyleGuidesComponent {
           {this.styleGuides &&
             this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
         </main>
-        <tf-form-integration {...{ formData$: this.formData$ }} />
+        <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
       </Host>
     )
   }

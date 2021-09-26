@@ -11,7 +11,7 @@ export class StyleGuideFormComponent {
   @Prop() formData: { identifier?: string; fields?: StyleGuideBase }
 
   /** Event emitted when an action is triggered */
-  @Event() action: EventEmitter<any>
+  @Event({ bubbles: false }) action: EventEmitter<any>
 
   @State() changed = false
   @State() editMode: boolean
@@ -42,11 +42,18 @@ export class StyleGuideFormComponent {
     event.preventDefault()
     Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
       if (dirty && valid) {
-        this.action.emit({
-          action: 'create',
-          identifier: this.formData.identifier,
-          fields: this.formValues(),
-        })
+        if (this.editMode) {
+          this.action.emit({
+            action: 'update',
+            identifier: this.formData.identifier,
+            fields: this.formValues(),
+          })
+        } else {
+          this.action.emit({
+            action: 'create',
+            fields: this.formValues(),
+          })
+        }
       }
     })
   }
@@ -71,13 +78,13 @@ export class StyleGuideFormComponent {
         <tf-text-input
           ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
           label="Name"
-          value={this.formData.fields.name}
+          value={this.formData.fields?.name}
           minLength={4}
         />
         <tf-text-input
           ref={(el: HTMLTfTextInputElement) => (this.controls['baseFontSize'] = el)}
           label="Base Font Size"
-          value={this.formData.fields.baseFontSize}
+          value={this.formData.fields?.baseFontSize}
           validation={this.baseFontSizeValidation}
         />
         <div class="form__controls">

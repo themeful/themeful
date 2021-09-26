@@ -13,7 +13,7 @@ export class FormIntegrationComponent {
   @State() formData: any
 
   /** Event emitted when an action is triggered */
-  @Event() action: EventEmitter<any>
+  @Event({ bubbles: false }) action: EventEmitter<any>
 
   private close = (): void => {
     this.show = false

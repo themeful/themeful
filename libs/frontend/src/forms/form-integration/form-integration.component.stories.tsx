@@ -38,11 +38,11 @@ export const formIntegration = (args) => {
         <h1>Form Integration</h1>
       </div>
       <div class="content">
-        <div style={{ width: '600px' }}>
+        <div style={{ width: '80%', display: 'flex', gap: '16px' }}>
           <tf-button onClick={() => openOverlay('styleguide')}>Open Style Guide Form</tf-button>
           <tf-button onClick={() => openOverlay('empty')}>Open Empty</tf-button>
-          <tf-form-integration {...args} />
         </div>
+        <tf-form-integration {...args} />
       </div>
     </div>
   )

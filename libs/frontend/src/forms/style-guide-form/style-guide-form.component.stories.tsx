@@ -22,10 +22,14 @@ export default {
       },
       onAction: action('triggered action'),
     },
+    empty: {
+      formData: {},
+      onAction: action('triggered action'),
+    },
   },
 }
 
-export const styleGuide = ({ editMode, newMode }) => {
+export const styleGuide = ({ editMode, newMode, empty }) => {
   return (
     <div>
       <div class="header">
@@ -51,6 +55,12 @@ export const styleGuide = ({ editMode, newMode }) => {
         </div>
         <div style={{ padding: '1rem' }}>
           <tf-style-guide-form {...editMode} />
+        </div>
+        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+          <tf-style-guide-form {...empty} />
+        </div>
+        <div style={{ padding: '1rem' }}>
+          <tf-style-guide-form {...empty} />
         </div>
       </div>
     </div>

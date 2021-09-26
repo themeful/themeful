@@ -10,7 +10,7 @@ export class OverlayComponent {
   @Prop() show = false
 
   /** Event emitted when the item is clicked */
-  @Event() close: EventEmitter
+  @Event({ bubbles: false }) close: EventEmitter
 
   private click = (): void => {
     this.close.emit()
