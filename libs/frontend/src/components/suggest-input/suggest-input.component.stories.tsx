@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions'
 import Fragment from 'stencil-fragment'
 
 export default {
-  title: 'Components/Suggest Input',
+  title: 'Components/Inputs/Suggest Input',
   args: {
     samples: [
       {

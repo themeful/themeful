@@ -1,5 +1,4 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { StyleGuideBase } from '@typings'
 
 @Component({
   tag: 'tf-style-form',
@@ -8,7 +7,7 @@ import { StyleGuideBase } from '@typings'
 })
 export class StyleFormComponent {
   /** Data for the form */
-  @Prop() formData: { identifier?: string; fields?: StyleGuideBase }
+  @Prop() formData: { identifier?: string; fields?: any }
 
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action: EventEmitter<any>
@@ -16,7 +15,7 @@ export class StyleFormComponent {
   @State() changed = false
   @State() editMode: boolean
 
-  private controls: { [key: string]: HTMLTfTextInputElement } = {}
+  private controls: { [key: string]: any } = {}
 
   public componentDidLoad(): void {
     this.editMode = this.formData.identifier && true
@@ -74,6 +73,18 @@ export class StyleFormComponent {
     return (
       <form class="form" onSubmit={this.save}>
         <h3>{this.editMode ? 'Edit' : 'Create'} Style Guide</h3>
+        <tf-select-input
+          ref={(el: HTMLTfSelectInputElement) => (this.controls['type'] = el)}
+          label="Name"
+          value={this.formData.fields?.type}
+          required
+        />
+        <tf-suggest-input
+          ref={(el: HTMLTfSuggestInputElement) => (this.controls['group'] = el)}
+          label="Group"
+          value={this.formData.fields?.group}
+          minLength={4}
+        />
         <tf-text-input
           ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
           label="Name"
@@ -81,9 +92,10 @@ export class StyleFormComponent {
           minLength={4}
         />
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['baseFontSize'] = el)}
-          label="Base Font Size"
-          value={this.formData.fields?.baseFontSize}
+          ref={(el: HTMLTfTextInputElement) => (this.controls['value'] = el)}
+          label="Value"
+          value={this.formData.fields?.value}
+          minLength={4}
         />
         <div class="form__controls">
           {this.editMode && (
