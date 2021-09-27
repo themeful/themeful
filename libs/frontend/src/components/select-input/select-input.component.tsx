@@ -5,7 +5,7 @@ import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } f
   styleUrl: 'select-input.component.scss',
 })
 export class SelectInputComponent {
-  @State() input: HTMLInputElement
+  @State() input: HTMLSelectElement
 
   /** Input type */
   @Prop() type = 'text'
@@ -13,20 +13,14 @@ export class SelectInputComponent {
   /** Input label */
   @Prop() label: string
 
+  /** Input suggest items */
+  @Prop() items: { key: string; value: string }[] = []
+
   /** Required input */
   @Prop() required = false
 
-  /** Min input */
-  @Prop() minLength: number
-
-  /** Max input */
-  @Prop() maxLength: number
-
   /** Input value */
   @Prop({ mutable: true }) value: string | number
-
-  /** validation function */
-  @Prop() validation: (string) => string | null
 
   /** Input Event */
   @Event({ composed: false }) inputChange: EventEmitter
@@ -71,15 +65,8 @@ export class SelectInputComponent {
   }
 
   private internalValidation = (): boolean => {
-    this.error = (this.validation && this.validation(this.value)) || ''
-    if (this.error === '') {
-      if (this.required && this.value !== '') {
-        this.error = `This value is required`
-      } else if ((this.value?.toString().length || 0) < this.minLength) {
-        this.error = `The min length is ${this.minLength}`
-      } else if (this.value?.toString().length > this.maxLength) {
-        this.error = `The max length is ${this.maxLength}`
-      }
+    if (this.required && this.value !== '') {
+      this.error = `This value is required`
     }
     this.valid = this.error === ''
     return this.valid
@@ -94,14 +81,18 @@ export class SelectInputComponent {
           }`}
         >
           <span class="select-input__label">{this.label}</span>
-          <input
-            ref={(el: HTMLInputElement) => (this.input = el)}
+          <select
+            ref={(el: HTMLSelectElement) => (this.input = el)}
             class="select-input__input"
-            value={this.value}
-            type={this.type}
             onInput={this.inputChanged}
             onBlur={this.blur}
-          ></input>
+          >
+            {this.items.map((item) => (
+              <option value={item.key} selected={item.key === this.value}>
+                {item.value}
+              </option>
+            ))}
+          </select>
           <p class="select-input__hint">{this.error}</p>
         </label>
       </Host>

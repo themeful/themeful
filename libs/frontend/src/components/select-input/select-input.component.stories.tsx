@@ -7,20 +7,36 @@ export default {
   args: {
     samples: [
       {
-        label: 'Empty',
+        label: 'Nothing selected',
+        items: [
+          { key: '', value: '-' },
+          { key: 'first', value: 'First Value' },
+          { key: 'second', value: 'Second Value' },
+        ],
       },
       {
-        label: 'With Test',
-        value: 'My Text',
+        label: 'First',
+        items: [
+          { key: 'first', value: 'First Value' },
+          { key: 'second', value: 'Second Value' },
+        ],
       },
       {
-        label: 'Min Length',
-        'min-length': 10,
+        label: 'Required',
+        required: true,
+        items: [
+          { key: '', value: '-' },
+          { key: 'first', value: 'First Value' },
+          { key: 'second', value: 'Second Value' },
+        ],
       },
       {
         label: 'Extra Validation',
-        value: '123',
-        validation: (value) => (Number(value) > 0 ? null : 'Please enter a number'),
+        value: 'second',
+        items: [
+          { key: 'first', value: 'First Value' },
+          { key: 'second', value: 'Second Value' },
+        ],
       },
     ],
   },

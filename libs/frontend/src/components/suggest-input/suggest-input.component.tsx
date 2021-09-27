@@ -7,9 +7,6 @@ import { Component, Event, EventEmitter, h, Method, Prop, State, Watch } from '@
 export class SuggestInputComponent {
   @State() input: HTMLInputElement
 
-  /** Input type */
-  @Prop() type = 'text'
-
   /** Input label */
   @Prop() label: string
 
@@ -105,7 +102,7 @@ export class SuggestInputComponent {
           ref={(el: HTMLInputElement) => (this.input = el)}
           class="suggest-input__input"
           value={this.value}
-          type={this.type}
+          type="text"
           list={this.dataListId}
           onInput={this.inputChanged}
           onBlur={this.blur}
