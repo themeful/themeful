@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+.suggest-input {
+  display: block;
+  color: var(--tf-font-color);
+
+  &__label {
+    font: var(--tf-small-font);
+    width: 100%;
+  }
+
+  &__hint {
+    font: var(--tf-small-font);
+    display: block;
+    min-height: 0.875rem;
+    width: 100%;
+    color: #ff6464;
+    margin: 1px 0 4px;
+  }
+
+  &__input {
+    font: var(--tf-default-font);
+    width: 100%;
+    color: var(--tf-font-color);
+    border: 0;
+    background-color: rgba(128, 128, 128, 0.1);
+    border-bottom: 1px solid currentColor;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: 0 !important;
+      border-color: #325af0;
+    }
+  }
+
+  &--error &__input {
+    border-color: #ff6464;
+  }
+
+  &--valid &__input {
+    border-color: #23c223;
+  }
+}
