@@ -22,12 +22,12 @@ export class StyleGuidesComponent {
   @State() formData$ = new Subject()
 
   /** Event emitted when an action is triggered */
-  @Event({ bubbles: false }) action: EventEmitter<any>
+  @Event({ composed: false }) action: EventEmitter<any>
 
-  private onAction = ({ detail }): void => {
-    console.log(detail)
-    if (detail.action !== 'close') {
-      this.action.emit(detail)
+  private onAction = (event): void => {
+    console.log('Here')
+    if (event.detail.action !== 'close') {
+      this.action.emit(event.detail)
     }
   }
 

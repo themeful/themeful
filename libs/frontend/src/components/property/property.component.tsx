@@ -18,7 +18,7 @@ export class PropertyComponent {
   @Prop() showGroup = true
 
   /** Edit event*/
-  @Event({ bubbles: false }) edit: EventEmitter
+  @Event({ composed: false }) edit: EventEmitter
 
   /** Mapped property */
   @State() mappedProperty: PropertyType

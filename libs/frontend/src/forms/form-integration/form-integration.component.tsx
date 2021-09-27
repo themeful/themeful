@@ -13,16 +13,15 @@ export class FormIntegrationComponent {
   @State() formData: any
 
   /** Event emitted when an action is triggered */
-  @Event({ bubbles: false }) action: EventEmitter<any>
+  @Event({ composed: false }) action: EventEmitter<any>
 
   private close = (): void => {
     this.show = false
   }
 
-  private onAction = ({ detail }): void => {
-    console.log(detail)
-    if (detail.action !== 'close') {
-      this.action.emit(detail)
+  private onAction = (event): void => {
+    if (event.detail.action !== 'close') {
+      this.action.emit(event.detail)
     }
     this.close()
   }

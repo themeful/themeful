@@ -29,7 +29,7 @@ export class TextInputComponent {
   @Prop() validation: (string) => string | null
 
   /** Input Event */
-  @Event({ bubbles: false }) inputChange: EventEmitter
+  @Event({ composed: false }) inputChange: EventEmitter
 
   @State() touched = false
   @State() changed = false

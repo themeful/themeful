@@ -11,7 +11,7 @@ export class StyleGuideFormComponent {
   @Prop() formData: { identifier?: string; fields?: StyleGuideBase }
 
   /** Event emitted when an action is triggered */
-  @Event({ bubbles: false }) action: EventEmitter<any>
+  @Event({ composed: false }) action: EventEmitter<any>
 
   @State() changed = false
   @State() editMode: boolean
