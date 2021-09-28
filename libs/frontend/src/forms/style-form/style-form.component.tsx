@@ -58,6 +58,8 @@ export class StyleFormComponent {
             fields: this.formValues(),
           })
         }
+      } else if (valid) {
+        this.action.emit({ action: 'close' })
       }
     })
   }
@@ -71,8 +73,6 @@ export class StyleFormComponent {
       this.action.emit({ action: 'delete', identifier: this.formData.identifier })
     }
   }
-  // All used Groups -> Name Slug
-  // all Types -> Name Slug
 
   public render(): HTMLTfStyleFormElement {
     return (

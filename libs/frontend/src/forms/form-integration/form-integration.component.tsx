@@ -40,6 +40,8 @@ export class FormIntegrationComponent {
     switch (form) {
       case 'styleguide':
         return <tf-style-guide-form {...this.args} />
+      case 'style':
+        return <tf-style-form {...this.args} />
       default:
         return <div>Form is not defined</div>
     }

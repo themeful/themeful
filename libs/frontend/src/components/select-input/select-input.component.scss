@@ -29,6 +29,10 @@
     border-bottom: 1px solid currentColor;
     box-sizing: border-box;
 
+    option {
+      background-color: var(--tf-tile-bg-color);
+    }
+
     &:focus {
       outline: 0 !important;
       border-color: #325af0;

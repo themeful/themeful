@@ -54,6 +54,8 @@ export class StyleGuideFormComponent {
             fields: this.formValues(),
           })
         }
+      } else if (valid) {
+        this.action.emit({ action: 'close' })
       }
     })
   }
