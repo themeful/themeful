@@ -4,6 +4,7 @@ import {
   ExtendedStyle,
   ExtendedStyleGuide,
   ExtendedStyleGuides,
+  FormIntegrationActions,
   StyleGroup,
   StyleGuideBase,
   StyleTypeGroup,
@@ -23,11 +24,11 @@ export class StyleGuidesComponent {
   @State() formData$ = new Subject()
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<any>
+  @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
 
-  private onAction = (event): void => {
-    if (event.detail.action !== 'close') {
-      this.action.emit(event.detail)
+  private onAction = ({ detail }): void => {
+    if (detail.action !== 'close') {
+      this.action.emit(detail)
     }
   }
 
@@ -43,10 +44,9 @@ export class StyleGuidesComponent {
   }
 
   private openStyleForm = (styleGuide: string, extendedStyle?: ExtendedStyle): void => {
-    console.log('openStyleForm', extendedStyle, styleGuide)
     this.formData$.next({
       form: 'style',
-      identifier: { styleGuide },
+      identifier: { styleGuide, style: extendedStyle?.slug },
       groups: this.styleGuideGroups[styleGuide],
       propertyTypes: propertySelect,
       fields: extendedStyle,

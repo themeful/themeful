@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
+import { FormIntegrationActions, FormIntegrations } from '@typings'
 import { Subject } from 'rxjs'
 
 @Component({
@@ -8,20 +9,20 @@ import { Subject } from 'rxjs'
 })
 export class FormIntegrationComponent {
   /** FormData */
-  @Prop() formData$ = new Subject()
+  @Prop() formData$ = new Subject<FormIntegrations>()
   @State() show = false
-  @State() formData: any
+  @State() formData: FormIntegrations
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<any>
+  @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
 
   private close = (): void => {
     this.show = false
   }
 
-  private onAction = (event): void => {
-    if (event.detail.action !== 'close') {
-      this.action.emit(event.detail)
+  private onAction = ({ detail }): void => {
+    if (detail.action !== 'close') {
+      this.action.emit({ ...detail, controller: this.formData.form })
     }
     this.close()
   }

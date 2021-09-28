@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
+import { ExtendedStyle, StyleFormAction, StyleFormData } from '@typings'
 
 @Component({
   tag: 'tf-style-form',
@@ -7,15 +8,10 @@ import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 })
 export class StyleFormComponent {
   /** Data for the form */
-  @Prop() formData: {
-    identifier: { styleGuide: string; style?: string }
-    fields?: any
-    groups: string[]
-    propertyTypes: { key: string; value: string }[]
-  }
+  @Prop() formData: StyleFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<any>
+  @Event({ composed: false }) action: EventEmitter<StyleFormAction>
 
   @State() changed = false
   @State() editMode: boolean
@@ -52,12 +48,13 @@ export class StyleFormComponent {
           this.action.emit({
             action: 'update',
             identifier: this.formData.identifier,
-            fields: this.formValues(),
+            fields: this.formValues() as unknown as ExtendedStyle,
           })
         } else {
           this.action.emit({
             action: 'create',
-            fields: this.formValues(),
+            identifier: this.formData.identifier,
+            fields: this.formValues() as unknown as ExtendedStyle,
           })
         }
       } else if (valid) {
