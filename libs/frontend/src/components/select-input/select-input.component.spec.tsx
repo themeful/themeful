@@ -5,7 +5,7 @@ describe('tf-select-input', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [SelectInputComponent],
-      html: '<tf-select-input></tf-select-input>',
+      html: '<tf-select-input />',
     })
     expect(root).toEqualHtml(`
       <tf-select-input>

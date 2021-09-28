@@ -25,7 +25,6 @@ export class StyleGuidesComponent {
   @Event({ composed: false }) action: EventEmitter<any>
 
   private onAction = (event): void => {
-    console.log('Here')
     if (event.detail.action !== 'close') {
       this.action.emit(event.detail)
     }
@@ -34,7 +33,6 @@ export class StyleGuidesComponent {
   private sub?: Subscription
 
   private openStyleGuideForm = (styleGuide?: string, styleGuideBase?: StyleGuideBase): void => {
-    console.log('openStyleGuideForm', styleGuideBase, styleGuide)
     this.formData$.next({
       form: 'styleguide',
       identifier: styleGuide,

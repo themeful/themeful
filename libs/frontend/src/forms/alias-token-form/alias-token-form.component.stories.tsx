@@ -17,7 +17,7 @@ export const aliasToken = (args) => {
       </div>
       <div class="content">
         <div style={{ position: 'relative', width: '600px' }}>
-          <tf-alias-token-form {...args}></tf-alias-token-form>
+          <tf-alias-token-form {...args} />
         </div>
       </div>
     </div>

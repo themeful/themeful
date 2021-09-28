@@ -10,5 +10,5 @@ export default {
 }
 
 export const themeful = (args) => {
-  return <themeful-microfrontend {...args}></themeful-microfrontend>
+  return <themeful-microfrontend {...args} />
 }

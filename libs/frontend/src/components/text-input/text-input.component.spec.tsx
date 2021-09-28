@@ -5,7 +5,7 @@ describe('tf-text-input', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [TextInputComponent],
-      html: '<tf-text-input></tf-text-input>',
+      html: '<tf-text-input />',
     })
     expect(root).toEqualHtml(`
       <tf-text-input>
@@ -21,7 +21,7 @@ describe('tf-text-input', () => {
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [TextInputComponent],
-      html: `<tf-text-input first="Stencil" last="'Don't call me a framework' JS"></tf-text-input>`,
+      html: `<tf-text-input first="Stencil" last="'Don't call me a framework' JS" />`,
     })
     expect(root).toEqualHtml(`
       <tf-text-input first="Stencil" last="'Don't call me a framework' JS">

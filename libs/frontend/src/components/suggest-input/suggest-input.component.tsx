@@ -107,7 +107,7 @@ export class SuggestInputComponent {
           onInput={this.inputChanged}
           onBlur={this.blur}
           autocomplete="off"
-        ></input>
+        />
         <datalist id={this.dataListId}>
           {this.items.map((item) => (
             <option value={item} />

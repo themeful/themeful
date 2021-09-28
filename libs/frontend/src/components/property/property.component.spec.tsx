@@ -5,7 +5,7 @@ describe('tf-property', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [PropertyComponent],
-      html: '<tf-property></tf-property>',
+      html: '<tf-property />',
     })
     expect(root).toEqualHtml(`
       <tf-property>
@@ -21,7 +21,7 @@ describe('tf-property', () => {
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [PropertyComponent],
-      html: `<tf-property first="Stencil" last="'Don't call me a framework' JS"></tf-property>`,
+      html: `<tf-property first="Stencil" last="'Don't call me a framework' JS" />`,
     })
     expect(root).toEqualHtml(`
       <tf-property first="Stencil" last="'Don't call me a framework' JS">

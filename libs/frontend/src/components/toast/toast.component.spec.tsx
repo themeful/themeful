@@ -5,7 +5,7 @@ describe('tf-toast', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [ToastComponent],
-      html: '<tf-toast></tf-toast>',
+      html: '<tf-toast />',
     })
     expect(root).toEqualHtml(`
       <tf-toast>
@@ -21,7 +21,7 @@ describe('tf-toast', () => {
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [ToastComponent],
-      html: `<tf-toast first="Stencil" last="'Don't call me a framework' JS"></tf-toast>`,
+      html: `<tf-toast first="Stencil" last="'Don't call me a framework' JS" />`,
     })
     expect(root).toEqualHtml(`
       <tf-toast first="Stencil" last="'Don't call me a framework' JS">

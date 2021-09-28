@@ -17,7 +17,7 @@ export const themes = (args) => {
       </div>
       <div class="content">
         <div style={{ position: 'relative' }}>
-          <tf-themes {...args}></tf-themes>
+          <tf-themes {...args} />
         </div>
       </div>
     </div>

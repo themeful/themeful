@@ -30,7 +30,6 @@ export class FormIntegrationComponent {
 
   public componentWillLoad(): void {
     this.formData$.subscribe((formData) => {
-      console.log(formData)
       this.formData = formData
       this.args = { formData, onAction: this.onAction }
       this.show = true

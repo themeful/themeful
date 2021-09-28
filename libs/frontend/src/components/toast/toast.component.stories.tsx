@@ -14,10 +14,10 @@ export const toast = ({ first, second }): HTMLElement => {
       </div>
       <div class="content">
         <div style={{ position: 'relative', width: '400px', height: '100px' }}>
-          <tf-toast {...first}></tf-toast>
+          <tf-toast {...first} />
         </div>
         <div style={{ position: 'relative', width: '400px', height: '100px' }}>
-          <tf-toast {...second}></tf-toast>
+          <tf-toast {...second} />
         </div>
       </div>
     </div>

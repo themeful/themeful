@@ -56,17 +56,19 @@ export const buttons = ({ buttons }): HTMLElement => {
             <td>default</td>
             <td>
               <tf-button>
-                <tf-icon icon="sync"></tf-icon>Some Text
+                <tf-icon icon="sync" />
+                Some Text
               </tf-button>
             </td>
             <td>
               <tf-button>
-                Some Text<tf-icon icon="sync"></tf-icon>
+                Some Text
+                <tf-icon icon="sync" />
               </tf-button>
             </td>
             <td>
               <tf-button>
-                <tf-icon icon="sync"></tf-icon>
+                <tf-icon icon="sync" />
               </tf-button>
             </td>
           </tr>
@@ -74,17 +76,19 @@ export const buttons = ({ buttons }): HTMLElement => {
             <td>small</td>
             <td>
               <tf-button size="small">
-                <tf-icon icon="sync"></tf-icon>Some Text
+                <tf-icon icon="sync" />
+                Some Text
               </tf-button>
             </td>
             <td>
               <tf-button size="small">
-                Some Text<tf-icon icon="sync"></tf-icon>
+                Some Text
+                <tf-icon icon="sync" />
               </tf-button>
             </td>
             <td>
               <tf-button size="small">
-                <tf-icon icon="sync"></tf-icon>
+                <tf-icon icon="sync" />
               </tf-button>
             </td>
           </tr>
@@ -92,17 +96,19 @@ export const buttons = ({ buttons }): HTMLElement => {
             <td>icon</td>
             <td>
               <tf-button size="icon">
-                <tf-icon icon="sync"></tf-icon>Some Text
+                <tf-icon icon="sync" />
+                Some Text
               </tf-button>
             </td>
             <td>
               <tf-button size="icon">
-                Some Text<tf-icon icon="sync"></tf-icon>
+                Some Text
+                <tf-icon icon="sync" />
               </tf-button>
             </td>
             <td>
               <tf-button size="icon">
-                <tf-icon icon="sync"></tf-icon>
+                <tf-icon icon="sync" />
               </tf-button>
             </td>
           </tr>

@@ -5,7 +5,7 @@ describe('tf-button', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [ButtonComponent],
-      html: '<tf-button></tf-button>',
+      html: '<tf-button />',
     })
     expect(root).toEqualHtml(`
       <tf-button>
@@ -21,7 +21,7 @@ describe('tf-button', () => {
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [ButtonComponent],
-      html: `<tf-button first="Stencil" last="'Don't call me a framework' JS"></tf-button>`,
+      html: `<tf-button first="Stencil" last="'Don't call me a framework' JS" />`,
     })
     expect(root).toEqualHtml(`
       <tf-button first="Stencil" last="'Don't call me a framework' JS">

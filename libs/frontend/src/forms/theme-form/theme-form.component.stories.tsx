@@ -17,7 +17,7 @@ export const theme = (args) => {
       </div>
       <div class="content">
         <div style={{ position: 'relative', width: '600px' }}>
-          <tf-theme-form {...args}></tf-theme-form>
+          <tf-theme-form {...args} />
         </div>
       </div>
     </div>

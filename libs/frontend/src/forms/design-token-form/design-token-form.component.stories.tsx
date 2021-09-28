@@ -17,7 +17,7 @@ export const designToken = (args) => {
       </div>
       <div class="content">
         <div style={{ position: 'relative', width: '600px' }}>
-          <tf-design-token-form {...args}></tf-design-token-form>
+          <tf-design-token-form {...args} />
         </div>
       </div>
     </div>

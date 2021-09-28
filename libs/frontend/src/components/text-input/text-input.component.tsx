@@ -73,7 +73,7 @@ export class TextInputComponent {
   private internalValidation = (): boolean => {
     this.error = (this.validation && this.validation(this.value)) || ''
     if (this.error === '') {
-      if (this.required && this.value !== '') {
+      if (this.required && this.value === '') {
         this.error = `This value is required`
       } else if ((this.value?.toString().length || 0) < this.minLength) {
         this.error = `The min length is ${this.minLength}`
@@ -101,7 +101,7 @@ export class TextInputComponent {
             type={this.type}
             onInput={this.inputChanged}
             onBlur={this.blur}
-          ></input>
+          />
           <p class="text-input__hint">{this.error}</p>
         </label>
       </Host>

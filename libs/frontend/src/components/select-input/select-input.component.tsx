@@ -65,7 +65,7 @@ export class SelectInputComponent {
   }
 
   private internalValidation = (): boolean => {
-    if (this.required && this.value !== '') {
+    if (this.required && this.value === '') {
       this.error = `This value is required`
     }
     this.valid = this.error === ''
@@ -84,7 +84,7 @@ export class SelectInputComponent {
           <select
             ref={(el: HTMLSelectElement) => (this.input = el)}
             class="select-input__input"
-            onInput={this.inputChanged}
+            onChange={this.inputChanged}
             onBlur={this.blur}
           >
             {this.items.map((item) => (

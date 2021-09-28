@@ -15,20 +15,20 @@ export const propertyBox = ({ properties, wrappers, grouped }): HTMLElement => {
         <h2>Types</h2>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', maxWidth: '100%' }}>
           {properties.map((args) => (
-            <tf-property {...args} onEdit={action('edit')}></tf-property>
+            <tf-property {...args} onEdit={action('edit')} />
           ))}
         </div>
         <h2>Context</h2>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', maxWidth: '100%' }}>
           {wrappers.map(({ item, wrapperClass }) => (
             <div class={wrapperClass}>
-              <tf-property {...item} onEdit={action('edit')}></tf-property>
+              <tf-property {...item} onEdit={action('edit')} />
             </div>
           ))}
           <div class="property--grouped">
-            <tf-property {...grouped} onEdit={action('edit')}></tf-property>
-            <tf-property {...grouped} onEdit={action('edit')}></tf-property>
-            <tf-property {...grouped} onEdit={action('edit')}></tf-property>
+            <tf-property {...grouped} onEdit={action('edit')} />
+            <tf-property {...grouped} onEdit={action('edit')} />
+            <tf-property {...grouped} onEdit={action('edit')} />
           </div>
         </div>
       </div>

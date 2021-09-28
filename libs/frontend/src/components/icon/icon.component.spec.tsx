@@ -5,7 +5,7 @@ describe('tf-icon', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [IconComponent],
-      html: '<tf-icon></tf-icon>',
+      html: '<tf-icon />',
     })
     expect(root).toEqualHtml(`
       <tf-icon>
@@ -21,7 +21,7 @@ describe('tf-icon', () => {
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [IconComponent],
-      html: `<tf-icon first="Stencil" last="'Don't call me a framework' JS"></tf-icon>`,
+      html: `<tf-icon first="Stencil" last="'Don't call me a framework' JS" />`,
     })
     expect(root).toEqualHtml(`
       <tf-icon first="Stencil" last="'Don't call me a framework' JS">

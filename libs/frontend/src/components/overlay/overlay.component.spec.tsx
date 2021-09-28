@@ -5,7 +5,7 @@ describe('tf-overlay', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [OverlayComponent],
-      html: '<tf-overlay></tf-overlay>',
+      html: '<tf-overlay />',
     })
     expect(root).toEqualHtml(`
       <tf-overlay>
@@ -21,7 +21,7 @@ describe('tf-overlay', () => {
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [OverlayComponent],
-      html: `<tf-overlay first="Stencil" last="'Don't call me a framework' JS"></tf-overlay>`,
+      html: `<tf-overlay first="Stencil" last="'Don't call me a framework' JS" />`,
     })
     expect(root).toEqualHtml(`
       <tf-overlay first="Stencil" last="'Don't call me a framework' JS">
