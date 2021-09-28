@@ -1,3 +1,9 @@
+import { AliasTokens } from './aliasToken.types'
+import { DesignTokens } from './designToken.types'
+import { StyleGuides } from './style.types'
+
+export type APIBundle = [Themes, DesignTokens, AliasTokens, StyleGuides]
+
 export interface Themes {
   [themeSlug: string]: Theme
 }

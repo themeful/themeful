@@ -1,4 +1,7 @@
-import { Component, h, Prop } from '@stencil/core'
+import { Component, h, Prop, State } from '@stencil/core'
+import { AliasTokens, APIBundle, DesignTokens, StyleGuides, Themes } from '@typings'
+import { Observable, Subscription } from 'rxjs'
+// import { ThemeService } from '../..'
 
 @Component({
   tag: 'tf-themes',
@@ -6,26 +9,29 @@ import { Component, h, Prop } from '@stencil/core'
   shadow: true,
 })
 export class ThemesComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string
+  /** Style Guides */
+  @Prop() bundle$: Observable<APIBundle>
+  @State() themes: Themes
+  @State() designTokens: DesignTokens
+  @State() aliasTokens: AliasTokens
+  @State() styleGuides: StyleGuides
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string
+  private sub?: Subscription
 
-  /**
-   * The last name
-   */
-  @Prop() last: string
+  public componentWillLoad(): void {
+    this.sub = this.bundle$?.subscribe(([themes, designTokens, aliasTokens, styleGuides]) => {
+      this.themes = themes
+      this.aliasTokens = aliasTokens
+      this.designTokens = designTokens
+      this.styleGuides = styleGuides
+    })
+  }
 
-  private getText(): string {
-    return `${this.first} ${this.middle} ${this.last}`
+  public disconnectedCallback(): void {
+    this.sub?.unsubscribe()
   }
 
   public render(): HTMLTfThemesElement {
-    return <div>Hello, World! m {this.getText()}</div>
+    return <div>Some Stuff</div>
   }
 }

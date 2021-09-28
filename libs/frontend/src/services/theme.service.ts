@@ -1,11 +1,11 @@
 import { combineLatest, debounceTime, Observable } from 'rxjs'
 import { APIService } from './api.service'
 
-export class DesignTokenSerive {
-  private static _instance: DesignTokenSerive
+export class ThemeService {
+  private static _instance: ThemeService
   private apiService: APIService
 
-  public static get Instance(): DesignTokenSerive {
+  public static get Instance(): ThemeService {
     return this._instance || (this._instance = new this())
   }
 
@@ -20,5 +20,16 @@ export class DesignTokenSerive {
       this.apiService.aliasTokens,
       this.apiService.themes,
     ]).pipe(debounceTime(500))
+  }
+
+  public triggerReload(): void {
+    combineLatest([
+      this.apiService.getThemes(),
+      this.apiService.getDesignTokens(),
+      this.apiService.getAliasTokens(),
+      this.apiService.getStyleGuides(),
+    ]).subscribe(() => {
+      console.log('done')
+    })
   }
 }

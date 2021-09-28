@@ -1,11 +1,13 @@
 import { h } from '@stencil/core'
+import { action } from '@storybook/addon-actions'
+import { of } from 'rxjs'
+import sample from './themes.sample.json'
 
 export default {
   title: 'Pages/Themes',
   args: {
-    first: 'John',
-    middle: 'S',
-    last: 'Doe',
+    bundle$: of(sample),
+    onAction: action('triggered action'),
   },
 }
 
