@@ -1,5 +1,5 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { StyleGuideBase } from '@typings'
+import { FormValues, StyleGuideBase, StyleGuideFormAction, StyleGuideFormData } from '@typings'
 
 @Component({
   tag: 'tf-style-guide-form',
@@ -8,10 +8,10 @@ import { StyleGuideBase } from '@typings'
 })
 export class StyleGuideFormComponent {
   /** Data for the form */
-  @Prop() formData: { identifier?: string; fields?: StyleGuideBase }
+  @Prop() formData: StyleGuideFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<any>
+  @Event({ composed: false }) action: EventEmitter<StyleGuideFormAction>
 
   @State() changed = false
   @State() editMode: boolean
@@ -22,7 +22,7 @@ export class StyleGuideFormComponent {
     this.editMode = this.formData.identifier && true
   }
 
-  private formValues = (): { [key: string]: string | number } =>
+  private formValues = (): FormValues =>
     Object.entries(this.controls).reduce((result, [key, control]) => {
       result[key] = control.value
       return result
@@ -46,12 +46,12 @@ export class StyleGuideFormComponent {
           this.action.emit({
             action: 'update',
             identifier: this.formData.identifier,
-            fields: this.formValues(),
+            fields: this.formValues() as unknown as StyleGuideBase,
           })
         } else {
           this.action.emit({
             action: 'create',
-            fields: this.formValues(),
+            fields: this.formValues() as unknown as StyleGuideBase,
           })
         }
       } else if (valid) {

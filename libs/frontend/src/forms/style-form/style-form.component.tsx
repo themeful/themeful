@@ -20,7 +20,9 @@ export class StyleFormComponent {
   @State() changed = false
   @State() editMode: boolean
 
-  private controls: { [key: string]: any } = {}
+  private controls: {
+    [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement | HTMLTfSuggestInputElement
+  } = {}
 
   public componentDidLoad(): void {
     this.editMode = this.formData?.identifier?.style && true

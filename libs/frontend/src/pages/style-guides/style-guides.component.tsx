@@ -32,6 +32,7 @@ export class StyleGuidesComponent {
   }
 
   private sub?: Subscription
+  private styleGuideGroups: { [styleguide: string]: string[] }
 
   private openStyleGuideForm = (styleGuide?: string, styleGuideBase?: StyleGuideBase): void => {
     this.formData$.next({
@@ -46,7 +47,7 @@ export class StyleGuidesComponent {
     this.formData$.next({
       form: 'style',
       identifier: { styleGuide },
-      groups: [],
+      groups: this.styleGuideGroups[styleGuide],
       propertyTypes: propertySelect,
       fields: extendedStyle,
     })
@@ -55,6 +56,15 @@ export class StyleGuidesComponent {
   public componentWillLoad(): void {
     this.sub = this.styleGuides$?.subscribe((styleGuides) => {
       this.styleGuides = styleGuides
+      this.styleGuideGroups = styleGuides.reduce((result, styleguide) => {
+        result[styleguide.slug] = []
+        styleguide.types.forEach((type) => {
+          type.groups.forEach((group) => {
+            result[styleguide.slug].push(group.name)
+          })
+        })
+        return result
+      }, {})
     })
   }
 

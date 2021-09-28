@@ -58,11 +58,13 @@ export class StyleGuideService {
     const groupObj: { [key: string]: Style[] } = Object.keys(data).reduce(
       (result: { [key: string]: any[] }, key: string) => {
         const value = data[key] as any
+        const group = value.group
+        value.group = sentenceCase(group)
         value.slug = key
-        if (!result[value.group]) {
-          result[value.group] = []
+        if (!result[group]) {
+          result[group] = []
         }
-        result[value.group].push(value)
+        result[group].push(value)
         return result
       },
       {}
