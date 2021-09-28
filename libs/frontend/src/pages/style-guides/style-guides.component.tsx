@@ -1,3 +1,4 @@
+import { propertySelect } from '@properties'
 import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
 import {
   ExtendedStyle,
@@ -42,6 +43,13 @@ export class StyleGuidesComponent {
 
   private openStyleForm = (styleGuide: string, extendedStyle?: ExtendedStyle): void => {
     console.log('openStyleForm', extendedStyle, styleGuide)
+    this.formData$.next({
+      form: 'style',
+      identifier: { styleGuide },
+      groups: [],
+      propertyTypes: propertySelect,
+      fields: extendedStyle,
+    })
   }
 
   public componentWillLoad(): void {

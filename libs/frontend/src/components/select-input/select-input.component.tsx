@@ -3,6 +3,7 @@ import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } f
 @Component({
   tag: 'tf-select-input',
   styleUrl: 'select-input.component.scss',
+  shadow: true,
 })
 export class SelectInputComponent {
   @State() input: HTMLSelectElement

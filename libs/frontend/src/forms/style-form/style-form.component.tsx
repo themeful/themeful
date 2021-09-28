@@ -8,7 +8,7 @@ import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 export class StyleFormComponent {
   /** Data for the form */
   @Prop() formData: {
-    identifier?: string
+    identifier: { styleGuide: string; style?: string }
     fields?: any
     groups: string[]
     propertyTypes: { key: string; value: string }[]
@@ -23,7 +23,7 @@ export class StyleFormComponent {
   private controls: { [key: string]: any } = {}
 
   public componentDidLoad(): void {
-    this.editMode = this.formData?.identifier && true
+    this.editMode = this.formData?.identifier?.style && true
   }
 
   private formValues = (): { [key: string]: string | number } =>

@@ -4,6 +4,7 @@ import { ButtonKind } from './interfaces'
 @Component({
   tag: 'tf-button',
   styleUrl: 'button.component.scss',
+  shadow: true,
 })
 export class ButtonComponent {
   /** Button type*/

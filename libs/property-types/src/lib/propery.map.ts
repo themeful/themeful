@@ -9,9 +9,9 @@ import { font } from './font.property'
 import { mediaquery } from './mediaquery.property'
 import { size } from './size.property'
 
-const map = {
-  font: font,
+const proeprties = {
   color: color,
+  font: font,
   'font-size': fontSize,
   'font-weight': fontWeight,
   'font-family': fontFamily,
@@ -24,7 +24,12 @@ export const getProperty = (property: string) => {
   if (!property) {
     return empty
   }
-  return map[property] ?? fallback
+  return proeprties[property] ?? fallback
 }
 
-export const propertyTypes = Object.keys(map)
+export const propertyTypes = Object.keys(proeprties)
+
+export const propertySelect = Object.entries(proeprties).map(([key, { name }]) => ({
+  key,
+  value: name,
+}))

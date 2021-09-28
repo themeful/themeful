@@ -3,6 +3,7 @@ import { Component, Event, EventEmitter, h, Method, Prop, State, Watch } from '@
 @Component({
   tag: 'tf-suggest-input',
   styleUrl: 'suggest-input.component.scss',
+  shadow: true,
 })
 export class SuggestInputComponent {
   @State() input: HTMLInputElement

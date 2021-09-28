@@ -3,6 +3,7 @@ import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } f
 @Component({
   tag: 'tf-text-input',
   styleUrl: 'text-input.component.scss',
+  shadow: true,
 })
 export class TextInputComponent {
   @State() input: HTMLInputElement

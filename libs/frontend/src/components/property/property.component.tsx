@@ -39,7 +39,7 @@ export class PropertyComponent {
   public render(): HTMLTfPropertyElement {
     return (
       <div class="property" style={this.mappedProperty.styles.wrapper}>
-        <tf-button class="property__edit" size="icon" onClick={this.click} title="close">
+        <tf-button class="property__edit" size="icon" onClick={this.click} title="edit style">
           <tf-icon icon="pen" />
         </tf-button>
         {this.getTemplate()}
