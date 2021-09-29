@@ -33,7 +33,7 @@
   "private": true,
   "devDependencies": {
     "@nestjs/schematics": "^8.0.3",
-    "@nestjs/testing": "^8.0.7",
+    "@nestjs/testing": "^8.0.8",
     "@nrwl/cli": "12.9.0",
     "@nrwl/eslint-plugin-nx": "12.9.0",
     "@nrwl/jest": "12.9.0",
@@ -54,7 +54,7 @@
     "@storybook/html": "~6.3.8",
     "@storybook/theming": "^6.3.8",
     "@types/jest": "26.0.24",
-    "@types/node": "16.10.1",
+    "@types/node": "16.10.2",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "colortranslator": "^1.7.1",
@@ -79,9 +79,9 @@
     "typescript": "~4.4.3"
   },
   "dependencies": {
-    "@nestjs/common": "^8.0.7",
-    "@nestjs/core": "^8.0.7",
-    "@nestjs/platform-express": "^8.0.7",
+    "@nestjs/common": "^8.0.8",
+    "@nestjs/core": "^8.0.8",
+    "@nestjs/platform-express": "^8.0.8",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.3.0",
     "sentence-case": "^3.0.4",
