@@ -23,6 +23,12 @@ export interface ThemeValue {
   [media: string]: ValueDetail
 }
 
+export type ExtendedValueDetails = ExtendedValueDetail[]
+export interface ExtendedValueDetail extends ValueDetail {
+  media: string
+  name: string
+  global: boolean
+}
 export interface ValueDetail {
   style?: string
   direct?: DirectValue

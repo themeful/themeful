@@ -1,5 +1,14 @@
 import { Component, h, Prop, State } from '@stencil/core'
-import { AliasTokens, APIBundle, DesignTokens, StyleGuides, Themes } from '@typings'
+import {
+  AliasTokens,
+  APIBundle,
+  DesignTokens,
+  ExtendedValueDetail,
+  ExtendedValueDetails,
+  StyleGuides,
+  Theme,
+  Themes,
+} from '@typings'
 import { Observable, Subscription } from 'rxjs'
 // import { ThemeService } from '../..'
 
@@ -47,12 +56,12 @@ export class ThemesComponent {
         if (!this.groups.includes(designTokens[designToken].group)) {
           this.groups.push(designTokens[designToken].group)
         }
-        const themeValues: ThemeMedias[] = []
+        const themeValues: ExtendedValueDetails[] = []
         Object.values(themes).forEach((theme: Theme) => {
-          const themeValue: ThemeMedias = []
+          const themeValue: ExtendedValueDetails = []
           if (theme.styles[designToken]) {
             Object.entries(theme.styles[designToken]).forEach(([media, { style, direct }]) => {
-              const themeMedia: ThemeMedia = {
+              const themeMedia: ExtendedValueDetail = {
                 media,
                 name: styleMap[media] ? styleMap[media].name : 'Default',
                 global: styleMap[media] ? styleMap[media].global : false,
