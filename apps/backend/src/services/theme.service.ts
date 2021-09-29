@@ -84,7 +84,7 @@ export class ThemeService {
     return true
   }
 
-  public createValue(theme, token, { media, style, directValue }): boolean {
+  public createValue(theme, token, { media, style, direct }): boolean {
     if (!this.themesJson[theme]?.styles) {
       return false
     }
@@ -93,13 +93,13 @@ export class ThemeService {
       this.themesJson[theme].styles[token] = {} as ThemeValue
     }
 
-    this.themesJson[theme].styles[token][media] = { style, directValue }
+    this.themesJson[theme].styles[token][media] = { style, direct }
 
     this.writeFiles(this.themesJson)
     return true
   }
 
-  public updateValue(theme, token, media, { media: newMedia, style, directValue }): boolean {
+  public updateValue(theme, token, media, { media: newMedia, style, direct }): boolean {
     const designToken = this.themesJson[theme]?.styles[token]
     if (!designToken || !designToken[media]) {
       return false
@@ -108,7 +108,7 @@ export class ThemeService {
       delete this.themesJson[theme]?.styles[token][media]
     }
 
-    this.themesJson[theme].styles[token][newMedia] = { style, directValue }
+    this.themesJson[theme].styles[token][newMedia] = { style, direct }
 
     this.writeFiles(this.themesJson)
     return true
@@ -283,13 +283,13 @@ export class ThemeService {
                 `  --${renderedToken}: ` +
                 (themes[key].styles[designToken].default.style
                   ? `#{$${themes[key].styles[designToken].default.style}};\n`
-                  : `${themes[key].styles[designToken].default.directValue.value};\n`)
+                  : `${themes[key].styles[designToken].default.direct.value};\n`)
             } else {
               mediaQueries[media] = mediaQueries[media] ?? []
               mediaQueries[media].push(
                 themes[key].styles[designToken][media].style
                   ? `--${renderedToken}: #{$${themes[key].styles[designToken][media].style}};`
-                  : `--${renderedToken}: ${themes[key].styles[designToken][media].directValue.value};`
+                  : `--${renderedToken}: ${themes[key].styles[designToken][media].direct.value};`
               )
             }
           })

@@ -18,11 +18,11 @@
                 "slug": "base_black"
               },
               {
-                "name": "LIght",
+                "name": "Light",
                 "type": "color",
                 "group": "Base",
                 "value": "#ffffff",
-                "slug": "base_lIght"
+                "slug": "base_light"
               }
             ]
           },

@@ -20,7 +20,7 @@
       },
       "dtFontColorPrimary": {
         "default": {
-          "style": "global_base_lIght"
+          "style": "global_base_light"
         }
       },
       "dtFontSize100": {
@@ -28,7 +28,7 @@
           "style": "styleGuide1_content_primary"
         },
         "styleGuide1_mediaQuery_aboveSmallDesktop": {
-          "directValue": {
+          "direct": {
             "value": "13px",
             "type": "font-size"
           }
@@ -98,7 +98,7 @@
       },
       "dtFontColorPrimary": {
         "default": {
-          "style": "global_base_lIght"
+          "style": "global_base_light"
         }
       },
       "dtFontSize100": {
@@ -155,13 +155,13 @@
     "styles": {
       "dtActionBg": {
         "default": {
-          "directValue": {
+          "direct": {
             "value": "#aaaaaa",
             "type": "color"
           }
         },
         "global_mediaQuery_aboveSmallMobile": {
-          "directValue": {
+          "direct": {
             "value": "rgba(180, 180, 180, 0.8)",
             "type": "color"
           }
@@ -193,13 +193,13 @@
       },
       "dtFontSize100": {
         "global_mediaQuery_aboveSmallMobile": {
-          "directValue": {
+          "direct": {
             "type": "font-size",
             "value": "1rem"
           }
         },
         "global_mediaQuery_aboveMobile": {
-          "directValue": {
+          "direct": {
             "type": "font-size",
             "value": "2rem"
           }

@@ -9,8 +9,8 @@
         "group": "base",
         "value": "#333333"
       },
-      "base_lIght": {
-        "name": "LIght",
+      "base_light": {
+        "name": "Light",
         "type": "color",
         "group": "base",
         "value": "#ffffff"

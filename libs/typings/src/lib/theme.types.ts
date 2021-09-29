@@ -25,7 +25,7 @@ export interface ThemeValue {
 
 export interface ValueDetail {
   style?: string
-  directValue?: DirectValue
+  direct?: DirectValue
 }
 
 export interface DirectValue {
