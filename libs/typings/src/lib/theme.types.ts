@@ -2,7 +2,7 @@ import { AliasTokens } from './aliasToken.types'
 import { DesignTokens } from './designToken.types'
 import { ExtendedStyle, StyleGuides } from './style.types'
 
-export type APIBundle = [Themes, DesignTokens, AliasTokens, StyleGuides]
+export type APIBundle = [StyleGuides, DesignTokens, AliasTokens, Themes]
 
 export interface Themes {
   [themeSlug: string]: Theme

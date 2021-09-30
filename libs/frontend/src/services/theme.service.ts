@@ -24,10 +24,10 @@ export class ThemeService {
 
   public triggerReload(): void {
     combineLatest([
-      this.apiService.getThemes(),
+      this.apiService.getStyleGuides(),
       this.apiService.getDesignTokens(),
       this.apiService.getAliasTokens(),
-      this.apiService.getStyleGuides(),
+      this.apiService.getThemes(),
     ]).subscribe(() => {
       console.log('done')
     })

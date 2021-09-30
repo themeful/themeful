@@ -11,9 +11,6 @@ export class PropertyComponent {
   /** The extendedStyle */
   @Prop() extendedStyle?: ExtendedStyle
 
-  /** The styleGuide */
-  @Prop() styleGuide!: string
-
   /** Show group */
   @Prop() showGroup = true
 

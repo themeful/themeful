@@ -148,7 +148,6 @@ export class StyleGuidesComponent {
       <tf-property
         {...{
           extendedStyle,
-          styleGuide,
           showGroup: false,
           onEdit: () => this.openStyleForm(styleGuide, extendedStyle),
         }}
