@@ -1,6 +1,6 @@
 import { AliasTokens } from './aliasToken.types'
 import { DesignTokens } from './designToken.types'
-import { StyleGuides } from './style.types'
+import { ExtendedStyle, StyleGuides } from './style.types'
 
 export type APIBundle = [Themes, DesignTokens, AliasTokens, StyleGuides]
 
@@ -24,11 +24,15 @@ export interface ThemeValue {
 }
 
 export type ExtendedValueDetails = ExtendedValueDetail[]
-export interface ExtendedValueDetail extends ValueDetail {
+
+export interface ExtendedValueDetail {
   media: string
   name: string
   global: boolean
+  style?: ExtendedStyle & { key: string }
+  direct?: DirectValue
 }
+
 export interface ValueDetail {
   style?: string
   direct?: DirectValue

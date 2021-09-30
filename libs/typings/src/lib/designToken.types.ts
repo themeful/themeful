@@ -1,3 +1,5 @@
+import { ExtendedValueDetails } from './theme.types'
+
 export interface DesignTokens {
   [token: string]: DesignToken
 }
@@ -13,5 +15,10 @@ export interface DesignToken {
 }
 
 export interface DesignTokenAPI extends DesignToken {
+  token: string
+}
+
+export interface DesignTokenRow extends DesignToken {
+  themeValues: ExtendedValueDetails[]
   token: string
 }

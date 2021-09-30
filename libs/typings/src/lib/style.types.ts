@@ -44,3 +44,11 @@ export interface ExtendedStyleGuide extends StyleGuideBase {
 }
 
 export type ExtendedStyleGuides = ExtendedStyleGuide[]
+
+export interface StyleMap {
+  [slug: string]: ExtendedStyle
+}
+
+export interface Dt2At {
+  [designToken: string]: string[]
+}

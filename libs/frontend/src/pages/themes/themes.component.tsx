@@ -1,11 +1,14 @@
-import { Component, h, Prop, State } from '@stencil/core'
+import { Component, h, Host, Prop, State } from '@stencil/core'
 import {
   AliasTokens,
   APIBundle,
+  DesignTokenRow,
   DesignTokens,
+  Dt2At,
   ExtendedValueDetail,
   ExtendedValueDetails,
   StyleGuides,
+  StyleMap,
   Theme,
   Themes,
 } from '@typings'
@@ -20,14 +23,17 @@ import { Observable, Subscription } from 'rxjs'
 export class ThemesComponent {
   /** Style Guides */
   @Prop() bundle$: Observable<APIBundle>
-  @State() themes: Themes
-  @State() designTokens: DesignTokens
-  @State() aliasTokens: AliasTokens
-  @State() styleGuides: StyleGuides
-  private styleMap: any
-  private sgBases: any
-  private dt2at: any = {}
-  private groups = []
+
+  @State() rows: DesignTokenRow[]
+  @State() themeNames: any
+  private themes: Themes
+  private designTokens: DesignTokens
+  private aliasTokens: AliasTokens
+  private styleGuides: StyleGuides
+  private styleMap: StyleMap
+  private sgBases: { name: string; key: string }[]
+  private dt2at: Dt2At = {}
+  private groups: string[]
 
   private sub?: Subscription
 
@@ -50,7 +56,7 @@ export class ThemesComponent {
         key,
       }))
 
-      const rows: any[] = []
+      const rows: DesignTokenRow[] = []
       Object.keys(designTokens).forEach((designToken: string) => {
         this.dt2at[designToken] = designTokens[designToken].aliasTokens
         if (!this.groups.includes(designTokens[designToken].group)) {
@@ -75,14 +81,14 @@ export class ThemesComponent {
         })
         rows.push({ ...designTokens[designToken], token: designToken, themeValues })
       })
-
-      return { rows, themeNames }
+      this.rows = rows
+      this.themeNames = themeNames
     })
   }
 
   private transformStyleGuides(styleGuides: StyleGuides) {
-    const sgNames: any = {}
-    const styleMap = {}
+    const sgNames: { [styleguide: string]: string } = {}
+    const styleMap: StyleMap = {}
     Object.keys(styleGuides).forEach((styleguide) => {
       sgNames[styleguide] = styleGuides[styleguide].name
       Object.keys(styleGuides[styleguide].styles).forEach((valueKey) => {
@@ -100,6 +106,19 @@ export class ThemesComponent {
   }
 
   public render(): HTMLTfThemesElement {
-    return <div>Some Stuff</div>
+    return (
+      <Host>
+        <nav>
+          <tf-button {...{ onClick: () => this.openThemeForm(), title: 'add theme' }}>
+            Add Theme
+          </tf-button>
+        </nav>
+        {/* <main class="style-guide__wrapper">
+        {this.styleGuides &&
+          this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
+      </main>
+      <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} /> */}
+      </Host>
+    )
   }
 }
