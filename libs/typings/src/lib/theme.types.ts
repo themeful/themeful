@@ -42,3 +42,10 @@ export interface DirectValue {
   value: string
   type: string
 }
+
+export interface ThemeName {
+  displayName: string
+  styleGuide: string
+  name: string
+  key: string
+}

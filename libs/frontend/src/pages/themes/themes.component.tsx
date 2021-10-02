@@ -1,4 +1,5 @@
-import { Component, Fragment, h, Host, Prop, State } from '@stencil/core'
+import { propertySelect } from '@properties'
+import { Component, Event, EventEmitter, Fragment, h, Host, Prop, State } from '@stencil/core'
 import {
   AliasTokens,
   APIBundle,
@@ -7,12 +8,14 @@ import {
   Dt2At,
   ExtendedValueDetail,
   ExtendedValueDetails,
+  FormIntegrationActions,
   StyleGuides,
   StyleMap,
   Theme,
+  ThemeName,
   Themes,
 } from '@typings'
-import { Observable, Subscription } from 'rxjs'
+import { Observable, Subject, Subscription } from 'rxjs'
 // import { ThemeService } from '../..'
 
 @Component({
@@ -25,7 +28,7 @@ export class ThemesComponent {
   @Prop() bundle$: Observable<APIBundle>
 
   @State() rows: DesignTokenRow[]
-  @State() themeNames: any
+  private themeNames: ThemeName[]
   private themes: Themes
   private designTokens: DesignTokens
   private aliasTokens: AliasTokens
@@ -33,8 +36,18 @@ export class ThemesComponent {
   private sgBases: { name: string; key: string }[]
   private dt2at: Dt2At = {}
   private groups: string[]
+  private formData$ = new Subject()
 
   private sub?: Subscription
+
+  /** Event emitted when an action is triggered */
+  @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
+
+  private onAction = ({ detail }): void => {
+    if (detail.action !== 'close') {
+      this.action.emit(detail)
+    }
+  }
 
   public componentWillLoad(): void {
     this.sub = this.bundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes]) => {
@@ -47,7 +60,7 @@ export class ThemesComponent {
       this.sgBases = Object.keys(sgNames).map((key) => {
         return { name: sgNames[key], key }
       })
-      const themeNames = Object.keys(themes).map((key) => ({
+      this.themeNames = Object.keys(themes).map((key) => ({
         displayName: `${sgNames[themes[key].styleGuide]} - ${themes[key].name}`,
         styleGuide: themes[key].styleGuide,
         name: themes[key].name,
@@ -80,7 +93,6 @@ export class ThemesComponent {
         rows.push({ ...designTokens[designToken], token: designToken, themeValues })
       })
       this.rows = rows
-      this.themeNames = themeNames
     })
   }
 
@@ -105,25 +117,116 @@ export class ThemesComponent {
 
   private openThemeForm = (theme?: string): void => {
     console.log('openThemeForm', theme, this.themes, this.sgBases)
-    // this.formData$.next({})
+    this.formData$.next({
+      form: 'theme',
+      identifier: theme,
+      fields: {
+        name: this.themes[theme]?.name,
+        styleGuide: this.themes[theme]?.styleGuide,
+      },
+    })
   }
 
-  private openDesignTokenForm = (data?: any): void => {
-    console.log('openDesignTokenForm', data)
-    // this.formData$.next({})
+  private openDesignTokenForm = (row?: DesignTokenRow): void => {
+    console.log('openDesignTokenForm', row)
+    this.formData$.next({
+      form: 'designToken',
+      identifier: row?.token,
+      groups: this.groups,
+      propertyTypes: propertySelect,
+      fields: {
+        name: row?.name,
+        group: row?.group,
+        type: row?.type,
+        description: row?.description,
+      },
+    })
   }
 
   private openAliasTokenSelect = (designToken: string): void => {
     console.log('openAliasTokenSelect', designToken, this.designTokens, this.aliasTokens)
-    // this.formData$.next({})
+    if (this.aliasTokens) {
+      const allUsed = Object.values(this.dt2at).reduce(
+        (result, aliasTokens) => [...result, ...aliasTokens],
+        []
+      )
+      const dtType = this.designTokens[designToken].type
+      const freeAliasTokens = Object.keys(this.aliasTokens)
+        .filter((key) => !allUsed.includes(key))
+        .filter((key) => {
+          if (dtType === 'size') {
+            return this.aliasTokens[key].properties?.some((property) =>
+              [
+                'height',
+                'width',
+                'radius',
+                'margin',
+                'padding',
+                'top',
+                'bottom',
+                'left',
+                'right',
+              ].some((word) => property.includes(word))
+            )
+          }
+          if (dtType === 'color') {
+            return this.aliasTokens[key].properties?.some(
+              (property) => property.indexOf('color') !== -1
+            )
+          }
+          if (dtType === 'font-size') {
+            return this.aliasTokens[key].properties?.includes('font-size')
+          }
+          return true
+        })
+
+      this.formData$.next({
+        form: 'aliasTokenSelect',
+        identifier: designToken,
+        aliasTokens: freeAliasTokens,
+        fields: {
+          selected: this.dt2at[designToken],
+        },
+      })
+    }
   }
-  private openThemeValueForm = (data: any): void => {
-    console.log('openThemeValueForm', data, this.styleMap)
-    // this.formData$.next({})
+  private openThemeValueForm = ({ designToken, themeMedia }): void => {
+    console.log('openThemeValueForm', designToken, this.styleMap)
+    const [theme, themeData] = Object.entries(this.themes)[themeIndex]
+    const client = themeData.client
+    const styleMap: StyleMap = {}
+    for (const key in this.styleMap) {
+      if (key.startsWith('global_') || key.startsWith(`${client}_`)) {
+        styleMap[key] = this.styleMap[key]
+      }
+    }
+    // const data = {
+    //   medias: themeMedias.reduce(
+    //     (result: string[], { media }: ThemeMedia) => [...result, media],
+    //     []
+    //   ) as string[],
+    //   themeMedia,
+    //   token,
+    //   type: this.designTokens[token].type,
+    //   baseValueTypes,
+    //   theme,
+    //   styleMap,
+    // }
+    // this.formData$.next({
+    //   form: 'themeValue',
+    //   identifier: designToken,
+    //   styles: styleMap,
+    //   fields: {
+    //     action: 'delete',
+    //     theme: this.theme,
+    //     token: this.designToken,
+    //     media: this.media,
+    //   },
+    // })
   }
 
   private rescanAliasTokens = (): void => {
-    // this.formData$.next({})
+    this.action.emit({ action: 'rescan', controller: 'aliasToken' })
   }
 
   private renderHeader(): HTMLElement {
@@ -155,7 +258,7 @@ export class ThemesComponent {
     )
   }
 
-  private renderDesignTokenRow(row): HTMLElement {
+  private renderDesignTokenRow(row: DesignTokenRow): HTMLElement {
     return (
       <div class="design-tokens__row">
         <div>
@@ -163,7 +266,7 @@ export class ThemesComponent {
             {row.name}
             <tf-button
               {...{
-                onClick: () => this.openDesignTokenForm({ designToken: row }),
+                onClick: () => this.openDesignTokenForm(row),
                 title: 'edit design token',
                 size: 'icon',
               }}
@@ -266,7 +369,7 @@ export class ThemesComponent {
           {this.themeNames && this.renderHeader()}
           {this.rows && this.rows.map((row) => this.renderDesignTokenRow(row))}
         </main>
-        {/* <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} /> */}
+        <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
       </Host>
     )
   }

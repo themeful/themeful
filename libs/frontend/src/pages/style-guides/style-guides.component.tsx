@@ -21,7 +21,7 @@ export class StyleGuidesComponent {
   @Prop() styleGuides$: Observable<ExtendedStyleGuides>
 
   @State() styleGuides: ExtendedStyleGuides
-  @State() formData$ = new Subject()
+  private formData$ = new Subject()
 
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
