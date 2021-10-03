@@ -1,4 +1,4 @@
-import { ExtendedStyle, StyleGuideBase } from './style.types'
+import { ExtendedStyle, StyleGuideBase, StyleMap } from './style.types'
 
 // --------- Common ------------
 export type FormActions =
@@ -217,4 +217,56 @@ export interface DesignTokenUpdateAction {
 export interface DesignTokenDeleteAction {
   action: 'delete'
   identifier: string
+}
+
+// --------- ThemeValue ------------
+export type ThemeValueIntegration = ThemeValueFormData & {
+  form: 'themeValue'
+}
+
+export interface ThemeValueFormData {
+  identifier?: ThemeValueIdentifier
+  fields?: ThemeValueFormFields
+  styles: StyleMap
+  type: string
+  medias: string[]
+}
+
+export interface ThemeValueFormFields {
+  media: string
+  style: string
+  direct: string
+}
+
+export type ThemeValueFormAction =
+  | CloseAction
+  | ThemeValueCreateAction
+  | ThemeValueUpdateAction
+  | ThemeValueDeleteAction
+
+export type ThemeValueIntegrtionAction = ThemeValueFormAction & {
+  controller: 'themeValue'
+}
+
+export interface ThemeValueIdentifier {
+  designToken: string
+  theme: string
+  media?: string
+}
+
+export interface ThemeValueCreateAction {
+  action: 'create'
+  identifier: ThemeValueIdentifier
+  fields: ThemeValueFormFields
+}
+
+export interface ThemeValueUpdateAction {
+  action: 'update'
+  identifier: ThemeValueIdentifier
+  fields: ThemeValueFormFields
+}
+
+export interface ThemeValueDeleteAction {
+  action: 'delete'
+  identifier: ThemeValueIdentifier
 }
