@@ -37,6 +37,7 @@ export class ThemesComponent {
   private dt2at: Dt2At = {}
   private groups: string[]
   private formData$ = new Subject()
+  private styleGuideHeaders: { [styleGuide: string]: { name: string; count: number } }
 
   private sub?: Subscription
 
@@ -60,13 +61,24 @@ export class ThemesComponent {
       this.sgBases = Object.keys(sgNames).map((key) => {
         return { name: sgNames[key], key }
       })
-      this.themeNames = Object.keys(themes).map((key) => ({
-        displayName: `${sgNames[themes[key].styleGuide]} - ${themes[key].name}`,
-        styleGuide: themes[key].styleGuide,
-        name: themes[key].name,
-        key,
-      }))
-
+      this.themeNames = []
+      this.styleGuideHeaders = {}
+      Object.keys(themes).forEach((key) => {
+        this.themeNames.push({
+          styleGuide: themes[key].styleGuide,
+          name: themes[key].name,
+          key,
+        })
+        if (this.styleGuideHeaders[themes[key].styleGuide] === undefined) {
+          this.styleGuideHeaders[themes[key].styleGuide] = {
+            name: sgNames[themes[key].styleGuide],
+            count: 1,
+          }
+        } else {
+          this.styleGuideHeaders[themes[key].styleGuide].count++
+        }
+      })
+      console.log(this.styleGuideHeaders)
       const rows: DesignTokenRow[] = []
       Object.keys(designTokens).forEach((designToken) => {
         this.dt2at[designToken] = designTokens[designToken].aliasTokens
@@ -190,16 +202,22 @@ export class ThemesComponent {
       })
     }
   }
-  private openThemeValueForm = ({ designToken, themeMedia }): void => {
-    console.log('openThemeValueForm', designToken, this.styleMap)
-    const [theme, themeData] = Object.entries(this.themes)[themeIndex]
-    const client = themeData.client
-    const styleMap: StyleMap = {}
-    for (const key in this.styleMap) {
-      if (key.startsWith('global_') || key.startsWith(`${client}_`)) {
-        styleMap[key] = this.styleMap[key]
-      }
-    }
+  private openThemeValueForm = ({
+    designToken,
+    themeMedia,
+  }: {
+    designToken: string
+    themeMedia?: ExtendedValueDetail
+  }): void => {
+    console.log('openThemeValueForm', designToken, themeMedia, this.styleMap)
+    // const [theme, themeData] = Object.entries(this.themes)[themeIndex]
+    // const client = themeData.client
+    // const styleMap: StyleMap = {}
+    // for (const key in this.styleMap) {
+    //   if (key.startsWith('global_') || key.startsWith(`${client}_`)) {
+    //     styleMap[key] = this.styleMap[key]
+    //   }
+    // }
     // const data = {
     //   medias: themeMedias.reduce(
     //     (result: string[], { media }: ThemeMedia) => [...result, media],
@@ -231,37 +249,47 @@ export class ThemesComponent {
 
   private renderHeader(): HTMLElement {
     return (
-      <div class="design-tokens__row design-tokens__header">
-        <div>
-          <h3>Design Token</h3>
-        </div>
-        <div>
-          <h3>Alias Tokens</h3>
-        </div>
-        {this.themeNames.map((theme) => (
-          <div>
-            <h3>
-              {theme.displayName}
-              <tf-button
-                {...{
-                  onClick: () => this.openThemeForm(theme.key),
-                  title: 'edit theme',
-                  size: 'icon',
-                }}
-              >
-                <tf-icon icon="pen" />
-              </tf-button>
-            </h3>
-          </div>
-        ))}
-      </div>
+      <Fragment>
+        <tr class="design-tokens__row design-tokens__header">
+          <th colSpan={2}></th>
+          {Object.values(this.styleGuideHeaders).map((styleGuide) => (
+            <th colSpan={styleGuide.count}>
+              <h3>{styleGuide.name}</h3>
+            </th>
+          ))}
+        </tr>
+        <tr class="design-tokens__row design-tokens__header">
+          <th>
+            <h3>Design Token</h3>
+          </th>
+          <th>
+            <h3>Alias Tokens</h3>
+          </th>
+          {this.themeNames.map((theme) => (
+            <th>
+              <h3>
+                {theme.name}
+                <tf-button
+                  {...{
+                    onClick: () => this.openThemeForm(theme.key),
+                    title: 'edit theme',
+                    size: 'icon',
+                  }}
+                >
+                  <tf-icon icon="pen" />
+                </tf-button>
+              </h3>
+            </th>
+          ))}
+        </tr>
+      </Fragment>
     )
   }
 
   private renderDesignTokenRow(row: DesignTokenRow): HTMLElement {
     return (
-      <div class="design-tokens__row">
-        <div>
+      <tr class="design-tokens__row">
+        <td>
           <h5 class="design-tokens__name">
             {row.name}
             <tf-button
@@ -282,29 +310,31 @@ export class ThemesComponent {
             </div>
           )}
           {!row.short && <pre>--{row.token}</pre>}
-        </div>
+        </td>
         {row.aliasTokens.length > 0 && (
-          <ul>
-            {row.aliasTokens.map((aliasToken) => (
-              <li>
-                <pre>${aliasToken}</pre>
+          <td>
+            <ul class="design-tokens__aliasTokens">
+              {row.aliasTokens.map((aliasToken) => (
+                <li>
+                  <pre>${aliasToken}</pre>
+                </li>
+              ))}
+              <li class="design-tokens__select-aliasTokens">
+                <tf-button
+                  {...{
+                    onClick: () => this.openAliasTokenSelect(row.token),
+                    title: 'select alias tokens',
+                  }}
+                >
+                  Edit Alias Tokens
+                </tf-button>
               </li>
-            ))}
-            <li class="design-tokens__select-aliasTokens">
-              <tf-button
-                {...{
-                  onClick: () => this.openAliasTokenSelect(row.token),
-                  title: 'select alias tokens',
-                }}
-              >
-                Edit Alias Tokens
-              </tf-button>
-            </li>
-          </ul>
+            </ul>
+          </td>
         )}
 
         {row.aliasTokens.length === 0 && (
-          <div>
+          <td>
             <tf-button
               {...{
                 onClick: () => this.openAliasTokenSelect(row.token),
@@ -313,10 +343,10 @@ export class ThemesComponent {
             >
               Add Alias Tokens
             </tf-button>
-          </div>
+          </td>
         )}
         {row.themeValues.map((themeValue) => (
-          <div class="design-tokens__theme-value">
+          <td class="design-tokens__theme-value">
             {themeValue.map((themeMedia) => (
               <Fragment>
                 {(themeValue.length > 1 || themeMedia.media !== 'default') && (
@@ -345,9 +375,9 @@ export class ThemesComponent {
             >
               Add Value
             </tf-button>
-          </div>
+          </td>
         ))}
-      </div>
+      </tr>
     )
   }
 
@@ -365,10 +395,10 @@ export class ThemesComponent {
             Rescan Alias Tokens
           </tf-button>
         </nav>
-        <main class="design-tokens">
+        <table class="design-tokens">
           {this.themeNames && this.renderHeader()}
           {this.rows && this.rows.map((row) => this.renderDesignTokenRow(row))}
-        </main>
+        </table>
         <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
       </Host>
     )

@@ -1,21 +1,21 @@
 .design-tokens {
-  display: table;
+  font: var(--tf-default-font);
+  border-collapse: collapse;
 
   &__row {
-    display: table-row;
-    font-size: 12px;
-
-    &:nth-child(even) {
-      background-color: rgba(200, 200, 200, 0.1);
-    }
+    font-size: 0.75rem;
 
     &:nth-child(odd) {
       background-color: rgba(50, 50, 50, 0.1);
     }
 
+    &:nth-child(even),
+    &:first-child {
+      background-color: rgba(200, 200, 200, 0.1);
+    }
+
     & > * {
       vertical-align: top;
-      display: table-cell;
       padding: 12px;
     }
 
@@ -25,23 +25,45 @@
       align-items: center;
       gap: 4px;
     }
+
+    h5 {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 1rem;
+    }
   }
 
-  &__header > * {
-    padding: 0;
+  &__header {
+    & > * {
+      vertical-align: top;
+      padding: 12px;
+    }
+
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin: 0;
+    }
   }
 
   &__value {
     border: 1px solid rgba(200, 200, 200, 0.55);
     border-radius: 8px;
+    margin-bottom: 4px;
   }
 
   &__media-label {
-    margin-top: 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
   }
 
   &__add-theme,
@@ -63,17 +85,26 @@
   }
 
   &__add-value {
-    margin-top: 16px;
+    margin-top: 4px;
+  }
+
+  &__aliasTokens {
+    list-style: none;
+    padding: 12px;
+
+    pre {
+      margin: 0;
+    }
   }
 
   &__select-aliasTokens {
     text-align: center;
-    padding-top: 16px;
+    padding-top: 8px;
   }
+}
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
 }
