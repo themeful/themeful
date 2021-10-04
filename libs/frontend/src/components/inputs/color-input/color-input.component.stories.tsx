@@ -13,15 +13,6 @@ export default {
         label: 'With Test',
         value: 'My Text',
       },
-      {
-        label: 'Min Length',
-        'min-length': 10,
-      },
-      {
-        label: 'Extra Validation',
-        value: '123',
-        validation: (value) => (Number(value) > 0 ? null : 'Please enter a number'),
-      },
     ],
   },
 }
@@ -37,7 +28,7 @@ export const colorInput = ({ samples }) => {
         style={{
           display: 'grid',
           gridTemplateColumns: '300px 300px',
-          gridAutoRows: '100px',
+          gridAutoRows: '300px',
         }}
       >
         {samples.map((args) => (

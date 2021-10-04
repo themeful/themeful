@@ -1,4 +1,16 @@
-import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core'
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core'
+import { ColorTranslator } from 'colortranslator'
 
 @Component({
   tag: 'tf-color-input',
@@ -7,6 +19,13 @@ import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } f
 })
 export class ColorInputComponent {
   @State() input: HTMLInputElement
+  private alpha: HTMLInputElement
+  private base: HTMLInputElement
+  private pointer: HTMLElement
+  private trackMouseMove = false
+
+  /** Element */
+  @Element() el: HTMLTfColorInputElement
 
   /** Input type */
   @Prop() type = 'text'
@@ -71,6 +90,38 @@ export class ColorInputComponent {
     this.touched = true
   }
 
+  private changeAlpha = (): void => {
+    console.log(this.alpha.value)
+  }
+
+  private changeBase = (): void => {
+    this.setBaseColor(ColorTranslator.toHEX({ h: parseInt(this.base.value), s: 100, l: 50 }))
+  }
+
+  public componentDidLoad(): void {
+    this.setBaseColor('#ff0000')
+  }
+
+  private setBaseColor(hex: string): void {
+    this.el.style.setProperty('--base-color', hex)
+  }
+
+  private track = (event): void => {
+    if (this.trackMouseMove) {
+      if (['mouseleave', 'mouseup'].includes(event.type)) {
+        this.trackMouseMove = false
+      }
+
+      const left = Math.max(0, Math.min(event.offsetX, event.target.offsetWidth))
+      const top = Math.max(0, Math.min(event.offsetY, event.target.offsetHeight))
+
+      this.pointer.style.setProperty('left', `${left}px`)
+      this.pointer.style.setProperty('top', `${top}px`)
+    } else if (event.type === 'mousedown') {
+      this.trackMouseMove = true
+    }
+  }
+
   private internalValidation = (): boolean => {
     this.error = (this.validation && this.validation(this.value)) || ''
     if (this.error === '') {
@@ -86,9 +137,46 @@ export class ColorInputComponent {
     return this.valid
   }
 
+  private renderColor(): HTMLElement {
+    return (
+      <div class="color-input__controls">
+        <div
+          class="color-input__shade"
+          onMouseDown={this.track}
+          onMouseLeave={this.track}
+          onMouseUp={this.track}
+          onMouseMove={this.track}
+        >
+          <div
+            ref={(el: HTMLInputElement) => (this.pointer = el)}
+            class="color-input__pointer"
+          ></div>
+        </div>
+        <input
+          ref={(el: HTMLInputElement) => (this.base = el)}
+          type="range"
+          min="0"
+          max="360"
+          value="50"
+          class="color-input__base"
+          onInput={this.changeBase}
+        />
+        <input
+          ref={(el: HTMLInputElement) => (this.alpha = el)}
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          class="color-input__alpha"
+          onInput={this.changeAlpha}
+        />
+      </div>
+    )
+  }
+
   public render(): HTMLTfColorInputElement {
     return (
-      <Host>
+      <Host class="color-input">
         <label
           class={`color-input${this.valid && this.touched ? ' color-input--valid' : ''}${
             !this.valid && this.touched ? ' color-input--error' : ''
@@ -105,6 +193,7 @@ export class ColorInputComponent {
           />
           <p class="color-input__hint">{this.error}</p>
         </label>
+        {this.renderColor()}
       </Host>
     )
   }
