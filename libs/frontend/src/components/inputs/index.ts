@@ -1,3 +1,5 @@
+export * from './color-input'
+export * from './multi-select-input'
 export * from './select-input'
 export * from './suggest-input'
 export * from './text-input'
