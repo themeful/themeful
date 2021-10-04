@@ -5,26 +5,25 @@ export default {
   title: 'Forms/Alias Token',
   args: {
     newMode: {
-      formData: {
-        fields: {
-          baseFontSize: 16,
-        },
+      aliasTokens: ['atCardBackground'],
+      fields: {
+        selected: ['atButtonBackground'],
       },
       onAction: action('triggered action'),
     },
     editMode: {
       formData: {
-        identifier: 'styleGuide1',
+        identifier: 'dtActionBg',
+        aliasTokens: ['atCardBackground'],
         fields: {
-          name: 'StyleGuide Name',
-          baseFontSize: 16,
+          selected: ['atButtonBackground'],
         },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    empty: {
-      formData: {},
-      onAction: action('triggered action'),
+      empty: {
+        formData: {},
+        onAction: action('triggered action'),
+      },
     },
   },
 }

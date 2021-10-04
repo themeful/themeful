@@ -218,7 +218,9 @@ export class ThemesComponent {
     const styleMap: StyleMap = {}
     for (const key in this.styleMap) {
       if (key.startsWith('global_') || key.startsWith(`${styleGuide}_`)) {
-        styleMap[key] = this.styleMap[key]
+        if (this.styleMap[key].type === this.designTokens[designToken].type) {
+          styleMap[key] = this.styleMap[key]
+        }
       }
     }
 
@@ -229,14 +231,14 @@ export class ThemesComponent {
 
     this.formData$.next({
       form: 'themeValue',
-      identifier: { designToken, theme, media: themeMedia.media },
+      identifier: { designToken, theme, media: themeMedia?.media },
       styles: styleMap,
       type: this.designTokens[designToken].type,
       medias,
       fields: {
-        media: themeMedia.media,
-        style: this.themes[theme].styles[designToken][themeMedia.media].style,
-        direct: this.themes[theme].styles[designToken][themeMedia.media].direct,
+        media: themeMedia?.media,
+        style: this.themes[theme].styles[designToken][themeMedia?.media]?.style,
+        direct: this.themes[theme].styles[designToken][themeMedia?.media]?.direct,
       },
     })
   }
@@ -363,7 +365,7 @@ export class ThemesComponent {
                         themeMedia,
                         themeIndex,
                         themeValue,
-                      }), //{themeMedias, themeMedia, token: row.token, themeIndex: i}
+                      }),
                   }}
                   class="design-tokens__value"
                 ></tf-property>
@@ -373,7 +375,7 @@ export class ThemesComponent {
             <tf-button
               {...{
                 onClick: () =>
-                  this.openThemeValueForm({ designToken: row.token, themeIndex, themeValue }), //{themeMedias, token: row.token, themeIndex: i}
+                  this.openThemeValueForm({ designToken: row.token, themeIndex, themeValue }),
                 title: 'add value',
                 class: 'design-tokens__add-value',
               }}

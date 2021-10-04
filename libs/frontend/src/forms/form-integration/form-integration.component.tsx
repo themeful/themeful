@@ -31,6 +31,7 @@ export class FormIntegrationComponent {
 
   public componentWillLoad(): void {
     this.formData$.subscribe((formData) => {
+      console.log(formData)
       this.formData = formData
       this.args = { formData, onAction: this.onAction }
       this.show = true
@@ -43,6 +44,14 @@ export class FormIntegrationComponent {
         return <tf-style-guide-form {...this.args} />
       case 'style':
         return <tf-style-form {...this.args} />
+      case 'theme':
+        return <tf-theme-form {...this.args} />
+      case 'themeValue':
+        return <tf-theme-value-form {...this.args} />
+      case 'designToken':
+        return <tf-design-token-form {...this.args} />
+      case 'aliasTokenSelect':
+        return <tf-alias-token-form {...this.args} />
       default:
         return <div>Form is not defined</div>
     }

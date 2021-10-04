@@ -7,17 +7,18 @@ export default {
     newMode: {
       formData: {
         fields: {
-          baseFontSize: 16,
+          name: 'Dark',
+          styleGuide: 'styleGuide1',
         },
       },
       onAction: action('triggered action'),
     },
     editMode: {
       formData: {
-        identifier: 'styleGuide1',
+        identifier: 'styleGuide1_dark',
         fields: {
-          name: 'StyleGuide Name',
-          baseFontSize: 16,
+          name: 'Dark',
+          styleGuide: 'styleGuide1',
         },
       },
       onAction: action('triggered action'),
