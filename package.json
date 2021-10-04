@@ -42,6 +42,7 @@
     "@nrwl/nx": "^7.8.7",
     "@nrwl/storybook": "12.9.0",
     "@nrwl/tao": "12.9.0",
+    "@nrwl/web": "^12.9.0",
     "@nrwl/workspace": "12.9.0",
     "@nxext/stencil": "^12.1.2",
     "@stencil/core": "2.8.1",
