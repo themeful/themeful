@@ -187,9 +187,9 @@ export const formIntegration = (args) => {
         <div style={{ width: '80%', display: 'flex', gap: '16px' }}>
           <tf-button onClick={() => openOverlay('styleguide')}>Open Style Guide Form</tf-button>
           <tf-button onClick={() => openOverlay('style')}>Open Style Form</tf-button>
-          <tf-button onClick={() => openOverlay('designToken')}>Open Design Token Form</tf-button>
           <tf-button onClick={() => openOverlay('theme')}>Open Theme Form</tf-button>
           <tf-button onClick={() => openOverlay('themeValue')}>Open Theme Value Form</tf-button>
+          <tf-button onClick={() => openOverlay('designToken')}>Open Design Token Form</tf-button>
           <tf-button onClick={() => openOverlay('aliasTokenSelect')}>
             Open Alias Token Form
           </tf-button>

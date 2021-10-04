@@ -33,7 +33,6 @@ export class ThemesComponent {
   private designTokens: DesignTokens
   private aliasTokens: AliasTokens
   private styleMap: StyleMap
-  private sgBases: { name: string; key: string }[]
   private dt2at: Dt2At = {}
   private groups: string[]
   private formData$ = new Subject()
@@ -58,9 +57,6 @@ export class ThemesComponent {
       this.groups = []
       const { styleMap, sgNames } = this.transformStyleGuides(styleGuides)
       this.styleMap = styleMap
-      this.sgBases = Object.keys(sgNames).map((key) => {
-        return { name: sgNames[key], key }
-      })
       this.themeNames = []
       this.styleGuideHeaders = {}
       Object.keys(themes).forEach((key) => {
@@ -127,7 +123,6 @@ export class ThemesComponent {
   }
 
   private openThemeForm = (theme?: string): void => {
-    console.log('openThemeForm', theme, this.themes, this.sgBases)
     this.formData$.next({
       form: 'theme',
       identifier: theme,
@@ -139,7 +134,6 @@ export class ThemesComponent {
   }
 
   private openDesignTokenForm = (row?: DesignTokenRow): void => {
-    console.log('openDesignTokenForm', row)
     this.formData$.next({
       form: 'designToken',
       identifier: row?.token,
@@ -155,7 +149,6 @@ export class ThemesComponent {
   }
 
   private openAliasTokenSelect = (designToken: string): void => {
-    console.log('openAliasTokenSelect', designToken, this.designTokens, this.aliasTokens)
     if (this.aliasTokens) {
       const allUsed = Object.values(this.dt2at).reduce(
         (result, aliasTokens) => [...result, ...aliasTokens],
@@ -212,7 +205,6 @@ export class ThemesComponent {
     themeIndex: number
     themeValue: ExtendedValueDetails
   }): void => {
-    console.log('openThemeValueForm', designToken, themeMedia, this.styleMap)
     const [theme, themeData] = Object.entries(this.themes)[themeIndex]
     const styleGuide = themeData.styleGuide
     const styleMap: StyleMap = {}
