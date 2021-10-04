@@ -53,7 +53,7 @@
     position: relative;
     height: 150px;
     width: 100%;
-    cursor: pointer;
+    cursor: crosshair;
     background-color: var(--base-color);
     background-image: linear-gradient(0, #000000 0, transparent 100%),
       linear-gradient(90deg, #ffffff 0, transparent 100%);
@@ -62,12 +62,12 @@
   &__pointer {
     pointer-events: none;
     position: absolute;
-    width: 15px;
-    height: 15px;
-    border-radius: 8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
     border: 1px solid #aaa;
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
-    margin: -8px;
+    margin: -9px;
   }
 
   &__base {
@@ -108,7 +108,7 @@
     }
 
     &:after {
-      background-image: linear-gradient(90deg, var(--base-color) 0, transparent 100%);
+      background-image: linear-gradient(90deg, var(--current-color) 0, transparent 100%);
     }
 
     &:before {

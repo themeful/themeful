@@ -23,6 +23,13 @@ export class ColorInputComponent {
   private base: HTMLInputElement
   private pointer: HTMLElement
   private trackMouseMove = false
+  private color = {
+    base: '',
+    h: 0,
+    s: 0,
+    l: 0,
+    a: 1,
+  }
 
   /** Element */
   @Element() el: HTMLTfColorInputElement
@@ -91,11 +98,17 @@ export class ColorInputComponent {
   }
 
   private changeAlpha = (): void => {
-    console.log(this.alpha.value)
+    this.color.a = Math.round(100 - parseInt(this.alpha.value)) / 100
+    console.log(this.alpha.value, this.color)
   }
 
   private changeBase = (): void => {
-    this.setBaseColor(ColorTranslator.toHEX({ h: parseInt(this.base.value), s: 100, l: 50 }))
+    this.color.h = parseInt(this.base.value)
+    this.color.base = ColorTranslator.toHEX({ h: this.color.h, s: 100, l: 50 })
+    this.setBaseColor(this.color.base)
+    this.setCurrentColor(
+      ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
+    )
   }
 
   public componentDidLoad(): void {
@@ -106,6 +119,10 @@ export class ColorInputComponent {
     this.el.style.setProperty('--base-color', hex)
   }
 
+  private setCurrentColor(hex: string): void {
+    this.el.style.setProperty('--current-color', hex)
+  }
+
   private track = (event): void => {
     if (this.trackMouseMove) {
       if (['mouseleave', 'mouseup'].includes(event.type)) {
@@ -114,6 +131,15 @@ export class ColorInputComponent {
 
       const left = Math.max(0, Math.min(event.offsetX, event.target.offsetWidth))
       const top = Math.max(0, Math.min(event.offsetY, event.target.offsetHeight))
+      this.color.s = Math.round((left / event.target.offsetWidth) * 100)
+      this.color.l = Math.round(
+        (50 + (100 - this.color.s) / 2) * (1 - top / event.target.offsetHeight)
+      )
+
+      this.setCurrentColor(
+        ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
+      )
+      // l = left 0% = #fff 100% = #f00
 
       this.pointer.style.setProperty('left', `${left}px`)
       this.pointer.style.setProperty('top', `${top}px`)
