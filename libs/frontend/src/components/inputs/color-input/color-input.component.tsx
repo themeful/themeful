@@ -26,8 +26,8 @@ export class ColorInputComponent {
   private color = {
     base: '',
     h: 0,
-    s: 0,
-    l: 0,
+    s: 100,
+    l: 50,
     a: 1,
   }
 
@@ -43,17 +43,8 @@ export class ColorInputComponent {
   /** Required input */
   @Prop() required = false
 
-  /** Min input */
-  @Prop() minLength: number
-
-  /** Max input */
-  @Prop() maxLength: number
-
   /** Input value */
   @Prop({ mutable: true }) value: string | number
-
-  /** validation function */
-  @Prop() validation: (string) => string | null
 
   /** Input Event */
   @Event({ composed: false }) inputChange: EventEmitter
@@ -99,47 +90,59 @@ export class ColorInputComponent {
 
   private changeAlpha = (): void => {
     this.color.a = Math.round(100 - parseInt(this.alpha.value)) / 100
-    console.log(this.alpha.value, this.color)
+    this.setCurrentColor()
   }
 
   private changeBase = (): void => {
     this.color.h = parseInt(this.base.value)
     this.color.base = ColorTranslator.toHEX({ h: this.color.h, s: 100, l: 50 })
     this.setBaseColor(this.color.base)
-    this.setCurrentColor(
-      ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
-    )
+    this.setCurrentColor()
   }
 
   public componentDidLoad(): void {
-    this.setBaseColor('#ff0000')
+    this.changeBase()
+    this.changeAlpha()
+    this.setPointer()
   }
 
   private setBaseColor(hex: string): void {
     this.el.style.setProperty('--base-color', hex)
   }
 
-  private setCurrentColor(hex: string): void {
-    this.el.style.setProperty('--current-color', hex)
+  private setCurrentColor(): void {
+    this.el.style.setProperty(
+      '--full-color',
+      ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
+    )
+    this.el.style.setProperty(
+      '--current-color',
+      ColorTranslator.toRGBA({ h: this.color.h, s: this.color.s, l: this.color.l, a: this.color.a })
+    )
+
+    this.value =
+      this.color.a < 1
+        ? ColorTranslator.toRGBA({
+            h: this.color.h,
+            s: this.color.s,
+            l: this.color.l,
+            a: this.color.a,
+          })
+        : ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
   }
 
   private track = (event): void => {
     if (this.trackMouseMove) {
-      if (['mouseleave', 'mouseup'].includes(event.type)) {
+      if (event.type === 'mouseup') {
         this.trackMouseMove = false
       }
 
-      const left = Math.max(0, Math.min(event.offsetX, event.target.offsetWidth))
-      const top = Math.max(0, Math.min(event.offsetY, event.target.offsetHeight))
-      this.color.s = Math.round((left / event.target.offsetWidth) * 100)
-      this.color.l = Math.round(
-        (50 + (100 - this.color.s) / 2) * (1 - top / event.target.offsetHeight)
-      )
+      const left = Math.max(0, Math.min(event.offsetX, this.el.offsetWidth))
+      const top = Math.max(0, Math.min(event.offsetY, 150))
+      this.color.s = Math.round((left / this.el.offsetWidth) * 100)
+      this.color.l = Math.round((100 - this.color.s / 2) * (1 - top / 150))
 
-      this.setCurrentColor(
-        ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
-      )
-      // l = left 0% = #fff 100% = #f00
+      this.setCurrentColor()
 
       this.pointer.style.setProperty('left', `${left}px`)
       this.pointer.style.setProperty('top', `${top}px`)
@@ -148,16 +151,16 @@ export class ColorInputComponent {
     }
   }
 
+  private setPointer(): void {
+    const left = Math.round((this.color.s / 100) * this.el.offsetWidth)
+    const top = Math.round((1 - this.color.l / (100 - this.color.s / 2)) * 150)
+    this.pointer.style.setProperty('left', `${left}px`)
+    this.pointer.style.setProperty('top', `${top}px`)
+  }
+
   private internalValidation = (): boolean => {
-    this.error = (this.validation && this.validation(this.value)) || ''
-    if (this.error === '') {
-      if (this.required && this.value === '') {
-        this.error = `This value is required`
-      } else if ((this.value?.toString().length || 0) < this.minLength) {
-        this.error = `The min length is ${this.minLength}`
-      } else if (this.value?.toString().length > this.maxLength) {
-        this.error = `The max length is ${this.maxLength}`
-      }
+    if (this.required && this.value === '') {
+      this.error = `This value is required`
     }
     this.valid = this.error === ''
     return this.valid
@@ -165,11 +168,33 @@ export class ColorInputComponent {
 
   private renderColor(): HTMLElement {
     return (
-      <div class="color-input__controls">
+      <div class="color-input__control-wrapper">
+        <div class="color-input__control-row">
+          <div class="color-input__controls">
+            <input
+              ref={(el: HTMLInputElement) => (this.base = el)}
+              type="range"
+              min="0"
+              max="360"
+              value="50"
+              class="color-input__base"
+              onInput={this.changeBase}
+            />
+            <input
+              ref={(el: HTMLInputElement) => (this.alpha = el)}
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              class="color-input__alpha"
+              onInput={this.changeAlpha}
+            />
+          </div>
+          <div class="color-input__selected-color"></div>
+        </div>
         <div
           class="color-input__shade"
           onMouseDown={this.track}
-          onMouseLeave={this.track}
           onMouseUp={this.track}
           onMouseMove={this.track}
         >
@@ -178,24 +203,6 @@ export class ColorInputComponent {
             class="color-input__pointer"
           ></div>
         </div>
-        <input
-          ref={(el: HTMLInputElement) => (this.base = el)}
-          type="range"
-          min="0"
-          max="360"
-          value="50"
-          class="color-input__base"
-          onInput={this.changeBase}
-        />
-        <input
-          ref={(el: HTMLInputElement) => (this.alpha = el)}
-          type="range"
-          min="0"
-          max="100"
-          value="0"
-          class="color-input__alpha"
-          onInput={this.changeAlpha}
-        />
       </div>
     )
   }

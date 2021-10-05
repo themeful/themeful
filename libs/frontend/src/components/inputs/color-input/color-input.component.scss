@@ -43,10 +43,46 @@
     border-color: #23c223;
   }
 
+  &__control-wrapper,
   &__controls {
     display: flex;
     flex-direction: column;
     gap: 8px;
+  }
+
+  &__controls {
+    flex-grow: 4;
+  }
+
+  &__control-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  &__selected-color {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background-color: var(--current-color);
+    z-index: 1;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    &:after {
+      background-color: var(--current-color);
+    }
+
+    &:before {
+      background: repeating-conic-gradient(#aaa 0% 25%, #fff 0% 50%) 50% / 10px 10px;
+    }
   }
 
   &__shade {
@@ -59,13 +95,14 @@
       linear-gradient(90deg, #ffffff 0, transparent 100%);
     overflow: hidden;
   }
+
   &__pointer {
     pointer-events: none;
     position: absolute;
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    border: 1px solid #aaa;
+    border: 1px solid #fff;
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
     margin: -9px;
   }
@@ -86,6 +123,7 @@
       #ff00ff 83%,
       #ff0000 100%
     );
+    --thumb-color: var(--base-color);
   }
 
   &__alpha {
@@ -97,6 +135,7 @@
     position: relative;
     background-color: transparent;
     z-index: 1;
+    --thumb-color: var(--current-color);
 
     &:before,
     &:after {
@@ -108,7 +147,7 @@
     }
 
     &:after {
-      background-image: linear-gradient(90deg, var(--current-color) 0, transparent 100%);
+      background-image: linear-gradient(90deg, var(--full-color) 0, transparent 100%);
     }
 
     &:before {
@@ -121,19 +160,19 @@
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      border: 1px solid #aaa;
+      border: 1px solid #fff;
       box-shadow: 1px 1px 1px 0 #000000;
       width: 5px;
       height: 25px;
-      background-color: transparent;
+      background-color: var(--thumb-color);
       cursor: pointer;
     }
 
     &::-moz-range-thumb {
-      border: 1px solid #eee;
+      border: 1px solid #fff;
       width: 5px;
       height: 25px;
-      background-color: transparent;
+      background-color: var(--thumb-color);
       cursor: pointer;
     }
   }
