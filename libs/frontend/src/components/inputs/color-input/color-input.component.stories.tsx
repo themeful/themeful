@@ -10,8 +10,16 @@ export default {
         label: 'Empty',
       },
       {
-        label: 'With Test',
-        value: 'My Text',
+        label: 'HEX',
+        value: '#D920C1',
+      },
+      {
+        label: 'RGBA',
+        value: 'rgba(27,115,177,0.58)',
+      },
+      {
+        label: 'Invalid',
+        value: 'D920C',
       },
     ],
   },

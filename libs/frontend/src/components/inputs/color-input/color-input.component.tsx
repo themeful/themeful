@@ -44,7 +44,7 @@ export class ColorInputComponent {
   @Prop() required = false
 
   /** Input value */
-  @Prop({ mutable: true }) value: string | number
+  @Prop({ mutable: true }) value: string
 
   /** Input Event */
   @Event({ composed: false }) inputChange: EventEmitter
@@ -101,6 +101,14 @@ export class ColorInputComponent {
   }
 
   public componentDidLoad(): void {
+    try {
+      const color = new ColorTranslator(this.value)
+      console.log(this.value, color)
+    } catch {
+      console.log(this.value, 'error')
+    }
+    this.base.value = '180'
+    this.alpha.value = '0'
     this.changeBase()
     this.changeAlpha()
     this.setPointer()
@@ -176,7 +184,6 @@ export class ColorInputComponent {
               type="range"
               min="0"
               max="360"
-              value="50"
               class="color-input__base"
               onInput={this.changeBase}
             />
@@ -185,7 +192,6 @@ export class ColorInputComponent {
               type="range"
               min="0"
               max="100"
-              value="0"
               class="color-input__alpha"
               onInput={this.changeAlpha}
             />
