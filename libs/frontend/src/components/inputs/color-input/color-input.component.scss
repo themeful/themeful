@@ -65,6 +65,10 @@
     position: relative;
     height: 50px;
     width: 50px;
+    border: 1px solid #5555;
+    border-radius: 2px;
+    overflow: hidden;
+    box-sizing: border-box;
     background-color: var(--tf-result-color);
     z-index: 1;
 
