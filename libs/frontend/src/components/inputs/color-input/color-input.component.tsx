@@ -24,7 +24,6 @@ export class ColorInputComponent {
   private pointer: HTMLElement
   private trackMouseMove = false
   private color = {
-    base: '',
     h: 0,
     s: 100,
     l: 50,
@@ -70,13 +69,64 @@ export class ColorInputComponent {
   @Watch('value')
   public valueChanged(): void {
     if (this.input.value !== this.value) {
-      this.input.value = this.value.toString()
+      this.input.value = this.value
     }
+  }
+
+  private updateControls = () => {
+    // Alpha
+    this.color.a = Math.round(100 - parseInt(this.alpha.value)) / 100
+
+    // Hue
+    this.color.h = parseInt(this.base.value)
+
+    // Control colors
+    this.el.style.setProperty('--tf-hue-color', `hsl(${this.color.h}, 100%, 50%)`)
+    this.el.style.setProperty('--tf-opaque-color', ColorTranslator.toHEX(this.color))
+    this.el.style.setProperty('--tf-result-color', ColorTranslator.toRGBA(this.color))
+  }
+
+  // private updateInput = () => {
+  //   this.value =
+  //     this.color.a < 1
+  //       ? ColorTranslator.toRGBA({
+  //           h: this.color.h,
+  //           s: this.color.s,
+  //           l: this.color.l,
+  //           a: this.color.a,
+  //         })
+  //       : ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
+  // }
+
+  private setColor(newColor: string): void {
+    try {
+      let color
+      if (newColor?.length >= 3) {
+        color = new ColorTranslator(newColor)
+      } else {
+        color = new ColorTranslator('#00FFFF')
+      }
+      this.color.a = color.A
+      this.color.h = color.H
+      this.color.s = color.S
+      this.color.l = color.L
+      this.base.value = this.color.h.toString()
+      this.alpha.value = (100 - this.color.a * 100).toString()
+    } catch {
+      this.base.value = '180'
+      this.alpha.value = '0'
+    }
+    this.updateControls()
+    this.setPointer()
   }
 
   private inputChanged = () => {
     this.changed = true
+    if (this.value !== this.input.value) {
+      this.setColor(this.input.value)
+    }
     this.value = this.input.value
+    this.setColor(this.value)
     this.inputChange.emit(this.value)
     if (!this.valid && this.touched) {
       this.internalValidation()
@@ -88,55 +138,8 @@ export class ColorInputComponent {
     this.touched = true
   }
 
-  private changeAlpha = (): void => {
-    this.color.a = Math.round(100 - parseInt(this.alpha.value)) / 100
-    this.setCurrentColor()
-  }
-
-  private changeBase = (): void => {
-    this.color.h = parseInt(this.base.value)
-    this.color.base = ColorTranslator.toHEX({ h: this.color.h, s: 100, l: 50 })
-    this.setBaseColor(this.color.base)
-    this.setCurrentColor()
-  }
-
   public componentDidLoad(): void {
-    try {
-      const color = new ColorTranslator(this.value)
-      console.log(this.value, color)
-    } catch {
-      console.log(this.value, 'error')
-    }
-    this.base.value = '180'
-    this.alpha.value = '0'
-    this.changeBase()
-    this.changeAlpha()
-    this.setPointer()
-  }
-
-  private setBaseColor(hex: string): void {
-    this.el.style.setProperty('--base-color', hex)
-  }
-
-  private setCurrentColor(): void {
-    this.el.style.setProperty(
-      '--full-color',
-      ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
-    )
-    this.el.style.setProperty(
-      '--current-color',
-      ColorTranslator.toRGBA({ h: this.color.h, s: this.color.s, l: this.color.l, a: this.color.a })
-    )
-
-    this.value =
-      this.color.a < 1
-        ? ColorTranslator.toRGBA({
-            h: this.color.h,
-            s: this.color.s,
-            l: this.color.l,
-            a: this.color.a,
-          })
-        : ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
+    this.setColor(this.value)
   }
 
   private track = (event): void => {
@@ -150,7 +153,7 @@ export class ColorInputComponent {
       this.color.s = Math.round((left / this.el.offsetWidth) * 100)
       this.color.l = Math.round((100 - this.color.s / 2) * (1 - top / 150))
 
-      this.setCurrentColor()
+      this.updateControls()
 
       this.pointer.style.setProperty('left', `${left}px`)
       this.pointer.style.setProperty('top', `${top}px`)
@@ -185,7 +188,7 @@ export class ColorInputComponent {
               min="0"
               max="360"
               class="color-input__base"
-              onInput={this.changeBase}
+              onInput={this.updateControls}
             />
             <input
               ref={(el: HTMLInputElement) => (this.alpha = el)}
@@ -193,7 +196,7 @@ export class ColorInputComponent {
               min="0"
               max="100"
               class="color-input__alpha"
-              onInput={this.changeAlpha}
+              onInput={this.updateControls}
             />
           </div>
           <div class="color-input__selected-color"></div>

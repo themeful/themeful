@@ -65,7 +65,7 @@
     position: relative;
     height: 50px;
     width: 50px;
-    background-color: var(--current-color);
+    background-color: var(--tf-result-color);
     z-index: 1;
 
     &:before,
@@ -78,7 +78,7 @@
     }
 
     &:after {
-      background-color: var(--current-color);
+      background-color: var(--tf-result-color);
     }
 
     &:before {
@@ -91,7 +91,7 @@
     height: 150px;
     width: 100%;
     cursor: crosshair;
-    background-color: var(--base-color);
+    background-color: var(--tf-hue-color);
     background-image: linear-gradient(0, #000000 0, transparent 100%),
       linear-gradient(90deg, #ffffff 0, transparent 100%);
     overflow: hidden;
@@ -124,7 +124,7 @@
       #ff00ff 83%,
       #ff0000 100%
     );
-    --thumb-color: var(--base-color);
+    --thumb-color: var(--tf-hue-color);
   }
 
   &__alpha {
@@ -136,7 +136,7 @@
     position: relative;
     background-color: transparent;
     z-index: 1;
-    --thumb-color: var(--current-color);
+    --thumb-color: var(--tf-result-color);
 
     &:before,
     &:after {
@@ -148,7 +148,7 @@
     }
 
     &:after {
-      background-image: linear-gradient(90deg, var(--full-color) 0, transparent 100%);
+      background-image: linear-gradient(90deg, var(--tf-opaque-color) 0, transparent 100%);
     }
 
     &:before {
