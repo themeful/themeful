@@ -35,6 +35,9 @@ export class ColorInputComponent {
   /** Required input */
   @Prop() required = false
 
+  /** Color format */
+  @Prop() format: 'HEX' | 'HSL' | 'RGB' = 'HEX'
+
   /** Input value */
   @Prop({ mutable: true }) value: string
 
@@ -149,10 +152,9 @@ export class ColorInputComponent {
             )}; --tf-result-color: ${ColorTranslator.toRGBA(color)};`
           )
         }),
-        tap((color) => {
-          this.input$.next(
-            color.a < 1 ? ColorTranslator.toRGBA(color) : ColorTranslator.toHEX(color)
-          )
+        tap((values) => {
+          const color = new ColorTranslator(values)
+          this.input$.next(color[`${this.format}${color.A < 1 ? 'A' : ''}`])
         })
       )
       .subscribe()

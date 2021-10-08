@@ -9,15 +9,18 @@ export default {
       {
         label: 'Empty',
         required: true,
+        format: 'HSL',
       },
       {
         label: 'HEX',
         value: '#d920c1',
         required: true,
+        format: 'HEX',
       },
       {
         label: 'RGBA',
         value: 'rgba(45,79,39,0.76)',
+        format: 'RGB',
       },
       {
         label: 'Invalid',
