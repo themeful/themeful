@@ -112,7 +112,7 @@
     margin: -9px;
   }
 
-  &__base {
+  &__hue {
     -webkit-appearance: none;
     appearance: none;
     margin: 0;
@@ -160,7 +160,7 @@
     }
   }
 
-  &__base,
+  &__hue,
   &__alpha {
     &::-webkit-slider-thumb {
       -webkit-appearance: none;

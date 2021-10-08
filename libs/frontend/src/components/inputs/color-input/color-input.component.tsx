@@ -8,9 +8,9 @@ import {
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core'
 import { ColorTranslator } from 'colortranslator'
+import { combineLatest, distinctUntilChanged, map, Subject, tap, throttleTime } from 'rxjs'
 
 @Component({
   tag: 'tf-color-input',
@@ -20,15 +20,9 @@ import { ColorTranslator } from 'colortranslator'
 export class ColorInputComponent {
   @State() input: HTMLInputElement
   private alpha: HTMLInputElement
-  private base: HTMLInputElement
+  private hue: HTMLInputElement
   private pointer: HTMLElement
   private trackMouseMove = false
-  private color = {
-    h: 180,
-    s: 100,
-    l: 50,
-    a: 1,
-  }
 
   /** Element */
   @Element() el: HTMLTfColorInputElement
@@ -66,74 +60,44 @@ export class ColorInputComponent {
     return Promise.resolve(this.changed)
   }
 
-  @Watch('value')
-  public valueChanged(): void {
-    console.log("@Watch('value')", this.value)
-    if (this.input.value !== this.value) {
-      this.input.value = this.value
-    }
-  }
+  private hue$ = new Subject()
+  private alpha$ = new Subject()
+  private shade$ = new Subject()
+  private input$ = new Subject()
 
-  public controlsChanged(): void {}
+  // @Watch('value')
+  // public valueChanged(): void {
+  //   console.log("@Watch('value')", this.value)
+  //   if (this.input.value !== this.value) {
+  //     this.input.value = this.value
+  //   }
+  // }
 
-  private updateControls = () => {
-    // Alpha
-    this.color.a = Math.round(100 - parseInt(this.alpha.value)) / 100
-
-    // Hue
-    this.color.h = parseInt(this.base.value)
-
-    // Control colors
-    // this.el.style.cssText
-    this.el.style.setProperty('--tf-hue-color', `hsl(${this.color.h}, 100%, 50%)`)
-    this.el.style.setProperty('--tf-opaque-color', ColorTranslator.toHEX(this.color))
-    this.el.style.setProperty('--tf-result-color', ColorTranslator.toRGBA(this.color))
-    this.updateInput()
-  }
-
-  private updateInput = () => {
-    this.value =
-      this.color.a < 1
-        ? ColorTranslator.toRGBA({
-            h: this.color.h,
-            s: this.color.s,
-            l: this.color.l,
-            a: this.color.a,
-          })
-        : ColorTranslator.toHEX({ h: this.color.h, s: this.color.s, l: this.color.l })
-    this.input.value = this.value
-    this.inputChanged()
-  }
-
-  private setColor(newColor: string): void {
-    try {
-      let color
-      if (newColor?.length >= 3) {
+  private setControls(newColor: string): void {
+    this.input$.next(this.input.value)
+    let color = new ColorTranslator('#00FFFF')
+    if (newColor?.length >= 3) {
+      try {
         color = new ColorTranslator(newColor)
-      } else {
-        color = new ColorTranslator('#00FFFF')
+      } catch {
+        this.valid = false
       }
-      this.color.a = color.A
-      this.color.h = color.H
-      this.color.s = color.S
-      this.color.l = color.L
-      this.base.value = `${this.color.h}`
-      this.alpha.value = `${(1 - this.color.a) * 100}`
-    } catch {
-      this.base.value = '180'
-      this.alpha.value = '0'
     }
-    this.updateControls()
-    this.setPointer()
+    this.hue.value = `${color.H}`
+    this.alpha.value = `${(1 - color.A) * 100}`
+    this.alpha$.next(this.alpha.value)
+    this.hue$.next(this.hue.value)
+    this.shade$.next({
+      x: Math.round((color.S / 100) * this.el.offsetWidth),
+      y: Math.round((1 - color.L / (100 - color.S / 2)) * 150),
+    })
   }
 
   private inputChanged = () => {
     this.changed = true
-    console.log('inputChanged', this.value, this.input.value)
     if (this.value !== this.input.value) {
-      this.setColor(this.input.value)
+      this.setControls(this.input.value)
     }
-    this.value = this.input.value
     this.inputChange.emit(this.value)
     if (!this.valid && this.touched) {
       this.internalValidation()
@@ -146,7 +110,62 @@ export class ColorInputComponent {
   }
 
   public componentDidLoad(): void {
-    this.setColor(this.value)
+    this.input$.pipe(throttleTime(50), distinctUntilChanged()).subscribe((value: string) => {
+      this.value = value
+      this.input.value = this.value
+    })
+
+    combineLatest([
+      this.hue$.pipe(
+        throttleTime(20),
+        distinctUntilChanged(),
+        map((h: string) => parseInt(h))
+      ),
+      this.shade$.pipe(
+        throttleTime(20),
+        distinctUntilChanged((prev: any, curr: any) => prev.x === curr.x && prev.y === curr.y),
+        map(({ x, y }) => ({
+          left: Math.max(0, Math.min(x, this.el.offsetWidth)),
+          top: Math.max(0, Math.min(y, 150)),
+        })),
+        tap(({ left, top }) => {
+          this.pointer.setAttribute('style', `left: ${left}px; top: ${top}px;`)
+        }),
+        map(({ left, top }) => {
+          const s = Math.round((left / this.el.offsetWidth) * 100)
+          return {
+            s,
+            l: Math.round((100 - s / 2) * (1 - top / 150)),
+          }
+        })
+      ),
+      this.alpha$.pipe(
+        throttleTime(20),
+        distinctUntilChanged(),
+        map((alpha: string) => Math.round(100 - parseInt(alpha)) / 100)
+      ),
+    ])
+      .pipe(
+        map(([h, { s, l }, a]) => ({ h, s, l, a })),
+        tap((color) => {
+          this.el.setAttribute(
+            'style',
+            `--tf-hue-color: hsl(${color.h}, 100%, 50%); --tf-opaque-color: ${ColorTranslator.toHEX(
+              color
+            )}; --tf-result-color: ${ColorTranslator.toRGBA(color)};`
+          )
+        }),
+        tap((color) => {
+          this.input$.next(
+            color.a < 1 ? ColorTranslator.toRGBA(color) : ColorTranslator.toHEX(color)
+          )
+        })
+      )
+      .subscribe((color) => {
+        this.input$.next(color)
+      })
+
+    this.setControls(this.value)
   }
 
   private track = (event): void => {
@@ -154,26 +173,10 @@ export class ColorInputComponent {
       if (event.type === 'mouseup') {
         this.trackMouseMove = false
       }
-
-      const left = Math.max(0, Math.min(event.offsetX, this.el.offsetWidth))
-      const top = Math.max(0, Math.min(event.offsetY, 150))
-      this.color.s = Math.round((left / this.el.offsetWidth) * 100)
-      this.color.l = Math.round((100 - this.color.s / 2) * (1 - top / 150))
-
-      this.updateControls()
-
-      this.pointer.style.setProperty('left', `${left}px`)
-      this.pointer.style.setProperty('top', `${top}px`)
+      this.shade$.next({ x: event.offsetX, y: event.offsetY })
     } else if (event.type === 'mousedown') {
       this.trackMouseMove = true
     }
-  }
-
-  private setPointer(): void {
-    const left = Math.round((this.color.s / 100) * this.el.offsetWidth)
-    const top = Math.round((1 - this.color.l / (100 - this.color.s / 2)) * 150)
-    this.pointer.style.setProperty('left', `${left}px`)
-    this.pointer.style.setProperty('top', `${top}px`)
   }
 
   private internalValidation = (): boolean => {
@@ -185,35 +188,45 @@ export class ColorInputComponent {
   }
 
   // =============== RENDER ===============
-  private renderColor(): HTMLElement {
+  private renderControls(): HTMLElement {
     return (
       <div class="color-input__control-wrapper">
         <div class="color-input__control-row">
           <div class="color-input__controls">
             <input
-              ref={(el: HTMLInputElement) => (this.base = el)}
-              type="range"
-              min="0"
-              max="360"
-              class="color-input__base"
-              onInput={this.updateControls}
+              {...{
+                ref: (hue: HTMLInputElement) => (this.hue = hue),
+                type: 'range',
+                min: '0',
+                max: '360',
+                class: 'color-input__hue',
+                onInput: (event) => {
+                  this.hue$.next((event.target as any).value)
+                },
+              }}
             />
             <input
-              ref={(el: HTMLInputElement) => (this.alpha = el)}
-              type="range"
-              min="0"
-              max="100"
-              class="color-input__alpha"
-              onInput={this.updateControls}
+              {...{
+                ref: (alpha: HTMLInputElement) => (this.alpha = alpha),
+                type: 'range',
+                min: '0',
+                max: '100',
+                class: 'color-input__alpha',
+                onInput: (event) => {
+                  this.alpha$.next((event.target as any).value)
+                },
+              }}
             />
           </div>
           <div class="color-input__selected-color"></div>
         </div>
         <div
-          class="color-input__shade"
-          onMouseDown={this.track}
-          onMouseUp={this.track}
-          onMouseMove={this.track}
+          {...{
+            class: 'color-input__shade',
+            onMouseDown: this.track,
+            onMouseUp: this.track,
+            onMouseMove: this.track,
+          }}
         >
           <div
             ref={(el: HTMLInputElement) => (this.pointer = el)}
@@ -243,7 +256,7 @@ export class ColorInputComponent {
           />
           <p class="color-input__hint">{this.error}</p>
         </label>
-        {this.renderColor()}
+        {this.renderControls()}
       </Host>
     )
   }

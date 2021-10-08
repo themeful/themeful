@@ -11,11 +11,11 @@ export default {
       },
       {
         label: 'HEX',
-        value: '#D920C1',
+        value: '#d920c1',
       },
       {
         label: 'RGBA',
-        value: 'rgba(27,115,177,0.58)',
+        value: 'rgba(45,79,39,0.76)',
       },
       {
         label: 'Invalid',
