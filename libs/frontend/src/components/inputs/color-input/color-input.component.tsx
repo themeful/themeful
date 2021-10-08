@@ -8,6 +8,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core'
 import { ColorTranslator } from 'colortranslator'
 import { combineLatest, distinctUntilChanged, map, Subject, tap, throttleTime } from 'rxjs'
@@ -23,12 +24,10 @@ export class ColorInputComponent {
   private hue: HTMLInputElement
   private pointer: HTMLElement
   private trackMouseMove = false
+  private tileOffset = { x: 0, y: 0 }
 
   /** Element */
   @Element() el: HTMLTfColorInputElement
-
-  /** Input type */
-  @Prop() type = 'text'
 
   /** Input label */
   @Prop() label: string
@@ -65,23 +64,20 @@ export class ColorInputComponent {
   private shade$ = new Subject()
   private input$ = new Subject()
 
-  // @Watch('value')
-  // public valueChanged(): void {
-  //   console.log("@Watch('value')", this.value)
-  //   if (this.input.value !== this.value) {
-  //     this.input.value = this.value
-  //   }
-  // }
+  @Watch('value')
+  public valueChanged(): void {
+    if (this.input.value !== this.value) {
+      this.input.value = this.value
+    }
+  }
 
   private setControls(newColor: string): void {
     this.input$.next(this.input.value)
-    let color = new ColorTranslator('#00FFFF')
-    if (newColor?.length >= 3) {
-      try {
-        color = new ColorTranslator(newColor)
-      } catch {
-        this.valid = false
-      }
+    let color
+    try {
+      color = new ColorTranslator(newColor)
+    } catch {
+      color = new ColorTranslator('#00FFFF')
     }
     this.hue.value = `${color.H}`
     this.alpha.value = `${(1 - color.A) * 100}`
@@ -95,9 +91,7 @@ export class ColorInputComponent {
 
   private inputChanged = () => {
     this.changed = true
-    if (this.value !== this.input.value) {
-      this.setControls(this.input.value)
-    }
+    this.setControls(this.input.value)
     this.inputChange.emit(this.value)
     if (!this.valid && this.touched) {
       this.internalValidation()
@@ -161,27 +155,41 @@ export class ColorInputComponent {
           )
         })
       )
-      .subscribe((color) => {
-        this.input$.next(color)
-      })
+      .subscribe()
 
     this.setControls(this.value)
   }
 
-  private track = (event): void => {
+  private trackPointer = (event): void => {
     if (this.trackMouseMove) {
       if (event.type === 'mouseup') {
         this.trackMouseMove = false
+        document.removeEventListener('mousemove', this.trackPointer)
+        document.addEventListener('mouseup', this.trackPointer)
       }
-      this.shade$.next({ x: event.offsetX, y: event.offsetY })
+      this.shade$.next({
+        x: event.clientX + this.tileOffset.x,
+        y: event.clientY + this.tileOffset.y,
+      })
     } else if (event.type === 'mousedown') {
       this.trackMouseMove = true
+      this.tileOffset.x = event.offsetX - event.clientX
+      this.tileOffset.y = event.offsetY - event.clientY
+      document.addEventListener('mousemove', this.trackPointer)
+      document.addEventListener('mouseup', this.trackPointer)
     }
   }
 
   private internalValidation = (): boolean => {
+    this.error = ''
     if (this.required && this.value === '') {
       this.error = `This value is required`
+    } else {
+      try {
+        new ColorTranslator(this.value)
+      } catch {
+        this.error = `Please enter a valid color`
+      }
     }
     this.valid = this.error === ''
     return this.valid
@@ -223,9 +231,7 @@ export class ColorInputComponent {
         <div
           {...{
             class: 'color-input__shade',
-            onMouseDown: this.track,
-            onMouseUp: this.track,
-            onMouseMove: this.track,
+            onMouseDown: this.trackPointer,
           }}
         >
           <div
@@ -247,10 +253,10 @@ export class ColorInputComponent {
         >
           <span class="color-input__label">{this.label}</span>
           <input
-            ref={(el: HTMLInputElement) => (this.input = el)}
+            ref={(input: HTMLInputElement) => (this.input = input)}
             class="color-input__input"
             value={this.value}
-            type={this.type}
+            type="text"
             onInput={this.inputChanged}
             onBlur={this.blur}
           />

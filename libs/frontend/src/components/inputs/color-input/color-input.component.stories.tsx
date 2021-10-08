@@ -8,10 +8,12 @@ export default {
     samples: [
       {
         label: 'Empty',
+        required: true,
       },
       {
         label: 'HEX',
         value: '#d920c1',
+        required: true,
       },
       {
         label: 'RGBA',
