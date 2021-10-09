@@ -88,6 +88,14 @@
     &:before {
       background: repeating-conic-gradient(#aaa 0% 25%, #fff 0% 50%) 50% / 10px 10px;
     }
+
+    tf-icon {
+      display: none;
+    }
+
+    &.no-color tf-icon {
+      display: block;
+    }
   }
 
   &__shade {

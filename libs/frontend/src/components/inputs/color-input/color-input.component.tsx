@@ -11,7 +11,7 @@ import {
   Watch,
 } from '@stencil/core'
 import { ColorTranslator } from 'colortranslator'
-import { combineLatest, distinctUntilChanged, map, Subject, tap, throttleTime } from 'rxjs'
+import { combineLatest, distinctUntilChanged, map, sampleTime, Subject, tap } from 'rxjs'
 
 @Component({
   tag: 'tf-color-input',
@@ -25,6 +25,7 @@ export class ColorInputComponent {
   private pointer: HTMLElement
   private trackMouseMove = false
   private tileOffset = { x: 0, y: 0 }
+  private changeSource: 'input' | 'controls' = 'input'
 
   /** Element */
   @Element() el: HTMLTfColorInputElement
@@ -75,12 +76,14 @@ export class ColorInputComponent {
   }
 
   private setControls(newColor: string): void {
+    this.changeSource = 'input'
     this.input$.next(this.input.value)
     let color
     try {
       color = new ColorTranslator(newColor)
     } catch {
-      color = new ColorTranslator('#00FFFF')
+      color = new ColorTranslator('hsl(180,50%,40%)')
+      this.valid = false
     }
     this.hue.value = `${color.H}`
     this.alpha.value = `${(1 - color.A) * 100}`
@@ -107,20 +110,23 @@ export class ColorInputComponent {
   }
 
   public componentDidLoad(): void {
-    this.input$.pipe(throttleTime(50), distinctUntilChanged()).subscribe((value: string) => {
+    this.input$.pipe(sampleTime(50), distinctUntilChanged()).subscribe((value: string) => {
       this.value = value
       this.input.value = this.value
     })
 
     combineLatest([
       this.hue$.pipe(
-        throttleTime(20),
+        sampleTime(25),
         distinctUntilChanged(),
         map((h: string) => parseInt(h))
       ),
       this.shade$.pipe(
-        throttleTime(20),
-        distinctUntilChanged((prev: any, curr: any) => prev.x === curr.x && prev.y === curr.y),
+        sampleTime(25),
+        distinctUntilChanged(
+          (prev: { x: number; y: number }, curr: { x: number; y: number }) =>
+            prev.x === curr.x && prev.y === curr.y
+        ),
         map(({ x, y }) => ({
           left: Math.max(0, Math.min(x, this.el.offsetWidth)),
           top: Math.max(0, Math.min(y, 150)),
@@ -137,7 +143,7 @@ export class ColorInputComponent {
         })
       ),
       this.alpha$.pipe(
-        throttleTime(20),
+        sampleTime(25),
         distinctUntilChanged(),
         map((alpha: string) => Math.round(100 - parseInt(alpha)) / 100)
       ),
@@ -154,7 +160,9 @@ export class ColorInputComponent {
         }),
         tap((values) => {
           const color = new ColorTranslator(values)
-          this.input$.next(color[`${this.format}${color.A < 1 ? 'A' : ''}`])
+          if (this.changeSource === 'controls') {
+            this.input$.next(color[`${this.format}${color.A < 1 ? 'A' : ''}`])
+          }
         })
       )
       .subscribe()
@@ -174,6 +182,7 @@ export class ColorInputComponent {
         y: event.clientY + this.tileOffset.y,
       })
     } else if (event.type === 'mousedown') {
+      this.changeSource = 'controls'
       this.trackMouseMove = true
       this.tileOffset.x = event.offsetX - event.clientX
       this.tileOffset.y = event.offsetY - event.clientY
@@ -211,7 +220,8 @@ export class ColorInputComponent {
                 max: '360',
                 class: 'color-input__hue',
                 onInput: (event) => {
-                  this.hue$.next((event.target as any).value)
+                  this.changeSource = 'controls'
+                  this.hue$.next((event.target as HTMLInputElement).value)
                 },
               }}
             />
@@ -223,12 +233,15 @@ export class ColorInputComponent {
                 max: '100',
                 class: 'color-input__alpha',
                 onInput: (event) => {
-                  this.alpha$.next((event.target as any).value)
+                  this.changeSource = 'controls'
+                  this.alpha$.next((event.target as HTMLInputElement).value)
                 },
               }}
             />
           </div>
-          <div class="color-input__selected-color"></div>
+          <div class={`color-input__selected-color${this.valid ? '' : 'no-color'}`}>
+            <tf-icon icon="close" size="large" />
+          </div>
         </div>
         <div
           {...{
