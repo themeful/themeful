@@ -30,7 +30,7 @@ export class SuggestInputComponent {
   @Prop() validation: (string) => string | null
 
   /** Input Event */
-  @Event({ composed: false }) inputChange: EventEmitter
+  @Event({ composed: false }) change: EventEmitter
 
   @State() touched = false
   @State() changed = false
@@ -61,7 +61,7 @@ export class SuggestInputComponent {
   private inputChanged = () => {
     this.changed = true
     this.value = this.input.value
-    this.inputChange.emit(this.value)
+    this.change.emit(this.value)
     if (!this.valid && this.touched) {
       this.internalValidation()
     }

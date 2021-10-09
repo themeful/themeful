@@ -15,13 +15,19 @@ export class StyleFormComponent {
 
   @State() changed = false
   @State() editMode: boolean
+  @State() type: string
 
   private controls: {
-    [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement | HTMLTfSuggestInputElement
+    [key: string]:
+      | HTMLTfTextInputElement
+      | HTMLTfSelectInputElement
+      | HTMLTfSuggestInputElement
+      | HTMLTfColorInputElement
   } = {}
 
   public componentDidLoad(): void {
     this.editMode = this.formData?.identifier?.style && true
+    this.type = this.formData.fields?.type
   }
 
   private formValues = (): { [key: string]: string | number } =>
@@ -82,6 +88,11 @@ export class StyleFormComponent {
           label="Type"
           items={this.formData.propertyTypes}
           value={this.formData.fields?.type}
+          {...{
+            onChange: ({ target }) => {
+              this.type = (target as HTMLInputElement).value
+            },
+          }}
           required
         />
         <tf-suggest-input
@@ -97,12 +108,21 @@ export class StyleFormComponent {
           value={this.formData.fields?.name}
           minLength={3}
         />
-        <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['value'] = el)}
-          label="Value"
-          value={this.formData.fields?.value}
-          minLength={3}
-        />
+        {this.type !== 'color' && (
+          <tf-text-input
+            ref={(el: HTMLTfTextInputElement) => (this.controls['value'] = el)}
+            label="Value"
+            value={this.formData.fields?.value}
+            minLength={3}
+          />
+        )}
+        {this.type === 'color' && (
+          <tf-color-input
+            ref={(el: HTMLTfColorInputElement) => (this.controls['value'] = el)}
+            label="Value"
+            value={this.formData.fields?.value}
+          />
+        )}
         <div class="form__controls">
           {this.editMode && (
             <tf-button kind="danger" onClick={this.remove}>
