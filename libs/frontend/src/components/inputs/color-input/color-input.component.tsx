@@ -81,18 +81,23 @@ export class ColorInputComponent {
     let color
     try {
       color = new ColorTranslator(newColor)
+      this.valid = true
     } catch {
-      color = new ColorTranslator('hsl(180,50%,40%)')
+      if (!this.changed) {
+        color = new ColorTranslator('hsl(180,50%,40%)')
+      }
       this.valid = false
     }
-    this.hue.value = `${color.H}`
-    this.alpha.value = `${(1 - color.A) * 100}`
-    this.alpha$.next(this.alpha.value)
-    this.hue$.next(this.hue.value)
-    this.shade$.next({
-      x: Math.round((color.S / 100) * this.el.offsetWidth),
-      y: Math.round((1 - color.L / (100 - color.S / 2)) * 150),
-    })
+    if (color) {
+      this.hue.value = `${color.H}`
+      this.alpha.value = `${(1 - color.A) * 100}`
+      this.alpha$.next(this.alpha.value)
+      this.hue$.next(this.hue.value)
+      this.shade$.next({
+        x: Math.round((color.S / 100) * this.el.offsetWidth),
+        y: Math.round((1 - color.L / (100 - color.S / 2)) * 150),
+      })
+    }
   }
 
   private inputChanged = () => {
@@ -159,8 +164,9 @@ export class ColorInputComponent {
           )
         }),
         tap((values) => {
-          const color = new ColorTranslator(values)
           if (this.changeSource === 'controls') {
+            this.valid = true
+            const color = new ColorTranslator(values)
             this.input$.next(color[`${this.format}${color.A < 1 ? 'A' : ''}`])
           }
         })
@@ -239,8 +245,8 @@ export class ColorInputComponent {
               }}
             />
           </div>
-          <div class={`color-input__selected-color${this.valid ? '' : 'no-color'}`}>
-            <tf-icon icon="close" size="large" />
+          <div class={`color-input__selected-color${this.valid ? '' : ' no-color'}`}>
+            <div class="color-input__crossed-out"></div>
           </div>
         </div>
         <div

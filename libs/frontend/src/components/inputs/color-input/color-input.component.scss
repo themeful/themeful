@@ -69,7 +69,6 @@
     border-radius: 2px;
     overflow: hidden;
     box-sizing: border-box;
-    background-color: var(--tf-result-color);
     z-index: 1;
 
     &:before,
@@ -82,19 +81,33 @@
     }
 
     &:after {
-      background-color: var(--tf-result-color);
+      background: var(--tf-result-color);
     }
 
     &:before {
       background: repeating-conic-gradient(#aaa 0% 25%, #fff 0% 50%) 50% / 10px 10px;
     }
 
-    tf-icon {
+    .color-input__crossed-out {
+      background-color: red;
+      width: 150%;
+      height: 4px;
+      position: absolute;
       display: none;
+      transform: translate(50%, -50%) rotate(-45deg);
+      top: 50%;
+      right: 50%;
     }
 
-    &.no-color tf-icon {
-      display: block;
+    &.no-color {
+      .color-input__crossed-out {
+        display: block;
+      }
+
+      &:before,
+      &:after {
+        background: none;
+      }
     }
   }
 
