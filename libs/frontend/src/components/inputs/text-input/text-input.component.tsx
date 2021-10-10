@@ -30,7 +30,7 @@ export class TextInputComponent {
   @Prop() validation: (string) => string | null
 
   /** Input Event */
-  @Event({ composed: false }) change: EventEmitter
+  @Event({ composed: false }) inputChange: EventEmitter
 
   @State() touched = false
   @State() changed = false
@@ -60,7 +60,7 @@ export class TextInputComponent {
   private inputChanged = () => {
     this.changed = true
     this.value = this.input.value
-    this.change.emit(this.value)
+    this.inputChange.emit(this.value)
     if (!this.valid && this.touched) {
       this.internalValidation()
     }

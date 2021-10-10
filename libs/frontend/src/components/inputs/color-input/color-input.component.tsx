@@ -43,7 +43,7 @@ export class ColorInputComponent {
   @Prop({ mutable: true }) value: string
 
   /** Input Event */
-  @Event({ composed: false }) change: EventEmitter
+  @Event({ composed: false }) inputChange: EventEmitter
 
   @State() touched = false
   @State() changed = false
@@ -103,7 +103,7 @@ export class ColorInputComponent {
   private inputChanged = () => {
     this.changed = true
     this.setControls(this.input.value)
-    this.change.emit(this.value)
+    this.inputChange.emit(this.value)
     if (!this.valid && this.touched) {
       this.internalValidation()
     }

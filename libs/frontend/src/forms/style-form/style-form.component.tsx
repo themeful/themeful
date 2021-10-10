@@ -89,7 +89,7 @@ export class StyleFormComponent {
           items={this.formData.propertyTypes}
           value={this.formData.fields?.type}
           {...{
-            onChange: ({ target }) => {
+            onInputChange: ({ target }) => {
               this.type = (target as HTMLInputElement).value
             },
           }}
@@ -108,19 +108,24 @@ export class StyleFormComponent {
           value={this.formData.fields?.name}
           minLength={3}
         />
-        {this.type !== 'color' && (
+        {this.type === 'color' ? (
+          <tf-color-input
+            ref={(el: HTMLTfColorInputElement) =>
+              this.type === 'color' ? (this.controls['value'] = el) : el
+            }
+            label="Color"
+            required
+            format="HSL"
+            value={this.formData.fields?.value}
+          />
+        ) : (
           <tf-text-input
-            ref={(el: HTMLTfTextInputElement) => (this.controls['value'] = el)}
+            ref={(el: HTMLTfTextInputElement) =>
+              this.type !== 'color' ? (this.controls['value'] = el) : el
+            }
             label="Value"
             value={this.formData.fields?.value}
             minLength={3}
-          />
-        )}
-        {this.type === 'color' && (
-          <tf-color-input
-            ref={(el: HTMLTfColorInputElement) => (this.controls['value'] = el)}
-            label="Value"
-            value={this.formData.fields?.value}
           />
         )}
         <div class="form__controls">
