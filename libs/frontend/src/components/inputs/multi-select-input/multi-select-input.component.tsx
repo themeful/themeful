@@ -76,8 +76,10 @@ export class MultiSelectInputComponent {
   }
 
   private add = (): void => {
+    if (this.element.value !== null) {
       this.value = [...this.value, this.element.value]
       this.element.value = null
+    }
   }
 
   private addStart = (index): void => {
@@ -101,8 +103,10 @@ export class MultiSelectInputComponent {
   }
 
   private remove = (): void => {
+    if (this.element.value !== null) {
       this.items = [...this.items, this.element.value]
       this.element.value = null
+    }
   }
 
   private removeStart = (index): void => {
@@ -141,20 +145,20 @@ export class MultiSelectInputComponent {
                 }}
               >
                 {this.items?.map((item, index) => (
-                    <li
-                      {...{
-                        draggable: true,
-                        onDragStart: () => {
-                          this.addStart(index)
-                        },
-                        onDragEnd: this.addEnd,
-                        key: `${index} ${item}`,
-                        class: 'multi-select-input__item',
-                      }}
-                    >
-                      {item}
-                    </li>
-                  ))}
+                  <li
+                    {...{
+                      draggable: true,
+                      onDragStart: () => {
+                        this.addStart(index)
+                      },
+                      onDragEnd: this.addEnd,
+                      key: `${index} ${item}`,
+                      class: 'multi-select-input__item',
+                    }}
+                  >
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
             <div class="multi-select-input__col">
@@ -167,20 +171,20 @@ export class MultiSelectInputComponent {
                 }}
               >
                 {this.value?.map((item, index) => (
-                    <li
-                      {...{
-                        draggable: true,
-                        onDragStart: () => {
-                          this.removeStart(index)
-                        },
-                        onDragEnd: this.removeEnd,
-                        key: `${index} ${item}`,
-                        class: 'multi-select-input__item',
-                      }}
-                    >
-                      {item}
-                    </li>
-                  ))}
+                  <li
+                    {...{
+                      draggable: true,
+                      onDragStart: () => {
+                        this.removeStart(index)
+                      },
+                      onDragEnd: this.removeEnd,
+                      key: `${index} ${item}`,
+                      class: 'multi-select-input__item',
+                    }}
+                  >
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

@@ -38,8 +38,7 @@ export const multiSelectInput = ({ samples }) => {
         class="content"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'auto auto',
-          // gridAutoRows: '100px',
+          gridTemplateColumns: 'minmax(400px, max-content) minmax(400px, max-content)',
         }}
       >
         {samples.map((args) => (
