@@ -13,6 +13,7 @@ export default {
           { key: 'first', value: 'First Value' },
           { key: 'second', value: 'Second Value' },
         ],
+        onInputChange: action('change'),
       },
       {
         label: 'First',
@@ -20,6 +21,7 @@ export default {
           { key: 'first', value: 'First Value' },
           { key: 'second', value: 'Second Value' },
         ],
+        onInputChange: action('change'),
       },
       {
         label: 'Required',
@@ -29,6 +31,7 @@ export default {
           { key: 'first', value: 'First Value' },
           { key: 'second', value: 'Second Value' },
         ],
+        onInputChange: action('change'),
       },
       {
         label: 'Extra Validation',
@@ -37,6 +40,7 @@ export default {
           { key: 'first', value: 'First Value' },
           { key: 'second', value: 'Second Value' },
         ],
+        onInputChange: action('change'),
       },
     ],
   },
@@ -59,10 +63,10 @@ export const selectInput = ({ samples }) => {
         {samples.map((args) => (
           <Fragment>
             <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-              <tf-select-input {...args} onInputChange={action('change')} />
+              <tf-select-input {...args} />
             </div>
             <div style={{ padding: '1rem' }}>
-              <tf-select-input {...args} onInputChange={action('change')} />
+              <tf-select-input {...args} />
             </div>
           </Fragment>
         ))}

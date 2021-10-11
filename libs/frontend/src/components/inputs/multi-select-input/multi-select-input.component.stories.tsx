@@ -8,35 +8,21 @@ export default {
     samples: [
       {
         label: 'Nothing selected',
-        items: [
-          { key: '', value: '-' },
-          { key: 'first', value: 'First Value' },
-          { key: 'second', value: 'Second Value' },
-        ],
+        items: ['First Value', 'Second Value', 'Third Value', 'Fourth Value'],
+        onInputChange: action('change'),
       },
       {
         label: 'First',
-        items: [
-          { key: 'first', value: 'First Value' },
-          { key: 'second', value: 'Second Value' },
-        ],
+        value: ['Second Value', 'Fourth Value'],
+        items: ['First Value', 'Third Value'],
+        onInputChange: action('change'),
       },
       {
         label: 'Required',
         required: true,
-        items: [
-          { key: '', value: '-' },
-          { key: 'first', value: 'First Value' },
-          { key: 'second', value: 'Second Value' },
-        ],
-      },
-      {
-        label: 'Extra Validation',
-        value: 'second',
-        items: [
-          { key: 'first', value: 'First Value' },
-          { key: 'second', value: 'Second Value' },
-        ],
+        value: ['Fourth Value'],
+        items: ['First Value', 'Second Value', 'Third Value'],
+        onInputChange: action('change'),
       },
     ],
   },
@@ -52,17 +38,17 @@ export const multiSelectInput = ({ samples }) => {
         class="content"
         style={{
           display: 'grid',
-          gridTemplateColumns: '300px 300px',
-          gridAutoRows: '100px',
+          gridTemplateColumns: 'auto auto',
+          // gridAutoRows: '100px',
         }}
       >
         {samples.map((args) => (
           <Fragment>
             <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-              <tf-multi-select-input {...args} onInputChange={action('change')} />
+              <tf-multi-select-input {...args} />
             </div>
             <div style={{ padding: '1rem' }}>
-              <tf-multi-select-input {...args} onInputChange={action('change')} />
+              <tf-multi-select-input {...args} />
             </div>
           </Fragment>
         ))}

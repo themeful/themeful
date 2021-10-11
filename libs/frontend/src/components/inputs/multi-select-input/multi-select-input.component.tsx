@@ -6,8 +6,6 @@ import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } f
   shadow: true,
 })
 export class MultiSelectInputComponent {
-  @State() input: HTMLSelectElement
-
   /** Input type */
   @Prop() type = 'text'
 
@@ -15,13 +13,13 @@ export class MultiSelectInputComponent {
   @Prop() label: string
 
   /** Input suggest items */
-  @Prop() items: { key: string; value: string }[] = []
+  @Prop() items: string[] = []
 
   /** Required input */
   @Prop() required = false
 
   /** Input value */
-  @Prop({ mutable: true }) value: string | number
+  @Prop() value: string[] = []
 
   /** Input Event */
   @Event({ composed: false }) inputChange: EventEmitter
@@ -30,6 +28,7 @@ export class MultiSelectInputComponent {
   @State() changed = false
   @State() valid: boolean
   @State() error = ''
+  private element: { direction: string; index: number; value: string }
 
   /** Validate value */
   @Method()
@@ -46,31 +45,80 @@ export class MultiSelectInputComponent {
 
   @Watch('value')
   public valueChanged(): void {
-    if (this.input.value !== this.value) {
-      this.input.value = this.value.toString()
-    }
+    console.log('valueChanged', this.value)
   }
 
-  private inputChanged = () => {
-    this.changed = true
-    this.value = this.input.value
-    this.inputChange.emit(this.value)
-    if (!this.valid && this.touched) {
-      this.internalValidation()
-    }
-  }
+  // private inputChanged = () => {
+  //   this.changed = true
+  //   console.log('inputChanged', this.value)
+  //   this.inputChange.emit(this.value)
+  //   if (!this.valid && this.touched) {
+  //     this.internalValidation()
+  //   }
+  // }
 
-  private blur = (): void => {
-    this.internalValidation()
-    this.touched = true
-  }
+  // private blur = (): void => {
+  //   this.internalValidation()
+  //   this.touched = true
+  // }
 
   private internalValidation = (): boolean => {
-    if (this.required && this.value === '') {
+    this.error = ''
+    if (this.required && this.value.length === 0) {
       this.error = `This value is required`
     }
     this.valid = this.error === ''
     return this.valid
+  }
+
+  private allowAdd = (event): void => {
+    event.preventDefault()
+  }
+
+  private add = (): void => {
+      this.value = [...this.value, this.element.value]
+      this.element.value = null
+  }
+
+  private addStart = (index): void => {
+    this.element = {
+      index,
+      direction: 'add',
+      value: this.items[index],
+    }
+    this.items = this.items.filter((_, i) => i !== index)
+  }
+
+  private addEnd = (): void => {
+    if (this.element.value !== null) {
+      this.items = [...this.items, this.element.value]
+      this.element.value = null
+    }
+  }
+
+  private allowRemove = (event): void => {
+    event.preventDefault()
+  }
+
+  private remove = (): void => {
+      this.items = [...this.items, this.element.value]
+      this.element.value = null
+  }
+
+  private removeStart = (index): void => {
+    this.element = {
+      index,
+      direction: 'remove',
+      value: this.value[index],
+    }
+    this.value = this.value.filter((_, i) => i !== index)
+  }
+
+  private removeEnd = (): void => {
+    if (this.element.value !== null) {
+      this.value = [...this.value, this.element.value]
+      this.element.value = null
+    }
   }
 
   public render(): HTMLTfMultiSelectInputElement {
@@ -82,18 +130,60 @@ export class MultiSelectInputComponent {
           }${!this.valid && this.touched ? ' multi-select-input--error' : ''}`}
         >
           <span class="multi-select-input__label">{this.label}</span>
-          <select
-            ref={(el: HTMLSelectElement) => (this.input = el)}
-            class="multi-select-input__input"
-            onChange={this.inputChanged}
-            onBlur={this.blur}
-          >
-            {this.items.map((item) => (
-              <option value={item.key} selected={item.key === this.value}>
-                {item.value}
-              </option>
-            ))}
-          </select>
+          <div class="multi-select-input__inputs">
+            <div class="multi-select-input__col">
+              <h5 class="multi-select-input__list-header">Not Assigned</h5>
+              <ul
+                {...{
+                  class: 'multi-select-input__scroll',
+                  onDrop: this.remove,
+                  onDragOver: this.allowRemove,
+                }}
+              >
+                {this.items?.map((item, index) => (
+                    <li
+                      {...{
+                        draggable: true,
+                        onDragStart: () => {
+                          this.addStart(index)
+                        },
+                        onDragEnd: this.addEnd,
+                        key: `${index} ${item}`,
+                        class: 'multi-select-input__item',
+                      }}
+                    >
+                      {item}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div class="multi-select-input__col">
+              <h5 class="multi-select-input__list-header">Assigned</h5>
+              <ul
+                {...{
+                  class: 'multi-select-input__scroll',
+                  onDrop: this.add,
+                  onDragOver: this.allowAdd,
+                }}
+              >
+                {this.value?.map((item, index) => (
+                    <li
+                      {...{
+                        draggable: true,
+                        onDragStart: () => {
+                          this.removeStart(index)
+                        },
+                        onDragEnd: this.removeEnd,
+                        key: `${index} ${item}`,
+                        class: 'multi-select-input__item',
+                      }}
+                    >
+                      {item}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
           <p class="multi-select-input__hint">{this.error}</p>
         </label>
       </Host>
