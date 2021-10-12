@@ -26,7 +26,7 @@
     align-items: stretch;
     color: var(--tf-font-color);
     font: var(--tf-small-font);
-    margin-bottom: 16px;
+    margin-bottom: 4px;
     width: 100%;
     gap: 8px;
   }
@@ -39,7 +39,7 @@
   &__item {
     padding: 4px 8px;
     border-radius: 8px;
-    border: 1px solid rgba($color: #888, $alpha: 0.2);
+    border: 1px solid rgba($color: #999, $alpha: 0.25);
     margin: 2px;
     cursor: pointer;
     text-align: center;
@@ -57,37 +57,11 @@
     border-radius: 4px;
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
   &__list-header {
     justify-content: center;
     margin: 8px 0;
-  }
-
-  &__input {
-    font: var(--tf-default-font);
-    width: 100%;
-    color: var(--tf-font-color);
-    border: 0;
-    background-color: rgba(128, 128, 128, 0.1);
-    border-bottom: 1px solid currentColor;
-    box-sizing: border-box;
-
-    option {
-      background-color: var(--tf-tile-bg-color);
-    }
-
-    &:focus {
-      outline: 0 !important;
-      border-color: #325af0;
-    }
-  }
-
-  &--error &__input {
-    border-color: #ff6464;
-  }
-
-  &--valid &__input {
-    border-color: #23c223;
   }
 }

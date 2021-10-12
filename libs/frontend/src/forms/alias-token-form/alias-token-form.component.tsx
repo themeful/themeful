@@ -40,9 +40,7 @@ export class AliasTokenFormComponent {
 
   private save = async (event: Event): Promise<void> => {
     event.preventDefault()
-    console.log('save out')
     Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
-      console.log('save in', dirty, valid)
       if (dirty && valid) {
         this.action.emit({
           action: 'update',
@@ -62,10 +60,9 @@ export class AliasTokenFormComponent {
   public render(): HTMLTfAliasTokenFormElement {
     return (
       <form class="form" onSubmit={this.save}>
-        <h3>Edit Alias Tokens</h3>
+        <h3>Select Alias Tokens</h3>
         <tf-multi-select-input
           ref={(el: HTMLTfMultiSelectInputElement) => (this.controls['selected'] = el)}
-          label="Name"
           items={this.formData.aliasTokens}
           value={this.formData.fields?.selected}
         />

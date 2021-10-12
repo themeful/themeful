@@ -52,21 +52,9 @@ export class MultiSelectInputComponent {
   @Watch('value')
   public valueChanged(): void {
     this.changed = true
+    this.internalValidation()
+    this.touched = true
   }
-
-  // private inputChanged = () => {
-  //   this.changed = true
-  //   console.log('inputChanged', this.value)
-  //   this.inputChange.emit(this.value)
-  //   if (!this.valid && this.touched) {
-  //     this.internalValidation()
-  //   }
-  // }
-
-  // private blur = (): void => {
-  //   this.internalValidation()
-  //   this.touched = true
-  // }
 
   private internalValidation = (): boolean => {
     this.error = ''
@@ -146,7 +134,7 @@ export class MultiSelectInputComponent {
           <span class="multi-select-input__label">{this.label}</span>
           <div class="multi-select-input__inputs">
             <div class="multi-select-input__col">
-              <h5 class="multi-select-input__list-header">Not Assigned</h5>
+              <h4 class="multi-select-input__list-header">Not Assigned</h4>
               <ul
                 {...{
                   class: 'multi-select-input__scroll',
@@ -172,7 +160,7 @@ export class MultiSelectInputComponent {
               </ul>
             </div>
             <div class="multi-select-input__col">
-              <h5 class="multi-select-input__list-header">Assigned</h5>
+              <h4 class="multi-select-input__list-header">Assigned</h4>
               <ul
                 {...{
                   class: 'multi-select-input__scroll',
