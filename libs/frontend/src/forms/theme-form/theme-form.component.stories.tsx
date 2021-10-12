@@ -52,21 +52,13 @@ export const theme = ({ samples }) => {
       <div class="header">
         <h1>Theme Form</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '500px 500px',
-          gridAutoRows: '300px',
-          gap: '1rem',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-theme-form {...args} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-theme-form {...args} />
             </div>
           </Fragment>

@@ -40,20 +40,13 @@ export const aliasToken = ({ samples }) => {
       <div class="header">
         <h1>Alias Token Form</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(400px, max-content) minmax(400px, max-content)',
-          gap: '1rem',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-alias-token-form {...args} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-alias-token-form {...args} />
             </div>
           </Fragment>

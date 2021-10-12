@@ -12,12 +12,26 @@ export const toast = ({ first, second }): HTMLElement => {
       <div class="header">
         <h1>Toast</h1>
       </div>
-      <div class="content">
-        <div style={{ position: 'relative', width: '400px', height: '100px' }}>
-          <tf-toast {...first} />
+      <div class="content content--grid">
+        <div class="tf-light">
+          <div style={{ position: 'relative', width: '100%', height: '100px' }}>
+            <tf-toast {...first} />
+          </div>
         </div>
-        <div style={{ position: 'relative', width: '400px', height: '100px' }}>
-          <tf-toast {...second} />
+        <div>
+          <div style={{ position: 'relative', width: '100%', height: '100px' }}>
+            <tf-toast {...first} />
+          </div>
+        </div>
+        <div class="tf-light">
+          <div style={{ position: 'relative', width: '100%', height: '100px' }}>
+            <tf-toast {...second} />
+          </div>
+        </div>
+        <div>
+          <div style={{ position: 'relative', width: '100%', height: '100px' }}>
+            <tf-toast {...second} />
+          </div>
         </div>
       </div>
     </div>

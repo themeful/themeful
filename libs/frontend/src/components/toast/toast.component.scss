@@ -5,7 +5,7 @@
 .toast {
   &__wrapper {
     box-shadow: 0px -4px 4px -3px rgba(30, 30, 30, 0.2);
-    margin-left: calc(50vw - 150px);
+    margin-left: calc(50% - 150px);
     width: 300px;
     position: absolute;
     overflow: hidden;

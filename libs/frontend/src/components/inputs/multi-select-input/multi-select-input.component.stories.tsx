@@ -34,19 +34,13 @@ export const multiSelectInput = ({ samples }) => {
       <div class="header">
         <h1>Multi Select Input</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(400px, max-content) minmax(400px, max-content)',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-multi-select-input {...args} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-multi-select-input {...args} />
             </div>
           </Fragment>

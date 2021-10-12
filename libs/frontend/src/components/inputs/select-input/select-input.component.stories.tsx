@@ -52,20 +52,13 @@ export const selectInput = ({ samples }) => {
       <div class="header">
         <h1>Select Input</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '300px 300px',
-          gridAutoRows: '100px',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-select-input {...args} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-select-input {...args} />
             </div>
           </Fragment>

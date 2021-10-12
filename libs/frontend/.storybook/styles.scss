@@ -30,4 +30,20 @@ body {
 
 .content {
   padding: 1rem;
+
+  &--grid {
+    display: grid;
+    grid-template-columns: minmax(min-content, 550px) minmax(min-content, 550px);
+    grid-auto-rows: minmax(100px, max-content);
+    gap: 1rem;
+
+    > div {
+      padding: 1rem;
+
+      &.tf-light {
+        background: #fff;
+        color: var(--tf-font-color);
+      }
+    }
+  }
 }

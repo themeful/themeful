@@ -35,20 +35,13 @@ export const suggestInput = ({ samples }) => {
       <div class="header">
         <h1>Suggest Input</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '300px 300px',
-          gridAutoRows: '100px',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-suggest-input {...args} onInputChange={action('change')} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-suggest-input {...args} onInputChange={action('change')} />
             </div>
           </Fragment>

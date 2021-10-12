@@ -54,21 +54,13 @@ export const style = ({ samples }) => {
       <div class="header">
         <h1>Style Form</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '500px 500px',
-          gridAutoRows: 'minmax(300px, min-content)',
-          gap: '1rem',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-style-form {...args} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-style-form {...args} />
             </div>
           </Fragment>

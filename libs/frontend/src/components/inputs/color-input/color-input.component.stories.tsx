@@ -36,20 +36,13 @@ export const colorInput = ({ samples }) => {
       <div class="header">
         <h1>Color Input</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '300px 300px',
-          gridAutoRows: '300px',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-color-input {...args} onInputChange={action('change')} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-color-input {...args} onInputChange={action('change')} />
             </div>
           </Fragment>

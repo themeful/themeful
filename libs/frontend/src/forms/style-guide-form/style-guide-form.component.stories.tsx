@@ -38,21 +38,13 @@ export const styleGuide = ({ samples }) => {
       <div class="header">
         <h1>Style Guide Form</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '500px 500px',
-          gridAutoRows: '300px',
-          gap: '1rem',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-style-guide-form {...args} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-style-guide-form {...args} />
             </div>
           </Fragment>

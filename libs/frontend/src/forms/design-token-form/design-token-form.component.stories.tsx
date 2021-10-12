@@ -51,20 +51,13 @@ export const designToken = ({ samples }) => {
       <div class="header">
         <h1>Design Token Form</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '400px 400px',
-          gap: '1rem',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-design-token-form {...args} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-design-token-form {...args} />
             </div>
           </Fragment>
