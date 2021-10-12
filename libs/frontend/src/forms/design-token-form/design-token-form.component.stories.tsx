@@ -55,8 +55,7 @@ export const designToken = ({ samples }) => {
         class="content"
         style={{
           display: 'grid',
-          gridTemplateColumns: '500px 500px',
-          gridAutoRows: '300px',
+          gridTemplateColumns: '400px 400px',
           gap: '1rem',
         }}
       >

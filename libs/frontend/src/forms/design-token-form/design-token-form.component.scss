@@ -1,3 +1,24 @@
 :host {
   display: block;
+  color: var(--tf-font-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  box-sizing: border-box;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-grow: 4;
+  }
 }

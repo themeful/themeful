@@ -155,6 +155,10 @@ const formDatas = {
   theme: {
     form: 'theme',
     identifier: 'styleGuide1_dark',
+    styleGuides: [
+      { key: 'styleGuide1', value: 'Style Guide 1' },
+      { key: 'styleGuide2', value: 'Style Guide 2' },
+    ],
     fields: {
       name: 'Dark',
       styleGuide: 'styleGuide1',
@@ -174,17 +178,26 @@ const formDatas = {
 }
 
 export default {
-  title: 'Forms/Form Integration',
+  title: 'Form Integration/All Forms',
 }
 
-export const formIntegration = (args) => {
+export const allForms = (args) => {
   return (
     <div>
       <div class="header">
         <h1>Form Integration</h1>
       </div>
       <div class="content">
-        <div style={{ width: '80%', display: 'flex', gap: '16px' }}>
+        <div
+          style={{
+            width: '100%',
+            display: 'grid',
+            gap: '16px',
+            justifyContent: 'center',
+            justifyItems: 'center',
+            gridTemplateColumns: '1fr 1fr 1fr',
+          }}
+        >
           <tf-button onClick={() => openOverlay('styleguide')}>Open Style Guide Form</tf-button>
           <tf-button onClick={() => openOverlay('style')}>Open Style Form</tf-button>
           <tf-button onClick={() => openOverlay('theme')}>Open Theme Form</tf-button>
@@ -201,7 +214,7 @@ export const formIntegration = (args) => {
   )
 }
 
-formIntegration.args = {
+allForms.args = {
   formData$: triggerOverlay,
   onAction: action('triggered action'),
 }
