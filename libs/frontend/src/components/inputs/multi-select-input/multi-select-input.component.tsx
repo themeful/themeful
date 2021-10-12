@@ -18,6 +18,12 @@ export class MultiSelectInputComponent {
   /** Required input */
   @Prop() required = false
 
+  /** Min input */
+  @Prop() minLength: number
+
+  /** Max input */
+  @Prop() maxLength: number
+
   /** Input value */
   @Prop() value: string[] = []
 
@@ -45,7 +51,7 @@ export class MultiSelectInputComponent {
 
   @Watch('value')
   public valueChanged(): void {
-    console.log('valueChanged', this.value)
+    this.changed = true
   }
 
   // private inputChanged = () => {
@@ -66,6 +72,10 @@ export class MultiSelectInputComponent {
     this.error = ''
     if (this.required && this.value.length === 0) {
       this.error = `This value is required`
+    } else if ((this.value?.length || 0) < this.minLength) {
+      this.error = `The min count is ${this.minLength}`
+    } else if (this.value?.length > this.maxLength) {
+      this.error = `The max count is ${this.maxLength}`
     }
     this.valid = this.error === ''
     return this.valid

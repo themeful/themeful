@@ -112,7 +112,7 @@ export interface StyleDeleteAction {
 
 // --------- AliasTokens ------------
 
-export type AliasTokenFormAction = RescanAction | AliasTokenUpdateAction
+export type AliasTokenFormAction = CloseAction | RescanAction | AliasTokenUpdateAction
 
 export type AliasTokenIntegrtionAction = AliasTokenFormAction & {
   controller: 'aliasToken'
@@ -123,7 +123,7 @@ export type AliasTokenIntegration = AliasTokenFormData & {
 }
 
 export interface AliasTokenFormData {
-  identifier?: string
+  identifier: string
   aliasTokens: string[]
   fields?: { selected: string[] }
 }

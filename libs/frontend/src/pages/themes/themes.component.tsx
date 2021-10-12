@@ -1,5 +1,5 @@
 import { propertySelect } from '@properties'
-import { Component, Event, EventEmitter, Fragment, h, Host, Prop, State } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
 import {
   AliasTokens,
   APIBundle,
@@ -16,6 +16,7 @@ import {
   Themes,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import Fragment from 'stencil-fragment'
 // import { ThemeService } from '../..'
 
 @Component({
