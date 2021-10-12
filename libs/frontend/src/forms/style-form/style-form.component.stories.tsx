@@ -1,5 +1,6 @@
 import { h } from '@stencil/core'
 import { action } from '@storybook/addon-actions'
+import Fragment from 'stencil-fragment'
 
 const groups = ['First Group', 'Second Group', 'Third Group']
 const propertyTypes = [
@@ -11,41 +12,43 @@ const propertyTypes = [
 export default {
   title: 'Forms/Style',
   args: {
-    newMode: {
-      formData: {
-        groups: groups,
-        propertyTypes: propertyTypes,
-        fields: {
-          type: 'color',
-          group: 'Base Group',
-          name: 'Red',
-          value: '#4b83be',
+    samples: [
+      {
+        formData: {
+          groups: groups,
+          propertyTypes: propertyTypes,
+          fields: {
+            type: 'color',
+            group: 'Base Group',
+            name: 'Red',
+            value: '#4b83be',
+          },
         },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    editMode: {
-      formData: {
-        identifier: { styleguide: 'styleGuide1', style: 'baseGroup_red' },
-        groups: groups,
-        propertyTypes: [{ key: '', value: '-' }, ...propertyTypes],
-        fields: {
-          type: 'font-size',
-          group: 'Base Group',
-          name: 'Small',
-          value: '16px',
+      {
+        formData: {
+          identifier: { styleguide: 'styleGuide1', style: 'baseGroup_red' },
+          groups: groups,
+          propertyTypes: [{ key: '', value: '-' }, ...propertyTypes],
+          fields: {
+            type: 'font-size',
+            group: 'Base Group',
+            name: 'Small',
+            value: '16px',
+          },
         },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    empty: {
-      formData: {},
-      onAction: action('triggered action'),
-    },
+      {
+        formData: {},
+        onAction: action('triggered action'),
+      },
+    ],
   },
 }
 
-export const style = ({ editMode, newMode, empty }) => {
+export const style = ({ samples }) => {
   return (
     <div>
       <div class="header">
@@ -60,24 +63,16 @@ export const style = ({ editMode, newMode, empty }) => {
           gap: '1rem',
         }}
       >
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-style-form {...newMode} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-style-form {...newMode} />
-        </div>
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-style-form {...editMode} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-style-form {...editMode} />
-        </div>
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-style-form {...empty} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-style-form {...empty} />
-        </div>
+        {samples.map((args) => (
+          <Fragment>
+            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+              <tf-style-form {...args} />
+            </div>
+            <div style={{ padding: '1rem' }}>
+              <tf-style-form {...args} />
+            </div>
+          </Fragment>
+        ))}
       </div>
     </div>
   )

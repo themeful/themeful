@@ -1,36 +1,39 @@
 import { h } from '@stencil/core'
 import { action } from '@storybook/addon-actions'
+import Fragment from 'stencil-fragment'
 
 export default {
   title: 'Forms/Theme',
   args: {
-    newMode: {
-      formData: {
-        fields: {
-          name: 'Dark',
-          styleGuide: 'styleGuide1',
+    samples: [
+      {
+        formData: {
+          fields: {
+            name: 'Dark',
+            styleGuide: 'styleGuide1',
+          },
         },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    editMode: {
-      formData: {
-        identifier: 'styleGuide1_dark',
-        fields: {
-          name: 'Dark',
-          styleGuide: 'styleGuide1',
+      {
+        formData: {
+          identifier: 'styleGuide1_dark',
+          fields: {
+            name: 'Dark',
+            styleGuide: 'styleGuide1',
+          },
         },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    empty: {
-      formData: {},
-      onAction: action('triggered action'),
-    },
+      {
+        formData: {},
+        onAction: action('triggered action'),
+      },
+    ],
   },
 }
 
-export const theme = ({ editMode, newMode, empty }) => {
+export const theme = ({ samples }) => {
   return (
     <div>
       <div class="header">
@@ -45,24 +48,16 @@ export const theme = ({ editMode, newMode, empty }) => {
           gap: '1rem',
         }}
       >
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-theme-form {...newMode} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-theme-form {...newMode} />
-        </div>
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-theme-form {...editMode} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-theme-form {...editMode} />
-        </div>
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-theme-form {...empty} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-theme-form {...empty} />
-        </div>
+        {samples.map((args) => (
+          <Fragment>
+            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+              <tf-theme-form {...args} />
+            </div>
+            <div style={{ padding: '1rem' }}>
+              <tf-theme-form {...args} />
+            </div>
+          </Fragment>
+        ))}
       </div>
     </div>
   )

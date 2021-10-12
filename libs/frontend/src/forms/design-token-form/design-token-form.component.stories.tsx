@@ -1,48 +1,51 @@
 import { propertySelect } from '@properties'
 import { h } from '@stencil/core'
 import { action } from '@storybook/addon-actions'
+import Fragment from 'stencil-fragment'
 
 export default {
   title: 'Forms/Design Token',
   args: {
-    newMode: {
-      formData: {
-        groups: ['Base', 'Content', 'More'],
-        propertyTypes: propertySelect,
-        fields: {
-          name: 'Some Token Name',
-          group: 'Base',
-          type: 'color',
-          description: 'Some good description',
+    samples: [
+      {
+        formData: {
+          groups: ['Base', 'Content', 'More'],
+          propertyTypes: propertySelect,
+          fields: {
+            name: 'Some Token Name',
+            group: 'Base',
+            type: 'color',
+            description: 'Some good description',
+          },
         },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    editMode: {
-      formData: {
-        identifier: 'dtSomeTokenName',
-        groups: ['Base', 'Content', 'More'],
-        propertyTypes: propertySelect,
-        fields: {
-          name: 'Some Token Name',
-          group: 'Base',
-          type: 'color',
-          description: 'Some good description',
+      {
+        formData: {
+          identifier: 'dtSomeTokenName',
+          groups: ['Base', 'Content', 'More'],
+          propertyTypes: propertySelect,
+          fields: {
+            name: 'Some Token Name',
+            group: 'Base',
+            type: 'color',
+            description: 'Some good description',
+          },
         },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    empty: {
-      formData: {
-        groups: ['Base', 'Content', 'More'],
-        propertyTypes: propertySelect,
+      {
+        formData: {
+          groups: ['Base', 'Content', 'More'],
+          propertyTypes: propertySelect,
+        },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
+    ],
   },
 }
 
-export const designToken = ({ editMode, newMode, empty }) => {
+export const designToken = ({ samples }) => {
   return (
     <div>
       <div class="header">
@@ -57,24 +60,16 @@ export const designToken = ({ editMode, newMode, empty }) => {
           gap: '1rem',
         }}
       >
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-design-token-form {...newMode} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-design-token-form {...newMode} />
-        </div>
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-design-token-form {...editMode} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-design-token-form {...editMode} />
-        </div>
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-design-token-form {...empty} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-design-token-form {...empty} />
-        </div>
+        {samples.map((args) => (
+          <Fragment>
+            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+              <tf-design-token-form {...args} />
+            </div>
+            <div style={{ padding: '1rem' }}>
+              <tf-design-token-form {...args} />
+            </div>
+          </Fragment>
+        ))}
       </div>
     </div>
   )

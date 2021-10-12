@@ -1,5 +1,6 @@
 import { h } from '@stencil/core'
 import { action } from '@storybook/addon-actions'
+import Fragment from 'stencil-fragment'
 
 const styles = {
   global_base_black: {
@@ -98,47 +99,49 @@ const styles = {
 export default {
   title: 'Forms/Theme Value',
   args: {
-    newMode: {
-      formData: {
-        identifier: {
-          designToken: 'dtActionBg',
-          theme: 'styleGuide1_light',
+    samples: [
+      {
+        formData: {
+          identifier: {
+            designToken: 'dtActionBg',
+            theme: 'styleGuide1_light',
+          },
+          styles,
+          type: 'color',
+          medias: ['default'],
+          fields: {
+            media: 'default',
+            style: 'styleGuide1_action_primary',
+          },
         },
-        styles,
-        type: 'color',
-        medias: ['default'],
-        fields: {
-          media: 'default',
-          style: 'styleGuide1_action_primary',
-        },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    editMode: {
-      formData: {
-        identifier: {
-          designToken: 'dtActionBg',
-          theme: 'styleGuide1_light',
-          media: 'default',
+      {
+        formData: {
+          identifier: {
+            designToken: 'dtActionBg',
+            theme: 'styleGuide1_light',
+            media: 'default',
+          },
+          styles,
+          type: 'color',
+          medias: ['default'],
+          fields: {
+            media: 'default',
+            style: 'styleGuide1_action_primary',
+          },
         },
-        styles,
-        type: 'color',
-        medias: ['default'],
-        fields: {
-          media: 'default',
-          style: 'styleGuide1_action_primary',
-        },
+        onAction: action('triggered action'),
       },
-      onAction: action('triggered action'),
-    },
-    empty: {
-      formData: {},
-      onAction: action('triggered action'),
-    },
+      {
+        formData: {},
+        onAction: action('triggered action'),
+      },
+    ],
   },
 }
 
-export const themeValue = ({ editMode, newMode, empty }) => {
+export const themeValue = ({ samples }) => {
   return (
     <div>
       <div class="header">
@@ -153,24 +156,16 @@ export const themeValue = ({ editMode, newMode, empty }) => {
           gap: '1rem',
         }}
       >
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-theme-value-form {...newMode} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-theme-value-form {...newMode} />
-        </div>
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-theme-value-form {...editMode} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-theme-value-form {...editMode} />
-        </div>
-        <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
-          <tf-theme-value-form {...empty} />
-        </div>
-        <div style={{ padding: '1rem' }}>
-          <tf-theme-value-form {...empty} />
-        </div>
+        {samples.map((args) => (
+          <Fragment>
+            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+              <tf-theme-value-form {...args} />
+            </div>
+            <div style={{ padding: '1rem' }}>
+              <tf-theme-value-form {...args} />
+            </div>
+          </Fragment>
+        ))}
       </div>
     </div>
   )
