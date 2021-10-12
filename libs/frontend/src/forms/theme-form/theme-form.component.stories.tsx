@@ -8,6 +8,10 @@ export default {
     samples: [
       {
         formData: {
+          styleGuides: [
+            { key: 'styleGuide1', value: 'Style Guide 1' },
+            { key: 'styleGuide2', value: 'Style Guide 2' },
+          ],
           fields: {
             name: 'Dark',
             styleGuide: 'styleGuide1',
@@ -17,6 +21,10 @@ export default {
       },
       {
         formData: {
+          styleGuides: [
+            { key: 'styleGuide1', value: 'Style Guide 1' },
+            { key: 'styleGuide2', value: 'Style Guide 2' },
+          ],
           identifier: 'styleGuide1_dark',
           fields: {
             name: 'Dark',
@@ -26,7 +34,12 @@ export default {
         onAction: action('triggered action'),
       },
       {
-        formData: {},
+        formData: {
+          styleGuides: [
+            { key: 'styleGuide1', value: 'Style Guide 1' },
+            { key: 'styleGuide2', value: 'Style Guide 2' },
+          ],
+        },
         onAction: action('triggered action'),
       },
     ],

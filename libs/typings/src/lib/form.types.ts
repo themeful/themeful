@@ -145,6 +145,7 @@ export type ThemeIntegration = ThemeFormData & {
 
 export interface ThemeFormData {
   identifier?: string
+  styleGuides: { key: string; value: string }[]
   fields?: { name: string; styleGuide: string }
 }
 
