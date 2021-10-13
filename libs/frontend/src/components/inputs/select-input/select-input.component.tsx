@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core'
+import { KeyValues } from '@typings'
 
 @Component({
   tag: 'tf-select-input',
@@ -15,7 +16,7 @@ export class SelectInputComponent {
   @Prop() label: string
 
   /** Input suggest items */
-  @Prop() items: { key: string; value: string }[] = []
+  @Prop() items: KeyValues = []
 
   /** Required input */
   @Prop() required = false

@@ -147,21 +147,13 @@ export const themeValue = ({ samples }) => {
       <div class="header">
         <h1>Theme Value Form</h1>
       </div>
-      <div
-        class="content"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '500px 500px',
-          gridAutoRows: '300px',
-          gap: '1rem',
-        }}
-      >
+      <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
-            <div class="tf-light" style={{ background: '#fff', padding: '1rem' }}>
+            <div class="tf-light">
               <tf-theme-value-form {...args} />
             </div>
-            <div style={{ padding: '1rem' }}>
+            <div>
               <tf-theme-value-form {...args} />
             </div>
           </Fragment>

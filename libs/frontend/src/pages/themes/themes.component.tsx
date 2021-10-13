@@ -9,6 +9,7 @@ import {
   ExtendedValueDetail,
   ExtendedValueDetails,
   FormIntegrationActions,
+  KeyValues,
   StyleGuides,
   StyleMap,
   Theme,
@@ -217,12 +218,16 @@ export class ThemesComponent {
       }
     }
 
+    // TODO: Fix the medias
     const medias = themeValue.reduce(
-      (result: string[], { media }: ExtendedValueDetail) => [...result, media],
+      (result: KeyValues, { media }: ExtendedValueDetail) => [
+        ...result,
+        { key: media, value: this.styleMap[media] },
+      ],
       []
-    ) as string[]
+    ) as KeyValues
 
-    this.formData$.next({
+    console.log({
       form: 'themeValue',
       identifier: { designToken, theme, media: themeMedia?.media },
       styles: styleMap,
@@ -234,6 +239,19 @@ export class ThemesComponent {
         direct: this.themes[theme].styles[designToken][themeMedia?.media]?.direct,
       },
     })
+
+    // this.formData$.next({
+    //   form: 'themeValue',
+    //   identifier: { designToken, theme, media: themeMedia?.media },
+    //   styles: styleMap,
+    //   type: this.designTokens[designToken].type,
+    //   medias,
+    //   fields: {
+    //     media: themeMedia?.media,
+    //     style: this.themes[theme].styles[designToken][themeMedia?.media]?.style,
+    //     direct: this.themes[theme].styles[designToken][themeMedia?.media]?.direct,
+    //   },
+    // })
   }
 
   private rescanAliasTokens = (): void => {

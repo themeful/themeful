@@ -1,3 +1,4 @@
+import { KeyValues } from './keyValue.types'
 import { ExtendedStyle, StyleGuideBase, StyleMap } from './style.types'
 
 // --------- Common ------------
@@ -75,7 +76,7 @@ export interface StyleFormData {
   identifier?: StyleIdentifier
   fields?: ExtendedStyle
   groups: string[]
-  propertyTypes: { key: string; value: string }[]
+  propertyTypes: KeyValues
 }
 
 export type StyleFormAction =
@@ -145,7 +146,7 @@ export type ThemeIntegration = ThemeFormData & {
 
 export interface ThemeFormData {
   identifier?: string
-  styleGuides: { key: string; value: string }[]
+  styleGuides: KeyValues
   fields?: { name: string; styleGuide: string }
 }
 
@@ -184,7 +185,7 @@ export interface DesignTokenFormData {
   identifier?: string
   fields?: DesignTokenFormFields
   groups: string[]
-  propertyTypes: { key: string; value: string }[]
+  propertyTypes: KeyValues
 }
 
 export interface DesignTokenFormFields {
@@ -230,7 +231,7 @@ export interface ThemeValueFormData {
   fields?: ThemeValueFormFields
   styles: StyleMap
   type: string
-  medias: string[]
+  medias: KeyValues
 }
 
 export interface ThemeValueFormFields {
