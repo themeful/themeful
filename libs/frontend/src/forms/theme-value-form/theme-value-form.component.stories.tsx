@@ -108,7 +108,28 @@ export default {
           },
           styles,
           type: 'color',
-          medias: ['default'],
+          medias: [
+            {
+              key: 'default',
+              value: 'Default',
+            },
+            {
+              key: 'global_mediaQuery_aboveSmallMobile',
+              value: 'Above Small Mobile',
+            },
+            {
+              key: 'global_mediaQuery_aboveMobile',
+              value: 'Above Mobile',
+            },
+            {
+              key: 'global_mediaQuery_aboveTablet',
+              value: 'Above Tablet',
+            },
+            {
+              key: 'global_mediaQuery_aboveDesktop',
+              value: 'Above Desktop',
+            },
+          ],
           fields: {
             media: 'default',
             style: 'styleGuide1_action_primary',
@@ -125,7 +146,28 @@ export default {
           },
           styles,
           type: 'color',
-          medias: ['default'],
+          medias: [
+            {
+              key: 'default',
+              value: 'Default',
+            },
+            {
+              key: 'global_mediaQuery_aboveSmallMobile',
+              value: 'Above Small Mobile',
+            },
+            {
+              key: 'global_mediaQuery_aboveMobile',
+              value: 'Above Mobile',
+            },
+            {
+              key: 'global_mediaQuery_aboveTablet',
+              value: 'Above Tablet',
+            },
+            {
+              key: 'global_mediaQuery_aboveDesktop',
+              value: 'Above Desktop',
+            },
+          ],
           fields: {
             media: 'default',
             style: 'styleGuide1_action_primary',
@@ -134,7 +176,30 @@ export default {
         onAction: action('triggered action'),
       },
       {
-        formData: {},
+        formData: {
+          medias: [
+            {
+              key: 'default',
+              value: 'Default',
+            },
+            {
+              key: 'global_mediaQuery_aboveSmallMobile',
+              value: 'Above Small Mobile',
+            },
+            {
+              key: 'global_mediaQuery_aboveMobile',
+              value: 'Above Mobile',
+            },
+            {
+              key: 'global_mediaQuery_aboveTablet',
+              value: 'Above Tablet',
+            },
+            {
+              key: 'global_mediaQuery_aboveDesktop',
+              value: 'Above Desktop',
+            },
+          ],
+        },
         onAction: action('triggered action'),
       },
     ],

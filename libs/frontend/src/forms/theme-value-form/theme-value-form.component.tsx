@@ -84,11 +84,6 @@ export class ThemeValueFormComponent {
           label="Media"
           items={this.formData.medias}
           value={this.formData.fields?.media}
-          {...{
-            onInputChange: ({ target }) => {
-              this.type = (target as HTMLInputElement).value
-            },
-          }}
           required
         />
 

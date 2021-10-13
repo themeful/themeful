@@ -210,22 +210,30 @@ export class ThemesComponent {
     const [theme, themeData] = Object.entries(this.themes)[themeIndex]
     const styleGuide = themeData.styleGuide
     const styleMap: StyleMap = {}
+    const usedMedias = themeValue.reduce(
+      (result: string[], { media }: ExtendedValueDetail) => [...result, media],
+      []
+    ) as string[]
+
+    const medias: KeyValues = []
+
+    if (!usedMedias.includes('default') || themeMedia?.media === 'default') {
+      medias.push({ key: 'default', value: 'Default' })
+    }
+
     for (const key in this.styleMap) {
       if (key.startsWith('global_') || key.startsWith(`${styleGuide}_`)) {
         if (this.styleMap[key].type === this.designTokens[designToken].type) {
           styleMap[key] = this.styleMap[key]
         }
+        if (
+          this.styleMap[key].type === 'mediaquery' &&
+          (!usedMedias.includes(key) || themeMedia?.media === key)
+        ) {
+          medias.push({ key, value: this.styleMap[key].name })
+        }
       }
     }
-
-    // TODO: Fix the medias
-    const medias = themeValue.reduce(
-      (result: KeyValues, { media }: ExtendedValueDetail) => [
-        ...result,
-        { key: media, value: this.styleMap[media] },
-      ],
-      []
-    ) as KeyValues
 
     console.log({
       form: 'themeValue',
