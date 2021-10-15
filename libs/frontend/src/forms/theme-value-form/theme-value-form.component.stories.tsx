@@ -96,6 +96,29 @@ const styles = {
   },
 }
 
+const medias = [
+  {
+    key: 'default',
+    value: 'Default',
+  },
+  {
+    key: 'global_mediaQuery_aboveSmallMobile',
+    value: 'Above Small Mobile',
+  },
+  {
+    key: 'global_mediaQuery_aboveMobile',
+    value: 'Above Mobile',
+  },
+  {
+    key: 'global_mediaQuery_aboveTablet',
+    value: 'Above Tablet',
+  },
+  {
+    key: 'global_mediaQuery_aboveDesktop',
+    value: 'Above Desktop',
+  },
+]
+
 export default {
   title: 'Forms/Theme Value',
   args: {
@@ -105,33 +128,52 @@ export default {
           identifier: {
             designToken: 'dtActionBg',
             theme: 'styleGuide1_light',
+            media: 'default',
+          },
+          styles: {
+            styleGuide1_brand_primary: {
+              type: 'font-size',
+              group: 'brand',
+              name: 'Primary',
+              value: '10px',
+              global: false,
+            },
+            styleGuide1_brand_secondary: {
+              name: 'Secondary',
+              type: 'font-size',
+              group: 'brand',
+              value: '12px',
+              global: false,
+            },
+            styleGuide1_brand_tertiary: {
+              name: 'Tertiary',
+              type: 'font-size',
+              group: 'brand',
+              value: '14px',
+              global: false,
+            },
+          },
+          type: 'font-size',
+          medias,
+          fields: {
+            media: 'default',
+            direct: '12px',
+          },
+        },
+        onAction: action('triggered action'),
+      },
+      {
+        formData: {
+          identifier: {
+            designToken: 'dtActionBg',
+            theme: 'styleGuide1_light',
+            media: 'global_mediaQuery_aboveMobile',
           },
           styles,
           type: 'color',
-          medias: [
-            {
-              key: 'default',
-              value: 'Default',
-            },
-            {
-              key: 'global_mediaQuery_aboveSmallMobile',
-              value: 'Above Small Mobile',
-            },
-            {
-              key: 'global_mediaQuery_aboveMobile',
-              value: 'Above Mobile',
-            },
-            {
-              key: 'global_mediaQuery_aboveTablet',
-              value: 'Above Tablet',
-            },
-            {
-              key: 'global_mediaQuery_aboveDesktop',
-              value: 'Above Desktop',
-            },
-          ],
+          medias,
           fields: {
-            media: 'default',
+            media: 'global_mediaQuery_aboveMobile',
             style: 'styleGuide1_action_primary',
           },
         },
@@ -142,63 +184,10 @@ export default {
           identifier: {
             designToken: 'dtActionBg',
             theme: 'styleGuide1_light',
-            media: 'default',
           },
           styles,
-          type: 'color',
-          medias: [
-            {
-              key: 'default',
-              value: 'Default',
-            },
-            {
-              key: 'global_mediaQuery_aboveSmallMobile',
-              value: 'Above Small Mobile',
-            },
-            {
-              key: 'global_mediaQuery_aboveMobile',
-              value: 'Above Mobile',
-            },
-            {
-              key: 'global_mediaQuery_aboveTablet',
-              value: 'Above Tablet',
-            },
-            {
-              key: 'global_mediaQuery_aboveDesktop',
-              value: 'Above Desktop',
-            },
-          ],
-          fields: {
-            media: 'default',
-            style: 'styleGuide1_action_primary',
-          },
-        },
-        onAction: action('triggered action'),
-      },
-      {
-        formData: {
-          medias: [
-            {
-              key: 'default',
-              value: 'Default',
-            },
-            {
-              key: 'global_mediaQuery_aboveSmallMobile',
-              value: 'Above Small Mobile',
-            },
-            {
-              key: 'global_mediaQuery_aboveMobile',
-              value: 'Above Mobile',
-            },
-            {
-              key: 'global_mediaQuery_aboveTablet',
-              value: 'Above Tablet',
-            },
-            {
-              key: 'global_mediaQuery_aboveDesktop',
-              value: 'Above Desktop',
-            },
-          ],
+          medias,
+          type: 'size',
         },
         onAction: action('triggered action'),
       },

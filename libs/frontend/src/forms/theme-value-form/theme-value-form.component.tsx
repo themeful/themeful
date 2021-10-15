@@ -17,6 +17,7 @@ export class ThemeValueFormComponent {
   @State() editMode: boolean
   @State() type: string
   @State() selected: string = ''
+  @State() toggle: 'style' | 'direct' = 'style'
 
   private controls: {
     [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement | HTMLTfColorInputElement
@@ -25,6 +26,7 @@ export class ThemeValueFormComponent {
   public componentDidLoad(): void {
     this.editMode = this.formData?.identifier?.media && true
     this.type = this.formData.type
+    this.toggle = this.formData.fields.style ? 'style' : 'direct'
   }
 
   private formValues = (): { [key: string]: string | number } =>
@@ -92,45 +94,68 @@ export class ThemeValueFormComponent {
           required
         />
         <div class="button-group">
-          <tf-button class="button-group--first">Style Guide</tf-button>
-          <tf-button class="button-group--last">Direct Value</tf-button>
+          <tf-button
+            class={`button-group--first${this.toggle === 'style' ? ' active' : ''}`}
+            active={this.toggle === 'style'}
+            {...{
+              onClick: () => {
+                this.toggle = 'style'
+              },
+            }}
+          >
+            Style Guide
+          </tf-button>
+          <tf-button
+            class={`button-group--last${this.toggle === 'direct' ? ' active' : ''}`}
+            active={this.toggle === 'direct'}
+            {...{
+              onClick: () => {
+                this.toggle = 'direct'
+              },
+            }}
+          >
+            Direct Value
+          </tf-button>
         </div>
 
-        {this.type === 'color' ? (
-          <tf-color-input
-            ref={(el: HTMLTfColorInputElement) =>
-              this.type === 'color' ? (this.controls['direct'] = el) : el
-            }
-            label="Color"
-            required
-            format="HSL"
-            value={this.formData.fields?.direct}
-          />
-        ) : (
-          <tf-text-input
-            ref={(el: HTMLTfTextInputElement) =>
-              this.type !== 'color' ? (this.controls['direct'] = el) : el
-            }
-            label="Value"
-            value={this.formData.fields?.direct}
-            required
-          />
-        )}
-        <ul class="form__row--span form__selectable-list property--selectable">
-          {Object.entries(this.formData.styles).map(([key, style]) => (
-            <li
-              {...{
-                class: 'form__selectable',
-                onClick: () => this.select(key),
-              }}
-            >
-              <tf-property
-                extendedStyle={style}
-                class={key === this.selected ? 'property--selected' : ''}
-              />
-            </li>
+        {this.toggle === 'direct' &&
+          (this.type === 'color' ? (
+            <tf-color-input
+              ref={(el: HTMLTfColorInputElement) =>
+                this.type === 'color' ? (this.controls['direct'] = el) : el
+              }
+              label="Color"
+              required
+              format="HSL"
+              value={this.formData.fields?.direct}
+            />
+          ) : (
+            <tf-text-input
+              ref={(el: HTMLTfTextInputElement) =>
+                this.type !== 'color' ? (this.controls['direct'] = el) : el
+              }
+              label="Value"
+              value={this.formData.fields?.direct}
+              required
+            />
           ))}
-        </ul>
+        {this.toggle === 'style' && (
+          <ul class="form__row--span form__selectable-list property--selectable">
+            {Object.entries(this.formData.styles).map(([key, style]) => (
+              <li
+                {...{
+                  class: 'form__selectable',
+                  onClick: () => this.select(key),
+                }}
+              >
+                <tf-property
+                  extendedStyle={style}
+                  class={key === this.selected ? 'property--selected' : ''}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
         <div class="form__controls">
           {this.editMode && (
             <tf-button kind="danger" onClick={this.remove}>

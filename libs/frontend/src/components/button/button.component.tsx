@@ -17,7 +17,7 @@ export class ButtonComponent {
   @Prop() size: 'small' | 'large' | 'icon'
 
   /** Active state */
-  @Prop() active: false
+  @Prop() active = false
 
   /** Disabled state */
   @Prop() disabled: false
