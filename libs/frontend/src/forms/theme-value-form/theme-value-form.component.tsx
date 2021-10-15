@@ -27,18 +27,29 @@ export class ThemeValueFormComponent {
     this.editMode = this.formData?.identifier?.media && true
     this.type = this.formData.type
     this.toggle = this.formData.fields.style ? 'style' : 'direct'
+    if (this.toggle === 'style') {
+      this.selected = this.formData.fields.style
+    }
   }
 
-  private formValues = (): { [key: string]: string | number } =>
-    Object.entries(this.controls).reduce((result, [key, control]) => {
+  private formValues = (): { [key: string]: string | number } => {
+    const values = Object.entries(this.controls).reduce((result, [key, control]) => {
       result[key] = control.value
       return result
     }, {})
+    if (this.toggle === 'style') {
+      values['style'] = this.selected
+    }
+    return values
+  }
 
-  private validate = (): Promise<boolean> =>
-    Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
-      (controls) => controls.every((valid) => valid)
-    )
+  private validate = (): Promise<boolean> => {
+    const styleValidation = this.toggle !== 'style' || this.selected !== ''
+    return Promise.all([
+      ...Object.values(this.controls).map((control) => control.validate()),
+      Promise.resolve(styleValidation),
+    ]).then((controls) => controls.every((valid) => valid))
+  }
 
   private dirty = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.dirty())).then((controls) =>
@@ -46,6 +57,7 @@ export class ThemeValueFormComponent {
     )
 
   private select = (key: string) => {
+    this.changed = true
     this.selected = key
   }
 
