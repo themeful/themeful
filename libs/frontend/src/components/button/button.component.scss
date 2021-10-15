@@ -8,6 +8,7 @@
   border: none;
   padding: 0.5rem 1rem;
   min-width: 20px;
+  width: 100%;
   min-height: 20px;
   cursor: pointer;
   display: flex;
@@ -70,25 +71,22 @@
   }
 }
 
-//   & + .m4-button {
-//     margin-left: 4px;
-//   }
+:host-context(.button-group) {
+  .button {
+    border-radius: 0;
+  }
+}
 
-//   &-group {
-//     display: flex;
+:host(.button-group--first) {
+  .button {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+}
 
-//     & > * {
-//       margin-left: 0 !important;
-//       flex-grow: 4;
-
-//       &:not(:first-child) {
-//         border-top-left-radius: 0;
-//         border-bottom-left-radius: 0;
-//       }
-//       &:not(:last-child) {
-//         border-top-right-radius: 0;
-//         border-bottom-right-radius: 0;
-//       }
-//     }
-//   }
-// }
+:host(.button-group--last) {
+  .button {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+}

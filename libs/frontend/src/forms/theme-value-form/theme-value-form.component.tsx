@@ -16,6 +16,7 @@ export class ThemeValueFormComponent {
   @State() changed = false
   @State() editMode: boolean
   @State() type: string
+  @State() selected: string = ''
 
   private controls: {
     [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement | HTMLTfColorInputElement
@@ -41,6 +42,10 @@ export class ThemeValueFormComponent {
     Promise.all(Object.values(this.controls).map((control) => control.dirty())).then((controls) =>
       controls.some((valid) => valid)
     )
+
+  private select = (key: string) => {
+    this.selected = key
+  }
 
   private save = async (event: Event): Promise<void> => {
     event.preventDefault()
@@ -78,7 +83,7 @@ export class ThemeValueFormComponent {
   public render(): HTMLTfThemeValueFormElement {
     return (
       <form class="form" onSubmit={this.save}>
-        <h3>{this.editMode ? 'Edit' : 'Create'} Style</h3>
+        <h3>{this.editMode ? 'Edit' : 'Create'} Theme Value</h3>
         <tf-select-input
           ref={(el: HTMLTfSelectInputElement) => (this.controls['media'] = el)}
           label="Media"
@@ -86,6 +91,10 @@ export class ThemeValueFormComponent {
           value={this.formData.fields?.media}
           required
         />
+        <div class="button-group">
+          <tf-button class="button-group--first">Style Guide</tf-button>
+          <tf-button class="button-group--last">Direct Value</tf-button>
+        </div>
 
         {this.type === 'color' ? (
           <tf-color-input
@@ -107,6 +116,21 @@ export class ThemeValueFormComponent {
             required
           />
         )}
+        <ul class="form__row--span form__selectable-list property--selectable">
+          {Object.entries(this.formData.styles).map(([key, style]) => (
+            <li
+              {...{
+                class: 'form__selectable',
+                onClick: () => this.select(key),
+              }}
+            >
+              <tf-property
+                extendedStyle={style}
+                class={key === this.selected ? 'property--selected' : ''}
+              />
+            </li>
+          ))}
+        </ul>
         <div class="form__controls">
           {this.editMode && (
             <tf-button kind="danger" onClick={this.remove}>

@@ -3,6 +3,8 @@
   height: fit-content;
   border-radius: 4px;
   color: var(--tf-font-color);
+  max-width: 200px;
+  min-width: 150px;
 }
 
 pre {
@@ -20,8 +22,6 @@ pre {
   flex-direction: column;
   align-items: center;
   box-shadow: 0 0 0 1px rgba(200, 200, 200, 0.55);
-  max-width: 200px;
-  min-width: 150px;
   overflow: hidden;
   border-radius: 4px;
 
@@ -42,12 +42,14 @@ pre {
     gap: 2px;
     width: fit-content;
     max-width: 100%;
-    margin: -1.125rem 0 0.125rem;
+    margin: -1.25rem 0 0.125rem;
     font: var(--tf-small-font);
-    height: 1rem;
+    height: 1.125rem;
     padding: 2px 4px;
     box-sizing: border-box;
     border-radius: 2px;
+
+    --tf-font-color: currentColor;
 
     span {
       white-space: nowrap;

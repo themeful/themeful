@@ -21,4 +21,32 @@
     align-items: flex-end;
     flex-grow: 4;
   }
+
+  &__selectable-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    overflow-y: scroll;
+    max-height: 250px;
+    list-style: none;
+    padding: 4px;
+  }
+
+  &__selectable {
+    justify-self: center;
+  }
+
+  tf-property {
+    width: 200px;
+  }
+
+  .button-group {
+    width: 100%;
+    display: flex;
+    margin-bottom: 8px;
+
+    tf-button {
+      flex-grow: 1;
+    }
+  }
 }
