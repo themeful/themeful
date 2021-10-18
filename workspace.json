@@ -94,7 +94,6 @@
             "lintFilePatterns": ["libs/frontend/**/*.ts", "libs/frontend/**/*.tsx"]
           }
         },
-
         "serve": {
           "executor": "@nxext/stencil:build",
           "outputs": ["{options.outputPath}"],

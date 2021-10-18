@@ -16,7 +16,7 @@ export class ThemeValueFormComponent {
   @State() changed = false
   @State() editMode: boolean
   @State() type: string
-  @State() selected: string = ''
+  @State() selected = ''
   @State() toggle: 'style' | 'direct' = 'style'
 
   private controls: {

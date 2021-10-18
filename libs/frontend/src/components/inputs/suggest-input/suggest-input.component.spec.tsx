@@ -5,7 +5,7 @@ describe('tf-suggest-input', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [SuggestInputComponent],
-      html: '<tf-suggest-input />,
+      html: '<tf-suggest-input />',
     })
     expect(root).toEqualHtml(`
       <tf-suggest-input>

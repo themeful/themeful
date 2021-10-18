@@ -28,11 +28,11 @@
     "build:frontend": "nx run frontend:build",
     "watch:frontend": "yarn build:frontend --watch",
     "storybook": "nx run frontend:storybook",
-    "lint": "nx workspace-lint && nx lint"
+    "lint": "nx workspace-lint && nx run-many --target=lint --all"
   },
   "private": true,
   "devDependencies": {
-    "@nestjs/schematics": "^8.0.3",
+    "@nestjs/schematics": "^8.0.4",
     "@nestjs/testing": "^8.1.1",
     "@nrwl/cli": "12.10.0",
     "@nrwl/eslint-plugin-nx": "^12.10.0",
@@ -55,9 +55,9 @@
     "@storybook/html": "~6.3.12",
     "@storybook/theming": "^6.3.12",
     "@types/jest": "26.0.24",
-    "@types/node": "16.11.0",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
+    "@types/node": "16.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
     "colortranslator": "^1.7.1",
     "css-loader": "^5.2.7",
     "dotenv": "~10.0.0",
