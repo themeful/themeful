@@ -21,6 +21,9 @@ export class SelectInputComponent {
   /** Required input */
   @Prop() required = false
 
+  /** Disabled input */
+  @Prop() disabled = false
+
   /** Input value */
   @Prop({ mutable: true }) value: string | number
 
@@ -89,6 +92,7 @@ export class SelectInputComponent {
             class="select-input__input"
             onChange={this.inputChanged}
             onBlur={this.blur}
+            disabled={this.disabled}
           >
             {this.items.map((item) => (
               <option value={item.key} selected={item.key === this.value}>

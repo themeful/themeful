@@ -17,6 +17,9 @@ export class SuggestInputComponent {
   /** Required input */
   @Prop() required = false
 
+  /** Disabled input */
+  @Prop() disabled = false
+
   /** Min input */
   @Prop() minLength: number
 
@@ -108,6 +111,7 @@ export class SuggestInputComponent {
           onInput={this.inputChanged}
           onBlur={this.blur}
           autocomplete="off"
+          disabled={this.disabled}
         />
         <datalist id={this.dataListId}>
           {this.items.map((item) => (

@@ -17,6 +17,9 @@ export class TextInputComponent {
   /** Required input */
   @Prop() required = false
 
+  /** Disabled input */
+  @Prop() disabled = false
+
   /** Min input */
   @Prop() minLength: number
 
@@ -102,6 +105,7 @@ export class TextInputComponent {
             type={this.type}
             onInput={this.inputChanged}
             onBlur={this.blur}
+            disabled={this.disabled}
           />
           <p class="text-input__hint">{this.error}</p>
         </label>
