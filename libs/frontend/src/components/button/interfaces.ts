@@ -1,1 +1,1 @@
-export type ButtonKind = 'primary' | 'secondary' | 'danger'
+export type ButtonKind = 'primary' | 'secondary' | 'danger' | 'selectable'

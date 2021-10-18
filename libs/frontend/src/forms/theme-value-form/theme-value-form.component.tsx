@@ -107,6 +107,7 @@ export class ThemeValueFormComponent {
         />
         <div class="button-group">
           <tf-button
+            kind="selectable"
             class={`button-group--first${this.toggle === 'style' ? ' active' : ''}`}
             active={this.toggle === 'style'}
             {...{
@@ -118,6 +119,7 @@ export class ThemeValueFormComponent {
             Style Guide
           </tf-button>
           <tf-button
+            kind="selectable"
             class={`button-group--last${this.toggle === 'direct' ? ' active' : ''}`}
             active={this.toggle === 'direct'}
             {...{

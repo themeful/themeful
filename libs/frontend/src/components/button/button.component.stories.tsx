@@ -8,6 +8,7 @@ export default {
       { label: 'Primary', args: { type: 'button', kind: 'primary' } },
       { label: 'Secondary', args: { type: 'submit', kind: 'secondary' } },
       { label: 'Danger', args: { type: 'button', kind: 'danger' } },
+      { label: 'Selectable', args: { type: 'button', kind: 'selectable' } },
     ],
   },
 }
