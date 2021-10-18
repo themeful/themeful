@@ -39,7 +39,7 @@
           "executor": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["apps/backend/**/*.ts"]
+            "lintFilePatterns": ["apps/backend/**/*.ts", "apps/backend/**/*.tsx"]
           }
         },
         "test": {
@@ -88,6 +88,13 @@
             }
           }
         },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/frontend/**/*.ts", "libs/frontend/**/*.tsx"]
+          }
+        },
+
         "serve": {
           "executor": "@nxext/stencil:build",
           "outputs": ["{options.outputPath}"],
@@ -152,7 +159,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/property-types/**/*.ts"]
+            "lintFilePatterns": ["libs/property-types/**/*.ts", "libs/property-types/**/*.tsx"]
           }
         },
         "test": {
@@ -174,7 +181,7 @@
           "executor": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/typings/**/*.ts"]
+            "lintFilePatterns": ["libs/typings/**/*.ts", "libs/typings/**/*.tsx"]
           }
         },
         "test": {
@@ -195,7 +202,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/utils/**/*.ts"]
+            "lintFilePatterns": ["libs/utils/**/*.ts", "libs/utils/**/*.tsx"]
           }
         },
         "test": {
