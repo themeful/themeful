@@ -86,6 +86,7 @@ export class ThemeFormComponent {
           items={this.formData.styleGuides}
           value={this.formData.fields?.styleGuide}
           disabled={this.editMode}
+          required
         />
         <div class="form__controls">
           {this.editMode && (

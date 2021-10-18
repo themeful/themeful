@@ -85,7 +85,7 @@ export class StyleGuideFormComponent {
         />
         <tf-text-input
           ref={(el: HTMLTfTextInputElement) => (this.controls['baseFontSize'] = el)}
-          label="Base Font Size"
+          label="Base Font Size (px)"
           value={this.formData.fields?.baseFontSize}
           validation={this.baseFontSizeValidation}
         />

@@ -199,7 +199,7 @@ export class ColorInputComponent {
 
   private internalValidation = (): boolean => {
     this.error = ''
-    if (this.required && this.value === '') {
+    if (this.required && (this.value === '' || this.value === undefined)) {
       this.error = `This value is required`
     } else {
       try {

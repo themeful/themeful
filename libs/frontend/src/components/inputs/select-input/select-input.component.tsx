@@ -71,7 +71,7 @@ export class SelectInputComponent {
 
   private internalValidation = (): boolean => {
     this.error = ''
-    if (this.required && this.value === '') {
+    if (this.required && (this.value === '' || this.value === undefined)) {
       this.error = `This value is required`
     }
     this.valid = this.error === ''

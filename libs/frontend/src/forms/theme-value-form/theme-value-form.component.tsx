@@ -26,7 +26,7 @@ export class ThemeValueFormComponent {
   public componentDidLoad(): void {
     this.editMode = this.formData?.identifier?.media && true
     this.type = this.formData.type
-    this.toggle = this.formData.fields.style ? 'style' : 'direct'
+    this.toggle = this.formData.fields.direct ? 'direct' : 'style'
     if (this.toggle === 'style') {
       this.selected = this.formData.fields.style
     }

@@ -128,6 +128,10 @@ export class ThemesComponent {
     this.formData$.next({
       form: 'theme',
       identifier: theme,
+      styleGuides: Object.entries(this.styleGuideHeaders).map(([key, { name }]) => ({
+        key,
+        value: name,
+      })),
       fields: {
         name: this.themes[theme]?.name,
         styleGuide: this.themes[theme]?.styleGuide,
@@ -235,7 +239,7 @@ export class ThemesComponent {
       }
     }
 
-    console.log({
+    this.formData$.next({
       form: 'themeValue',
       identifier: { designToken, theme, media: themeMedia?.media },
       styles: styleMap,
@@ -244,22 +248,9 @@ export class ThemesComponent {
       fields: {
         media: themeMedia?.media,
         style: this.themes[theme].styles[designToken][themeMedia?.media]?.style,
-        direct: this.themes[theme].styles[designToken][themeMedia?.media]?.direct,
+        direct: this.themes[theme].styles[designToken][themeMedia?.media]?.direct?.value,
       },
     })
-
-    // this.formData$.next({
-    //   form: 'themeValue',
-    //   identifier: { designToken, theme, media: themeMedia?.media },
-    //   styles: styleMap,
-    //   type: this.designTokens[designToken].type,
-    //   medias,
-    //   fields: {
-    //     media: themeMedia?.media,
-    //     style: this.themes[theme].styles[designToken][themeMedia?.media]?.style,
-    //     direct: this.themes[theme].styles[designToken][themeMedia?.media]?.direct,
-    //   },
-    // })
   }
 
   private rescanAliasTokens = (): void => {

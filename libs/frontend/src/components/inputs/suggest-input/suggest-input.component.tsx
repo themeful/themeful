@@ -78,7 +78,7 @@ export class SuggestInputComponent {
   private internalValidation = (): boolean => {
     this.error = (this.validation && this.validation(this.value)) || ''
     if (this.error === '') {
-      if (this.required && this.value === '') {
+      if (this.required && (this.value === '' || this.value === undefined)) {
         this.error = `This value is required`
       } else if ((this.value?.toString().length || 0) < this.minLength) {
         this.error = `The min length is ${this.minLength}`
