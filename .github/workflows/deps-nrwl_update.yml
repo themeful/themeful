@@ -3,7 +3,7 @@ name: 'Deps: NRWL Update'
 on:
   push:
     branches:
-      - main
+      - add-nrwl-update-action
   schedule:
     - cron: '40 8 * * *'
 
@@ -15,25 +15,72 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 16
 
-      - name: Install dependencies
-        run: yarn
+      # - name: Install dependencies
+      #   run: yarn
 
-      - name: NRWL Update
-        run: yarn update
+      # - name: NRWL Update
+      #   run: yarn update
+
+      - name: Test change
+        run: echo "test" > test.txt && git add .
+
+      - name: Check for changes
+        run: echo "CHANGED_FILES=$(git status -s)" >> $GITHUB_ENV
+
+      - name: Create Branch
+        if: contains(env.CHANGED_FILES, 'test.txt')
+        run: |
+          echo "BRANCH=nrwl_update_$(date +'%Y_%m_%d')" >> $GITHUB_ENV
+          echo "TITLE=NRWL Update $(date +'%d.%m.%Y')" >> $GITHUB_ENV
+          git branch $BRANCH
+          git add .
+          git config --global user.email "steinhoff@locity.de"
+          git config --global user.name "Marco Steinhoff"
+          git commit -m'chore(deps): update nrwl'
+          git push origin $BRANCH
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        if: contains(env.CHANGED_FILES, 'test.txt')
+        uses: actions/github-script@v3
         with:
-          token: ${{ secrets.PAT }}
-          author: m4s7
-          committer: m4s7
-          commit-message: NRWL Update
-          title: NRWL Update
-          body: Update NRWL Dependencies
-          branch: nrwl_update
+          github-token: ${{ secrets.PAT }}
+          script: |
+            await github.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '${{ env.TITLE }}',
+              head: '${{ env.BRANCH }}',
+              base: 'main',
+              body: '**Automated pull request**'
+            });
+
+        # uses: devops-infra/action-pull-request@v0.4.2
+        # with:
+        #   github_token: ${{ secrets.PAT }}
+        #   source_branch: ${{ env.BRANCH }}
+        #   target_branch: main
+        #   title: ${{ env.TITLE }}
+        #   body: '**Automated pull request**'
+
+        # uses: peter-evans/create-pull-request@v3
+        # with:
+        #   token: ${{ secrets.PAT }}
+        #   author: m4s7
+        #   committer: m4s7
+        #   commit-message: NRWL Update
+        #   title: NRWL Update
+        #   body: Update NRWL Dependencies
+        #   branch: nrwl_update
