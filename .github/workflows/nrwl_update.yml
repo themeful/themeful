@@ -1,0 +1,29 @@
+name: NRWL Update
+on:
+  schedule:
+    - cron: '40 8 * * *'
+jobs:
+  update-dep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: NRWL Update
+        run: yarn update
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.PAT }}
+          commit-message: NRWL Update
+          title: NRWL Update
+          body: Update NRWL Dependencies
+          branch: nrwl_update
