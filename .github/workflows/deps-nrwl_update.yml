@@ -28,32 +28,34 @@ jobs:
         with:
           node-version: 16
 
-      # - name: Install dependencies
-      #   run: yarn
+      - name: Install dependencies
+        run: yarn
 
-      # - name: NRWL Update
-      #   run: yarn update
-
-      - name: Test change
-        run: echo "test" > test.txt && git add .
+      - name: NRWL Update
+        run: yarn update
 
       - name: Check for changes
-        run: echo "CHANGED_FILES=$(git status -s)" >> $GITHUB_ENV
-
-      - name: Create Branch
-        if: contains(env.CHANGED_FILES, 'test.txt')
         run: |
+          if [[ -z $(git status -s) ]]; then
+            echo "CHANGED_FILES=false" >> $GITHUB_ENV
+          else
+            echo "CHANGED_FILES=true" >> $GITHUB_ENV
+          fi
           echo "BRANCH=nrwl_update_$(date +'%Y_%m_%d')" >> $GITHUB_ENV
           echo "TITLE=NRWL Update $(date +'%d.%m.%Y')" >> $GITHUB_ENV
-          git branch $BRANCH
-          git add .
+
+      - name: Create Branch
+        if: env.CHANGED_FILES
+        run: |
+          git checkout -b ${{ env.BRANCH }}
           git config --global user.email "steinhoff@locity.de"
           git config --global user.name "Marco Steinhoff"
+          git add .
           git commit -m'chore(deps): update nrwl'
-          git push origin $BRANCH
+          git push origin ${{ env.BRANCH }}
 
       - name: Create Pull Request
-        if: contains(env.CHANGED_FILES, 'test.txt')
+        if: env.CHANGED_FILES
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.PAT }}
