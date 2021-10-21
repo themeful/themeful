@@ -1,4 +1,4 @@
-name: Lint Check
+name: 'CI: Lint'
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  run-checks:
-    name: Run Checks
+  worker:
+    name: 'CI: Lint'
     runs-on: ubuntu-latest
 
     steps:

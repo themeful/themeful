@@ -1,4 +1,4 @@
-name: 'Dependabot Automerge - Action'
+name: 'Deps: Dependabot Automerge'
 
 on:
   pull_request:
@@ -7,6 +7,7 @@ on:
 
 jobs:
   worker:
+    name: 'Deps: Dependabot Automerge'
     runs-on: ubuntu-latest
 
     if: github.actor == 'dependabot[bot]'

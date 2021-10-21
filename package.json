@@ -21,7 +21,7 @@
     "format": "nx format:write",
     "format:write": "nx format:write",
     "format:check": "nx format:check",
-    "update": "nx migrate latest",
+    "update": "nx migrate latest && yarn && if [ -f 'migrations.json' ]; then nx migrate --run-migrations=migrations.json; fi",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
@@ -43,7 +43,7 @@
     "@nrwl/storybook": "12.10.0",
     "@nrwl/tao": "12.10.0",
     "@nrwl/web": "12.10.0",
-    "@nrwl/workspace": "12.10.0",
+    "@nrwl/workspace": "13.0.1",
     "@nxext/stencil": "^12.2.0",
     "@stencil/core": "2.9.0",
     "@stencil/eslint-plugin": "^0.3.1",
@@ -89,3 +89,4 @@
     "tslib": "^2.3.1"
   }
 }
+

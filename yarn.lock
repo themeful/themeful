@@ -1840,6 +1840,18 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
+"@nrwl/cli@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-13.0.1.tgz#37f07849f4ecab73717cb8ca6521b5d169b2f86e"
+  integrity sha512-73fJIwvGhliEPC298zm8DTGa/TuMnDFQApf0tMqRk307SKC0oetszpOVDJGffFtvv6hOeCx67rBVtYDyMXRRvg==
+  dependencies:
+    "@nrwl/tao" "13.0.1"
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    v8-compile-cache "2.3.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
 "@nrwl/cypress@12.10.0":
   version "12.10.0"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-12.10.0.tgz#713ecc37e2add0277f397b72a3bc00caf747efdb"
@@ -1864,6 +1876,18 @@
   integrity sha512-we0K5Hn48BXh77SV5GVSPfRJeIHNCVFSn+feLbnKz3G60Tk3wFEEFhDABA8cCfTKDxMESSjZoWBy4ZcVg0EX0g==
   dependencies:
     "@nrwl/tao" "12.10.0"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    rxjs "^6.5.4"
+    semver "7.3.4"
+    tslib "^2.0.0"
+
+"@nrwl/devkit@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-13.0.1.tgz#fb91bf6e5d770ed477288a315fbf095130a4e5a2"
+  integrity sha512-fDLo8cu0Kn/iHt4i8aRArFV5Lsw/nYaIAzf3MILWgdh7113ksfgmaJbm7iVpoR6dHSpveqTFGaCrzm/CIVD7Zw==
+  dependencies:
+    "@nrwl/tao" "13.0.1"
     ejs "^3.1.5"
     ignore "^5.0.4"
     rxjs "^6.5.4"
@@ -1898,6 +1922,22 @@
     rxjs "^6.5.4"
     tslib "^2.0.0"
 
+"@nrwl/jest@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-13.0.1.tgz#65b12e626bd839e0a2439c745a30c3aa3d398b1d"
+  integrity sha512-rM7KkpobqHHexbXTOYEJtuY7MNkJkAaE4VeqOFAbTdI4xj6hfh78l3ZFjdWKJtzwTlYGt4CP2DFKlgmyC6jgXw==
+  dependencies:
+    "@jest/reporters" "27.2.2"
+    "@jest/test-result" "27.2.2"
+    "@nrwl/devkit" "13.0.1"
+    chalk "4.1.0"
+    identity-obj-proxy "3.0.0"
+    jest-config "27.2.2"
+    jest-resolve "27.2.2"
+    jest-util "27.2.0"
+    rxjs "^6.5.4"
+    tslib "^2.0.0"
+
 "@nrwl/linter@12.10.0":
   version "12.10.0"
   resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.10.0.tgz#25f8df66d637651811e9f90573fa2885124db623"
@@ -1905,6 +1945,19 @@
   dependencies:
     "@nrwl/devkit" "12.10.0"
     "@nrwl/jest" "12.10.0"
+    glob "7.1.4"
+    minimatch "3.0.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+
+"@nrwl/linter@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-13.0.1.tgz#d95531cbb574feeb2beab3c2f30175713081ccb1"
+  integrity sha512-nqzVPPXPN5mOxhuOoz6LywDq2ld3HvhaRgVtX5eNyIZUm+PVTgBgiZJuRhRskdtQz8HcEA4CAUJDF6eEBUavKg==
+  dependencies:
+    "@nrwl/devkit" "13.0.1"
+    "@nrwl/jest" "13.0.1"
+    eslint "7.32.0"
     glob "7.1.4"
     minimatch "3.0.4"
     tmp "~0.2.1"
@@ -1977,6 +2030,23 @@
     fs-extra "^9.1.0"
     jsonc-parser "3.0.0"
     nx "12.10.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-13.0.1.tgz#e8d6efc134635671c9780fc67b21e473ad346ffe"
+  integrity sha512-3dEgMst1MhM+pfztq58CWODXtRW6KUfMnZcqUCYK8wPkwN3H3Ym7Zo7uIvi3r+DlL9rf+6IOm2ikaGBACsGeCg==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    jsonc-parser "3.0.0"
+    nx "13.0.1"
     rxjs "^6.5.4"
     rxjs-for-await "0.0.2"
     semver "7.3.4"
@@ -2078,6 +2148,37 @@
     "@nrwl/devkit" "12.10.0"
     "@nrwl/jest" "12.10.0"
     "@nrwl/linter" "12.10.0"
+    "@parcel/watcher" "2.0.0-alpha.11"
+    chalk "4.1.0"
+    chokidar "^3.5.1"
+    cosmiconfig "^4.0.0"
+    dotenv "~10.0.0"
+    enquirer "~2.3.6"
+    flat "^5.0.2"
+    fs-extra "^9.1.0"
+    glob "7.1.4"
+    ignore "^5.0.4"
+    minimatch "3.0.4"
+    npm-run-all "^4.1.5"
+    npm-run-path "^4.0.1"
+    open "^7.4.2"
+    rxjs "^6.5.4"
+    semver "7.3.4"
+    strip-ansi "6.0.0"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
+"@nrwl/workspace@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-13.0.1.tgz#cd0b7c3248ea2b5f9c71ba0ffd96c9a75a1318dc"
+  integrity sha512-RACK5XvEdnPsrFBnIpIsUWveaCHZX2ALHKsJBd+tlvN+DBwLKBWC3a5+DTAZ1kWgd0yuAJx/VE1CpRxNeZnxGQ==
+  dependencies:
+    "@nrwl/cli" "13.0.1"
+    "@nrwl/devkit" "13.0.1"
+    "@nrwl/jest" "13.0.1"
+    "@nrwl/linter" "13.0.1"
     "@parcel/watcher" "2.0.0-alpha.11"
     chalk "4.1.0"
     chokidar "^3.5.1"
@@ -10771,6 +10872,13 @@ nx@12.10.0:
   version "12.10.0"
   resolved "https://registry.yarnpkg.com/nx/-/nx-12.10.0.tgz#a4e8fba7254529de69fe54e5b4b007e8a432a3fb"
   integrity sha512-LpCfZCWsVEtmD2SI1j2KRaw1uIyn4DJ3eRzsjnDYitbq38aORpkvYO+L0zVMZRNDSYSRGTsuj0nHCS3OOxK/Cg==
+  dependencies:
+    "@nrwl/cli" "*"
+
+nx@13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-13.0.1.tgz#dc86255a7d4bc090789727277663e9927238048a"
+  integrity sha512-SVke3+POQJdNePyalqQlxV59eR1HNlQZ/5+g4W2U8nU97siSY+EITGAuGBAcSaNKwUluKSFQscro1NRhQ0keXg==
   dependencies:
     "@nrwl/cli" "*"
 
