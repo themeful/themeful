@@ -29,7 +29,9 @@ jobs:
         run: yarn
 
       - name: NRWL Update
-        run: yarn update
+        run: |
+          yarn update
+          yarn format
 
       - name: Check for changes
         run: |
