@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  worker:
+  dependabot-automerge:
+    name: Automerge PR
     runs-on: ubuntu-latest
 
     if: github.actor == 'dependabot[bot]'

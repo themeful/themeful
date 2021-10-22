@@ -2,10 +2,11 @@ name: 'Deps: NRWL Update'
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '30 4 * * *'
 
 jobs:
-  update-dep:
+  nrwl-update:
+    name: Update nrwl packages
     runs-on: ubuntu-latest
 
     steps:
