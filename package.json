@@ -44,7 +44,7 @@
     "@nrwl/tao": "12.10.0",
     "@nrwl/web": "12.10.0",
     "@nrwl/workspace": "12.10.0",
-    "@nxext/stencil": "^12.2.0",
+    "@nxext/stencil": "^13.0.0",
     "@stencil/core": "2.9.0",
     "@stencil/eslint-plugin": "^0.3.1",
     "@stencil/sass": "1.5.2",

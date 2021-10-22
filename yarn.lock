@@ -1858,12 +1858,24 @@
     webpack-node-externals "1.7.2"
     yargs-parser "20.0.0"
 
-"@nrwl/devkit@12.10.0", "@nrwl/devkit@^12.9.0":
+"@nrwl/devkit@12.10.0":
   version "12.10.0"
   resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.10.0.tgz#cf4a1dfb1036212185548d68296ac26e498a41c4"
   integrity sha512-we0K5Hn48BXh77SV5GVSPfRJeIHNCVFSn+feLbnKz3G60Tk3wFEEFhDABA8cCfTKDxMESSjZoWBy4ZcVg0EX0g==
   dependencies:
     "@nrwl/tao" "12.10.0"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    rxjs "^6.5.4"
+    semver "7.3.4"
+    tslib "^2.0.0"
+
+"@nrwl/devkit@^13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-13.0.1.tgz#fb91bf6e5d770ed477288a315fbf095130a4e5a2"
+  integrity sha512-fDLo8cu0Kn/iHt4i8aRArFV5Lsw/nYaIAzf3MILWgdh7113ksfgmaJbm7iVpoR6dHSpveqTFGaCrzm/CIVD7Zw==
+  dependencies:
+    "@nrwl/tao" "13.0.1"
     ejs "^3.1.5"
     ignore "^5.0.4"
     rxjs "^6.5.4"
@@ -1977,6 +1989,23 @@
     fs-extra "^9.1.0"
     jsonc-parser "3.0.0"
     nx "12.10.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-13.0.1.tgz#e8d6efc134635671c9780fc67b21e473ad346ffe"
+  integrity sha512-3dEgMst1MhM+pfztq58CWODXtRW6KUfMnZcqUCYK8wPkwN3H3Ym7Zo7uIvi3r+DlL9rf+6IOm2ikaGBACsGeCg==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    jsonc-parser "3.0.0"
+    nx "13.0.1"
     rxjs "^6.5.4"
     rxjs-for-await "0.0.2"
     semver "7.3.4"
@@ -2109,12 +2138,12 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
-"@nxext/stencil@^12.2.0":
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/@nxext/stencil/-/stencil-12.2.0.tgz#253a2454ab9c1627819c444db03f19c1dfbec7f3"
-  integrity sha512-4S8QB1yOSqTpr8gWPC2kV0OWtq2MxIgT0M/WWC97GADzJn+Rd2GDD4dDDxRVgcjKWIN5sG5IW6kQ/FvzvJa28g==
+"@nxext/stencil@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@nxext/stencil/-/stencil-13.0.0.tgz#ca3bdc119dd11961993326b02b4a2cc5bbe3d688"
+  integrity sha512-DcOx9VPdCHldeQ/GFKsz0cgCe07PwFx1DzMwLqzjVzN3RG1TyeOSFArO27BlCnuWnIhNSfzBpJxyOaKzXlmEsA==
   dependencies:
-    "@nrwl/devkit" "^12.9.0"
+    "@nrwl/devkit" "^13.0.1"
     ignore "^5.1.8"
 
 "@parcel/watcher@2.0.0-alpha.11":
@@ -10771,6 +10800,13 @@ nx@12.10.0:
   version "12.10.0"
   resolved "https://registry.yarnpkg.com/nx/-/nx-12.10.0.tgz#a4e8fba7254529de69fe54e5b4b007e8a432a3fb"
   integrity sha512-LpCfZCWsVEtmD2SI1j2KRaw1uIyn4DJ3eRzsjnDYitbq38aORpkvYO+L0zVMZRNDSYSRGTsuj0nHCS3OOxK/Cg==
+  dependencies:
+    "@nrwl/cli" "*"
+
+nx@13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-13.0.1.tgz#dc86255a7d4bc090789727277663e9927238048a"
+  integrity sha512-SVke3+POQJdNePyalqQlxV59eR1HNlQZ/5+g4W2U8nU97siSY+EITGAuGBAcSaNKwUluKSFQscro1NRhQ0keXg==
   dependencies:
     "@nrwl/cli" "*"
 
