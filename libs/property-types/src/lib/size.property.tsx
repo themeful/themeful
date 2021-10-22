@@ -1,6 +1,6 @@
 import { h } from '@stencil/core'
-import { fallback } from './fallback.property'
 import { PropertyType } from '@typings'
+import { fallback } from './fallback.property'
 
 export const size: PropertyType = {
   ...fallback,
@@ -10,8 +10,8 @@ export const size: PropertyType = {
       <div class="property__value">
         <div
           style={{
-            border: '1px dashed rgba(17, 0, 255, 0.479)',
-            backgroundColor: '#7496f1',
+            border: '1px dashed currentColor',
+            backgroundColor: 'hsl(213,73%,63%)',
             height: value,
             width: value,
           }}
