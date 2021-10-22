@@ -7,7 +7,6 @@ on:
 
 jobs:
   worker:
-    name: 'Deps: Dependabot Automerge'
     runs-on: ubuntu-latest
 
     if: github.actor == 'dependabot[bot]'
