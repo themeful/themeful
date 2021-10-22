@@ -50,7 +50,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["scope:backend"]
     },
     "frontend": {
       "root": "libs/frontend",
@@ -148,7 +149,8 @@
             }
           }
         }
-      }
+      },
+      "tags": ["scope:frontend"]
     },
     "property-types": {
       "root": "libs/property-types",
@@ -169,7 +171,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["scope:properties"]
     },
     "typings": {
       "root": "libs/typings",
@@ -191,7 +194,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["scope:typings"]
     },
     "utils": {
       "root": "libs/utils",
@@ -212,11 +216,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["scope:utils"]
     }
-  },
-  "cli": {
-    "defaultCollection": "@nxext/stencil"
-  },
-  "defaultProject": "backend"
+  }
 }

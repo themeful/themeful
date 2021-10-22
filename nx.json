@@ -26,21 +26,8 @@
       }
     ]
   },
-  "projects": {
-    "backend": {
-      "tags": ["scope:backend"]
-    },
-    "frontend": {
-      "tags": ["scope:frontend"]
-    },
-    "property-types": {
-      "tags": ["scope:properties"]
-    },
-    "typings": {
-      "tags": ["scope:typings"]
-    },
-    "utils": {
-      "tags": ["scope:utils"]
-    }
-  }
+  "cli": {
+    "defaultCollection": "@nxext/stencil"
+  },
+  "defaultProject": "backend"
 }
