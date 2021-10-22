@@ -2,15 +2,13 @@ name: 'CI: Lint'
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches: [main]
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, edited, reopened]
 
 jobs:
-  lint:
-    name: Lint Code
+  ci-lint:
     runs-on: ubuntu-latest
 
     steps:
