@@ -29,6 +29,8 @@ jobs:
         run: yarn
 
       - name: NRWL Update
+        id: nrwl_update
+        continue-on-error: true
         run: |
           yarn update
           yarn format
@@ -40,8 +42,13 @@ jobs:
           else
             echo "CHANGED_FILES=true" >> $GITHUB_ENV
           fi
+          echo "LABELS=dependencies" >> $GITHUB_ENV
           echo "BRANCH=nrwl_update_$(date +'%Y_%m_%d')" >> $GITHUB_ENV
           echo "TITLE=NRWL Update $(date +'%d.%m.%Y')" >> $GITHUB_ENV
+
+      - name: Add invalid Label
+        if: ${{ steps.nrwl_update.outcome == 'failure' }}
+        run: echo "LABELS=${{ env.LABELS }},invalid" >> $GITHUB_ENV
 
       - name: Create Branch
         if: env.CHANGED_FILES == 'true'
@@ -55,6 +62,6 @@ jobs:
 
       - name: Create Pull Request
         if: env.CHANGED_FILES == 'true'
-        run: gh pr create --title '${{ env.TITLE }}' --body '**Automated pull request**' --base main --head ${{ env.BRANCH }} --label 'dependencies'
+        run: gh pr create --title '${{ env.TITLE }}' --body '**Automated pull request**' --base main --head ${{ env.BRANCH }} --label '${{ env.LABELS }}'
         env:
           GITHUB_TOKEN: ${{secrets.PAT}}
