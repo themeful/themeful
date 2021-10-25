@@ -44,7 +44,7 @@ jobs:
           echo "TITLE=NRWL Update $(date +'%d.%m.%Y')" >> $GITHUB_ENV
 
       - name: Create Branch
-        if: env.CHANGED_FILES
+        if: env.CHANGED_FILES == 'true'
         run: |
           git checkout -b ${{ env.BRANCH }}
           git config --global user.email "steinhoff@locity.de"
@@ -54,7 +54,7 @@ jobs:
           git push origin ${{ env.BRANCH }}
 
       - name: Create Pull Request
-        if: env.CHANGED_FILES
+        if: env.CHANGED_FILES == 'true'
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.PAT }}
