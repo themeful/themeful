@@ -1,4 +1,4 @@
-name: 'Deps: Automerge Dependency PRs'
+name: 'Deps: Automerge PR'
 
 on:
   pull_request_target:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  dependency-automerge:
+  automerge-pr:
     runs-on: ubuntu-latest
 
     if: contains(github.event.pull_request.labels.*.name, 'dependencies')
