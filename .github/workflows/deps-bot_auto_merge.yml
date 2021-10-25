@@ -10,10 +10,10 @@ permissions:
   contents: write
 
 jobs:
-  dependabot-automerge:
+  dependency-automerge:
     runs-on: ubuntu-latest
 
-    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+    # if: contains(github.event.pull_request.labels.*.name, 'dependencies')
     # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       # - name: Read PR Metadata
