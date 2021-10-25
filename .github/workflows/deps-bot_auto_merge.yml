@@ -15,11 +15,11 @@ jobs:
     if: contains(github.event.pull_request.labels.*.name, 'dependencies')
     # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
-      - name: Read PR Metadata
-        # id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v1.1.1
-        with:
-          github-token: '${{ secrets.PAT }}'
+      # - name: Read PR Metadata
+      #   # id: dependabot-metadata
+      #   uses: dependabot/fetch-metadata@v1.1.1
+      #   with:
+      #     github-token: '${{ secrets.PAT }}'
       - name: Enable auto-merge for Dependency PRs
         # if: ${{ steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch' }}
         run: gh pr merge --auto --merge "$PR_URL"
