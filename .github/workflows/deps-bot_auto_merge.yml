@@ -10,10 +10,10 @@ permissions:
   contents: write
 
 jobs:
-  dependabot-automerge:
+  dependency-automerge:
     runs-on: ubuntu-latest
 
-    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+    # if: contains(github.event.pull_request.labels.*.name, 'dependencies')
     # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       # - name: Read PR Metadata
@@ -23,7 +23,9 @@ jobs:
       #     github-token: '${{ secrets.PAT }}'
       - name: Enable auto-merge for Dependency PRs
         # if: ${{ steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch' }}
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: |
+          echo ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+          gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.PAT}}
