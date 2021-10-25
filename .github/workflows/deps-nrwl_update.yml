@@ -34,7 +34,7 @@ jobs:
       #     yarn format
 
       - name: Test Change
-        run: echo 'hello world' >> test.txt
+        run: echo 'hello world 2' >> test.txt
 
       - name: Check for changes
         run: |
