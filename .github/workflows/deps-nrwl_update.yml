@@ -15,23 +15,26 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: '**/node_modules'
+      #     key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: 16
 
-      - name: Install dependencies
-        run: yarn
+      # - name: Install dependencies
+      #   run: yarn
 
-      - name: NRWL Update
-        run: |
-          yarn update
-          yarn format
+      # - name: NRWL Update
+      #   run: |
+      #     yarn update
+      #     yarn format
+
+      - name: Test Change
+        run: echo 'hello world' >> test.txt
 
       - name: Check for changes
         run: |
@@ -55,16 +58,22 @@ jobs:
 
       - name: Create Pull Request
         if: env.CHANGED_FILES == 'true'
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{ secrets.PAT }}
-          script: |
-            await github.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: '${{ env.TITLE }}',
-              head: '${{ env.BRANCH }}',
-              base: 'main',
-              body: '**Automated pull request**',
-              labels: ['dependencies']
-            });
+        run: gh pr create --title '${{ env.TITLE }}' --body '**Automated pull request**' --base main --head ${{ env.BRANCH }} --label 'dependencies'
+        env:
+          GITHUB_TOKEN: ${{secrets.PAT}}
+
+      # - name: Create Pull Request
+      #   if: env.CHANGED_FILES == 'true'
+      #   uses: actions/github-script@v3
+      #   with:
+      #     github-token: ${{ secrets.PAT }}
+      #     script: |
+      #       await github.pulls.create({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         title: '${{ env.TITLE }}',
+      #         head: '${{ env.BRANCH }}',
+      #         base: 'main',
+      #         body: '**Automated pull request**',
+      #         labels: ['dependencies']
+      #       });
