@@ -140,7 +140,6 @@ export class ThemeValueFormComponent {
               }
               label="Color"
               required
-              format="HSL"
               value={this.formData.fields?.direct}
             />
           ) : (

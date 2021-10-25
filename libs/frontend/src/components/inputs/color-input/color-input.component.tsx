@@ -8,10 +8,20 @@ import {
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core'
 import { ColorTranslator } from 'colortranslator'
-import { combineLatest, distinctUntilChanged, map, sampleTime, Subject, tap } from 'rxjs'
+import { ColorInput } from 'colortranslator/dist/@types'
+import {
+  combineLatest,
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  sampleTime,
+  Subject,
+  tap,
+} from 'rxjs'
+
+type ColorFormat = 'HEX' | 'HSL' | 'RGB'
 
 @Component({
   tag: 'tf-color-input',
@@ -35,9 +45,6 @@ export class ColorInputComponent {
 
   /** Required input */
   @Prop() required = false
-
-  /** Color format */
-  @Prop() format: 'HEX' | 'HSL' | 'RGB' = 'HEX'
 
   /** Input value */
   @Prop({ mutable: true }) value: string
@@ -63,19 +70,14 @@ export class ColorInputComponent {
     return Promise.resolve(this.changed)
   }
 
+  private format: ColorFormat = 'HEX'
   private hue$ = new Subject()
   private alpha$ = new Subject()
   private shade$ = new Subject()
   private input$ = new Subject()
 
-  @Watch('value')
-  public valueChanged(): void {
-    if (this.input.value !== this.value) {
-      this.input.value = this.value
-    }
-  }
-
   private setControls(newColor: string): void {
+    console.log('setControls', newColor, this.input.value, this.value)
     this.changeSource = 'input'
     this.input$.next(this.input.value)
     let color
@@ -103,7 +105,6 @@ export class ColorInputComponent {
   private inputChanged = () => {
     this.changed = true
     this.setControls(this.input.value)
-    this.inputChange.emit(this.value)
     if (!this.valid && this.touched) {
       this.internalValidation()
     }
@@ -117,7 +118,10 @@ export class ColorInputComponent {
   public componentDidLoad(): void {
     this.input$.pipe(sampleTime(50), distinctUntilChanged()).subscribe((value: string) => {
       this.value = value
-      this.input.value = this.value
+      this.input.value = value
+    })
+    this.input$.pipe(debounceTime(200), distinctUntilChanged()).subscribe((value: string) => {
+      this.inputChange.emit(value)
     })
 
     combineLatest([
@@ -166,14 +170,42 @@ export class ColorInputComponent {
         tap((values) => {
           if (this.changeSource === 'controls') {
             this.valid = true
-            const color = new ColorTranslator(values)
-            this.input$.next(color[`${this.format}${color.A < 1 ? 'A' : ''}`])
+            this.setInput(values)
           }
         })
       )
       .subscribe()
 
+    this.format = this.getFormat(this.value)
     this.setControls(this.value)
+  }
+
+  private setInput = (color: ColorInput): void => {
+    const colorObj = new ColorTranslator(color)
+    this.input$.next(colorObj[`${this.format}${colorObj.A < 1 ? 'A' : ''}`])
+  }
+
+  private toggleFormat = () => {
+    this.format = {
+      HSL: 'HEX',
+      HEX: 'RGB',
+      RGB: 'HSL',
+    }[this.format] as ColorFormat
+    if (this.valid) {
+      this.setInput(this.value)
+    }
+  }
+
+  private getFormat = (color = ''): ColorFormat => {
+    const colorStr = color.toLowerCase()
+
+    if (colorStr.includes('hsl')) {
+      return 'HSL'
+    }
+    if (colorStr.includes('rgb')) {
+      return 'RGB'
+    }
+    return 'HEX'
   }
 
   private trackPointer = (event): void => {
@@ -245,7 +277,11 @@ export class ColorInputComponent {
               }}
             />
           </div>
-          <div class={`color-input__selected-color${this.valid ? '' : ' no-color'}`}>
+          <div
+            class={`color-input__selected-color${this.valid ? '' : ' no-color'}`}
+            onClick={this.toggleFormat}
+            title="change format"
+          >
             <div class="color-input__crossed-out"></div>
           </div>
         </div>

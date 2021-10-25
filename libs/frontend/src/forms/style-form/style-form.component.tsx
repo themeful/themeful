@@ -115,7 +115,6 @@ export class StyleFormComponent {
             }
             label="Color"
             required
-            format="HSL"
             value={this.formData.fields?.value}
           />
         ) : (
