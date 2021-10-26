@@ -3,7 +3,7 @@ name: 'Deps: Automerge PR'
 on:
   pull_request_target:
     branches: [main]
-    types: [opened, synchronize, edited, reopened]
+    types: [synchronize, edited, reopened, labeled, unlabeled]
 
 permissions:
   pull-requests: write
