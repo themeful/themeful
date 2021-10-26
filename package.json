@@ -55,7 +55,7 @@
     "@storybook/html": "~6.3.12",
     "@storybook/theming": "^6.3.12",
     "@types/jest": "26.0.24",
-    "@types/node": "16.11.4",
+    "@types/node": "16.11.6",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "colortranslator": "^1.7.1",
