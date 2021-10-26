@@ -3,7 +3,7 @@ name: 'Deps: Automerge PR'
 on:
   pull_request_target:
     branches: [main]
-    types: [opened, synchronize, edited, reopened]
+    types: [synchronize, edited, reopened, labeled, unlabeled]
 
 permissions:
   pull-requests: write
@@ -13,10 +13,29 @@ jobs:
   automerge-pr:
     runs-on: ubuntu-latest
 
-    if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'invalid') }}
-
     steps:
+      - name: Check Label dependencies
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+        run: echo "Label dependencies is set"
+
+      - name: Check Label invalid is not set
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'invalid') }}
+        run: echo "Label invalid is not set"
+
+      - name: Check both Labels
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'invalid') }}
+        run: echo "Both Labels are right"
+
+      - name: Check Label dependencies without brackets
+        if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+        run: echo "Label dependencies is set"
+
+      - name: Check both Labels without brackets
+        if: contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'invalid')
+        run: echo "Both Labels are right"
+
       - name: Enable auto-merge for Dependency PRs
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'invalid') }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
