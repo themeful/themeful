@@ -5072,10 +5072,10 @@ colors@^1.1.2, colors@^1.4.0:
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
   integrity sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==
 
-colortranslator@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/colortranslator/-/colortranslator-1.7.1.tgz#60f8db80b3755ce37f873cf848af99c3c17bb156"
-  integrity sha512-AORTES33uYs9z04eGnMMq5Ehtsz28jyHTYTUItZFEbTXnYmx7ZVV6lPfDOpem1NLAh6PCVIYm1YDCHULu+C/sw==
+colortranslator@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/colortranslator/-/colortranslator-1.8.0.tgz#65991bfb98bb3544290c49f41821bcf992862de6"
+  integrity sha512-mp46a4Whs1XXyT3fOOYTDaHryAjITYtDU6DfGR2iN9qhylwtqYEgY6tlzZqMOFarUyLKR3tM5gpYfH7/HwrY4g==
 
 combined-stream@^1.0.8:
   version "1.0.8"
