@@ -2,7 +2,7 @@ name: 'Deps: NRWL Update'
 
 on:
   schedule:
-    - cron: '30 4 * * *'
+    - cron: '15 3 * * *'
   workflow_dispatch:
 
 jobs:
@@ -33,6 +33,7 @@ jobs:
         continue-on-error: true
         run: |
           yarn update
+          yarn upgrade
           yarn format
 
       - name: Check for changes
