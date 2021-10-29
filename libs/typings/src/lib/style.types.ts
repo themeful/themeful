@@ -9,7 +9,12 @@ export interface StyleGuides {
 }
 
 export interface StyleGuide extends StyleGuideBase {
-  styles: { [styleSlug: string]: Style }
+  styles: StyleMap
+}
+
+export interface FormatedStyleGuide extends StyleGuideBase {
+  slug: string
+  types: TypeGroupStyles[]
 }
 
 export interface Style {
@@ -33,6 +38,10 @@ export interface StyleGroup {
   styles: ExtendedStyle[]
 }
 
+// export interface StyleMap {
+//   [key: string]: Style
+// }
+
 export interface StyleTypeGroup {
   name: string
   groups: StyleGroup[]
@@ -47,6 +56,20 @@ export type ExtendedStyleGuides = ExtendedStyleGuide[]
 
 export interface StyleMap {
   [slug: string]: ExtendedStyle
+}
+
+export interface StylesMap {
+  [slug: string]: ExtendedStyle[]
+}
+
+export interface GroupStyles {
+  name: string
+  styles: ExtendedStyle[]
+}
+
+export interface TypeGroupStyles {
+  name: string
+  groups: GroupStyles[]
 }
 
 export interface Dt2At {

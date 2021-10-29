@@ -1,5 +1,14 @@
 import { Injectable } from '@nestjs/common'
-import { DesignTokens, Style, StyleGuides, SyncData, Theme, Themes, ThemeValue } from '@typings'
+import {
+  DesignTokens,
+  MediaValueDetail,
+  Style,
+  StyleGuides,
+  SyncData,
+  Theme,
+  Themes,
+  ThemeValue,
+} from '@typings'
 import { slugify, sortMap, unique } from '@utils'
 import { unlinkSync, writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
@@ -84,7 +93,7 @@ export class ThemeService {
     return true
   }
 
-  public createValue(theme, token, { media, style, direct }): boolean {
+  public createValue(theme, token, { media, style, direct }: MediaValueDetail): boolean {
     if (!this.themesJson[theme]?.styles) {
       return false
     }
@@ -99,7 +108,12 @@ export class ThemeService {
     return true
   }
 
-  public updateValue(theme, token, media, { media: newMedia, style, direct }): boolean {
+  public updateValue(
+    theme,
+    token,
+    media,
+    { media: newMedia, style, direct }: MediaValueDetail
+  ): boolean {
     const designToken = this.themesJson[theme]?.styles[token]
     if (!designToken || !designToken[media]) {
       return false

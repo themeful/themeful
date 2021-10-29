@@ -1,4 +1,4 @@
-export type SortItem = [string, any]
+export type SortItem = [string, unknown]
 
 export const sortMap = <T>(data: T, sortFN?: (a: SortItem, b: SortItem) => number): T => {
   return Object.entries(data)

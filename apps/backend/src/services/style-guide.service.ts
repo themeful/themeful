@@ -1,6 +1,17 @@
 import { Injectable } from '@nestjs/common'
 import { getProperty, propertyTypes } from '@properties'
-import { Style, StyleGuide, StyleGuideBase, StyleGuides } from '@typings'
+import {
+  ExtendedStyle,
+  FormatedStyleGuide,
+  GroupStyles,
+  Style,
+  StyleGuide,
+  StyleGuideBase,
+  StyleGuides,
+  StyleMap,
+  StylesMap,
+  TypeGroupStyles,
+} from '@typings'
 import { convertCSSLength, slugify, sortMap } from '@utils'
 import { ColorTranslator } from 'colortranslator'
 import { writeFileSync } from 'fs'
@@ -21,7 +32,7 @@ export class StyleGuideService {
     this.generateStyleGuides(this.styleGuidesJson)
   }
 
-  public readFormatted(): any {
+  public readFormatted(): FormatedStyleGuide[] {
     return Object.entries(this.styleGuidesJson).map(([slug, data]: [string, StyleGuide]) => ({
       name: data.name,
       slug,
@@ -30,10 +41,10 @@ export class StyleGuideService {
     }))
   }
 
-  private transformValues(data: { [key: string]: Style }): any[] {
-    const types: any[] = []
+  private transformValues(data: StyleMap): TypeGroupStyles[] {
+    const types: TypeGroupStyles[] = []
     propertyTypes.forEach((propertyType) => {
-      const typeBVs = Object.keys(data).reduce((result: any, key: string) => {
+      const typeBVs = Object.keys(data).reduce((result: StyleMap, key: string) => {
         if (data[key].type === propertyType) {
           result[key] = data[key]
         }
@@ -50,25 +61,20 @@ export class StyleGuideService {
     return types
   }
 
-  private transformGroupValues(data: {
-    [key: string]: Style
-  }): { name: string; styles: Style[] }[] {
+  private transformGroupValues(data: StyleMap): GroupStyles[] {
     const noSortTypes = ['mediaquery', 'size', 'font-size']
-    const groups: { name: string; styles: Style[] }[] = []
-    const groupObj: { [key: string]: Style[] } = Object.keys(data).reduce(
-      (result: { [key: string]: any[] }, key: string) => {
-        const value = data[key] as any
-        const group = value.group
-        value.group = sentenceCase(group)
-        value.slug = key
-        if (!result[group]) {
-          result[group] = []
-        }
-        result[group].push(value)
-        return result
-      },
-      {}
-    )
+    const groups: GroupStyles[] = []
+    const groupObj: StylesMap = Object.keys(data).reduce((result: StylesMap, key: string) => {
+      const value = data[key] as ExtendedStyle
+      const group = value.group
+      value.group = sentenceCase(group)
+      value.slug = key
+      if (!result[group]) {
+        result[group] = []
+      }
+      result[group].push(value)
+      return result
+    }, {})
     Object.keys(groupObj).forEach((group) => {
       groups.push({
         name: sentenceCase(group),

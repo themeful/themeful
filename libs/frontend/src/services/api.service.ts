@@ -2,6 +2,7 @@ import {
   AliasTokens,
   DesignToken,
   DesignTokens,
+  FormatedStyleGuide,
   Style,
   StyleGuideBase,
   StyleGuides,
@@ -105,8 +106,8 @@ export class APIService {
     )
   }
 
-  public getFormattedStyleGuides(): Observable<any> {
-    return http.get<any>('http://localhost:3333/api/style/formatted').pipe(
+  public getFormattedStyleGuides(): Observable<FormatedStyleGuide[]> {
+    return http.get<FormatedStyleGuide[]>('http://localhost:3333/api/style/formatted').pipe(
       tap((data) => {
         // this.styleGuides.next(data)
         console.log(data)

@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
-import { Theme } from '@typings'
-
+import { MediaValueDetail, Theme } from '@typings'
 import { ThemeService } from '../services/theme.service'
 
 @Controller('theme')
@@ -28,7 +27,11 @@ export class ThemeController {
   }
 
   @Post('value/:theme/:token')
-  createValue(@Param('theme') theme: string, @Param('token') token: string, @Body() value: any) {
+  createValue(
+    @Param('theme') theme: string,
+    @Param('token') token: string,
+    @Body() value: MediaValueDetail
+  ) {
     return this.themeService.createValue(theme, token, value)
   }
 
@@ -37,7 +40,7 @@ export class ThemeController {
     @Param('theme') theme: string,
     @Param('token') token: string,
     @Param('media') media: string,
-    @Body() value: any
+    @Body() value: MediaValueDetail
   ) {
     return this.themeService.updateValue(theme, token, media, value)
   }

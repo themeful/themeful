@@ -38,6 +38,10 @@ export interface ValueDetail {
   direct?: DirectValue
 }
 
+export interface MediaValueDetail extends ValueDetail {
+  media: string
+}
+
 export interface DirectValue {
   value: string
   type: string
