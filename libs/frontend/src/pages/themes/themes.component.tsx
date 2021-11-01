@@ -39,6 +39,18 @@ export class ThemesComponent {
   private groups: string[]
   private formData$ = new Subject()
   private styleGuideHeaders: { [styleGuide: string]: { name: string; count: number } }
+  private nav = [
+    { label: 'Add Theme', callback: () => this.openThemeForm() },
+    {
+      label: 'Add Design Token',
+      callback: () => this.openDesignTokenForm(),
+    },
+    {
+      label: 'Rescan Alias Tokens',
+      callback: () => this.rescanAliasTokens(),
+      position: 'right',
+    },
+  ]
 
   private sub?: Subscription
 
@@ -401,21 +413,13 @@ export class ThemesComponent {
   public render(): HTMLTfThemesElement {
     return (
       <Host>
-        <nav>
-          <tf-button {...{ onClick: () => this.openThemeForm(), title: 'add theme' }}>
-            Add Theme
-          </tf-button>
-          <tf-button {...{ onClick: () => this.openDesignTokenForm(), title: 'add design token' }}>
-            Add Design Token
-          </tf-button>
-          <tf-button {...{ onClick: () => this.rescanAliasTokens(), title: 'rescan alias tokens' }}>
-            Rescan Alias Tokens
-          </tf-button>
-        </nav>
-        <table class="design-tokens">
-          {this.themeNames && this.renderHeader()}
-          {this.rows && this.rows.map((row) => this.renderDesignTokenRow(row))}
-        </table>
+        <tf-navigation items={this.nav} size="small" />
+        <div class="design-tokens__wrapper">
+          <table class="design-tokens">
+            {this.themeNames && this.renderHeader()}
+            {this.rows && this.rows.map((row) => this.renderDesignTokenRow(row))}
+          </table>
+        </div>
         <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
       </Host>
     )

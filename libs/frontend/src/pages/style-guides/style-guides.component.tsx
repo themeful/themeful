@@ -80,6 +80,15 @@ export class StyleGuidesComponent {
             Add Style Guide
           </tf-button>
         </nav>
+        <tf-navigation
+          items={[
+            {
+              label: 'Add Style Guide',
+              callback: this.openStyleGuideForm,
+            },
+          ]}
+          size="small"
+        />
         <main class="style-guide__wrapper">
           {this.styleGuides &&
             this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
