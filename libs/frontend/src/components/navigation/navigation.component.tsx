@@ -51,6 +51,7 @@ export class NavigationComponent {
         <div class="nav__left button-group">
           {this.items.filter((item) => item.position !== 'right').map(this.renderItem)}
         </div>
+        <div class="nav__spacer"></div>
         <div class="nav__right button-group">
           {this.items.filter((item) => item.position === 'right').map(this.renderItem)}
         </div>

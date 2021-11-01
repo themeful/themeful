@@ -25,19 +25,19 @@
       background-color: rgba(200, 200, 200, 0.1);
     }
 
-    &:first-child {
-      position: sticky;
-      top: 0;
-    }
+    // &:first-child {
+    //   position: sticky;
+    //   top: 0;
+    // }
 
     & > * {
       vertical-align: top;
       padding: 12px;
 
-      &:first-child {
-        position: sticky;
-        left: 0;
-      }
+      // &:first-child {
+      //   position: sticky;
+      //   left: 0;
+      // }
     }
 
     &--inline {

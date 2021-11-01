@@ -12,5 +12,9 @@
     &__right {
       display: flex;
     }
+    &__spacer {
+      flex-grow: 1;
+      background-color: rgba(200, 200, 200, 0.5);
+    }
   }
 }
