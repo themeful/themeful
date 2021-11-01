@@ -2,7 +2,7 @@ name: 'Deps: NRWL Update'
 
 on:
   schedule:
-    - cron: '15 3 * * *'
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 jobs:
