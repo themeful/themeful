@@ -24,7 +24,7 @@ jobs:
         run: yarn
 
       - name: Run eslint
-        run: yarn lint
+        run: yarn lint:all
 
       - name: Run prettier format check
         run: yarn format:check
