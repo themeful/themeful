@@ -37,6 +37,10 @@ body {
     grid-auto-rows: minmax(100px, max-content);
     gap: 1rem;
 
+    &.content--grid-single {
+      grid-template-columns: minmax(min-content, 550px);
+    }
+
     > div {
       padding: 1rem;
 

@@ -1,3 +1,16 @@
 :host {
-  display: inline-block;
+  display: block;
+  width: 100%;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+
+  .nav {
+    &__left,
+    &__right {
+      display: flex;
+    }
+  }
 }

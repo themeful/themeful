@@ -1,6 +1,17 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+
 .design-tokens {
   font: var(--tf-default-font);
   border-collapse: collapse;
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
 
   &__row {
     font-size: 0.75rem;
@@ -14,9 +25,19 @@
       background-color: rgba(200, 200, 200, 0.1);
     }
 
+    &:first-child {
+      position: sticky;
+      top: 0;
+    }
+
     & > * {
       vertical-align: top;
       padding: 12px;
+
+      &:first-child {
+        position: sticky;
+        left: 0;
+      }
     }
 
     &--inline {
