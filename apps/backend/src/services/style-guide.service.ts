@@ -258,7 +258,7 @@ export class StyleGuideService {
 
     Object.keys(section).forEach((key: string) => {
       if (!specialeSortTypes.includes(section[key].type)) {
-        newSection[key] = section[key]
+        newSection[key] = section[key] as Style
       }
     })
     newSection = sortMap(newSection, ([aKey, aValue], [bKey, bValue]) => {
@@ -273,7 +273,7 @@ export class StyleGuideService {
 
     mediaqueries.forEach((mediaquery) => {
       const key = Object.keys(section).filter((key) => section[key].value === mediaquery)[0]
-      newSection[key] = section[key]
+      newSection[key] = section[key] as Style
     })
 
     this.styleGuidesJson[styleGuide].styles = newSection
