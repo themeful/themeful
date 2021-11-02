@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core'
+import { Component, h, State } from '@stencil/core'
 // import { APIService } from '../services/'
 
 @Component({
@@ -9,18 +9,51 @@ import { Component, h } from '@stencil/core'
 export class ThemefulMicrofrontend {
   // private apiService: APIService
 
+  @State() active = 'stylequides'
+
+  private nav = [
+    { label: 'Style Guides', slug: 'stylequides', selectable: true },
+    { label: 'Themes', slug: 'themes', selectable: true },
+  ]
+
   constructor() {
     // this.apiService = APIService.Instance
   }
 
-  private getText(): string {
-    // this.apiService.getThemes().subscribe((data) => {
-    //   console.log(data)
-    // })
-    return 'done'
+  // private getText(): string {
+  //   // this.apiService.getThemes().subscribe((data) => {
+  //   //   console.log(data)
+  //   // })
+  //   return 'done'
+  // }
+
+  private navChange = (item) => {
+    this.active = item
   }
 
+  private renderContent = (): HTMLElement => {
+    console.log(this.active)
+    if (this.active === 'stylequides') {
+      return this.renderStyleGuides()
+    }
+    return this.renderThemes()
+  }
+  private renderStyleGuides = (): HTMLElement => <tf-style-guides />
+
+  private renderThemes = (): HTMLElement => <tf-themes />
+
   public render(): HTMLThemefulMicrofrontendElement {
-    return <div>Hello, World! {this.getText()}</div>
+    return (
+      <div>
+        <tf-navigation
+          {...{
+            items: this.nav,
+            active: this.active,
+            onItemClick: (event) => this.navChange(event.detail),
+          }}
+        />
+        {this.renderContent()}
+      </div>
+    )
   }
 }

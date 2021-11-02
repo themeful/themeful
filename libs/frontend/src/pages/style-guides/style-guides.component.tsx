@@ -75,11 +75,6 @@ export class StyleGuidesComponent {
   public render(): HTMLTfStyleGuidesElement {
     return (
       <Host>
-        <nav>
-          <tf-button {...{ onClick: () => this.openStyleGuideForm(), title: 'add style guide' }}>
-            Add Style Guide
-          </tf-button>
-        </nav>
         <tf-navigation
           items={[
             {
