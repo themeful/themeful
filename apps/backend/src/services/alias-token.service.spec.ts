@@ -49,7 +49,7 @@ describe('AliasTokenService', () => {
 
       withOneMore[newAliasToken.token] = clonedAliasToken
 
-      expect(service.create(clone(newAliasToken))).toEqual(clonedAliasToken)
+      expect(service.create(clone(newAliasToken))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
         './libs/components/design-system/aliasTokens.json',
         withOneMore,
@@ -63,11 +63,11 @@ describe('AliasTokenService', () => {
           ...clone(aliasTokens).atTestButtonFontSize,
           token: 'atTestButtonFontSize',
         })
-      ).toEqual(null)
+      ).toEqual(false)
     })
 
     it('should not create one with extern false', () => {
-      expect(service.create({ ...clone(newAliasToken), extern: false })).toEqual(null)
+      expect(service.create({ ...clone(newAliasToken), extern: false })).toEqual(false)
     })
   })
 
@@ -80,9 +80,7 @@ describe('AliasTokenService', () => {
       delete withOneUpdated['atTestBaseFontColor']
       withOneUpdated[updatedAliasToken.token] = clonedAliasToken
 
-      expect(service.update('atTestBaseFontColor', clone(updatedAliasToken))).toEqual(
-        clonedAliasToken
-      )
+      expect(service.update('atTestBaseFontColor', clone(updatedAliasToken))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
         './libs/components/design-system/aliasTokens.json',
         withOneUpdated,
@@ -91,7 +89,7 @@ describe('AliasTokenService', () => {
     })
 
     it('should not update one', () => {
-      expect(service.update('atTestWrongButtonBackground', clone(updatedAliasToken))).toEqual(null)
+      expect(service.update('atTestWrongButtonBackground', clone(updatedAliasToken))).toEqual(false)
     })
 
     it('should not update to existing one', () => {
@@ -99,11 +97,11 @@ describe('AliasTokenService', () => {
         ...clone(aliasTokens).atTestButtonFontColor,
         token: 'atTestButtonFontColor',
       }
-      expect(service.update('atTestBaseFontColor', existingOne)).toEqual(null)
+      expect(service.update('atTestBaseFontColor', existingOne)).toEqual(false)
     })
 
     it('should not update intern', () => {
-      expect(service.update('atTestButtonBackground', clone(updatedAliasToken))).toEqual(null)
+      expect(service.update('atTestButtonBackground', clone(updatedAliasToken))).toEqual(false)
     })
   })
 
@@ -136,16 +134,16 @@ describe('AliasTokenService', () => {
       const clonedAliasToken = clone(newAliasToken)
       delete clonedAliasToken.token
       clonedAliasToken.crawled = false
-      expect(service.create(clone(newAliasToken))).toEqual(clonedAliasToken)
+      expect(service.create(clone(newAliasToken))).toEqual(true)
 
       expect(syncService.aliasTokens).toHaveBeenCalledWith({
         action: 'create',
         primary: 'atTestTabFontWeight',
         values: [
-          'atTestButtonBackground',
-          'atTestButtonFontSize',
-          'atTestButtonFontColor',
           'atTestBaseFontColor',
+          'atTestButtonBackground',
+          'atTestButtonFontColor',
+          'atTestButtonFontSize',
           'atTestTabFontWeight',
         ],
       })
@@ -155,9 +153,7 @@ describe('AliasTokenService', () => {
       jest.spyOn(syncService, 'aliasTokens').mockImplementation()
       const clonedAliasToken = clone(updatedAliasToken)
       delete clonedAliasToken.token
-      expect(service.update('atTestBaseFontColor', clone(updatedAliasToken))).toEqual(
-        clonedAliasToken
-      )
+      expect(service.update('atTestBaseFontColor', clone(updatedAliasToken))).toEqual(true)
 
       expect(syncService.aliasTokens).toHaveBeenCalledWith({
         action: 'update',
@@ -165,8 +161,8 @@ describe('AliasTokenService', () => {
         secondary: 'atTestTabFontWeight',
         values: [
           'atTestButtonBackground',
-          'atTestButtonFontSize',
           'atTestButtonFontColor',
+          'atTestButtonFontSize',
           'atTestTabFontWeight',
         ],
       })
@@ -178,7 +174,7 @@ describe('AliasTokenService', () => {
       expect(syncService.aliasTokens).toHaveBeenCalledWith({
         action: 'delete',
         primary: 'atTestBaseFontColor',
-        values: ['atTestButtonBackground', 'atTestButtonFontSize', 'atTestButtonFontColor'],
+        values: ['atTestButtonBackground', 'atTestButtonFontColor', 'atTestButtonFontSize'],
       })
     })
   })

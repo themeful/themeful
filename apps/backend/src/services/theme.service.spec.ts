@@ -163,21 +163,21 @@ describe('ThemeService', () => {
 
   describe('sync', () => {
     it('should sync create clients', () => {
-      jest.spyOn(syncService, 'clients').mockImplementation()
+      jest.spyOn(syncService, 'styleGuideBases').mockImplementation()
       expect(service.create(clone(newTheme))).toEqual(newTheme)
 
-      expect(syncService.clients).toHaveBeenCalledWith({
+      expect(syncService.styleGuideBases).toHaveBeenCalledWith({
         action: 'create',
         primary: 'test3',
         values: ['test1', 'test2', 'test3'],
       })
     })
 
-    it('should sync update clients', () => {
-      jest.spyOn(syncService, 'clients').mockImplementation()
+    it('should sync update styleGuideBases', () => {
+      jest.spyOn(syncService, 'styleGuideBases').mockImplementation()
       expect(service.update('test2_dark', clone(updatedClient))).toEqual(updatedClient)
 
-      expect(syncService.clients).toHaveBeenCalledWith({
+      expect(syncService.styleGuideBases).toHaveBeenCalledWith({
         action: 'update',
         primary: 'test2',
         secondary: 'test3',
@@ -186,10 +186,10 @@ describe('ThemeService', () => {
     })
 
     it('should sync after delete 1 theme of a client', () => {
-      jest.spyOn(syncService, 'clients').mockImplementation()
+      jest.spyOn(syncService, 'styleGuideBases').mockImplementation()
       expect(service.delete('test2_dark')).toEqual(true)
 
-      expect(syncService.clients).toHaveBeenCalledWith({
+      expect(syncService.styleGuideBases).toHaveBeenCalledWith({
         action: 'sync',
         primary: 'test2',
         values: ['test1', 'test2'],
@@ -200,18 +200,18 @@ describe('ThemeService', () => {
       const onlyTest2 = clone(themes)
       delete onlyTest2['test1_light']
       delete onlyTest2['test1_dark']
-      jest.spyOn(syncService, 'clients').mockImplementation()
+      jest.spyOn(syncService, 'styleGuideBases').mockImplementation()
       expect(service.delete('test1_light')).toEqual(true)
       expect(service.delete('test1_dark')).toEqual(true)
       expect(service.read()).toEqual(onlyTest2)
 
-      expect(syncService.clients).toHaveBeenCalledWith({
+      expect(syncService.styleGuideBases).toHaveBeenCalledWith({
         action: 'sync',
         primary: 'test1',
         values: ['test1', 'test2'],
       })
 
-      expect(syncService.clients).toHaveBeenLastCalledWith({
+      expect(syncService.styleGuideBases).toHaveBeenLastCalledWith({
         action: 'delete',
         primary: 'test1',
         values: ['test2'],
@@ -320,7 +320,6 @@ const themes = {
   test1_light: {
     name: 'Light',
     slug: 'light',
-    client: 'test1',
     values: {
       dtActionBG: 'test1_brand_secondary',
       dtFontColorPrimary: 'global_base_black',
@@ -330,7 +329,6 @@ const themes = {
   test1_dark: {
     name: 'Dark',
     slug: 'dark',
-    client: 'test1',
     values: {
       dtActionBG: 'test1_brand_secondary',
       dtFontColorPrimary: 'global_base_white',
@@ -340,7 +338,6 @@ const themes = {
   test2_light: {
     name: 'Light',
     slug: 'light',
-    client: 'test2',
     values: {
       dtActionBG: 'test2_brand_primary',
       dtFontColorPrimary: 'global_base_black',
@@ -350,7 +347,6 @@ const themes = {
   test2_dark: {
     name: 'Dark',
     slug: 'dark',
-    client: 'test2',
     values: {
       dtActionBG: 'test2_brand_secondary',
       dtFontColorPrimary: 'global_base_white',

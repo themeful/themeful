@@ -1,1 +1,1 @@
-export * from './lib/propery.map'
+export * from './lib'

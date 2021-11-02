@@ -10,10 +10,12 @@ describe('ConfigService', () => {
       providers: [ConfigService],
     }).compile()
 
-    config.generatedPath = 'test/generatedPath'
-    config.dataPath = 'test/dataPath'
-    config.themesPath = 'test/themesPath'
-    config.libPath = 'test/libPath'
+    config.paths = {
+      generatedPath: 'test/generatedPath',
+      dataPath: 'test/dataPath',
+      themesPath: 'test/themesPath',
+      libPath: 'test/libPath',
+    }
 
     service = module.get<ConfigService>(ConfigService)
   })
