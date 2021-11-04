@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing'
-
 import { DesignTokenService } from '../services/design-token.service'
 import { DesignTokenController } from './design-token.controller'
 

@@ -89,13 +89,13 @@ export class StyleGuideService {
     return groups.sort((a, b) => (a.name > b.name ? 1 : -1))
   }
 
-  public create(style: Style, styleGuide = 'global'): Style | null {
+  public create(style: Style, styleGuide = 'global'): boolean {
     const key = slugify([style.group, style.name])
 
     style = this.unifyStyle(style)
 
     if (!this.styleGuidesJson[styleGuide] || this.styleGuidesJson[styleGuide].styles[key]) {
-      return null
+      return false
     }
     this.styleGuidesJson[styleGuide].styles[key] = style
 
@@ -108,14 +108,14 @@ export class StyleGuideService {
       primary: slugify([styleGuide, style.group, style.name]),
     })
 
-    return style
+    return true
   }
 
   public read(): StyleGuides {
     return this.styleGuidesJson
   }
 
-  public update(name: string, style: Style, styleGuide = 'global'): Style | null {
+  public update(name: string, style: Style, styleGuide = 'global'): boolean {
     const key = slugify([style.group, style.name])
 
     style = this.unifyStyle(style)
@@ -124,7 +124,7 @@ export class StyleGuideService {
       !this.styleGuidesJson[styleGuide]?.styles[name] ||
       (key !== name && this.styleGuidesJson[styleGuide].styles[key])
     ) {
-      return null
+      return false
     }
     delete this.styleGuidesJson[styleGuide].styles[name]
     this.styleGuidesJson[styleGuide].styles[key] = style
@@ -139,7 +139,7 @@ export class StyleGuideService {
       secondary: slugify([styleGuide, style.group, style.name]),
     })
 
-    return style
+    return true
   }
 
   public delete(name: string, styleGuide = 'global'): boolean {

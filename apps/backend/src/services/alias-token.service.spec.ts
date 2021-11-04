@@ -51,7 +51,7 @@ describe('AliasTokenService', () => {
 
       expect(service.create(clone(newAliasToken))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/aliasTokens.json',
+        './sample/generated/aliasTokens.json',
         withOneMore,
         { spaces: 2 }
       )
@@ -82,7 +82,7 @@ describe('AliasTokenService', () => {
 
       expect(service.update('atTestBaseFontColor', clone(updatedAliasToken))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/aliasTokens.json',
+        './sample/generated/aliasTokens.json',
         withOneUpdated,
         { spaces: 2 }
       )
@@ -113,7 +113,7 @@ describe('AliasTokenService', () => {
 
       expect(service.delete('atTestBaseFontColor')).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/aliasTokens.json',
+        './sample/generated/aliasTokens.json',
         withOneLess,
         { spaces: 2 }
       )
