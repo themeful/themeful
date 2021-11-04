@@ -11,7 +11,7 @@ export interface DesignToken {
   description: string
   properties: string[]
   aliasTokens: string[]
-  short: string
+  short?: string
 }
 
 export interface DesignTokenAPI extends DesignToken {

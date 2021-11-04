@@ -89,13 +89,13 @@ export class StyleGuideService {
     return groups.sort((a, b) => (a.name > b.name ? 1 : -1))
   }
 
-  public create(style: Style, styleGuide = 'global'): Style | null {
+  public create(style: Style, styleGuide = 'global'): boolean {
     const key = slugify([style.group, style.name])
 
     style = this.unifyStyle(style)
 
     if (!this.styleGuidesJson[styleGuide] || this.styleGuidesJson[styleGuide].styles[key]) {
-      return null
+      return false
     }
     this.styleGuidesJson[styleGuide].styles[key] = style
 
@@ -108,14 +108,14 @@ export class StyleGuideService {
       primary: slugify([styleGuide, style.group, style.name]),
     })
 
-    return style
+    return true
   }
 
   public read(): StyleGuides {
     return this.styleGuidesJson
   }
 
-  public update(name: string, style: Style, styleGuide = 'global'): Style | null {
+  public update(name: string, style: Style, styleGuide = 'global'): boolean {
     const key = slugify([style.group, style.name])
 
     style = this.unifyStyle(style)
@@ -124,7 +124,7 @@ export class StyleGuideService {
       !this.styleGuidesJson[styleGuide]?.styles[name] ||
       (key !== name && this.styleGuidesJson[styleGuide].styles[key])
     ) {
-      return null
+      return false
     }
     delete this.styleGuidesJson[styleGuide].styles[name]
     this.styleGuidesJson[styleGuide].styles[key] = style
@@ -139,7 +139,7 @@ export class StyleGuideService {
       secondary: slugify([styleGuide, style.group, style.name]),
     })
 
-    return style
+    return true
   }
 
   public delete(name: string, styleGuide = 'global'): boolean {
@@ -247,7 +247,7 @@ export class StyleGuideService {
     const specialeSortTypes = ['mediaquery']
     const section = this.styleGuidesJson[styleGuide].styles
     const convert = convertCSSLength(`${this.styleGuidesJson[styleGuide].baseFontSize}px`)
-    let newSection: { [key: string]: Style } = {}
+    let newSection: StyleMap = {}
     let mediaqueries = Object.values(section)
       .filter((bv: Style) => bv.type === 'mediaquery')
       .reduce((result: string[], item: Style) => {
@@ -258,10 +258,10 @@ export class StyleGuideService {
 
     Object.keys(section).forEach((key: string) => {
       if (!specialeSortTypes.includes(section[key].type)) {
-        newSection[key] = section[key] as Style
+        newSection[key] = section[key] as ExtendedStyle
       }
     })
-    newSection = sortMap(newSection, ([aKey, aValue], [bKey, bValue]) => {
+    newSection = sortMap<ExtendedStyle>(newSection, ([aKey, aValue], [bKey, bValue]) => {
       if (aValue.type === bValue.type) {
         if (['size', 'font-size'].includes(aValue.type)) {
           return parseFloat(convert(aValue.value)) > parseFloat(convert(bValue.value)) ? 1 : -1
@@ -273,7 +273,7 @@ export class StyleGuideService {
 
     mediaqueries.forEach((mediaquery) => {
       const key = Object.keys(section).filter((key) => section[key].value === mediaquery)[0]
-      newSection[key] = section[key] as Style
+      newSection[key] = section[key]
     })
 
     this.styleGuidesJson[styleGuide].styles = newSection

@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
+import { Style, StyleGuides } from '@typings'
 import { clone } from '@utils'
 import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
@@ -40,48 +41,48 @@ describe('StyleGuideService', () => {
   describe('create', () => {
     it('should create one', () => {
       const clonedBaseValue = clone(newBaseValue)
-      clonedBaseValue.value = '#eeeeee'
+      clonedBaseValue.value = '#2be053'
 
       const withOneMore = clone(styleGuides)
 
-      withOneMore.global['testNew_white'] = clonedBaseValue
+      withOneMore.global.styles['base_primary'] = clonedBaseValue
 
-      expect(service.create(clone(newBaseValue))).toEqual(clonedBaseValue)
+      expect(service.create(clone(newBaseValue))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/styleGuides.json',
+        './sample/generated/styleGuides.json',
         withOneMore,
         { spaces: 2 }
       )
     })
 
-    it('should create one for client', () => {
+    it('should create one for styleGuide', () => {
       const clonedBaseValue = clone(newBaseValue)
-      clonedBaseValue.value = '#eeeeee'
+      clonedBaseValue.value = '#2be053'
 
       const withOneMore = clone(styleGuides)
 
-      withOneMore.clients.testClient1.values[`${newBaseValue.group}_white`] = clonedBaseValue
+      withOneMore.styleGuide1.styles[`${newBaseValue.group}_primary`] = clonedBaseValue
 
-      expect(service.create(clone(newBaseValue), 'testClient1')).toEqual(clonedBaseValue)
+      expect(service.create(clone(newBaseValue), 'styleGuide1')).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/styleGuides.json',
+        './sample/generated/styleGuides.json',
         withOneMore,
         { spaces: 2 }
       )
     })
 
     it('should not create if value already exist', () => {
-      expect(service.create(clone(styleGuides).global.test_white)).toEqual(null)
+      expect(service.create(clone(styleGuides).global.styles.base_light as Style)).toEqual(false)
     })
 
-    it('should not create if client does not exist', () => {
-      expect(service.create(clone(newBaseValue), 'test3')).toEqual(null)
+    it('should not create if styleGuide does not exist', () => {
+      expect(service.create(clone(newBaseValue), 'styleGuide3')).toEqual(false)
     })
 
-    it('should not create if client value exist for client', () => {
+    it('should not create if styleGuide value exist for styleGuide', () => {
       expect(
-        service.create(clone(styleGuides).clients.testClient1.values.brandTest_primary, 'test1')
-      ).toEqual(null)
+        service.create(clone(styleGuides).styleGuide1.styles.action_primary as Style, 'styleGuide1')
+      ).toEqual(false)
     })
   })
 
@@ -92,56 +93,54 @@ describe('StyleGuideService', () => {
 
       const withOneUpdated = clone(styleGuides)
 
-      delete withOneUpdated.global['test_black']
-      withOneUpdated.global['testUpdated_white'] = clonedBaseValue
+      delete withOneUpdated.global.styles['base_black']
+      withOneUpdated.global.styles['testUpdated_white'] = clonedBaseValue
 
-      expect(service.update('test_black', clone(updatedBaseValue))).toEqual(clonedBaseValue)
+      expect(service.update('base_black', clone(updatedBaseValue))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/styleGuides.json',
+        './sample/generated/styleGuides.json',
         withOneUpdated,
         { spaces: 2 }
       )
     })
 
-    it('should update one tenent value', () => {
+    it('should update one styleGuide value', () => {
       const clonedBaseValue = clone(updatedBaseValue)
       clonedBaseValue.value = '#dddddd'
 
       const withOneUpdated = clone(styleGuides)
 
-      delete withOneUpdated.clients.testClient1.values['actionTest_primary']
-      withOneUpdated.clients.testClient1.values['testUpdated_white'] = clonedBaseValue
+      delete withOneUpdated.styleGuide1.styles['action_primary']
+      withOneUpdated.styleGuide1.styles['testUpdated_white'] = clonedBaseValue
 
-      expect(service.update('actionTest_primary', clone(updatedBaseValue), 'testClient1')).toEqual(
-        clonedBaseValue
-      )
+      expect(service.update('action_primary', clone(updatedBaseValue), 'styleGuide1')).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/styleGuides.json',
+        './sample/generated/styleGuides.json',
         withOneUpdated,
         { spaces: 2 }
       )
     })
 
     it('should not update one global value', () => {
-      expect(service.update('test_red', updatedBaseValue)).toEqual(null)
+      expect(service.update('test_red', updatedBaseValue)).toEqual(false)
     })
 
-    it('should not update a tenent value', () => {
-      expect(service.update('brandTest_teriary', updatedBaseValue, 'testClient1')).toEqual(null)
+    it('should not update a styleGuide value', () => {
+      expect(service.update('brandTest_teriary', updatedBaseValue, 'styleGuide1')).toEqual(false)
     })
 
-    it('should can not update with wrong tenent', () => {
-      expect(service.update('brandTest_teriary', updatedBaseValue, 'test3')).toEqual(null)
+    it('should can not update with wrong styleGuide', () => {
+      expect(service.update('brandTest_teriary', updatedBaseValue, 'styleGuide3')).toEqual(false)
     })
 
     it('should can not update with wrong value key', () => {
       expect(
         service.update(
           'brandTest_primary',
-          clone(styleGuides).clients.testClient1.values.fontSizeTest_primary,
-          'test1'
+          clone(styleGuides).styleGuide1.styles.action_secondary as Style,
+          'styleGuide1'
         )
-      ).toEqual(null)
+      ).toEqual(false)
     })
   })
 
@@ -149,11 +148,11 @@ describe('StyleGuideService', () => {
     it('should delete a global value', () => {
       const withOneLess = clone(styleGuides)
 
-      delete withOneLess.global['test_black']
+      delete withOneLess.global.styles['base_black']
 
-      expect(service.delete('test_black')).toEqual(true)
+      expect(service.delete('base_black')).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/styleGuides.json',
+        './sample/generated/styleGuides.json',
         withOneLess,
         { spaces: 2 }
       )
@@ -163,49 +162,49 @@ describe('StyleGuideService', () => {
       expect(service.delete('test_red')).toEqual(false)
     })
 
-    it('should delete a client value', () => {
+    it('should delete a styleGuide value', () => {
       const withOneLess = clone(styleGuides)
 
-      delete withOneLess.clients.testClient1.values['brandTest_secondary']
+      delete withOneLess.styleGuide1.styles['action_primary']
 
-      expect(service.delete('brandTest_secondary', 'testClient1')).toEqual(true)
+      expect(service.delete('action_primary', 'styleGuide1')).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/styleGuides.json',
+        './sample/generated/styleGuides.json',
         withOneLess,
         { spaces: 2 }
       )
     })
 
-    it('should not delete a client value with wrong client', () => {
-      expect(service.delete('brandTest_primary', 'test3')).toEqual(false)
+    it('should not delete a styleGuide value with wrong styleGuide', () => {
+      expect(service.delete('brandTest_primary', 'styleGuide3')).toEqual(false)
     })
 
-    it('should not delete a client value with wrong key', () => {
-      expect(service.delete('test_red', 'test1')).toEqual(false)
+    it('should not delete a styleGuide value with wrong key', () => {
+      expect(service.delete('test_red', 'styleGuide1')).toEqual(false)
     })
   })
 
   describe('generated fs', () => {
     it('should generate scss fs', () => {
       jest.spyOn(fs, 'writeFileSync').mockImplementation()
-      const withOneLess = clone(styleGuides)
 
-      delete withOneLess['test_white']
-
-      expect(service.delete('test_white')).toEqual(true)
+      expect(service.delete('base_light')).toEqual(true)
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
-        './libs/components/src/assets/generated/styleGuides.scss',
-        `$global_test_white: #ffffff;
-$global_test_black: #333333;
-$testClient1_brandTest_primary: #ff0000;
-$testClient1_brandTest_secondary: #ee3333;
-$testClient1_actionTest_primary: #33ee33;
-$testClient1_fontSizeTest_primary: 0.75rem;
-$testClient2_brandTest_primary: #0000ff;
-$testClient2_brandTest_secondary: #3333ee;
-$testClient2_dangerTest_primary: #ff5555;
-$testClient2_fontSizeTest_normal: 0.7rem;
+        './sample/generated/styleGuides.scss',
+        `$global_base_black: #333333;
+$global_base_light: #ffffff;
+$styleGuide1_action_primary: #31ed31;
+$styleGuide1_action_secondary: #2ec22e;
+$styleGuide1_action_tertiary: #1e961e;
+$styleGuide2_action_primary: #ff5555;
+$styleGuide2_action_secondary: #d22828;
+$styleGuide3_base_primary: #2be053;
+@mixin global_mediaQuery_aboveSmallMobile {
+  @media screen and (min-width: 321px) {
+    @content;
+  }
+}
 `
       )
     })
@@ -213,136 +212,128 @@ $testClient2_fontSizeTest_normal: 0.7rem;
 
   describe('sync', () => {
     it('should sync create styleGuides', () => {
-      const clonedBaseValue = clone(newBaseValue)
-      clonedBaseValue.value = '#eeeeee'
-
       jest.spyOn(syncService, 'styleGuides').mockImplementation()
-      expect(service.create(clone(newBaseValue))).toEqual(clonedBaseValue)
+      expect(service.create(clone(newBaseValue))).toEqual(true)
 
       expect(syncService.styleGuides).toHaveBeenCalledWith({
         action: 'create',
-        primary: 'global_testNew_white',
+        primary: 'global_base_primary',
         values: [
-          'global_test_white',
-          'global_test_black',
-          'global_testNew_white',
-          'testClient1_brandTest_primary',
-          'testClient1_brandTest_secondary',
-          'testClient1_actionTest_primary',
-          'testClient1_fontSizeTest_primary',
-          'testClient2_brandTest_primary',
-          'testClient2_brandTest_secondary',
-          'testClient2_dangerTest_primary',
-          'testClient2_fontSizeTest_normal',
+          'global_base_black',
+          'global_base_light',
+          'global_base_primary',
+          'global_mediaQuery_aboveSmallMobile',
+          'styleGuide1_action_primary',
+          'styleGuide1_action_secondary',
+          'styleGuide1_action_tertiary',
+          'styleGuide2_action_primary',
+          'styleGuide2_action_secondary',
+          'styleGuide3_base_primary',
         ],
       })
     })
 
     it('should sync update styleGuides', () => {
       jest.spyOn(syncService, 'styleGuides').mockImplementation()
-      expect(service.update('brandTest_primary', clone(updatedBaseValue), 'testClient1')).toEqual(
-        updatedBaseValue
-      )
+      expect(service.update('action_primary', clone(updatedBaseValue), 'styleGuide1')).toEqual(true)
 
       expect(syncService.styleGuides).toHaveBeenCalledWith({
         action: 'update',
-        primary: 'testClient1_brandTest_primary',
-        secondary: 'testClient1_testUpdated_white',
+        primary: 'styleGuide1_action_primary',
+        secondary: 'styleGuide1_testUpdated_white',
         values: [
-          'global_test_white',
-          'global_test_black',
-          'testClient1_brandTest_secondary',
-          'testClient1_actionTest_primary',
-          'testClient1_fontSizeTest_primary',
-          'testClient1_testUpdated_white',
-          'testClient2_brandTest_primary',
-          'testClient2_brandTest_secondary',
-          'testClient2_dangerTest_primary',
-          'testClient2_fontSizeTest_normal',
+          'global_base_black',
+          'global_base_light',
+          'global_mediaQuery_aboveSmallMobile',
+          'styleGuide1_action_secondary',
+          'styleGuide1_action_tertiary',
+          'styleGuide1_testUpdated_white',
+          'styleGuide2_action_primary',
+          'styleGuide2_action_secondary',
+          'styleGuide3_base_primary',
         ],
       })
     })
     it('should sync delete styleGuides', () => {
       jest.spyOn(syncService, 'styleGuides').mockImplementation()
-      expect(service.delete('actionTest_primary', 'testClient1')).toEqual(true)
+      expect(service.delete('action_secondary', 'styleGuide1')).toEqual(true)
 
       expect(syncService.styleGuides).toHaveBeenCalledWith({
         action: 'delete',
-        primary: 'testClient1_actionTest_primary',
+        primary: 'styleGuide1_action_secondary',
         values: [
-          'global_test_white',
-          'global_test_black',
-          'testClient1_brandTest_primary',
-          'testClient1_brandTest_secondary',
-          'testClient1_fontSizeTest_primary',
-          'testClient2_brandTest_primary',
-          'testClient2_brandTest_secondary',
-          'testClient2_dangerTest_primary',
-          'testClient2_fontSizeTest_normal',
+          'global_base_black',
+          'global_base_light',
+          'global_mediaQuery_aboveSmallMobile',
+          'styleGuide1_action_primary',
+          'styleGuide1_action_tertiary',
+          'styleGuide2_action_primary',
+          'styleGuide2_action_secondary',
+          'styleGuide3_base_primary',
         ],
       })
     })
   })
 
   // describe('get changes from sync', () => {
-  //   it('should create a client', () => {
+  //   it('should create a styleGuide', () => {
   //     const withNewClient = clone(styleGuides)
 
-  //     withNewClient.clients['test3'] = {
-  //       name: 'test3',
-  //       client: 'test3',
+  //     withNewClient['styleGuide3'] = {
+  //       name: 'styleGuide3',
+  //       styleGuide: 'styleGuide3',
   //       values: {},
   //     }
 
-  //     syncService.clients({
+  //     syncService({
   //       action: 'create',
-  //       primary: 'test3',
-  //       values: ['test1', 'test2', 'test3'],
+  //       primary: 'styleGuide3',
+  //       values: ['styleGuide1', 'styleGuide2', 'styleGuide3'],
   //     })
   //     expect(service.read()).toEqual(withNewClient)
   //   })
 
-  //   it('should update a client', () => {
+  //   it('should update a styleGuide', () => {
   //     const withUpdatedClient = clone(styleGuides)
 
-  //     withUpdatedClient.clients['test3'] = withUpdatedClient.clients.test1
-  //     withUpdatedClient.clients['test3'].name = 'test3'
+  //     withUpdatedClient['styleGuide3'] = withUpdatedClient.styleGuide1
+  //     withUpdatedClient['styleGuide3'].name = 'styleGuide3'
 
-  //     delete withUpdatedClient.clients.test1
+  //     delete withUpdatedClient.styleGuide1
 
-  //     syncService.clients({
+  //     syncService({
   //       action: 'update',
-  //       primary: 'test1',
-  //       secondary: 'test3',
-  //       values: ['test2', 'test3'],
+  //       primary: 'styleGuide1',
+  //       secondary: 'styleGuide3',
+  //       values: ['styleGuide2', 'styleGuide3'],
   //     })
   //     expect(service.read()).toEqual(withUpdatedClient)
   //   })
 
-  //   it('should update/copy a client', () => {
+  //   it('should update/copy a styleGuide', () => {
   //     const withUpdatedClient = clone(styleGuides)
 
-  //     withUpdatedClient.clients['test3'] = withUpdatedClient.clients.test1
-  //     withUpdatedClient.clients['test3'].name = 'test3'
+  //     withUpdatedClient['styleGuide3'] = withUpdatedClient.styleGuide1
+  //     withUpdatedClient['styleGuide3'].name = 'styleGuide3'
 
-  //     syncService.clients({
+  //     syncService({
   //       action: 'update',
-  //       primary: 'test1',
-  //       secondary: 'test3',
-  //       values: ['test1', 'test2', 'test3'],
+  //       primary: 'styleGuide1',
+  //       secondary: 'styleGuide3',
+  //       values: ['styleGuide1', 'styleGuide2', 'styleGuide3'],
   //     })
   //     expect(service.read()).toEqual(withUpdatedClient)
   //   })
 
-  //   it('should delete a client', () => {
+  //   it('should delete a styleGuide', () => {
   //     const deletedClient = clone(styleGuides)
 
-  //     delete deletedClient.clients.test1
+  //     delete deletedClient.styleGuide1
 
-  //     syncService.clients({
+  //     syncService({
   //       action: 'delete',
-  //       primary: 'test1',
-  //       values: ['test2'],
+  //       primary: 'styleGuide1',
+  //       values: ['styleGuide2'],
   //     })
   //     expect(service.read()).toEqual(deletedClient)
   //   })
@@ -350,10 +341,10 @@ $testClient2_fontSizeTest_normal: 0.7rem;
 })
 
 const newBaseValue = {
+  name: 'Primary',
   type: 'color',
-  group: 'testNew',
-  name: 'White',
-  value: '#eee',
+  group: 'base',
+  value: '#2be053',
 }
 
 const updatedBaseValue = {
@@ -363,80 +354,82 @@ const updatedBaseValue = {
   value: '#ddd',
 }
 
-const styleGuides = {
+const styleGuides: StyleGuides = {
   global: {
-    test_white: {
-      type: 'color',
-      group: 'test',
-      name: 'White',
-      value: '#fff',
-    },
-    test_black: {
-      type: 'color',
-      group: 'test',
-      name: 'Black',
-      value: '#333',
-    },
-  },
-  clients: {
-    testClient1: {
-      name: 'Test Client 1',
-      client: 'testClient1',
-      values: {
-        brandTest_primary: {
-          type: 'color',
-          group: 'brandTest',
-          name: 'Primary',
-          value: '#f00',
-        },
-        brandTest_secondary: {
-          type: 'color',
-          group: 'brandTest',
-          name: 'Secondary',
-          value: '#e33',
-        },
-        actionTest_primary: {
-          type: 'color',
-          group: 'actionTest',
-          name: 'Primary',
-          value: '#3e3',
-        },
-        fontSizeTest_primary: {
-          type: 'font-size',
-          group: 'fontSizeTest',
-          name: 'Primary',
-          value: '0.75rem',
-        },
+    name: 'Global',
+    baseFontSize: 16,
+    styles: {
+      base_black: {
+        name: 'Black',
+        type: 'color',
+        group: 'base',
+        value: '#333333',
+      },
+      base_light: {
+        name: 'Light',
+        type: 'color',
+        group: 'base',
+        value: '#ffffff',
+      },
+      mediaQuery_aboveSmallMobile: {
+        name: 'Above Small Mobile',
+        type: 'mediaquery',
+        group: 'mediaQuery',
+        value: 'screen and (min-width: 321px)',
       },
     },
-    testClient2: {
-      name: 'Test Client 2',
-      client: 'testClient2',
-      values: {
-        brandTest_primary: {
-          type: 'color',
-          group: 'brandTest',
-          name: 'Primary',
-          value: '#00f',
-        },
-        brandTest_secondary: {
-          type: 'color',
-          group: 'brandTest',
-          name: 'Secondary',
-          value: '#33e',
-        },
-        dangerTest_primary: {
-          type: 'color',
-          group: 'dangerTest',
-          name: 'Primary',
-          value: '#f55',
-        },
-        fontSizeTest_normal: {
-          type: 'font-size',
-          group: 'fontSizeTest',
-          name: 'Normal',
-          value: '0.7rem',
-        },
+  },
+  styleGuide1: {
+    name: 'StyleGuide 1',
+    baseFontSize: 16,
+    styles: {
+      action_primary: {
+        name: 'Primary',
+        type: 'color',
+        group: 'action',
+        value: '#31ed31',
+      },
+      action_secondary: {
+        name: 'Secondary',
+        type: 'color',
+        group: 'action',
+        value: '#2ec22e',
+      },
+      action_tertiary: {
+        name: 'Tertiary',
+        type: 'color',
+        group: 'action',
+        value: '#1e961e',
+      },
+    },
+  },
+  styleGuide2: {
+    name: 'StyleGuide 2',
+    baseFontSize: 16,
+    styles: {
+      action_primary: {
+        name: 'Primary',
+        type: 'color',
+        group: 'action',
+        value: '#ff5555',
+      },
+      action_secondary: {
+        name: 'Secondary',
+        type: 'color',
+        group: 'action',
+        value: '#d22828',
+      },
+    },
+  },
+  styleGuide3: {
+    name: 'StyleGuide 3',
+    baseFontSize: 10,
+    styles: {
+      base_primary: {
+        name: 'Primary',
+        type: 'color',
+        group: 'base',
+        value: '#2be053',
       },
     },
   },

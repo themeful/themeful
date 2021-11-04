@@ -3,7 +3,7 @@ import { StyleGuideBase } from '@typings'
 import { StyleGuideService } from '../services/style-guide.service'
 
 @Controller('style-guide')
-export class ClientController {
+export class StyleGuideController {
   constructor(private readonly styleGuideService: StyleGuideService) {}
 
   @Post()
