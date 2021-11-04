@@ -1,4 +1,4 @@
-name: 'CI: Lint'
+name: 'CI: Test Backend'
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, edited, reopened]
 
 jobs:
-  ci-lint:
+  ci-test-backend:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,8 +28,5 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Run eslint
-        run: yarn lint:all
-
-      - name: Run prettier format check
-        run: yarn format:check
+      - name: Run backend tests
+        run: yarn test backend
