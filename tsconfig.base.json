@@ -19,7 +19,8 @@
       "@themeful/frontend": ["dist/libs/frontend"],
       "@themeful/frontend/loader": ["dist/libs/frontend/loader"],
       "@typings": ["libs/typings/src/index.ts"],
-      "@utils": ["libs/utils/src/index.ts"]
+      "@utils": ["libs/utils/src/index.ts"],
+      "@utils/*": ["libs/utils/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

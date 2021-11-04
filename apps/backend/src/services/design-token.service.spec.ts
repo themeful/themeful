@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { DesignTokenAPI } from '@typings'
-import { clone, uuid } from '@utils'
+import { clone } from '@utils'
+import * as utils from '@utils/uuid.util'
 import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
 import { ConfigService } from './config.service'
@@ -10,7 +11,7 @@ import { SyncService } from './sync.service'
 describe('DesignTokenService', () => {
   let service: DesignTokenService
   let syncService: SyncService
-  const utils = { uuid }
+  // const utils = { uuid }
 
   beforeEach(async () => {
     syncService = new SyncService()
@@ -51,7 +52,7 @@ describe('DesignTokenService', () => {
 
       expect(service.create(clone(newDesignToken))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/designTokens.json',
+        './sample/generated/designTokens.json',
         withOneMore,
         { spaces: 2 }
       )
@@ -76,18 +77,18 @@ describe('DesignTokenService', () => {
       delete withOneUpdated['dtTestFontColorPrimary']
       withOneUpdated[updatedDesignToken.token] = clonedDesignToken
 
-      expect(service.update('dtTestFontColorPrimary', clone(updatedDesignToken))).toEqual(
-        clonedDesignToken
-      )
+      expect(service.update('dtTestFontColorPrimary', clone(updatedDesignToken))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/designTokens.json',
+        './sample/generated/designTokens.json',
         withOneUpdated,
         { spaces: 2 }
       )
     })
 
     it('should not update one', () => {
-      expect(service.update('dtTestWrongFontColorPrimary', clone(updatedDesignToken))).toEqual(null)
+      expect(service.update('dtTestWrongFontColorPrimary', clone(updatedDesignToken))).toEqual(
+        false
+      )
     })
 
     it('should not update to existing one', () => {
@@ -95,7 +96,7 @@ describe('DesignTokenService', () => {
         ...clone(designTokens.dtTestActionBG),
         token: 'dtTestActionBG',
       }
-      expect(service.update('dtTestFontColorPrimary', clonedDesignToken)).toEqual(null)
+      expect(service.update('dtTestFontColorPrimary', clonedDesignToken)).toEqual(false)
     })
   })
 
@@ -107,7 +108,7 @@ describe('DesignTokenService', () => {
 
       expect(service.delete('dtTestFontColorPrimary')).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
-        './libs/components/design-system/designTokens.json',
+        './sample/generated/designTokens.json',
         withOneLess,
         { spaces: 2 }
       )
@@ -128,7 +129,7 @@ describe('DesignTokenService', () => {
       expect(service.delete('dtTestFontColorPrimary')).toEqual(true)
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
-        './libs/components/src/assets/generated/designTokens.scss',
+        './sample/generated/designTokens.scss',
         `$atButtonBackground: var(--dtTestActionBG);
 $atBaseFontColor: var(--dtTestFontColorPrimary);
 $atButtonFontColor: var(--dtTestFontColorPrimary);
