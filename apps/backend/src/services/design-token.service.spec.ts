@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { DesignToken } from '@typings'
-import * as utils from '@utils'
-import { clone } from '@utils'
+import { DesignTokenAPI } from '@typings'
+import { clone, uuid } from '@utils'
 import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
 import { ConfigService } from './config.service'
@@ -11,6 +10,7 @@ import { SyncService } from './sync.service'
 describe('DesignTokenService', () => {
   let service: DesignTokenService
   let syncService: SyncService
+  const utils = { uuid }
 
   beforeEach(async () => {
     syncService = new SyncService()
@@ -42,14 +42,14 @@ describe('DesignTokenService', () => {
 
   describe('create', () => {
     it('should create one', () => {
-      const clonedDesignToken: DesignToken = clone(newDesignToken)
+      const clonedDesignToken: DesignTokenAPI = clone(newDesignToken)
       delete clonedDesignToken.token
       clonedDesignToken.short = 'test'
 
       const withOneMore = clone(designTokens)
       withOneMore[newDesignToken.token] = clonedDesignToken
 
-      expect(service.create(clone(newDesignToken))).toEqual(clonedDesignToken)
+      expect(service.create(clone(newDesignToken))).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
         './libs/components/design-system/designTokens.json',
         withOneMore,
@@ -58,15 +58,17 @@ describe('DesignTokenService', () => {
     })
 
     it('should not create one', () => {
-      const clonedDesignToken: DesignToken = clone(designTokens.dtTestActionBG)
-      clonedDesignToken.token = 'dtTestActionBG'
-      expect(service.create(clonedDesignToken)).toEqual(null)
+      const clonedDesignToken: DesignTokenAPI = {
+        ...clone(designTokens.dtTestActionBG),
+        token: 'dtTestActionBG',
+      }
+      expect(service.create(clonedDesignToken)).toEqual(false)
     })
   })
 
   describe('update', () => {
     it('should update one', () => {
-      const clonedDesignToken: DesignToken = clone(updatedDesignToken)
+      const clonedDesignToken: DesignTokenAPI = clone(updatedDesignToken)
       delete clonedDesignToken.token
 
       const withOneUpdated = clone(designTokens)
@@ -89,8 +91,10 @@ describe('DesignTokenService', () => {
     })
 
     it('should not update to existing one', () => {
-      const clonedDesignToken: DesignToken = clone(designTokens.dtTestActionBG)
-      clonedDesignToken.token = 'dtTestActionBG'
+      const clonedDesignToken: DesignTokenAPI = {
+        ...clone(designTokens.dtTestActionBG),
+        token: 'dtTestActionBG',
+      }
       expect(service.update('dtTestFontColorPrimary', clonedDesignToken)).toEqual(null)
     })
   })
@@ -137,20 +141,16 @@ $atButtonFontSize: var(--dtTestFontSize100);
     it('should sync create designTokens', () => {
       jest.spyOn(syncService, 'designTokens').mockImplementation()
 
-      const clonedDesignToken: DesignToken = clone(newDesignToken)
-      delete clonedDesignToken.token
-      clonedDesignToken.short = 'test'
-
-      expect(service.create(clone(newDesignToken))).toEqual(clonedDesignToken)
+      expect(service.create(clone(newDesignToken))).toEqual(true)
 
       expect(syncService.designTokens).toHaveBeenCalledWith({
         action: 'create',
-        primary: 'dtTestActionBGNew',
+        primary: 'dtTestActionBgNew',
         values: [
-          'dtTestActionBG',
+          'dtTestActionBgNew',
           'dtTestFontColorPrimary',
           'dtTestFontSize100',
-          'dtTestActionBGNew',
+          'dtTestActionBG',
         ],
       })
     })
@@ -158,18 +158,13 @@ $atButtonFontSize: var(--dtTestFontSize100);
     it('should sync update designTokens', () => {
       jest.spyOn(syncService, 'designTokens').mockImplementation()
 
-      const clonedDesignToken: DesignToken = clone(updatedDesignToken)
-      delete clonedDesignToken.token
-
-      expect(service.update('dtTestFontSize100', clone(updatedDesignToken))).toEqual(
-        clonedDesignToken
-      )
+      expect(service.update('dtTestFontSize100', clone(updatedDesignToken))).toEqual(true)
 
       expect(syncService.designTokens).toHaveBeenCalledWith({
         action: 'update',
         primary: 'dtTestFontSize100',
-        secondary: 'dtTestActionBGUpdated',
-        values: ['dtTestActionBG', 'dtTestFontColorPrimary', 'dtTestActionBGUpdated'],
+        secondary: 'dtTestActionBgUpdated',
+        values: ['dtTestActionBgUpdated', 'dtTestFontColorPrimary', 'dtTestActionBG'],
       })
     })
     it('should sync delete designTokens', () => {
@@ -179,7 +174,7 @@ $atButtonFontSize: var(--dtTestFontSize100);
       expect(syncService.designTokens).toHaveBeenCalledWith({
         action: 'delete',
         primary: 'dtTestFontSize100',
-        values: ['dtTestActionBG', 'dtTestFontColorPrimary'],
+        values: ['dtTestFontColorPrimary', 'dtTestActionBG'],
       })
     })
   })
@@ -239,7 +234,9 @@ $atButtonFontSize: var(--dtTestFontSize100);
 })
 
 const newDesignToken = {
-  token: 'dtTestActionBGNew',
+  type: 'color',
+  short: 'test',
+  token: 'dtTestActionBgNew',
   name: 'Action Background New',
   group: 'content',
   description: 'Background for action elements',
@@ -248,7 +245,8 @@ const newDesignToken = {
 }
 
 const updatedDesignToken = {
-  token: 'dtTestActionBGUpdated',
+  type: 'color',
+  token: 'dtTestActionBgUpdated',
   name: 'Action Background Updated',
   group: 'content',
   short: 'gjG',
@@ -259,7 +257,8 @@ const updatedDesignToken = {
 
 const designTokens = {
   dtTestActionBG: {
-    short: 'dQB',
+    type: 'color',
+    // short: 'dQB',
     name: 'Action Background',
     group: 'controls',
     description: 'Background for action elements',
@@ -267,7 +266,8 @@ const designTokens = {
     aliasTokens: ['atButtonBackground'],
   },
   dtTestFontColorPrimary: {
-    short: 'DmP',
+    type: 'color',
+    // short: 'DmP',
     name: 'Normal Font Color',
     group: 'content',
     description: 'Font color for normal text',
@@ -275,7 +275,8 @@ const designTokens = {
     aliasTokens: ['atBaseFontColor', 'atButtonFontColor'],
   },
   dtTestFontSize100: {
-    short: 'gjG',
+    type: 'font-size',
+    // short: 'gjG',
     name: 'Normal Font Size',
     group: 'content',
     description: 'Font size for normal text',
