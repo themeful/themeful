@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToastComponent renders 1`] = `
+<tf-toast>
+  <mock:shadow-root></mock:shadow-root>
+</tf-toast>
+`;
+
+exports[`ToastComponent renders with values 1`] = `
+<tf-toast>
+  <mock:shadow-root></mock:shadow-root>
+</tf-toast>
+`;

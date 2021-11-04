@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconComponent renders 1`] = `
+<tf-icon>
+  <mock:shadow-root>
+    <div class="icon">
+      <i class="gg-undefined"></i>
+    </div>
+  </mock:shadow-root>
+</tf-icon>
+`;
+
+exports[`IconComponent renders with values 1`] = `
+<tf-icon>
+  <mock:shadow-root>
+    <div class="icon">
+      <i class="gg-globe"></i>
+    </div>
+  </mock:shadow-root>
+</tf-icon>
+`;

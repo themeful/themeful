@@ -1,36 +1,32 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
+import { mapTo, timer } from 'rxjs'
 import { ToastComponent } from './toast.component'
 
-describe('tf-toast', () => {
+describe('ToastComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [ToastComponent],
-      html: '<tf-toast />',
+      autoApplyChanges: true,
+      template: () => <tf-toast />,
     })
-    expect(root).toEqualHtml(`
-      <tf-toast>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-toast>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 
   it('renders with values', async () => {
-    const { root } = await newSpecPage({
+    const msg$ = timer(0, 5000).pipe(
+      mapTo({
+        text: 'Hello World',
+        status: 'success',
+      })
+    )
+    const page = await newSpecPage({
       components: [ToastComponent],
-      html: `<tf-toast first="Stencil" last="'Don't call me a framework' JS" />`,
+      autoApplyChanges: true,
+      template: () => <tf-toast msg$={msg$} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-toast first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-toast>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 })

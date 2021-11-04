@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { StyleGuideFormComponent } from './style-guide-form.component'
 
-describe('client-form', () => {
+xdescribe('StyleGuideFormComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [StyleGuideFormComponent],

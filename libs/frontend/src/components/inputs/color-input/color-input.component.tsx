@@ -77,7 +77,6 @@ export class ColorInputComponent {
   private input$ = new Subject()
 
   private setControls(newColor: string): void {
-    console.log('setControls', newColor, this.input.value, this.value)
     this.changeSource = 'input'
     this.input$.next(this.input.value)
     let color

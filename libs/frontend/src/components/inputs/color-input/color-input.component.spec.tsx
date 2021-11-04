@@ -1,36 +1,25 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
 import { ColorInputComponent } from './color-input.component'
 
-describe('tf-color-input', () => {
+describe('ColorInputComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [ColorInputComponent],
-      html: '<tf-color-input />',
+      autoApplyChanges: true,
+      template: () => <tf-color-input />,
     })
-    expect(root).toEqualHtml(`
-      <tf-color-input>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-color-input>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 
   it('renders with values', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [ColorInputComponent],
-      html: `<tf-color-input first="Stencil" last="'Don't call me a framework' JS" />`,
+      autoApplyChanges: true,
+      template: () => <tf-color-input label="Some color" value="#d920c1" />,
     })
-    expect(root).toEqualHtml(`
-      <tf-color-input first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-color-input>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 })

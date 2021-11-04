@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`alias-token-form renders 1`] = `<tf-alias-token-select />`;
+
+exports[`alias-token-form renders with values 1`] = `<tf-alias-token-select />`;

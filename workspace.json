@@ -46,8 +46,7 @@
           "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/backend"],
           "options": {
-            "jestConfig": "apps/backend/jest.config.js",
-            "passWithNoTests": true
+            "jestConfig": "apps/backend/jest.config.js"
           }
         }
       },
@@ -68,7 +67,7 @@
           "outputs": ["{options.outputPath}"],
           "options": {
             "projectType": "library",
-            "tsConfig": "libs/frontend/tsconfig.lib.json",
+            "tsConfig": "libs/frontend/tsconfig.spec.json",
             "configPath": "libs/frontend/stencil.config.ts",
             "outputPath": "dist/libs/frontend"
           }

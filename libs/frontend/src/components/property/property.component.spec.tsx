@@ -1,36 +1,47 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
 import { PropertyComponent } from './property.component'
 
-describe('tf-property', () => {
+const sample1 = {
+  section: 'global',
+  extendedStyle: {
+    name: null,
+    global: false,
+    group: 'Very long named nice',
+    type: 'color',
+    value: '#ff0000',
+  },
+}
+
+const sample2 = {
+  section: 'global',
+  extendedStyle: {
+    name: 'Background color',
+    global: true,
+    group: 'Very long named nice',
+    type: 'color',
+    value: '#ff0000',
+  },
+}
+
+xdescribe('PropertyComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [PropertyComponent],
-      html: '<tf-property />',
+      autoApplyChanges: true,
+      template: () => <tf-property {...sample1} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-property>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-property>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 
   it('renders with values', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [PropertyComponent],
-      html: `<tf-property first="Stencil" last="'Don't call me a framework' JS" />`,
+      autoApplyChanges: true,
+      template: () => <tf-property {...sample2} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-property first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-property>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 })

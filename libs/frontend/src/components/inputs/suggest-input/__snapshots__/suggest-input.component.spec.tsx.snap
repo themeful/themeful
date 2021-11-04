@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SuggestInputComponent renders 1`] = `
+<tf-suggest-input>
+  <mock:shadow-root>
+    <label class="suggest-input">
+      <span class="suggest-input__label"></span>
+      <input autocomplete="off" class="suggest-input__input" list="suggestdatalist1" type="text">
+      <datalist id="suggestdatalist1"></datalist>
+      <p class="suggest-input__hint"></p>
+    </label>
+  </mock:shadow-root>
+</tf-suggest-input>
+`;
+
+exports[`SuggestInputComponent renders with values 1`] = `
+<tf-suggest-input>
+  <mock:shadow-root>
+    <label class="suggest-input">
+      <span class="suggest-input__label">
+        Some Label
+      </span>
+      <input autocomplete="off" class="suggest-input__input" list="suggestdatalist2" type="text" value="Test Text">
+      <datalist id="suggestdatalist2">
+        <option value="First Value"></option>
+        <option value="Second Value"></option>
+      </datalist>
+      <p class="suggest-input__hint"></p>
+    </label>
+  </mock:shadow-root>
+</tf-suggest-input>
+`;

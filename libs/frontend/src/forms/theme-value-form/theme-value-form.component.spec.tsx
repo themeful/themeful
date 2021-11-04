@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { ThemeValueFormComponent } from './theme-value-form.component'
 
-describe('theme-value-form', () => {
+xdescribe('ThemeValueFormComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [ThemeValueFormComponent],

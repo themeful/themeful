@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { FormIntegrationComponent } from './form-integration.component'
 
-describe('tf-form-integration', () => {
+xdescribe('FormIntegrationComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [FormIntegrationComponent],

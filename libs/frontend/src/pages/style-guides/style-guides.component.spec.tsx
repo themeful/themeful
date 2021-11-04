@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { StyleGuidesComponent } from './style-guides.component'
 
-describe('style-guides component', () => {
+xdescribe('StyleGuidesComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [StyleGuidesComponent],

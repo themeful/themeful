@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { StyleFormComponent } from './style-form.component'
 
-describe('style-form', () => {
+xdescribe('StyleFormComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [StyleFormComponent],

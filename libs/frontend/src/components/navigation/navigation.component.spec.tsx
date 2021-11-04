@@ -1,36 +1,34 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
 import { NavigationComponent } from './navigation.component'
 
-describe('tf-navigation', () => {
+describe('NavigationComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [NavigationComponent],
-      html: '<tf-navigation />',
+      autoApplyChanges: true,
+      template: () => <tf-navigation />,
     })
-    expect(root).toEqualHtml(`
-      <tf-navigation>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-navigation>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 
   it('renders with values', async () => {
-    const { root } = await newSpecPage({
+    const data = {
+      active: 'secondary',
+      items: [
+        { label: 'Primary', slug: 'primary', selectable: true },
+        { label: 'Secondary', slug: 'secondary', selectable: true },
+        { label: 'Tertiary', slug: 'tertiary' },
+        { label: 'Right', slug: 'right', position: 'right' },
+      ],
+    }
+    const page = await newSpecPage({
       components: [NavigationComponent],
-      html: `<tf-navigation first="Stencil" last="'Don't call me a framework' JS" />`,
+      autoApplyChanges: true,
+      template: () => <tf-navigation {...data} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-navigation first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-navigation>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 })
