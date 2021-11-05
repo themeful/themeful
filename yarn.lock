@@ -2078,10 +2078,10 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
-"@nxext/stencil@^13.0.0":
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/@nxext/stencil/-/stencil-13.0.0.tgz#ca3bdc119dd11961993326b02b4a2cc5bbe3d688"
-  integrity sha512-DcOx9VPdCHldeQ/GFKsz0cgCe07PwFx1DzMwLqzjVzN3RG1TyeOSFArO27BlCnuWnIhNSfzBpJxyOaKzXlmEsA==
+"@nxext/stencil@^13.1.0":
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/@nxext/stencil/-/stencil-13.1.0.tgz#388f3338c4513d56d84eba351e56bd72d285abc8"
+  integrity sha512-LbV28Ud4a/6sEPted9AomdqZMFrQ35IZzaZx1k7vpxAX8nd+BUtIN3ereQ8mDxQt3oii9QNUeNa33Ymb7vwYIg==
   dependencies:
     "@nrwl/devkit" "^13.0.1"
     ignore "^5.1.8"
