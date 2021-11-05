@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInputComponent renders 1`] = `
+<tf-text-input>
+  <mock:shadow-root>
+    <label class="text-input">
+      <span class="text-input__label"></span>
+      <input class="text-input__input" type="text">
+      <p class="text-input__hint"></p>
+    </label>
+  </mock:shadow-root>
+</tf-text-input>
+`;
+
+exports[`TextInputComponent renders with values 1`] = `
+<tf-text-input>
+  <mock:shadow-root>
+    <label class="text-input">
+      <span class="text-input__label">
+        Some Label
+      </span>
+      <input class="text-input__input" type="text" value="Test Text">
+      <p class="text-input__hint"></p>
+    </label>
+  </mock:shadow-root>
+</tf-text-input>
+`;

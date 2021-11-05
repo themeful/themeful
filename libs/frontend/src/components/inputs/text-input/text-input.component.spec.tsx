@@ -1,36 +1,25 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
 import { TextInputComponent } from './text-input.component'
 
-describe('tf-text-input', () => {
+describe('TextInputComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [TextInputComponent],
-      html: '<tf-text-input />',
+      autoApplyChanges: true,
+      template: () => <tf-text-input />,
     })
-    expect(root).toEqualHtml(`
-      <tf-text-input>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-text-input>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 
   it('renders with values', async () => {
-    const { root } = await newSpecPage({
+    const page = await newSpecPage({
       components: [TextInputComponent],
-      html: `<tf-text-input first="Stencil" last="'Don't call me a framework' JS" />`,
+      autoApplyChanges: true,
+      template: () => <tf-text-input label="Some Label" value="Test Text" />,
     })
-    expect(root).toEqualHtml(`
-      <tf-text-input first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-text-input>
-    `)
+
+    expect(page.root).toMatchSnapshot()
   })
 })

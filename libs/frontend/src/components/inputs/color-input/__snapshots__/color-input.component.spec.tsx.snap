@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorInputComponent renders 1`] = `
+<tf-color-input class="color-input">
+  <mock:shadow-root>
+    <label class="color-input">
+      <span class="color-input__label"></span>
+      <input class="color-input__input" type="text">
+      <p class="color-input__hint"></p>
+    </label>
+    <div class="color-input__control-wrapper">
+      <div class="color-input__control-row">
+        <div class="color-input__controls">
+          <input class="color-input__hue" max="360" min="0" type="range" value="180">
+          <input class="color-input__alpha" max="100" min="0" type="range" value="0">
+        </div>
+        <div class="color-input__selected-color no-color" title="change format">
+          <div class="color-input__crossed-out"></div>
+        </div>
+      </div>
+      <div class="color-input__shade">
+        <div class="color-input__pointer"></div>
+      </div>
+    </div>
+  </mock:shadow-root>
+</tf-color-input>
+`;
+
+exports[`ColorInputComponent renders with values 1`] = `
+<tf-color-input class="color-input">
+  <mock:shadow-root>
+    <label class="color-input">
+      <span class="color-input__label">
+        Some color
+      </span>
+      <input class="color-input__input" type="text" value="#d920c1">
+      <p class="color-input__hint"></p>
+    </label>
+    <div class="color-input__control-wrapper">
+      <div class="color-input__control-row">
+        <div class="color-input__controls">
+          <input class="color-input__hue" max="360" min="0" type="range" value="308">
+          <input class="color-input__alpha" max="100" min="0" type="range" value="0">
+        </div>
+        <div class="color-input__selected-color" title="change format">
+          <div class="color-input__crossed-out"></div>
+        </div>
+      </div>
+      <div class="color-input__shade">
+        <div class="color-input__pointer"></div>
+      </div>
+    </div>
+  </mock:shadow-root>
+</tf-color-input>
+`;

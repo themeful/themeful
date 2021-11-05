@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OverlayComponent renders 1`] = `
+<tf-overlay>
+  <mock:shadow-root></mock:shadow-root>
+</tf-overlay>
+`;
+
+exports[`OverlayComponent renders with values 1`] = `
+<tf-overlay>
+  <mock:shadow-root></mock:shadow-root>
+  Some content
+</tf-overlay>
+`;

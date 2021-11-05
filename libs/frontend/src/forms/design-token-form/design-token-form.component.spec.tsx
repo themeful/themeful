@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { DesignTokenFormComponent } from './design-token-form.component'
 
-describe('design-token-form', () => {
+xdescribe('DesignTokenFormComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [DesignTokenFormComponent],

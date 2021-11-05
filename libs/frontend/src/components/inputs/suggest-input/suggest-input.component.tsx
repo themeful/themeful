@@ -39,6 +39,7 @@ export class SuggestInputComponent {
   @State() changed = false
   @State() valid: boolean
   @State() error = ''
+  private static counter = 0
   private dataListId: string
 
   /** Validate value */
@@ -91,7 +92,8 @@ export class SuggestInputComponent {
   }
 
   public componentWillLoad() {
-    this.dataListId = `datalist${Math.round(Math.random() * 9000) + 1000}`
+    SuggestInputComponent.counter += 1
+    this.dataListId = `suggestdatalist${SuggestInputComponent.counter}`
   }
 
   public render(): HTMLTfSuggestInputElement {

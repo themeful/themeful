@@ -1,36 +1,22 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
+import { Toast } from '@typings'
+import { Subject } from 'rxjs'
 import { ToastComponent } from './toast.component'
 
-describe('tf-toast', () => {
-  it('renders', async () => {
-    const { root } = await newSpecPage({
-      components: [ToastComponent],
-      html: '<tf-toast />',
-    })
-    expect(root).toEqualHtml(`
-      <tf-toast>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-toast>
-    `)
-  })
-
+describe('ToastComponent', () => {
   it('renders with values', async () => {
-    const { root } = await newSpecPage({
+    const subject = new Subject<Toast>()
+    const page = await newSpecPage({
       components: [ToastComponent],
-      html: `<tf-toast first="Stencil" last="'Don't call me a framework' JS" />`,
+      autoApplyChanges: true,
+      template: () => <tf-toast msg$={subject} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-toast first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-toast>
-    `)
+    subject.next({
+      text: 'Hello World',
+      status: 'success',
+    })
+    subject.complete()
+    expect(page.root).toMatchSnapshot()
   })
 })

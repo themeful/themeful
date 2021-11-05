@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationComponent renders 1`] = `
+<tf-navigation>
+  <mock:shadow-root>
+    <nav class="navigation">
+      <div class="button-group nav__left"></div>
+      <div class="nav__spacer"></div>
+      <div class="button-group nav__right"></div>
+    </nav>
+  </mock:shadow-root>
+</tf-navigation>
+`;
+
+exports[`NavigationComponent renders with values 1`] = `
+<tf-navigation>
+  <mock:shadow-root>
+    <nav class="navigation">
+      <div class="button-group nav__left">
+        <tf-button kind="selectable">
+          Primary
+        </tf-button>
+        <tf-button active="" kind="selectable">
+          Secondary
+        </tf-button>
+        <tf-button kind="secondary">
+          Tertiary
+        </tf-button>
+      </div>
+      <div class="nav__spacer"></div>
+      <div class="button-group nav__right">
+        <tf-button kind="secondary">
+          Right
+        </tf-button>
+      </div>
+    </nav>
+  </mock:shadow-root>
+</tf-navigation>
+`;

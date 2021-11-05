@@ -1,14 +1,4 @@
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Method,
-  Prop,
-  State,
-} from '@stencil/core'
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core'
 import { ColorTranslator } from 'colortranslator'
 import { ColorInput } from 'colortranslator/dist/@types'
 import {
@@ -29,7 +19,7 @@ type ColorFormat = 'HEX' | 'HSL' | 'RGB'
   shadow: true,
 })
 export class ColorInputComponent {
-  @State() input: HTMLInputElement
+  private input: HTMLInputElement
   private alpha: HTMLInputElement
   private hue: HTMLInputElement
   private pointer: HTMLElement
@@ -52,10 +42,10 @@ export class ColorInputComponent {
   /** Input Event */
   @Event({ composed: false }) inputChange: EventEmitter
 
-  @State() touched = false
-  @State() changed = false
-  @State() valid: boolean
-  @State() error = ''
+  private touched = false
+  private changed = false
+  private valid: boolean
+  private error = ''
 
   /** Validate value */
   @Method()
@@ -75,39 +65,36 @@ export class ColorInputComponent {
   private alpha$ = new Subject()
   private shade$ = new Subject()
   private input$ = new Subject()
+  private internalColor: ColorTranslator
 
-  private setControls(newColor: string): void {
-    console.log('setControls', newColor, this.input.value, this.value)
+  private validateColor(color: string): boolean {
+    try {
+      this.internalColor = new ColorTranslator(color)
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  private setControls(): void {
     this.changeSource = 'input'
     this.input$.next(this.input.value)
-    let color
-    try {
-      color = new ColorTranslator(newColor)
-      this.valid = true
-    } catch {
-      if (!this.changed) {
-        color = new ColorTranslator('hsl(180,50%,40%)')
-      }
-      this.valid = false
-    }
-    if (color) {
-      this.hue.value = `${color.H}`
-      this.alpha.value = `${(1 - color.A) * 100}`
-      this.alpha$.next(this.alpha.value)
-      this.hue$.next(this.hue.value)
-      this.shade$.next({
-        x: Math.round((color.S / 100) * this.el.offsetWidth),
-        y: Math.round((1 - color.L / (100 - color.S / 2)) * 150),
-      })
-    }
+    this.hue.value = `${this.internalColor.H}`
+    this.alpha.value = `${(1 - this.internalColor.A) * 100}`
+    this.alpha$.next(this.alpha.value)
+    this.hue$.next(this.hue.value)
+    this.shade$.next({
+      x: Math.round((this.internalColor.S / 100) * this.el.offsetWidth),
+      y: Math.round((1 - this.internalColor.L / (100 - this.internalColor.S / 2)) * 150),
+    })
   }
 
   private inputChanged = () => {
     this.changed = true
-    this.setControls(this.input.value)
     if (!this.valid && this.touched) {
       this.internalValidation()
     }
+    this.setControls()
   }
 
   private blur = (): void => {
@@ -115,7 +102,13 @@ export class ColorInputComponent {
     this.touched = true
   }
 
-  public componentDidLoad(): void {
+  public componentWillLoad(): void {
+    this.format = this.getFormat(this.value)
+    this.valid = this.validateColor(this.value)
+    if (!this.valid) {
+      this.internalColor = new ColorTranslator('hsl(180,50%,40%)')
+    }
+
     this.input$.pipe(sampleTime(50), distinctUntilChanged()).subscribe((value: string) => {
       this.value = value
       this.input.value = value
@@ -170,14 +163,16 @@ export class ColorInputComponent {
         tap((values) => {
           if (this.changeSource === 'controls') {
             this.valid = true
+            this.error = ''
             this.setInput(values)
           }
         })
       )
       .subscribe()
+  }
 
-    this.format = this.getFormat(this.value)
-    this.setControls(this.value)
+  public componentDidLoad(): void {
+    this.setControls()
   }
 
   private setInput = (color: ColorInput): void => {
@@ -234,11 +229,7 @@ export class ColorInputComponent {
     if (this.required && (this.value === '' || this.value === undefined)) {
       this.error = `This value is required`
     } else {
-      try {
-        new ColorTranslator(this.value)
-      } catch {
-        this.error = `Please enter a valid color`
-      }
+      this.error = this.validateColor(this.value) ? '' : `Please enter a valid color`
     }
     this.valid = this.error === ''
     return this.valid
@@ -251,11 +242,11 @@ export class ColorInputComponent {
         <div class="color-input__control-row">
           <div class="color-input__controls">
             <input
+              type="range"
+              min="0"
+              max="360"
               {...{
                 ref: (hue: HTMLInputElement) => (this.hue = hue),
-                type: 'range',
-                min: '0',
-                max: '360',
                 class: 'color-input__hue',
                 onInput: (event) => {
                   this.changeSource = 'controls'
@@ -264,11 +255,11 @@ export class ColorInputComponent {
               }}
             />
             <input
+              type="range"
+              min="0"
+              max="100"
               {...{
                 ref: (alpha: HTMLInputElement) => (this.alpha = alpha),
-                type: 'range',
-                min: '0',
-                max: '100',
                 class: 'color-input__alpha',
                 onInput: (event) => {
                   this.changeSource = 'controls'
@@ -310,9 +301,9 @@ export class ColorInputComponent {
         >
           <span class="color-input__label">{this.label}</span>
           <input
+            value={this.value}
             ref={(input: HTMLInputElement) => (this.input = input)}
             class="color-input__input"
-            value={this.value}
             type="text"
             onInput={this.inputChanged}
             onBlur={this.blur}

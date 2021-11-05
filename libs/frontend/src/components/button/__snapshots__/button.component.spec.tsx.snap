@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonComponent renders 1`] = `
+<tf-button>
+  <mock:shadow-root>
+    <button class="button secondary" type="button">
+      <slot></slot>
+    </button>
+  </mock:shadow-root>
+</tf-button>
+`;
+
+exports[`ButtonComponent renders with values 1`] = `
+<tf-button>
+  <mock:shadow-root>
+    <button class="button primary" type="submit">
+      <slot></slot>
+    </button>
+  </mock:shadow-root>
+  Hello World
+</tf-button>
+`;
