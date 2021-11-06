@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, State } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
 import { Toast } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
 import { delay, filter, tap } from 'rxjs/operators'
@@ -16,26 +16,35 @@ export class ToastComponent {
   @State() text = ''
   @State() status = ''
 
-  private sub?: Subscription
+  /** Input Event */
+  @Event({ composed: false }) state: EventEmitter
+
+  private sub = new Subscription()
   private active$ = new Subject<boolean>()
 
   public componentWillLoad(): void {
-    this.sub = this.msg$?.subscribe(({ text, status }) => {
-      this.status = status
-      this.text = text
-      this.active$.next(true)
-    })
-    this.sub?.add(
+    this.state.emit(false)
+    this.sub.add(
+      this.msg$?.subscribe(({ text, status }) => {
+        this.status = status
+        this.text = text
+        this.active$.next(true)
+      })
+    )
+
+    this.sub.add(
       this.active$
         .pipe(
           filter((state: boolean) => state),
           delay(10),
           tap(() => {
             this.open = true
+            this.state.emit(true)
           }),
           delay(4000),
           tap(() => {
             this.open = false
+            this.state.emit(false)
           }),
           delay(500)
         )
@@ -48,7 +57,7 @@ export class ToastComponent {
   }
 
   public disconnectedCallback(): void {
-    this.sub?.unsubscribe()
+    this.sub.unsubscribe()
   }
 
   public render(): HTMLTfToastElement {

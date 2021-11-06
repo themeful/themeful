@@ -8,6 +8,7 @@ import {
   map,
   sampleTime,
   Subject,
+  Subscription,
   tap,
 } from 'rxjs'
 
@@ -65,27 +66,28 @@ export class ColorInputComponent {
   private alpha$ = new Subject()
   private shade$ = new Subject()
   private input$ = new Subject()
-  private internalColor: ColorTranslator
+  private sub = new Subscription()
 
   private validateColor(color: string): boolean {
     try {
-      this.internalColor = new ColorTranslator(color)
+      new ColorTranslator(color)
       return true
     } catch {
       return false
     }
   }
 
-  private setControls(): void {
+  private setControls(newColor): void {
+    const color = new ColorTranslator(this.valid ? newColor : 'hsl(180,50%,40%)')
     this.changeSource = 'input'
     this.input$.next(this.input.value)
-    this.hue.value = `${this.internalColor.H}`
-    this.alpha.value = `${(1 - this.internalColor.A) * 100}`
+    this.hue.value = `${color.H}`
+    this.alpha.value = `${(1 - color.A) * 100}`
     this.alpha$.next(this.alpha.value)
     this.hue$.next(this.hue.value)
     this.shade$.next({
-      x: Math.round((this.internalColor.S / 100) * this.el.offsetWidth),
-      y: Math.round((1 - this.internalColor.L / (100 - this.internalColor.S / 2)) * 150),
+      x: Math.round((color.S / 100) * this.el.offsetWidth),
+      y: Math.round((1 - color.L / (100 - color.S / 2)) * 150),
     })
   }
 
@@ -94,7 +96,7 @@ export class ColorInputComponent {
     if (!this.valid && this.touched) {
       this.internalValidation()
     }
-    this.setControls()
+    this.setControls(this.value)
   }
 
   private blur = (): void => {
@@ -105,74 +107,83 @@ export class ColorInputComponent {
   public componentWillLoad(): void {
     this.format = this.getFormat(this.value)
     this.valid = this.validateColor(this.value)
-    if (!this.valid) {
-      this.internalColor = new ColorTranslator('hsl(180,50%,40%)')
-    }
 
-    this.input$.pipe(sampleTime(50), distinctUntilChanged()).subscribe((value: string) => {
-      this.value = value
-      this.input.value = value
-    })
-    this.input$.pipe(debounceTime(200), distinctUntilChanged()).subscribe((value: string) => {
-      this.inputChange.emit(value)
-    })
+    this.sub.add(
+      this.input$.pipe(sampleTime(50), distinctUntilChanged()).subscribe((value: string) => {
+        this.value = value
+        this.input.value = value
+      })
+    )
+    this.sub.add(
+      this.input$.pipe(debounceTime(200), distinctUntilChanged()).subscribe((value: string) => {
+        this.inputChange.emit(value)
+      })
+    )
 
-    combineLatest([
-      this.hue$.pipe(
-        sampleTime(25),
-        distinctUntilChanged(),
-        map((h: string) => parseInt(h))
-      ),
-      this.shade$.pipe(
-        sampleTime(25),
-        distinctUntilChanged(
-          (prev: { x: number; y: number }, curr: { x: number; y: number }) =>
-            prev.x === curr.x && prev.y === curr.y
+    this.sub.add(
+      combineLatest([
+        this.hue$.pipe(
+          sampleTime(25),
+          distinctUntilChanged(),
+          map((h: string) => parseInt(h))
         ),
-        map(({ x, y }) => ({
-          left: Math.max(0, Math.min(x, this.el.offsetWidth)),
-          top: Math.max(0, Math.min(y, 150)),
-        })),
-        tap(({ left, top }) => {
-          this.pointer.setAttribute('style', `left: ${left}px; top: ${top}px;`)
-        }),
-        map(({ left, top }) => {
-          const s = Math.round((left / this.el.offsetWidth) * 100)
-          return {
-            s,
-            l: Math.round((100 - s / 2) * (1 - top / 150)),
-          }
-        })
-      ),
-      this.alpha$.pipe(
-        sampleTime(25),
-        distinctUntilChanged(),
-        map((alpha: string) => Math.round(100 - parseInt(alpha)) / 100)
-      ),
-    ])
-      .pipe(
-        map(([h, { s, l }, a]) => ({ h, s, l, a })),
-        tap((color) => {
-          this.el.setAttribute(
-            'style',
-            `--tf-hue-color: hsl(${color.h}, 100%, 50%); --tf-opaque-color: ${ColorTranslator.toHEX(
-              color
-            )}; --tf-result-color: ${ColorTranslator.toRGBA(color)};`
-          )
-        }),
-        tap((values) => {
-          if (this.changeSource === 'controls') {
-            this.valid = true
-            this.error = ''
-            this.setInput(values)
-          }
-        })
-      )
-      .subscribe()
+        this.shade$.pipe(
+          sampleTime(25),
+          distinctUntilChanged(
+            (prev: { x: number; y: number }, curr: { x: number; y: number }) =>
+              prev.x === curr.x && prev.y === curr.y
+          ),
+          map(({ x, y }) => ({
+            left: Math.max(0, Math.min(x, this.el.offsetWidth)),
+            top: Math.max(0, Math.min(y, 150)),
+          })),
+          tap(({ left, top }) => {
+            this.pointer.setAttribute('style', `left: ${left}px; top: ${top}px;`)
+          }),
+          map(({ left, top }) => {
+            const s = Math.round((left / this.el.offsetWidth) * 100)
+            return {
+              s,
+              l: Math.round((100 - s / 2) * (1 - top / 150)),
+            }
+          })
+        ),
+        this.alpha$.pipe(
+          sampleTime(25),
+          distinctUntilChanged(),
+          map((alpha: string) => Math.round(100 - parseInt(alpha)) / 100)
+        ),
+      ])
+        .pipe(
+          map(([h, { s, l }, a]) => ({ h, s, l, a })),
+          tap((color) => {
+            this.el.setAttribute(
+              'style',
+              `--tf-hue-color: hsl(${
+                color.h
+              }, 100%, 50%); --tf-opaque-color: ${ColorTranslator.toHEX(
+                color
+              )}; --tf-result-color: ${ColorTranslator.toRGBA(color)};`
+            )
+          }),
+          tap((values) => {
+            if (this.changeSource === 'controls') {
+              this.valid = true
+              this.error = ''
+              this.setInput(values)
+            }
+          })
+        )
+        .subscribe()
+    )
   }
 
   public componentDidLoad(): void {
-    this.setControls()
+    this.setControls(this.value)
+  }
+
+  public disconnectedCallback(): void {
+    this.sub.unsubscribe()
   }
 
   private setInput = (color: ColorInput): void => {
@@ -242,12 +253,12 @@ export class ColorInputComponent {
         <div class="color-input__control-row">
           <div class="color-input__controls">
             <input
+              class="color-input__hue"
               type="range"
               min="0"
               max="360"
               {...{
                 ref: (hue: HTMLInputElement) => (this.hue = hue),
-                class: 'color-input__hue',
                 onInput: (event) => {
                   this.changeSource = 'controls'
                   this.hue$.next((event.target as HTMLInputElement).value)
@@ -255,12 +266,12 @@ export class ColorInputComponent {
               }}
             />
             <input
+              class="color-input__alpha"
               type="range"
               min="0"
               max="100"
               {...{
                 ref: (alpha: HTMLInputElement) => (this.alpha = alpha),
-                class: 'color-input__alpha',
                 onInput: (event) => {
                   this.changeSource = 'controls'
                   this.alpha$.next((event.target as HTMLInputElement).value)

@@ -2,6 +2,12 @@
 
 exports[`ToastComponent renders with values 1`] = `
 <tf-toast>
-  <mock:shadow-root></mock:shadow-root>
+  <mock:shadow-root>
+    <div class="toast__wrapper">
+      <div class="toast__msg toast__msg--open toast__msg--success">
+        Hello World
+      </div>
+    </div>
+  </mock:shadow-root>
 </tf-toast>
 `;
