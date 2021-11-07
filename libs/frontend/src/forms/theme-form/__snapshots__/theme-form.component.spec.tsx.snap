@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemeFormComponent renders 1`] = `
+<tf-theme-form>
+  <mock:shadow-root>
+    <form class="form">
+      <h3>
+        Edit Theme
+      </h3>
+      <tf-text-input>
+        <mock:shadow-root>
+          <label class="text-input">
+            <span class="text-input__label">
+              Name
+            </span>
+            <input class="text-input__input" type="text" value="name">
+            <p class="text-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-text-input>
+      <tf-select-input>
+        <mock:shadow-root>
+          <label class="select-input">
+            <span class="select-input__label">
+              Style Guide
+            </span>
+            <select class="select-input__input" disabled="">
+              <option value="first">
+                First
+              </option>
+              <option selected="" value="second">
+                Second
+              </option>
+            </select>
+            <p class="select-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-select-input>
+      <div class="form__controls">
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button danger" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Delete
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button secondary" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Cancel
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button primary" type="submit">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Save
+        </tf-button>
+      </div>
+    </form>
+  </mock:shadow-root>
+</tf-theme-form>
+`;

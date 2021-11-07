@@ -1,36 +1,35 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
+import { ButtonComponent } from '../../components/button/button.component'
+import { SelectInputComponent } from '../../components/inputs/select-input/select-input.component'
+import { SuggestInputComponent } from '../../components/inputs/suggest-input/suggest-input.component'
+import { TextInputComponent } from '../../components/inputs/text-input/text-input.component'
 import { DesignTokenFormComponent } from './design-token-form.component'
 
-xdescribe('DesignTokenFormComponent', () => {
+describe('DesignTokenFormComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
-      components: [DesignTokenFormComponent],
-      html: '<tf-design-token-form></tf-design-token-form>',
+    const data = {
+      formData: {
+        identifier: 'dtActionBg',
+        groups: ['First', 'Second'],
+        propertyTypes: [
+          { key: 'first', value: 'First' },
+          { key: 'second', value: 'Second' },
+        ],
+      },
+    }
+    const page = await newSpecPage({
+      components: [
+        DesignTokenFormComponent,
+        SuggestInputComponent,
+        TextInputComponent,
+        ButtonComponent,
+        SelectInputComponent,
+      ],
+      autoApplyChanges: true,
+      template: () => <tf-design-token-form {...data} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-design-token-form>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-design-token-form>
-    `)
-  })
 
-  it('renders with values', async () => {
-    const { root } = await newSpecPage({
-      components: [DesignTokenFormComponent],
-      html: `<tf-design-token-form first="Stencil" last="'Don't call me a framework' JS"></tf-design-token-form>`,
-    })
-    expect(root).toEqualHtml(`
-      <tf-design-token-form first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-design-token-form>
-    `)
+    expect(page.root).toMatchSnapshot()
   })
 })

@@ -32,7 +32,7 @@ export class StyleGuidesComponent {
     }
   }
 
-  private sub?: Subscription
+  private sub = new Subscription()
   private styleGuideGroups: { [styleguide: string]: string[] }
 
   private openStyleGuideForm = (styleGuide?: string, styleGuideBase?: StyleGuideBase): void => {
@@ -54,22 +54,24 @@ export class StyleGuidesComponent {
   }
 
   public componentWillLoad(): void {
-    this.sub = this.styleGuides$?.subscribe((styleGuides) => {
-      this.styleGuides = styleGuides
-      this.styleGuideGroups = styleGuides.reduce((result, styleguide) => {
-        result[styleguide.slug] = []
-        styleguide.types.forEach((type) => {
-          type.groups.forEach((group) => {
-            result[styleguide.slug].push(group.name)
+    this.sub.add(
+      this.styleGuides$?.subscribe((styleGuides) => {
+        this.styleGuides = styleGuides
+        this.styleGuideGroups = styleGuides.reduce((result, styleguide) => {
+          result[styleguide.slug] = []
+          styleguide.types.forEach((type) => {
+            type.groups.forEach((group) => {
+              result[styleguide.slug].push(group.name)
+            })
           })
-        })
-        return result
-      }, {})
-    })
+          return result
+        }, {})
+      })
+    )
   }
 
   public disconnectedCallback(): void {
-    this.sub?.unsubscribe()
+    this.sub.unsubscribe()
   }
 
   public render(): HTMLTfStyleGuidesElement {

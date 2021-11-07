@@ -28,7 +28,7 @@ export default {
       },
       {
         formData: {
-          identifier: { styleguide: 'styleGuide1', style: 'baseGroup_red' },
+          identifier: { styleGuide: 'styleGuide1', style: 'baseGroup_red' },
           groups: groups,
           propertyTypes: [{ key: '', value: '-' }, ...propertyTypes],
           fields: {

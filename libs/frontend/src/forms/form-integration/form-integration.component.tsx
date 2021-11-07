@@ -1,6 +1,6 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import { FormIntegrationActions, FormIntegrations } from '@typings'
-import { Subject } from 'rxjs'
+import { Subject, Subscription } from 'rxjs'
 
 @Component({
   tag: 'tf-form-integration',
@@ -16,25 +16,36 @@ export class FormIntegrationComponent {
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
 
+  private sub = new Subscription()
+  private args = {}
+
   private close = (): void => {
     this.show = false
   }
 
   private onAction = ({ detail }): void => {
+    console.log('action', detail)
     if (detail.action !== 'close') {
       this.action.emit({ ...detail, controller: this.formData.form })
     }
-    this.close()
+
+    if (detail.action !== 'open') {
+      this.close()
+    }
   }
 
-  private args = {}
-
   public componentWillLoad(): void {
-    this.formData$.subscribe((formData) => {
-      this.formData = formData
-      this.args = { formData, onAction: this.onAction }
-      this.show = true
-    })
+    this.sub.add(
+      this.formData$.subscribe((formData) => {
+        this.formData = formData
+        this.args = { formData, onAction: this.onAction }
+        this.show = true
+      })
+    )
+  }
+
+  public disconnectedCallback(): void {
+    this.sub.unsubscribe()
   }
 
   private renderForm(form: string): HTMLElement {

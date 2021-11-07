@@ -18,8 +18,12 @@ export class StyleGuideFormComponent {
 
   private controls: { [key: string]: HTMLTfTextInputElement } = {}
 
-  public componentDidLoad(): void {
+  public componentWillLoad(): void {
     this.editMode = this.formData.identifier && true
+  }
+
+  public componentDidLoad(): void {
+    this.action.emit({ action: 'open' })
   }
 
   private formValues = (): FormValues =>

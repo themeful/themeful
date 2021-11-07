@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DesignTokenFormComponent renders 1`] = `
+<tf-design-token-form>
+  <mock:shadow-root>
+    <form class="form">
+      <h3>
+        Edit Design Token
+      </h3>
+      <tf-text-input>
+        <mock:shadow-root>
+          <label class="text-input">
+            <span class="text-input__label">
+              Name
+            </span>
+            <input class="text-input__input" type="text">
+            <p class="text-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-text-input>
+      <tf-suggest-input>
+        <mock:shadow-root>
+          <label class="suggest-input">
+            <span class="suggest-input__label">
+              Group
+            </span>
+            <input autocomplete="off" class="suggest-input__input" list="suggestdatalist1" type="text">
+            <datalist id="suggestdatalist1">
+              <option value="First"></option>
+              <option value="Second"></option>
+            </datalist>
+            <p class="suggest-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-suggest-input>
+      <tf-select-input>
+        <mock:shadow-root>
+          <label class="select-input">
+            <span class="select-input__label">
+              Type
+            </span>
+            <select class="select-input__input">
+              <option value="first">
+                First
+              </option>
+              <option value="second">
+                Second
+              </option>
+            </select>
+            <p class="select-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-select-input>
+      <tf-text-input>
+        <mock:shadow-root>
+          <label class="text-input">
+            <span class="text-input__label">
+              Description
+            </span>
+            <input class="text-input__input" type="text">
+            <p class="text-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-text-input>
+      <div class="form__controls">
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button danger" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Delete
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button secondary" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Cancel
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button primary" type="submit">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Save
+        </tf-button>
+      </div>
+    </form>
+  </mock:shadow-root>
+</tf-design-token-form>
+`;

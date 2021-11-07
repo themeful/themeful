@@ -18,8 +18,12 @@ export class ThemeFormComponent {
 
   private controls: { [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement } = {}
 
-  public componentDidLoad(): void {
+  public componentWillLoad(): void {
     this.editMode = this.formData.identifier && true
+  }
+
+  public componentDidLoad(): void {
+    this.action.emit({ action: 'open' })
   }
 
   private formValues = (): FormValues =>

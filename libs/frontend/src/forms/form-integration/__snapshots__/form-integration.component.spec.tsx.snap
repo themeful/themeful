@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormIntegrationComponent renders 1`] = `
+<tf-form-integration>
+  <mock:shadow-root>
+    <tf-overlay>
+      <mock:shadow-root></mock:shadow-root>
+    </tf-overlay>
+  </mock:shadow-root>
+</tf-form-integration>
+`;

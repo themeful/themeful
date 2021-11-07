@@ -5,18 +5,21 @@ import { Subject } from 'rxjs'
 import { ToastComponent } from './toast.component'
 
 describe('ToastComponent', () => {
-  it('renders with values', async () => {
+  it('renders with values', async (done) => {
     const subject = new Subject<Toast>()
     const page = await newSpecPage({
       components: [ToastComponent],
-      autoApplyChanges: true,
       template: () => <tf-toast msg$={subject} />,
+    })
+    page.root.addEventListener('state', async () => {
+      await page.waitForChanges()
+      expect(page.root).toMatchSnapshot()
+      done()
     })
     subject.next({
       text: 'Hello World',
       status: 'success',
     })
     subject.complete()
-    expect(page.root).toMatchSnapshot()
   })
 })

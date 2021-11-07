@@ -18,8 +18,11 @@ export class AliasTokenFormComponent {
 
   private controls: { [key: string]: HTMLTfMultiSelectInputElement } = {}
 
-  public componentDidLoad(): void {
+  public componentWillLoad(): void {
     this.editMode = this.formData.identifier && true
+  }
+  public componentDidLoad(): void {
+    this.action.emit({ action: 'open' })
   }
 
   private formValues = (): FormValues =>
