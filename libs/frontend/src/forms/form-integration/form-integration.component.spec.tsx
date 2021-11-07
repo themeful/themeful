@@ -1,36 +1,36 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
+import { DesignTokenIntegration } from '@typings'
+import { Subject } from 'rxjs'
+import { OverlayComponent } from '../../components/overlay/overlay.component'
 import { FormIntegrationComponent } from './form-integration.component'
 
-xdescribe('FormIntegrationComponent', () => {
+describe('FormIntegrationComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
-      components: [FormIntegrationComponent],
-      html: '<tf-form-integration></tf-form-integration>',
+    const subject = new Subject<DesignTokenIntegration>()
+    const data = {
+      form: 'designToken',
+      identifier: 'dtActionBg',
+      groups: ['First', 'Second'],
+      propertyTypes: [
+        { key: 'size', value: 'Size' },
+        { key: 'color', value: 'Color' },
+      ],
+      fields: {
+        name: 'Some Token Name',
+        group: 'First',
+        type: 'color',
+        description: 'Some good description',
+      },
+    }
+    const page = await newSpecPage({
+      components: [FormIntegrationComponent, OverlayComponent],
+      autoApplyChanges: true,
+      template: () => <tf-form-integration formData$={subject} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-form-integration>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-form-integration>
-    `)
-  })
 
-  it('renders with values', async () => {
-    const { root } = await newSpecPage({
-      components: [FormIntegrationComponent],
-      html: `<tf-form-integration first="Stencil" last="'Don't call me a framework' JS"></tf-form-integration>`,
-    })
-    expect(root).toEqualHtml(`
-      <tf-form-integration first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-form-integration>
-    `)
+    subject.next(data as DesignTokenIntegration)
+    subject.complete()
+    expect(page.root).toMatchSnapshot()
   })
 })

@@ -1,36 +1,22 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
+import { ButtonComponent } from '../../components/button/button.component'
+import { TextInputComponent } from '../../components/inputs/text-input/text-input.component'
 import { StyleGuideFormComponent } from './style-guide-form.component'
 
-xdescribe('StyleGuideFormComponent', () => {
+describe('StyleGuideFormComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
-      components: [StyleGuideFormComponent],
-      html: '<tf-style-guide-form></tf-style-guide-form>',
+    const data = {
+      formData: {
+        identifier: 'styleGuide1',
+      },
+    }
+    const page = await newSpecPage({
+      components: [StyleGuideFormComponent, TextInputComponent, ButtonComponent],
+      autoApplyChanges: true,
+      template: () => <tf-style-guide-form {...data} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-style-guide-form>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-style-guide-form>
-    `)
-  })
 
-  it('renders with values', async () => {
-    const { root } = await newSpecPage({
-      components: [StyleGuideFormComponent],
-      html: `<tf-style-guide-form first="Stencil" last="'Don't call me a framework' JS"></tf-style-guide-form>`,
-    })
-    expect(root).toEqualHtml(`
-      <tf-style-guide-form first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-style-guide-form>
-    `)
+    expect(page.root).toMatchSnapshot()
   })
 })

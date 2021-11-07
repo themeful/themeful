@@ -25,8 +25,12 @@ export class DesignTokenFormComponent {
     [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement | HTMLTfSuggestInputElement
   } = {}
 
-  public componentDidLoad(): void {
+  public componentWillLoad(): void {
     this.editMode = this.formData.identifier && true
+  }
+
+  public componentDidLoad(): void {
+    this.action.emit({ action: 'open' })
   }
 
   private formValues = (): FormValues =>

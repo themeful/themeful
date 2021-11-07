@@ -25,9 +25,13 @@ export class StyleFormComponent {
       | HTMLTfColorInputElement
   } = {}
 
-  public componentDidLoad(): void {
+  public componentWillLoad(): void {
     this.editMode = this.formData?.identifier?.style && true
     this.type = this.formData.fields?.type
+  }
+
+  public componentDidLoad(): void {
+    this.action.emit({ action: 'open' })
   }
 
   private formValues = (): { [key: string]: string | number } =>

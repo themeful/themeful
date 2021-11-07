@@ -24,7 +24,7 @@ const sample2 = {
   },
 }
 
-xdescribe('PropertyComponent', () => {
+describe('PropertyComponent', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [PropertyComponent],

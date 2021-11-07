@@ -52,7 +52,7 @@ export class ThemesComponent {
     },
   ]
 
-  private sub?: Subscription
+  private sub = new Subscription()
 
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
@@ -64,57 +64,59 @@ export class ThemesComponent {
   }
 
   public componentWillLoad(): void {
-    this.sub = this.bundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes]) => {
-      this.themes = themes
-      this.aliasTokens = aliasTokens
-      this.designTokens = designTokens
-      this.groups = []
-      const { styleMap, sgNames } = this.transformStyleGuides(styleGuides)
-      this.styleMap = styleMap
-      this.themeNames = []
-      this.styleGuideHeaders = {}
-      Object.keys(themes).forEach((key) => {
-        this.themeNames.push({
-          styleGuide: themes[key].styleGuide,
-          name: themes[key].name,
-          key,
-        })
-        if (this.styleGuideHeaders[themes[key].styleGuide] === undefined) {
-          this.styleGuideHeaders[themes[key].styleGuide] = {
-            name: sgNames[themes[key].styleGuide],
-            count: 1,
+    this.sub.add(
+      this.bundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes]) => {
+        this.themes = themes
+        this.aliasTokens = aliasTokens
+        this.designTokens = designTokens
+        this.groups = []
+        const { styleMap, sgNames } = this.transformStyleGuides(styleGuides)
+        this.styleMap = styleMap
+        this.themeNames = []
+        this.styleGuideHeaders = {}
+        Object.keys(themes).forEach((key) => {
+          this.themeNames.push({
+            styleGuide: themes[key].styleGuide,
+            name: themes[key].name,
+            key,
+          })
+          if (this.styleGuideHeaders[themes[key].styleGuide] === undefined) {
+            this.styleGuideHeaders[themes[key].styleGuide] = {
+              name: sgNames[themes[key].styleGuide],
+              count: 1,
+            }
+          } else {
+            this.styleGuideHeaders[themes[key].styleGuide].count++
           }
-        } else {
-          this.styleGuideHeaders[themes[key].styleGuide].count++
-        }
-      })
-      const rows: DesignTokenRow[] = []
-      Object.keys(designTokens).forEach((designToken) => {
-        this.dt2at[designToken] = designTokens[designToken].aliasTokens
-        if (!this.groups.includes(designTokens[designToken].group)) {
-          this.groups.push(designTokens[designToken].group)
-        }
-        const themeValues: ExtendedValueDetails[] = []
-        Object.values(themes).forEach((theme: Theme) => {
-          const themeValue: ExtendedValueDetails = []
-          if (theme.styles[designToken]) {
-            Object.entries(theme.styles[designToken]).forEach(([media, { style, direct }]) => {
-              const themeMedia: ExtendedValueDetail = {
-                media,
-                name: styleMap[media] ? styleMap[media].name : 'Default',
-                global: styleMap[media] ? styleMap[media].global : false,
-                style: style ? { ...styleMap[style], key: style } : undefined,
-                direct,
-              }
-              themeValue.push(themeMedia)
-            })
-          }
-          themeValues.push(themeValue)
         })
-        rows.push({ ...designTokens[designToken], token: designToken, themeValues })
+        const rows: DesignTokenRow[] = []
+        Object.keys(designTokens).forEach((designToken) => {
+          this.dt2at[designToken] = designTokens[designToken].aliasTokens
+          if (!this.groups.includes(designTokens[designToken].group)) {
+            this.groups.push(designTokens[designToken].group)
+          }
+          const themeValues: ExtendedValueDetails[] = []
+          Object.values(themes).forEach((theme: Theme) => {
+            const themeValue: ExtendedValueDetails = []
+            if (theme.styles[designToken]) {
+              Object.entries(theme.styles[designToken]).forEach(([media, { style, direct }]) => {
+                const themeMedia: ExtendedValueDetail = {
+                  media,
+                  name: styleMap[media] ? styleMap[media].name : 'Default',
+                  global: styleMap[media] ? styleMap[media].global : false,
+                  style: style ? { ...styleMap[style], key: style } : undefined,
+                  direct,
+                }
+                themeValue.push(themeMedia)
+              })
+            }
+            themeValues.push(themeValue)
+          })
+          rows.push({ ...designTokens[designToken], token: designToken, themeValues })
+        })
+        this.rows = rows
       })
-      this.rows = rows
-    })
+    )
   }
 
   private transformStyleGuides(styleGuides: StyleGuides) {
@@ -133,7 +135,7 @@ export class ThemesComponent {
   }
 
   public disconnectedCallback(): void {
-    this.sub?.unsubscribe()
+    this.sub.unsubscribe()
   }
 
   private openThemeForm = (theme?: string): void => {

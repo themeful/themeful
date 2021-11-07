@@ -38,6 +38,7 @@ export interface StyleGuideFormData {
 }
 
 export type StyleGuideFormAction =
+  | OpenAction
   | CloseAction
   | StyleGuideCreateAction
   | StyleGuideUpdateAction
@@ -49,6 +50,9 @@ export type StyleGuideIntegrtionAction = StyleGuideFormAction & {
 
 export interface CloseAction {
   action: 'close'
+}
+export interface OpenAction {
+  action: 'open'
 }
 
 export interface StyleGuideCreateAction {
@@ -80,6 +84,7 @@ export interface StyleFormData {
 }
 
 export type StyleFormAction =
+  | OpenAction
   | CloseAction
   | StyleCreateAction
   | StyleUpdateAction
@@ -113,7 +118,7 @@ export interface StyleDeleteAction {
 
 // --------- AliasTokens ------------
 
-export type AliasTokenFormAction = CloseAction | RescanAction | AliasTokenUpdateAction
+export type AliasTokenFormAction = CloseAction | OpenAction | RescanAction | AliasTokenUpdateAction
 
 export type AliasTokenIntegrtionAction = AliasTokenFormAction & {
   controller: 'aliasToken'
@@ -151,6 +156,7 @@ export interface ThemeFormData {
 }
 
 export type ThemeFormAction =
+  | OpenAction
   | CloseAction
   | ThemeCreateAction
   | ThemeUpdateAction
@@ -196,6 +202,7 @@ export interface DesignTokenFormFields {
 }
 
 export type DesignTokenFormAction =
+  | OpenAction
   | CloseAction
   | DesignTokenCreateAction
   | DesignTokenUpdateAction
@@ -236,11 +243,12 @@ export interface ThemeValueFormData {
 
 export interface ThemeValueFormFields {
   media: string
-  style: string
-  direct: string
+  style?: string
+  direct?: string
 }
 
 export type ThemeValueFormAction =
+  | OpenAction
   | CloseAction
   | ThemeValueCreateAction
   | ThemeValueUpdateAction

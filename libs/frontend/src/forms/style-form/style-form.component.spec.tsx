@@ -1,36 +1,43 @@
+import { h } from '@stencil/core'
 import { newSpecPage } from '@stencil/core/testing'
+import { ButtonComponent } from '../../components/button/button.component'
+import { ColorInputComponent } from '../../components/inputs/color-input/color-input.component'
+import { SelectInputComponent } from '../../components/inputs/select-input/select-input.component'
+import { SuggestInputComponent } from '../../components/inputs/suggest-input/suggest-input.component'
+import { TextInputComponent } from '../../components/inputs/text-input/text-input.component'
 import { StyleFormComponent } from './style-form.component'
 
-xdescribe('StyleFormComponent', () => {
+describe('StyleFormComponent', () => {
   it('renders', async () => {
-    const { root } = await newSpecPage({
-      components: [StyleFormComponent],
-      html: '<tf-style-form></tf-style-form>',
+    const data = {
+      formData: {
+        identifier: { styleGuide: 'styleGuide1', style: 'baseGroup_red' },
+        groups: ['First', 'Second'],
+        propertyTypes: [
+          { key: 'first', value: 'First' },
+          { key: 'second', value: 'Second' },
+        ],
+        fields: {
+          type: 'color',
+          group: 'Base Group',
+          name: 'Red',
+          value: '#4b83be',
+        },
+      },
+    }
+    const page = await newSpecPage({
+      components: [
+        StyleFormComponent,
+        SuggestInputComponent,
+        TextInputComponent,
+        ButtonComponent,
+        SelectInputComponent,
+        ColorInputComponent,
+      ],
+      autoApplyChanges: true,
+      template: () => <tf-style-form {...data} />,
     })
-    expect(root).toEqualHtml(`
-      <tf-style-form>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </tf-style-form>
-    `)
-  })
 
-  it('renders with values', async () => {
-    const { root } = await newSpecPage({
-      components: [StyleFormComponent],
-      html: `<tf-style-form first="Stencil" last="'Don't call me a framework' JS"></tf-style-form>`,
-    })
-    expect(root).toEqualHtml(`
-      <tf-style-form first="Stencil" last="'Don't call me a framework' JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
-      </tf-style-form>
-    `)
+    expect(page.root).toMatchSnapshot()
   })
 })

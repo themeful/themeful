@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { ThemesComponent } from './themes.component'
 
-xdescribe('ThemesComponent', () => {
+describe('ThemesComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
       components: [ThemesComponent],

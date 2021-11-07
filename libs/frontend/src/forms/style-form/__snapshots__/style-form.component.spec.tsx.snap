@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StyleFormComponent renders 1`] = `
+<tf-style-form>
+  <mock:shadow-root>
+    <form class="form">
+      <h3>
+        Edit Style
+      </h3>
+      <tf-select-input>
+        <mock:shadow-root>
+          <label class="select-input">
+            <span class="select-input__label">
+              Type
+            </span>
+            <select class="select-input__input">
+              <option value="first">
+                First
+              </option>
+              <option value="second">
+                Second
+              </option>
+            </select>
+            <p class="select-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-select-input>
+      <tf-suggest-input>
+        <mock:shadow-root>
+          <label class="suggest-input">
+            <span class="suggest-input__label">
+              Group
+            </span>
+            <input autocomplete="off" class="suggest-input__input" list="suggestdatalist1" type="text" value="Base Group">
+            <datalist id="suggestdatalist1">
+              <option value="First"></option>
+              <option value="Second"></option>
+            </datalist>
+            <p class="suggest-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-suggest-input>
+      <tf-text-input>
+        <mock:shadow-root>
+          <label class="text-input">
+            <span class="text-input__label">
+              Name
+            </span>
+            <input class="text-input__input" type="text" value="Red">
+            <p class="text-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-text-input>
+      <tf-color-input class="color-input">
+        <mock:shadow-root>
+          <label class="color-input">
+            <span class="color-input__label">
+              Color
+            </span>
+            <input class="color-input__input" type="text" value="#4b83be">
+            <p class="color-input__hint"></p>
+          </label>
+          <div class="color-input__control-wrapper">
+            <div class="color-input__control-row">
+              <div class="color-input__controls">
+                <input class="color-input__hue" max="360" min="0" type="range" value="211">
+                <input class="color-input__alpha" max="100" min="0" type="range" value="0">
+              </div>
+              <div class="color-input__selected-color" title="change format">
+                <div class="color-input__crossed-out"></div>
+              </div>
+            </div>
+            <div class="color-input__shade">
+              <div class="color-input__pointer"></div>
+            </div>
+          </div>
+        </mock:shadow-root>
+      </tf-color-input>
+      <div class="form__controls">
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button danger" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Delete
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button secondary" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Cancel
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button primary" type="submit">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Save
+        </tf-button>
+      </div>
+    </form>
+  </mock:shadow-root>
+</tf-style-form>
+`;

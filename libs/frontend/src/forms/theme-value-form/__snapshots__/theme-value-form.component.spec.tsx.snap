@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemeValueFormComponent renders 1`] = `
+<tf-theme-value-form>
+  <mock:shadow-root>
+    <form class="form">
+      <h3>
+        Edit Theme Value
+      </h3>
+      <tf-select-input>
+        <mock:shadow-root>
+          <label class="select-input">
+            <span class="select-input__label">
+              Media
+            </span>
+            <select class="select-input__input">
+              <option value="default">
+                Default
+              </option>
+              <option value="global_mediaQuery_aboveSmallMobile">
+                Above Small Mobile
+              </option>
+              <option selected="" value="global_mediaQuery_aboveMobile">
+                Above Mobile
+              </option>
+            </select>
+            <p class="select-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-select-input>
+      <div class="button-group">
+        <tf-button class="active button-group--first">
+          <mock:shadow-root>
+            <button class="active button selectable" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Style Guide
+        </tf-button>
+        <tf-button class="button-group--last">
+          <mock:shadow-root>
+            <button class="button selectable" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Direct Value
+        </tf-button>
+      </div>
+      <ul class="form__row--span form__selectable-list property--selectable">
+        <li class="form__selectable">
+          <tf-property></tf-property>
+        </li>
+        <li class="form__selectable">
+          <tf-property></tf-property>
+        </li>
+        <li class="form__selectable">
+          <tf-property></tf-property>
+        </li>
+      </ul>
+      <div class="form__controls">
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button danger" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Delete
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button secondary" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Cancel
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button primary" type="submit">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Save
+        </tf-button>
+      </div>
+    </form>
+  </mock:shadow-root>
+</tf-theme-value-form>
+`;
