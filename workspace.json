@@ -8,7 +8,7 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": ["dist/apps/backend"],
           "options": {
             "outputPath": "dist/apps/backend",
             "main": "apps/backend/src/main.ts",
@@ -64,7 +64,7 @@
       "targets": {
         "test": {
           "executor": "@nxext/stencil:test",
-          "outputs": ["{options.outputPath}"],
+          "outputs": ["coverage/libs/frontend"],
           "options": {
             "projectType": "library",
             "tsConfig": "libs/frontend/tsconfig.spec.json",
@@ -74,7 +74,7 @@
         },
         "build": {
           "executor": "@nxext/stencil:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": ["dist/libs/frontend"],
           "options": {
             "projectType": "library",
             "tsConfig": "libs/frontend/tsconfig.lib.json",
@@ -96,7 +96,7 @@
         },
         "serve": {
           "executor": "@nxext/stencil:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": ["dist/libs/frontend"],
           "options": {
             "projectType": "library",
             "tsConfig": "libs/frontend/tsconfig.lib.json",
@@ -109,7 +109,7 @@
         },
         "e2e": {
           "executor": "@nxext/stencil:e2e",
-          "outputs": ["{options.outputPath}"],
+          "outputs": ["dist/libs/frontend"],
           "options": {
             "projectType": "library",
             "tsConfig": "libs/frontend/tsconfig.lib.json",
@@ -134,7 +134,7 @@
         },
         "build-storybook": {
           "executor": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": ["dist/storybook/frontend"],
           "options": {
             "uiFramework": "@storybook/html",
             "outputPath": "dist/storybook/frontend",
