@@ -1,6 +1,7 @@
 import { Config } from '@stencil/core'
 import { postcss } from '@stencil/postcss'
 import { sass } from '@stencil/sass'
+import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
 
 export const config: Config = {
@@ -9,17 +10,7 @@ export const config: Config = {
   plugins: [
     sass(),
     postcss({
-      plugins: [
-        cssnano({
-          preset: [
-            'default',
-            {
-              autoprefixer: { browsers: 'last 2 versions', add: true },
-              zindex: false,
-            },
-          ],
-        }),
-      ],
+      plugins: [autoprefixer(), cssnano()],
     }),
   ],
   globalStyle: `src/global.scss`,
