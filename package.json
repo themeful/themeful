@@ -20,7 +20,7 @@
     "format": "nx format:write",
     "format:write": "nx format:write",
     "format:check": "nx format:check",
-    "update": "nx migrate latest && yarn && if [ -f 'migrations.json' ]; then nx migrate --run-migrations=migrations.json; fi",
+    "update": "nx migrate latest && yarn && if [ -f 'migrations.json' ]; then nx migrate --run-migrations=migrations.json && yarn install; fi",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
