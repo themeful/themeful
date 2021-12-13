@@ -1,5 +1,13 @@
 import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
 
+export interface NavigationItem {
+  label: string
+  slug?: string
+  selectable?: boolean
+  position?: string
+  callback?: () => void
+}
+
 @Component({
   tag: 'tf-navigation',
   styleUrl: 'navigation.component.scss',
@@ -13,24 +21,24 @@ export class NavigationComponent {
   @Prop() active = ''
 
   /** Items */
-  @Prop() items = []
+  @Prop() items: NavigationItem[] = []
 
   /** Input Event */
   @Event({ composed: false }) itemClick: EventEmitter
 
-  private click = (item: any): void => {
+  private click = (item: NavigationItem): void => {
     if (item.selectable) {
       this.active = item.slug
     }
-    if (item.callback) {
+    if (item.callback !== undefined) {
       item.callback()
     }
-    if (item.slug) {
+    if (item.slug !== undefined) {
       this.itemClick.emit(item.slug)
     }
   }
 
-  private renderItem = (item: any): HTMLElement => (
+  private renderItem = (item: NavigationItem): HTMLElement => (
     <tf-button
       {...{
         size: this.size,
