@@ -64,7 +64,7 @@
     "autoprefixer": "^10.4.0",
     "colortranslator": "^1.9.1",
     "css-loader": "^5.2.7",
-    "dotenv": "^15.0.0",
+    "dotenv": "^16.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
