@@ -2,11 +2,27 @@
   "migrations": [
     {
       "cli": "nx",
-      "version": "13.8.0-beta.1",
-      "description": "Add a postcss config option to apps to load a single config file for all libs",
-      "factory": "./src/migrations/update-13-8-0/add-postcss-config-option",
-      "package": "@nrwl/web",
-      "name": "add-postcss-config-option"
+      "version": "13.8.5-beta.1",
+      "description": "Renames @nrwl/node:build to @nrwl/node:webpack",
+      "factory": "./src/migrations/update-13-8-5/rename-build-to-webpack",
+      "package": "@nrwl/node",
+      "name": "rename-build-to-webpack"
+    },
+    {
+      "cli": "nx",
+      "version": "13.8.5-beta.1",
+      "description": "Renames @nrwl/node:execute to @nrwl/node:node",
+      "factory": "./src/migrations/update-13-8-5/rename-execute-to-node",
+      "package": "@nrwl/node",
+      "name": "rename-execute-to-node"
+    },
+    {
+      "cli": "nx",
+      "version": "13.8.5-beta.1",
+      "description": "Renames @nrwl/node:package to @nrwl/js:tsc",
+      "factory": "./src/migrations/update-13-8-5/update-package-to-tsc",
+      "package": "@nrwl/node",
+      "name": "update-package-to-tsc"
     }
   ]
 }
