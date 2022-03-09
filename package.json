@@ -93,7 +93,7 @@
     "@storybook/manager-webpack5": "~6.4.5",
     "jsonfile": "^6.1.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.5.4",
+    "rxjs": "^7.5.5",
     "sentence-case": "^3.0.4",
     "tslib": "^2.3.1"
   }
