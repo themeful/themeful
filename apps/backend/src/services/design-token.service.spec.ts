@@ -60,8 +60,8 @@ describe('DesignTokenService', () => {
 
     it('should not create one', () => {
       const clonedDesignToken: DesignTokenAPI = {
-        ...clone(designTokens.dtTestActionBG),
-        token: 'dtTestActionBG',
+        ...clone(designTokens.dtTestActionBackground),
+        token: 'dtTestActionBackground',
       }
       expect(service.create(clonedDesignToken)).toEqual(false)
     })
@@ -93,8 +93,8 @@ describe('DesignTokenService', () => {
 
     it('should not update to existing one', () => {
       const clonedDesignToken: DesignTokenAPI = {
-        ...clone(designTokens.dtTestActionBG),
-        token: 'dtTestActionBG',
+        ...clone(designTokens.dtTestActionBackground),
+        token: 'dtTestActionBackground',
       }
       expect(service.update('dtTestFontColorPrimary', clonedDesignToken)).toEqual(false)
     })
@@ -130,7 +130,7 @@ describe('DesignTokenService', () => {
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './sample/generated/designTokens.scss',
-        `$atButtonBackground: var(--dtTestActionBG);
+        `$atButtonBackground: var(--dtTestActionBackground);
 $atBaseFontColor: var(--dtTestFontColorPrimary);
 $atButtonFontColor: var(--dtTestFontColorPrimary);
 $atButtonFontSize: var(--dtTestFontSize100);
@@ -146,12 +146,12 @@ $atButtonFontSize: var(--dtTestFontSize100);
 
       expect(syncService.designTokens).toHaveBeenCalledWith({
         action: 'create',
-        primary: 'dtTestActionBgNew',
+        primary: 'dtActionBackgroundNew',
         values: [
-          'dtTestActionBgNew',
+          'dtActionBackgroundNew',
           'dtTestFontColorPrimary',
           'dtTestFontSize100',
-          'dtTestActionBG',
+          'dtTestActionBackground',
         ],
       })
     })
@@ -164,8 +164,8 @@ $atButtonFontSize: var(--dtTestFontSize100);
       expect(syncService.designTokens).toHaveBeenCalledWith({
         action: 'update',
         primary: 'dtTestFontSize100',
-        secondary: 'dtTestActionBgUpdated',
-        values: ['dtTestActionBgUpdated', 'dtTestFontColorPrimary', 'dtTestActionBG'],
+        secondary: 'dtActionBackgroundUpdated',
+        values: ['dtActionBackgroundUpdated', 'dtTestFontColorPrimary', 'dtTestActionBackground'],
       })
     })
     it('should sync delete designTokens', () => {
@@ -175,7 +175,7 @@ $atButtonFontSize: var(--dtTestFontSize100);
       expect(syncService.designTokens).toHaveBeenCalledWith({
         action: 'delete',
         primary: 'dtTestFontSize100',
-        values: ['dtTestFontColorPrimary', 'dtTestActionBG'],
+        values: ['dtTestFontColorPrimary', 'dtTestActionBackground'],
       })
     })
   })
@@ -213,7 +213,7 @@ $atButtonFontSize: var(--dtTestFontSize100);
           'atBaseFontColor',
           'atButtonFontColor',
           'atButtonFontSize',
-          'dtTestActionBGUpdated',
+          'dtTestActionBackgroundUpdated',
         ],
       })
       expect(service.read()).toEqual(withUpdatedAliasToken)
@@ -236,8 +236,8 @@ $atButtonFontSize: var(--dtTestFontSize100);
 
 const newDesignToken = {
   type: 'color',
-  short: 'test',
-  token: 'dtTestActionBgNew',
+  short: 'xyz',
+  token: 'dtActionBackgroundNew',
   name: 'Action Background New',
   group: 'content',
   description: 'Background for action elements',
@@ -247,7 +247,7 @@ const newDesignToken = {
 
 const updatedDesignToken = {
   type: 'color',
-  token: 'dtTestActionBgUpdated',
+  token: 'dtActionBackgroundUpdated',
   name: 'Action Background Updated',
   group: 'content',
   short: 'gjG',
@@ -257,9 +257,8 @@ const updatedDesignToken = {
 }
 
 const designTokens = {
-  dtTestActionBG: {
+  dtTestActionBackground: {
     type: 'color',
-    // short: 'dQB',
     name: 'Action Background',
     group: 'controls',
     description: 'Background for action elements',
@@ -268,7 +267,6 @@ const designTokens = {
   },
   dtTestFontColorPrimary: {
     type: 'color',
-    // short: 'DmP',
     name: 'Normal Font Color',
     group: 'content',
     description: 'Font color for normal text',
@@ -277,7 +275,6 @@ const designTokens = {
   },
   dtTestFontSize100: {
     type: 'font-size',
-    // short: 'gjG',
     name: 'Normal Font Size',
     group: 'content',
     description: 'Font size for normal text',
