@@ -8,7 +8,7 @@ body {
   --dtActionBg: #aaaaaa;
   --dtActionBgHover: #{$styleGuide3_base_primary};
   --dtControlBorderRadius: #{$global_space_tiny};
-  --dtFontColorPrimary: #{$styleGuide3_base_primary};
+  --dtNormalFontColor: #{$styleGuide3_base_primary};
   @include global_mediaQuery_aboveSmallMobile {
     --dtActionBg: rgba(180, 180, 180, 0.8);
     --dtControlBorderRadius: #{$global_space_small};

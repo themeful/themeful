@@ -6,104 +6,121 @@
       "base_black": {
         "name": "Black",
         "type": "color",
-        "group": "base",
-        "value": "#333333"
+        "group": "Base",
+        "value": "#333333",
+        "slug": "base_black"
       },
       "base_light": {
         "name": "Light",
         "type": "color",
-        "group": "base",
-        "value": "#ffffff"
+        "group": "Base",
+        "value": "#ffffff",
+        "slug": "base_light"
       },
       "gray_100": {
         "name": "100",
         "type": "color",
-        "group": "gray",
-        "value": "rgba(0, 0, 0, 0.75)"
+        "group": "Gray",
+        "value": "rgba(0, 0, 0, 0.75)",
+        "slug": "gray_100"
       },
       "gray_200": {
         "name": "200",
         "type": "color",
-        "group": "gray",
-        "value": "rgba(0, 0, 0, 0.60)"
+        "group": "Gray",
+        "value": "rgba(0, 0, 0, 0.60)",
+        "slug": "gray_200"
       },
       "gray_300": {
         "name": "300",
         "type": "color",
-        "group": "gray",
-        "value": "rgba(0, 0, 0, 0.45)"
+        "group": "Gray",
+        "value": "rgba(0, 0, 0, 0.45)",
+        "slug": "gray_300"
       },
       "gray_400": {
         "name": "400",
         "type": "color",
-        "group": "gray",
-        "value": "rgba(0, 0, 0, 0.30)"
+        "group": "Gray",
+        "value": "rgba(0, 0, 0, 0.30)",
+        "slug": "gray_400"
       },
       "gray_500": {
         "name": "500",
         "type": "color",
-        "group": "gray",
-        "value": "rgba(0, 0, 0, 0.15)"
+        "group": "Gray",
+        "value": "rgba(0, 0, 0, 0.15)",
+        "slug": "gray_500"
       },
       "space_tiny": {
         "type": "size",
-        "group": "space",
+        "group": "Space",
         "name": "Tiny",
-        "value": "4px"
+        "value": "4px",
+        "slug": "space_tiny"
       },
       "space_small": {
         "type": "size",
-        "group": "space",
+        "group": "Space",
         "name": "Small",
-        "value": "8px"
+        "value": "8px",
+        "slug": "space_small"
       },
       "space_smallMedium": {
         "name": "Small Medium",
         "type": "size",
-        "group": "space",
-        "value": "0.75rem"
+        "group": "Space",
+        "value": "0.75rem",
+        "slug": "space_smallMedium"
       },
       "space_medium": {
         "type": "size",
-        "group": "space",
+        "group": "Space",
         "name": "Medium",
-        "value": "16px"
+        "value": "16px",
+        "slug": "space_medium"
       },
       "space_large": {
         "type": "size",
-        "group": "space",
+        "group": "Space",
         "name": "Large",
-        "value": "24px"
+        "value": "24px",
+        "slug": "space_large"
       },
       "space_xlarge": {
         "type": "size",
-        "group": "space",
+        "group": "Space",
         "name": "X-Large",
-        "value": "32px"
+        "value": "32px",
+        "slug": "space_xlarge"
       },
       "mediaQuery_aboveSmallMobile": {
         "name": "Above Small Mobile",
         "type": "mediaquery",
-        "group": "mediaQuery",
-        "value": "screen and (min-width: 321px)"
+        "group": "Media query",
+        "value": "screen and (min-width: 321px)",
+        "slug": "mediaQuery_aboveSmallMobile"
       },
       "mediaQuery_aboveMobile": {
         "name": "Above Mobile",
         "type": "mediaquery",
-        "group": "mediaQuery",
-        "value": "screen and (min-width: 664px)"
+        "group": "Media query",
+        "value": "screen and (min-width: 664px)",
+        "slug": "mediaQuery_aboveMobile"
       },
       "mediaQuery_aboveTablet": {
         "name": "Above Tablet",
         "type": "mediaquery",
-        "group": "mediaQuery",
-        "value": "screen and (min-width: 992px)"
+        "group": "Media query",
+        "value": "screen and (min-width: 992px)",
+        "slug": "mediaQuery_aboveTablet"
       },
       "mediaQuery_aboveDesktop": {
         "name": "Above Desktop",
         "type": "mediaquery",
-        "group": "mediaQuery",
-        "value": "screen and (min-width: 1200px)"
+        "group": "Media query",
+        "value": "screen and (min-width: 1200px)",
+        "slug": "mediaQuery_aboveDesktop"
       }
     }
   },
@@ -114,56 +131,65 @@
       "action_primary": {
         "name": "Primary",
         "type": "color",
-        "group": "action",
-        "value": "#31ed31"
+        "group": "Action",
+        "value": "#31ed31",
+        "slug": "action_primary"
       },
       "action_secondary": {
         "name": "Secondary",
         "type": "color",
-        "group": "action",
-        "value": "#2ec22e"
+        "group": "Action",
+        "value": "#2ec22e",
+        "slug": "action_secondary"
       },
       "action_tertiary": {
         "name": "Tertiary",
         "type": "color",
-        "group": "action",
-        "value": "#1e961e"
+        "group": "Action",
+        "value": "#1e961e",
+        "slug": "action_tertiary"
       },
       "brand_primary": {
         "type": "color",
-        "group": "brand",
+        "group": "Brand",
         "name": "Primary",
-        "value": "#ff0000"
+        "value": "#ff0000",
+        "slug": "brand_primary"
       },
       "brand_secondary": {
         "name": "Secondary",
         "type": "color",
-        "group": "brand",
-        "value": "#d42828"
+        "group": "Brand",
+        "value": "#d42828",
+        "slug": "brand_secondary"
       },
       "brand_tertiary": {
         "name": "Tertiary",
         "type": "color",
-        "group": "brand",
-        "value": "#af2323"
+        "group": "Brand",
+        "value": "#af2323",
+        "slug": "brand_tertiary"
       },
       "font_primary": {
         "name": "Primary",
         "type": "font",
-        "group": "font",
-        "value": "Verdana, Geneva, Tahoma, sans-serif"
+        "group": "Font",
+        "value": "Verdana, Geneva, Tahoma, sans-serif",
+        "slug": "font_primary"
       },
       "content_primary": {
         "type": "font-size",
-        "group": "content",
+        "group": "Content",
         "name": "Primary",
-        "value": "1.2rem"
+        "value": "1.2rem",
+        "slug": "content_primary"
       },
       "mediaQuery_aboveSmallDesktop": {
         "name": "Above Desktop",
         "type": "mediaquery",
-        "group": "mediaQuery",
-        "value": "screen and (min-width: 1100px)"
+        "group": "Media query",
+        "value": "screen and (min-width: 1100px)",
+        "slug": "mediaQuery_aboveSmallDesktop"
       }
     }
   },
@@ -174,50 +200,57 @@
       "action_primary": {
         "name": "Primary",
         "type": "color",
-        "group": "action",
-        "value": "#ff5555"
+        "group": "Action",
+        "value": "#ff5555",
+        "slug": "action_primary"
       },
       "action_secondary": {
         "name": "Secondary",
         "type": "color",
-        "group": "action",
-        "value": "#d22828"
+        "group": "Action",
+        "value": "#d22828",
+        "slug": "action_secondary"
       },
       "action_tertiary": {
         "name": "Tertiary",
         "type": "color",
-        "group": "action",
-        "value": "#9f1c1c"
+        "group": "Action",
+        "value": "#9f1c1c",
+        "slug": "action_tertiary"
       },
       "brand_primary": {
-        "name": "Primary",
         "type": "color",
         "group": "brand",
+        "name": "Primary",
         "value": "#577bf1"
       },
       "brand_secondary": {
         "name": "Secondary",
         "type": "color",
-        "group": "brand",
-        "value": "#4646ed"
+        "group": "Brand",
+        "value": "#4646ed",
+        "slug": "brand_secondary"
       },
       "brand_tertiary": {
         "name": "Tertiary",
         "type": "color",
-        "group": "brand",
-        "value": "#3f55b1"
+        "group": "Brand",
+        "value": "#3f55b1",
+        "slug": "brand_tertiary"
       },
       "font_primary": {
         "name": "Primary",
         "type": "font",
-        "group": "font",
-        "value": "'Times New Roman', Times, serif"
+        "group": "Font",
+        "value": "'Times New Roman', Times, serif",
+        "slug": "font_primary"
       },
       "content_normal": {
         "type": "font-size",
-        "group": "content",
+        "group": "Content",
         "name": "Normal",
-        "value": "0.9rem"
+        "value": "0.9rem",
+        "slug": "content_normal"
       }
     }
   },
@@ -228,8 +261,9 @@
       "base_primary": {
         "name": "Primary",
         "type": "color",
-        "group": "base",
-        "value": "#2be053"
+        "group": "Base",
+        "value": "#2be053",
+        "slug": "base_primary"
       }
     }
   }

@@ -25,7 +25,7 @@ export class DesignTokenService {
       return false
     }
 
-    const token = this.unifyToken(designToken.token)
+    const token = this.unifyToken(designToken.name)
 
     const designTokenData: DesignToken = {
       name: designToken.name,
@@ -73,7 +73,7 @@ export class DesignTokenService {
       delete this.designTokensJson[token]
     }
 
-    const newToken = this.unifyToken(designToken.token)
+    const newToken = this.unifyToken(designToken.name)
 
     const designTokenData: DesignToken = {
       name: designToken.name,

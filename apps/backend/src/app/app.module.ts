@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { AliasTokenController } from '../controllers/alias-token.controller'
 import { DesignTokenController } from '../controllers/design-token.controller'
 import { StyleGuideController } from '../controllers/style-guide.controller'
+import { StyleController } from '../controllers/style.controller'
 import { ThemeController } from '../controllers/theme.controller'
 import { AliasTokenService } from '../services/alias-token.service'
 import { ConfigService } from '../services/config.service'
@@ -17,7 +18,7 @@ import { AppController } from './app.controller'
     AppController,
     AliasTokenController,
     StyleGuideController,
-    StyleGuideController,
+    StyleController,
     DesignTokenController,
     ThemeController,
   ],

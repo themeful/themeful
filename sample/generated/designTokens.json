@@ -1,23 +1,31 @@
 {
-  "dtFontColorPrimary": {
-    "name": "Normal Font Color",
-    "type": "color",
-    "group": "content",
-    "description": "Font color for normal text",
-    "properties": ["color"],
-    "aliasTokens": ["atBaseFontColor", "atButtonFontColor"]
-  },
   "dtFontSize100": {
     "name": "Normal Font Size",
     "type": "font-size",
     "group": "content",
     "description": "Font size for normal text",
-    "properties": ["font-size"],
-    "aliasTokens": ["atButtonFontSize"]
+    "properties": [
+      "font-size"
+    ],
+    "aliasTokens": [
+      "atButtonFontSize"
+    ]
+  },
+  "dtNormalFontColor": {
+    "name": "Normal Font Color",
+    "type": "color",
+    "group": "content",
+    "description": "Font color for normal text",
+    "properties": [
+      "color"
+    ],
+    "aliasTokens": [
+      "atBaseFontColor",
+      "atButtonFontColor"
+    ]
   },
   "dtPrimaryFont": {
     "name": "Primary Font",
-    "short": "UDE",
     "type": "font",
     "group": "content",
     "description": "Primary Font",
@@ -29,8 +37,13 @@
     "type": "color",
     "group": "controls",
     "description": "Background for action elements",
-    "properties": ["color", "background-color"],
-    "aliasTokens": ["atButtonBackground"]
+    "properties": [
+      "color",
+      "background-color"
+    ],
+    "aliasTokens": [
+      "atButtonBackground"
+    ]
   },
   "dtActionBgHover": {
     "name": "Action Background Hover",
@@ -38,14 +51,20 @@
     "group": "controls",
     "description": "Hover Background for action elements",
     "properties": [],
-    "aliasTokens": ["atButtonBackgroundHover"]
+    "aliasTokens": [
+      "atButtonBackgroundHover"
+    ]
   },
   "dtControlBorderRadius": {
     "name": "Default Border Radius",
     "type": "size",
     "group": "controls",
     "description": "Control Border Radius",
-    "properties": ["border-radius"],
-    "aliasTokens": ["atButtonBorderRadius"]
+    "properties": [
+      "border-radius"
+    ],
+    "aliasTokens": [
+      "atButtonBorderRadius"
+    ]
   }
 }

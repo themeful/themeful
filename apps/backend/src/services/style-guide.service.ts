@@ -166,7 +166,7 @@ export class StyleGuideService {
         styles: {},
       }
       this.writeFiles(this.styleGuidesJson)
-      this.syncService.styleGuides({
+      this.syncService.styleGuideBases({
         values: this.styleGuideList(),
         action: 'create',
         primary: slug,
@@ -190,7 +190,7 @@ export class StyleGuideService {
     if (currentSlug !== slug) {
       delete this.styleGuidesJson[currentSlug]
       this.writeFiles(this.styleGuidesJson)
-      this.syncService.styleGuides({
+      this.syncService.styleGuideBases({
         values: styleGuides,
         action: 'update',
         primary: currentSlug,
@@ -209,7 +209,7 @@ export class StyleGuideService {
       delete this.styleGuidesJson[styleGuide]
     }
     const styleGuideList = this.styleGuideList()
-    this.syncService.styleGuides({
+    this.syncService.styleGuideBases({
       values: styleGuideList,
       action: willDelete ? 'delete' : 'sync',
       primary: styleGuide,

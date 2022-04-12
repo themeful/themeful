@@ -4,8 +4,8 @@
   --dtActionBg: #{$styleGuide1_action_tertiary};
   --dtActionBgHover: #{$styleGuide1_action_secondary};
   --dtControlBorderRadius: #{$global_space_tiny};
-  --dtFontColorPrimary: #{$global_base_light};
   --dtFontSize100: #{$styleGuide1_content_primary};
+  --dtNormalFontColor: #{$global_base_light};
   --dtPrimaryFont: #{$styleGuide1_font_primary};
   @include styleGuide1_mediaQuery_aboveSmallDesktop {
     --dtFontSize100: 13px;
