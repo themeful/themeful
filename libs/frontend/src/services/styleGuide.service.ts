@@ -1,4 +1,4 @@
-import { StyleGuides } from '@typings'
+import { FormatedStyleGuides } from '@typings'
 import { Observable } from 'rxjs'
 import { APIService } from './api.service'
 
@@ -14,7 +14,7 @@ export class StyleGuideService {
     this.apiService = APIService.Instance
   }
 
-  public styleGuides(): Observable<StyleGuides> {
+  public styleGuides(): Observable<FormatedStyleGuides> {
     return this.apiService.styleGuides
   }
 }

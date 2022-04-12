@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "dev": "run-p storybook watch:frontend backend",
     "nx": "nx",
-    "frontend": "yarn storybook",
+    "frontend": "run-p storybook watch:frontend",
     "backend": "yarn serve backend",
     "serve": "nx serve",
     "build": "nx build",

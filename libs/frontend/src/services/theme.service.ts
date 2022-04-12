@@ -1,4 +1,4 @@
-import { AliasTokens, DesignTokens, StyleGuides, Themes } from '@typings'
+import { AliasTokens, DesignTokens, FormatedStyleGuides, Themes } from '@typings'
 import { combineLatest, debounceTime, Observable } from 'rxjs'
 import { APIService } from './api.service'
 
@@ -14,7 +14,7 @@ export class ThemeService {
     this.apiService = APIService.Instance
   }
 
-  public combined(): Observable<[StyleGuides, DesignTokens, AliasTokens, Themes]> {
+  public combined(): Observable<[FormatedStyleGuides, DesignTokens, AliasTokens, Themes]> {
     return combineLatest([
       this.apiService.styleGuides,
       this.apiService.designTokens,

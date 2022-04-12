@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { StyleGuideService } from '../services/style-guide.service'
-import { StyleGuideController } from './style.controller'
+import { StyleController } from './style.controller'
 
-describe('StyleGuideController', () => {
-  let controller: StyleGuideController
+describe('StyleController', () => {
+  let controller: StyleController
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [StyleGuideController],
+      controllers: [StyleController],
       providers: [{ provide: StyleGuideService, useValue: jest.mock }],
     }).compile()
 
-    controller = module.get<StyleGuideController>(StyleGuideController)
+    controller = module.get<StyleController>(StyleController)
   })
 
   it('should be defined', () => {

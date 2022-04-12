@@ -12,6 +12,8 @@ export interface StyleGuide extends StyleGuideBase {
   styles: StyleMap
 }
 
+export type FormatedStyleGuides = FormatedStyleGuide[]
+
 export interface FormatedStyleGuide extends StyleGuideBase {
   slug: string
   types: TypeGroupStyles[]
