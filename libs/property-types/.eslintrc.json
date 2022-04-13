@@ -1,5 +1,25 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": [
+    "../../.eslintrc.json",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@stencil/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "pragma": "h",
+      "version": "16"
+    }
+  },
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -13,8 +33,7 @@
         "@stencil/async-methods": "off",
         "react/no-unknown-property": "off",
         "react/jsx-key": "off",
-        "@typescript-eslint/no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars-experimental": "warn"
+        "@typescript-eslint/no-unused-vars": "warn"
       }
     },
     {
