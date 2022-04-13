@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { DesignToken, DesignTokenAPI, DesignTokens, SyncData } from '@typings'
 import { slugify, sortMap, uuid } from '@utils'
+import * as MD5 from 'crypto-js/md5'
 import { writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import { ReplaySubject } from 'rxjs'
 import { ConfigService } from './config.service'
 import { SyncService } from './sync.service'
 
@@ -12,12 +14,15 @@ export class DesignTokenService {
   private readonly filenameJson = 'designTokens.json'
   private readonly filenameScss = 'designTokens.scss'
   private useShortDT: boolean
+  private cacheHash
+  public designTokens$ = new ReplaySubject(1)
 
   constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
     this.useShortDT = this.config.shortDesignTokens
     this.syncService.register('aliasTokens', this.syncAliasTokens)
     this.designTokensJson = this.loadJson()
     this.generateAt2DtMap(this.designTokensJson)
+    this.designTokens$.next(this.designTokensJson)
   }
 
   public create(designToken: DesignTokenAPI): boolean {
@@ -168,7 +173,12 @@ export class DesignTokenService {
   }
 
   private saveJson(designTokens: DesignTokens) {
-    return writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, designTokens, { spaces: 2 })
+    const hash = MD5(JSON.stringify(designTokens)).toString()
+    if (this.cacheHash !== hash) {
+      this.cacheHash = hash
+      this.designTokens$.next(designTokens)
+      writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, designTokens, { spaces: 2 })
+    }
   }
 
   private writeFiles(designTokens: DesignTokens) {

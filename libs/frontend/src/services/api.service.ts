@@ -12,9 +12,11 @@ import {
 } from '@typings'
 import { http } from '@utils'
 import { combineLatest, debounceTime, Observable, ReplaySubject, shareReplay } from 'rxjs'
+import io from 'socket.io-client'
 
 export class APIService {
   private static _instance: APIService
+  private socket
   public themes = new ReplaySubject<Themes>(1)
   public designTokens = new ReplaySubject<DesignTokens>(1)
   public styleGuides = new ReplaySubject<FormatedStyleGuides>(1)
@@ -27,8 +29,39 @@ export class APIService {
     this.themes,
   ]).pipe(debounceTime(500), shareReplay(1))
 
+  private constructor() {
+    this.socket = io('http://localhost:3333')
+    this.startSocket()
+  }
+
   public static get Instance(): APIService {
     return this._instance || (this._instance = new this())
+  }
+
+  private startSocket() {
+    this.socket.on('update', ({ msg, type, data }) => {
+      if (msg === 'data') {
+        switch (type) {
+          case 'styleGuides':
+            this.styleGuides.next(data)
+            break
+          case 'styles':
+            this.styles.next(data)
+            break
+          case 'themes':
+            this.themes.next(data)
+            break
+          case 'designTokens':
+            this.designTokens.next(data)
+            break
+          case 'aliasTokens':
+            this.aliasTokens.next(data)
+            break
+        }
+      } else {
+        console.log(msg)
+      }
+    })
   }
 
   public action({ action, controller, fields, identifier }): Observable<boolean> {

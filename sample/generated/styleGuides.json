@@ -220,9 +220,10 @@
       },
       "brand_primary": {
         "type": "color",
-        "group": "brand",
+        "group": "Brand",
         "name": "Primary",
-        "value": "#577bf1"
+        "value": "#577bf1",
+        "slug": "brand_primary"
       },
       "brand_secondary": {
         "name": "Secondary",
@@ -259,9 +260,9 @@
     "baseFontSize": 10,
     "styles": {
       "base_primary": {
-        "name": "Primary",
         "type": "color",
         "group": "Base",
+        "name": "Primary",
         "value": "#2be053",
         "slug": "base_primary"
       }

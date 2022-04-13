@@ -10,8 +10,10 @@ import {
   ThemeValue,
 } from '@typings'
 import { slugify, sortMap, unique } from '@utils'
+import * as MD5 from 'crypto-js/md5'
 import { unlinkSync, writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import { ReplaySubject } from 'rxjs'
 import * as smq from 'sort-media-queries'
 import { ConfigService } from './config.service'
 import { SyncService } from './sync.service'
@@ -29,6 +31,8 @@ export class ThemeService {
   private designTokens: DesignTokens
 
   private useShortDT: boolean
+  private cacheHash
+  public themes$ = new ReplaySubject(1)
 
   constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
     this.useShortDT = this.config.shortDesignTokens
@@ -242,7 +246,12 @@ export class ThemeService {
   }
 
   private saveJson(themes: Themes) {
-    return writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, themes, { spaces: 2 })
+    const hash = MD5(JSON.stringify(themes)).toString()
+    if (this.cacheHash !== hash) {
+      this.cacheHash = hash
+      this.themes$.next(themes)
+      writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, themes, { spaces: 2 })
+    }
   }
 
   private getStyleGuideBases(): { [key: string]: string } {

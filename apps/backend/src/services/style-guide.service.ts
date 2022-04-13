@@ -14,8 +14,10 @@ import {
 } from '@typings'
 import { convertCSSLength, slugify, sortMap } from '@utils'
 import { ColorTranslator } from 'colortranslator'
+import * as MD5 from 'crypto-js/md5'
 import { writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import { ReplaySubject } from 'rxjs'
 import { sentenceCase } from 'sentence-case'
 import * as smq from 'sort-media-queries'
 import { ConfigService } from './config.service'
@@ -26,10 +28,15 @@ export class StyleGuideService {
   private styleGuidesJson: StyleGuides
   private readonly filenameJson = 'styleGuides.json'
   private readonly filenameScss = 'styleGuides.scss'
+  private cacheHash
+  public styleGuides$ = new ReplaySubject(1)
+  public styles$ = new ReplaySubject(1)
 
   constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
     this.styleGuidesJson = this.loadJson()
     this.generateStyleGuides(this.styleGuidesJson)
+    this.styleGuides$.next(this.readFormatted())
+    this.styles$.next(this.styleGuidesJson)
   }
 
   public readFormatted(): FormatedStyleGuide[] {
@@ -240,7 +247,13 @@ export class StyleGuideService {
   }
 
   private saveJson(styleGuides: StyleGuides) {
-    return writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, styleGuides, { spaces: 2 })
+    const hash = MD5(JSON.stringify(styleGuides)).toString()
+    if (this.cacheHash !== hash) {
+      this.cacheHash = hash
+      this.styleGuides$.next(this.readFormatted())
+      this.styles$.next(styleGuides)
+      writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, styleGuides, { spaces: 2 })
+    }
   }
 
   private reorder(styleGuide = 'global') {

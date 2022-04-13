@@ -52,7 +52,6 @@ export class ThemefulMicrofrontend {
       styleGuides$: this.styleGuides$,
       onAction: this.onAction,
     }
-    this.apiService.getFormattedStyleGuides()
     return <tf-style-guides {...args} />
   }
 
@@ -61,10 +60,6 @@ export class ThemefulMicrofrontend {
       bundle$: this.bundle$,
       onAction: this.onAction,
     }
-    this.apiService.getStyleGuides()
-    this.apiService.getThemes()
-    this.apiService.getDesignTokens()
-    this.apiService.getAliasTokens()
     return <tf-themes {...args} />
   }
 
