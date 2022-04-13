@@ -11,13 +11,14 @@ import {
   ThemeValue,
 } from '@typings'
 import { http } from '@utils'
-import { combineLatest, debounceTime, Observable, ReplaySubject, shareReplay } from 'rxjs'
+import { combineLatest, debounceTime, Observable, ReplaySubject, shareReplay, Subject } from 'rxjs'
 import io from 'socket.io-client'
 
 export class APIService {
   private static _instance: APIService
   private socket
   public themes = new ReplaySubject<Themes>(1)
+  public toast = new Subject()
   public designTokens = new ReplaySubject<DesignTokens>(1)
   public styleGuides = new ReplaySubject<FormatedStyleGuides>(1)
   public styles = new ReplaySubject<StyleGuides>(1)
@@ -59,7 +60,10 @@ export class APIService {
             break
         }
       } else {
-        console.log(msg)
+        this.toast.next({
+          text: msg,
+          status: 'success',
+        })
       }
     })
   }

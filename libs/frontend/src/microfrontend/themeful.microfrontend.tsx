@@ -13,6 +13,7 @@ export class ThemefulMicrofrontend {
   private apiService: APIService
   private styleGuides$
   private bundle$
+  private toast$
 
   @State() active = 'stylequides'
 
@@ -25,6 +26,7 @@ export class ThemefulMicrofrontend {
     this.apiService = APIService.Instance
     this.styleGuides$ = this.apiService.styleGuides
     this.bundle$ = this.apiService.bundle
+    this.toast$ = this.apiService.toast
   }
 
   private navChange = (item) => {
@@ -35,7 +37,10 @@ export class ThemefulMicrofrontend {
     console.log('onAction', detail)
     if (!['open', 'close'].includes(detail.action)) {
       this.apiService.action(detail).subscribe((result) => {
-        console.log(result)
+        this.toast$.next({
+          text: result ? 'Updated' : 'Something went wrong',
+          status: result ? 'success' : 'error',
+        })
       })
     }
   }
@@ -73,6 +78,7 @@ export class ThemefulMicrofrontend {
             onItemClick: (event) => this.navChange(event.detail),
           }}
         />
+        <tf-toast {...{ msg$: this.toast$ }} />
         {this.renderContent()}
       </div>
     )
