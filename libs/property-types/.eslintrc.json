@@ -8,7 +8,12 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "rules": {}
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {
+        "@stencil/async-methods": "off",
+        "react/no-unknown-property": "off",
+        "react/jsx-key": "off"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
