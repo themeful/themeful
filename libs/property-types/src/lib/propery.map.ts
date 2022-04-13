@@ -20,8 +20,8 @@ const proeprties = {
   size: size,
 }
 
-export const getProperty = (property: string) => {
-  if (!property) {
+export const getProperty = (property: string | undefined) => {
+  if (property !== undefined) {
     return empty
   }
   return proeprties[property] ?? fallback
