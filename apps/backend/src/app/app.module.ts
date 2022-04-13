@@ -10,6 +10,7 @@ import { DesignTokenService } from '../services/design-token.service'
 import { StyleGuideService } from '../services/style-guide.service'
 import { SyncService } from '../services/sync.service'
 import { ThemeService } from '../services/theme.service'
+import { SocketGateway } from '../socket.gateway'
 import { AppController } from './app.controller'
 
 @Module({
@@ -29,6 +30,7 @@ import { AppController } from './app.controller'
     ThemeService,
     SyncService,
     ConfigService,
+    SocketGateway,
   ],
 })
 export class AppModule {}

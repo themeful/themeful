@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { AliasTokenAPI, AliasTokens } from '@typings'
 import { sortMap, unique } from '@utils'
+import * as MD5 from 'crypto-js/md5'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import { ReplaySubject } from 'rxjs'
 import { FindResults, findSync } from '../utils'
 import { ConfigService } from './config.service'
 import { SyncService } from './sync.service'
@@ -10,10 +12,13 @@ import { SyncService } from './sync.service'
 export class AliasTokenService {
   private aliasTokens: AliasTokens
   private readonly filenameJson = 'aliasTokens.json'
+  private cacheHash
+  public aliasTokens$ = new ReplaySubject(1)
 
   constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
     this.aliasTokens = this.loadJson()
     this.refresh()
+    this.aliasTokens$.next(this.aliasTokens)
   }
 
   public create(aliasToken: AliasTokenAPI): boolean {
@@ -92,7 +97,12 @@ export class AliasTokenService {
   }
 
   private saveJson(aliasTokens: AliasTokens) {
-    return writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, aliasTokens, { spaces: 2 })
+    const hash = MD5(JSON.stringify(aliasTokens)).toString()
+    if (this.cacheHash !== hash) {
+      this.cacheHash = hash
+      this.aliasTokens$.next(aliasTokens)
+      writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, aliasTokens, { spaces: 2 })
+    }
   }
 
   private writeFiles(aliasTokens: AliasTokens) {
