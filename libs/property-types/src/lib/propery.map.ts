@@ -21,7 +21,7 @@ const proeprties = {
 }
 
 export const getProperty = (property: string | undefined) => {
-  if (property !== undefined) {
+  if (property === undefined) {
     return empty
   }
   return proeprties[property] ?? fallback

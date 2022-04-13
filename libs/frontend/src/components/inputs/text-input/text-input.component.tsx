@@ -44,6 +44,7 @@ export class TextInputComponent {
   @Method()
   public validate(): Promise<boolean> {
     this.touched = true
+    this.value = this.value || this.input.value
     return Promise.resolve(this.internalValidation())
   }
 

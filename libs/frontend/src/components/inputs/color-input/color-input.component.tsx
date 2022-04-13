@@ -52,6 +52,7 @@ export class ColorInputComponent {
   @Method()
   public validate(): Promise<boolean> {
     this.touched = true
+    this.value = this.value || this.input.value
     return Promise.resolve(this.internalValidation())
   }
 
@@ -93,7 +94,8 @@ export class ColorInputComponent {
 
   private inputChanged = () => {
     this.changed = true
-    if (!this.valid && this.touched) {
+    if ((!this.valid && this.touched) || this.value !== this.input.value) {
+      this.value = this.input.value
       this.internalValidation()
     }
     this.setControls(this.value)
@@ -110,6 +112,7 @@ export class ColorInputComponent {
 
     this.sub.add(
       this.input$.pipe(sampleTime(50), distinctUntilChanged()).subscribe((value: string) => {
+        this.changed = true
         this.value = value
         this.input.value = value
       })

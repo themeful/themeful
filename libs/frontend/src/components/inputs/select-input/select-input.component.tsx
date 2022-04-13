@@ -39,6 +39,7 @@ export class SelectInputComponent {
   @Method()
   public validate(): Promise<boolean> {
     this.touched = true
+    this.value = this.value || this.input.value
     return Promise.resolve(this.internalValidation())
   }
 
@@ -70,6 +71,7 @@ export class SelectInputComponent {
   }
 
   private internalValidation = (): boolean => {
+    console.log(this.value, this.input.value)
     this.error = ''
     if (this.required && (this.value === '' || this.value === undefined)) {
       this.error = `This value is required`

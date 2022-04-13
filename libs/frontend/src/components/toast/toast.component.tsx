@@ -41,7 +41,7 @@ export class ToastComponent {
             this.open = true
             this.state.emit(true)
           }),
-          delay(4000),
+          delay(1500),
           tap(() => {
             this.open = false
             this.state.emit(false)
