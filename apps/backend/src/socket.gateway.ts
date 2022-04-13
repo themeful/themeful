@@ -28,11 +28,11 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     private aliasTokenService: AliasTokenService
   ) {}
 
-  afterInit(server: Server) {
+  afterInit() {
     this.logger.log('Init')
   }
 
-  handleConnection(client: Socket, ...args: any[]) {
+  handleConnection(client: Socket) {
     this.logger.log(`handleConnection ${client.id}`)
     this.wss.emit('update', { msg: 'connected' })
 

@@ -61,7 +61,7 @@ describe('StyleGuideService', () => {
 
       const withOneMore = clone(styleGuides)
 
-      withOneMore.styleGuide1.styles[`${newBaseValue.group}_primary`] = clonedBaseValue
+      withOneMore.styleGuide1.styles['base_primary'] = clonedBaseValue
 
       expect(service.create(clone(newBaseValue), 'styleGuide1')).toEqual(true)
       expect(jsonfile.writeFileSync).toBeCalledWith(
@@ -343,14 +343,16 @@ $styleGuide3_base_primary: #2be053;
 const newBaseValue = {
   name: 'Primary',
   type: 'color',
-  group: 'base',
+  group: 'Base',
+  slug: 'base_primary',
   value: '#2be053',
 }
 
 const updatedBaseValue = {
   type: 'color',
-  group: 'testUpdated',
+  group: 'Test updated',
   name: 'White',
+  slug: 'testUpdated_white',
   value: '#ddd',
 }
 
@@ -362,19 +364,22 @@ const styleGuides: StyleGuides = {
       base_black: {
         name: 'Black',
         type: 'color',
-        group: 'base',
+        group: 'Base',
+        slug: 'base_black',
         value: '#333333',
       },
       base_light: {
         name: 'Light',
         type: 'color',
-        group: 'base',
+        group: 'Base',
+        slug: 'base_light',
         value: '#ffffff',
       },
       mediaQuery_aboveSmallMobile: {
         name: 'Above Small Mobile',
         type: 'mediaquery',
-        group: 'mediaQuery',
+        group: 'Media query',
+        slug: 'mediaQuery_aboveSmallMobile',
         value: 'screen and (min-width: 321px)',
       },
     },
@@ -386,19 +391,22 @@ const styleGuides: StyleGuides = {
       action_primary: {
         name: 'Primary',
         type: 'color',
-        group: 'action',
+        group: 'Action',
+        slug: 'action_primary',
         value: '#31ed31',
       },
       action_secondary: {
         name: 'Secondary',
         type: 'color',
-        group: 'action',
+        group: 'Action',
+        slug: 'action_secondary',
         value: '#2ec22e',
       },
       action_tertiary: {
         name: 'Tertiary',
         type: 'color',
-        group: 'action',
+        group: 'Action',
+        slug: 'action_tertiary',
         value: '#1e961e',
       },
     },
@@ -410,13 +418,15 @@ const styleGuides: StyleGuides = {
       action_primary: {
         name: 'Primary',
         type: 'color',
-        group: 'action',
+        group: 'Action',
+        slug: 'action_primary',
         value: '#ff5555',
       },
       action_secondary: {
         name: 'Secondary',
         type: 'color',
-        group: 'action',
+        group: 'Action',
+        slug: 'action_secondary',
         value: '#d22828',
       },
     },
@@ -428,7 +438,8 @@ const styleGuides: StyleGuides = {
       base_primary: {
         name: 'Primary',
         type: 'color',
-        group: 'base',
+        group: 'Base',
+        slug: 'base_primary',
         value: '#2be053',
       },
     },
