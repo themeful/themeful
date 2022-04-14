@@ -55,10 +55,13 @@ export class ThemeValueFormComponent {
     ]).then((controls) => controls.every((valid) => valid))
   }
 
-  private dirty = (): Promise<boolean> =>
-    Promise.all(Object.values(this.controls).map((control) => control.dirty())).then((controls) =>
-      controls.some((valid) => valid)
-    )
+  private dirty = (): Promise<boolean> => {
+    const styleValidation = this.toggle !== 'style' || this.changed
+    return Promise.all([
+      Object.values(this.controls).map((control) => control.dirty()),
+      Promise.resolve(styleValidation),
+    ]).then((controls) => controls.some((valid) => valid))
+  }
 
   private select = (key: string) => {
     this.changed = true
