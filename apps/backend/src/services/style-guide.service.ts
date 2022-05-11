@@ -73,8 +73,8 @@ export class StyleGuideService {
     const groups: GroupStyles[] = []
     const groupObj: StylesMap = Object.keys(data).reduce((result: StylesMap, key: string) => {
       const value = data[key] as ExtendedStyle
-      const group = value.group
-      value.group = sentenceCase(group)
+      const group = sentenceCase(value.group)
+      value.group = group
       value.slug = key
       if (!result[group]) {
         result[group] = []
