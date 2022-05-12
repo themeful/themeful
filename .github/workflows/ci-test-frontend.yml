@@ -1,4 +1,4 @@
-name: 'CI: Test Frontend'
+name: 'CI: Test themeful-ui'
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, edited, reopened]
 
 jobs:
-  ci-test-frontend:
+  ci-test-themeful-ui:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,5 +28,5 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Run frontend tests
-        run: yarn test frontend
+      - name: Run themeful-ui tests
+        run: yarn test themeful-ui

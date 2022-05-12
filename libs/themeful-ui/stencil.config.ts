@@ -5,7 +5,7 @@ import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
 
 export const config: Config = {
-  namespace: 'frontend',
+  namespace: 'themeful-ui',
   taskQueue: 'async',
   plugins: [
     sass(),
@@ -18,11 +18,11 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
-      dir: '../../dist/libs/frontend/dist',
+      dir: '../../dist/libs/themeful-ui/dist',
     },
     {
       type: 'www',
-      dir: '../../dist/libs/frontend/www',
+      dir: '../../dist/libs/themeful-ui/www',
       serviceWorker: null,
     },
   ],

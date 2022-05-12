@@ -52,9 +52,9 @@
       },
       "tags": ["scope:backend"]
     },
-    "frontend": {
-      "root": "libs/frontend",
-      "sourceRoot": "libs/frontend/src",
+    "themeful-ui": {
+      "root": "libs/themeful-ui",
+      "sourceRoot": "libs/themeful-ui/src",
       "projectType": "library",
       "generators": {
         "@nxext/stencil:component": {
@@ -64,22 +64,22 @@
       "targets": {
         "test": {
           "executor": "@nxext/stencil:test",
-          "outputs": ["coverage/libs/frontend"],
+          "outputs": ["coverage/libs/themeful-ui"],
           "options": {
             "projectType": "library",
-            "tsConfig": "libs/frontend/tsconfig.spec.json",
-            "configPath": "libs/frontend/stencil.config.ts",
-            "outputPath": "dist/libs/frontend"
+            "tsConfig": "libs/themeful-ui/tsconfig.spec.json",
+            "configPath": "libs/themeful-ui/stencil.config.ts",
+            "outputPath": "dist/libs/themeful-ui"
           }
         },
         "build": {
           "executor": "@nxext/stencil:build",
-          "outputs": ["dist/libs/frontend"],
+          "outputs": ["dist/libs/themeful-ui"],
           "options": {
             "projectType": "library",
-            "tsConfig": "libs/frontend/tsconfig.lib.json",
-            "configPath": "libs/frontend/stencil.config.ts",
-            "outputPath": "dist/libs/frontend"
+            "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
+            "configPath": "libs/themeful-ui/stencil.config.ts",
+            "outputPath": "dist/libs/themeful-ui"
           },
           "configurations": {
             "production": {
@@ -91,30 +91,30 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/frontend/**/*.ts", "libs/frontend/**/*.tsx"]
+            "lintFilePatterns": ["libs/themeful-ui/**/*.ts", "libs/themeful-ui/**/*.tsx"]
           }
         },
         "serve": {
           "executor": "@nxext/stencil:build",
-          "outputs": ["dist/libs/frontend"],
+          "outputs": ["dist/libs/themeful-ui"],
           "options": {
             "projectType": "library",
-            "tsConfig": "libs/frontend/tsconfig.lib.json",
-            "configPath": "libs/frontend/stencil.config.ts",
-            "outputPath": "dist/libs/frontend",
+            "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
+            "configPath": "libs/themeful-ui/stencil.config.ts",
+            "outputPath": "dist/libs/themeful-ui",
             "serve": true,
             "watch": true,
-            "proxyConfig": "libs/frontend/proxy.conf.json"
+            "proxyConfig": "libs/themeful-ui/proxy.conf.json"
           }
         },
         "e2e": {
           "executor": "@nxext/stencil:e2e",
-          "outputs": ["dist/libs/frontend"],
+          "outputs": ["dist/libs/themeful-ui"],
           "options": {
             "projectType": "library",
-            "tsConfig": "libs/frontend/tsconfig.lib.json",
-            "configPath": "libs/frontend/stencil.config.ts",
-            "outputPath": "dist/libs/frontend"
+            "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
+            "configPath": "libs/themeful-ui/stencil.config.ts",
+            "outputPath": "dist/libs/themeful-ui"
           }
         },
         "storybook": {
@@ -123,7 +123,7 @@
             "uiFramework": "@storybook/html",
             "port": 4400,
             "config": {
-              "configFolder": "libs/frontend/.storybook"
+              "configFolder": "libs/themeful-ui/.storybook"
             }
           },
           "configurations": {
@@ -134,12 +134,12 @@
         },
         "build-storybook": {
           "executor": "@nrwl/storybook:build",
-          "outputs": ["dist/storybook/frontend"],
+          "outputs": ["dist/storybook/themeful-ui"],
           "options": {
             "uiFramework": "@storybook/html",
-            "outputPath": "dist/storybook/frontend",
+            "outputPath": "dist/storybook/themeful-ui",
             "config": {
-              "configFolder": "libs/frontend/.storybook"
+              "configFolder": "libs/themeful-ui/.storybook"
             }
           },
           "configurations": {
@@ -149,7 +149,7 @@
           }
         }
       },
-      "tags": ["scope:frontend"]
+      "tags": ["scope:themeful-ui"]
     },
     "property-types": {
       "root": "libs/property-types",

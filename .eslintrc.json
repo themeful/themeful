@@ -13,7 +13,7 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "scope:frontend",
+                "sourceTag": "scope:themeful-ui",
                 "onlyDependOnLibsWithTags": ["scope:properties", "scope:utils", "scope:typings"]
               },
               {
