@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@properties": ["libs/property-types/src/index.ts"],
+      "@themeful-ui": ["libs/themeful-ui/src/index.ts"],
       "@themeful/themeful-ui": ["dist/libs/themeful-ui"],
       "@themeful/themeful-ui/loader": ["dist/libs/themeful-ui/loader"],
       "@typings": ["libs/typings/src/index.ts"],

@@ -1,0 +1,63 @@
+{
+  "extends": [
+    "../../.eslintrc.json",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@stencil/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended" // should always be the last entry
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "pragma": "h",
+      "version": "16"
+    }
+  },
+  "ignorePatterns": ["!**/*"],
+  "plugins": ["@nrwl/nx", "@typescript-eslint"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": false,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {
+        "@stencil/async-methods": "off", // causing issues with the async @Method() annotation
+        "react/no-unknown-property": "off",
+        "react/jsx-key": "off"
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {
+        "@stencil/async-methods": "off", // causing issues with the async @Method() annotation
+        "react/no-unknown-property": "off",
+        "react/jsx-key": "off"
+      }
+    }
+  ]
+}

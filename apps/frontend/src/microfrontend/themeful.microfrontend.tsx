@@ -1,8 +1,5 @@
 import { Component, h, State } from '@stencil/core'
-import { APIService } from '../services/'
-// import { of } from 'rxjs'
-// import styleGuidesSample from '../pages/style-guides/style-guides.sample.json'
-// import themesSample from '../pages/themes/themes.sample.json'
+import { APIService } from '@themeful-ui'
 
 @Component({
   tag: 'themeful-microfrontend',
@@ -84,3 +81,18 @@ export class ThemefulMicrofrontend {
     )
   }
 }
+
+// <div>
+//         <header>
+//           <h1>Stencil App Starter</h1>
+//         </header>
+
+//         <main>
+//           <stencil-router>
+//             <stencil-route-switch scrollTopOffset={0}>
+//               <stencil-route url="/" component="app-home" exact={true} />
+//               <stencil-route url="/profile/:name" component="app-profile" />
+//             </stencil-route-switch>
+//           </stencil-router>
+//         </main>
+//       </div>
