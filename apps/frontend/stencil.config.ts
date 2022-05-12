@@ -20,17 +20,6 @@ export const config: Config = {
         },
       ],
     },
-    {
-      type: 'www',
-      serviceWorker: null,
-      baseUrl: 'https://.local/',
-      copy: [
-        {
-          src: '../../../dist/libs/themeful-ui/www/build',
-          dest: 'themeful-ui',
-        },
-      ],
-    },
   ],
   plugins: [sass()],
 }
