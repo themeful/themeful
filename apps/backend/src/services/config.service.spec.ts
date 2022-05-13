@@ -1,20 +1,25 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { config } from '../config'
 import { ConfigService } from './config.service'
 
 describe('ConfigService', () => {
   let service: ConfigService
+  const config = {}
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [ConfigService],
     }).compile()
 
-    config.paths = {
+    config['paths'] = {
       generatedPath: 'test/generatedPath',
       dataPath: 'test/dataPath',
       themesPath: 'test/themesPath',
       libPath: 'test/libPath',
+    }
+
+    config['global'] = {
+      baseFontSize: '16px',
+      shortDesignTokens: false,
     }
 
     service = module.get<ConfigService>(ConfigService)
