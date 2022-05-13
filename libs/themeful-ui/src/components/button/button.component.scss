@@ -40,14 +40,15 @@
     --bg-opacity: 0.75;
   }
 
-  &.selectable.active,
-  &.primary {
-    background-color: rgba(50, 90, 240, var(--bg-opacity));
-  }
-
   &.selectable:not(.active),
   &.secondary {
     background-color: rgba(200, 200, 200, var(--bg-opacity));
+  }
+
+  :host-context(.link-active) &.selectable,
+  &.selectable.active,
+  &.primary {
+    background-color: rgba(50, 90, 240, var(--bg-opacity));
   }
 
   &.danger {

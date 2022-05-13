@@ -3,3 +3,9 @@
   color: var(--tf-font-color);
   font: var(--tf-default-font);
 }
+
+nav {
+  display: flex;
+  justify-content: left;
+  background-color: rgba(200, 200, 200, 0.5);
+}
