@@ -415,6 +415,7 @@ export class ThemesComponent {
   public render(): HTMLTfThemesElement {
     return (
       <Host>
+        <stencil-route-title pageTitle="Themeful - Themes" />
         <tf-navigation items={this.nav} size="small" />
         <div class="design-tokens__wrapper">
           <table class="design-tokens">

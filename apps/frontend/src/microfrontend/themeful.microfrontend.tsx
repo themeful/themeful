@@ -30,6 +30,12 @@ export class ThemefulMicrofrontend {
     }
   }
 
+  public componentWillLoad(): void {
+    if (window.location.pathname === '/') {
+      window.location.href = '/themes'
+    }
+  }
+
   public render(): HTMLThemefulMicrofrontendElement {
     return (
       <Host>
@@ -47,15 +53,6 @@ export class ThemefulMicrofrontend {
         <tf-toast {...{ msg$: this.toast$ }} />
         <stencil-router>
           <stencil-route-switch scrollTopOffset={0}>
-            <stencil-route
-              url="/"
-              component="tf-style-guides"
-              componentProps={{
-                styleGuides$: this.styleGuides$,
-                onAction: this.onAction,
-              }}
-              exact={true}
-            />
             <stencil-route
               url="/themes"
               component="tf-themes"

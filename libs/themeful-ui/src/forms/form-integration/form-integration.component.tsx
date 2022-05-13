@@ -24,7 +24,6 @@ export class FormIntegrationComponent {
   }
 
   private onAction = ({ detail }): void => {
-    console.log('action', detail)
     if (detail.action !== 'close') {
       this.action.emit({ ...detail, controller: this.formData.form })
     }

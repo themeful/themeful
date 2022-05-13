@@ -77,6 +77,7 @@ export class StyleGuidesComponent {
   public render(): HTMLTfStyleGuidesElement {
     return (
       <Host>
+        <stencil-route-title pageTitle="Themeful - Style Guides" />
         <tf-navigation
           items={[
             {

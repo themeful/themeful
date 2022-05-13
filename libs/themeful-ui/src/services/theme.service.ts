@@ -22,15 +22,4 @@ export class ThemeService {
       this.apiService.themes,
     ]).pipe(debounceTime(500))
   }
-
-  public triggerReload(): void {
-    combineLatest([
-      this.apiService.getStyleGuides(),
-      this.apiService.getDesignTokens(),
-      this.apiService.getAliasTokens(),
-      this.apiService.getThemes(),
-    ]).subscribe(() => {
-      console.log('done')
-    })
-  }
 }
