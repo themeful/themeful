@@ -1,21 +1,27 @@
 import { Test, TestingModule } from '@nestjs/testing'
+import * as jsonfile from 'jsonfile'
 import { ConfigService } from './config.service'
 
 describe('ConfigService', () => {
   let service: ConfigService
-  const config = {}
+  const config = {
+    paths: {
+      generatedPath: 'test/generatedPath',
+      dataPath: 'test/dataPath',
+      themesPath: 'test/themesPath',
+      libPath: 'test/libPath',
+    },
+    global: {
+      baseFontSize: '16px',
+      shortDesignTokens: false,
+    },
+  }
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [ConfigService],
     }).compile()
-
-    config['paths'] = {
-      generatedPath: 'test/generatedPath',
-      dataPath: 'test/dataPath',
-      themesPath: 'test/themesPath',
-      libPath: 'test/libPath',
-    }
+    jest.spyOn(jsonfile, 'readFileSync').mockImplementation(() => config)
 
     config['global'] = {
       baseFontSize: '16px',

@@ -25,7 +25,20 @@ describe('ThemeService', () => {
     jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
 
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ThemeService, ConfigService, { provide: SyncService, useValue: syncService }],
+      providers: [
+        ThemeService,
+        {
+          provide: ConfigService,
+          useValue: {
+            generatedPath: './sample/generated/',
+            dataPath: './sample/generated/',
+            themesPath: './sample/generated/',
+            libPath: './sample/components/',
+            shortDesignTokens: false,
+          },
+        },
+        { provide: SyncService, useValue: syncService },
+      ],
     }).compile()
 
     service = module.get<ThemeService>(ThemeService)

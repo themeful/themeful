@@ -22,7 +22,16 @@ describe('AliasTokenService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         AliasTokenService,
-        ConfigService,
+        {
+          provide: ConfigService,
+          useValue: {
+            generatedPath: './sample/generated/',
+            dataPath: './sample/generated/',
+            themesPath: './sample/generated/',
+            libPath: './sample/components/',
+            shortDesignTokens: false,
+          },
+        },
         { provide: SyncService, useValue: syncService },
       ],
     }).compile()

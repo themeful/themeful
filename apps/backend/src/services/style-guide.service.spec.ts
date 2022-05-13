@@ -20,7 +20,16 @@ describe('StyleGuideService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         StyleGuideService,
-        ConfigService,
+        {
+          provide: ConfigService,
+          useValue: {
+            generatedPath: './sample/generated/',
+            dataPath: './sample/generated/',
+            themesPath: './sample/generated/',
+            libPath: './sample/components/',
+            shortDesignTokens: false,
+          },
+        },
         { provide: SyncService, useValue: syncService },
       ],
     }).compile()
