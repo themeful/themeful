@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 libs/themeful-ui/src/components.d.ts
+libs/frontend/src/components.d.ts
 apps/backend/src/assets
 
 # dependencies
