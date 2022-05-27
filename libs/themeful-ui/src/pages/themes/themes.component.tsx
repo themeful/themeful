@@ -18,7 +18,6 @@ import {
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
 import Fragment from 'stencil-fragment'
-// import { ThemeService } from '../..'
 
 @Component({
   tag: 'tf-themes',

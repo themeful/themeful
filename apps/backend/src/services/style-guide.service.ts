@@ -14,9 +14,9 @@ import {
 } from '@typings'
 import { convertCSSLength, slugify, sortMap } from '@utils'
 import { ColorTranslator } from 'colortranslator'
-import * as MD5 from 'crypto-js/md5'
 import { writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import { sentenceCase } from 'sentence-case'
 import * as smq from 'sort-media-queries'
@@ -247,9 +247,9 @@ export class StyleGuideService {
   }
 
   private saveJson(styleGuides: StyleGuides) {
-    const hash = MD5(JSON.stringify(styleGuides)).toString()
-    if (this.cacheHash !== hash) {
-      this.cacheHash = hash
+    const newHash = hash(styleGuides)
+    if (this.cacheHash !== newHash) {
+      this.cacheHash = newHash
       this.styleGuides$.next(this.readFormatted())
       this.styles$.next(styleGuides)
       writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, styleGuides, { spaces: 2 })

@@ -10,9 +10,9 @@ import {
   ThemeValue,
 } from '@typings'
 import { slugify, sortMap, unique } from '@utils'
-import * as MD5 from 'crypto-js/md5'
 import { unlinkSync, writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import * as smq from 'sort-media-queries'
 import { ConfigService } from './config.service'
@@ -246,9 +246,9 @@ export class ThemeService {
   }
 
   private saveJson(themes: Themes) {
-    const hash = MD5(JSON.stringify(themes)).toString()
-    if (this.cacheHash !== hash) {
-      this.cacheHash = hash
+    const newHash = hash(themes)
+    if (this.cacheHash !== newHash) {
+      this.cacheHash = newHash
       this.themes$.next(themes)
       writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, themes, { spaces: 2 })
     }

@@ -5,13 +5,7 @@ export class AppController {
   @Get()
   getData() {
     return {
-      urls: [
-        'http://localhost:3333/api/alias-token',
-        'http://localhost:3333/api/design-token',
-        'http://localhost:3333/api/theme',
-        'http://localhost:3333/api/style',
-        'http://localhost:3333/api/style-guide',
-      ],
+      name: 'themeful api',
     }
   }
 }

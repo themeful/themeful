@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { AliasTokenAPI, AliasTokens } from '@typings'
 import { sortMap, unique } from '@utils'
-import * as MD5 from 'crypto-js/md5'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import { FindResults, findSync } from '../utils'
 import { ConfigService } from './config.service'
@@ -97,9 +97,9 @@ export class AliasTokenService {
   }
 
   private saveJson(aliasTokens: AliasTokens) {
-    const hash = MD5(JSON.stringify(aliasTokens)).toString()
-    if (this.cacheHash !== hash) {
-      this.cacheHash = hash
+    const newHash = hash(aliasTokens)
+    if (this.cacheHash !== newHash) {
+      this.cacheHash = newHash
       this.aliasTokens$.next(aliasTokens)
       writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, aliasTokens, { spaces: 2 })
     }

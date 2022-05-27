@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { DesignToken, DesignTokenAPI, DesignTokens, SyncData } from '@typings'
 import { slugify, sortMap, uuid } from '@utils'
-import * as MD5 from 'crypto-js/md5'
 import { writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import { ConfigService } from './config.service'
 import { SyncService } from './sync.service'
@@ -173,9 +173,9 @@ export class DesignTokenService {
   }
 
   private saveJson(designTokens: DesignTokens) {
-    const hash = MD5(JSON.stringify(designTokens)).toString()
-    if (this.cacheHash !== hash) {
-      this.cacheHash = hash
+    const newHash = hash(designTokens)
+    if (this.cacheHash !== newHash) {
+      this.cacheHash = newHash
       this.designTokens$.next(designTokens)
       writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, designTokens, { spaces: 2 })
     }
