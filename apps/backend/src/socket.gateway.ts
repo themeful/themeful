@@ -39,9 +39,6 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     this.styleGuideService.styleGuides$.subscribe((styleGuides) => {
       this.wss.emit('update', { msg: 'data', type: 'styleGuides', data: styleGuides })
     })
-    this.styleGuideService.styles$.subscribe((styles) => {
-      this.wss.emit('update', { msg: 'data', type: 'styles', data: styles })
-    })
     this.themeService.themes$.subscribe((themes) => {
       this.wss.emit('update', { msg: 'data', type: 'themes', data: themes })
     })

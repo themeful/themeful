@@ -6,11 +6,11 @@ import {
   DesignTokenRow,
   DesignTokens,
   Dt2At,
+  ExtendedStyleGuides,
   ExtendedValueDetail,
   ExtendedValueDetails,
   FormIntegrationActions,
   KeyValues,
-  StyleGuides,
   StyleMap,
   Theme,
   ThemeName,
@@ -118,16 +118,20 @@ export class ThemesComponent {
     )
   }
 
-  private transformStyleGuides(styleGuides: StyleGuides) {
+  private transformStyleGuides(styleGuides: ExtendedStyleGuides) {
     const sgNames: { [styleguide: string]: string } = {}
     const styleMap: StyleMap = {}
-    Object.keys(styleGuides).forEach((styleguide) => {
-      sgNames[styleguide] = styleGuides[styleguide].name
-      Object.keys(styleGuides[styleguide].styles).forEach((valueKey) => {
-        styleMap[`${styleguide}_${valueKey}`] = {
-          ...styleGuides[styleguide].styles[valueKey],
-          global: styleguide === 'global',
-        }
+    styleGuides.forEach((styleguide) => {
+      sgNames[styleguide.slug] = styleguide.name
+      styleguide.types.forEach((type) => {
+        type.groups.forEach((group) => {
+          group.styles.forEach((style) => {
+            styleMap[`${styleguide.slug}_${style.slug}`] = {
+              ...style,
+              global: styleguide.slug === 'global',
+            }
+          })
+        })
       })
     })
     return { styleMap, sgNames }

@@ -30,22 +30,11 @@ export class StyleGuideService {
   private readonly filenameScss = 'styleGuides.scss'
   private cacheHash
   public styleGuides$ = new ReplaySubject(1)
-  public styles$ = new ReplaySubject(1)
 
   constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
     this.styleGuidesJson = this.loadJson()
     this.generateStyleGuides(this.styleGuidesJson)
-    this.styleGuides$.next(this.readFormatted())
-    this.styles$.next(this.styleGuidesJson)
-  }
-
-  public readFormatted(): FormatedStyleGuide[] {
-    return Object.entries(this.styleGuidesJson).map(([slug, data]: [string, StyleGuide]) => ({
-      name: data.name,
-      slug,
-      baseFontSize: data.baseFontSize,
-      types: this.transformValues(data.styles),
-    }))
+    this.styleGuides$.next(this.read())
   }
 
   private transformValues(data: StyleMap): TypeGroupStyles[] {
@@ -118,8 +107,13 @@ export class StyleGuideService {
     return true
   }
 
-  public read(): StyleGuides {
-    return this.styleGuidesJson
+  public read(): FormatedStyleGuide[] {
+    return Object.entries(this.styleGuidesJson).map(([slug, data]: [string, StyleGuide]) => ({
+      name: data.name,
+      slug,
+      baseFontSize: data.baseFontSize,
+      types: this.transformValues(data.styles),
+    }))
   }
 
   public update(name: string, style: Style, styleGuide = 'global'): boolean {
@@ -250,8 +244,7 @@ export class StyleGuideService {
     const newHash = hash(styleGuides)
     if (this.cacheHash !== newHash) {
       this.cacheHash = newHash
-      this.styleGuides$.next(this.readFormatted())
-      this.styles$.next(styleGuides)
+      this.styleGuides$.next(this.read())
       writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, styleGuides, { spaces: 2 })
     }
   }

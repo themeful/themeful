@@ -5,7 +5,6 @@ import {
   FormatedStyleGuides,
   Style,
   StyleGuideBase,
-  StyleGuides,
   Theme,
   Themes,
   ThemeValue,
@@ -21,10 +20,9 @@ export class APIService {
   public toast = new Subject()
   public designTokens = new ReplaySubject<DesignTokens>(1)
   public styleGuides = new ReplaySubject<FormatedStyleGuides>(1)
-  public styles = new ReplaySubject<StyleGuides>(1)
   public aliasTokens = new ReplaySubject<AliasTokens>(1)
   public bundle = combineLatest([
-    this.styles,
+    this.styleGuides,
     this.designTokens,
     this.aliasTokens,
     this.themes,
@@ -45,9 +43,6 @@ export class APIService {
         switch (type) {
           case 'styleGuides':
             this.styleGuides.next(data)
-            break
-          case 'styles':
-            this.styles.next(data)
             break
           case 'themes':
             this.themes.next(data)
@@ -176,12 +171,6 @@ export class APIService {
   }
 
   public getStyleGuides(): void {
-    http.get<StyleGuides>('http://localhost:3333/api/style').subscribe((data) => {
-      this.styles.next(data)
-    })
-  }
-
-  public getFormattedStyleGuides(): void {
     http.get<FormatedStyleGuides>('http://localhost:3333/api/style/formatted').subscribe((data) => {
       this.styleGuides.next(data)
     })

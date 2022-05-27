@@ -1,275 +1,404 @@
 [
-  {
-    "global": {
+  [
+    {
       "name": "Global",
+      "slug": "global",
       "baseFontSize": 16,
-      "styles": {
-        "base_black": {
-          "name": "Black",
-          "type": "color",
-          "group": "Base",
-          "value": "#333333",
-          "slug": "base_black"
+      "types": [
+        {
+          "name": "Color",
+          "groups": [
+            {
+              "name": "Base",
+              "styles": [
+                {
+                  "name": "Black",
+                  "type": "color",
+                  "group": "Base",
+                  "value": "#333333",
+                  "slug": "base_black"
+                },
+                {
+                  "name": "Light",
+                  "type": "color",
+                  "group": "Base",
+                  "value": "#ffffff",
+                  "slug": "base_light"
+                }
+              ]
+            },
+            {
+              "name": "Gray",
+              "styles": [
+                {
+                  "name": "100",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.75)",
+                  "slug": "gray_100"
+                },
+                {
+                  "name": "200",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.60)",
+                  "slug": "gray_200"
+                },
+                {
+                  "name": "300",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.45)",
+                  "slug": "gray_300"
+                },
+                {
+                  "name": "400",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.30)",
+                  "slug": "gray_400"
+                },
+                {
+                  "name": "500",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.15)",
+                  "slug": "gray_500"
+                }
+              ]
+            }
+          ]
         },
-        "base_light": {
-          "name": "Light",
-          "type": "color",
-          "group": "Base",
-          "value": "#ffffff",
-          "slug": "base_light"
+        {
+          "name": "MediaQuery",
+          "groups": [
+            {
+              "name": "Media query",
+              "styles": [
+                {
+                  "name": "Above Small Mobile",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 321px)",
+                  "slug": "mediaQuery_aboveSmallMobile"
+                },
+                {
+                  "name": "Above Mobile",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 664px)",
+                  "slug": "mediaQuery_aboveMobile"
+                },
+                {
+                  "name": "Above Tablet",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 992px)",
+                  "slug": "mediaQuery_aboveTablet"
+                },
+                {
+                  "name": "Above Desktop",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 1200px)",
+                  "slug": "mediaQuery_aboveDesktop"
+                }
+              ]
+            }
+          ]
         },
-        "gray_100": {
-          "name": "100",
-          "type": "color",
-          "group": "Gray",
-          "value": "rgba(0, 0, 0, 0.75)",
-          "slug": "gray_100"
-        },
-        "gray_200": {
-          "name": "200",
-          "type": "color",
-          "group": "Gray",
-          "value": "rgba(0, 0, 0, 0.60)",
-          "slug": "gray_200"
-        },
-        "gray_300": {
-          "name": "300",
-          "type": "color",
-          "group": "Gray",
-          "value": "rgba(0, 0, 0, 0.45)",
-          "slug": "gray_300"
-        },
-        "gray_400": {
-          "name": "400",
-          "type": "color",
-          "group": "Gray",
-          "value": "rgba(0, 0, 0, 0.30)",
-          "slug": "gray_400"
-        },
-        "gray_500": {
-          "name": "500",
-          "type": "color",
-          "group": "Gray",
-          "value": "rgba(0, 0, 0, 0.15)",
-          "slug": "gray_500"
-        },
-        "space_tiny": {
-          "type": "size",
-          "group": "Space",
-          "name": "Tiny",
-          "value": "4px",
-          "slug": "space_tiny"
-        },
-        "space_small": {
-          "type": "size",
-          "group": "Space",
-          "name": "Small",
-          "value": "8px",
-          "slug": "space_small"
-        },
-        "space_smallMedium": {
-          "name": "Small Medium",
-          "type": "size",
-          "group": "Space",
-          "value": "0.75rem",
-          "slug": "space_smallMedium"
-        },
-        "space_medium": {
-          "type": "size",
-          "group": "Space",
-          "name": "Medium",
-          "value": "16px",
-          "slug": "space_medium"
-        },
-        "space_large": {
-          "type": "size",
-          "group": "Space",
-          "name": "Large",
-          "value": "24px",
-          "slug": "space_large"
-        },
-        "space_xlarge": {
-          "type": "size",
-          "group": "Space",
-          "name": "X-Large",
-          "value": "32px",
-          "slug": "space_xlarge"
-        },
-        "mediaQuery_aboveSmallMobile": {
-          "name": "Above Small Mobile",
-          "type": "mediaquery",
-          "group": "Media query",
-          "value": "screen and (min-width: 321px)",
-          "slug": "mediaQuery_aboveSmallMobile"
-        },
-        "mediaQuery_aboveMobile": {
-          "name": "Above Mobile",
-          "type": "mediaquery",
-          "group": "Media query",
-          "value": "screen and (min-width: 664px)",
-          "slug": "mediaQuery_aboveMobile"
-        },
-        "mediaQuery_aboveTablet": {
-          "name": "Above Tablet",
-          "type": "mediaquery",
-          "group": "Media query",
-          "value": "screen and (min-width: 992px)",
-          "slug": "mediaQuery_aboveTablet"
-        },
-        "mediaQuery_aboveDesktop": {
-          "name": "Above Desktop",
-          "type": "mediaquery",
-          "group": "Media query",
-          "value": "screen and (min-width: 1200px)",
-          "slug": "mediaQuery_aboveDesktop"
+        {
+          "name": "Size",
+          "groups": [
+            {
+              "name": "Space",
+              "styles": [
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "Tiny",
+                  "value": "4px",
+                  "slug": "space_tiny"
+                },
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "Small",
+                  "value": "8px",
+                  "slug": "space_small"
+                },
+                {
+                  "name": "Small Medium",
+                  "type": "size",
+                  "group": "Space",
+                  "value": "0.75rem",
+                  "slug": "space_smallMedium"
+                },
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "Medium",
+                  "value": "16px",
+                  "slug": "space_medium"
+                },
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "Large",
+                  "value": "24px",
+                  "slug": "space_large"
+                },
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "X-Large",
+                  "value": "32px",
+                  "slug": "space_xlarge"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     },
-    "styleGuide1": {
+    {
       "name": "StyleGuide 1",
+      "slug": "styleGuide1",
       "baseFontSize": 16,
-      "styles": {
-        "action_primary": {
-          "name": "Primary",
-          "type": "color",
-          "group": "Action",
-          "value": "#31ed31",
-          "slug": "action_primary"
+      "types": [
+        {
+          "name": "Font",
+          "groups": [
+            {
+              "name": "Font",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "font",
+                  "group": "Font",
+                  "value": "Verdana, Geneva, Tahoma, sans-serif",
+                  "slug": "font_primary"
+                }
+              ]
+            }
+          ]
         },
-        "action_secondary": {
-          "name": "Secondary",
-          "type": "color",
-          "group": "Action",
-          "value": "#2ec22e",
-          "slug": "action_secondary"
+        {
+          "name": "Color",
+          "groups": [
+            {
+              "name": "Action",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#31ed31",
+                  "slug": "action_primary"
+                },
+                {
+                  "name": "Secondary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#2ec22e",
+                  "slug": "action_secondary"
+                },
+                {
+                  "name": "Tertiary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#1e961e",
+                  "slug": "action_tertiary"
+                }
+              ]
+            },
+            {
+              "name": "Brand",
+              "styles": [
+                {
+                  "type": "color",
+                  "group": "Brand",
+                  "name": "Primary",
+                  "value": "#ff0000",
+                  "slug": "brand_primary"
+                },
+                {
+                  "name": "Secondary",
+                  "type": "color",
+                  "group": "Brand",
+                  "value": "#d42828",
+                  "slug": "brand_secondary"
+                },
+                {
+                  "name": "Tertiary",
+                  "type": "color",
+                  "group": "Brand",
+                  "value": "#af2323",
+                  "slug": "brand_tertiary"
+                }
+              ]
+            }
+          ]
         },
-        "action_tertiary": {
-          "name": "Tertiary",
-          "type": "color",
-          "group": "Action",
-          "value": "#1e961e",
-          "slug": "action_tertiary"
+        {
+          "name": "Font Size",
+          "groups": [
+            {
+              "name": "Content",
+              "styles": [
+                {
+                  "type": "font-size",
+                  "group": "content",
+                  "name": "Primary",
+                  "value": "1.2rem",
+                  "slug": "content_primary"
+                }
+              ]
+            }
+          ]
         },
-        "brand_primary": {
-          "type": "color",
-          "group": "Brand",
-          "name": "Primary",
-          "value": "#ff0000",
-          "slug": "brand_primary"
-        },
-        "brand_secondary": {
-          "name": "Secondary",
-          "type": "color",
-          "group": "Brand",
-          "value": "#d42828",
-          "slug": "brand_secondary"
-        },
-        "brand_tertiary": {
-          "name": "Tertiary",
-          "type": "color",
-          "group": "Brand",
-          "value": "#af2323",
-          "slug": "brand_tertiary"
-        },
-        "font_primary": {
-          "name": "Primary",
-          "type": "font",
-          "group": "Font",
-          "value": "Verdana, Geneva, Tahoma, sans-serif",
-          "slug": "font_primary"
-        },
-        "content_primary": {
-          "type": "font-size",
-          "group": "Content",
-          "name": "Primary",
-          "value": "1.2rem",
-          "slug": "content_primary"
-        },
-        "mediaQuery_aboveSmallDesktop": {
-          "name": "Above Desktop",
-          "type": "mediaquery",
-          "group": "Media query",
-          "value": "screen and (min-width: 1100px)",
-          "slug": "mediaQuery_aboveSmallDesktop"
+        {
+          "name": "MediaQuery",
+          "groups": [
+            {
+              "name": "Media query",
+              "styles": [
+                {
+                  "name": "Above Desktop",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 1100px)",
+                  "slug": "mediaQuery_aboveSmallDesktop"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     },
-    "styleGuide2": {
+    {
       "name": "StyleGuide 2",
+      "slug": "styleGuide2",
       "baseFontSize": 16,
-      "styles": {
-        "action_primary": {
-          "name": "Primary",
-          "type": "color",
-          "group": "Action",
-          "value": "#ff5555",
-          "slug": "action_primary"
+      "types": [
+        {
+          "name": "Font",
+          "groups": [
+            {
+              "name": "Font",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "font",
+                  "group": "font",
+                  "value": "'Times New Roman', Times, serif",
+                  "slug": "font_primary"
+                }
+              ]
+            }
+          ]
         },
-        "action_secondary": {
-          "name": "Secondary",
-          "type": "color",
-          "group": "Action",
-          "value": "#d22828",
-          "slug": "action_secondary"
+        {
+          "name": "Color",
+          "groups": [
+            {
+              "name": "Action",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#ff5555",
+                  "slug": "action_primary"
+                },
+                {
+                  "name": "Secondary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#d22828",
+                  "slug": "action_secondary"
+                },
+                {
+                  "name": "Tertiary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#9f1c1c",
+                  "slug": "action_tertiary"
+                }
+              ]
+            },
+            {
+              "name": "Brand",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "color",
+                  "group": "Brand",
+                  "value": "#577bf1",
+                  "slug": "brand_primary"
+                },
+                {
+                  "name": "Secondary",
+                  "type": "color",
+                  "group": "Brand",
+                  "value": "#4646ed",
+                  "slug": "brand_secondary"
+                },
+                {
+                  "name": "Tertiary",
+                  "type": "color",
+                  "group": "brand",
+                  "value": "#3f55b1",
+                  "slug": "brand_tertiary"
+                }
+              ]
+            }
+          ]
         },
-        "action_tertiary": {
-          "name": "Tertiary",
-          "type": "color",
-          "group": "Action",
-          "value": "#9f1c1c",
-          "slug": "action_tertiary"
-        },
-        "brand_primary": {
-          "name": "Primary",
-          "type": "color",
-          "group": "Brand",
-          "value": "#577bf1",
-          "slug": "brand_primary"
-        },
-        "brand_secondary": {
-          "name": "Secondary",
-          "type": "color",
-          "group": "Brand",
-          "value": "#4646ed",
-          "slug": "brand_secondary"
-        },
-        "brand_tertiary": {
-          "name": "Tertiary",
-          "type": "color",
-          "group": "Brand",
-          "value": "#3f55b1",
-          "slug": "brand_tertiary"
-        },
-        "font_primary": {
-          "name": "Primary",
-          "type": "font",
-          "group": "Font",
-          "value": "'Times New Roman', Times, serif",
-          "slug": "font_primary"
-        },
-        "content_normal": {
-          "type": "font-size",
-          "group": "Content",
-          "name": "Normal",
-          "value": "0.9rem",
-          "slug": "content_normal"
+        {
+          "name": "Font Size",
+          "groups": [
+            {
+              "name": "Content",
+              "styles": [
+                {
+                  "type": "font-size",
+                  "group": "Content",
+                  "name": "Normal",
+                  "value": "0.9rem",
+                  "slug": "content_normal"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     },
-    "styleGuide3": {
+    {
       "name": "StyleGuide 3",
+      "slug": "styleGuide3",
       "baseFontSize": 10,
-      "styles": {
-        "base_primary": {
-          "name": "Primary",
-          "type": "color",
-          "group": "Base",
-          "value": "#2be053",
-          "slug": "base_primary"
+      "types": [
+        {
+          "name": "Color",
+          "groups": [
+            {
+              "name": "Base",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "color",
+                  "group": "Base",
+                  "value": "#2be053",
+                  "slug": "base_primary"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     }
-  },
+  ],
   {
     "dtFontColorPrimary": {
       "name": "Normal Font Color",
