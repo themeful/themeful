@@ -291,7 +291,7 @@
                   "name": "Primary",
                   "type": "font",
                   "group": "font",
-                  "value": "'Times New Roman', Times, serif",
+                  "value": "1.25rem/1.5rem 'Times New Roman', Times, serif",
                   "slug": "font_primary"
                 }
               ]

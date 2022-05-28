@@ -322,6 +322,7 @@ export class StyleGuideService {
   }
 
   private unifyStyle(style: Style): Style {
+    style.value.replace(';', '')
     if (style.type === 'color') {
       style.value = this.unifyColor(style.value)
     }

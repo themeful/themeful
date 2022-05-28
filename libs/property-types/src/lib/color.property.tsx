@@ -1,7 +1,7 @@
 import { h } from '@stencil/core'
+import { PropertyType } from '@typings'
 import { toHEX, toRGBA } from '@utils'
 import { fallback } from './fallback.property'
-import { PropertyType } from '@typings'
 
 export const color: PropertyType = {
   ...fallback,
@@ -19,7 +19,7 @@ export const color: PropertyType = {
     }
     return (
       <div
-        class="property__value"
+        class="property__value tf_color"
         style={{
           background: `linear-gradient(0deg, ${toHEX(value)} 50%, ${toRGBA(value)} 50%)`,
         }}

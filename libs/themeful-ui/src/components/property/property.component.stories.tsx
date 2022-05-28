@@ -86,7 +86,7 @@ propertyBox.args = {
         name: 'Default',
         group: 'Fonts',
         type: 'font',
-        value: '1.25rem/1.5rem Arial, sans-serif;',
+        value: '1.25rem/1.5rem monospace',
       },
     },
     {
@@ -99,7 +99,7 @@ propertyBox.args = {
     },
     {
       section: 'global',
-      extendedStyle: { name: 'Stuff', group: 'base', type: 'font-family', value: 'Arial' },
+      extendedStyle: { name: 'Stuff', group: 'base', type: 'font-family', value: 'monospace' },
     },
     {
       section: 'global',

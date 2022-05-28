@@ -7,8 +7,8 @@ export const font: PropertyType = {
   name: 'Font',
   template: (value): HTMLElement => {
     return (
-      <div class="property__value">
-        <span style={{ font: value, fontSize: '1.5rem' }}>Aa</span>
+      <div class="property__value tf_font">
+        <span style={{ font: value }}>Aa</span>
         <pre>{value}</pre>
       </div>
     )

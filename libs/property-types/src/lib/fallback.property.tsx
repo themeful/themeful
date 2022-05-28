@@ -6,7 +6,7 @@ export const fallback: PropertyType = {
   validation: (value) => !!value,
   template: (value): HTMLElement => {
     return (
-      <div class="property__value">
+      <div class="property__value tf_fallback">
         <pre>{value}</pre>
       </div>
     )

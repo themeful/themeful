@@ -7,7 +7,7 @@ export const size: PropertyType = {
   name: 'Size',
   template: (value): HTMLElement => {
     return (
-      <div class="property__value">
+      <div class="property__value tf_size">
         <div
           style={{
             border: '1px dashed currentColor',
