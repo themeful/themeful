@@ -1,5 +1,4 @@
 /* eslint-disable */
-/* eslint-disable */
 export default {
   displayName: 'property-types',
   preset: '../../jest.preset.js',
