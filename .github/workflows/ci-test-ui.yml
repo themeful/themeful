@@ -25,9 +25,6 @@ jobs:
         with:
           node-version: 17
 
-      - name: Set yarn version
-        run: yarn set version 3.x
-
       - name: Install dependencies
         run: yarn
 

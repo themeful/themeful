@@ -9,5 +9,12 @@
     "jsx": "react",
     "jsxFactory": "h"
   },
-  "include": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.spec.js", "**/*.spec.jsx", "**/*.d.ts"]
+  "include": [
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.spec.js",
+    "**/*.spec.jsx",
+    "**/*.d.ts",
+    "jest.config.ts"
+  ]
 }

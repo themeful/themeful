@@ -46,7 +46,7 @@
           "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/backend"],
           "options": {
-            "jestConfig": "apps/backend/jest.config.js"
+            "jestConfig": "apps/backend/jest.config.ts"
           }
         }
       },
@@ -133,7 +133,7 @@
           "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/property-types"],
           "options": {
-            "jestConfig": "libs/property-types/jest.config.js",
+            "jestConfig": "libs/property-types/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -255,7 +255,7 @@
           "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/typings"],
           "options": {
-            "jestConfig": "libs/typings/jest.config.js",
+            "jestConfig": "libs/typings/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -277,7 +277,7 @@
           "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/utils"],
           "options": {
-            "jestConfig": "libs/utils/jest.config.js",
+            "jestConfig": "libs/utils/jest.config.ts",
             "passWithNoTests": true
           }
         }

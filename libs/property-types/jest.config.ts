@@ -1,5 +1,7 @@
-module.exports = {
-  displayName: 'backend',
+/* eslint-disable */
+/* eslint-disable */
+export default {
+  displayName: 'property-types',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,6 +12,6 @@ module.exports = {
   transform: {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../coverage/apps/backend',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  coverageDirectory: '../../coverage/libs/property-types',
 }

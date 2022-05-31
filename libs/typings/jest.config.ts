@@ -1,5 +1,7 @@
-module.exports = {
-  displayName: 'property-types',
+/* eslint-disable */
+/* eslint-disable */
+export default {
+  displayName: 'typings',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +13,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/property-types',
+  coverageDirectory: '../../coverage/libs/typings',
 }

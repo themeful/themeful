@@ -10,6 +10,6 @@
     "jsx": "react",
     "jsxFactory": "h"
   },
-  "exclude": ["**/*.spec.ts"],
+  "exclude": ["**/*.spec.ts", "jest.config.ts"],
   "include": ["**/*.ts", "**/*.tsx"]
 }
