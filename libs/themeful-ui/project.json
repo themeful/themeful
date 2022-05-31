@@ -1,0 +1,101 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/themeful-ui/src",
+  "generators": {
+    "@nxext/stencil:component": {
+      "style": "scss"
+    }
+  },
+  "targets": {
+    "test": {
+      "executor": "@nxext/stencil:test",
+      "outputs": ["coverage/libs/themeful-ui"],
+      "options": {
+        "projectType": "library",
+        "tsConfig": "libs/themeful-ui/tsconfig.spec.json",
+        "configPath": "libs/themeful-ui/stencil.config.ts",
+        "outputPath": "dist/libs/themeful-ui"
+      }
+    },
+    "build": {
+      "executor": "@nxext/stencil:build",
+      "outputs": ["dist/libs/themeful-ui"],
+      "options": {
+        "projectType": "library",
+        "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
+        "configPath": "libs/themeful-ui/stencil.config.ts",
+        "outputPath": "dist/libs/themeful-ui"
+      },
+      "configurations": {
+        "production": {
+          "dev": false,
+          "prod": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/themeful-ui/**/*.ts",
+          "libs/themeful-ui/**/*.tsx"
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nxext/stencil:build",
+      "outputs": ["dist/libs/themeful-ui"],
+      "options": {
+        "projectType": "library",
+        "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
+        "configPath": "libs/themeful-ui/stencil.config.ts",
+        "outputPath": "dist/libs/themeful-ui",
+        "serve": true,
+        "watch": true,
+        "proxyConfig": "libs/themeful-ui/proxy.conf.json"
+      }
+    },
+    "e2e": {
+      "executor": "@nxext/stencil:e2e",
+      "outputs": ["dist/libs/themeful-ui"],
+      "options": {
+        "projectType": "library",
+        "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
+        "configPath": "libs/themeful-ui/stencil.config.ts",
+        "outputPath": "dist/libs/themeful-ui"
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/html",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/themeful-ui/.storybook"
+        }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["dist/storybook/themeful-ui"],
+      "options": {
+        "uiFramework": "@storybook/html",
+        "outputPath": "dist/storybook/themeful-ui",
+        "config": {
+          "configFolder": "libs/themeful-ui/.storybook"
+        }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": ["scope:themeful-ui"]
+}
