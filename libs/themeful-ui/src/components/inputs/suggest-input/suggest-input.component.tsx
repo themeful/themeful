@@ -108,13 +108,13 @@ export class SuggestInputComponent {
         <input
           ref={(el: HTMLInputElement) => (this.input = el)}
           class="suggest-input__input"
-          value={this.value}
           type="text"
           list={this.dataListId}
           onInput={this.inputChanged}
           onBlur={this.blur}
           autocomplete="off"
           disabled={this.disabled}
+          value={this.value}
         />
         <datalist id={this.dataListId}>
           {this.items.map((item) => (

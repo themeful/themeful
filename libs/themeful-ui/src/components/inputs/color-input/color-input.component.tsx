@@ -315,12 +315,12 @@ export class ColorInputComponent {
         >
           <span class="color-input__label">{this.label}</span>
           <input
-            value={this.value}
             ref={(input: HTMLInputElement) => (this.input = input)}
             class="color-input__input"
             type="text"
             onInput={this.inputChanged}
             onBlur={this.blur}
+            value={this.value}
           />
           <p class="color-input__hint">{this.error}</p>
         </label>

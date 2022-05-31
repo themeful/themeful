@@ -102,11 +102,11 @@ export class TextInputComponent {
           <input
             ref={(el: HTMLInputElement) => (this.input = el)}
             class="text-input__input"
-            value={this.value}
             type={this.type}
             onInput={this.inputChanged}
             onBlur={this.blur}
             disabled={this.disabled}
+            value={this.value}
           />
           <p class="text-input__hint">{this.error}</p>
         </label>
