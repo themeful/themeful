@@ -9,3 +9,10 @@ nav {
   justify-content: left;
   background-color: rgba(200, 200, 200, 0.5);
 }
+
+a,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}

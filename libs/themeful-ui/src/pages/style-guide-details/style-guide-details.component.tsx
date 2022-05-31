@@ -12,15 +12,18 @@ import {
 import { Observable, Subject, Subscription } from 'rxjs'
 
 @Component({
-  tag: 'tf-style-guides',
-  styleUrl: 'style-guides.component.scss',
+  tag: 'tf-style-guide-details',
+  styleUrl: 'style-guide-details.component.scss',
   shadow: true,
 })
-export class StyleGuidesComponent {
+export class StyleGuideDetailsComponent {
   /** Style Guides */
   @Prop() styleGuides$: Observable<ExtendedStyleGuides>
 
-  @State() styleGuides: ExtendedStyleGuides
+  /** Style Guide Slug */
+  @Prop() match: { params: { slug: string } }
+
+  @State() styleGuide: ExtendedStyleGuide
   private formData$ = new Subject()
 
   /** Event emitted when an action is triggered */
@@ -56,7 +59,14 @@ export class StyleGuidesComponent {
   public componentWillLoad(): void {
     this.sub.add(
       this.styleGuides$?.subscribe((styleGuides) => {
-        this.styleGuides = styleGuides
+        styleGuides.forEach((styleguide) => {
+          console.log('3', styleguide, this.match.params.slug)
+          if (styleguide.slug === this.match.params.slug) {
+            this.styleGuide = styleguide
+            console.log('2', this.styleGuide)
+          }
+        })
+        console.log('1', this.styleGuide)
         this.styleGuideGroups = styleGuides.reduce((result, styleguide) => {
           result[styleguide.slug] = []
           styleguide.types.forEach((type) => {
@@ -75,22 +85,30 @@ export class StyleGuidesComponent {
   }
 
   public render(): HTMLTfStyleGuidesElement {
+    if (!this.styleGuide) {
+      return
+    }
     return (
       <Host>
-        <stencil-route-title pageTitle="Themeful - Style Guides" />
+        <stencil-route-title pageTitle={`Themeful - ${this.styleGuide.name}`} />
         <tf-navigation
           items={[
             {
-              label: 'Add Style Guide',
-              callback: this.openStyleGuideForm,
+              label: 'Edit Style Guide',
+              callback: () =>
+                this.openStyleGuideForm(this.styleGuide.slug, {
+                  name: this.styleGuide.name,
+                  baseFontSize: this.styleGuide.baseFontSize,
+                }),
+            },
+            {
+              label: 'Add Style',
+              callback: () => this.openStyleForm(this.styleGuide.slug),
             },
           ]}
           size="small"
         />
-        <main class="style-guide__wrapper">
-          {this.styleGuides &&
-            this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
-        </main>
+        <main class="style-guide__wrapper">{this.renderStyleGuide(this.styleGuide)}</main>
         <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
       </Host>
     )
@@ -99,33 +117,6 @@ export class StyleGuidesComponent {
   private renderStyleGuide(styleGuide: ExtendedStyleGuide): HTMLElement {
     return (
       <div class="style-guide">
-        <h3>
-          <stencil-route-link url={`/styleguide/${styleGuide.slug}`}>
-            {styleGuide.name}
-          </stencil-route-link>
-          <tf-button
-            {...{
-              size: 'icon',
-              onClick: () =>
-                this.openStyleGuideForm(styleGuide.slug, {
-                  name: styleGuide.name,
-                  baseFontSize: styleGuide.baseFontSize,
-                }),
-              title: 'edit style guide',
-            }}
-          >
-            <tf-icon icon="pen" />
-          </tf-button>
-          <tf-button
-            {...{
-              size: 'icon',
-              onClick: () => this.openStyleForm(styleGuide.slug),
-              title: 'add style',
-            }}
-          >
-            <tf-icon icon="plus" />
-          </tf-button>
-        </h3>
         {styleGuide.types && styleGuide.types.map((type) => this.renderType(type, styleGuide.slug))}
       </div>
     )

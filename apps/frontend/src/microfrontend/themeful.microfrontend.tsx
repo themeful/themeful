@@ -69,6 +69,14 @@ export class ThemefulMicrofrontend {
                 onAction: this.onAction,
               }}
             />
+            <stencil-route
+              url="/styleguide/:slug"
+              component="tf-style-guide-details"
+              componentProps={{
+                styleGuides$: this.styleGuides$,
+                onAction: this.onAction,
+              }}
+            />
           </stencil-route-switch>
         </stencil-router>
       </Host>
