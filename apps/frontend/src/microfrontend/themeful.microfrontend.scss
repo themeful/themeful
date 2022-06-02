@@ -10,14 +10,23 @@ nav {
   background-color: rgba(200, 200, 200, 0.5);
 }
 
-a,
-a:focus,
-a:active {
-  text-decoration: none;
-  color: inherit;
+.logo-bar {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  background-color: rgba(200, 200, 200, 0.5);
+}
+
+.nav-row {
+  display: block;
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 64px;
+  height: 64px;
+  margin-right: 16px;
+}
+
+.mode-toggle {
+  float: right;
 }

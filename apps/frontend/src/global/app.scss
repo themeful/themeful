@@ -5,10 +5,17 @@
   --tf-tile-bg-color: #333;
   --tf-font-color: #eee;
   --tf-backdrop-color: rgba(255, 255, 255, 0.5);
+  --tf-background-color: #333;
 }
 
 .tf-light {
   --tf-tile-bg-color: #eee;
   --tf-font-color: #333;
   --tf-backdrop-color: rgba(0, 0, 0, 0.5);
+  --tf-background-color: #eee;
+}
+
+body {
+  margin: 0;
+  background-color: var(--tf-background-color);
 }

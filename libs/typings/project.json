@@ -1,4 +1,5 @@
 {
+  "root": "libs/typings",
   "projectType": "library",
   "sourceRoot": "libs/typings/src",
   "targets": {

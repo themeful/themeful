@@ -26,7 +26,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "build:themeful-ui": "nx run themeful-ui:build",
-    "watch:themeful-ui": "yarn build:themeful-ui --watch",
+    "watch:themeful-ui": "nx run themeful-ui:build:watch",
     "storybook": "nx run themeful-ui:storybook",
     "lint": "nx lint",
     "test": "nx test",

@@ -1,4 +1,5 @@
 {
+  "root": "libs/themeful-ui",
   "projectType": "library",
   "sourceRoot": "libs/themeful-ui/src",
   "generators": {
@@ -30,6 +31,9 @@
         "production": {
           "dev": false,
           "prod": true
+        },
+        "watch": {
+          "watch": true
         }
       }
     },
@@ -50,8 +54,6 @@
         "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
         "configPath": "libs/themeful-ui/stencil.config.ts",
         "outputPath": "dist/libs/themeful-ui",
-        "serve": true,
-        "watch": true,
         "proxyConfig": "libs/themeful-ui/proxy.conf.json"
       }
     },

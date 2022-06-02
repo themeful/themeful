@@ -1,4 +1,5 @@
 {
+  "root": "apps/backend",
   "projectType": "application",
   "sourceRoot": "apps/backend/src",
   "targets": {

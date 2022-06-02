@@ -1,4 +1,5 @@
 {
+  "root": "libs/property-types",
   "projectType": "library",
   "sourceRoot": "libs/property-types/src",
   "targets": {

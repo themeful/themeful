@@ -1,4 +1,4 @@
-import { Component, h, Host } from '@stencil/core'
+import { Component, h, Host, State } from '@stencil/core'
 import { APIService } from '@themeful-ui'
 
 @Component({
@@ -11,6 +11,7 @@ export class ThemefulMicrofrontend {
   private styleGuides$
   private bundle$
   private toast$
+  @State() mode: string
 
   constructor() {
     this.apiService = APIService.Instance
@@ -30,27 +31,40 @@ export class ThemefulMicrofrontend {
     }
   }
 
+  private toogleMode = () => {
+    document.body.classList.toggle('tf-light')
+    this.checkMode()
+  }
+
+  private checkMode = () => {
+    this.mode = document.body.classList.contains('tf-light') ? 'light' : 'dark'
+  }
+
   public componentWillLoad(): void {
     if (window.location.pathname === '/') {
       window.location.href = '/themes'
     }
+    this.checkMode()
   }
 
   public render(): HTMLThemefulMicrofrontendElement {
     return (
       <Host>
         <header>
-          <div>
+          <div class="logo-bar">
             <img class="logo" src="/assets/themeful.svg" />
-            <h1>Themefulx</h1>
+            <h1>Themeful</h1>
           </div>
-          <nav class="button-group">
+          <nav class="button-group nav-row">
             <stencil-route-link url="/themes">
               <tf-button kind="selectable">Themes</tf-button>
             </stencil-route-link>
             <stencil-route-link url="/styleguides">
               <tf-button kind="selectable">Style Guides</tf-button>
             </stencil-route-link>
+            <tf-button class="mode-toggle" onClick={this.toogleMode} kind="selectable">
+              {this.mode === 'light' ? 'Dark' : 'Light'} Mode
+            </tf-button>
           </nav>
         </header>
         <tf-toast {...{ msg$: this.toast$ }} />
