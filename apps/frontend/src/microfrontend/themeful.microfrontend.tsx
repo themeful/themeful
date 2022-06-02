@@ -40,7 +40,10 @@ export class ThemefulMicrofrontend {
     return (
       <Host>
         <header>
-          <h1>Themeful</h1>
+          <div>
+            <img class="logo" src="/assets/themeful.svg" />
+            <h1>Themefulx</h1>
+          </div>
           <nav class="button-group">
             <stencil-route-link url="/themes">
               <tf-button kind="selectable">Themes</tf-button>
