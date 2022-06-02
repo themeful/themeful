@@ -3,28 +3,24 @@
 }
 
 .style-guide {
-  text-align: center;
-
-  h3 {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-  }
+  // h2 {
+  //   display: flex;
+  //   justify-content: left;
+  //   gap: 4px;
+  // }
 
   &__wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
     padding: 0 16px;
   }
   &__type {
-    text-align: center;
-
-    h4 {
-      font: var(--tf-default-font);
+    h3 {
       margin: 0;
-      padding: 8px;
+      padding: 8px 8px 8px 0;
     }
+  }
+  &__groups {
+    display: flex;
+    gap: 16px;
   }
   &__group {
     text-align: center;

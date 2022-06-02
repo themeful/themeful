@@ -117,6 +117,7 @@ export class StyleGuideDetailsComponent {
   private renderStyleGuide(styleGuide: ExtendedStyleGuide): HTMLElement {
     return (
       <div class="style-guide">
+        <h2>{styleGuide.name}</h2>
         {styleGuide.types && styleGuide.types.map((type) => this.renderType(type, styleGuide.slug))}
       </div>
     )
@@ -125,11 +126,13 @@ export class StyleGuideDetailsComponent {
   private renderType(type: StyleTypeGroup, styleGuideSlug: string): HTMLElement {
     return (
       <div class="style-guide__type">
-        <h4>{type.name}</h4>
-        {type.groups &&
-          type.groups.map((group) =>
-            this.renderGroup(group, styleGuideSlug, type.groups.length > 1)
-          )}
+        <h3>{type.name}</h3>
+        <div class="style-guide__groups">
+          {type.groups &&
+            type.groups.map((group) =>
+              this.renderGroup(group, styleGuideSlug, type.groups.length > 1)
+            )}
+        </div>
       </div>
     )
   }
