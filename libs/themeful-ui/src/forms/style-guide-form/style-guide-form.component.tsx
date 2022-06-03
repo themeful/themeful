@@ -80,13 +80,18 @@ export class StyleGuideFormComponent {
   public render(): HTMLTfStyleGuideFormElement {
     return (
       <form class="form" onSubmit={this.save}>
-        <h3>{this.editMode ? 'Edit' : 'Create'} Style Guide</h3>
-        <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
-          label="Name"
-          value={this.formData.fields?.name}
-          minLength={4}
-        />
+        <h3>
+          {this.editMode ? 'Edit' : 'Create'}{' '}
+          {this.formData.identifier === 'global' ? 'Global' : 'Style Guide'}
+        </h3>
+        {this.formData.identifier !== 'global' && (
+          <tf-text-input
+            ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
+            label="Name"
+            value={this.formData.fields?.name}
+            minLength={4}
+          />
+        )}
         <tf-text-input
           ref={(el: HTMLTfTextInputElement) => (this.controls['baseFontSize'] = el)}
           label="Base Font Size (px)"

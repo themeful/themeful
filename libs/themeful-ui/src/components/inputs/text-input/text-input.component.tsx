@@ -30,7 +30,7 @@ export class TextInputComponent {
   @Prop({ mutable: true }) value: string | number
 
   /** validation function */
-  @Prop() validation: (string) => string | null
+  @Prop() validation: (value: string | number) => string | null
 
   /** Input Event */
   @Event({ composed: false }) inputChange: EventEmitter

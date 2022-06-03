@@ -152,13 +152,14 @@ export class StyleGuideService {
     return true
   }
 
-  public duplicate(oldSlug: string, name: string): boolean {
+  public duplicate(oldSlug: string, { name }: { name: string }): boolean {
     const newSlug = slugify([name])
-    if (oldSlug === newSlug || !this.styleGuidesJson[newSlug]) {
+    if (oldSlug === newSlug || this.styleGuidesJson[newSlug]) {
       return false
     }
     this.styleGuidesJson[newSlug] = { ...clone(this.styleGuidesJson[oldSlug]), name }
 
+    this.writeFiles(this.styleGuidesJson)
     this.syncService.styleGuideBases({
       action: 'duplicate',
       primary: oldSlug,
@@ -188,9 +189,12 @@ export class StyleGuideService {
     return false
   }
 
-  public updateStyleGuide(currentSlug: string, { name, baseFontSize }: StyleGuideBase): boolean {
+  public updateStyleGuide(
+    currentSlug: string,
+    { name = 'Global', baseFontSize }: StyleGuideBase
+  ): boolean {
     const styleGuides = this.styleGuideList()
-    const slug = slugify([name])
+    const slug = currentSlug === 'global' ? 'global' : slugify([name])
 
     this.styleGuidesJson[slug] = {
       ...this.styleGuidesJson[currentSlug],

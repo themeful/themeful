@@ -3,23 +3,14 @@ import { action } from '@storybook/addon-actions'
 import Fragment from 'stencil-fragment'
 
 export default {
-  title: 'Forms/Style Guide',
+  title: 'Forms/Style Guide Duplicate',
   args: {
     samples: [
-      {
-        formData: {
-          fields: {
-            baseFontSize: 16,
-          },
-        },
-        onAction: action('triggered action'),
-      },
       {
         formData: {
           identifier: 'global',
           fields: {
             name: 'Global',
-            baseFontSize: 16,
           },
         },
         onAction: action('triggered action'),
@@ -28,34 +19,29 @@ export default {
         formData: {
           identifier: 'styleGuide1',
           fields: {
-            name: 'StyleGuide Name',
-            baseFontSize: 16,
+            name: 'StyleGuide 1',
           },
         },
-        onAction: action('triggered action'),
-      },
-      {
-        formData: {},
         onAction: action('triggered action'),
       },
     ],
   },
 }
 
-export const styleGuide = ({ samples }) => {
+export const styleGuideDuplicate = ({ samples }) => {
   return (
     <div>
       <div class="header">
-        <h1>Style Guide Form</h1>
+        <h1>Style Guide Duplicate Form</h1>
       </div>
       <div class="content content--grid">
         {samples.map((args) => (
           <Fragment>
             <div class="tf-light">
-              <tf-style-guide-form {...args} />
+              <tf-style-guide-duplicate-form {...args} />
             </div>
             <div>
-              <tf-style-guide-form {...args} />
+              <tf-style-guide-duplicate-form {...args} />
             </div>
           </Fragment>
         ))}

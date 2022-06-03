@@ -17,8 +17,8 @@ export class StyleGuideController {
   }
 
   @Patch(':styleGuide/duplicate')
-  duplicate(@Param('styleGuide') styleGuide: string, @Body() name: string) {
-    return this.styleGuideService.duplicate(styleGuide, name)
+  duplicate(@Param('styleGuide') styleGuide: string, @Body() data: { name: string }) {
+    return this.styleGuideService.duplicate(styleGuide, data)
   }
 
   @Delete(':styleGuide')

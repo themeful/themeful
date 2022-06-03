@@ -46,6 +46,14 @@ export class StyleGuideDetailsComponent {
     })
   }
 
+  private openStyleGuideDuplicateForm = (styleGuide: string, name: string): void => {
+    this.formData$.next({
+      form: 'styleguideDuplicate',
+      identifier: styleGuide,
+      fields: { name },
+    })
+  }
+
   private openStyleForm = (styleGuide: string, extendedStyle?: ExtendedStyle): void => {
     this.formData$.next({
       form: 'style',
@@ -60,13 +68,10 @@ export class StyleGuideDetailsComponent {
     this.sub.add(
       this.styleGuides$?.subscribe((styleGuides) => {
         styleGuides.forEach((styleguide) => {
-          console.log('3', styleguide, this.match.params.slug)
           if (styleguide.slug === this.match.params.slug) {
             this.styleGuide = styleguide
-            console.log('2', this.styleGuide)
           }
         })
-        console.log('1', this.styleGuide)
         this.styleGuideGroups = styleGuides.reduce((result, styleguide) => {
           result[styleguide.slug] = []
           styleguide.types.forEach((type) => {
@@ -104,6 +109,11 @@ export class StyleGuideDetailsComponent {
             {
               label: 'Add Style',
               callback: () => this.openStyleForm(this.styleGuide.slug),
+            },
+            {
+              label: 'Duplicate Style Guide',
+              callback: () =>
+                this.openStyleGuideDuplicateForm(this.styleGuide.slug, this.styleGuide.name),
             },
           ]}
           size="small"

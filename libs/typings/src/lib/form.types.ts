@@ -3,6 +3,7 @@ import { ExtendedStyle, StyleGuideBase, StyleMap } from './style.types'
 
 // --------- Common ------------
 export type FormActions =
+  | StyleGuideDuplicateFormAction
   | StyleGuideFormAction
   | StyleFormAction
   | ThemeFormAction
@@ -10,13 +11,15 @@ export type FormActions =
   | AliasTokenFormAction
 
 export type FormIntegrationActions =
-  | StyleGuideIntegrtionAction
-  | StyleIntegrtionAction
-  | ThemeIntegrtionAction
-  | DesignTokenIntegrtionAction
-  | AliasTokenIntegrtionAction
+  | StyleGuideDuplicateIntegrationAction
+  | StyleGuideIntegrationAction
+  | StyleIntegrationAction
+  | ThemeIntegrationAction
+  | DesignTokenIntegrationAction
+  | AliasTokenIntegrationAction
 
 export type FormIntegrations =
+  | StyleGuideDuplicateIntegration
   | StyleGuideIntegration
   | StyleIntegration
   | ThemeIntegration
@@ -44,7 +47,7 @@ export type StyleGuideFormAction =
   | StyleGuideUpdateAction
   | StyleGuideDeleteAction
 
-export type StyleGuideIntegrtionAction = StyleGuideFormAction & {
+export type StyleGuideIntegrationAction = StyleGuideFormAction & {
   controller: 'styleguide'
 }
 
@@ -71,6 +74,29 @@ export interface StyleGuideDeleteAction {
   identifier: string
 }
 
+// --------- Style Guide Duplicate Form ------------
+export type StyleGuideDuplicateIntegration = StyleGuideDuplicateFormData & {
+  form: 'styleguideDuplicate'
+}
+
+export interface StyleGuideDuplicateFormData {
+  identifier?: string
+  fields?: { name: string }
+}
+
+export type StyleGuideDuplicateFormAction = OpenAction | CloseAction | StyleGuideDuplicateAction
+
+export type StyleGuideDuplicateIntegrationAction = StyleGuideDuplicateFormAction & {
+  controller: 'styleguide'
+}
+
+export interface StyleGuideDuplicateAction {
+  controller: string
+  action: 'duplicate'
+  identifier: string
+  fields: { name: string }
+}
+
 // --------- Style Form ------------
 export type StyleIntegration = StyleFormData & {
   form: 'style'
@@ -90,7 +116,7 @@ export type StyleFormAction =
   | StyleUpdateAction
   | StyleDeleteAction
 
-export type StyleIntegrtionAction = StyleFormAction & {
+export type StyleIntegrationAction = StyleFormAction & {
   controller: 'style'
 }
 
@@ -120,7 +146,7 @@ export interface StyleDeleteAction {
 
 export type AliasTokenFormAction = CloseAction | OpenAction | RescanAction | AliasTokenUpdateAction
 
-export type AliasTokenIntegrtionAction = AliasTokenFormAction & {
+export type AliasTokenIntegrationAction = AliasTokenFormAction & {
   controller: 'aliasToken'
 }
 
@@ -162,7 +188,7 @@ export type ThemeFormAction =
   | ThemeUpdateAction
   | ThemeDeleteAction
 
-export type ThemeIntegrtionAction = ThemeFormAction & {
+export type ThemeIntegrationAction = ThemeFormAction & {
   controller: 'theme'
 }
 
@@ -208,7 +234,7 @@ export type DesignTokenFormAction =
   | DesignTokenUpdateAction
   | DesignTokenDeleteAction
 
-export type DesignTokenIntegrtionAction = DesignTokenFormAction & {
+export type DesignTokenIntegrationAction = DesignTokenFormAction & {
   controller: 'designToken'
 }
 
@@ -254,7 +280,7 @@ export type ThemeValueFormAction =
   | ThemeValueUpdateAction
   | ThemeValueDeleteAction
 
-export type ThemeValueIntegrtionAction = ThemeValueFormAction & {
+export type ThemeValueIntegrationAction = ThemeValueFormAction & {
   controller: 'themeValue'
 }
 

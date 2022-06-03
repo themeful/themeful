@@ -25,7 +25,7 @@ export class FormIntegrationComponent {
 
   private onAction = ({ detail }): void => {
     if (detail.action !== 'close') {
-      this.action.emit({ ...detail, controller: this.formData.form })
+      this.action.emit({ ...detail, controller: detail.controller || this.formData.form })
     }
 
     if (detail.action !== 'open') {
@@ -51,6 +51,8 @@ export class FormIntegrationComponent {
     switch (form) {
       case 'styleguide':
         return <tf-style-guide-form {...this.args} />
+      case 'styleguideDuplicate':
+        return <tf-style-guide-duplicate-form {...this.args} />
       case 'style':
         return <tf-style-form {...this.args} />
       case 'theme':

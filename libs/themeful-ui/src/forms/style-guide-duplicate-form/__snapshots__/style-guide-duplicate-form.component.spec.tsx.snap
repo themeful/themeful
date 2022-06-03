@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StyleGuideDuplicateFormComponent renders 1`] = `
+<tf-style-guide-duplicate-form>
+  <mock:shadow-root>
+    <form class="form">
+      <h3>
+        Duplicate: Style Guide 1
+      </h3>
+      <tf-text-input>
+        <mock:shadow-root>
+          <label class="text-input">
+            <span class="text-input__label">
+              Name
+            </span>
+            <input class="text-input__input" type="text" value="Style Guide 1 Copy">
+            <p class="text-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-text-input>
+      <div class="form__controls">
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button secondary" type="button">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Cancel
+        </tf-button>
+        <tf-button>
+          <mock:shadow-root>
+            <button class="button primary" type="submit">
+              <slot></slot>
+            </button>
+          </mock:shadow-root>
+          Duplicate
+        </tf-button>
+      </div>
+    </form>
+  </mock:shadow-root>
+</tf-style-guide-duplicate-form>
+`;

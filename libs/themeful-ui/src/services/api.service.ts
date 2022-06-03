@@ -255,6 +255,8 @@ export class APIService {
         return this.createStyleGuide(fields)
       case 'update':
         return this.updateStyleGuide(identifier, fields)
+      case 'duplicate':
+        return this.duplicateStyleGuide(identifier, fields)
       case 'delete':
         return this.deleteStyleGuide(identifier)
     }
@@ -271,6 +273,13 @@ export class APIService {
     return http.patch<StyleGuideBase, boolean>(
       `http://localhost:3333/api/style-guide/${identifier}`,
       styleGuideBase
+    )
+  }
+
+  public duplicateStyleGuide(identifier: string, name: string): Observable<boolean> {
+    return http.patch<string, boolean>(
+      `http://localhost:3333/api/style-guide/${identifier}/duplicate`,
+      name
     )
   }
 
