@@ -1,9 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { StyleGuides, Theme, Themes } from '@typings'
+import { Theme } from '@typings'
 import { clone } from '@utils'
 import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
 import { ConfigService } from './config.service'
+import { FileService } from './file.service'
+import { aliasTokens, designTokens, styleGuides, themes } from './samples'
 import { SyncService } from './sync.service'
 import { ThemeService } from './theme.service'
 
@@ -15,28 +17,39 @@ describe('ThemeService', () => {
     syncService = new SyncService()
     jest.spyOn(fs, 'writeFileSync').mockImplementation()
     jest.spyOn(fs, 'unlinkSync').mockImplementation()
+    jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
     jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: string) => {
-      if (filename.includes('theme')) {
+      if (filename.includes('themes')) {
         return clone(themes)
+      } else if (filename.includes('designTokens')) {
+        return clone(designTokens)
+      } else if (filename.includes('aliasTokens')) {
+        return clone(aliasTokens)
       } else if (filename.includes('styleGuides')) {
         return clone(styleGuides)
-      }
-    })
-    jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
-
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        ThemeService,
-        {
-          provide: ConfigService,
-          useValue: {
+      } else if (filename.includes('themeful.json')) {
+        return {
+          paths: {
             generatedPath: './sample/generated/',
             dataPath: './sample/generated/',
             themesPath: './sample/generated/',
             libPath: './sample/components/',
+          },
+          global: {
+            baseFontSize: '16px',
             shortDesignTokens: false,
           },
-        },
+        }
+      } else {
+        return { some: 'object' }
+      }
+    })
+
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        ThemeService,
+        FileService,
+        ConfigService,
         { provide: SyncService, useValue: syncService },
       ],
     }).compile()
@@ -124,10 +137,10 @@ describe('ThemeService', () => {
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './sample/generated/themes.ts',
         `export const themes = [
-  { name: 'StyleGuide 1 - Dark', slug: 'styleGuide1_dark' },
   { name: 'StyleGuide 1 - Light', slug: 'styleGuide1_light' },
-  { name: 'StyleGuide 2 - Dark', slug: 'styleGuide2_dark' },
+  { name: 'StyleGuide 1 - Dark', slug: 'styleGuide1_dark' },
   { name: 'StyleGuide 2 - Light', slug: 'styleGuide2_light' },
+  { name: 'StyleGuide 2 - Dark', slug: 'styleGuide2_dark' },
 ]
 `
       )
@@ -285,330 +298,6 @@ const updatedTheme: Theme = {
     dtFontSize100: {
       default: {
         style: 'styleGuide2_fontSize_medium',
-      },
-    },
-  },
-}
-
-const themes: Themes = {
-  styleGuide1_light: {
-    name: 'Light',
-    styleGuide: 'styleGuide1',
-    styles: {
-      dtActionBG: {
-        default: {
-          style: 'styleGuide1_brand_secondary',
-        },
-      },
-      dtFontColorPrimary: {
-        default: {
-          style: 'global_base_black',
-        },
-      },
-      dtFontSize100: {
-        default: {
-          style: 'styleGuide1_fontSize_primary',
-        },
-      },
-    },
-  },
-  styleGuide1_dark: {
-    name: 'Dark',
-    styleGuide: 'styleGuide1',
-    styles: {
-      dtActionBG: {
-        default: {
-          style: 'styleGuide1_brand_secondary',
-        },
-      },
-      dtFontColorPrimary: {
-        default: {
-          style: 'global_base_white',
-        },
-      },
-      dtFontSize100: {
-        default: {
-          style: 'styleGuide1_fontSize_primary',
-        },
-      },
-    },
-  },
-  styleGuide2_light: {
-    name: 'Light',
-    styleGuide: 'styleGuide2',
-    styles: {
-      dtActionBG: {
-        default: {
-          style: 'styleGuide2_brand_primary',
-        },
-      },
-      dtFontColorPrimary: {
-        default: {
-          style: 'global_base_black',
-        },
-      },
-      dtFontSize100: {
-        default: {
-          style: 'styleGuide2_fontSize_normal',
-        },
-      },
-    },
-  },
-  styleGuide2_dark: {
-    name: 'Dark',
-    styleGuide: 'styleGuide2',
-    styles: {
-      dtActionBG: {
-        default: {
-          style: 'styleGuide2_brand_secondary',
-        },
-      },
-      dtFontColorPrimary: {
-        default: {
-          style: 'global_base_white',
-        },
-      },
-      dtFontSize100: {
-        default: {
-          style: 'styleGuide2_fontSize_normal',
-        },
-      },
-    },
-  },
-}
-
-const styleGuides: StyleGuides = {
-  global: {
-    name: 'Global',
-    baseFontSize: 16,
-    styles: {
-      base_black: {
-        name: 'Black',
-        type: 'color',
-        group: 'base',
-        value: '#333333',
-      },
-      base_light: {
-        name: 'Light',
-        type: 'color',
-        group: 'base',
-        value: '#ffffff',
-      },
-      gray_100: {
-        name: '100',
-        type: 'color',
-        group: 'gray',
-        value: 'rgba(0, 0, 0, 0.75)',
-      },
-      gray_200: {
-        name: '200',
-        type: 'color',
-        group: 'gray',
-        value: 'rgba(0, 0, 0, 0.60)',
-      },
-      gray_300: {
-        name: '300',
-        type: 'color',
-        group: 'gray',
-        value: 'rgba(0, 0, 0, 0.45)',
-      },
-      gray_400: {
-        name: '400',
-        type: 'color',
-        group: 'gray',
-        value: 'rgba(0, 0, 0, 0.30)',
-      },
-      gray_500: {
-        name: '500',
-        type: 'color',
-        group: 'gray',
-        value: 'rgba(0, 0, 0, 0.15)',
-      },
-      space_tiny: {
-        type: 'size',
-        group: 'space',
-        name: 'Tiny',
-        value: '4px',
-      },
-      space_small: {
-        type: 'size',
-        group: 'space',
-        name: 'Small',
-        value: '8px',
-      },
-      space_smallMedium: {
-        name: 'Small Medium',
-        type: 'size',
-        group: 'space',
-        value: '0.75rem',
-      },
-      space_medium: {
-        type: 'size',
-        group: 'space',
-        name: 'Medium',
-        value: '16px',
-      },
-      space_large: {
-        type: 'size',
-        group: 'space',
-        name: 'Large',
-        value: '24px',
-      },
-      space_xlarge: {
-        type: 'size',
-        group: 'space',
-        name: 'X-Large',
-        value: '32px',
-      },
-      mediaQuery_aboveSmallMobile: {
-        name: 'Above Small Mobile',
-        type: 'mediaquery',
-        group: 'mediaQuery',
-        value: 'screen and (min-width: 321px)',
-      },
-      mediaQuery_aboveMobile: {
-        name: 'Above Mobile',
-        type: 'mediaquery',
-        group: 'mediaQuery',
-        value: 'screen and (min-width: 664px)',
-      },
-      mediaQuery_aboveTablet: {
-        name: 'Above Tablet',
-        type: 'mediaquery',
-        group: 'mediaQuery',
-        value: 'screen and (min-width: 992px)',
-      },
-      mediaQuery_aboveDesktop: {
-        name: 'Above Desktop',
-        type: 'mediaquery',
-        group: 'mediaQuery',
-        value: 'screen and (min-width: 1200px)',
-      },
-    },
-  },
-  styleGuide1: {
-    name: 'StyleGuide 1',
-    baseFontSize: 16,
-    styles: {
-      action_primary: {
-        name: 'Primary',
-        type: 'color',
-        group: 'action',
-        value: '#31ed31',
-      },
-      action_secondary: {
-        name: 'Secondary',
-        type: 'color',
-        group: 'action',
-        value: '#2ec22e',
-      },
-      action_tertiary: {
-        name: 'Tertiary',
-        type: 'color',
-        group: 'action',
-        value: '#1e961e',
-      },
-      brand_primary: {
-        type: 'color',
-        group: 'brand',
-        name: 'Primary',
-        value: '#ff0000',
-      },
-      brand_secondary: {
-        name: 'Secondary',
-        type: 'color',
-        group: 'brand',
-        value: '#d42828',
-      },
-      brand_tertiary: {
-        name: 'Tertiary',
-        type: 'color',
-        group: 'brand',
-        value: '#af2323',
-      },
-      font_primary: {
-        name: 'Primary',
-        type: 'font',
-        group: 'font',
-        value: 'Verdana, Geneva, Tahoma, sans-serif',
-      },
-      content_primary: {
-        type: 'font-size',
-        group: 'content',
-        name: 'Primary',
-        value: '1.2rem',
-      },
-      mediaQuery_aboveSmallDesktop: {
-        name: 'Above Desktop',
-        type: 'mediaquery',
-        group: 'mediaQuery',
-        value: 'screen and (min-width: 1100px)',
-      },
-    },
-  },
-  styleGuide2: {
-    name: 'StyleGuide 2',
-    baseFontSize: 16,
-    styles: {
-      action_primary: {
-        name: 'Primary',
-        type: 'color',
-        group: 'action',
-        value: '#ff5555',
-      },
-      action_secondary: {
-        name: 'Secondary',
-        type: 'color',
-        group: 'action',
-        value: '#d22828',
-      },
-      action_tertiary: {
-        name: 'Tertiary',
-        type: 'color',
-        group: 'action',
-        value: '#9f1c1c',
-      },
-      brand_primary: {
-        name: 'Primary',
-        type: 'color',
-        group: 'brand',
-        value: '#577bf1',
-      },
-      brand_secondary: {
-        name: 'Secondary',
-        type: 'color',
-        group: 'brand',
-        value: '#4646ed',
-      },
-      brand_tertiary: {
-        name: 'Tertiary',
-        type: 'color',
-        group: 'brand',
-        value: '#3f55b1',
-      },
-      font_primary: {
-        name: 'Primary',
-        type: 'font',
-        group: 'font',
-        value: "'Times New Roman', Times, serif",
-      },
-      content_normal: {
-        type: 'font-size',
-        group: 'content',
-        name: 'Normal',
-        value: '0.9rem',
-      },
-    },
-  },
-  styleGuide3: {
-    name: 'StyleGuide 3',
-    baseFontSize: 10,
-    styles: {
-      base_primary: {
-        name: 'Primary',
-        type: 'color',
-        group: 'base',
-        value: '#2be053',
       },
     },
   },

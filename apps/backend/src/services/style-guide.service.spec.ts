@@ -1,9 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { Style, StyleGuides } from '@typings'
+import { Style } from '@typings'
 import { clone } from '@utils'
 import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
 import { ConfigService } from './config.service'
+import { FileService } from './file.service'
+import { aliasTokens, designTokens, styleGuides, themes } from './samples'
 import { StyleGuideService } from './style-guide.service'
 import { SyncService } from './sync.service'
 
@@ -14,22 +16,40 @@ describe('StyleGuideService', () => {
   beforeEach(async () => {
     syncService = new SyncService()
     jest.spyOn(fs, 'writeFileSync').mockImplementation()
-    jest.spyOn(jsonfile, 'readFileSync').mockReturnValue(clone(styleGuides))
+    jest.spyOn(fs, 'unlinkSync').mockImplementation()
     jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
-
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        StyleGuideService,
-        {
-          provide: ConfigService,
-          useValue: {
+    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: string) => {
+      if (filename.includes('themes')) {
+        return clone(themes)
+      } else if (filename.includes('designTokens')) {
+        return clone(designTokens)
+      } else if (filename.includes('aliasTokens')) {
+        return clone(aliasTokens)
+      } else if (filename.includes('styleGuides')) {
+        return clone(styleGuides)
+      } else if (filename.includes('themeful.json')) {
+        return {
+          paths: {
             generatedPath: './sample/generated/',
             dataPath: './sample/generated/',
             themesPath: './sample/generated/',
             libPath: './sample/components/',
+          },
+          global: {
+            baseFontSize: '16px',
             shortDesignTokens: false,
           },
-        },
+        }
+      } else {
+        return { some: 'object' }
+      }
+    })
+
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        StyleGuideService,
+        FileService,
+        ConfigService,
         { provide: SyncService, useValue: syncService },
       ],
     }).compile()
@@ -56,12 +76,10 @@ describe('StyleGuideService', () => {
 
       withOneMore.global.styles['base_primary'] = clonedBaseValue
 
+      const fileSave = jest.spyOn(FileService.prototype, 'save')
+
       expect(service.create(clone(newBaseValue))).toEqual(true)
-      expect(jsonfile.writeFileSync).toBeCalledWith(
-        './sample/generated/styleGuides.json',
-        withOneMore,
-        { spaces: 2 }
-      )
+      expect(fileSave).toBeCalledWith('styleGuides', withOneMore)
     })
 
     it('should create one for styleGuide', () => {
@@ -159,12 +177,9 @@ describe('StyleGuideService', () => {
 
       delete withOneLess.global.styles['base_black']
 
+      const fileSave = jest.spyOn(FileService.prototype, 'save')
       expect(service.delete('base_black')).toEqual(true)
-      expect(jsonfile.writeFileSync).toBeCalledWith(
-        './sample/generated/styleGuides.json',
-        withOneLess,
-        { spaces: 2 }
-      )
+      expect(fileSave).toBeCalledWith('styleGuides', withOneLess)
     })
 
     it('should not delete a global value', () => {
@@ -176,12 +191,10 @@ describe('StyleGuideService', () => {
 
       delete withOneLess.styleGuide1.styles['action_primary']
 
+      const fileSave = jest.spyOn(FileService.prototype, 'save')
+
       expect(service.delete('action_primary', 'styleGuide1')).toEqual(true)
-      expect(jsonfile.writeFileSync).toBeCalledWith(
-        './sample/generated/styleGuides.json',
-        withOneLess,
-        { spaces: 2 }
-      )
+      expect(fileSave).toBeCalledWith('styleGuides', withOneLess)
     })
 
     it('should not delete a styleGuide value with wrong styleGuide', () => {
@@ -190,32 +203,6 @@ describe('StyleGuideService', () => {
 
     it('should not delete a styleGuide value with wrong key', () => {
       expect(service.delete('test_red', 'styleGuide1')).toEqual(false)
-    })
-  })
-
-  describe('generated fs', () => {
-    it('should generate scss fs', () => {
-      jest.spyOn(fs, 'writeFileSync').mockImplementation()
-
-      expect(service.delete('base_light')).toEqual(true)
-
-      expect(fs.writeFileSync).toHaveBeenCalledWith(
-        './sample/generated/styleGuides.scss',
-        `$global_base_black: #333333;
-$global_base_light: #ffffff;
-$styleGuide1_action_primary: #31ed31;
-$styleGuide1_action_secondary: #2ec22e;
-$styleGuide1_action_tertiary: #1e961e;
-$styleGuide2_action_primary: #ff5555;
-$styleGuide2_action_secondary: #d22828;
-$styleGuide3_base_primary: #2be053;
-@mixin global_mediaQuery_aboveSmallMobile {
-  @media screen and (min-width: 321px) {
-    @content;
-  }
-}
-`
-      )
     })
   })
 
@@ -283,70 +270,6 @@ $styleGuide3_base_primary: #2be053;
       })
     })
   })
-
-  // describe('get changes from sync', () => {
-  //   it('should create a styleGuide', () => {
-  //     const withNewClient = clone(styleGuides)
-
-  //     withNewClient['styleGuide3'] = {
-  //       name: 'styleGuide3',
-  //       styleGuide: 'styleGuide3',
-  //       values: {},
-  //     }
-
-  //     syncService({
-  //       action: 'create',
-  //       primary: 'styleGuide3',
-  //       values: ['styleGuide1', 'styleGuide2', 'styleGuide3'],
-  //     })
-  //     expect(service.read()).toEqual(withNewClient)
-  //   })
-
-  //   it('should update a styleGuide', () => {
-  //     const withUpdatedClient = clone(styleGuides)
-
-  //     withUpdatedClient['styleGuide3'] = withUpdatedClient.styleGuide1
-  //     withUpdatedClient['styleGuide3'].name = 'styleGuide3'
-
-  //     delete withUpdatedClient.styleGuide1
-
-  //     syncService({
-  //       action: 'update',
-  //       primary: 'styleGuide1',
-  //       secondary: 'styleGuide3',
-  //       values: ['styleGuide2', 'styleGuide3'],
-  //     })
-  //     expect(service.read()).toEqual(withUpdatedClient)
-  //   })
-
-  //   it('should update/copy a styleGuide', () => {
-  //     const withUpdatedClient = clone(styleGuides)
-
-  //     withUpdatedClient['styleGuide3'] = withUpdatedClient.styleGuide1
-  //     withUpdatedClient['styleGuide3'].name = 'styleGuide3'
-
-  //     syncService({
-  //       action: 'update',
-  //       primary: 'styleGuide1',
-  //       secondary: 'styleGuide3',
-  //       values: ['styleGuide1', 'styleGuide2', 'styleGuide3'],
-  //     })
-  //     expect(service.read()).toEqual(withUpdatedClient)
-  //   })
-
-  //   it('should delete a styleGuide', () => {
-  //     const deletedClient = clone(styleGuides)
-
-  //     delete deletedClient.styleGuide1
-
-  //     syncService({
-  //       action: 'delete',
-  //       primary: 'styleGuide1',
-  //       values: ['styleGuide2'],
-  //     })
-  //     expect(service.read()).toEqual(deletedClient)
-  //   })
-  // })
 })
 
 const newBaseValue = {
@@ -496,93 +419,3 @@ const formatted = [
     ],
   },
 ]
-
-const styleGuides: StyleGuides = {
-  global: {
-    name: 'Global',
-    baseFontSize: 16,
-    styles: {
-      base_black: {
-        name: 'Black',
-        type: 'color',
-        group: 'Base',
-        slug: 'base_black',
-        value: '#333333',
-      },
-      base_light: {
-        name: 'Light',
-        type: 'color',
-        group: 'Base',
-        slug: 'base_light',
-        value: '#ffffff',
-      },
-      mediaQuery_aboveSmallMobile: {
-        name: 'Above Small Mobile',
-        type: 'mediaquery',
-        group: 'Media query',
-        slug: 'mediaQuery_aboveSmallMobile',
-        value: 'screen and (min-width: 321px)',
-      },
-    },
-  },
-  styleGuide1: {
-    name: 'StyleGuide 1',
-    baseFontSize: 16,
-    styles: {
-      action_primary: {
-        name: 'Primary',
-        type: 'color',
-        group: 'Action',
-        slug: 'action_primary',
-        value: '#31ed31',
-      },
-      action_secondary: {
-        name: 'Secondary',
-        type: 'color',
-        group: 'Action',
-        slug: 'action_secondary',
-        value: '#2ec22e',
-      },
-      action_tertiary: {
-        name: 'Tertiary',
-        type: 'color',
-        group: 'Action',
-        slug: 'action_tertiary',
-        value: '#1e961e',
-      },
-    },
-  },
-  styleGuide2: {
-    name: 'StyleGuide 2',
-    baseFontSize: 16,
-    styles: {
-      action_primary: {
-        name: 'Primary',
-        type: 'color',
-        group: 'Action',
-        slug: 'action_primary',
-        value: '#ff5555',
-      },
-      action_secondary: {
-        name: 'Secondary',
-        type: 'color',
-        group: 'Action',
-        slug: 'action_secondary',
-        value: '#d22828',
-      },
-    },
-  },
-  styleGuide3: {
-    name: 'StyleGuide 3',
-    baseFontSize: 10,
-    styles: {
-      base_primary: {
-        name: 'Primary',
-        type: 'color',
-        group: 'Base',
-        slug: 'base_primary',
-        value: '#2be053',
-      },
-    },
-  },
-}

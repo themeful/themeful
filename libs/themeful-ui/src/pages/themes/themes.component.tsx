@@ -67,7 +67,7 @@ export class ThemesComponent {
       this.bundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes]) => {
         this.themes = themes
         this.aliasTokens = aliasTokens
-        this.designTokens = designTokens
+        this.designTokens = designTokens as DesignTokens
         this.groups = []
         const { styleMap, sgNames } = this.transformStyleGuides(styleGuides)
         this.styleMap = styleMap

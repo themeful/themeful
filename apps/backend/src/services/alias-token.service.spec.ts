@@ -1,11 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { AliasTokenAPI, AliasTokens } from '@typings'
+import { AliasTokenAPI } from '@typings'
 import { clone } from '@utils'
+import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
 import { FindResults } from '../utils'
 import * as utils from '../utils/system.util'
 import { AliasTokenService } from './alias-token.service'
 import { ConfigService } from './config.service'
+import { FileService } from './file.service'
+import { aliasTokens, designTokens, styleGuides, themes } from './samples'
 import { SyncService } from './sync.service'
 
 describe('AliasTokenService', () => {
@@ -14,24 +17,48 @@ describe('AliasTokenService', () => {
 
   beforeEach(async () => {
     syncService = new SyncService()
+    jest.spyOn(fs, 'writeFileSync').mockImplementation()
+    jest.spyOn(fs, 'unlinkSync').mockImplementation()
     jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
-    jest.spyOn(jsonfile, 'readFileSync').mockReturnValue(clone(aliasTokens))
-    jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
-    jest.spyOn(utils, 'findSync').mockImplementation().mockReturnValue(parseResult)
-
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        AliasTokenService,
-        {
-          provide: ConfigService,
-          useValue: {
+    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: string) => {
+      if (filename.includes('themes')) {
+        return clone(themes)
+      } else if (filename.includes('designTokens')) {
+        return clone(designTokens)
+      } else if (filename.includes('aliasTokens')) {
+        return clone(aliasTokens)
+      } else if (filename.includes('styleGuides')) {
+        return clone(styleGuides)
+      } else if (filename.includes('themeful.json')) {
+        return {
+          paths: {
             generatedPath: './sample/generated/',
             dataPath: './sample/generated/',
             themesPath: './sample/generated/',
             libPath: './sample/components/',
+          },
+          global: {
+            baseFontSize: '16px',
             shortDesignTokens: false,
           },
-        },
+        }
+      } else {
+        return { some: 'object' }
+      }
+    })
+    jest.spyOn(utils, 'findSync').mockImplementation(({ term }) => {
+      if (term.includes('default')) {
+        return parseResultLine
+      } else {
+        return parseResult
+      }
+    })
+
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        AliasTokenService,
+        FileService,
+        ConfigService,
         { provide: SyncService, useValue: syncService },
       ],
     }).compile()
@@ -207,37 +234,6 @@ const updatedAliasToken: AliasTokenAPI = {
   crawled: false,
 }
 
-const aliasTokens: AliasTokens = {
-  atTestButtonBackground: {
-    component: ['Button'],
-    files: ['libs/components/src/lib/button/button.component.scss'],
-    properties: ['background-color'],
-    extern: false,
-    crawled: true,
-  },
-  atTestButtonFontSize: {
-    component: ['Button'],
-    files: ['libs/components/src/lib/button/button.component.scss'],
-    properties: ['font-size'],
-    extern: false,
-    crawled: true,
-  },
-  atTestButtonFontColor: {
-    component: ['Button'],
-    files: ['libs/components/src/lib/button/button.component.scss'],
-    properties: ['color'],
-    extern: true,
-    crawled: true,
-  },
-  atTestBaseFontColor: {
-    component: [],
-    files: [],
-    properties: ['color'],
-    extern: true,
-    crawled: false,
-  },
-}
-
 const parseResult: FindResults = [
   {
     filename: 'libs/components/src/lib/button/button.component.scss',
@@ -245,6 +241,17 @@ const parseResult: FindResults = [
       'background-color: $atTestButtonBackground;',
       'font-size: $atTestButtonFontSize;',
       'color: $atTestButtonFontColor;',
+    ],
+    line: [],
+  },
+]
+const parseResultLine: FindResults = [
+  {
+    filename: 'libs/components/src/lib/button/button.component.scss',
+    matches: [
+      '$atTestButtonBackground1: #444 !default;',
+      '$atTestButtonBackground2: #444 !default;',
+      '$atTestButtonBackground3: #444 !default;',
     ],
     line: [],
   },
