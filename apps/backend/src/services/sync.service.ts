@@ -29,4 +29,8 @@ export class SyncService {
   public styleGuides(data: SyncData) {
     this.stack.styleGuides?.forEach((callback) => callback(data))
   }
+
+  public themes(data: SyncData) {
+    this.stack.themes?.forEach((callback) => callback(data))
+  }
 }

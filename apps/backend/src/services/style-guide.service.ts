@@ -12,28 +12,22 @@ import {
   StylesMap,
   TypeGroupStyles,
 } from '@typings'
-import { convertCSSLength, slugify, sortMap } from '@utils'
-import { ColorTranslator } from 'colortranslator'
-import { writeFileSync } from 'fs'
-import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+import { convertCSSLength, slugify, sortMap, unifyStyle } from '@utils'
 import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import { sentenceCase } from 'sentence-case'
 import * as smq from 'sort-media-queries'
-import { ConfigService } from './config.service'
+import { FileService } from './file.service'
 import { SyncService } from './sync.service'
 
 @Injectable()
 export class StyleGuideService {
   private styleGuidesJson: StyleGuides
-  private readonly filenameJson = 'styleGuides.json'
-  private readonly filenameScss = 'styleGuides.scss'
   private cacheHash
   public styleGuides$ = new ReplaySubject(1)
 
-  constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
+  constructor(private readonly syncService: SyncService, private readonly file: FileService) {
     this.styleGuidesJson = this.loadJson()
-    this.generateStyleGuides(this.styleGuidesJson)
     this.styleGuides$.next(this.read())
   }
 
@@ -88,7 +82,7 @@ export class StyleGuideService {
   public create(style: Style, styleGuide = 'global'): boolean {
     const key = slugify([style.group, style.name])
 
-    style = this.unifyStyle(style)
+    style = unifyStyle(style)
 
     if (!this.styleGuidesJson[styleGuide] || this.styleGuidesJson[styleGuide].styles[key]) {
       return false
@@ -119,7 +113,7 @@ export class StyleGuideService {
   public update(name: string, style: Style, styleGuide = 'global'): boolean {
     const key = slugify([style.group, style.name])
 
-    style = this.unifyStyle(style)
+    style = unifyStyle(style)
 
     if (
       !this.styleGuidesJson[styleGuide]?.styles[name] ||
@@ -237,7 +231,7 @@ export class StyleGuideService {
   }
 
   private loadJson(): StyleGuides {
-    return readJsonFile(`${this.config.dataPath}${this.filenameJson}`)
+    return this.file.load('styleGuides')
   }
 
   private saveJson(styleGuides: StyleGuides) {
@@ -245,7 +239,7 @@ export class StyleGuideService {
     if (this.cacheHash !== newHash) {
       this.cacheHash = newHash
       this.styleGuides$.next(this.read())
-      writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, styleGuides, { spaces: 2 })
+      this.file.save('styleGuides', styleGuides)
     }
   }
 
@@ -287,54 +281,5 @@ export class StyleGuideService {
 
   private writeFiles(styleGuides: StyleGuides) {
     this.saveJson(styleGuides)
-    this.generateStyleGuides(styleGuides)
-  }
-
-  private generateStyleGuides(jsonData: StyleGuides) {
-    const output = []
-
-    for (const styleGuideKey in jsonData) {
-      const styleGuide = jsonData[styleGuideKey]
-      for (const key in styleGuide.styles) {
-        const value = styleGuide.styles[key].value
-        output.push({
-          key: `${styleGuideKey}_${key}`,
-          type: styleGuide.styles[key].type,
-          value: styleGuide.styles[key].type === 'color' ? this.unifyColor(value) : value,
-        })
-      }
-    }
-    const attributes = []
-    const mediaqueriesAttr = []
-    output.forEach((attr) => {
-      if (attr.type === 'mediaquery') {
-        mediaqueriesAttr.push(
-          `@mixin ${attr.key} {\n  @media ${attr.value} {\n    @content;\n  }\n}`
-        )
-      } else {
-        attributes.push(`$${attr.key}: ${attr.value};`)
-      }
-    })
-    writeFileSync(
-      `${this.config.generatedPath}${this.filenameScss}`,
-      [...attributes, ...mediaqueriesAttr, ''].join('\n')
-    )
-  }
-
-  private unifyStyle(style: Style): Style {
-    style.value.replace(';', '')
-    if (style.type === 'color') {
-      style.value = this.unifyColor(style.value)
-    }
-    style.group = slugify([style.group])
-    return style
-  }
-
-  private unifyColor(color: string): string {
-    if (new ColorTranslator(color).A === 1) {
-      return ColorTranslator.toHEX(color).toLowerCase()
-    } else {
-      return ColorTranslator.toRGBA(color).split(',').join(', ')
-    }
   }
 }

@@ -1,41 +1,18 @@
 import { Injectable } from '@nestjs/common'
-import {
-  DesignTokens,
-  MediaValueDetail,
-  Style,
-  StyleGuides,
-  SyncData,
-  Theme,
-  Themes,
-  ThemeValue,
-} from '@typings'
+import { MediaValueDetail, SyncData, Theme, Themes, ThemeValue } from '@typings'
 import { slugify, sortMap, unique } from '@utils'
-import { unlinkSync, writeFileSync } from 'fs'
-import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
 import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
-import * as smq from 'sort-media-queries'
-import { ConfigService } from './config.service'
+import { FileService } from './file.service'
 import { SyncService } from './sync.service'
 
 @Injectable()
 export class ThemeService {
-  private readonly designTokensFilenameJson = 'designTokens.json'
-  private readonly styleGuidesFilenameJson = 'styleGuides.json'
-  private readonly filenameJson = 'themes.json'
-  private readonly filenameTs = 'themes.ts'
-  private readonly filenameScss = 'themes.scss'
-
   private themesJson: Themes
-  private styleGuidesJSON: StyleGuides
-  private designTokens: DesignTokens
-
-  private useShortDT: boolean
   private cacheHash
   public themes$ = new ReplaySubject(1)
 
-  constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
-    this.useShortDT = this.config.shortDesignTokens
+  constructor(private readonly syncService: SyncService, private readonly file: FileService) {
     this.syncService.register('styleGuideBases', this.syncStyleGuideBases)
     this.syncService.register('designTokens', this.syncDesignTokens)
     this.syncService.register('styleGuides', this.syncStyleGuides)
@@ -71,7 +48,6 @@ export class ThemeService {
     const values = this.themesJson[key].styles
 
     if (key !== slug) {
-      this.tidyUpThemeFile(this.themesJson[key].styleGuide, this.themesJson[key].name)
       delete this.themesJson[key]
     }
 
@@ -90,7 +66,6 @@ export class ThemeService {
       return false
     }
 
-    this.tidyUpThemeFile(this.themesJson[key].styleGuide, this.themesJson[key].name)
     delete this.themesJson[key]
 
     this.writeFiles(this.themesJson)
@@ -217,32 +192,25 @@ export class ThemeService {
     const currentClients = unique(
       Object.values(this.themesJson).map(({ styleGuide }) => styleGuide)
     )
-    switch (data.action) {
-      case 'update':
-        if (currentClients.includes(data.primary) && !currentClients.includes(data.secondary)) {
-          Object.keys(this.themesJson).forEach((slug) => {
-            if (this.themesJson[slug].styleGuide === data.primary) {
-              const newSlug = slugify([data.secondary, this.themesJson[slug].name])
-              this.themesJson[newSlug] = { ...this.themesJson[slug], styleGuide: data.secondary }
-              this.tidyUpThemeFile(this.themesJson[slug].styleGuide, this.themesJson[slug].name)
-              delete this.themesJson[slug]
-            }
-          })
+    if (
+      data.action === 'update' &&
+      currentClients.includes(data.primary) &&
+      !currentClients.includes(data.secondary)
+    ) {
+      Object.keys(this.themesJson).forEach((slug) => {
+        if (this.themesJson[slug].styleGuide === data.primary) {
+          const newSlug = slugify([data.secondary, this.themesJson[slug].name])
+          this.themesJson[newSlug] = { ...this.themesJson[slug], styleGuide: data.secondary }
+          delete this.themesJson[slug]
         }
-        break
-      default:
-        Object.keys(this.themesJson).forEach((slug) => {
-          if (!data.values.includes(this.themesJson[slug].styleGuide)) {
-            this.tidyUpThemeFile(this.themesJson[slug].styleGuide, this.themesJson[slug].name)
-            delete this.themesJson[slug]
-          }
-        })
+      })
     }
+
     this.writeFiles(this.themesJson)
   }
 
   private loadJson(): Themes {
-    return readJsonFile(`${this.config.dataPath}${this.filenameJson}`)
+    return this.file.load('themes')
   }
 
   private saveJson(themes: Themes) {
@@ -250,114 +218,15 @@ export class ThemeService {
     if (this.cacheHash !== newHash) {
       this.cacheHash = newHash
       this.themes$.next(themes)
-      writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, themes, { spaces: 2 })
+      this.file.save('themes', themes)
     }
   }
 
-  private getStyleGuideBases(): { [key: string]: string } {
-    const styleGuides: { [key: string]: string } = {}
-    Object.keys(this.styleGuidesJSON).forEach((styleGuide) => {
-      styleGuides[styleGuide] = this.styleGuidesJSON[styleGuide].name
-    })
-    return styleGuides
-  }
-
   private writeFiles(themes: Themes) {
-    this.styleGuidesJSON = readJsonFile(`${this.config.dataPath}${this.styleGuidesFilenameJson}`)
-    this.designTokens = readJsonFile(`${this.config.dataPath}${this.designTokensFilenameJson}`)
     this.themesJson = sortMap(themes)
     Object.keys(this.themesJson).forEach((themeKey) => {
       this.themesJson[themeKey].styles = sortMap(this.themesJson[themeKey].styles)
     })
     this.saveJson(this.themesJson)
-    this.generateThemeTS(this.themesJson)
-    this.generateThemes(this.themesJson)
-  }
-
-  private generateThemeTS(themes: Themes) {
-    let tsFile = 'export const themes = [\n'
-    for (const key in themes) {
-      const name = `${this.getStyleGuideBases()[themes[key].styleGuide]} - ${themes[key].name}`
-      tsFile += `  { name: '${name}', slug: '${slugify([
-        themes[key].styleGuide,
-        themes[key].name,
-      ])}' },\n`
-    }
-    tsFile = `${tsFile}]\n`
-    writeFileSync(`${this.config.themesPath}${this.filenameTs}`, tsFile)
-  }
-
-  private generateThemes(themes: Themes) {
-    let storybookThemes = ''
-    const mediaQueryOrder = this.mediaQueryOrder()
-    for (const key in themes) {
-      storybookThemes += `html[data-brand-theme='${key}'] {\n  @import './theme_${key}';\n}\n`
-      const baseFontSize = this.styleGuidesJSON[themes[key].styleGuide].baseFontSize
-      const baseFontSizeStr =
-        baseFontSize === 16 ? '' : `body {\n  font-size: ${baseFontSize}px;\n}\n\n`
-      let scssFile = `@import './styleGuides.scss';\n\n${baseFontSizeStr}& {\n`
-      const mediaQueries: { [key: string]: string[] } = {}
-      for (const designToken in themes[key].styles) {
-        const renderedToken = this.useShortDT ? this.designTokens[designToken].short : designToken
-        if (themes[key].styles[designToken]) {
-          Object.keys(themes[key].styles[designToken]).forEach((media) => {
-            if (media === 'default') {
-              scssFile +=
-                `  --${renderedToken}: ` +
-                (themes[key].styles[designToken].default.style
-                  ? `#{$${themes[key].styles[designToken].default.style}};\n`
-                  : `${themes[key].styles[designToken].default.direct.value};\n`)
-            } else {
-              mediaQueries[media] = mediaQueries[media] ?? []
-              mediaQueries[media].push(
-                themes[key].styles[designToken][media].style
-                  ? `--${renderedToken}: #{$${themes[key].styles[designToken][media].style}};`
-                  : `--${renderedToken}: ${themes[key].styles[designToken][media].direct.value};`
-              )
-            }
-          })
-        }
-      }
-
-      const sorted: { [key: string]: string[] } = {}
-      mediaQueryOrder.forEach((mq) => {
-        if (mediaQueries[mq]) {
-          sorted[mq] = mediaQueries[mq]
-        }
-      })
-
-      scssFile +=
-        Object.entries(sorted).reduce((result, [media, values]) => {
-          return `${result}  @include ${media} {\n    ${values.join('\n    ')}\n  }\n`
-        }, '') + '}\n'
-
-      writeFileSync(
-        `${this.config.generatedPath}theme_${slugify([
-          themes[key].styleGuide,
-          themes[key].name,
-        ])}.scss`,
-        scssFile
-      )
-    }
-    writeFileSync(`${this.config.generatedPath}_${this.filenameScss}`, storybookThemes)
-  }
-
-  private tidyUpThemeFile(styleGuide: string, theme: string) {
-    unlinkSync(`${this.config.generatedPath}theme_${slugify([styleGuide, theme])}.scss`)
-  }
-
-  private mediaQueryOrder(): string[] {
-    const mediaQueries: { media: string; key: string }[] = []
-
-    Object.entries(this.styleGuidesJSON).forEach(([slug, styleGuide]) => {
-      mediaQueries.push(
-        ...(Object.entries(styleGuide.styles)
-          .filter(([, item]: [string, Style]) => item.type === 'mediaquery')
-          .map(([key, item]: [string, Style]) => ({ media: item.value, key: `${slug}_${key}` })) ??
-          [])
-      )
-    })
-
-    return smq(mediaQueries, 'media').map(({ key }) => key)
   }
 }

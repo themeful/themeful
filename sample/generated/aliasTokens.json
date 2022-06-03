@@ -6,20 +6,22 @@
       "color"
     ],
     "extern": true,
-    "crawled": false
+    "crawled": false,
+    "default": "#88f"
   },
   "atButtonBackground": {
     "component": [
       "Button"
     ],
     "files": [
-      "libs/components/src/lib/button/button.component.scss"
+      "sample/components/button/button.component.scss"
     ],
     "properties": [
       "background-color"
     ],
-    "extern": true,
-    "crawled": true
+    "extern": false,
+    "crawled": true,
+    "default": "#11f"
   },
   "atButtonBackgroundHover": {
     "component": [
@@ -32,7 +34,22 @@
       "background-color"
     ],
     "extern": false,
-    "crawled": true
+    "crawled": true,
+    "default": "#88f"
+  },
+  "atButtonBorderColor": {
+    "component": [
+      "Button"
+    ],
+    "files": [
+      "sample/components/button/button.component.scss"
+    ],
+    "properties": [
+      "border-color"
+    ],
+    "extern": false,
+    "crawled": true,
+    "default": "red"
   },
   "atButtonBorderRadius": {
     "component": [
@@ -45,7 +62,8 @@
       "border-radius"
     ],
     "extern": false,
-    "crawled": true
+    "crawled": true,
+    "default": "16px"
   },
   "atButtonFontColor": {
     "component": [
@@ -58,7 +76,8 @@
       "color"
     ],
     "extern": false,
-    "crawled": true
+    "crawled": true,
+    "default": "#fff"
   },
   "atButtonFontSize": {
     "component": [
@@ -71,7 +90,8 @@
       "font-size"
     ],
     "extern": false,
-    "crawled": true
+    "crawled": true,
+    "default": "14px"
   },
   "atButtonHorizontalSpace": {
     "component": [
@@ -84,7 +104,8 @@
       "padding"
     ],
     "extern": false,
-    "crawled": true
+    "crawled": true,
+    "default": "16px"
   },
   "atButtonVerticalSpace": {
     "component": [
@@ -97,7 +118,8 @@
       "padding"
     ],
     "extern": false,
-    "crawled": true
+    "crawled": true,
+    "default": "8px"
   },
   "atCardBackground": {
     "component": [
@@ -110,6 +132,7 @@
       "background-color"
     ],
     "extern": false,
-    "crawled": true
+    "crawled": true,
+    "default": "#fff"
   }
 }

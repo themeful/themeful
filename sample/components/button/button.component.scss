@@ -7,6 +7,7 @@ $atButtonBackgroundHover: #88f !default;
 $atButtonVerticalSpace: 8px !default;
 $atButtonHorizontalSpace: 16px !default;
 $atButtonBorderRadius: 16px !default;
+$atButtonBorderColor: red !default;
 
 button {
   background-color: $atButtonBackground;
@@ -14,6 +15,7 @@ button {
   color: $atButtonFontColor;
   padding: $atButtonVerticalSpace $atButtonHorizontalSpace;
   border-radius: $atButtonBorderRadius;
+  border-color: $atButtonBorderColor;
   cursor: pointer;
   border: none;
 

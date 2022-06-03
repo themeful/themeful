@@ -1,21 +1,24 @@
 import { Injectable } from '@nestjs/common'
-import { AliasTokenAPI, AliasTokens } from '@typings'
+import { AliasToken, AliasTokenAPI, AliasTokens } from '@typings'
 import { sortMap, unique } from '@utils'
-import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
 import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import { FindResults, findSync } from '../utils'
 import { ConfigService } from './config.service'
+import { FileService } from './file.service'
 import { SyncService } from './sync.service'
 
 @Injectable()
 export class AliasTokenService {
   private aliasTokens: AliasTokens
-  private readonly filenameJson = 'aliasTokens.json'
   private cacheHash
   public aliasTokens$ = new ReplaySubject(1)
 
-  constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
+  constructor(
+    private readonly syncService: SyncService,
+    private readonly config: ConfigService,
+    private readonly file: FileService
+  ) {
     this.aliasTokens = this.loadJson()
     this.refresh()
     this.aliasTokens$.next(this.aliasTokens)
@@ -89,11 +92,16 @@ export class AliasTokenService {
 
   public refresh = async (): Promise<boolean> => {
     this.writeFiles(await this.parseLib(this.aliasTokens))
+
+    this.syncService.aliasTokens({
+      values: this.aliasTokenList(),
+      action: 'update',
+    })
     return true
   }
 
   private loadJson(): AliasTokens {
-    return readJsonFile(`${this.config.dataPath}${this.filenameJson}`)
+    return this.file.load('aliasTokens')
   }
 
   private saveJson(aliasTokens: AliasTokens) {
@@ -101,7 +109,7 @@ export class AliasTokenService {
     if (this.cacheHash !== newHash) {
       this.cacheHash = newHash
       this.aliasTokens$.next(aliasTokens)
-      writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, aliasTokens, { spaces: 2 })
+      this.file.save('aliasTokens', aliasTokens)
     }
   }
 
@@ -112,13 +120,31 @@ export class AliasTokenService {
 
   private parseLib(currentAliasTokens): AliasTokens {
     const term = '\\S+:[^;{]+\\$at[^;]+;'
-    const output = {}
+    const defaultsTerm = '^\\$at[^;]+!default;$'
+    const output: AliasTokens = {}
+    const defaults: { [token: string]: string } = {}
 
     const results: FindResults = findSync({ term, flags: 'gm' }, this.config.libPath, '.s[a|c]ss$')
+    const defaultResults: FindResults = findSync(
+      { term: defaultsTerm, flags: 'gm' },
+      this.config.libPath,
+      '.s[a|c]ss$'
+    )
+
+    for (const file of defaultResults) {
+      if (file.matches) {
+        for (const line of file.matches) {
+          const [, token, value] = line.match(/^\$(\S+):\s+(\S.*)\s+!default;$/i)
+          if (token && value) {
+            defaults[token] = value
+          }
+        }
+      }
+    }
 
     for (const file of results) {
       let component = file.filename.substring(file.filename.lastIndexOf('/'))
-      component = component.substr(1, component.indexOf('.') - 1)
+      component = component.substring(1, component.indexOf('.'))
       component = component[0].toUpperCase() + component.slice(1)
       if (file.matches) {
         for (let match of file.matches) {
@@ -127,12 +153,13 @@ export class AliasTokenService {
           const tokensArray = tokens.match(/\$at\S+/g) ?? []
           tokensArray.forEach((token) => {
             token = token.substring(1)
-            const current = output[token] || {
+            const current: AliasToken = output[token] || {
               component: [],
               files: [],
               properties: [],
               extern: false,
               crawled: true,
+              default: defaults[token],
             }
 
             output[token] = {

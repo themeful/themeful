@@ -1,27 +1,27 @@
 import { Injectable } from '@nestjs/common'
 import { DesignToken, DesignTokenAPI, DesignTokens, SyncData } from '@typings'
 import { slugify, sortMap, uuid } from '@utils'
-import { writeFileSync } from 'fs'
-import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
 import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import { ConfigService } from './config.service'
+import { FileService } from './file.service'
 import { SyncService } from './sync.service'
 
 @Injectable()
 export class DesignTokenService {
   private designTokensJson: DesignTokens
-  private readonly filenameJson = 'designTokens.json'
-  private readonly filenameScss = 'designTokens.scss'
   private useShortDT: boolean
   private cacheHash
   public designTokens$ = new ReplaySubject(1)
 
-  constructor(private readonly syncService: SyncService, private readonly config: ConfigService) {
+  constructor(
+    private readonly syncService: SyncService,
+    private readonly config: ConfigService,
+    private readonly file: FileService
+  ) {
     this.useShortDT = this.config.shortDesignTokens
     this.syncService.register('aliasTokens', this.syncAliasTokens)
     this.designTokensJson = this.loadJson()
-    this.generateAt2DtMap(this.designTokensJson)
     this.designTokens$.next(this.designTokensJson)
   }
 
@@ -169,7 +169,7 @@ export class DesignTokenService {
   }
 
   private loadJson(): DesignTokens {
-    return readJsonFile(`${this.config.dataPath}${this.filenameJson}`)
+    return this.file.load('designTokens')
   }
 
   private saveJson(designTokens: DesignTokens) {
@@ -177,7 +177,7 @@ export class DesignTokenService {
     if (this.cacheHash !== newHash) {
       this.cacheHash = newHash
       this.designTokens$.next(designTokens)
-      writeJsonFile(`${this.config.dataPath}${this.filenameJson}`, designTokens, { spaces: 2 })
+      this.file.save('designTokens', designTokens)
     }
   }
 
@@ -192,26 +192,5 @@ export class DesignTokenService {
       this.designTokensJson[key].aliasTokens = this.designTokensJson[key].aliasTokens.sort()
     })
     this.saveJson(this.designTokensJson)
-    this.generateAt2DtMap(this.designTokensJson)
-  }
-
-  private generateAt2DtMap(jsonData: DesignTokens) {
-    const output = []
-
-    for (const designToken in jsonData) {
-      for (const aliasToken of jsonData[designToken].aliasTokens) {
-        output.push({
-          aliasToken,
-          designToken: this.useShortDT ? jsonData[designToken].short : designToken,
-        })
-      }
-    }
-
-    writeFileSync(
-      `${this.config.generatedPath}${this.filenameScss}`,
-      output.reduce((result, { aliasToken, designToken }) => {
-        return `${result}$${aliasToken}: var(--${designToken});\n`
-      }, '')
-    )
   }
 }
