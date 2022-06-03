@@ -1,6 +1,6 @@
 export type Callback = (data: SyncData) => void
 
-export type Action = 'create' | 'update' | 'delete' | 'sync'
+export type Action = 'create' | 'update' | 'delete' | 'sync' | 'duplicate'
 
 export type Scope = 'aliasTokens' | 'styleGuides' | 'designTokens' | 'styleGuideBases' | 'themes'
 
@@ -9,8 +9,8 @@ export type SyncStack = {
 }
 
 export interface SyncData {
-  values: string[]
   action: Action
   primary?: string
   secondary?: string
+  values?: string[]
 }

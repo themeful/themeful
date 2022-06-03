@@ -4,7 +4,7 @@ import { slugify, unifyColor } from '@utils'
 import { existsSync, readdirSync, unlinkSync, writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
 import * as hash from 'object-hash'
-import { BehaviorSubject, combineLatest } from 'rxjs'
+import { BehaviorSubject, combineLatest, debounceTime } from 'rxjs'
 import * as smq from 'sort-media-queries'
 import { ConfigService } from './config.service'
 
@@ -44,26 +44,22 @@ export class FileService {
   }
 
   private setupPipes() {
-    combineLatest([this.files['themes'], this.files['styleGuides']]).subscribe(
-      ([themes, styleGuides]) => {
+    combineLatest([this.files['themes'], this.files['styleGuides']])
+      .pipe(debounceTime(100))
+      .subscribe(([themes, styleGuides]) => {
         this.themesTs(themes, styleGuides)
-      }
-    )
-    combineLatest([
-      this.files['themes'],
-      this.files['designTokens'],
-      this.files['styleGuides'],
-    ]).subscribe(([themes, designTokens, styleGuides]) => {
-      this.themesScss(themes, designTokens, styleGuides)
-    })
-    combineLatest([
-      this.files['themes'],
-      this.files['designTokens'],
-      this.files['aliasTokens'],
-    ]).subscribe(([themes, designTokens, aliasTokens]) => {
-      this.designTokensScss(themes, designTokens, aliasTokens)
-    })
-    this.files['styleGuides'].subscribe((styleGuides) => {
+      })
+    combineLatest([this.files['themes'], this.files['designTokens'], this.files['styleGuides']])
+      .pipe(debounceTime(100))
+      .subscribe(([themes, designTokens, styleGuides]) => {
+        this.themesScss(themes, designTokens, styleGuides)
+      })
+    combineLatest([this.files['themes'], this.files['designTokens'], this.files['aliasTokens']])
+      .pipe(debounceTime(100))
+      .subscribe(([themes, designTokens, aliasTokens]) => {
+        this.designTokensScss(themes, designTokens, aliasTokens)
+      })
+    this.files['styleGuides'].pipe(debounceTime(100)).subscribe((styleGuides) => {
       this.styleGuidesScss(styleGuides)
     })
   }

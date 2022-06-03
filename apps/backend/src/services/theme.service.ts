@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { MediaValueDetail, SyncData, Theme, Themes, ThemeValue } from '@typings'
-import { slugify, sortMap, unique } from '@utils'
+import { clone, slugify, sortMap, unique } from '@utils'
 import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import { FileService } from './file.service'
@@ -200,13 +200,54 @@ export class ThemeService {
       Object.keys(this.themesJson).forEach((slug) => {
         if (this.themesJson[slug].styleGuide === data.primary) {
           const newSlug = slugify([data.secondary, this.themesJson[slug].name])
-          this.themesJson[newSlug] = { ...this.themesJson[slug], styleGuide: data.secondary }
+          this.themesJson[newSlug] = this.changeSlug(
+            this.themesJson[slug],
+            data.primary,
+            data.secondary
+          )
           delete this.themesJson[slug]
         }
       })
     }
 
+    if (
+      data.action === 'duplicate' &&
+      currentClients.includes(data.primary) &&
+      !currentClients.includes(data.secondary)
+    ) {
+      Object.keys(this.themesJson).forEach((slug) => {
+        if (this.themesJson[slug].styleGuide === data.primary) {
+          const newSlug = slugify([data.secondary, this.themesJson[slug].name])
+          this.themesJson[newSlug] = this.changeSlug(
+            this.themesJson[slug],
+            data.primary,
+            data.secondary
+          )
+        }
+      })
+    }
+
     this.writeFiles(this.themesJson)
+  }
+
+  private changeSlug(theme: Theme, oldSG: string, newSG: string): Theme {
+    const styles = clone(theme.styles)
+    Object.entries(styles).forEach(([designToken, medias]) => {
+      Object.entries(medias).forEach(([media, data]) => {
+        const oldMedia = media
+        if (data.style && data.style.startsWith(oldSG)) {
+          data.style = data.style.replace(oldSG, newSG)
+        }
+        if (media.startsWith(oldSG)) {
+          media = media.replace(oldSG, newSG)
+        }
+        styles[designToken][media] = data
+        if (oldMedia !== media) {
+          delete styles[designToken][oldMedia]
+        }
+      })
+    })
+    return { ...theme, styleGuide: newSG, styles }
   }
 
   private loadJson(): Themes {

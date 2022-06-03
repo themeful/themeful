@@ -3,6 +3,12 @@ export const sortMap = <T>(
   sortFN?: (a: [string, T], b: [string, T]) => number
 ): { [key: string]: T } => {
   return Object.entries(data)
-    .sort(sortFN)
+    .sort(
+      sortFN
+        ? sortFN
+        : ([a], [b]): number => {
+            return a > b ? 1 : -1
+          }
+    )
     .reduce((o, [k, v]) => ((o[k] = v), o), {})
 }

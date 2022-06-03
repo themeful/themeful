@@ -12,7 +12,7 @@ import {
   StylesMap,
   TypeGroupStyles,
 } from '@typings'
-import { convertCSSLength, slugify, sortMap, unifyStyle } from '@utils'
+import { clone, convertCSSLength, slugify, sortMap, unifyStyle } from '@utils'
 import * as hash from 'object-hash'
 import { ReplaySubject } from 'rxjs'
 import { sentenceCase } from 'sentence-case'
@@ -152,6 +152,22 @@ export class StyleGuideService {
     return true
   }
 
+  public duplicate(oldSlug: string, name: string): boolean {
+    const newSlug = slugify([name])
+    if (oldSlug === newSlug || !this.styleGuidesJson[newSlug]) {
+      return false
+    }
+    this.styleGuidesJson[newSlug] = { ...clone(this.styleGuidesJson[oldSlug]), name }
+
+    this.syncService.styleGuideBases({
+      action: 'duplicate',
+      primary: oldSlug,
+      secondary: newSlug,
+    })
+
+    return true
+  }
+
   public createStyleGuide({ name, baseFontSize }: StyleGuideBase): boolean {
     const slug = slugify([name])
     if (!this.styleGuideList().includes(slug)) {
@@ -280,6 +296,12 @@ export class StyleGuideService {
   }
 
   private writeFiles(styleGuides: StyleGuides) {
-    this.saveJson(styleGuides)
+    this.styleGuidesJson = sortMap(styleGuides, ([a], [b]): number => {
+      if ([a, b].includes('global')) {
+        return a === 'global' ? -1 : 1
+      }
+      return a > b ? 1 : -1
+    }) as StyleGuides
+    this.saveJson(this.styleGuidesJson)
   }
 }
