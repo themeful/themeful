@@ -21,6 +21,12 @@ export class DesignTokenService {
 
     this.file.designTokens$.pipe(take(1)).subscribe((designTokens) => {
       this.designTokens = designTokens
+      this.file.aliasTokens$.subscribe((aliasTokens) => {
+        this.syncAliasTokens({
+          values: Object.keys(aliasTokens),
+          action: 'sync',
+        })
+      })
     })
   }
 
@@ -43,11 +49,7 @@ export class DesignTokenService {
 
     this.designTokens[token] = designTokenData
     this.writeFiles(this.designTokens)
-    this.syncService.designTokens({
-      values: this.designTokenList(),
-      action: 'create',
-      primary: token,
-    })
+
     return true
   }
 
@@ -90,13 +92,14 @@ export class DesignTokenService {
     }
 
     this.designTokens[newToken] = designTokenData
+    if (token !== newToken) {
+      this.syncService.designTokens({
+        action: 'update',
+        primary: token,
+        secondary: newToken,
+      })
+    }
     this.writeFiles(this.designTokens)
-    this.syncService.designTokens({
-      values: this.designTokenList(),
-      action: token === newToken ? 'sync' : 'update',
-      primary: token,
-      secondary: newToken,
-    })
     return true
   }
 
@@ -113,11 +116,11 @@ export class DesignTokenService {
   }
 
   private unifyToken(token: string): string {
-    if (token.substr(0, 2) === '--') {
-      token = token.substr(2)
+    if (token.substring(0, 2) === '--') {
+      token = token.substring(2)
     }
 
-    if (token.substr(0, 2) !== 'dt') {
+    if (token.substring(0, 2) !== 'dt') {
       token = `dt ${token}`
     }
 
@@ -131,16 +134,8 @@ export class DesignTokenService {
 
     delete this.designTokens[token]
     this.writeFiles(this.designTokens)
-    this.syncService.designTokens({
-      values: this.designTokenList(),
-      action: 'delete',
-      primary: token,
-    })
-    return true
-  }
 
-  private designTokenList(): string[] {
-    return Object.keys(this.designTokens)
+    return true
   }
 
   private syncAliasTokens = (data: SyncData) => {
@@ -151,7 +146,6 @@ export class DesignTokenService {
           if (aliasTokens.includes(data.primary)) {
             aliasTokens = aliasTokens.filter((aliasToken) => aliasToken !== data.primary)
             aliasTokens.push(data.secondary)
-
             this.designTokens[designToken].aliasTokens = aliasTokens
           }
         })

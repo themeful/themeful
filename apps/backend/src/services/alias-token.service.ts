@@ -32,11 +32,6 @@ export class AliasTokenService {
 
     this.aliasTokens[token] = aliasToken
     this.writeFiles(this.aliasTokens)
-    this.syncService.aliasTokens({
-      values: this.aliasTokenList(),
-      action: 'create',
-      primary: token,
-    })
     return true
   }
 
@@ -59,13 +54,13 @@ export class AliasTokenService {
     delete aliasToken.token
 
     this.aliasTokens[newToken] = aliasToken
-    this.writeFiles(this.aliasTokens)
     this.syncService.aliasTokens({
       values: this.aliasTokenList(),
       action: 'update',
       primary: token,
       secondary: newToken,
     })
+    this.writeFiles(this.aliasTokens)
     return true
   }
 
@@ -76,11 +71,6 @@ export class AliasTokenService {
 
     delete this.aliasTokens[token]
     this.writeFiles(this.aliasTokens)
-    this.syncService.aliasTokens({
-      values: this.aliasTokenList(),
-      action: 'delete',
-      primary: token,
-    })
     return true
   }
 
@@ -90,11 +80,6 @@ export class AliasTokenService {
 
   public refresh = async (): Promise<boolean> => {
     this.writeFiles(await this.parseLib(this.aliasTokens))
-
-    this.syncService.aliasTokens({
-      values: this.aliasTokenList(),
-      action: 'update',
-    })
     return true
   }
 

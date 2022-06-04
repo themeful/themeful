@@ -13,8 +13,31 @@ export class ThemeService {
     this.syncService.register('styleGuideBases', this.syncStyleGuideBases)
     this.syncService.register('designTokens', this.syncDesignTokens)
     this.syncService.register('styleGuides', this.syncStyleGuides)
+
     this.file.themes$.pipe(take(1)).subscribe((themes) => {
       this.themes = themes
+      this.file.designTokens$.subscribe((designTokens) => {
+        this.syncDesignTokens({
+          values: Object.keys(designTokens),
+          action: 'sync',
+        })
+      })
+      this.file.styleGuides$.subscribe((styleGuides) => {
+        this.syncStyleGuideBases({
+          values: Object.keys(styleGuides),
+          action: 'sync',
+        })
+        this.syncStyleGuides({
+          values: Object.entries(styleGuides).reduce(
+            (output, [slug, styleGuide]) => [
+              ...output,
+              ...Object.keys(styleGuide.styles).map((name) => `${slug}_${name}`),
+            ],
+            []
+          ),
+          action: 'sync',
+        })
+      })
     })
     this.writeFiles(this.themes)
   }
@@ -175,11 +198,6 @@ export class ThemeService {
               delete this.themes[themeName].styles[key]
             }
           })
-          data.values.forEach((key) => {
-            if (!theme.styles[key]) {
-              this.themes[themeName].styles[key] = undefined
-            }
-          })
         })
     }
     this.writeFiles(this.themes)
@@ -187,31 +205,43 @@ export class ThemeService {
 
   private syncStyleGuideBases = (data: SyncData) => {
     const currentClients = unique(Object.values(this.themes).map(({ styleGuide }) => styleGuide))
-    if (
-      data.action === 'update' &&
-      currentClients.includes(data.primary) &&
-      !currentClients.includes(data.secondary)
-    ) {
-      Object.keys(this.themes).forEach((slug) => {
-        if (this.themes[slug].styleGuide === data.primary) {
-          const newSlug = slugify([data.secondary, this.themes[slug].name])
-          this.themes[newSlug] = this.changeSlug(this.themes[slug], data.primary, data.secondary)
-          delete this.themes[slug]
-        }
-      })
-    }
 
-    if (
-      data.action === 'duplicate' &&
-      currentClients.includes(data.primary) &&
-      !currentClients.includes(data.secondary)
-    ) {
-      Object.keys(this.themes).forEach((slug) => {
-        if (this.themes[slug].styleGuide === data.primary) {
-          const newSlug = slugify([data.secondary, this.themes[slug].name])
-          this.themes[newSlug] = this.changeSlug(this.themes[slug], data.primary, data.secondary)
+    switch (data.action) {
+      case 'update':
+        if (currentClients.includes(data.primary) && !currentClients.includes(data.secondary)) {
+          Object.keys(this.themes).forEach((slug) => {
+            if (this.themes[slug].styleGuide === data.primary) {
+              const newSlug = slugify([data.secondary, this.themes[slug].name])
+              this.themes[newSlug] = this.changeSlug(
+                this.themes[slug],
+                data.primary,
+                data.secondary
+              )
+              delete this.themes[slug]
+            }
+          })
         }
-      })
+        break
+      case 'duplicate':
+        if (currentClients.includes(data.primary) && !currentClients.includes(data.secondary)) {
+          Object.keys(this.themes).forEach((slug) => {
+            if (this.themes[slug].styleGuide === data.primary) {
+              const newSlug = slugify([data.secondary, this.themes[slug].name])
+              this.themes[newSlug] = this.changeSlug(
+                this.themes[slug],
+                data.primary,
+                data.secondary
+              )
+            }
+          })
+        }
+        break
+      default:
+        Object.keys(this.themes).forEach((slug) => {
+          if (!data.values.includes(this.themes[slug].styleGuide)) {
+            delete this.themes[slug]
+          }
+        })
     }
 
     this.writeFiles(this.themes)

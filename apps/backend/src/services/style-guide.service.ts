@@ -29,11 +29,6 @@ export class StyleGuideService {
     this.reorder(styleGuide)
 
     this.writeFiles(this.styleGuides)
-    this.syncService.styleGuides({
-      values: this.styleList(),
-      action: 'create',
-      primary: slugify([styleGuide, style.group, style.name]),
-    })
 
     return true
   }
@@ -54,13 +49,14 @@ export class StyleGuideService {
 
     this.reorder(styleGuide)
 
+    if (name !== key) {
+      this.syncService.styleGuides({
+        action: 'update',
+        primary: `${styleGuide}_${name}`,
+        secondary: slugify([styleGuide, style.group, style.name]),
+      })
+    }
     this.writeFiles(this.styleGuides)
-    this.syncService.styleGuides({
-      values: this.styleList(),
-      action: name === key ? 'sync' : 'update',
-      primary: `${styleGuide}_${name}`,
-      secondary: slugify([styleGuide, style.group, style.name]),
-    })
 
     return true
   }
@@ -72,11 +68,6 @@ export class StyleGuideService {
     delete this.styleGuides[styleGuide].styles[name]
 
     this.writeFiles(this.styleGuides)
-    this.syncService.styleGuides({
-      values: this.styleList(),
-      action: 'delete',
-      primary: `${styleGuide}_${name}`,
-    })
     return true
   }
 
@@ -87,30 +78,25 @@ export class StyleGuideService {
     }
     this.styleGuides[newSlug] = { ...clone(this.styleGuides[oldSlug]), name }
 
-    this.writeFiles(this.styleGuides)
     this.syncService.styleGuideBases({
       action: 'duplicate',
       primary: oldSlug,
       secondary: newSlug,
     })
+    this.writeFiles(this.styleGuides)
 
     return true
   }
 
   public createStyleGuide({ name, baseFontSize }: StyleGuideBase): boolean {
     const slug = slugify([name])
-    if (!this.styleGuideList().includes(slug)) {
+    if (!Object.keys(this.styleGuides).includes(slug)) {
       this.styleGuides[slug] = {
         name,
         baseFontSize,
         styles: {},
       }
       this.writeFiles(this.styleGuides)
-      this.syncService.styleGuideBases({
-        values: this.styleGuideList(),
-        action: 'create',
-        primary: slug,
-      })
 
       return true
     }
@@ -121,7 +107,6 @@ export class StyleGuideService {
     currentSlug: string,
     { name = 'Global', baseFontSize }: StyleGuideBase
   ): boolean {
-    const styleGuides = this.styleGuideList()
     const slug = currentSlug === 'global' ? 'global' : slugify([name])
 
     this.styleGuides[slug] = {
@@ -132,13 +117,12 @@ export class StyleGuideService {
 
     if (currentSlug !== slug) {
       delete this.styleGuides[currentSlug]
-      this.writeFiles(this.styleGuides)
       this.syncService.styleGuideBases({
-        values: styleGuides,
         action: 'update',
         primary: currentSlug,
         secondary: slug,
       })
+      this.writeFiles(this.styleGuides)
     } else {
       this.writeFiles(this.styleGuides)
     }
@@ -147,35 +131,14 @@ export class StyleGuideService {
   }
 
   public deleteStyleGuide(styleGuide: string): boolean {
-    const willDelete = !!this.styleGuides[styleGuide]
-    if (willDelete) {
-      delete this.styleGuides[styleGuide]
+    if (!this.styleGuides[styleGuide]) {
+      return false
     }
-    const styleGuideList = this.styleGuideList()
-    this.syncService.styleGuideBases({
-      values: styleGuideList,
-      action: willDelete ? 'delete' : 'sync',
-      primary: styleGuide,
-    })
-    if (willDelete) {
-      this.writeFiles(this.styleGuides)
-    }
-    return willDelete
-  }
 
-  private styleGuideList(): string[] {
-    return Object.keys(this.styleGuides)
-  }
+    delete this.styleGuides[styleGuide]
+    this.writeFiles(this.styleGuides)
 
-  private styleList(): string[] {
-    const styleGuideValues = Object.entries(this.styleGuides).reduce(
-      (output, [slug, styleGuide]) => [
-        ...output,
-        ...Object.keys(styleGuide.styles).map((name) => `${slug}_${name}`),
-      ],
-      []
-    )
-    return styleGuideValues
+    return true
   }
 
   private reorder(styleGuide = 'global') {

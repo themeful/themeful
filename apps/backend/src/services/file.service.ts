@@ -18,14 +18,13 @@ import { slugify, unifyColor } from '@utils'
 import { existsSync, readdirSync, unlinkSync, writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
 import * as hash from 'object-hash'
-import { BehaviorSubject, combineLatest, debounceTime, map, Observable, ReplaySubject } from 'rxjs'
+import { combineLatest, debounceTime, map, Observable, ReplaySubject } from 'rxjs'
 import { sentenceCase } from 'sentence-case'
 import * as smq from 'sort-media-queries'
 import { ConfigService } from './config.service'
 
 @Injectable()
 export class FileService {
-  private files: { [filename: string]: BehaviorSubject<any> } = {}
   public streams$: { [filename: string]: ReplaySubject<any> } = {}
   private filenames = ['designTokens', 'aliasTokens', 'styleGuides', 'themes']
   private hashKeys: { [file: string]: string } = {}
@@ -40,16 +39,11 @@ export class FileService {
       const path = `${this.config.dataPath}${filename}.json`
       if (existsSync(path)) {
         const data = readJsonFile(path)
-        this.files[filename] = new BehaviorSubject(data)
         this.streams$[filename] = new ReplaySubject(1)
         this.streams$[filename].next(data)
         this.hashKeys[filename] = hash(data)
       }
     })
-  }
-
-  public load(filename: string) {
-    return this.files[filename].getValue()
   }
 
   public get themes$(): ReplaySubject<Themes> {
@@ -76,7 +70,7 @@ export class FileService {
     const newHash = hash(data)
     if (newHash !== this.hashKeys[filename]) {
       this.hashKeys[filename] = newHash
-      this.files[filename].next(data)
+      this.streams$[filename].next(data)
       writeJsonFile(`${this.config.dataPath}${filename}.json`, data, { spaces: 2 })
     }
   }
