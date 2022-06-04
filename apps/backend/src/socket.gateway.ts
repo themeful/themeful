@@ -10,10 +10,7 @@ import {
 } from '@nestjs/websockets'
 import { Server } from 'http'
 import { Socket } from 'socket.io'
-import { AliasTokenService } from './services/alias-token.service'
-import { DesignTokenService } from './services/design-token.service'
-import { StyleGuideService } from './services/style-guide.service'
-import { ThemeService } from './services/theme.service'
+import { FileService } from './services'
 
 @WebSocketGateway({ cors: true, serveClient: false })
 export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
@@ -21,12 +18,7 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
 
   private logger: Logger = new Logger('SocketGateway')
 
-  constructor(
-    private styleGuideService: StyleGuideService,
-    private themeService: ThemeService,
-    private designTokenService: DesignTokenService,
-    private aliasTokenService: AliasTokenService
-  ) {}
+  constructor(private readonly fileService: FileService) {}
 
   afterInit() {
     this.logger.log('Init')
@@ -36,16 +28,16 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     this.logger.log(`handleConnection ${client.id}`)
     this.wss.emit('update', { msg: 'connected' })
 
-    this.styleGuideService.styleGuides$.subscribe((styleGuides) => {
+    this.fileService.styleGuidesApi$.subscribe((styleGuides) => {
       this.wss.emit('update', { msg: 'data', type: 'styleGuides', data: styleGuides })
     })
-    this.themeService.themes$.subscribe((themes) => {
+    this.fileService.themes$.subscribe((themes) => {
       this.wss.emit('update', { msg: 'data', type: 'themes', data: themes })
     })
-    this.designTokenService.designTokens$.subscribe((designTokens) => {
+    this.fileService.designTokens$.subscribe((designTokens) => {
       this.wss.emit('update', { msg: 'data', type: 'designTokens', data: designTokens })
     })
-    this.aliasTokenService.aliasTokens$.subscribe((aliasTokens) => {
+    this.fileService.aliasTokens$.subscribe((aliasTokens) => {
       this.wss.emit('update', { msg: 'data', type: 'aliasTokens', data: aliasTokens })
     })
   }

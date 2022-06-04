@@ -1,16 +1,32 @@
 import { Injectable } from '@nestjs/common'
-import { AliasTokens, DesignTokens, Style, StyleGuides, Themes } from '@typings'
+import { getProperty, propertyTypes } from '@properties'
+import {
+  AliasTokens,
+  DesignTokens,
+  ExtendedStyle,
+  FormatedStyleGuides,
+  GroupStyles,
+  Style,
+  StyleGuide,
+  StyleGuides,
+  StyleMap,
+  StylesMap,
+  Themes,
+  TypeGroupStyles,
+} from '@typings'
 import { slugify, unifyColor } from '@utils'
 import { existsSync, readdirSync, unlinkSync, writeFileSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
 import * as hash from 'object-hash'
-import { BehaviorSubject, combineLatest, debounceTime } from 'rxjs'
+import { BehaviorSubject, combineLatest, debounceTime, map, Observable, ReplaySubject } from 'rxjs'
+import { sentenceCase } from 'sentence-case'
 import * as smq from 'sort-media-queries'
 import { ConfigService } from './config.service'
 
 @Injectable()
 export class FileService {
   private files: { [filename: string]: BehaviorSubject<any> } = {}
+  public streams$: { [filename: string]: ReplaySubject<any> } = {}
   private filenames = ['designTokens', 'aliasTokens', 'styleGuides', 'themes']
   private hashKeys: { [file: string]: string } = {}
 
@@ -24,7 +40,9 @@ export class FileService {
       const path = `${this.config.dataPath}${filename}.json`
       if (existsSync(path)) {
         const data = readJsonFile(path)
-        this.files[filename] = new BehaviorSubject(readJsonFile(path))
+        this.files[filename] = new BehaviorSubject(data)
+        this.streams$[filename] = new ReplaySubject(1)
+        this.streams$[filename].next(data)
         this.hashKeys[filename] = hash(data)
       }
     })
@@ -32,6 +50,26 @@ export class FileService {
 
   public load(filename: string) {
     return this.files[filename].getValue()
+  }
+
+  public get themes$(): ReplaySubject<Themes> {
+    return this.streams$['themes']
+  }
+
+  public get designTokens$(): ReplaySubject<DesignTokens> {
+    return this.streams$['designTokens']
+  }
+
+  public get aliasTokens$(): ReplaySubject<AliasTokens> {
+    return this.streams$['aliasTokens']
+  }
+
+  public get styleGuides$(): ReplaySubject<StyleGuides> {
+    return this.streams$['styleGuides']
+  }
+
+  public get styleGuidesApi$(): Observable<FormatedStyleGuides> {
+    return this.streams$['styleGuides'].pipe(map(this.formatedStyleGuide))
   }
 
   public save(filename: string, data: any) {
@@ -44,22 +82,22 @@ export class FileService {
   }
 
   private setupPipes() {
-    combineLatest([this.files['themes'], this.files['styleGuides']])
+    combineLatest([this.themes$, this.styleGuides$])
       .pipe(debounceTime(100))
       .subscribe(([themes, styleGuides]) => {
         this.themesTs(themes, styleGuides)
       })
-    combineLatest([this.files['themes'], this.files['designTokens'], this.files['styleGuides']])
+    combineLatest([this.themes$, this.designTokens$, this.styleGuides$])
       .pipe(debounceTime(100))
       .subscribe(([themes, designTokens, styleGuides]) => {
         this.themesScss(themes, designTokens, styleGuides)
       })
-    combineLatest([this.files['themes'], this.files['designTokens'], this.files['aliasTokens']])
+    combineLatest([this.themes$, this.designTokens$, this.aliasTokens$])
       .pipe(debounceTime(100))
       .subscribe(([themes, designTokens, aliasTokens]) => {
         this.designTokensScss(themes, designTokens, aliasTokens)
       })
-    this.files['styleGuides'].pipe(debounceTime(100)).subscribe((styleGuides) => {
+    this.styleGuides$.pipe(debounceTime(100)).subscribe((styleGuides) => {
       this.styleGuidesScss(styleGuides)
     })
   }
@@ -237,5 +275,62 @@ export class FileService {
       `${this.config.generatedPath}styleGuides.scss`,
       [...attributes, ...mediaqueriesAttr, ''].join('\n')
     )
+  }
+
+  public formatedStyleGuide = (styleGuides: StyleGuides): FormatedStyleGuides => {
+    return Object.entries(styleGuides).map(([slug, data]: [string, StyleGuide]) => ({
+      name: data.name,
+      slug,
+      baseFontSize: data.baseFontSize,
+      types: this.transformValues(data.styles),
+    }))
+  }
+
+  private transformValues = (data: StyleMap): TypeGroupStyles[] => {
+    const types: TypeGroupStyles[] = []
+    propertyTypes.forEach((propertyType) => {
+      const typeBVs = Object.keys(data).reduce((result: StyleMap, key: string) => {
+        if (data[key].type === propertyType) {
+          result[key] = data[key]
+        }
+        return result
+      }, {})
+      if (Object.keys(typeBVs).length) {
+        const groups = this.transformGroupValues(typeBVs)
+        types.push({
+          name: getProperty(propertyType).name,
+          groups,
+        })
+      }
+    })
+    return types
+  }
+
+  private transformGroupValues = (data: StyleMap): GroupStyles[] => {
+    const noSortTypes = ['mediaquery', 'size', 'font-size']
+    const groups: GroupStyles[] = []
+    const groupObj: StylesMap = Object.keys(data).reduce((result: StylesMap, key: string) => {
+      const value = data[key] as ExtendedStyle
+      const group = sentenceCase(value.group)
+      value.group = group
+      value.slug = key
+      if (!result[group]) {
+        result[group] = []
+      }
+      result[group].push(value)
+      return result
+    }, {})
+    Object.keys(groupObj).forEach((group) => {
+      groups.push({
+        name: sentenceCase(group),
+        styles: groupObj[group].sort((a, b) => {
+          if (noSortTypes.includes(a.type)) {
+            return 1
+          }
+          return a.name > b.name ? 1 : -1
+        }),
+      })
+    })
+    return groups.sort((a, b) => (a.name > b.name ? 1 : -1))
   }
 }

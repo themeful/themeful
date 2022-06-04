@@ -1,5 +1,6 @@
 import { propertySelect } from '@properties'
 import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
+import { RouterHistory } from '@stencil/router'
 import {
   ExtendedStyle,
   ExtendedStyleGuide,
@@ -17,6 +18,9 @@ import { Observable, Subject, Subscription } from 'rxjs'
   shadow: true,
 })
 export class StyleGuideDetailsComponent {
+  /** History */
+  @Prop() history: RouterHistory
+
   /** Style Guides */
   @Prop() styleGuides$: Observable<ExtendedStyleGuides>
 
@@ -32,6 +36,9 @@ export class StyleGuideDetailsComponent {
   private onAction = ({ detail }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
+      if (detail.action === 'duplicate') {
+        this.history.push(`/styleguides`, {})
+      }
     }
   }
 

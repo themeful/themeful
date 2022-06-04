@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common'
 import { Style } from '@typings'
 import { StyleGuideService } from '../services/style-guide.service'
 
@@ -14,11 +14,6 @@ export class StyleController {
   @Post(':styleGuide')
   createWithClient(@Body() data: Style, @Param('styleGuide') styleGuide: string) {
     return this.styleGuideService.create(data, styleGuide)
-  }
-
-  @Get()
-  read() {
-    return this.styleGuideService.read()
   }
 
   @Patch(':key')

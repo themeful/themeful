@@ -61,12 +61,6 @@ describe('StyleGuideService', () => {
     expect(service).toBeDefined()
   })
 
-  describe('read', () => {
-    it('should return all', () => {
-      expect(service.read()).toEqual(clone(formatted))
-    })
-  })
-
   describe('create', () => {
     it('should create one', () => {
       const clonedBaseValue = clone(newBaseValue)

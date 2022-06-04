@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { AliasToken, AliasTokenAPI, AliasTokens } from '@typings'
 import { sortMap, unique } from '@utils'
-import * as hash from 'object-hash'
-import { ReplaySubject } from 'rxjs'
+import { take } from 'rxjs'
 import { FindResults, findSync } from '../utils'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
@@ -11,17 +10,16 @@ import { SyncService } from './sync.service'
 @Injectable()
 export class AliasTokenService {
   private aliasTokens: AliasTokens
-  private cacheHash
-  public aliasTokens$ = new ReplaySubject(1)
 
   constructor(
     private readonly syncService: SyncService,
     private readonly config: ConfigService,
     private readonly file: FileService
   ) {
-    this.aliasTokens = this.loadJson()
-    this.refresh()
-    this.aliasTokens$.next(this.aliasTokens)
+    this.file.aliasTokens$.pipe(take(1)).subscribe((aliasTokens) => {
+      this.aliasTokens = aliasTokens
+      this.refresh()
+    })
   }
 
   public create(aliasToken: AliasTokenAPI): boolean {
@@ -100,22 +98,9 @@ export class AliasTokenService {
     return true
   }
 
-  private loadJson(): AliasTokens {
-    return this.file.load('aliasTokens')
-  }
-
-  private saveJson(aliasTokens: AliasTokens) {
-    const newHash = hash(aliasTokens)
-    if (this.cacheHash !== newHash) {
-      this.cacheHash = newHash
-      this.aliasTokens$.next(aliasTokens)
-      this.file.save('aliasTokens', aliasTokens)
-    }
-  }
-
   private writeFiles(aliasTokens: AliasTokens) {
     this.aliasTokens = sortMap(aliasTokens)
-    this.saveJson(this.aliasTokens)
+    this.file.save('aliasTokens', aliasTokens)
   }
 
   private parseLib(currentAliasTokens): AliasTokens {

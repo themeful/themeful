@@ -1,18 +1,15 @@
 import { Injectable } from '@nestjs/common'
 import { DesignToken, DesignTokenAPI, DesignTokens, SyncData } from '@typings'
 import { slugify, sortMap, uuid } from '@utils'
-import * as hash from 'object-hash'
-import { ReplaySubject } from 'rxjs'
+import { take } from 'rxjs'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
 import { SyncService } from './sync.service'
 
 @Injectable()
 export class DesignTokenService {
-  private designTokensJson: DesignTokens
+  private designTokens: DesignTokens
   private useShortDT: boolean
-  private cacheHash
-  public designTokens$ = new ReplaySubject(1)
 
   constructor(
     private readonly syncService: SyncService,
@@ -21,12 +18,14 @@ export class DesignTokenService {
   ) {
     this.useShortDT = this.config.shortDesignTokens
     this.syncService.register('aliasTokens', this.syncAliasTokens)
-    this.designTokensJson = this.loadJson()
-    this.designTokens$.next(this.designTokensJson)
+
+    this.file.designTokens$.pipe(take(1)).subscribe((designTokens) => {
+      this.designTokens = designTokens
+    })
   }
 
   public create(designToken: DesignTokenAPI): boolean {
-    if (this.designTokensJson[designToken.token]) {
+    if (this.designTokens[designToken.token]) {
       return false
     }
 
@@ -42,8 +41,8 @@ export class DesignTokenService {
       aliasTokens: designToken.aliasTokens ?? [],
     }
 
-    this.designTokensJson[token] = designTokenData
-    this.writeFiles(this.designTokensJson)
+    this.designTokens[token] = designTokenData
+    this.writeFiles(this.designTokens)
     this.syncService.designTokens({
       values: this.designTokenList(),
       action: 'create',
@@ -54,9 +53,9 @@ export class DesignTokenService {
 
   public read(): DesignTokens {
     if (this.useShortDT) {
-      return this.designTokensJson
+      return this.designTokens
     }
-    return Object.entries(this.designTokensJson).reduce((designTokens, [key, designToken]) => {
+    return Object.entries(this.designTokens).reduce((designTokens, [key, designToken]) => {
       delete designToken['short']
       designTokens[key] = designToken
       return designTokens
@@ -65,17 +64,17 @@ export class DesignTokenService {
 
   public update(token: string, designToken: DesignTokenAPI): boolean {
     if (
-      !this.designTokensJson[token] ||
-      (token !== designToken.token && !!this.designTokensJson[designToken.token])
+      !this.designTokens[token] ||
+      (token !== designToken.token && !!this.designTokens[designToken.token])
     ) {
       return false
     }
-    const properties = this.designTokensJson[token].properties
-    const aliasTokens = this.designTokensJson[token].aliasTokens
-    const short = this.designTokensJson[token].short
+    const properties = this.designTokens[token].properties
+    const aliasTokens = this.designTokens[token].aliasTokens
+    const short = this.designTokens[token].short
 
     if (token !== designToken.token) {
-      delete this.designTokensJson[token]
+      delete this.designTokens[token]
     }
 
     const newToken = this.unifyToken(designToken.name)
@@ -90,8 +89,8 @@ export class DesignTokenService {
       aliasTokens: designToken.aliasTokens ?? aliasTokens,
     }
 
-    this.designTokensJson[newToken] = designTokenData
-    this.writeFiles(this.designTokensJson)
+    this.designTokens[newToken] = designTokenData
+    this.writeFiles(this.designTokens)
     this.syncService.designTokens({
       values: this.designTokenList(),
       action: token === newToken ? 'sync' : 'update',
@@ -102,13 +101,13 @@ export class DesignTokenService {
   }
 
   public selectAliasTokens(token: string, aliasTokens: string[]): boolean {
-    if (!this.designTokensJson[token]) {
+    if (!this.designTokens[token]) {
       return false
     }
 
-    this.designTokensJson[token].aliasTokens = aliasTokens
+    this.designTokens[token].aliasTokens = aliasTokens
 
-    this.writeFiles(this.designTokensJson)
+    this.writeFiles(this.designTokens)
 
     return true
   }
@@ -126,12 +125,12 @@ export class DesignTokenService {
   }
 
   public delete(token: string): boolean {
-    if (!this.designTokensJson[token]) {
+    if (!this.designTokens[token]) {
       return false
     }
 
-    delete this.designTokensJson[token]
-    this.writeFiles(this.designTokensJson)
+    delete this.designTokens[token]
+    this.writeFiles(this.designTokens)
     this.syncService.designTokens({
       values: this.designTokenList(),
       action: 'delete',
@@ -141,56 +140,43 @@ export class DesignTokenService {
   }
 
   private designTokenList(): string[] {
-    return Object.keys(this.designTokensJson)
+    return Object.keys(this.designTokens)
   }
 
   private syncAliasTokens = (data: SyncData) => {
     switch (data.action) {
       case 'update':
-        Object.keys(this.designTokensJson).forEach((designToken) => {
-          let aliasTokens = this.designTokensJson[designToken].aliasTokens
+        Object.keys(this.designTokens).forEach((designToken) => {
+          let aliasTokens = this.designTokens[designToken].aliasTokens
           if (aliasTokens.includes(data.primary)) {
             aliasTokens = aliasTokens.filter((aliasToken) => aliasToken !== data.primary)
             aliasTokens.push(data.secondary)
 
-            this.designTokensJson[designToken].aliasTokens = aliasTokens
+            this.designTokens[designToken].aliasTokens = aliasTokens
           }
         })
         break
       default:
-        Object.keys(this.designTokensJson).forEach((designToken) => {
-          this.designTokensJson[designToken].aliasTokens = this.designTokensJson[
+        Object.keys(this.designTokens).forEach((designToken) => {
+          this.designTokens[designToken].aliasTokens = this.designTokens[
             designToken
           ].aliasTokens.filter((aliasToken) => data.values.includes(aliasToken))
         })
     }
 
-    this.writeFiles(this.designTokensJson)
-  }
-
-  private loadJson(): DesignTokens {
-    return this.file.load('designTokens')
-  }
-
-  private saveJson(designTokens: DesignTokens) {
-    const newHash = hash(designTokens)
-    if (this.cacheHash !== newHash) {
-      this.cacheHash = newHash
-      this.designTokens$.next(designTokens)
-      this.file.save('designTokens', designTokens)
-    }
+    this.writeFiles(this.designTokens)
   }
 
   private writeFiles(designTokens: DesignTokens) {
-    this.designTokensJson = sortMap(designTokens, ([aKey, aValue], [bKey, bValue]) => {
+    this.designTokens = sortMap(designTokens, ([aKey, aValue], [bKey, bValue]) => {
       if (aValue.group === bValue.group) {
         return aKey > bKey ? 1 : -1
       }
       return aValue.group > bValue.group ? 1 : -1
     })
-    Object.keys(this.designTokensJson).forEach((key) => {
-      this.designTokensJson[key].aliasTokens = this.designTokensJson[key].aliasTokens.sort()
+    Object.keys(this.designTokens).forEach((key) => {
+      this.designTokens[key].aliasTokens = this.designTokens[key].aliasTokens.sort()
     })
-    this.saveJson(this.designTokensJson)
+    this.file.save('designTokens', this.designTokens)
   }
 }

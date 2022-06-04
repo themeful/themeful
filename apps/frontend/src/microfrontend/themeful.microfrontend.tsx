@@ -41,9 +41,6 @@ export class ThemefulMicrofrontend {
   }
 
   public componentWillLoad(): void {
-    if (window.location.pathname === '/') {
-      window.location.href = '/themes'
-    }
     this.checkMode()
   }
 
@@ -94,6 +91,9 @@ export class ThemefulMicrofrontend {
                 onAction: this.onAction,
               }}
             />
+            <stencil-route url="/" exact={true}>
+              <stencil-router-redirect url="/themes" />
+            </stencil-route>
           </stencil-route-switch>
         </stencil-router>
       </Host>
