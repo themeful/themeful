@@ -1,5 +1,8 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import { FormValues, ThemeFormAction, ThemeFormData } from '@typings'
+import '../../components/button'
+import '../../components/inputs/select-input'
+import '../../components/inputs/text-input'
 
 @Component({
   tag: 'tf-theme-form',

@@ -1,4 +1,6 @@
 import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
+import '../button'
+import '../icon'
 
 @Component({
   tag: 'tf-overlay',

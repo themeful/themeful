@@ -1,6 +1,14 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import { FormIntegrationActions, FormIntegrations } from '@typings'
 import { Subject, Subscription } from 'rxjs'
+import '../../components/overlay'
+import '../../forms/alias-token-form'
+import '../../forms/design-token-form'
+import '../../forms/style-form'
+import '../../forms/style-guide-duplicate-form'
+import '../../forms/style-guide-form'
+import '../../forms/theme-form'
+import '../../forms/theme-value-form'
 
 @Component({
   tag: 'tf-form-integration',

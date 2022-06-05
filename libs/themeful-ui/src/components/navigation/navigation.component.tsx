@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, h, Prop } from '@stencil/core'
+import '../button'
 
 export interface NavigationItem {
   label: string

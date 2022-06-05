@@ -1,5 +1,7 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import { FormValues, StyleGuideBase, StyleGuideFormAction, StyleGuideFormData } from '@typings'
+import '../../components/button'
+import '../../components/inputs/text-input'
 
 @Component({
   tag: 'tf-style-guide-form',

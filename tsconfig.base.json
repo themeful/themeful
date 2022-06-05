@@ -17,8 +17,7 @@
     "paths": {
       "@properties": ["libs/property-types/src/index.ts"],
       "@themeful-ui": ["libs/themeful-ui/src/index.ts"],
-      "@themeful/themeful-ui": ["dist/libs/themeful-ui"],
-      "@themeful/themeful-ui/loader": ["dist/libs/themeful-ui/loader"],
+      "@themeful-ui/*": ["libs/themeful-ui/src/*"],
       "@typings": ["libs/typings/src/index.ts"],
       "@utils": ["libs/utils/src/index.ts"],
       "@utils/*": ["libs/utils/src/lib/*"]

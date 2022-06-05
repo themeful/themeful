@@ -1,5 +1,11 @@
 import { Component, h, Host, State } from '@stencil/core'
-import { APIService } from '@themeful-ui'
+import '@themeful-ui'
+import '@themeful-ui/components/button'
+import '@themeful-ui/components/toast'
+import '@themeful-ui/pages/style-guide-details'
+import '@themeful-ui/pages/style-guides'
+import '@themeful-ui/pages/themes'
+import { APIService } from '../services'
 
 @Component({
   tag: 'themeful-microfrontend',

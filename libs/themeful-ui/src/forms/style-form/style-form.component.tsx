@@ -1,5 +1,10 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import { ExtendedStyle, StyleFormAction, StyleFormData } from '@typings'
+import '../../components/button'
+import '../../components/inputs/color-input'
+import '../../components/inputs/select-input'
+import '../../components/inputs/suggest-input'
+import '../../components/inputs/text-input'
 
 @Component({
   tag: 'tf-style-form',
@@ -94,7 +99,7 @@ export class StyleFormComponent {
           value={this.formData.fields?.type}
           {...{
             onInputChange: ({ target }) => {
-              this.type = (target as HTMLInputElement).value
+              this.type = (target as HTMLTfSelectInputElement).value as string
             },
           }}
           required

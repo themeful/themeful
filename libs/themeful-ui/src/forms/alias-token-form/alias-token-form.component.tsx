@@ -1,5 +1,7 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import { AliasTokenFormAction, AliasTokenFormData, FormValues } from '@typings'
+import '../../components/button'
+import '../../components/inputs/multi-select-input'
 
 @Component({
   tag: 'tf-alias-token-form',

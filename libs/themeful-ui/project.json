@@ -53,8 +53,7 @@
         "projectType": "library",
         "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
         "configPath": "libs/themeful-ui/stencil.config.ts",
-        "outputPath": "dist/libs/themeful-ui",
-        "proxyConfig": "libs/themeful-ui/proxy.conf.json"
+        "outputPath": "dist/libs/themeful-ui"
       }
     },
     "e2e": {
@@ -80,7 +79,13 @@
         "ci": {
           "quiet": true
         }
-      }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",

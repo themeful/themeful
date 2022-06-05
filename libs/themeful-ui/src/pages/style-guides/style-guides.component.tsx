@@ -10,6 +10,11 @@ import {
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import '../../components/button'
+import '../../components/icon'
+import '../../components/navigation'
+import '../../components/property'
+import '../../forms/form-integration'
 
 @Component({
   tag: 'tf-style-guides',

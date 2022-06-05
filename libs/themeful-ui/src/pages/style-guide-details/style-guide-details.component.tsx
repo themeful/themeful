@@ -11,6 +11,9 @@ import {
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import '../../components/button'
+import '../../components/navigation'
+import '../../components/property'
 
 @Component({
   tag: 'tf-style-guide-details',

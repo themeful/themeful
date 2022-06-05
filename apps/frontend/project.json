@@ -16,7 +16,8 @@
         "projectType": "application",
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "configPath": "apps/frontend/stencil.config.ts",
-        "outputPath": "dist/apps/frontend"
+        "outputPath": "dist/apps/frontend",
+        "port": 3333
       },
       "configurations": {
         "production": {
@@ -32,7 +33,15 @@
         "projectType": "application",
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "configPath": "apps/frontend/stencil.config.ts",
-        "outputPath": "dist/apps/frontend"
+        "outputPath": "dist/apps/frontend",
+        "proxyConfig": "apps/frontend/proxy.conf.json",
+        "port": 3330
+      },
+      "configurations": {
+        "watch": {
+          "watch": true,
+          "dev": true
+        }
       }
     },
     "test": {
@@ -62,5 +71,6 @@
         "lintFilePatterns": ["apps/frontend/**/*.{ts,tsx}"]
       }
     }
-  }
+  },
+  "implicitDependencies": ["!themeful-ui"]
 }

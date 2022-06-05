@@ -24,12 +24,23 @@
             }
           ]
         }
-      }
+      },
+      "dependsOn": [
+        {
+          "target": "copy-assets",
+          "projects": "self"
+        }
+      ]
     },
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
         "buildTarget": "backend:build"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
       }
     },
     "lint": {
@@ -45,7 +56,25 @@
       "options": {
         "jestConfig": "apps/backend/jest.config.ts"
       }
+    },
+    "copy-assets": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf assets",
+          "cp -ri ../../../dist/apps/frontend/www/ assets"
+        ],
+        "cwd": "apps/backend/src",
+        "parallel": false
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ]
     }
   },
-  "tags": ["scope:backend"]
+  "tags": ["scope:backend"],
+  "implicitDependencies": ["frontend"]
 }

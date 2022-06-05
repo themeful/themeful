@@ -1,6 +1,8 @@
 import { getProperty } from '@properties'
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import { ExtendedStyle, PropertyType } from '@typings'
+import '../button'
+import '../icon'
 
 @Component({
   tag: 'tf-property',

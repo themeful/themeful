@@ -5,6 +5,10 @@ import {
   DesignTokenFormFields,
   FormValues,
 } from '@typings'
+import '../../components/button'
+import '../../components/inputs/select-input'
+import '../../components/inputs/suggest-input'
+import '../../components/inputs/text-input'
 
 @Component({
   tag: 'tf-design-token-form',

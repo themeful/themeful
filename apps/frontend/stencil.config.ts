@@ -12,13 +12,6 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null,
       baseUrl: 'https://.local/',
-      dir: '../../apps/backend/src/assets',
-      copy: [
-        {
-          src: '../../../dist/libs/themeful-ui/www/build',
-          dest: 'themeful-ui',
-        },
-      ],
     },
   ],
   plugins: [sass()],
