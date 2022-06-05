@@ -15,7 +15,8 @@
         "projectType": "library",
         "tsConfig": "libs/themeful-ui/tsconfig.spec.json",
         "configPath": "libs/themeful-ui/stencil.config.ts",
-        "outputPath": "dist/libs/themeful-ui"
+        "outputPath": "dist/libs/themeful-ui",
+        "jestConfig": "libs/themeful-ui/jest.config.js"
       }
     },
     "build": {
