@@ -55,6 +55,11 @@
       "outputs": ["coverage/apps/backend"],
       "options": {
         "jestConfig": "apps/backend/jest.config.ts"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
       }
     },
     "copy-assets": {

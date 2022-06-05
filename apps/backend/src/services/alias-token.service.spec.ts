@@ -165,26 +165,6 @@ describe('AliasTokenService', () => {
   })
 
   describe('sync', () => {
-    it('should sync create aliasTokens', () => {
-      jest.spyOn(syncService, 'aliasTokens').mockImplementation()
-      const clonedAliasToken = clone(newAliasToken)
-      delete clonedAliasToken.token
-      clonedAliasToken.crawled = false
-      expect(service.create(clone(newAliasToken))).toEqual(true)
-
-      expect(syncService.aliasTokens).toHaveBeenCalledWith({
-        action: 'create',
-        primary: 'atTestTabFontWeight',
-        values: [
-          'atTestBaseFontColor',
-          'atTestButtonBackground',
-          'atTestButtonFontColor',
-          'atTestButtonFontSize',
-          'atTestTabFontWeight',
-        ],
-      })
-    })
-
     it('should sync update aliasTokens', () => {
       jest.spyOn(syncService, 'aliasTokens').mockImplementation()
       const clonedAliasToken = clone(updatedAliasToken)
@@ -201,16 +181,6 @@ describe('AliasTokenService', () => {
           'atTestButtonFontSize',
           'atTestTabFontWeight',
         ],
-      })
-    })
-    it('should sync delete aliasTokens', () => {
-      jest.spyOn(syncService, 'aliasTokens').mockImplementation()
-      expect(service.delete('atTestBaseFontColor')).toEqual(true)
-
-      expect(syncService.aliasTokens).toHaveBeenCalledWith({
-        action: 'delete',
-        primary: 'atTestBaseFontColor',
-        values: ['atTestButtonBackground', 'atTestButtonFontColor', 'atTestButtonFontSize'],
       })
     })
   })

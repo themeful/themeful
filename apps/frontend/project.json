@@ -52,6 +52,11 @@
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "configPath": "apps/frontend/stencil.config.ts",
         "outputPath": "dist/apps/frontend"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
       }
     },
     "e2e": {
