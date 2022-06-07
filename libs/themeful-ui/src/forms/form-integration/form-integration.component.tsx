@@ -7,6 +7,7 @@ import '../../forms/design-token-form'
 import '../../forms/style-form'
 import '../../forms/style-guide-duplicate-form'
 import '../../forms/style-guide-form'
+import '../../forms/theme-duplicate-form'
 import '../../forms/theme-form'
 import '../../forms/theme-value-form'
 
@@ -65,6 +66,8 @@ export class FormIntegrationComponent {
         return <tf-style-form {...this.args} />
       case 'theme':
         return <tf-theme-form {...this.args} />
+      case 'themeDuplicate':
+        return <tf-theme-duplicate-form {...this.args} />
       case 'themeValue':
         return <tf-theme-value-form {...this.args} />
       case 'designToken':

@@ -83,6 +83,25 @@ export class ThemeService {
     return true
   }
 
+  public duplicate(oldSlug: string, { name }: { name: string }): boolean {
+    if (!this.themes[oldSlug]) {
+      return false
+    }
+    const theme = this.themes[oldSlug]
+    const newSlug = slugify([theme.styleGuide, name])
+    if (this.themes[newSlug] || newSlug === oldSlug) {
+      return false
+    }
+
+    this.themes[newSlug] = {
+      ...theme,
+      name,
+    }
+
+    this.writeFiles(this.themes)
+    return true
+  }
+
   public delete(key: string): boolean {
     if (!this.themes[key]) {
       return false

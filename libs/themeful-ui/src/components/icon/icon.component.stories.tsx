@@ -13,6 +13,8 @@ export default {
       'minus',
       'close',
       'globe',
+      'copy',
+      'menu',
     ],
   },
 }

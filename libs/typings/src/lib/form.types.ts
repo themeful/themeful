@@ -187,6 +187,7 @@ export type ThemeFormAction =
   | ThemeCreateAction
   | ThemeUpdateAction
   | ThemeDeleteAction
+  | ThemeDuplicateAction
 
 export type ThemeIntegrationAction = ThemeFormAction & {
   controller: 'theme'
@@ -201,6 +202,13 @@ export interface ThemeUpdateAction {
   action: 'update'
   identifier: string
   fields: { name: string; styleGuide: string }
+}
+
+export interface ThemeDuplicateAction {
+  controller: 'theme'
+  action: 'duplicate'
+  identifier: string
+  fields: { name: string }
 }
 
 export interface ThemeDeleteAction {

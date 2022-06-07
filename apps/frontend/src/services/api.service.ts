@@ -89,6 +89,8 @@ export class APIService {
         return this.createTheme(fields)
       case 'update':
         return this.updateTheme(identifier, fields)
+      case 'duplicate':
+        return this.duplicateTheme(identifier, fields)
       case 'delete':
         return this.deleteTheme({ identifier })
     }
@@ -106,6 +108,13 @@ export class APIService {
 
   public updateTheme(identifier: string, theme: Theme): Observable<boolean> {
     return http.patch<Theme, boolean>(`http://localhost:3333/api/theme/${identifier}`, theme)
+  }
+
+  public duplicateTheme(identifier: string, name: string): Observable<boolean> {
+    return http.patch<string, boolean>(
+      `http://localhost:3333/api/theme/${identifier}/duplicate`,
+      name
+    )
   }
 
   public deleteTheme({ identifier }: { identifier: string }): Observable<boolean> {

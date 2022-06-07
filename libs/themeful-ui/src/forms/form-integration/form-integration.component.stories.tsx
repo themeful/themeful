@@ -112,6 +112,13 @@ const formDatas = {
       name: 'Style Guide 1',
     },
   },
+  themeDuplicate: {
+    form: 'themeDuplicate',
+    identifier: 'styleGuide1_dark',
+    fields: {
+      name: 'Dark',
+    },
+  },
   styleguide: {
     form: 'styleguide',
     identifier: 'styleGuide1',
@@ -236,6 +243,9 @@ export const allForms = (args) => {
           </tf-button>
           <tf-button onClick={() => openOverlay('styleguideDuplicate')}>
             Open Style Guide Duplicate Form
+          </tf-button>
+          <tf-button onClick={() => openOverlay('themeDuplicate')}>
+            Open Theme Duplicate Form
           </tf-button>
           <tf-button onClick={() => openOverlay('empty')}>Open Empty</tf-button>
         </div>

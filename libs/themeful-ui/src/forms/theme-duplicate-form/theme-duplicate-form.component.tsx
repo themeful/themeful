@@ -1,19 +1,19 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { FormValues, StyleGuideDuplicateFormAction, StyleGuideDuplicateFormData } from '@typings'
+import { FormValues, ThemeFormAction, ThemeFormData } from '@typings'
 import '../../components/button'
 import '../../components/inputs/text-input'
 
 @Component({
-  tag: 'tf-style-guide-duplicate-form',
-  styleUrl: 'style-guide-duplicate-form.component.scss',
+  tag: 'tf-theme-duplicate-form',
+  styleUrl: 'theme-duplicate-form.component.scss',
   shadow: true,
 })
-export class StyleGuideDuplicateFormComponent {
+export class ThemeDuplicateComponent {
   /** Data for the form */
-  @Prop() formData: StyleGuideDuplicateFormData
+  @Prop() formData: ThemeFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<StyleGuideDuplicateFormAction>
+  @Event({ composed: false }) action: EventEmitter<ThemeFormAction>
 
   @State() changed = false
 
@@ -25,7 +25,6 @@ export class StyleGuideDuplicateFormComponent {
   }
 
   public componentDidLoad(): void {
-    console.log(this.originName)
     this.action.emit({ action: 'open' })
   }
 
@@ -47,7 +46,7 @@ export class StyleGuideDuplicateFormComponent {
     Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
       if (dirty && valid) {
         this.action.emit({
-          controller: 'styleguide',
+          controller: 'theme',
           identifier: this.formData.identifier,
           action: 'duplicate',
           fields: this.formValues() as unknown as { name: string },
@@ -65,7 +64,7 @@ export class StyleGuideDuplicateFormComponent {
   private nameValidation = (name: string): string | null =>
     name !== this.originName ? null : 'Please change the name'
 
-  public render(): HTMLTfStyleGuideDuplicateFormElement {
+  public render(): HTMLTfThemeFormElement {
     return (
       <form class="form" onSubmit={this.save}>
         <h3>Duplicate: {this.originName}</h3>
@@ -74,9 +73,8 @@ export class StyleGuideDuplicateFormComponent {
           label="Name"
           value={`${this.formData.fields?.name} Copy`}
           validation={this.nameValidation}
-          minLength={4}
+          required
         />
-
         <div class="form__controls">
           <tf-button kind="secondary" onClick={this.cancel}>
             Cancel

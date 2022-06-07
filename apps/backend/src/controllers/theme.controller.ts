@@ -21,6 +21,11 @@ export class ThemeController {
     return this.themeService.update(key, theme)
   }
 
+  @Patch(':theme/duplicate')
+  duplicate(@Param('theme') theme: string, @Body() data: { name: string }) {
+    return this.themeService.duplicate(theme, data)
+  }
+
   @Delete(':key')
   remove(@Param('key') key: string) {
     return this.themeService.delete(key)

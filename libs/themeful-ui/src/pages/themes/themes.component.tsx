@@ -160,6 +160,15 @@ export class ThemesComponent {
       },
     })
   }
+  private openThemeDuplicateForm = (theme?: string): void => {
+    this.formData$.next({
+      form: 'themeDuplicate',
+      identifier: theme,
+      fields: {
+        name: this.themes[theme]?.name,
+      },
+    })
+  }
 
   private openDesignTokenForm = (row?: DesignTokenRow): void => {
     this.formData$.next({
@@ -309,6 +318,15 @@ export class ThemesComponent {
                   }}
                 >
                   <tf-icon icon="pen" />
+                </tf-button>
+                <tf-button
+                  {...{
+                    onClick: () => this.openThemeDuplicateForm(theme.key),
+                    title: 'duplicate theme',
+                    size: 'icon',
+                  }}
+                >
+                  <tf-icon icon="copy" />
                 </tf-button>
               </h2>
             </th>
