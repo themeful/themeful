@@ -170,12 +170,6 @@ export class APIService {
     }
   }
 
-  public getStyleGuides(): void {
-    http.get<FormatedStyleGuides>('http://localhost:3333/api/style/formatted').subscribe((data) => {
-      this.styleGuides.next(data)
-    })
-  }
-
   public createStyle(style: Style, { styleGuide }: { styleGuide?: string }): Observable<boolean> {
     return http.post<Style, boolean>(`http://localhost:3333/api/style/${styleGuide ?? ''}`, style)
   }
