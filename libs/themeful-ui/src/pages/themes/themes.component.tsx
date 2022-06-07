@@ -20,6 +20,7 @@ import { Observable, Subject, Subscription } from 'rxjs'
 import Fragment from 'stencil-fragment'
 import '../../components/button'
 import '../../components/icon'
+import '../../components/menu'
 import '../../components/navigation'
 import '../../components/property'
 import '../../forms/form-integration'
@@ -310,24 +311,16 @@ export class ThemesComponent {
             <th>
               <h2>
                 {theme.name}
-                <tf-button
-                  {...{
-                    onClick: () => this.openThemeForm(theme.key),
-                    title: 'edit theme',
-                    size: 'icon',
-                  }}
-                >
-                  <tf-icon icon="pen" />
-                </tf-button>
-                <tf-button
-                  {...{
-                    onClick: () => this.openThemeDuplicateForm(theme.key),
-                    title: 'duplicate theme',
-                    size: 'icon',
-                  }}
-                >
-                  <tf-icon icon="copy" />
-                </tf-button>
+                <tf-menu
+                  items={[
+                    { label: 'Edit', icon: 'pen', callback: () => this.openThemeForm(theme.key) },
+                    {
+                      label: 'Duplicate',
+                      icon: 'copy',
+                      callback: () => this.openThemeDuplicateForm(theme.key),
+                    },
+                  ]}
+                />
               </h2>
             </th>
           ))}
@@ -342,15 +335,11 @@ export class ThemesComponent {
         <td>
           <h5 class="design-tokens__name">
             {row.name}
-            <tf-button
-              {...{
-                onClick: () => this.openDesignTokenForm(row),
-                title: 'edit design token',
-                size: 'icon',
-              }}
-            >
-              <tf-icon icon="pen" />
-            </tf-button>
+            <tf-menu
+              items={[
+                { label: 'Edit', icon: 'pen', callback: () => this.openDesignTokenForm(row) },
+              ]}
+            />
           </h5>
           <div class="design-tokens__desc">{row.description}</div>
           {row.short && (

@@ -5,9 +5,9 @@ export default {
   title: 'Components/Menu',
   args: {
     items: [
-      { label: 'Primary', slug: 'primary', icon: 'pen' },
-      { label: 'Secondary', slug: 'secondary', icon: 'globe' },
-      { label: 'Tertiary', slug: 'tertiary', icon: 'copy' },
+      { label: 'Primary', icon: 'pen' },
+      { label: 'Secondary', icon: 'globe' },
+      { label: 'Tertiary', icon: 'copy' },
     ],
     onItemClick: action('change'),
   },

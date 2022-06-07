@@ -1,5 +1,6 @@
 import { propertySelect } from '@properties'
 import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
+import { RouterHistory } from '@stencil/router'
 import {
   ExtendedStyle,
   ExtendedStyleGuide,
@@ -10,8 +11,8 @@ import {
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
-import '../../components/button'
 import '../../components/icon'
+import '../../components/menu'
 import '../../components/navigation'
 import '../../components/property'
 import '../../forms/form-integration'
@@ -22,6 +23,9 @@ import '../../forms/form-integration'
   shadow: true,
 })
 export class StyleGuidesComponent {
+  /** History */
+  @Prop() history: RouterHistory
+
   /** Style Guides */
   @Prop() styleGuides$: Observable<ExtendedStyleGuides>
 
@@ -55,6 +59,14 @@ export class StyleGuidesComponent {
       groups: this.styleGuideGroups[styleGuide],
       propertyTypes: propertySelect,
       fields: extendedStyle,
+    })
+  }
+
+  private openStyleGuideDuplicateForm = (styleGuide: string, name: string): void => {
+    this.formData$.next({
+      form: 'styleguideDuplicate',
+      identifier: styleGuide,
+      fields: { name },
     })
   }
 
@@ -108,28 +120,38 @@ export class StyleGuidesComponent {
           <stencil-route-link url={`/styleguide/${styleGuide.slug}`}>
             {styleGuide.name}
           </stencil-route-link>
-          <tf-button
-            {...{
-              size: 'icon',
-              onClick: () =>
-                this.openStyleGuideForm(styleGuide.slug, {
-                  name: styleGuide.name,
-                  baseFontSize: styleGuide.baseFontSize,
-                }),
-              title: 'edit style guide',
-            }}
-          >
-            <tf-icon icon="pen" />
-          </tf-button>
-          <tf-button
-            {...{
-              size: 'icon',
-              onClick: () => this.openStyleForm(styleGuide.slug),
-              title: 'add style',
-            }}
-          >
-            <tf-icon icon="plus" />
-          </tf-button>
+          <tf-menu
+            items={[
+              {
+                label: 'Edit',
+                icon: 'pen',
+                callback: () =>
+                  this.openStyleGuideForm(styleGuide.slug, {
+                    name: styleGuide.name,
+                    baseFontSize: styleGuide.baseFontSize,
+                  }),
+              },
+              {
+                label: 'Add Style',
+                icon: 'plus',
+                callback: () => this.openStyleForm(styleGuide.slug),
+              },
+              {
+                label: 'Show',
+                icon: 'search',
+                callback: () => {
+                  this.history.push(`/styleguide/${styleGuide.slug}`, {})
+                },
+              },
+              {
+                label: 'Duplicate',
+                icon: 'copy',
+                callback: () => {
+                  this.openStyleGuideDuplicateForm(styleGuide.slug, styleGuide.name)
+                },
+              },
+            ]}
+          />
         </h3>
         {styleGuide.types && styleGuide.types.map((type) => this.renderType(type, styleGuide.slug))}
       </div>

@@ -1,12 +1,10 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
 import '../button'
+import '../icon'
 
 export interface MenuItem {
   label: string
   icon?: string
-  slug?: string
-  selectable?: boolean
-  position?: string
   callback?: () => void
 }
 
@@ -28,9 +26,6 @@ export class MenuComponent {
     this.open = false
     if (item.callback !== undefined) {
       item.callback()
-    }
-    if (item.slug !== undefined) {
-      this.itemClick.emit(item.slug)
     }
   }
 

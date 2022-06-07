@@ -55,7 +55,9 @@ export class ThemefulMicrofrontend {
       <Host>
         <header>
           <div class="logo-bar">
-            <img class="logo" src="/assets/themeful.svg" />
+            <stencil-route-link url="/themes">
+              <img class="logo" src="/assets/themeful.svg" />
+            </stencil-route-link>
             <h1>Themeful</h1>
           </div>
           <nav class="button-group nav-row">

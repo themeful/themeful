@@ -14,6 +14,7 @@ import { Observable, Subject, Subscription } from 'rxjs'
 import '../../components/button'
 import '../../components/navigation'
 import '../../components/property'
+import '../../forms/form-integration'
 
 @Component({
   tag: 'tf-style-guide-details',
@@ -39,7 +40,7 @@ export class StyleGuideDetailsComponent {
   private onAction = ({ detail }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
-      if (detail.action === 'duplicate') {
+      if (['duplicate', 'delete'].includes(detail.action)) {
         this.history.push(`/styleguides`, {})
       }
     }

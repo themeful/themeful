@@ -113,7 +113,10 @@ export class ThemeValueFormComponent {
         <tf-select-input
           ref={(el: HTMLTfSelectInputElement) => (this.controls['media'] = el)}
           label="Media"
-          items={this.formData.medias}
+          items={this.formData.medias.map(({ key, value }) => ({
+            key,
+            value: `${key.startsWith('global_') ? '(G) ' : ''}${value}`,
+          }))}
           value={this.formData.fields?.media}
           required
         />

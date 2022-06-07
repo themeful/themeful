@@ -15,6 +15,7 @@ export default {
       'globe',
       'copy',
       'menu',
+      'search',
     ],
   },
 }
