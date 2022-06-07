@@ -1,6 +1,7 @@
 export * from './button'
 export * from './icon'
 export * from './inputs'
+export * from './menu'
 export * from './navigation'
 export * from './overlay'
 export * from './property'

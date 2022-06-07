@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.menu-items {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 4px;
+}

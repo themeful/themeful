@@ -40,6 +40,12 @@
     --bg-opacity: 0.75;
   }
 
+  &.menu {
+    --bg-opacity: 1;
+    justify-content: start;
+    --tf-font-color: #333;
+  }
+
   &.selectable:not(.active),
   &.secondary {
     background-color: rgba(200, 200, 200, var(--bg-opacity));
