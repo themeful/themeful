@@ -19,7 +19,7 @@ export const menu = (args): HTMLElement => {
       <div class="header">
         <h1>Menu</h1>
       </div>
-      <div class="content content--grid content--grid-single">
+      <div class="content content--grid">
         <div class="tf-light">
           <tf-menu {...args} />
         </div>

@@ -1,16 +1,20 @@
 {
-  "root": "apps/backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/backend/src",
   "targets": {
     "build": {
       "executor": "@nrwl/node:webpack",
-      "outputs": ["dist/apps/backend"],
+      "outputs": [
+        "dist/apps/backend"
+      ],
       "options": {
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/src/main.ts",
         "tsConfig": "apps/backend/tsconfig.app.json",
-        "assets": ["apps/backend/src/assets"]
+        "assets": [
+          "apps/backend/src/assets"
+        ]
       },
       "configurations": {
         "production": {
@@ -45,14 +49,21 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/backend/**/*.ts", "apps/backend/**/*.tsx"]
+        "lintFilePatterns": [
+          "apps/backend/**/*.ts",
+          "apps/backend/**/*.tsx"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/backend"],
+      "outputs": [
+        "coverage/apps/backend"
+      ],
       "options": {
         "jestConfig": "apps/backend/jest.config.ts"
       },
@@ -80,6 +91,10 @@
       ]
     }
   },
-  "tags": ["scope:backend"],
-  "implicitDependencies": ["frontend"]
+  "tags": [
+    "scope:backend"
+  ],
+  "implicitDependencies": [
+    "frontend"
+  ]
 }

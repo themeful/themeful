@@ -1,5 +1,5 @@
 {
-  "root": "libs/property-types",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/property-types/src",
   "targets": {
@@ -14,12 +14,16 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/property-types"],
+      "outputs": [
+        "coverage/libs/property-types"
+      ],
       "options": {
         "jestConfig": "libs/property-types/jest.config.ts",
         "passWithNoTests": true
       }
     }
   },
-  "tags": ["scope:properties"]
+  "tags": [
+    "scope:properties"
+  ]
 }

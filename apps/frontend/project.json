@@ -1,5 +1,5 @@
 {
-  "root": "apps/frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/frontend/src",
   "generators": {
@@ -7,11 +7,15 @@
       "style": "scss"
     }
   },
-  "tags": ["scope:frontend"],
+  "tags": [
+    "scope:frontend"
+  ],
   "targets": {
     "build": {
       "executor": "@nxext/stencil:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "projectType": "application",
         "tsConfig": "apps/frontend/tsconfig.app.json",
@@ -28,7 +32,9 @@
     },
     "serve": {
       "executor": "@nxext/stencil:serve",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "projectType": "application",
         "tsConfig": "apps/frontend/tsconfig.app.json",
@@ -46,7 +52,9 @@
     },
     "test": {
       "executor": "@nxext/stencil:test",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "projectType": "application",
         "tsConfig": "apps/frontend/tsconfig.app.json",
@@ -61,7 +69,9 @@
     },
     "e2e": {
       "executor": "@nxext/stencil:e2e",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "projectType": "application",
         "tsConfig": "apps/frontend/tsconfig.app.json",
@@ -71,11 +81,17 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/frontend/**/*.{ts,tsx}"]
+        "lintFilePatterns": [
+          "apps/frontend/**/*.{ts,tsx}"
+        ]
       }
     }
   },
-  "implicitDependencies": ["!themeful-ui"]
+  "implicitDependencies": [
+    "!themeful-ui"
+  ]
 }

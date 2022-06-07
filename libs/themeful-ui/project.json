@@ -1,5 +1,5 @@
 {
-  "root": "libs/themeful-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/themeful-ui/src",
   "generators": {
@@ -10,7 +10,9 @@
   "targets": {
     "test": {
       "executor": "@nxext/stencil:test",
-      "outputs": ["coverage/libs/themeful-ui"],
+      "outputs": [
+        "coverage/libs/themeful-ui"
+      ],
       "options": {
         "projectType": "library",
         "tsConfig": "libs/themeful-ui/tsconfig.spec.json",
@@ -21,7 +23,9 @@
     },
     "build": {
       "executor": "@nxext/stencil:build",
-      "outputs": ["dist/libs/themeful-ui"],
+      "outputs": [
+        "dist/libs/themeful-ui"
+      ],
       "options": {
         "projectType": "library",
         "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
@@ -49,7 +53,9 @@
     },
     "serve": {
       "executor": "@nxext/stencil:build",
-      "outputs": ["dist/libs/themeful-ui"],
+      "outputs": [
+        "dist/libs/themeful-ui"
+      ],
       "options": {
         "projectType": "library",
         "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
@@ -59,7 +65,9 @@
     },
     "e2e": {
       "executor": "@nxext/stencil:e2e",
-      "outputs": ["dist/libs/themeful-ui"],
+      "outputs": [
+        "dist/libs/themeful-ui"
+      ],
       "options": {
         "projectType": "library",
         "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
@@ -90,7 +98,9 @@
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
-      "outputs": ["dist/storybook/themeful-ui"],
+      "outputs": [
+        "dist/storybook/themeful-ui"
+      ],
       "options": {
         "uiFramework": "@storybook/html",
         "outputPath": "dist/storybook/themeful-ui",
@@ -105,5 +115,7 @@
       }
     }
   },
-  "tags": ["scope:themeful-ui"]
+  "tags": [
+    "scope:themeful-ui"
+  ]
 }

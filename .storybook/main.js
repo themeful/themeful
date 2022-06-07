@@ -1,8 +1,11 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
+  core: {
+    builder: 'webpack5',
+  },
   stories: [],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-controls', '@storybook/addon-postcss'],
+  addons: ['@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-postcss'],
   babelDefault: (config) => {
     return {
       ...config,

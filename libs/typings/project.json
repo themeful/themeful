@@ -1,23 +1,32 @@
 {
-  "root": "libs/typings",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/typings/src",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/typings/**/*.ts", "libs/typings/**/*.tsx"]
+        "lintFilePatterns": [
+          "libs/typings/**/*.ts",
+          "libs/typings/**/*.tsx"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/typings"],
+      "outputs": [
+        "coverage/libs/typings"
+      ],
       "options": {
         "jestConfig": "libs/typings/jest.config.ts",
         "passWithNoTests": true
       }
     }
   },
-  "tags": ["scope:typings"]
+  "tags": [
+    "scope:typings"
+  ]
 }

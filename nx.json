@@ -27,8 +27,6 @@
       }
     ]
   },
-  "cli": {
-    "defaultCollection": "@nxext/stencil"
-  },
-  "defaultProject": "backend"
+  "defaultProject": "backend",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }
