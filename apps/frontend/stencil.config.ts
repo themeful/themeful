@@ -12,6 +12,7 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null,
       baseUrl: 'https://.local/',
+      empty: true,
     },
   ],
   plugins: [sass()],

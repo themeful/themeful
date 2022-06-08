@@ -69,7 +69,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf assets",
+          "rm -rf assets ../../../dist/apps/backend/assets/",
           "cp -ri ../../../dist/apps/frontend/www/ assets"
         ],
         "cwd": "apps/backend/src",

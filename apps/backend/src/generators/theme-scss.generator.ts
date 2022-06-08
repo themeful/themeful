@@ -72,7 +72,7 @@ export function themesScss(
     themeList.push(themeSlug)
     writeFileSync(`${path}theme_${themeSlug}.scss`, scssFile)
   }
-  writeFileSync(`${path}_themes.scss`, storybookThemes)
+  writeFileSync(`${path}themes.scss`, storybookThemes)
   readdirSync(path).forEach((file) => {
     if (/^theme_.*.scss$/.test(file)) {
       const match = file.match(/^theme_(.*).scss$/)

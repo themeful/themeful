@@ -88,7 +88,7 @@ describe('themesScss', () => {
       )
       expect(fs.writeFileSync).toHaveBeenNthCalledWith(
         5,
-        `${testPath}_themes.scss`,
+        `${testPath}themes.scss`,
         `html[data-brand-theme='styleGuide1_light'] {
   @import './theme_styleGuide1_light';
 }
@@ -140,7 +140,7 @@ html[data-brand-theme='styleGuide2_dark'] {
       )
       expect(fs.writeFileSync).toHaveBeenNthCalledWith(
         8,
-        `${testPath}_themes.scss`,
+        `${testPath}themes.scss`,
         `html[data-brand-theme='styleGuide2_light'] {
   @import './theme_styleGuide2_light';
 }
