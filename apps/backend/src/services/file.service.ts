@@ -23,9 +23,12 @@ import { ConfigService } from './config.service'
 
 @Injectable()
 export class FileService {
-  public streams$: { [filename: string]: ReplaySubject<any> } = {}
   private filenames = ['designTokens', 'aliasTokens', 'styleGuides', 'themes']
   private hashKeys: { [file: string]: string } = {}
+  public themes$ = new ReplaySubject<Themes>(1)
+  public designTokens$ = new ReplaySubject<DesignTokens>(1)
+  public aliasTokens$ = new ReplaySubject<AliasTokens>(1)
+  public styleGuides$ = new ReplaySubject<StyleGuides>(1)
 
   constructor(private readonly config: ConfigService) {
     this.preloadFiles()
@@ -37,31 +40,14 @@ export class FileService {
       const path = `${this.config.dataPath}${filename}.json`
       if (existsSync(path)) {
         const data = readJsonFile(path)
-        this.streams$[filename] = new ReplaySubject(1)
-        this.streams$[filename].next(data)
+        this[`${filename}$`].next(data)
         this.hashKeys[filename] = hash(data)
       }
     })
   }
 
-  public get themes$(): ReplaySubject<Themes> {
-    return this.streams$['themes']
-  }
-
-  public get designTokens$(): ReplaySubject<DesignTokens> {
-    return this.streams$['designTokens']
-  }
-
-  public get aliasTokens$(): ReplaySubject<AliasTokens> {
-    return this.streams$['aliasTokens']
-  }
-
-  public get styleGuides$(): ReplaySubject<StyleGuides> {
-    return this.streams$['styleGuides']
-  }
-
   public get styleGuidesApi$(): Observable<FormatedStyleGuides> {
-    return this.streams$['styleGuides'].pipe(
+    return this.styleGuides$.pipe(
       map((styleGuides: StyleGuides): FormatedStyleGuides => {
         return Object.entries(styleGuides).map(([slug, data]: [string, StyleGuide]) => ({
           name: data.name,
@@ -77,7 +63,7 @@ export class FileService {
     const newHash = hash(data)
     if (newHash !== this.hashKeys[filename]) {
       this.hashKeys[filename] = newHash
-      this.streams$[filename].next(data)
+      this[`${filename}$`].next(data)
       writeJsonFile(`${this.config.dataPath}${filename}.json`, data, { spaces: 2 })
     }
   }
@@ -86,7 +72,7 @@ export class FileService {
     combineLatest([this.themes$, this.styleGuides$])
       .pipe(debounceTime(100))
       .subscribe(([themes, styleGuides]) => {
-        themesTs(this.config.themesPath, themes, styleGuides)
+        themesTs(this.config.generatedPath, themes, styleGuides)
       })
     combineLatest([this.themes$, this.designTokens$, this.styleGuides$])
       .pipe(debounceTime(100))

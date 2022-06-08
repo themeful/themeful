@@ -289,7 +289,9 @@ export class ThemeService {
   private writeFiles(themes: Themes) {
     this.themes = sortMap(themes)
     Object.keys(this.themes).forEach((themeKey) => {
-      this.themes[themeKey].styles = sortMap(this.themes[themeKey].styles)
+      if (this.themes[themeKey].styles) {
+        this.themes[themeKey].styles = sortMap(this.themes[themeKey].styles)
+      }
     })
     this.file.save('themes', this.themes)
   }

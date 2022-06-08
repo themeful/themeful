@@ -279,8 +279,12 @@ export class ThemesComponent {
       medias,
       fields: {
         media: themeMedia?.media,
-        style: this.themes[theme].styles[designToken][themeMedia?.media]?.style,
-        direct: this.themes[theme].styles[designToken][themeMedia?.media]?.direct?.value,
+        style: themeMedia?.media
+          ? this.themes[theme].styles[designToken][themeMedia?.media]?.style
+          : '',
+        direct: themeMedia?.media
+          ? this.themes[theme].styles[designToken][themeMedia?.media]?.direct?.value
+          : '',
       },
     })
   }
