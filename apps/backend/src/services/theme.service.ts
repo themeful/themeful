@@ -209,6 +209,13 @@ export class ThemeService {
           }
         })
         break
+      case 'split':
+        Object.entries(this.themes).forEach(([themeName, theme]) => {
+          if (theme.styles[data.primary]) {
+            this.themes[themeName].styles[data.secondary] = theme.styles[data.primary]
+          }
+        })
+        break
       default:
         Object.values(this.themes).forEach((theme) => {
           const themeName = slugify([theme.styleGuide, theme.name])

@@ -216,6 +216,8 @@ export class APIService {
         return this.updateDesignToken(identifier, fields)
       case 'delete':
         return this.deleteDesignToken(identifier)
+      case 'split':
+        return this.splitDesignToken(identifier, { ...fields, aliasTokens: fields?.selected || [] })
       case 'updateAliasTokens':
         return this.selectAliasTokens(identifier, fields?.selected || [])
     }
@@ -241,6 +243,12 @@ export class APIService {
   public updateDesignToken(identifier: string, fields: DesignToken): Observable<boolean> {
     return http.patch<DesignToken, boolean>(
       `http://localhost:3333/api/design-token/${identifier}`,
+      fields
+    )
+  }
+  public splitDesignToken(identifier: string, fields: DesignToken): Observable<boolean> {
+    return http.patch<DesignToken, boolean>(
+      `http://localhost:3333/api/design-token/${identifier}/split`,
       fields
     )
   }

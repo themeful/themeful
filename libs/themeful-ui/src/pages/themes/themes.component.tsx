@@ -73,12 +73,13 @@ export class ThemesComponent {
       this.bundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes]) => {
         this.themes = themes
         this.aliasTokens = aliasTokens
-        this.designTokens = designTokens as DesignTokens
+        this.designTokens = designTokens
         this.groups = []
         const { styleMap, sgNames } = this.transformStyleGuides(styleGuides)
         this.styleMap = styleMap
         this.themeNames = []
         this.styleGuideHeaders = {}
+        this.dt2at = {}
         Object.keys(themes).forEach((key) => {
           this.themeNames.push({
             styleGuide: themes[key].styleGuide,
@@ -182,6 +183,20 @@ export class ThemesComponent {
         group: row?.group,
         type: row?.type,
         description: row?.description,
+      },
+    })
+  }
+  private openDesignTokenSplitForm = (row: DesignTokenRow): void => {
+    this.formData$.next({
+      form: 'designTokenSplit',
+      identifier: row.token,
+      groups: this.groups,
+      propertyTypes: propertySelect,
+      aliasTokens: this.dt2at[row.token],
+      fields: {
+        name: row.name,
+        description: row.description,
+        selected: [],
       },
     })
   }
@@ -342,6 +357,11 @@ export class ThemesComponent {
             <tf-menu
               items={[
                 { label: 'Edit', icon: 'pen', callback: () => this.openDesignTokenForm(row) },
+                {
+                  label: 'Split/Copy',
+                  icon: 'copy',
+                  callback: () => this.openDesignTokenSplitForm(row),
+                },
               ]}
             />
           </h5>

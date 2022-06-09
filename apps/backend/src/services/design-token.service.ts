@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { DesignToken, DesignTokenAPI, DesignTokens, SyncData } from '@typings'
-import { slugify, sortMap, uuid } from '@utils'
+import { clone, slugify, sortMap, uuid } from '@utils'
 import { take } from 'rxjs'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
@@ -105,6 +105,39 @@ export class DesignTokenService {
         secondary: newToken,
       })
     }
+    this.writeFiles(this.designTokens)
+    return true
+  }
+
+  public split(oldToken: string, designToken: DesignTokenAPI): boolean {
+    const newToken = this.unifyToken(designToken.name)
+
+    if (!this.designTokens[oldToken] || oldToken === newToken || !!this.designTokens[newToken]) {
+      return false
+    }
+    const usedUUIDs = Object.values(this.designTokens).map(({ short }) => short)
+    let short = ''
+    do {
+      short = uuid()
+    } while (usedUUIDs.includes(short))
+
+    this.designTokens[newToken] = {
+      ...clone(this.designTokens[oldToken]),
+      name: designToken.name,
+      description: designToken.description,
+      aliasTokens: designToken.aliasTokens,
+      short,
+    }
+
+    this.designTokens[oldToken].aliasTokens = this.designTokens[oldToken].aliasTokens.filter(
+      (aliasToken) => !designToken.aliasTokens.includes(aliasToken)
+    )
+
+    this.syncService.designTokens({
+      action: 'split',
+      primary: oldToken,
+      secondary: newToken,
+    })
     this.writeFiles(this.designTokens)
     return true
   }

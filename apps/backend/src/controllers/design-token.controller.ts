@@ -21,6 +21,11 @@ export class DesignTokenController {
     return this.designTokenService.update(token, designToken)
   }
 
+  @Patch(':token/split')
+  split(@Param('token') token: string, @Body() designToken: DesignTokenAPI) {
+    return this.designTokenService.split(token, designToken)
+  }
+
   @Patch(':token/aliasTokens')
   selectAliasTokens(@Param('token') token: string, @Body() aliasTokens: string[]) {
     return this.designTokenService.selectAliasTokens(token, aliasTokens)
