@@ -5,6 +5,7 @@ import {
   DesignTokens,
   ExtendedStyle,
   FormatedStyleGuides,
+  GlobalConfig,
   GroupStyles,
   StyleGuide,
   StyleGuides,
@@ -29,6 +30,7 @@ export class FileService {
   public designTokens$ = new ReplaySubject<DesignTokens>(1)
   public aliasTokens$ = new ReplaySubject<AliasTokens>(1)
   public styleGuides$ = new ReplaySubject<StyleGuides>(1)
+  public config$ = new ReplaySubject<GlobalConfig>(1)
 
   constructor(private readonly config: ConfigService) {
     this.preloadFiles()
@@ -36,6 +38,10 @@ export class FileService {
   }
 
   private preloadFiles(): void {
+    this.config$.next({
+      baseFontSize: this.config.baseFontSize,
+      shortDesignTokens: this.config.shortDesignTokens,
+    })
     this.filenames.forEach((filename) => {
       const path = `${this.config.dataPath}${filename}.json`
       if (existsSync(path)) {

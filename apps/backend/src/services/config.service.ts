@@ -30,23 +30,27 @@ export class ConfigService {
     this.config = readJsonFile(this.configFile)
   }
 
-  public get generatedPath() {
+  public get generatedPath(): string {
     return this.config.paths.generatedPath
   }
 
-  public get dataPath() {
+  public get dataPath(): string {
     return this.config.paths.dataPath
   }
 
-  public get themesPath() {
+  public get themesPath(): string {
     return this.config.paths.themesPath
   }
 
-  public get libPath() {
+  public get libPath(): string {
     return this.config.paths.libPath
   }
 
-  public get shortDesignTokens() {
+  public get shortDesignTokens(): boolean {
     return this.config.global.shortDesignTokens
+  }
+
+  public get baseFontSize(): string {
+    return this.config.global.baseFontSize
   }
 }

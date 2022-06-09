@@ -3,6 +3,7 @@ import {
   DesignToken,
   DesignTokens,
   FormatedStyleGuides,
+  GlobalConfig,
   Style,
   StyleGuideBase,
   Theme,
@@ -16,16 +17,18 @@ import io from 'socket.io-client'
 export class APIService {
   private static _instance: APIService
   private socket
-  public themes = new ReplaySubject<Themes>(1)
-  public toast = new Subject()
-  public designTokens = new ReplaySubject<DesignTokens>(1)
-  public styleGuides = new ReplaySubject<FormatedStyleGuides>(1)
-  public aliasTokens = new ReplaySubject<AliasTokens>(1)
-  public bundle = combineLatest([
-    this.styleGuides,
-    this.designTokens,
-    this.aliasTokens,
-    this.themes,
+  public themes$ = new ReplaySubject<Themes>(1)
+  public toast$ = new Subject()
+  public designTokens$ = new ReplaySubject<DesignTokens>(1)
+  public styleGuides$ = new ReplaySubject<FormatedStyleGuides>(1)
+  public aliasTokens$ = new ReplaySubject<AliasTokens>(1)
+  public config$ = new ReplaySubject<GlobalConfig>(1)
+  public bundle$ = combineLatest([
+    this.styleGuides$,
+    this.designTokens$,
+    this.aliasTokens$,
+    this.themes$,
+    this.config$,
   ]).pipe(debounceTime(500), shareReplay(1))
 
   private constructor() {
@@ -42,20 +45,23 @@ export class APIService {
       if (msg === 'data') {
         switch (type) {
           case 'styleGuides':
-            this.styleGuides.next(data)
+            this.styleGuides$.next(data)
             break
           case 'themes':
-            this.themes.next(data)
+            this.themes$.next(data)
             break
           case 'designTokens':
-            this.designTokens.next(data)
+            this.designTokens$.next(data)
             break
           case 'aliasTokens':
-            this.aliasTokens.next(data)
+            this.aliasTokens$.next(data)
+            break
+          case 'config':
+            this.config$.next(data)
             break
         }
       } else {
-        this.toast.next({
+        this.toast$.next({
           text: msg,
           status: 'success',
         })
@@ -92,12 +98,6 @@ export class APIService {
       case 'delete':
         return this.deleteTheme({ identifier })
     }
-  }
-
-  public getThemes(): void {
-    http.get<Themes>('http://localhost:3333/api/theme').subscribe((data) => {
-      this.themes.next(data)
-    })
   }
 
   public createTheme(theme: Theme): Observable<boolean> {
@@ -223,12 +223,6 @@ export class APIService {
     }
   }
 
-  public getDesignTokens(): void {
-    http.get<DesignTokens>('http://localhost:3333/api/design-token').subscribe((data) => {
-      this.designTokens.next(data)
-    })
-  }
-
   public createDesignToken(fields: DesignToken): Observable<boolean> {
     return http.post<DesignToken, boolean>(`http://localhost:3333/api/design-token`, fields)
   }
@@ -302,12 +296,6 @@ export class APIService {
       case 'rescan':
         return this.rescanAliasTokens()
     }
-  }
-
-  public getAliasTokens(): void {
-    http.get<AliasTokens>('http://localhost:3333/api/alias-token').subscribe((data) => {
-      this.aliasTokens.next(data)
-    })
   }
 
   public rescanAliasTokens(): Observable<boolean> {

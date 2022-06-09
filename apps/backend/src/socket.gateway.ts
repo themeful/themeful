@@ -28,17 +28,20 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     this.logger.log(`handleConnection ${client.id}`)
     this.wss.emit('update', { msg: 'connected' })
 
-    this.fileService.styleGuidesApi$.subscribe((styleGuides) => {
-      this.wss.emit('update', { msg: 'data', type: 'styleGuides', data: styleGuides })
+    this.fileService.styleGuidesApi$.subscribe((data) => {
+      this.wss.emit('update', { msg: 'data', type: 'styleGuides', data })
     })
-    this.fileService.themes$.subscribe((themes) => {
-      this.wss.emit('update', { msg: 'data', type: 'themes', data: themes })
+    this.fileService.themes$.subscribe((data) => {
+      this.wss.emit('update', { msg: 'data', type: 'themes', data })
     })
-    this.fileService.designTokens$.subscribe((designTokens) => {
-      this.wss.emit('update', { msg: 'data', type: 'designTokens', data: designTokens })
+    this.fileService.designTokens$.subscribe((data) => {
+      this.wss.emit('update', { msg: 'data', type: 'designTokens', data })
     })
-    this.fileService.aliasTokens$.subscribe((aliasTokens) => {
-      this.wss.emit('update', { msg: 'data', type: 'aliasTokens', data: aliasTokens })
+    this.fileService.aliasTokens$.subscribe((data) => {
+      this.wss.emit('update', { msg: 'data', type: 'aliasTokens', data })
+    })
+    this.fileService.config$.subscribe((data) => {
+      this.wss.emit('update', { msg: 'data', type: 'config', data })
     })
   }
 

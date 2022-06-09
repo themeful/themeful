@@ -21,9 +21,9 @@ export class ThemefulMicrofrontend {
 
   constructor() {
     this.apiService = APIService.Instance
-    this.styleGuides$ = this.apiService.styleGuides
-    this.bundle$ = this.apiService.bundle
-    this.toast$ = this.apiService.toast
+    this.styleGuides$ = this.apiService.styleGuides$
+    this.bundle$ = this.apiService.bundle$
+    this.toast$ = this.apiService.toast$
   }
 
   private onAction = ({ detail }) => {

@@ -10,6 +10,7 @@ import {
   ExtendedValueDetail,
   ExtendedValueDetails,
   FormIntegrationActions,
+  GlobalConfig,
   KeyValues,
   StyleMap,
   Theme,
@@ -42,6 +43,7 @@ export class ThemesComponent {
   private styleMap: StyleMap
   private dt2at: Dt2At = {}
   private groups: string[]
+  private config: GlobalConfig
   private formData$ = new Subject()
   private styleGuideHeaders: { [styleGuide: string]: { name: string; count: number } }
   private nav = [
@@ -70,7 +72,8 @@ export class ThemesComponent {
 
   public componentWillLoad(): void {
     this.sub.add(
-      this.bundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes]) => {
+      this.bundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes, config]) => {
+        this.config = config
         this.themes = themes
         this.aliasTokens = aliasTokens
         this.designTokens = designTokens
@@ -366,13 +369,13 @@ export class ThemesComponent {
             />
           </h5>
           <div class="design-tokens__desc">{row.description}</div>
-          {row.short && (
+          {this.config.shortDesignTokens && (
             <div>
               <pre>({row.token})</pre>
               <pre>Using: --{row.short}</pre>
             </div>
           )}
-          {!row.short && <pre>--{row.token}</pre>}
+          {!this.config.shortDesignTokens && <pre>--{row.token}</pre>}
         </td>
         {row.aliasTokens.length > 0 && (
           <td>
