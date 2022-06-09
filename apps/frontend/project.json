@@ -24,7 +24,8 @@
           "dev": false,
           "prod": true
         }
-      }
+      },
+      "defaultConfiguration": "production"
     },
     "serve": {
       "executor": "@nxext/stencil:serve",
