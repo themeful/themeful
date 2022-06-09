@@ -75,8 +75,6 @@ export class APIService {
         return this.dispatchThemeValue({ action, fields, identifier })
       case 'aliasToken':
         return this.dispatchAliasToken({ action })
-      case 'aliasTokenSelect':
-        return this.dispatchDesignToken({ action: 'updateAliasTokens', fields, identifier })
       case 'designToken':
         return this.dispatchDesignToken({ action, fields, identifier })
     }

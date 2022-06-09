@@ -151,6 +151,20 @@ const formDatas = {
       description: 'Some good description',
     },
   },
+  designTokenSplit: {
+    form: 'designTokenSplit',
+    identifier: 'dtSomeTokenName',
+    groups,
+    propertyTypes: propertySelect,
+    aliasTokens: ['atCardBackground'],
+    fields: {
+      name: 'Some Token Name',
+      group: 'Base',
+      type: 'color',
+      description: 'Some good description',
+      selected: ['atButtonBackground'],
+    },
+  },
   themeValue: {
     form: 'themeValue',
     identifier: {
@@ -238,6 +252,9 @@ export const allForms = (args) => {
           <tf-button onClick={() => openOverlay('theme')}>Open Theme Form</tf-button>
           <tf-button onClick={() => openOverlay('themeValue')}>Open Theme Value Form</tf-button>
           <tf-button onClick={() => openOverlay('designToken')}>Open Design Token Form</tf-button>
+          <tf-button onClick={() => openOverlay('designTokenSplit')}>
+            Open Design Token Split Form
+          </tf-button>
           <tf-button onClick={() => openOverlay('aliasTokenSelect')}>
             Open Alias Token Form
           </tf-button>

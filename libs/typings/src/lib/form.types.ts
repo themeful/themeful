@@ -126,7 +126,7 @@ export interface StyleDeleteAction {
 
 // --------- AliasTokens ------------
 
-export type AliasTokenFormAction = CloseAction | OpenAction | RescanAction | AliasTokenUpdateAction
+export type AliasTokenFormAction = CloseAction | OpenAction | RescanAction
 
 export type AliasTokenIntegrationAction = AliasTokenFormAction & {
   controller: 'aliasToken'
@@ -140,12 +140,6 @@ export interface AliasTokenFormData {
   identifier: string
   aliasTokens: string[]
   fields?: { selected: string[] }
-}
-
-export interface AliasTokenUpdateAction {
-  action: 'update'
-  identifier: string
-  fields: { selected: string[] }
 }
 
 export interface RescanAction {
@@ -199,13 +193,21 @@ export interface ThemeDeleteAction {
 }
 
 // --------- DesignToken ------------
-export type DesignTokenIntegration = DesignTokenFormData & {
+export type DesignTokenIntegration = (DesignTokenFormData | DesignTokenSplitFormData) & {
   form: 'designToken'
 }
 
 export interface DesignTokenFormData {
   identifier?: string
   fields?: DesignTokenFormFields
+  groups: string[]
+  propertyTypes: KeyValues
+}
+
+export interface DesignTokenSplitFormData {
+  identifier?: string
+  aliasTokens: string[]
+  fields?: DesignTokenSplitFormFields
   groups: string[]
   propertyTypes: KeyValues
 }
@@ -217,12 +219,20 @@ export interface DesignTokenFormFields {
   description: string
 }
 
+export interface DesignTokenSplitFormFields {
+  name: string
+  description: string
+  selected: string[]
+}
+
 export type DesignTokenFormAction =
   | OpenAction
   | CloseAction
   | DesignTokenCreateAction
   | DesignTokenUpdateAction
   | DesignTokenDeleteAction
+  | DesignTokenAliasTokensAction
+  | DesignTokenSplitAction
 
 export type DesignTokenIntegrationAction = DesignTokenFormAction & {
   controller: 'designToken'
@@ -242,6 +252,20 @@ export interface DesignTokenUpdateAction {
 export interface DesignTokenDeleteAction {
   action: 'delete'
   identifier: string
+}
+
+export interface DesignTokenAliasTokensAction {
+  controller: 'designToken'
+  action: 'updateAliasTokens'
+  identifier: string
+  fields: { selected: string[] }
+}
+
+export interface DesignTokenSplitAction {
+  controller: 'designToken'
+  action: 'split'
+  identifier: string
+  fields: DesignTokenSplitFormFields
 }
 
 // --------- ThemeValue ------------

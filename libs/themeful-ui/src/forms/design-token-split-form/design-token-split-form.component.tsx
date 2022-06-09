@@ -1,27 +1,33 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { AliasTokenFormData, DesignTokenFormAction, FormValues } from '@typings'
+import {
+  DesignTokenFormAction,
+  DesignTokenSplitFormData,
+  DesignTokenSplitFormFields,
+  FormValues,
+} from '@typings'
 import '../../components/button'
 import '../../components/inputs/multi-select-input'
+import '../../components/inputs/text-input'
 
 @Component({
-  tag: 'tf-alias-token-form',
-  styleUrl: 'alias-token-form.component.scss',
+  tag: 'tf-design-token-split-form',
+  styleUrl: 'design-token-split-form.component.scss',
   shadow: true,
 })
-export class AliasTokenFormComponent {
+export class DesignTokenSplitFormComponent {
   /** Data for the form */
-  @Prop() formData: AliasTokenFormData
+  @Prop() formData: DesignTokenSplitFormData
 
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action: EventEmitter<DesignTokenFormAction>
 
   @State() changed = false
-  @State() editMode: boolean
 
-  private controls: { [key: string]: HTMLTfMultiSelectInputElement } = {}
+  private controls: { [key: string]: HTMLTfMultiSelectInputElement | HTMLTfTextInputElement } = {}
+  private originName: string
 
   public componentWillLoad(): void {
-    this.editMode = this.formData.identifier && true
+    this.originName = this.formData.fields.name
   }
   public componentDidLoad(): void {
     this.action.emit({ action: 'open' })
@@ -38,10 +44,7 @@ export class AliasTokenFormComponent {
       (controls) => controls.every((valid) => valid)
     )
 
-  private dirty = (): Promise<boolean> =>
-    Promise.all(Object.values(this.controls).map((control) => control.dirty())).then((controls) =>
-      controls.some((valid) => valid)
-    )
+  private dirty = (): Promise<boolean> => Promise.resolve(true)
 
   private save = async (event: Event): Promise<void> => {
     event.preventDefault()
@@ -49,9 +52,9 @@ export class AliasTokenFormComponent {
       if (dirty && valid) {
         this.action.emit({
           controller: 'designToken',
-          action: 'updateAliasTokens',
+          action: 'split',
           identifier: this.formData.identifier,
-          fields: this.formValues() as unknown as { selected: string[] },
+          fields: this.formValues() as unknown as DesignTokenSplitFormFields,
         })
       } else if (valid) {
         this.action.emit({ action: 'close' })
@@ -63,10 +66,25 @@ export class AliasTokenFormComponent {
     this.action.emit({ action: 'close' })
   }
 
-  public render(): HTMLTfAliasTokenFormElement {
+  private nameValidation = (name: string): string | null =>
+    name !== this.originName ? null : 'Please change the name'
+
+  public render(): HTMLTfDesignTokenSplitFormElement {
     return (
       <form class="form" onSubmit={this.save}>
-        <h3>Select Alias Tokens</h3>
+        <h3>Split: {this.originName}</h3>
+        <tf-text-input
+          ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
+          label="Name"
+          value={`${this.formData.fields?.name} Copy`}
+          validation={this.nameValidation}
+          minLength={4}
+        />
+        <tf-text-input
+          ref={(el: HTMLTfTextInputElement) => (this.controls['description'] = el)}
+          label="Description"
+          value={this.formData.fields?.description}
+        />
         <tf-multi-select-input
           ref={(el: HTMLTfMultiSelectInputElement) => (this.controls['selected'] = el)}
           items={this.formData.aliasTokens}
@@ -77,7 +95,7 @@ export class AliasTokenFormComponent {
             Cancel
           </tf-button>
           <tf-button kind="primary" onClick={this.save} type="submit">
-            Save
+            Split
           </tf-button>
         </div>
       </form>

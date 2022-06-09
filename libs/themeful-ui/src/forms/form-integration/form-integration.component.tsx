@@ -4,6 +4,7 @@ import { Subject, Subscription } from 'rxjs'
 import '../../components/overlay'
 import '../../forms/alias-token-form'
 import '../../forms/design-token-form'
+import '../../forms/design-token-split-form'
 import '../../forms/style-form'
 import '../../forms/style-guide-duplicate-form'
 import '../../forms/style-guide-form'
@@ -72,6 +73,8 @@ export class FormIntegrationComponent {
         return <tf-theme-value-form {...this.args} />
       case 'designToken':
         return <tf-design-token-form {...this.args} />
+      case 'designTokenSplit':
+        return <tf-design-token-split-form {...this.args} />
       case 'aliasTokenSelect':
         return <tf-alias-token-form {...this.args} />
       default:
