@@ -37,9 +37,15 @@ export class DesignTokenService {
 
     const token = this.unifyToken(designToken.name)
 
+    const usedUUIDs = Object.values(this.designTokens).map(({ short }) => short)
+    let short = ''
+    do {
+      short = uuid()
+    } while (usedUUIDs.includes(short))
+
     const designTokenData: DesignToken = {
       name: designToken.name,
-      short: uuid(),
+      short,
       type: designToken.type,
       group: designToken.group,
       description: designToken.description,
@@ -168,7 +174,13 @@ export class DesignTokenService {
       }
       return aValue.group > bValue.group ? 1 : -1
     })
+    const usedUUIDs = []
     Object.keys(this.designTokens).forEach((key) => {
+      if (!this.designTokens[key].short || usedUUIDs.includes(this.designTokens[key].short)) {
+        this.designTokens[key].short = uuid()
+      }
+      usedUUIDs.push(this.designTokens[key].short)
+
       this.designTokens[key].aliasTokens = this.designTokens[key].aliasTokens.sort()
     })
     this.file.save('designTokens', this.designTokens)

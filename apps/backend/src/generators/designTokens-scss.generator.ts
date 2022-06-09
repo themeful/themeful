@@ -29,14 +29,15 @@ export function designTokensScss(
     for (const aliasToken of designTokens[designToken].aliasTokens) {
       output.push({
         aliasToken,
-        designToken: shortDesignTokens ? designTokens[designToken].short : designToken,
+        designToken,
+        key: shortDesignTokens ? designTokens[designToken].short : designToken,
       })
     }
   }
 
   writeFileSync(
     `${path}designTokens.scss`,
-    output.reduce((result, { aliasToken, designToken }) => {
+    output.reduce((result, { aliasToken, designToken, key }) => {
       if (!dtUsage[designToken]) {
         if (aliasTokens[aliasToken] && aliasTokens[aliasToken].default) {
           return `${result}$${aliasToken}: ${aliasTokens[aliasToken].default};\n`
@@ -47,9 +48,9 @@ export function designTokensScss(
         (dtUsage[designToken] === -1 || dtUsage[designToken] < themeCount) &&
         aliasTokens[aliasToken].default
       ) {
-        return `${result}$${aliasToken}: var(--${designToken}, ${aliasTokens[aliasToken].default});\n`
+        return `${result}$${aliasToken}: var(--${key}, ${aliasTokens[aliasToken].default});\n`
       }
-      return `${result}$${aliasToken}: var(--${designToken});\n`
+      return `${result}$${aliasToken}: var(--${key});\n`
     }, '')
   )
 }

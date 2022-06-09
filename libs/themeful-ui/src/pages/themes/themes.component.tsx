@@ -295,7 +295,7 @@ export class ThemesComponent {
 
   private renderHeader(): HTMLElement {
     return (
-      <Fragment>
+      <thead>
         <tr class="design-tokens__row design-tokens__header">
           <th colSpan={2}></th>
           {Object.values(this.styleGuideHeaders).map((styleGuide) => (
@@ -329,7 +329,7 @@ export class ThemesComponent {
             </th>
           ))}
         </tr>
-      </Fragment>
+      </thead>
     )
   }
 
@@ -439,7 +439,7 @@ export class ThemesComponent {
         <div class="design-tokens__wrapper">
           <table class="design-tokens">
             {this.themeNames && this.renderHeader()}
-            {this.rows && this.rows.map((row) => this.renderDesignTokenRow(row))}
+            <tbody>{this.rows && this.rows.map((row) => this.renderDesignTokenRow(row))}</tbody>
           </table>
         </div>
         <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
