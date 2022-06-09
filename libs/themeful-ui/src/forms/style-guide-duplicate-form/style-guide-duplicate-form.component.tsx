@@ -1,5 +1,5 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { FormValues, StyleGuideDuplicateFormAction, StyleGuideDuplicateFormData } from '@typings'
+import { FormValues, StyleGuideFormAction, StyleGuideFormData } from '@typings'
 import '../../components/button'
 import '../../components/inputs/text-input'
 
@@ -10,10 +10,10 @@ import '../../components/inputs/text-input'
 })
 export class StyleGuideDuplicateFormComponent {
   /** Data for the form */
-  @Prop() formData: StyleGuideDuplicateFormData
+  @Prop() formData: StyleGuideFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<StyleGuideDuplicateFormAction>
+  @Event({ composed: false }) action: EventEmitter<StyleGuideFormAction>
 
   @State() changed = false
 

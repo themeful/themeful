@@ -3,7 +3,6 @@ import { ExtendedStyle, StyleGuideBase, StyleMap } from './style.types'
 
 // --------- Common ------------
 export type FormActions =
-  | StyleGuideDuplicateFormAction
   | StyleGuideFormAction
   | StyleFormAction
   | ThemeFormAction
@@ -11,7 +10,6 @@ export type FormActions =
   | AliasTokenFormAction
 
 export type FormIntegrationActions =
-  | StyleGuideDuplicateIntegrationAction
   | StyleGuideIntegrationAction
   | StyleIntegrationAction
   | ThemeIntegrationAction
@@ -19,7 +17,6 @@ export type FormIntegrationActions =
   | AliasTokenIntegrationAction
 
 export type FormIntegrations =
-  | StyleGuideDuplicateIntegration
   | StyleGuideIntegration
   | StyleIntegration
   | ThemeIntegration
@@ -45,6 +42,7 @@ export type StyleGuideFormAction =
   | CloseAction
   | StyleGuideCreateAction
   | StyleGuideUpdateAction
+  | StyleGuideDuplicateAction
   | StyleGuideDeleteAction
 
 export type StyleGuideIntegrationAction = StyleGuideFormAction & {
@@ -69,32 +67,16 @@ export interface StyleGuideUpdateAction {
   fields: StyleGuideBase
 }
 
-export interface StyleGuideDeleteAction {
-  action: 'delete'
-  identifier: string
-}
-
-// --------- Style Guide Duplicate Form ------------
-export type StyleGuideDuplicateIntegration = StyleGuideDuplicateFormData & {
-  form: 'styleguideDuplicate'
-}
-
-export interface StyleGuideDuplicateFormData {
-  identifier?: string
-  fields?: { name: string }
-}
-
-export type StyleGuideDuplicateFormAction = OpenAction | CloseAction | StyleGuideDuplicateAction
-
-export type StyleGuideDuplicateIntegrationAction = StyleGuideDuplicateFormAction & {
-  controller: 'styleguide'
-}
-
 export interface StyleGuideDuplicateAction {
   controller: string
   action: 'duplicate'
   identifier: string
   fields: { name: string }
+}
+
+export interface StyleGuideDeleteAction {
+  action: 'delete'
+  identifier: string
 }
 
 // --------- Style Form ------------
