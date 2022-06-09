@@ -54,56 +54,59 @@ export class ThemefulMicrofrontend {
     return (
       <Host>
         <header>
-          <div class="logo-bar">
-            <stencil-route-link url="/themes">
-              <img class="logo" src="/assets/themeful.svg" />
-            </stencil-route-link>
+          <stencil-route-link url="/themes">
+            <img class="logo" src="/assets/themeful.svg" />
+          </stencil-route-link>
+          <div class="navigation">
             <h1>Themeful</h1>
+            <nav class="button-group nav-row">
+              <stencil-route-link url="/themes">
+                <tf-button kind="selectable">Themes</tf-button>
+              </stencil-route-link>
+              <stencil-route-link url="/styleguides">
+                <tf-button kind="selectable">Style Guides</tf-button>
+              </stencil-route-link>
+              <tf-button class="mode-toggle" onClick={this.toogleMode} kind="selectable">
+                {this.mode === 'light' ? 'Dark' : 'Light'} Mode
+              </tf-button>
+            </nav>
           </div>
-          <nav class="button-group nav-row">
-            <stencil-route-link url="/themes">
-              <tf-button kind="selectable">Themes</tf-button>
-            </stencil-route-link>
-            <stencil-route-link url="/styleguides">
-              <tf-button kind="selectable">Style Guides</tf-button>
-            </stencil-route-link>
-            <tf-button class="mode-toggle" onClick={this.toogleMode} kind="selectable">
-              {this.mode === 'light' ? 'Dark' : 'Light'} Mode
-            </tf-button>
-          </nav>
+
+          <tf-toast {...{ msg$: this.toast$ }} />
         </header>
-        <tf-toast {...{ msg$: this.toast$ }} />
-        <stencil-router>
-          <stencil-route-switch scrollTopOffset={0}>
-            <stencil-route
-              url="/themes"
-              component="tf-themes"
-              componentProps={{
-                bundle$: this.bundle$,
-                onAction: this.onAction,
-              }}
-            />
-            <stencil-route
-              url="/styleguides"
-              component="tf-style-guides"
-              componentProps={{
-                styleGuides$: this.styleGuides$,
-                onAction: this.onAction,
-              }}
-            />
-            <stencil-route
-              url="/styleguide/:slug"
-              component="tf-style-guide-details"
-              componentProps={{
-                styleGuides$: this.styleGuides$,
-                onAction: this.onAction,
-              }}
-            />
-            <stencil-route url="/" exact={true}>
-              <stencil-router-redirect url="/themes" />
-            </stencil-route>
-          </stencil-route-switch>
-        </stencil-router>
+        <main>
+          <stencil-router>
+            <stencil-route-switch scrollTopOffset={0}>
+              <stencil-route
+                url="/themes"
+                component="tf-themes"
+                componentProps={{
+                  bundle$: this.bundle$,
+                  onAction: this.onAction,
+                }}
+              />
+              <stencil-route
+                url="/styleguides"
+                component="tf-style-guides"
+                componentProps={{
+                  styleGuides$: this.styleGuides$,
+                  onAction: this.onAction,
+                }}
+              />
+              <stencil-route
+                url="/styleguide/:slug"
+                component="tf-style-guide-details"
+                componentProps={{
+                  styleGuides$: this.styleGuides$,
+                  onAction: this.onAction,
+                }}
+              />
+              <stencil-route url="/" exact={true}>
+                <stencil-router-redirect url="/themes" />
+              </stencil-route>
+            </stencil-route-switch>
+          </stencil-router>
+        </main>
       </Host>
     )
   }

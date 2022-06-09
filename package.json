@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "run-p frontend backend",
     "dev:ui": "run-p themeful-ui storybook",
-    "copy": "yarn build backend && rm -rf ../themeful-sample/themeful && cp -rf ./dist/apps/backend/ ../themeful-sample/themeful",
+    "sample": "yarn nx run backend:sample",
     "themeful-ui": "nx run themeful-ui:build:watch",
     "frontend": "nx run frontend:serve:watch",
     "backend": "nx run backend:serve",

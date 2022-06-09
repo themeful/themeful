@@ -32,8 +32,7 @@
           "target": "copy-assets",
           "projects": "self"
         }
-      ],
-      "defaultConfiguration": "production"
+      ]
     },
     "serve": {
       "executor": "@nrwl/node:node",
@@ -65,6 +64,28 @@
         }
       }
     },
+    "release": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "yarn nx run frontend:build:production",
+          "yarn nx run backend:copy-assets",
+          "yarn nx run backend:build:production"
+        ],
+        "parallel": false
+      }
+    },
+    "sample": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "yarn nx run backend:release",
+          "rm -rf ../themeful-sample/themeful",
+          "cp -rf ./dist/apps/backend/ ../themeful-sample/themeful"
+        ],
+        "parallel": false
+      }
+    },
     "copy-assets": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
@@ -74,13 +95,7 @@
         ],
         "cwd": "apps/backend/src",
         "parallel": false
-      },
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": "dependencies"
-        }
-      ]
+      }
     }
   },
   "tags": ["scope:backend"],

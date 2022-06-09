@@ -24,8 +24,7 @@
           "dev": false,
           "prod": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
       "executor": "@nxext/stencil:serve",
@@ -36,7 +35,7 @@
         "configPath": "apps/frontend/stencil.config.ts",
         "outputPath": "dist/apps/frontend",
         "proxyConfig": "apps/frontend/proxy.conf.json",
-        "port": 3330
+        "port": 3340
       },
       "configurations": {
         "watch": {

@@ -104,10 +104,10 @@ export class StyleGuidesComponent {
           ]}
           size="small"
         />
-        <main class="style-guide__wrapper">
+        <div class="style-guide__wrapper">
           {this.styleGuides &&
             this.styleGuides.map((styleGuide) => this.renderStyleGuide(styleGuide))}
-        </main>
+        </div>
         <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
       </Host>
     )
