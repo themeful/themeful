@@ -20,7 +20,7 @@
       "@themeful-ui": ["libs/themeful-ui/src/index.ts"],
       "@themeful-ui/*": ["libs/themeful-ui/src/*"],
       "@typings": ["libs/typings/src/index.ts"],
-      "@utils": ["libs/utils/src/index.ts"],
+      "@utils": ["libs/utils/src/lib/index.ts"],
       "@utils/*": ["libs/utils/src/lib/*"]
     }
   },
