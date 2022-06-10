@@ -1,10 +1,7 @@
-// Jest configuration file, see link for more information
-// https://jestjs.io/docs/en/configuration
+import { pathsToModuleNameMapper } from 'ts-jest/utils'
+import { compilerOptions } from '../../tsconfig.base.json'
 
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
-const { compilerOptions } = require('../../tsconfig.base')
-
-module.exports = {
+export default {
   displayName: 'themeful-ui',
   preset: '../../jest.preset.js',
   globals: {
@@ -14,7 +11,12 @@ module.exports = {
       useESM: true,
     },
   },
-  moduleDirectories: ['node_modules', 'libs/themeful-ui/src', 'libs/property-types/src'],
+  moduleDirectories: [
+    'node_modules',
+    'libs/themeful-ui/src',
+    'libs/property-types/src',
+    'libs/utils/src',
+  ],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
   testPathIgnorePatterns: ['dist', 'node_modules/'],
 }

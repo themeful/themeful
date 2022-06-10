@@ -1,5 +1,6 @@
 import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core'
-import { camelCase2Words } from '@utils'
+import { camelCase2Words } from '../../../../../utils/src'
+// import { camelCase2Words } from '@utils'
 
 @Component({
   tag: 'tf-multi-select-input',

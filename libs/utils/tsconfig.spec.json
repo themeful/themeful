@@ -10,6 +10,10 @@
     "**/*.spec.tsx",
     "**/*.spec.js",
     "**/*.spec.jsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
     "**/*.d.ts",
     "jest.config.ts"
   ]

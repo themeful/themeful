@@ -19,11 +19,11 @@ exports[`DesignTokenSplitFormComponent renders 1`] = `
                   Not Assigned
                 </h4>
                 <ul class="multi-select-input__scroll">
-                  <li class="multi-select-input__item" draggable="true">
-                    atCardBackground
+                  <li class="multi-select-input__item" draggable="true" title="atCardBackground">
+                    Card Background
                   </li>
-                  <li class="multi-select-input__item" draggable="true">
-                    atButtonBackground
+                  <li class="multi-select-input__item" draggable="true" title="atButtonBackground">
+                    Button Background
                   </li>
                 </ul>
               </div>
