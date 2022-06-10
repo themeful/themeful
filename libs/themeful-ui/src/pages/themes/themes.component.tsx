@@ -45,7 +45,7 @@ export class ThemesComponent {
   private groups: string[]
   private config: GlobalConfig
   private formData$ = new Subject()
-  private styleGuideHeaders: { [styleGuide: string]: { name: string; count: number } }
+  private styleGuideHeaders: { [styleGuide: string]: { name: string; count: number; slug: string } }
   private nav = [
     { label: 'Add Theme', callback: () => this.openThemeForm() },
     {
@@ -92,6 +92,7 @@ export class ThemesComponent {
           if (this.styleGuideHeaders[themes[key].styleGuide] === undefined) {
             this.styleGuideHeaders[themes[key].styleGuide] = {
               name: sgNames[themes[key].styleGuide],
+              slug: themes[key].styleGuide,
               count: 1,
             }
           } else {
@@ -318,7 +319,11 @@ export class ThemesComponent {
           <th colSpan={2}></th>
           {Object.values(this.styleGuideHeaders).map((styleGuide) => (
             <th colSpan={styleGuide.count}>
-              <h2>{styleGuide.name}</h2>
+              <h2>
+                <stencil-route-link url={`/styleguide/${styleGuide.slug}`}>
+                  {styleGuide.name}
+                </stencil-route-link>
+              </h2>
             </th>
           ))}
         </tr>
@@ -380,11 +385,16 @@ export class ThemesComponent {
         {row.aliasTokens.length > 0 && (
           <td>
             <ul class="design-tokens__aliasTokens">
-              {row.aliasTokens.map((aliasToken) => (
+              {row.aliasTokens.slice(0, 4).map((aliasToken) => (
                 <li>
                   <pre>${aliasToken}</pre>
                 </li>
               ))}
+              {row.aliasTokens.length > 4 && (
+                <li>
+                  <pre>...</pre>
+                </li>
+              )}
               <li class="design-tokens__select-aliasTokens">
                 <tf-button
                   {...{

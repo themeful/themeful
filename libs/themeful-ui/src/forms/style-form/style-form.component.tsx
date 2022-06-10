@@ -32,7 +32,7 @@ export class StyleFormComponent {
 
   public componentWillLoad(): void {
     this.editMode = this.formData?.identifier?.style && true
-    this.type = this.formData.fields?.type
+    this.type = this.formData.fields?.type || 'color'
   }
 
   public componentDidLoad(): void {
@@ -119,18 +119,14 @@ export class StyleFormComponent {
         />
         {this.type === 'color' ? (
           <tf-color-input
-            ref={(el: HTMLTfColorInputElement) =>
-              this.type === 'color' ? (this.controls['value'] = el) : el
-            }
+            ref={(el: HTMLTfColorInputElement) => (this.controls['value'] = el)}
             label="Color"
             required
             value={this.formData.fields?.value}
           />
         ) : (
           <tf-text-input
-            ref={(el: HTMLTfTextInputElement) =>
-              this.type !== 'color' ? (this.controls['value'] = el) : el
-            }
+            ref={(el: HTMLTfTextInputElement) => (this.controls['value'] = el)}
             label="Value"
             value={this.formData.fields?.value}
             minLength={3}

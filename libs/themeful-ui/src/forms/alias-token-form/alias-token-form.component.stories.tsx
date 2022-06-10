@@ -9,7 +9,18 @@ export default {
       {
         formData: {
           identifier: 'dtActionBg',
-          aliasTokens: ['atCardBackground', 'atButtonBackground'],
+          aliasTokens: [
+            'atCardBackground1',
+            'atButtonBackground1',
+            'atCardBackground2',
+            'atButtonBackground2',
+            'atCardBackground3',
+            'atButtonBackground3',
+            'atCardBackground4',
+            'atButtonBackground4',
+            'atCardBackground5',
+            'atButtonBackground5',
+          ],
           fields: {},
         },
         onAction: action('triggered action'),

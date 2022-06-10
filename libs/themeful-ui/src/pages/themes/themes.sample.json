@@ -406,7 +406,13 @@
       "group": "content",
       "description": "Font color for normal text",
       "properties": ["color"],
-      "aliasTokens": ["atBaseFontColor", "atButtonFontColor"]
+      "aliasTokens": [
+        "atBaseFontColor",
+        "atButtonFontColor1",
+        "atButtonFontColor2",
+        "atButtonFontColor3",
+        "atButtonFontColor4"
+      ]
     },
     "dtFontSize100": {
       "name": "Normal Font Size",
@@ -723,5 +729,9 @@
         }
       }
     }
+  },
+  {
+    "shortDesignTokens": false,
+    "baseFontSize": "16px"
   }
 ]

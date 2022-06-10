@@ -68,6 +68,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
+          "rm -rf ./dist",
           "yarn nx run frontend:build:production",
           "yarn nx run backend:copy-assets",
           "yarn nx run backend:build:production"
