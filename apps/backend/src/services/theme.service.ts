@@ -87,7 +87,7 @@ export class ThemeService {
     if (!this.themes[oldSlug]) {
       return false
     }
-    const theme = this.themes[oldSlug]
+    const theme = clone(this.themes[oldSlug])
     const newSlug = slugify([theme.styleGuide, name])
     if (this.themes[newSlug] || newSlug === oldSlug) {
       return false
@@ -168,8 +168,9 @@ export class ThemeService {
           Object.keys(theme.styles).forEach((designToken) => {
             Object.keys(this.themes[themeName].styles[designToken]).forEach((key) => {
               if (key === data.primary) {
-                this.themes[themeName].styles[designToken][data.secondary] =
+                this.themes[themeName].styles[designToken][data.secondary] = clone(
                   this.themes[themeName].styles[designToken][data.primary]
+                )
                 delete this.themes[themeName].styles[designToken][key]
               } else if (this.themes[themeName].styles[designToken][key].style === data.primary) {
                 this.themes[themeName].styles[designToken][key].style = data.secondary
@@ -212,7 +213,7 @@ export class ThemeService {
       case 'split':
         Object.entries(this.themes).forEach(([themeName, theme]) => {
           if (theme.styles[data.primary]) {
-            this.themes[themeName].styles[data.secondary] = theme.styles[data.primary]
+            this.themes[themeName].styles[data.secondary] = clone(theme.styles[data.primary])
           }
         })
         break
@@ -239,7 +240,7 @@ export class ThemeService {
             if (this.themes[slug].styleGuide === data.primary) {
               const newSlug = slugify([data.secondary, this.themes[slug].name])
               this.themes[newSlug] = this.changeSlug(
-                this.themes[slug],
+                clone(this.themes[slug]),
                 data.primary,
                 data.secondary
               )
@@ -254,7 +255,7 @@ export class ThemeService {
             if (this.themes[slug].styleGuide === data.primary) {
               const newSlug = slugify([data.secondary, this.themes[slug].name])
               this.themes[newSlug] = this.changeSlug(
-                this.themes[slug],
+                clone(this.themes[slug]),
                 data.primary,
                 data.secondary
               )
