@@ -8,7 +8,7 @@ export default {
     samples: [
       {
         label: 'Nothing selected',
-        items: ['First Value', 'Second Value', 'Third Value', 'Fourth Value'],
+        items: ['atFirstValue', 'atSecond123Value', 'atThird124value45', 'Fourth Value'],
         onInputChange: action('change'),
       },
       {

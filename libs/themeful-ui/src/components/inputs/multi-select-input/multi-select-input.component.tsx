@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core'
+import { camelCase2Words } from '@utils'
 
 @Component({
   tag: 'tf-multi-select-input',
@@ -35,6 +36,7 @@ export class MultiSelectInputComponent {
   @State() valid: boolean
   @State() error = ''
   private element: { direction: string; index: number; value: string }
+  private nameMap: { [key: string]: string } = {}
 
   /** Validate value */
   @Method()
@@ -54,6 +56,12 @@ export class MultiSelectInputComponent {
     this.changed = true
     this.internalValidation()
     this.touched = true
+  }
+
+  public componentWillLoad(): void {
+    this.items.forEach((item) => {
+      this.nameMap[item] = camelCase2Words(item)
+    })
   }
 
   private internalValidation = (): boolean => {
@@ -153,8 +161,9 @@ export class MultiSelectInputComponent {
                       key: `${index} ${item}`,
                       class: 'multi-select-input__item',
                     }}
+                    title={item}
                   >
-                    {item}
+                    {this.nameMap[item]}
                   </li>
                 ))}
               </ul>
@@ -179,8 +188,9 @@ export class MultiSelectInputComponent {
                       key: `${index} ${item}`,
                       class: 'multi-select-input__item',
                     }}
+                    title={item}
                   >
-                    {item}
+                    {this.nameMap[item]}
                   </li>
                 ))}
               </ul>
