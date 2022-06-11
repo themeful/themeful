@@ -6,7 +6,7 @@ import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } f
   shadow: true,
 })
 export class TextInputComponent {
-  @State() input: HTMLInputElement
+  private input!: HTMLInputElement
 
   /** Input type */
   @Prop() type = 'text'

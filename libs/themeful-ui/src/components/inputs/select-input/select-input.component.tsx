@@ -7,7 +7,7 @@ import { KeyValues } from '@typings'
   shadow: true,
 })
 export class SelectInputComponent {
-  @State() input: HTMLSelectElement
+  private input!: HTMLSelectElement
 
   /** Input type */
   @Prop() type = 'text'

@@ -7,3 +7,7 @@
 Frontend: `yarn themeful-ui`
 
 Backend: `yarn backend`
+
+Test: `yarn nx run themeful-ui:test --test-name-pattern=`
+
+SnapShot Update: `yarn nx run themeful-ui:test:update`

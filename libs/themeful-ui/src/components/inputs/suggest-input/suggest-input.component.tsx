@@ -6,7 +6,7 @@ import { Component, Event, EventEmitter, h, Method, Prop, State, Watch } from '@
   shadow: true,
 })
 export class SuggestInputComponent {
-  @State() input: HTMLInputElement
+  private input!: HTMLInputElement
 
   /** Input label */
   @Prop() label: string

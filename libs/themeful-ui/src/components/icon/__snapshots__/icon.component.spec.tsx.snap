@@ -4,7 +4,7 @@ exports[`IconComponent renders 1`] = `
 <tf-icon>
   <mock:shadow-root>
     <div class="icon">
-      <i class="gg-undefined"></i>
+      <i class="gg-copy"></i>
     </div>
   </mock:shadow-root>
 </tf-icon>

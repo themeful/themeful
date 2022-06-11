@@ -25,7 +25,6 @@ export class StyleGuideDuplicateFormComponent {
   }
 
   public componentDidLoad(): void {
-    console.log(this.originName)
     this.action.emit({ action: 'open' })
   }
 

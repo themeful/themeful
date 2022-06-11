@@ -1,36 +1,36 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { StyleGuidesComponent } from './style-guides.component'
+import { StyleGuideDetailsComponent } from './style-guide-details.component'
 
-describe('StyleGuidesComponent', () => {
+describe('StyleGuideDetailsComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [StyleGuidesComponent],
-      html: '<tf-style-guides></tf-style-guides>',
+      components: [StyleGuideDetailsComponent],
+      html: '<tf-style-guide-details></tf-style-guide-details>',
     })
     expect(root).toEqualHtml(`
-      <tf-style-guides>
+      <tf-style-guide-details>
         <mock:shadow-root>
           <div>
             Hello, World! I'm
           </div>
         </mock:shadow-root>
-      </tf-style-guides>
+      </tf-style-guide-details>
     `)
   })
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [StyleGuidesComponent],
-      html: `<tf-style-guides first="Stencil" last="'Don't call me a framework' JS"></tf-style-guides>`,
+      components: [StyleGuideDetailsComponent],
+      html: `<tf-style-guide-details first="Stencil" last="'Don't call me a framework' JS"></tf-style-guide-details>`,
     })
     expect(root).toEqualHtml(`
-      <tf-style-guides first="Stencil" last="'Don't call me a framework' JS">
+      <tf-style-guide-details first="Stencil" last="'Don't call me a framework' JS">
         <mock:shadow-root>
           <div>
             Hello, World! I'm Stencil 'Don't call me a framework' JS
           </div>
         </mock:shadow-root>
-      </tf-style-guides>
+      </tf-style-guide-details>
     `)
   })
 })

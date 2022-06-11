@@ -7,7 +7,7 @@ describe('IconComponent', () => {
     const page = await newSpecPage({
       components: [IconComponent],
       autoApplyChanges: true,
-      template: () => <tf-icon />,
+      template: () => <tf-icon icon="copy" />,
     })
 
     expect(page.root).toMatchSnapshot()

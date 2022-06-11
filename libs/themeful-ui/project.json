@@ -13,9 +13,18 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "projectType": "library",
-        "tsConfig": "libs/themeful-ui/tsconfig.spec.json",
+        "config": "libs/themeful-ui/jest.config.ts",
         "configPath": "libs/themeful-ui/stencil.config.ts",
-        "outputPath": "dist/libs/themeful-ui"
+        "outputPath": "dist/libs/themeful-ui",
+        "verbose": "true"
+      },
+      "configurations": {
+        "update": {
+          "updateSnapshot": true
+        },
+        "watch": {
+          "watch": true
+        }
       }
     },
     "build": {
