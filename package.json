@@ -117,6 +117,7 @@
     "@nestjs/serve-static": "^2.2.2",
     "@nestjs/websockets": "^8.4.6",
     "@stencil/core": "^2.16.1",
+    "camel-case": "^4.1.2",
     "colortranslator": "^1.9.2",
     "find": "^0.3.0",
     "jsonfile": "^6.1.0",

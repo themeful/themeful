@@ -45,6 +45,7 @@ specifiers:
   autoprefixer: ^10.4.7
   bufferutil: ^4.0.6
   cache-manager: ^4.0.1
+  camel-case: ^4.1.2
   class-transformer: ^0.5.1
   class-validator: ^0.13.2
   colortranslator: ^1.9.2
@@ -96,6 +97,7 @@ dependencies:
   '@nestjs/serve-static': 2.2.2_etfae4mmenqzp3rs3pua7csngy
   '@nestjs/websockets': 8.4.6_6a7csugkuqc2e66avgu3rijc4a
   '@stencil/core': 2.16.1
+  camel-case: 4.1.2
   colortranslator: 1.9.2
   find: 0.3.0
   jsonfile: 6.1.0
@@ -7902,7 +7904,6 @@ packages:
     dependencies:
       pascal-case: 3.1.2
       tslib: 2.4.0
-    dev: true
 
   /camelcase-css/2.0.1:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
@@ -13946,7 +13947,6 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.4.0
-    dev: true
 
   /pascalcase/0.1.1:
     resolution: {integrity: sha512-XHXfu/yOQRy9vYOtUDVMN60OEJjW013GoObG1o+xwQTpB9eYJX/BjXMsdW13ZDPruFhYYn0AG22w0xgQMwl3Nw==}
