@@ -18,23 +18,28 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 17
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.2.1
+
       - name: Install dependencies
-        run: yarn
+        run: pnpm install
 
       - name: NRWL Update
         id: nrwl_update
         continue-on-error: true
         run: |
-          yarn update
-          yarn upgrade
-          yarn format
+          pnpm update
+          pnpm upgrade
+          pnpm format
 
       - name: Check for changes
         run: |
