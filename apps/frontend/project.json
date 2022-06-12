@@ -53,6 +53,9 @@
         "outputPath": "dist/apps/frontend"
       },
       "configurations": {
+        "update": {
+          "updateSnapshot": true
+        },
         "watch": {
           "watch": true
         }

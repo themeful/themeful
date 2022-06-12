@@ -8,24 +8,6 @@
     }
   },
   "targets": {
-    "test": {
-      "executor": "@nxext/stencil:test",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "projectType": "library",
-        "configPath": "libs/themeful-ui/stencil.config.ts",
-        "outputPath": "dist/libs/themeful-ui",
-        "verbose": "true"
-      },
-      "configurations": {
-        "update": {
-          "updateSnapshot": true
-        },
-        "watch": {
-          "watch": true
-        }
-      }
-    },
     "build": {
       "executor": "@nxext/stencil:build",
       "outputs": ["dist/libs/themeful-ui"],
@@ -45,15 +27,6 @@
         }
       }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/themeful-ui/**/*.ts",
-          "libs/themeful-ui/**/*.tsx"
-        ]
-      }
-    },
     "serve": {
       "executor": "@nxext/stencil:build",
       "outputs": ["dist/libs/themeful-ui"],
@@ -62,6 +35,32 @@
         "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
         "configPath": "libs/themeful-ui/stencil.config.ts",
         "outputPath": "dist/libs/themeful-ui"
+      }
+    },
+    "test": {
+      "executor": "@nxext/stencil:test",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "projectType": "library",
+        "configPath": "libs/themeful-ui/stencil.config.ts",
+        "outputPath": "dist/libs/themeful-ui"
+      },
+      "configurations": {
+        "update": {
+          "updateSnapshot": true
+        },
+        "watch": {
+          "watch": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/themeful-ui/**/*.ts",
+          "libs/themeful-ui/**/*.tsx"
+        ]
       }
     },
     "e2e": {
