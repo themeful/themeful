@@ -10,9 +10,14 @@ describe('ThemesComponent', () => {
     expect(root).toEqualHtml(`
       <tf-themes>
         <mock:shadow-root>
-          <div>
-            Hello, World! I'm
+          <stencil-route-title pagetitle="Themeful - Themes"></stencil-route-title>
+          <tf-navigation size="small"></tf-navigation>
+          <div class="design-tokens__wrapper">
+            <table class="design-tokens">
+              <tbody></tbody>
+            </table>
           </div>
+          <tf-form-integration></tf-form-integration>
         </mock:shadow-root>
       </tf-themes>
     `)
@@ -21,14 +26,19 @@ describe('ThemesComponent', () => {
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [ThemesComponent],
-      html: `<tf-themes first="Stencil" last="'Don't call me a framework' JS"></tf-themes>`,
+      html: `<tf-themes></tf-themes>`,
     })
     expect(root).toEqualHtml(`
-      <tf-themes first="Stencil" last="'Don't call me a framework' JS">
+      <tf-themes>
         <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
+          <stencil-route-title pagetitle="Themeful - Themes"></stencil-route-title>
+          <tf-navigation size="small"></tf-navigation>
+          <div class="design-tokens__wrapper">
+            <table class="design-tokens">
+              <tbody></tbody>
+            </table>
           </div>
+        <tf-form-integration></tf-form-integration>
         </mock:shadow-root>
       </tf-themes>
     `)

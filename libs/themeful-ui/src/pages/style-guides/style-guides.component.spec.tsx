@@ -10,9 +10,10 @@ describe('StyleGuidesComponent', () => {
     expect(root).toEqualHtml(`
       <tf-style-guides>
         <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
+          <stencil-route-title pagetitle="Themeful - Style Guides"></stencil-route-title>
+          <tf-navigation size="small"></tf-navigation>
+          <div class="style-guide__wrapper"></div>
+          <tf-form-integration></tf-form-integration>
         </mock:shadow-root>
       </tf-style-guides>
     `)
@@ -21,14 +22,15 @@ describe('StyleGuidesComponent', () => {
   it('renders with values', async () => {
     const { root } = await newSpecPage({
       components: [StyleGuidesComponent],
-      html: `<tf-style-guides first="Stencil" last="'Don't call me a framework' JS"></tf-style-guides>`,
+      html: `<tf-style-guides></tf-style-guides>`,
     })
     expect(root).toEqualHtml(`
-      <tf-style-guides first="Stencil" last="'Don't call me a framework' JS">
+      <tf-style-guides>
         <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
+          <stencil-route-title pagetitle="Themeful - Style Guides"></stencil-route-title>
+          <tf-navigation size="small"></tf-navigation>
+          <div class="style-guide__wrapper"></div>
+          <tf-form-integration></tf-form-integration>
         </mock:shadow-root>
       </tf-style-guides>
     `)

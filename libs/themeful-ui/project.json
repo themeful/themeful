@@ -13,7 +13,6 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "projectType": "library",
-        "config": "libs/themeful-ui/jest.config.ts",
         "configPath": "libs/themeful-ui/stencil.config.ts",
         "outputPath": "dist/libs/themeful-ui",
         "verbose": "true"

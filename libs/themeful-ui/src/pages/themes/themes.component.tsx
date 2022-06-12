@@ -1,5 +1,5 @@
 import { propertySelect } from '@properties'
-import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
+import { Component, Event, EventEmitter, Fragment, h, Host, Prop, State } from '@stencil/core'
 import {
   AliasTokens,
   APIBundle,
@@ -18,7 +18,6 @@ import {
   Themes,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
-import Fragment from 'stencil-fragment'
 import '../../components/button'
 import '../../components/icon'
 import '../../components/menu'
@@ -424,7 +423,7 @@ export class ThemesComponent {
         {row.themeValues.map((themeValue, themeIndex) => (
           <td class="design-tokens__theme-value">
             {themeValue.map((themeMedia) => (
-              <Fragment>
+              <>
                 {(themeValue.length > 1 || themeMedia.media !== 'default') && (
                   <span class="design-tokens__media-label icon-text-wrapper">
                     {themeMedia.global && <tf-icon size="small" icon="globe" />}
@@ -445,7 +444,7 @@ export class ThemesComponent {
                   }}
                   class="design-tokens__value"
                 ></tf-property>
-              </Fragment>
+              </>
             ))}
 
             <tf-button
