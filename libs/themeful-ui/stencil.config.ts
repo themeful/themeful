@@ -32,7 +32,6 @@ export const config: Config = {
       '@properties': '<rootDir>/../property-types/src/index.ts',
       '@typings': '<rootDir>/../typings/src/index.ts',
       '@utils': '<rootDir>/../utils/src/lib/index.ts',
-      '@utils/*': '<rootDir>/../utils/src/lib/*',
     },
   },
 }

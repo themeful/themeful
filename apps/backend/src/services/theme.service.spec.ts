@@ -213,27 +213,27 @@ describe('ThemeService', () => {
   })
 })
 
-const newTheme: Theme = {
-  name: 'Light',
-  styleGuide: 'styleGuide3',
-  styles: {
-    dtActionBG: {
-      default: {
-        style: 'styleGuide3_brand_secondary',
-      },
-    },
-    dtFontColorPrimary: {
-      default: {
-        style: 'global_base_black',
-      },
-    },
-    dtFontSize100: {
-      default: {
-        style: 'styleGuide3_fontSize_primary',
-      },
-    },
-  },
-}
+// const newTheme: Theme = {
+//   name: 'Light',
+//   styleGuide: 'styleGuide3',
+//   styles: {
+//     dtActionBG: {
+//       default: {
+//         style: 'styleGuide3_brand_secondary',
+//       },
+//     },
+//     dtFontColorPrimary: {
+//       default: {
+//         style: 'global_base_black',
+//       },
+//     },
+//     dtFontSize100: {
+//       default: {
+//         style: 'styleGuide3_fontSize_primary',
+//       },
+//     },
+//   },
+// }
 
 const updatedTheme: Theme = {
   name: 'Red',

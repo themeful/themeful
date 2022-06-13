@@ -423,7 +423,7 @@ export class ThemesComponent {
         {row.themeValues.map((themeValue, themeIndex) => (
           <td class="design-tokens__theme-value">
             {themeValue.map((themeMedia) => (
-              <>
+              <Fragment>
                 {(themeValue.length > 1 || themeMedia.media !== 'default') && (
                   <span class="design-tokens__media-label icon-text-wrapper">
                     {themeMedia.global && <tf-icon size="small" icon="globe" />}
@@ -444,7 +444,7 @@ export class ThemesComponent {
                   }}
                   class="design-tokens__value"
                 ></tf-property>
-              </>
+              </Fragment>
             ))}
 
             <tf-button

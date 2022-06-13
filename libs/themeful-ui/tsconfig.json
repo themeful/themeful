@@ -13,8 +13,7 @@
     "noUnusedParameters": true,
     "jsx": "react",
     "jsxFactory": "h",
-    "resolveJsonModule": true,
-    "jsxFragmentFactory": "Fragment"
+    "resolveJsonModule": true
   },
   "include": [],
   "references": [

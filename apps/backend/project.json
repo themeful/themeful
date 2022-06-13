@@ -69,9 +69,9 @@
       "options": {
         "commands": [
           "rm -rf ./dist",
-          "yarn nx run frontend:build:production",
-          "yarn nx run backend:copy-assets",
-          "yarn nx run backend:build:production"
+          "pnpm nx run frontend:build:production",
+          "pnpm nx run backend:copy-assets",
+          "pnpm nx run backend:build:production"
         ],
         "parallel": false
       }
@@ -80,7 +80,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "yarn nx run backend:release",
+          "pnpm nx run backend:release",
           "rm -rf ../themeful-sample/themeful",
           "cp -rf ./dist/apps/backend/ ../themeful-sample/themeful"
         ],

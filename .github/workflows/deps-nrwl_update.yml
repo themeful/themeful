@@ -37,7 +37,7 @@ jobs:
         id: nrwl_update
         continue-on-error: true
         run: |
-          pnpm update
+          pnpm nrwl:update
           pnpm upgrade
           pnpm format
 

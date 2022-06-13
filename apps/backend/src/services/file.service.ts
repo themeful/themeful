@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { getProperty, propertyTypes } from '@properties'
 import {
   AliasTokens,
+  Data,
   DesignTokens,
   ExtendedStyle,
   FormatedStyleGuides,
@@ -65,7 +66,7 @@ export class FileService {
     )
   }
 
-  public save(filename: string, data: any) {
+  public save(filename: string, data: Data) {
     const newHash = hash(data)
     if (newHash !== this.hashKeys[filename]) {
       this.hashKeys[filename] = newHash

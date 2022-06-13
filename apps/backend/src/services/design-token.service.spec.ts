@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { DesignTokenAPI } from '@typings'
+import * as utils from '@utils'
 import { clone } from '@utils'
-import * as utils from '@utils/uuid.util'
 import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
 import { ConfigService } from './config.service'
@@ -202,16 +202,16 @@ describe('DesignTokenService', () => {
   // })
 })
 
-const newDesignToken = {
-  type: 'color',
-  short: 'xyz',
-  token: 'dtActionBackgroundNew',
-  name: 'Action Background New',
-  group: 'content',
-  description: 'Background for action elements',
-  properties: ['color', 'background-color'],
-  aliasTokens: ['atButtonBackground'],
-}
+// const newDesignToken = {
+//   type: 'color',
+//   short: 'xyz',
+//   token: 'dtActionBackgroundNew',
+//   name: 'Action Background New',
+//   group: 'content',
+//   description: 'Background for action elements',
+//   properties: ['color', 'background-color'],
+//   aliasTokens: ['atButtonBackground'],
+// }
 
 const updatedDesignToken = {
   type: 'color',
