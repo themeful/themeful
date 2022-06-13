@@ -23,6 +23,7 @@ export const config: Config = {
       '@themeful-ui': '<rootDir>/../../libs/themeful-ui/src/index.ts',
       '@themeful-ui/*': '<rootDir>/../../libs/themeful-ui/src/*',
       '@utils': '<rootDir>/../../libs/utils/src/lib/index.ts',
+      '@utils/*': '<rootDir>/../../libs/utils/src/lib/*',
     },
   },
 }
