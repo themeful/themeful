@@ -40,10 +40,17 @@ describe('themesScss', () => {
         `${testPath}theme_styleGuide1_light.scss`,
         `@import './styleGuides.scss';
 
+body {
+  font-size: 12px;
+}
+
 & {
-  --dtActionBG: #{$styleGuide1_brand_secondary};
-  --dtFontColorPrimary: #{$global_base_black};
-  --dtFontSize100: #{$styleGuide1_fontSize_primary};
+  --dtTestActionBackground: #{$styleGuide1_brand_secondary};
+  --dtTestFontColorPrimary: #{$global_base_black};
+  --dtTestFontSize100: 12px;
+  @include global_mediaQuery_aboveDesktop {
+    --dtTestFontSize100: 13px;
+  }
 }
 `
       )
@@ -53,10 +60,14 @@ describe('themesScss', () => {
         `${testPath}theme_styleGuide1_dark.scss`,
         `@import './styleGuides.scss';
 
+body {
+  font-size: 12px;
+}
+
 & {
-  --dtActionBG: #{$styleGuide1_brand_secondary};
-  --dtFontColorPrimary: #{$global_base_white};
-  --dtFontSize100: #{$styleGuide1_fontSize_primary};
+  --dtTestActionBackground: #{$styleGuide1_brand_secondary};
+  --dtTestFontColorPrimary: #{$global_base_white};
+  --dtTestFontSize100: #{$styleGuide1_fontSize_primary};
 }
 `
       )
@@ -67,9 +78,9 @@ describe('themesScss', () => {
         `@import './styleGuides.scss';
 
 & {
-  --dtActionBG: #{$styleGuide2_brand_primary};
-  --dtFontColorPrimary: #{$global_base_black};
-  --dtFontSize100: #{$styleGuide2_fontSize_normal};
+  --dtTestActionBackground: #{$styleGuide2_brand_primary};
+  --dtTestFontColorPrimary: #{$global_base_black};
+  --dtTestFontSize100: #{$styleGuide2_fontSize_normal};
 }
 `
       )
@@ -80,9 +91,9 @@ describe('themesScss', () => {
         `@import './styleGuides.scss';
 
 & {
-  --dtActionBG: #{$styleGuide2_brand_secondary};
-  --dtFontColorPrimary: #{$global_base_white};
-  --dtFontSize100: #{$styleGuide2_fontSize_normal};
+  --dtTestActionBackground: #{$styleGuide2_brand_secondary};
+  --dtTestFontColorPrimary: #{$global_base_white};
+  --dtTestFontSize100: #{$styleGuide2_fontSize_normal};
 }
 `
       )
@@ -111,7 +122,7 @@ html[data-brand-theme='styleGuide2_dark'] {
       const removedStyleGuide = clone(styleGuides)
       delete removedStyleGuide['styleGuide1']
 
-      generator(testPath, false, themes, designTokens, removedStyleGuide)
+      generator(testPath, true, themes, designTokens, removedStyleGuide)
 
       expect(fs.writeFileSync).toHaveBeenNthCalledWith(
         6,
@@ -119,9 +130,9 @@ html[data-brand-theme='styleGuide2_dark'] {
         `@import './styleGuides.scss';
 
 & {
-  --dtActionBG: #{$styleGuide2_brand_primary};
-  --dtFontColorPrimary: #{$global_base_black};
-  --dtFontSize100: #{$styleGuide2_fontSize_normal};
+  --d12: #{$styleGuide2_brand_primary};
+  --d34: #{$global_base_black};
+  --d56: #{$styleGuide2_fontSize_normal};
 }
 `
       )
@@ -132,9 +143,9 @@ html[data-brand-theme='styleGuide2_dark'] {
         `@import './styleGuides.scss';
 
 & {
-  --dtActionBG: #{$styleGuide2_brand_secondary};
-  --dtFontColorPrimary: #{$global_base_white};
-  --dtFontSize100: #{$styleGuide2_fontSize_normal};
+  --d12: #{$styleGuide2_brand_secondary};
+  --d34: #{$global_base_white};
+  --d56: #{$styleGuide2_fontSize_normal};
 }
 `
       )

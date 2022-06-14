@@ -5,19 +5,34 @@ export const themes: Themes = {
     name: 'Light',
     styleGuide: 'styleGuide1',
     styles: {
-      dtActionBG: {
+      dtTestActionBackground: {
         default: {
           style: 'styleGuide1_brand_secondary',
         },
       },
-      dtFontColorPrimary: {
+      dtTestFontColorPrimary: {
         default: {
           style: 'global_base_black',
         },
+        global_mediaQuery_notInStyleGuide: {
+          style: 'styleGuide1_brand_secondary',
+        },
       },
-      dtFontSize100: {
+      dtTestFontSize100: {
         default: {
+          direct: {
+            value: '12px',
+            type: 'font-size',
+          },
+        },
+        global_mediaQuery_notInStyleGuide: {
           style: 'styleGuide1_fontSize_primary',
+        },
+        global_mediaQuery_aboveDesktop: {
+          direct: {
+            value: '13px',
+            type: 'font-size',
+          },
         },
       },
     },
@@ -26,17 +41,17 @@ export const themes: Themes = {
     name: 'Dark',
     styleGuide: 'styleGuide1',
     styles: {
-      dtActionBG: {
+      dtTestActionBackground: {
         default: {
           style: 'styleGuide1_brand_secondary',
         },
       },
-      dtFontColorPrimary: {
+      dtTestFontColorPrimary: {
         default: {
           style: 'global_base_white',
         },
       },
-      dtFontSize100: {
+      dtTestFontSize100: {
         default: {
           style: 'styleGuide1_fontSize_primary',
         },
@@ -47,17 +62,17 @@ export const themes: Themes = {
     name: 'Light',
     styleGuide: 'styleGuide2',
     styles: {
-      dtActionBG: {
+      dtTestActionBackground: {
         default: {
           style: 'styleGuide2_brand_primary',
         },
       },
-      dtFontColorPrimary: {
+      dtTestFontColorPrimary: {
         default: {
           style: 'global_base_black',
         },
       },
-      dtFontSize100: {
+      dtTestFontSize100: {
         default: {
           style: 'styleGuide2_fontSize_normal',
         },
@@ -68,17 +83,17 @@ export const themes: Themes = {
     name: 'Dark',
     styleGuide: 'styleGuide2',
     styles: {
-      dtActionBG: {
+      dtTestActionBackground: {
         default: {
           style: 'styleGuide2_brand_secondary',
         },
       },
-      dtFontColorPrimary: {
+      dtTestFontColorPrimary: {
         default: {
           style: 'global_base_white',
         },
       },
-      dtFontSize100: {
+      dtTestFontSize100: {
         default: {
           style: 'styleGuide2_fontSize_normal',
         },
@@ -90,7 +105,7 @@ export const themes: Themes = {
 export const styleGuides: StyleGuides = {
   global: {
     name: 'Global',
-    baseFontSize: 16,
+    baseFontSize: 12,
     styles: {
       base_black: {
         name: 'Black',
@@ -106,6 +121,13 @@ export const styleGuides: StyleGuides = {
         slug: 'base_light',
         value: '#ffffff',
       },
+      mediaQuery_aboveDesktop: {
+        name: 'Above Desktop',
+        type: 'mediaquery',
+        group: 'Media query',
+        slug: 'mediaQuery_aboveDesktop',
+        value: 'screen and (min-width: 1200px)',
+      },
       mediaQuery_aboveSmallMobile: {
         name: 'Above Small Mobile',
         type: 'mediaquery',
@@ -117,7 +139,7 @@ export const styleGuides: StyleGuides = {
   },
   styleGuide1: {
     name: 'StyleGuide 1',
-    baseFontSize: 16,
+    baseFontSize: 12,
     styles: {
       action_primary: {
         name: 'Primary',
@@ -175,6 +197,11 @@ export const styleGuides: StyleGuides = {
       },
     },
   },
+  styleGuide4: {
+    name: 'StyleGuide 4',
+    baseFontSize: 10,
+    styles: {},
+  },
 }
 
 export const designTokens: DesignTokens = {
@@ -185,6 +212,7 @@ export const designTokens: DesignTokens = {
     description: 'Background for action elements',
     properties: ['color', 'background-color'],
     aliasTokens: ['atButtonBackground'],
+    short: 'd12',
   },
   dtTestFontColorPrimary: {
     type: 'color',
@@ -193,6 +221,7 @@ export const designTokens: DesignTokens = {
     description: 'Font color for normal text',
     properties: ['color'],
     aliasTokens: ['atBaseFontColor', 'atButtonFontColor'],
+    short: 'd34',
   },
   dtTestFontSize100: {
     type: 'font-size',
@@ -201,6 +230,7 @@ export const designTokens: DesignTokens = {
     description: 'Font size for normal text',
     properties: ['font-size'],
     aliasTokens: ['atButtonFontSize'],
+    short: 'd56',
   },
 }
 

@@ -46,6 +46,7 @@ export function designTokensScss(
       }
       if (
         (dtUsage[designToken] === -1 || dtUsage[designToken] < themeCount) &&
+        aliasTokens[aliasToken] &&
         aliasTokens[aliasToken].default
       ) {
         return `${result}$${aliasToken}: var(--${key}, ${aliasTokens[aliasToken].default});\n`

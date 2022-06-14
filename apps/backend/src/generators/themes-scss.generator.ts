@@ -13,18 +13,17 @@ export function themesScss(
   let storybookThemes = ''
   const themeList = []
 
-  const mediaQueries: { media: string; key: string }[] = []
+  const mediaQueryMap: { media: string; key: string }[] = []
 
   Object.entries(styleGuides).forEach(([slug, styleGuide]) => {
-    mediaQueries.push(
-      ...(Object.entries(styleGuide.styles)
+    mediaQueryMap.push(
+      ...Object.entries(styleGuide.styles)
         .filter(([, item]: [string, Style]) => item.type === 'mediaquery')
-        .map(([key, item]: [string, Style]) => ({ media: item.value, key: `${slug}_${key}` })) ??
-        [])
+        .map(([key, item]: [string, Style]) => ({ media: item.value, key: `${slug}_${key}` }))
     )
   })
 
-  const mediaQueryOrder = smq(mediaQueries, 'media').map(({ key }) => key)
+  const mediaQueryOrder = smq(mediaQueryMap, 'media').map(({ key }) => key)
   for (const key in themes) {
     if (!styleGuides[themes[key].styleGuide]) {
       continue
