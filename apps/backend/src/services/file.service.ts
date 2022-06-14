@@ -67,7 +67,7 @@ export class FileService {
       const path = `${this.config.dataPath}${filename}.json`
       if (existsSync(path)) {
         const data = readJsonFile(path)
-        this[`${filename}$`].next(data)
+        this[`_${filename}$`].next(data)
         this.hashKeys[filename] = hash(data)
       }
     })

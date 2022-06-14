@@ -125,6 +125,7 @@
     "rxjs": "^7.5.5",
     "sentence-case": "^3.0.4",
     "short-unique-id": "^4.4.4",
+    "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1",
     "sort-media-queries": "^0.2.2",
     "tslib": "^2.4.0"
