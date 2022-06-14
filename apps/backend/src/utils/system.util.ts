@@ -36,7 +36,7 @@ function getRegEx(pattern, regex?) {
     flags = pattern.flags
   } else {
     term = pattern
-    flags = 'g'
+    flags = 'gm'
   }
 
   const grabLineRegEx = '(.*' + term + '.*)'
