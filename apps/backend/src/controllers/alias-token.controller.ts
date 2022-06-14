@@ -11,11 +11,6 @@ export class AliasTokenController {
     return this.aliasTokenService.create(aliasToken)
   }
 
-  @Get()
-  read() {
-    return this.aliasTokenService.read()
-  }
-
   @Get('rescan')
   rescan() {
     return this.aliasTokenService.refresh()

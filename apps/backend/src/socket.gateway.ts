@@ -28,19 +28,19 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     this.logger.log(`handleConnection ${client.id}`)
     this.wss.emit('update', { msg: 'connected' })
 
-    this.fileService.styleGuidesApi$.subscribe((data) => {
+    this.fileService.styleGuidesApi$().subscribe((data) => {
       this.wss.emit('update', { msg: 'data', type: 'styleGuides', data })
     })
-    this.fileService.themes$.subscribe((data) => {
+    this.fileService.themes$().subscribe((data) => {
       this.wss.emit('update', { msg: 'data', type: 'themes', data })
     })
-    this.fileService.designTokens$.subscribe((data) => {
+    this.fileService.designTokens$().subscribe((data) => {
       this.wss.emit('update', { msg: 'data', type: 'designTokens', data })
     })
-    this.fileService.aliasTokens$.subscribe((data) => {
+    this.fileService.aliasTokens$().subscribe((data) => {
       this.wss.emit('update', { msg: 'data', type: 'aliasTokens', data })
     })
-    this.fileService.config$.subscribe((data) => {
+    this.fileService.config$().subscribe((data) => {
       this.wss.emit('update', { msg: 'data', type: 'config', data })
     })
   }

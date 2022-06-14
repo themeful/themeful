@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common'
 import { MediaValueDetail, Theme } from '@typings'
 import { ThemeService } from '../services/theme.service'
 
@@ -9,11 +9,6 @@ export class ThemeController {
   @Post()
   create(@Body() theme: Theme) {
     return this.themeService.create(theme)
-  }
-
-  @Get()
-  read() {
-    return this.themeService.read()
   }
 
   @Patch(':key')

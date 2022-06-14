@@ -73,7 +73,7 @@ export class FileService {
     })
   }
 
-  public get styleGuidesApi$(): Observable<FormatedStyleGuides> {
+  public styleGuidesApi$(): Observable<FormatedStyleGuides> {
     return this._styleGuides$.pipe(
       map((styleGuides: StyleGuides): FormatedStyleGuides => {
         return Object.entries(styleGuides).map(([slug, data]: [string, StyleGuide]) => ({

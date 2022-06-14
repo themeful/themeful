@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common'
 import { DesignTokenAPI } from '@typings'
 import { DesignTokenService } from '../services/design-token.service'
 
@@ -9,11 +9,6 @@ export class DesignTokenController {
   @Post()
   create(@Body() designToken: DesignTokenAPI) {
     return this.designTokenService.create(designToken)
-  }
-
-  @Get()
-  read() {
-    return this.designTokenService.read()
   }
 
   @Patch(':token')
