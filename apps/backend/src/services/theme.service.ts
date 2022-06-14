@@ -14,31 +14,34 @@ export class ThemeService {
     this.syncService.register('designTokens', this.syncDesignTokens)
     this.syncService.register('styleGuides', this.syncStyleGuides)
 
-    this.file.themes$.pipe(take(1)).subscribe((themes) => {
-      this.themes = themes
-      this.file.designTokens$.subscribe((designTokens) => {
-        this.syncDesignTokens({
-          values: Object.keys(designTokens),
-          action: 'sync',
+    this.file
+      .themes$()
+      .pipe(take(1))
+      .subscribe((themes) => {
+        this.themes = themes
+        this.file.designTokens$().subscribe((designTokens) => {
+          this.syncDesignTokens({
+            values: Object.keys(designTokens),
+            action: 'sync',
+          })
+        })
+        this.file.styleGuides$().subscribe((styleGuides) => {
+          this.syncStyleGuideBases({
+            values: Object.keys(styleGuides),
+            action: 'sync',
+          })
+          this.syncStyleGuides({
+            values: Object.entries(styleGuides).reduce(
+              (output, [slug, styleGuide]) => [
+                ...output,
+                ...Object.keys(styleGuide.styles).map((name) => `${slug}_${name}`),
+              ],
+              []
+            ),
+            action: 'sync',
+          })
         })
       })
-      this.file.styleGuides$.subscribe((styleGuides) => {
-        this.syncStyleGuideBases({
-          values: Object.keys(styleGuides),
-          action: 'sync',
-        })
-        this.syncStyleGuides({
-          values: Object.entries(styleGuides).reduce(
-            (output, [slug, styleGuide]) => [
-              ...output,
-              ...Object.keys(styleGuide.styles).map((name) => `${slug}_${name}`),
-            ],
-            []
-          ),
-          action: 'sync',
-        })
-      })
-    })
     this.writeFiles(this.themes)
   }
 

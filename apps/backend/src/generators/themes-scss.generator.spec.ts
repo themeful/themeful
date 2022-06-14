@@ -5,7 +5,7 @@ import {
   styleGuides as styleGuidesJson,
   themes as themesJson,
 } from '../services/samples'
-import { themesScss } from './theme-scss.generator'
+import { themesScss } from './themes-scss.generator'
 
 describe('themesScss', () => {
   const generator = themesScss

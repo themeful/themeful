@@ -27,19 +27,39 @@ import { ConfigService } from './config.service'
 export class FileService {
   private filenames = ['designTokens', 'aliasTokens', 'styleGuides', 'themes']
   private hashKeys: { [file: string]: string } = {}
-  public themes$ = new ReplaySubject<Themes>(1)
-  public designTokens$ = new ReplaySubject<DesignTokens>(1)
-  public aliasTokens$ = new ReplaySubject<AliasTokens>(1)
-  public styleGuides$ = new ReplaySubject<StyleGuides>(1)
-  public config$ = new ReplaySubject<GlobalConfig>(1)
+  private _themes$ = new ReplaySubject<Themes>(1)
+  private _designTokens$ = new ReplaySubject<DesignTokens>(1)
+  private _aliasTokens$ = new ReplaySubject<AliasTokens>(1)
+  private _styleGuides$ = new ReplaySubject<StyleGuides>(1)
+  private _config$ = new ReplaySubject<GlobalConfig>(1)
 
   constructor(private readonly config: ConfigService) {
     this.preloadFiles()
     this.setupPipes()
   }
 
+  public themes$(): ReplaySubject<Themes> {
+    return this._themes$
+  }
+
+  public designTokens$(): ReplaySubject<DesignTokens> {
+    return this._designTokens$
+  }
+
+  public aliasTokens$(): ReplaySubject<AliasTokens> {
+    return this._aliasTokens$
+  }
+
+  public styleGuides$(): ReplaySubject<StyleGuides> {
+    return this._styleGuides$
+  }
+
+  public config$(): ReplaySubject<GlobalConfig> {
+    return this._config$
+  }
+
   private preloadFiles(): void {
-    this.config$.next({
+    this._config$.next({
       baseFontSize: this.config.baseFontSize,
       shortDesignTokens: this.config.shortDesignTokens,
     })
@@ -54,7 +74,7 @@ export class FileService {
   }
 
   public get styleGuidesApi$(): Observable<FormatedStyleGuides> {
-    return this.styleGuides$.pipe(
+    return this._styleGuides$.pipe(
       map((styleGuides: StyleGuides): FormatedStyleGuides => {
         return Object.entries(styleGuides).map(([slug, data]: [string, StyleGuide]) => ({
           name: data.name,
@@ -70,18 +90,18 @@ export class FileService {
     const newHash = hash(data)
     if (newHash !== this.hashKeys[filename]) {
       this.hashKeys[filename] = newHash
-      this[`${filename}$`].next(data)
+      this[`_${filename}$`].next(data)
       writeJsonFile(`${this.config.dataPath}${filename}.json`, data, { spaces: 2 })
     }
   }
 
   private setupPipes() {
-    combineLatest([this.themes$, this.styleGuides$])
+    combineLatest([this._themes$, this._styleGuides$])
       .pipe(debounceTime(100))
       .subscribe(([themes, styleGuides]) => {
         themesTs(this.config.generatedPath, themes, styleGuides)
       })
-    combineLatest([this.themes$, this.designTokens$, this.styleGuides$])
+    combineLatest([this._themes$, this._designTokens$, this._styleGuides$])
       .pipe(debounceTime(100))
       .subscribe(([themes, designTokens, styleGuides]) => {
         themesScss(
@@ -92,7 +112,7 @@ export class FileService {
           styleGuides
         )
       })
-    combineLatest([this.themes$, this.designTokens$, this.aliasTokens$])
+    combineLatest([this._themes$, this._designTokens$, this._aliasTokens$])
       .pipe(debounceTime(100))
       .subscribe(([themes, designTokens, aliasTokens]) => {
         designTokensScss(
@@ -103,7 +123,7 @@ export class FileService {
           aliasTokens
         )
       })
-    this.styleGuides$.pipe(debounceTime(100)).subscribe((styleGuides) => {
+    this._styleGuides$.pipe(debounceTime(100)).subscribe((styleGuides) => {
       styleGuidesScss(this.config.themesPath, styleGuides)
     })
   }

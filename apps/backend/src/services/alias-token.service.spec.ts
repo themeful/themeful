@@ -1,14 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { AliasTokenAPI } from '@typings'
 import { clone } from '@utils'
-import * as fs from 'fs'
-import * as jsonfile from 'jsonfile'
 import { FindResults } from '../utils'
 import * as utils from '../utils/system.util'
 import { AliasTokenService } from './alias-token.service'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
-import { aliasTokens, designTokens, styleGuides, themes } from './samples'
+import { aliasTokens } from './samples'
+import { mockConfigService, mockFileService } from './service.mock'
 import { SyncService } from './sync.service'
 
 describe('AliasTokenService', () => {
@@ -17,35 +16,10 @@ describe('AliasTokenService', () => {
 
   beforeEach(async () => {
     syncService = new SyncService()
-    jest.spyOn(fs, 'writeFileSync').mockImplementation()
-    jest.spyOn(fs, 'unlinkSync').mockImplementation()
-    jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
-    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: string) => {
-      if (filename.includes('themes')) {
-        return clone(themes)
-      } else if (filename.includes('designTokens')) {
-        return clone(designTokens)
-      } else if (filename.includes('aliasTokens')) {
-        return clone(aliasTokens)
-      } else if (filename.includes('styleGuides')) {
-        return clone(styleGuides)
-      } else if (filename.includes('themeful.json')) {
-        return {
-          paths: {
-            generatedPath: './sample/generated/',
-            dataPath: './sample/generated/',
-            themesPath: './sample/generated/',
-            libPath: './sample/components/',
-          },
-          global: {
-            baseFontSize: '16px',
-            shortDesignTokens: false,
-          },
-        }
-      } else {
-        return { some: 'object' }
-      }
-    })
+
+    jest.spyOn(mockFileService, 'save')
+    jest.spyOn(mockFileService, 'aliasTokens$')
+
     jest.spyOn(utils, 'findSync').mockImplementation(({ term }) => {
       if (term.includes('default')) {
         return parseResultLine
@@ -57,8 +31,11 @@ describe('AliasTokenService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         AliasTokenService,
-        FileService,
-        ConfigService,
+        { provide: FileService, useValue: mockFileService },
+        {
+          provide: ConfigService,
+          useValue: mockConfigService,
+        },
         { provide: SyncService, useValue: syncService },
       ],
     }).compile()
@@ -86,11 +63,7 @@ describe('AliasTokenService', () => {
       withOneMore[newAliasToken.token] = clonedAliasToken
 
       expect(service.create(clone(newAliasToken))).toEqual(true)
-      expect(jsonfile.writeFileSync).toBeCalledWith(
-        './sample/generated/aliasTokens.json',
-        withOneMore,
-        { spaces: 2 }
-      )
+      expect(mockFileService.save).toBeCalledWith('aliasTokens', withOneMore)
     })
 
     it('should not create one', () => {
@@ -117,11 +90,7 @@ describe('AliasTokenService', () => {
       withOneUpdated[updatedAliasToken.token] = clonedAliasToken
 
       expect(service.update('atTestBaseFontColor', clone(updatedAliasToken))).toEqual(true)
-      expect(jsonfile.writeFileSync).toBeCalledWith(
-        './sample/generated/aliasTokens.json',
-        withOneUpdated,
-        { spaces: 2 }
-      )
+      expect(mockFileService.save).toBeCalledWith('aliasTokens', withOneUpdated)
     })
 
     it('should not update one', () => {
@@ -148,11 +117,7 @@ describe('AliasTokenService', () => {
       delete withOneLess['atTestBaseFontColor']
 
       expect(service.delete('atTestBaseFontColor')).toEqual(true)
-      expect(jsonfile.writeFileSync).toBeCalledWith(
-        './sample/generated/aliasTokens.json',
-        withOneLess,
-        { spaces: 2 }
-      )
+      expect(mockFileService.save).toBeCalledWith('aliasTokens', withOneLess)
     })
 
     it('should not delete not existing', () => {

@@ -2,14 +2,20 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { clone } from '@utils'
 import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
+import * as generators from '../generators'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
 import { aliasTokens, designTokens, styleGuides, themes } from './samples'
+import { mockConfigService } from './service.mock'
 
 describe('FileService', () => {
   let service: FileService
 
   beforeEach(async () => {
+    jest.spyOn(generators.default, 'designTokensScss').mockImplementation()
+    jest.spyOn(generators.default, 'styleGuidesScss').mockImplementation()
+    jest.spyOn(generators.default, 'themesScss').mockImplementation()
+    jest.spyOn(generators.default, 'themesTs').mockImplementation()
     jest.spyOn(fs, 'writeFileSync').mockImplementation()
     jest.spyOn(fs, 'unlinkSync').mockImplementation()
     jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
@@ -25,10 +31,10 @@ describe('FileService', () => {
       } else if (filename.includes('themeful.json')) {
         return {
           paths: {
-            generatedPath: './sample/generated/',
-            dataPath: './sample/generated/',
-            themesPath: './sample/generated/',
-            libPath: './sample/components/',
+            generatedPath: './test-sample/generated/',
+            dataPath: './test-sample/generated/',
+            themesPath: './test-sample/generated/',
+            libPath: './test-sample/components/',
           },
           global: {
             baseFontSize: '16px',
@@ -45,13 +51,7 @@ describe('FileService', () => {
         FileService,
         {
           provide: ConfigService,
-          useValue: {
-            generatedPath: './sample/generated/',
-            dataPath: './sample/generated/',
-            themesPath: './sample/generated/',
-            libPath: './sample/components/',
-            shortDesignTokens: false,
-          },
+          useValue: mockConfigService,
         },
       ],
     }).compile()

@@ -1,7 +1,7 @@
 import { clone } from '@utils'
 import * as fs from 'fs'
 import { styleGuides as styleGuidesJson, themes as themesJson } from '../services/samples'
-import { themesTs } from './theme-ts.generator'
+import { themesTs } from './themes-ts.generator'
 
 describe('themesTs', () => {
   const generator = themesTs

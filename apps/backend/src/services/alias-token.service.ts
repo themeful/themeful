@@ -16,10 +16,13 @@ export class AliasTokenService {
     private readonly config: ConfigService,
     private readonly file: FileService
   ) {
-    this.file.aliasTokens$.pipe(take(1)).subscribe((aliasTokens) => {
-      this.aliasTokens = aliasTokens
-      this.refresh()
-    })
+    this.file
+      .aliasTokens$()
+      .pipe(take(1))
+      .subscribe((aliasTokens) => {
+        this.aliasTokens = aliasTokens
+        this.refresh()
+      })
   }
 
   public create(aliasToken: AliasTokenAPI): boolean {

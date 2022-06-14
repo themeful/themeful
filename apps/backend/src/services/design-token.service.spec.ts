@@ -2,65 +2,33 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { DesignTokenAPI } from '@typings'
 import { clone } from '@utils'
 import * as utils from '@utils/uuid.util'
-import * as fs from 'fs'
-import * as jsonfile from 'jsonfile'
 import { ConfigService } from './config.service'
 import { DesignTokenService } from './design-token.service'
 import { FileService } from './file.service'
-import { aliasTokens, designTokens, styleGuides, themes } from './samples'
+import { designTokens } from './samples'
+import { mockConfigService, mockFileService } from './service.mock'
 import { SyncService } from './sync.service'
 
 describe('DesignTokenService', () => {
   let service: DesignTokenService
   let syncService: SyncService
-  // const utils = { uuid }
 
   beforeEach(async () => {
     syncService = new SyncService()
-    jest.spyOn(fs, 'writeFileSync').mockImplementation()
-    jest.spyOn(fs, 'unlinkSync').mockImplementation()
-    jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
-    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: string) => {
-      if (filename.includes('themes')) {
-        return clone(themes)
-      } else if (filename.includes('designTokens')) {
-        return clone(designTokens)
-      } else if (filename.includes('aliasTokens')) {
-        return clone(aliasTokens)
-      } else if (filename.includes('styleGuides')) {
-        return clone(styleGuides)
-      } else if (filename.includes('themeful.json')) {
-        return {
-          paths: {
-            generatedPath: './sample/generated/',
-            dataPath: './sample/generated/',
-            themesPath: './sample/generated/',
-            libPath: './sample/components/',
-          },
-          global: {
-            baseFontSize: '16px',
-            shortDesignTokens: false,
-          },
-        }
-      } else {
-        return { some: 'object' }
-      }
-    })
+
+    jest.spyOn(mockFileService, 'save')
+    jest.spyOn(mockFileService, 'aliasTokens$')
+    jest.spyOn(mockFileService, 'designTokens$')
+
     jest.spyOn(utils, 'uuid').mockReturnValue('test')
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         DesignTokenService,
-        FileService,
+        { provide: FileService, useValue: mockFileService },
         {
           provide: ConfigService,
-          useValue: {
-            generatedPath: './sample/generated/',
-            dataPath: './sample/generated/',
-            themesPath: './sample/generated/',
-            libPath: './sample/components/',
-            shortDesignTokens: false,
-          },
+          useValue: mockConfigService,
         },
         { provide: SyncService, useValue: syncService },
       ],
@@ -82,7 +50,7 @@ describe('DesignTokenService', () => {
     //   const withOneMore = clone(designTokens)
     //   withOneMore[newDesignToken.token] = clonedDesignToken
 
-    //   const fileSave = jest.spyOn(FileService.prototype, 'save')
+    //   const fileSave = jest.spyOn(mockFileService.prototype, 'save')
 
     //   expect(service.create(clone(newDesignToken))).toEqual(true)
     //   expect(fileSave).toBeCalledWith('designTokens', withOneMore)

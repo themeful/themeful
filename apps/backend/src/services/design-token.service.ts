@@ -19,15 +19,18 @@ export class DesignTokenService {
     this.useShortDT = this.config.shortDesignTokens
     this.syncService.register('aliasTokens', this.syncAliasTokens)
 
-    this.file.designTokens$.pipe(take(1)).subscribe((designTokens) => {
-      this.designTokens = designTokens
-      this.file.aliasTokens$.subscribe((aliasTokens) => {
-        this.syncAliasTokens({
-          values: Object.keys(aliasTokens),
-          action: 'sync',
+    this.file
+      .designTokens$()
+      .pipe(take(1))
+      .subscribe((designTokens) => {
+        this.designTokens = designTokens
+        this.file.aliasTokens$().subscribe((aliasTokens) => {
+          this.syncAliasTokens({
+            values: Object.keys(aliasTokens),
+            action: 'sync',
+          })
         })
       })
-    })
   }
 
   public create(designToken: DesignTokenAPI): boolean {

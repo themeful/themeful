@@ -1,11 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { Style } from '@typings'
 import { clone } from '@utils'
-import * as fs from 'fs'
-import * as jsonfile from 'jsonfile'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
-import { aliasTokens, designTokens, styleGuides, themes } from './samples'
+import { styleGuides } from './samples'
+import { mockConfigService, mockFileService } from './service.mock'
 import { StyleGuideService } from './style-guide.service'
 import { SyncService } from './sync.service'
 
@@ -15,41 +14,21 @@ describe('StyleGuideService', () => {
 
   beforeEach(async () => {
     syncService = new SyncService()
-    jest.spyOn(fs, 'writeFileSync').mockImplementation()
-    jest.spyOn(fs, 'unlinkSync').mockImplementation()
-    jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
-    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: string) => {
-      if (filename.includes('themes')) {
-        return clone(themes)
-      } else if (filename.includes('designTokens')) {
-        return clone(designTokens)
-      } else if (filename.includes('aliasTokens')) {
-        return clone(aliasTokens)
-      } else if (filename.includes('styleGuides')) {
-        return clone(styleGuides)
-      } else if (filename.includes('themeful.json')) {
-        return {
-          paths: {
-            generatedPath: './sample/generated/',
-            dataPath: './sample/generated/',
-            themesPath: './sample/generated/',
-            libPath: './sample/components/',
-          },
-          global: {
-            baseFontSize: '16px',
-            shortDesignTokens: false,
-          },
-        }
-      } else {
-        return { some: 'object' }
-      }
-    })
+
+    jest.spyOn(mockFileService, 'save')
+    jest.spyOn(mockFileService, 'styleGuides$')
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         StyleGuideService,
-        FileService,
-        ConfigService,
+        {
+          provide: FileService,
+          useValue: mockFileService,
+        },
+        {
+          provide: ConfigService,
+          useValue: mockConfigService,
+        },
         { provide: SyncService, useValue: syncService },
       ],
     }).compile()
@@ -171,9 +150,8 @@ describe('StyleGuideService', () => {
 
       delete withOneLess.global.styles['base_black']
 
-      const fileSave = jest.spyOn(FileService.prototype, 'save')
       expect(service.delete('base_black')).toEqual(true)
-      expect(fileSave).toBeCalledWith('styleGuides', withOneLess)
+      expect(mockFileService.save).toBeCalledWith('styleGuides', withOneLess)
     })
 
     it('should not delete a global value', () => {
@@ -185,10 +163,8 @@ describe('StyleGuideService', () => {
 
       delete withOneLess.styleGuide1.styles['action_primary']
 
-      const fileSave = jest.spyOn(FileService.prototype, 'save')
-
       expect(service.delete('action_primary', 'styleGuide1')).toEqual(true)
-      expect(fileSave).toBeCalledWith('styleGuides', withOneLess)
+      expect(mockFileService.save).toBeCalledWith('styleGuides', withOneLess)
     })
 
     it('should not delete a styleGuide value with wrong styleGuide', () => {
@@ -200,18 +176,18 @@ describe('StyleGuideService', () => {
     })
   })
 
-  describe('sync', () => {
-    it('should sync update styleGuides', () => {
-      jest.spyOn(syncService, 'styleGuides').mockImplementation()
-      expect(service.update('action_primary', clone(updatedBaseValue), 'styleGuide1')).toEqual(true)
+  // describe('sync', () => {
+  //   it('should sync update styleGuides', () => {
+  //     jest.spyOn(syncService, 'styleGuides').mockImplementation()
+  //     expect(service.update('action_primary', clone(updatedBaseValue), 'styleGuide1')).toEqual(true)
 
-      expect(syncService.styleGuides).toHaveBeenCalledWith({
-        action: 'update',
-        primary: 'styleGuide1_action_primary',
-        secondary: 'styleGuide1_testUpdated_white',
-      })
-    })
-  })
+  //     expect(syncService.styleGuides).toHaveBeenCalledWith({
+  //       action: 'update',
+  //       primary: 'styleGuide1_action_primary',
+  //       secondary: 'styleGuide1_testUpdated_white',
+  //     })
+  //   })
+  // })
 })
 
 const newBaseValue = {

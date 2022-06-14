@@ -11,9 +11,12 @@ export class StyleGuideService {
   private styleGuides: StyleGuides
 
   constructor(private readonly syncService: SyncService, private readonly file: FileService) {
-    this.file.styleGuides$.pipe(take(1)).subscribe((styleGuides) => {
-      this.styleGuides = styleGuides
-    })
+    this.file
+      .styleGuides$()
+      .pipe(take(1))
+      .subscribe((styleGuides) => {
+        this.styleGuides = styleGuides
+      })
   }
 
   public create(style: Style, styleGuide = 'global'): boolean {
