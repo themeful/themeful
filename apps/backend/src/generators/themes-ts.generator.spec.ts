@@ -1,6 +1,6 @@
 import { clone } from '@utils'
 import * as fs from 'fs'
-import { styleGuides as styleGuidesJson, themes as themesJson } from '../services/samples'
+import { styleGuides as styleGuidesJson, themes as themesJson } from '../services/samples.mock'
 import { themesTs } from './themes-ts.generator'
 
 describe('themesTs', () => {

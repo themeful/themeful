@@ -1,7 +1,7 @@
 import { AliasTokens, DesignTokens, GlobalConfig, StyleGuides, Themes } from '@typings'
 import { ReplaySubject } from 'rxjs'
 import { FileService } from './file.service'
-import { aliasTokens, designTokens, styleGuides, themes } from './samples'
+import { aliasTokens, designTokens, styleGuides, themes } from './samples.mock'
 
 const aliasTokens$ = new ReplaySubject<AliasTokens>(1)
 const designTokens$ = new ReplaySubject<DesignTokens>(1)

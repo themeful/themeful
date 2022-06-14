@@ -5,7 +5,7 @@ import * as jsonfile from 'jsonfile'
 import * as generators from '../generators'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
-import { aliasTokens, designTokens, styleGuides, themes } from './samples'
+import { aliasTokens, designTokens, styleGuides, themes } from './samples.mock'
 import { mockConfigService } from './service.mock'
 
 describe('FileService', () => {

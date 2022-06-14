@@ -5,7 +5,7 @@ import * as utils from '@utils/uuid.util'
 import { ConfigService } from './config.service'
 import { DesignTokenService } from './design-token.service'
 import { FileService } from './file.service'
-import { designTokens } from './samples'
+import { designTokens } from './samples.mock'
 import { mockConfigService, mockFileService } from './service.mock'
 import { SyncService } from './sync.service'
 

@@ -1,6 +1,6 @@
 import { clone } from '@utils'
 import * as fs from 'fs'
-import { styleGuides as styleGuidesJson } from '../services/samples'
+import { styleGuides as styleGuidesJson } from '../services/samples.mock'
 import { styleGuidesScss } from './styleGuides-scss.generator'
 
 describe('styleGuidesScss', () => {

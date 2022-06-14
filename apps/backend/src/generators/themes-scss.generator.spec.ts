@@ -4,7 +4,7 @@ import {
   designTokens as designTokensJson,
   styleGuides as styleGuidesJson,
   themes as themesJson,
-} from '../services/samples'
+} from '../services/samples.mock'
 import { themesScss } from './themes-scss.generator'
 
 describe('themesScss', () => {

@@ -6,7 +6,7 @@ import * as utils from '../utils/system.util'
 import { AliasTokenService } from './alias-token.service'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
-import { aliasTokens } from './samples'
+import { aliasTokens } from './samples.mock'
 import { mockConfigService, mockFileService } from './service.mock'
 import { SyncService } from './sync.service'
 

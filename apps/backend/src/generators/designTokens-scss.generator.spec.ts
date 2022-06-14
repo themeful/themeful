@@ -4,7 +4,7 @@ import {
   aliasTokens as aliasTokensJson,
   designTokens as designTokensJson,
   themes as themesJson,
-} from '../services/samples'
+} from '../services/samples.mock'
 import { designTokensScss } from './designTokens-scss.generator'
 
 describe('designTokensScss', () => {
