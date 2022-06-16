@@ -60,10 +60,6 @@ export class ThemeService {
     return true
   }
 
-  public read(): Themes {
-    return this.themes
-  }
-
   public update(key: string, theme: Theme): boolean {
     const slug = slugify([theme.styleGuide, theme.name])
     if (!this.themes[key] || (key !== slug && !!this.themes[slug])) {

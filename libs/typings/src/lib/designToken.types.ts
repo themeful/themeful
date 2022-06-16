@@ -9,13 +9,13 @@ export interface DesignToken {
   name: string
   group: string
   description: string
-  properties: string[]
-  aliasTokens: string[]
+  properties?: string[]
+  aliasTokens?: string[]
   short?: string
 }
 
 export interface DesignTokenAPI extends DesignToken {
-  token: string
+  token?: string
 }
 
 export interface DesignTokenRow extends DesignToken {

@@ -23,8 +23,6 @@ export const mockFileService = {
   designTokens$: () => designTokens$,
   styleGuides$: () => styleGuides$,
   themes$: () => themes$,
-  config$: () => config$,
-  styleGuidesApi$: () => null,
 } as unknown as FileService
 
 export const mockConfigService = {

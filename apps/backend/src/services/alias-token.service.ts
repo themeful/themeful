@@ -38,10 +38,6 @@ export class AliasTokenService {
     return true
   }
 
-  public read(): AliasTokens {
-    return this.aliasTokens
-  }
-
   public update(token: string, aliasToken: AliasTokenAPI): boolean {
     if (!this.aliasTokens[token] || !this.aliasTokens[token].extern) {
       return false

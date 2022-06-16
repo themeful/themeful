@@ -42,19 +42,35 @@ describe('DesignTokenService', () => {
   })
 
   describe('create', () => {
-    // it('should create one', () => {
-    //   const clonedDesignToken: DesignTokenAPI = clone(newDesignToken)
-    //   delete clonedDesignToken.token
-    //   clonedDesignToken.short = 'test'
+    it('should create one', () => {
+      const clonedDesignToken: DesignTokenAPI = clone(newDesignToken)
+      delete clonedDesignToken.token
+      clonedDesignToken.short = 'test'
 
-    //   const withOneMore = clone(designTokens)
-    //   withOneMore[newDesignToken.token] = clonedDesignToken
+      const withOneMore = clone(designTokens)
+      withOneMore[newDesignToken.token] = clonedDesignToken
 
-    //   const fileSave = jest.spyOn(mockFileService.prototype, 'save')
+      const fileSave = jest.spyOn(mockFileService, 'save')
 
-    //   expect(service.create(clone(newDesignToken))).toEqual(true)
-    //   expect(fileSave).toBeCalledWith('designTokens', withOneMore)
-    // })
+      expect(service.create(clone(newDesignToken))).toEqual(true)
+      expect(fileSave).toBeCalledWith('designTokens', withOneMore)
+      fileSave.mockClear()
+    })
+    it('should create one missing some data', () => {
+      const clonedDesignToken: DesignTokenAPI = clone(newDesignToken2)
+      delete clonedDesignToken.token
+      clonedDesignToken.short = 'test'
+      clonedDesignToken.properties = []
+      clonedDesignToken.aliasTokens = []
+
+      const withOneMore = clone(designTokens)
+      withOneMore[newDesignToken2.token] = clonedDesignToken
+
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.create(clone(newDesignToken2))).toEqual(true)
+      expect(fileSave).toBeCalledWith('designTokens', withOneMore)
+    })
 
     it('should not create one', () => {
       const clonedDesignToken: DesignTokenAPI = {
@@ -66,22 +82,40 @@ describe('DesignTokenService', () => {
   })
 
   describe('update', () => {
-    // it('should update one', () => {
-    //   const clonedDesignToken: DesignTokenAPI = clone(updatedDesignToken)
-    //   delete clonedDesignToken.token
+    it('should update one', () => {
+      const clonedDesignToken: DesignTokenAPI = clone(updatedDesignToken)
+      delete clonedDesignToken.token
 
-    //   const withOneUpdated = clone(designTokens)
+      const withOneUpdated = clone(designTokens)
 
-    //   delete withOneUpdated['dtTestFontColorPrimary']
-    //   withOneUpdated[updatedDesignToken.token] = clonedDesignToken
+      delete withOneUpdated['dtTestFontColorPrimary']
+      withOneUpdated[updatedDesignToken.token] = clonedDesignToken
 
-    //   expect(service.update('dtTestFontColorPrimary', clone(updatedDesignToken))).toEqual(true)
-    //   expect(jsonfile.writeFileSync).toBeCalledWith(
-    //     './sample/generated/designTokens.json',
-    //     withOneUpdated,
-    //     { spaces: 2 }
-    //   )
-    // })
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.update('dtTestFontColorPrimary', clone(updatedDesignToken))).toEqual(true)
+      expect(fileSave).toBeCalledWith('designTokens', withOneUpdated)
+    })
+
+    it('should update one missing some data', () => {
+      const clonedDesignToken: DesignTokenAPI = clone(updatedDesignToken2)
+      delete clonedDesignToken.token
+
+      const withOneUpdated = clone(designTokens)
+
+      const oldToken = withOneUpdated['dtTestFontColorPrimary']
+
+      delete withOneUpdated['dtTestFontColorPrimary']
+      withOneUpdated[updatedDesignToken2.token] = clonedDesignToken
+      withOneUpdated[updatedDesignToken2.token].short = oldToken.short
+      withOneUpdated[updatedDesignToken2.token].aliasTokens = oldToken.aliasTokens
+      withOneUpdated[updatedDesignToken2.token].properties = oldToken.properties
+
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.update('dtTestFontColorPrimary', clone(updatedDesignToken2))).toEqual(true)
+      expect(fileSave).nthCalledWith(7, 'designTokens', withOneUpdated)
+    })
 
     it('should not update one', () => {
       expect(service.update('dtTestWrongFontColorPrimary', clone(updatedDesignToken))).toEqual(
@@ -98,44 +132,89 @@ describe('DesignTokenService', () => {
     })
   })
 
+  describe('split', () => {
+    it('should split one', () => {
+      const withSplitted = clone(designTokens)
+      const newToken = {
+        ...clone(withSplitted['dtTestFontColorPrimary']),
+        aliasTokens: ['atTestBaseFontColor'],
+        name: '--Splitted Token',
+        short: 'test',
+      }
+      withSplitted['dtTestFontColorPrimary'].aliasTokens = ['atTestButtonFontColor']
+      withSplitted['dtSplittedToken'] = newToken
+
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.split('dtTestFontColorPrimary', clone(newToken))).toEqual(true)
+      expect(fileSave).toBeCalledWith('designTokens', withSplitted)
+    })
+
+    it('should not split', () => {
+      const withSplitted = clone(designTokens)
+      const newToken = {
+        ...clone(withSplitted['dtTestFontColorPrimary']),
+        aliasTokens: ['atTestBaseFontColor'],
+        name: 'Test Font Color Primary',
+        short: 'test',
+      }
+      withSplitted['dtTestFontColorPrimary'].aliasTokens = ['atTestButtonFontColor']
+      withSplitted['dtSplittedToken'] = newToken
+
+      expect(service.split('dtTestFontColorPrimary', clone(newToken))).toEqual(false)
+    })
+  })
+
+  describe('selectAliasTokens', () => {
+    it('should select aliasTokens', () => {
+      const clonedTokens = clone(designTokens)
+      clonedTokens['dtTestFontColorPrimary'].aliasTokens = [
+        'atTestBaseFontColor',
+        'atTestButtonBackground',
+      ]
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(
+        service.selectAliasTokens('dtTestFontColorPrimary', [
+          'atTestBaseFontColor',
+          'atTestButtonBackground',
+        ])
+      ).toEqual(true)
+      expect(fileSave).toBeCalledWith('designTokens', clonedTokens)
+    })
+
+    it('should not select aliasTokens', () => {
+      const clonedTokens = clone(designTokens)
+      clonedTokens['dtTestFontColorPrimary'].aliasTokens = [
+        'atTestBaseFontColor',
+        'atTestButtonBackground',
+      ]
+
+      expect(
+        service.selectAliasTokens('dtDoesNotExists', [
+          'atTestBaseFontColor',
+          'atTestButtonBackground',
+        ])
+      ).toEqual(false)
+    })
+  })
+
   describe('delete', () => {
-    // it('should delete one', () => {
-    //   const withOneLess = clone(designTokens)
+    it('should delete one', () => {
+      const withOneLess = clone(designTokens)
 
-    //   delete withOneLess['dtTestFontColorPrimary']
+      delete withOneLess['dtTestFontColorPrimary']
 
-    //   expect(service.delete('dtTestFontColorPrimary')).toEqual(true)
-    //   expect(jsonfile.writeFileSync).toBeCalledWith(
-    //     './sample/generated/designTokens.json',
-    //     withOneLess,
-    //     { spaces: 2 }
-    //   )
-    // })
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.delete('dtTestFontColorPrimary')).toEqual(true)
+      expect(fileSave).toBeCalledWith('designTokens', withOneLess)
+    })
 
     it('should not delete one', () => {
       expect(service.delete('dtTestFontColorTertiary')).toEqual(false)
     })
   })
-
-  //   describe('generated files', () => {
-  //     it('should generate scss files', () => {
-  //       jest.spyOn(fs, 'writeFileSync').mockImplementation()
-  //       const withOneLess = clone(designTokens)
-
-  //       delete withOneLess['dtTestFontColorPrimary']
-
-  //       expect(service.delete('dtTestFontColorPrimary')).toEqual(true)
-
-  //       expect(fs.writeFileSync).toHaveBeenCalledWith(
-  //         './sample/generated/designTokens.scss',
-  //         `$atButtonBackground: var(--dtTestActionBackground);
-  // $atBaseFontColor: var(--dtTestFontColorPrimary);
-  // $atButtonFontColor: var(--dtTestFontColorPrimary);
-  // $atButtonFontSize: var(--dtTestFontSize100);
-  // `
-  //       )
-  //     })
-  //   })
 
   describe('sync', () => {
     it('should sync update designTokens', () => {
@@ -151,35 +230,43 @@ describe('DesignTokenService', () => {
     })
   })
 
-  // describe('get changes from sync', () => {
-  //   it('should update a aliasToken', () => {
-  //     const withUpdatedAliasToken = clone(designTokens)
+  describe('get changes from sync', () => {
+    it('should update a aliasToken', () => {
+      const withUpdatedAliasToken = clone(designTokens)
 
-  //     withUpdatedAliasToken.dtTestFontColorPrimary.aliasTokens = [
-  //       'atButtonFontColor',
-  //       'atNewBaseFontColor',
-  //     ]
+      withUpdatedAliasToken.dtTestFontColorPrimary.aliasTokens = [
+        'atTestBaseFontColor2',
+        'atTestButtonBackground',
+      ]
+      const fileSave = jest.spyOn(mockFileService, 'save')
 
-  //     syncService.aliasTokens({
-  //       action: 'update',
-  //       primary: 'atBaseFontColor',
-  //       secondary: 'atNewBaseFontColor',
-  //     })
-  //     expect(service.read()).toEqual(withUpdatedAliasToken)
-  //   })
-  // })
+      syncService.aliasTokens({
+        action: 'update',
+        primary: 'atTestBaseFontColor',
+        secondary: 'atTestBaseFontColor2',
+      })
+      expect(fileSave).toBeCalledWith('designTokens', withUpdatedAliasToken)
+    })
+  })
 })
 
-// const newDesignToken = {
-//   type: 'color',
-//   short: 'xyz',
-//   token: 'dtActionBackgroundNew',
-//   name: 'Action Background New',
-//   group: 'content',
-//   description: 'Background for action elements',
-//   properties: ['color', 'background-color'],
-//   aliasTokens: ['atButtonBackground'],
-// }
+const newDesignToken = {
+  type: 'color',
+  short: 'xyz',
+  token: 'dtActionBackgroundNew',
+  name: 'Action Background New',
+  group: 'content',
+  description: 'Background for action elements',
+  properties: ['color', 'background-color'],
+  aliasTokens: ['atButtonBackground'],
+}
+const newDesignToken2 = {
+  type: 'color',
+  token: 'dtActionBackgroundNew2',
+  name: 'Action Background New2',
+  group: 'content',
+  description: 'Background for action elements',
+}
 
 const updatedDesignToken = {
   type: 'color',
@@ -190,4 +277,12 @@ const updatedDesignToken = {
   description: 'Background for action elements',
   properties: ['color', 'background-color'],
   aliasTokens: ['atButtonBackground'],
+}
+
+const updatedDesignToken2 = {
+  type: 'color',
+  token: 'dtActionBackgroundUpdated2',
+  name: 'Action Background Updated2',
+  group: 'content',
+  description: 'Background for action elements',
 }

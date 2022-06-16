@@ -47,12 +47,6 @@ describe('AliasTokenService', () => {
     expect(service).toBeDefined()
   })
 
-  describe('read', () => {
-    it('should return all', () => {
-      expect(service.read()).toEqual(aliasTokens)
-    })
-  })
-
   describe('create', () => {
     it('should create one', () => {
       const withOneMore = clone(aliasTokens)

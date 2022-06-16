@@ -1,4 +1,4 @@
-import { AliasTokens, DesignTokens, StyleGuides, Themes } from '@typings'
+import { AliasTokens, DesignTokens, FormatedStyleGuides, StyleGuides, Themes } from '@typings'
 
 export const config = {
   paths: {
@@ -12,6 +12,146 @@ export const config = {
     shortDesignTokens: false,
   },
 }
+
+export const styleGuidesApi: FormatedStyleGuides = [
+  {
+    baseFontSize: 12,
+    name: 'Global',
+    slug: 'global',
+    types: [
+      {
+        groups: [
+          {
+            name: 'Base',
+            styles: [
+              { group: 'Base', name: 'Black', slug: 'base_black', type: 'color', value: '#333333' },
+              { group: 'Base', name: 'Light', slug: 'base_light', type: 'color', value: '#ffffff' },
+            ],
+          },
+        ],
+        name: 'Color',
+      },
+      {
+        groups: [
+          {
+            name: 'Media query',
+            styles: [
+              {
+                group: 'Media query',
+                name: 'Above Desktop',
+                slug: 'mediaQuery_aboveDesktop',
+                type: 'mediaquery',
+                value: 'screen and (min-width: 1200px)',
+              },
+              {
+                group: 'Media query',
+                name: 'Above Small Mobile',
+                slug: 'mediaQuery_aboveSmallMobile',
+                type: 'mediaquery',
+                value: 'screen and (min-width: 321px)',
+              },
+            ],
+          },
+        ],
+        name: 'MediaQuery',
+      },
+    ],
+  },
+  {
+    baseFontSize: 12,
+    name: 'StyleGuide 1',
+    slug: 'styleGuide1',
+    types: [
+      {
+        groups: [
+          {
+            name: 'Action',
+            styles: [
+              {
+                group: 'Action',
+                name: 'Primary',
+                slug: 'action_primary',
+                type: 'color',
+                value: '#31ed31',
+              },
+              {
+                group: 'Action',
+                name: 'Secondary',
+                slug: 'action_secondary',
+                type: 'color',
+                value: '#2ec22e',
+              },
+              {
+                group: 'Action',
+                name: 'Tertiary',
+                slug: 'action_tertiary',
+                type: 'color',
+                value: '#1e961e',
+              },
+            ],
+          },
+        ],
+        name: 'Color',
+      },
+    ],
+  },
+  {
+    baseFontSize: 16,
+    name: 'StyleGuide 2',
+    slug: 'styleGuide2',
+    types: [
+      {
+        groups: [
+          {
+            name: 'Action',
+            styles: [
+              {
+                group: 'Action',
+                name: 'Primary',
+                slug: 'action_primary',
+                type: 'color',
+                value: '#ff5555',
+              },
+              {
+                group: 'Action',
+                name: 'Secondary',
+                slug: 'action_secondary',
+                type: 'color',
+                value: '#d22828',
+              },
+            ],
+          },
+        ],
+        name: 'Color',
+      },
+    ],
+  },
+  {
+    baseFontSize: 10,
+    name: 'StyleGuide 3',
+    slug: 'styleGuide3',
+    types: [
+      {
+        groups: [
+          {
+            name: 'Base',
+            styles: [
+              {
+                group: 'Base',
+                name: 'Primary',
+                slug: 'base_primary',
+                type: 'color',
+                value: '#2be053',
+              },
+            ],
+          },
+        ],
+        name: 'Color',
+      },
+    ],
+  },
+  { baseFontSize: 10, name: 'StyleGuide 4', slug: 'styleGuide4', types: [] },
+]
 
 export const themes: Themes = {
   styleGuide1_light: {
@@ -233,7 +373,7 @@ export const designTokens: DesignTokens = {
     group: 'content',
     description: 'Font color for normal text',
     properties: ['color'],
-    aliasTokens: ['atBaseFontColor', 'atButtonFontColor'],
+    aliasTokens: ['atTestBaseFontColor', 'atTestButtonFontColor'],
     short: 'd34',
   },
   dtTestFontSize100: {

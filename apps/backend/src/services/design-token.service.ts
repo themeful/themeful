@@ -62,17 +62,6 @@ export class DesignTokenService {
     return true
   }
 
-  public read(): DesignTokens {
-    if (this.useShortDT) {
-      return this.designTokens
-    }
-    return Object.entries(this.designTokens).reduce((designTokens, [key, designToken]) => {
-      delete designToken['short']
-      designTokens[key] = designToken
-      return designTokens
-    }, {})
-  }
-
   public update(token: string, designToken: DesignTokenAPI): boolean {
     if (
       !this.designTokens[token] ||

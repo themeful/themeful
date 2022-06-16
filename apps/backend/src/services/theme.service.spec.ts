@@ -186,8 +186,6 @@ describe('ThemeService', () => {
 
     //   deletedClient['styleGuide1_dark'].styles['dtFontColorPrimary'] = {}
     //   deletedClient['styleGuide2_dark'].styles['dtFontColorPrimary'] = {}
-
-    //   expect(service.read()).toEqual(deletedClient)
     // })
   })
 })

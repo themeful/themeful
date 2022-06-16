@@ -30,8 +30,8 @@ describe('designTokensScss', () => {
         1,
         `${testPath}designTokens.scss`,
         `$atButtonBackground: var(--dtTestActionBackground);
-$atBaseFontColor: var(--dtTestFontColorPrimary);
-$atButtonFontColor: var(--dtTestFontColorPrimary);
+$atTestBaseFontColor: var(--dtTestFontColorPrimary);
+$atTestButtonFontColor: var(--dtTestFontColorPrimary);
 $atButtonFontSize: var(--dtTestFontSize100);
 `
       )
@@ -44,8 +44,8 @@ $atButtonFontSize: var(--dtTestFontSize100);
         2,
         `${testPath}designTokens.scss`,
         `$atButtonBackground: var(--d12);
-$atBaseFontColor: var(--d34);
-$atButtonFontColor: var(--d34);
+$atTestBaseFontColor: var(--d34);
+$atTestButtonFontColor: var(--d34);
 $atButtonFontSize: var(--d56);
 `
       )
@@ -73,8 +73,8 @@ $atButtonFontSize: var(--d56);
         3,
         `${testPath}designTokens.scss`,
         `$atButtonBackground: var(--dtTestActionBackground);
-$atBaseFontColor: var(--dtTestFontColorPrimary);
-$atButtonFontColor: var(--dtTestFontColorPrimary);
+$atTestBaseFontColor: var(--dtTestFontColorPrimary);
+$atTestButtonFontColor: var(--dtTestFontColorPrimary);
 $atButtonFontSize: var(--dtTestFontSize100, 12px);
 `
       )
@@ -109,8 +109,8 @@ $atButtonFontSize: var(--dtTestFontSize100, 12px);
         1,
         `${testPath}designTokens.scss`,
         `$atButtonBackground: var(--dtTestActionBackground);
-$atBaseFontColor: var(--dtTestFontColorPrimary);
-$atButtonFontColor: var(--dtTestFontColorPrimary);
+$atTestBaseFontColor: var(--dtTestFontColorPrimary);
+$atTestButtonFontColor: var(--dtTestFontColorPrimary);
 $atButtonFontSize: var(--dtTestFontSize100);
 `
       )
@@ -135,8 +135,8 @@ $atButtonFontSize: var(--dtTestFontSize100);
         1,
         `${testPath}designTokens.scss`,
         `$atButtonBackground: var(--dtTestActionBackground);
-$atBaseFontColor: var(--dtTestFontColorPrimary);
-$atButtonFontColor: var(--dtTestFontColorPrimary);
+$atTestBaseFontColor: var(--dtTestFontColorPrimary);
+$atTestButtonFontColor: var(--dtTestFontColorPrimary);
 $atButtonFontSize: var(--dtTestFontSize100);
 `
       )

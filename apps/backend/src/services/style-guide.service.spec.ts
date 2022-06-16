@@ -41,35 +41,33 @@ describe('StyleGuideService', () => {
   })
 
   describe('create', () => {
-    // it('should create one', () => {
-    //   const clonedBaseValue = clone(newBaseValue)
-    //   clonedBaseValue.value = '#2be053'
+    it('should create one', () => {
+      const clonedBaseValue = clone(newBaseValue)
+      clonedBaseValue.value = '#2be053'
 
-    //   const withOneMore = clone(styleGuides)
+      const withOneMore = clone(styleGuides)
 
-    //   withOneMore.global.styles['base_primary'] = clonedBaseValue
+      withOneMore.global.styles['base_primary'] = clonedBaseValue
 
-    //   const fileSave = jest.spyOn(FileService.prototype, 'save')
+      const fileSave = jest.spyOn(mockFileService, 'save')
 
-    //   expect(service.create(clone(newBaseValue))).toEqual(true)
-    //   expect(fileSave).toBeCalledWith('styleGuides', withOneMore)
-    // })
+      expect(service.create(clone(newBaseValue))).toEqual(true)
+      expect(fileSave).toBeCalledWith('styleGuides', withOneMore)
+    })
 
-    // it('should create one for styleGuide', () => {
-    //   const clonedBaseValue = clone(newBaseValue)
-    //   clonedBaseValue.value = '#2be053'
+    it('should create one for styleGuide', () => {
+      const clonedBaseValue = clone(newBaseValue)
+      clonedBaseValue.value = '#2be053'
 
-    //   const withOneMore = clone(styleGuides)
+      const withOneMore = clone(styleGuides)
 
-    //   withOneMore.styleGuide1.styles['base_primary'] = clonedBaseValue
+      withOneMore.styleGuide1.styles['base_primary'] = clonedBaseValue
 
-    //   expect(service.create(clone(newBaseValue), 'styleGuide1')).toEqual(true)
-    //   expect(jsonfile.writeFileSync).toBeCalledWith(
-    //     './sample/generated/styleGuides.json',
-    //     withOneMore,
-    //     { spaces: 2 }
-    //   )
-    // })
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.create(clone(newBaseValue), 'styleGuide1')).toEqual(true)
+      expect(fileSave).toBeCalledWith('styleGuides', withOneMore)
+    })
 
     it('should not create if value already exist', () => {
       expect(service.create(clone(styleGuides).global.styles.base_light as Style)).toEqual(false)
@@ -87,39 +85,33 @@ describe('StyleGuideService', () => {
   })
 
   describe('update', () => {
-    // it('should update one global value', () => {
-    //   const clonedBaseValue = clone(updatedBaseValue)
-    //   clonedBaseValue.value = '#dddddd'
+    it('should update one global value', () => {
+      const clonedBaseValue = clone(updatedBaseValue)
+      clonedBaseValue.value = '#dddddd'
 
-    //   const withOneUpdated = clone(styleGuides)
+      const withOneUpdated = clone(styleGuides)
 
-    //   delete withOneUpdated.global.styles['base_black']
-    //   withOneUpdated.global.styles['testUpdated_white'] = clonedBaseValue
+      delete withOneUpdated.global.styles['base_black']
+      withOneUpdated.global.styles['testUpdated_white'] = clonedBaseValue
+      const fileSave = jest.spyOn(mockFileService, 'save')
 
-    //   expect(service.update('base_black', clone(updatedBaseValue))).toEqual(true)
-    //   expect(jsonfile.writeFileSync).toBeCalledWith(
-    //     './sample/generated/styleGuides.json',
-    //     withOneUpdated,
-    //     { spaces: 2 }
-    //   )
-    // })
+      expect(service.update('base_black', clone(updatedBaseValue))).toEqual(true)
+      expect(fileSave).toBeCalledWith('styleGuides', withOneUpdated)
+    })
 
-    // it('should update one styleGuide value', () => {
-    //   const clonedBaseValue = clone(updatedBaseValue)
-    //   clonedBaseValue.value = '#dddddd'
+    it('should update one styleGuide value', () => {
+      const clonedBaseValue = clone(updatedBaseValue)
+      clonedBaseValue.value = '#dddddd'
 
-    //   const withOneUpdated = clone(styleGuides)
+      const withOneUpdated = clone(styleGuides)
 
-    //   delete withOneUpdated.styleGuide1.styles['action_primary']
-    //   withOneUpdated.styleGuide1.styles['testUpdated_white'] = clonedBaseValue
+      delete withOneUpdated.styleGuide1.styles['action_primary']
+      withOneUpdated.styleGuide1.styles['testUpdated_white'] = clonedBaseValue
+      const fileSave = jest.spyOn(mockFileService, 'save')
 
-    //   expect(service.update('action_primary', clone(updatedBaseValue), 'styleGuide1')).toEqual(true)
-    //   expect(jsonfile.writeFileSync).toBeCalledWith(
-    //     './sample/generated/styleGuides.json',
-    //     withOneUpdated,
-    //     { spaces: 2 }
-    //   )
-    // })
+      expect(service.update('action_primary', clone(updatedBaseValue), 'styleGuide1')).toEqual(true)
+      expect(fileSave).toBeCalledWith('styleGuides', withOneUpdated)
+    })
 
     it('should not update one global value', () => {
       expect(service.update('test_red', updatedBaseValue)).toEqual(false)
@@ -148,9 +140,9 @@ describe('StyleGuideService', () => {
     it('should delete a global value', () => {
       const withOneLess = clone(styleGuides)
 
-      delete withOneLess.global.styles['base_black']
+      delete withOneLess.global.styles['base_light']
 
-      expect(service.delete('base_black')).toEqual(true)
+      expect(service.delete('base_light')).toEqual(true)
       expect(mockFileService.save).toBeCalledWith('styleGuides', withOneLess)
     })
 
@@ -161,9 +153,9 @@ describe('StyleGuideService', () => {
     it('should delete a styleGuide value', () => {
       const withOneLess = clone(styleGuides)
 
-      delete withOneLess.styleGuide1.styles['action_primary']
+      delete withOneLess.styleGuide1.styles['action_secondary']
 
-      expect(service.delete('action_primary', 'styleGuide1')).toEqual(true)
+      expect(service.delete('action_secondary', 'styleGuide1')).toEqual(true)
       expect(mockFileService.save).toBeCalledWith('styleGuides', withOneLess)
     })
 
@@ -176,32 +168,59 @@ describe('StyleGuideService', () => {
     })
   })
 
-  // describe('sync', () => {
-  //   it('should sync update styleGuides', () => {
-  //     jest.spyOn(syncService, 'styleGuides').mockImplementation()
-  //     expect(service.update('action_primary', clone(updatedBaseValue), 'styleGuide1')).toEqual(true)
+  describe('sync', () => {
+    it('should sync update styleGuides', () => {
+      jest.spyOn(syncService, 'styleGuides').mockImplementation()
+      expect(service.update('action_tertiary', clone(updatedBaseValue2), 'styleGuide1')).toEqual(
+        true
+      )
 
-  //     expect(syncService.styleGuides).toHaveBeenCalledWith({
-  //       action: 'update',
-  //       primary: 'styleGuide1_action_primary',
-  //       secondary: 'styleGuide1_testUpdated_white',
-  //     })
-  //   })
-  // })
+      expect(syncService.styleGuides).toHaveBeenCalledWith({
+        action: 'update',
+        primary: 'styleGuide1_action_tertiary',
+        secondary: 'styleGuide1_testUpdated_white2',
+      })
+    })
+  })
+
+  describe('duplicate', () => {
+    it('should duplicate a styleGuide', () => {
+      const withOneDuplicated = clone(styleGuides)
+      withOneDuplicated['duplicatedOne'] = {
+        ...clone(withOneDuplicated['styleGuide1']),
+        name: 'Duplicated One',
+      }
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.duplicate('styleGuide1', { name: 'Duplicated One' })).toEqual(true)
+      expect(fileSave).toBeCalledWith('styleGuides', withOneDuplicated)
+    })
+
+    it('should not duplicate a styleGuide', () => {
+      expect(service.duplicate('styleGuide1', { name: 'Style Guide 4' })).toEqual(false)
+    })
+  })
 })
 
 const newBaseValue = {
   name: 'Primary',
   type: 'color',
-  group: 'Base',
+  group: 'base',
   slug: 'base_primary',
   value: '#2be053',
 }
 
 const updatedBaseValue = {
   type: 'color',
-  group: 'Test updated',
+  group: 'testUpdated',
   name: 'White',
-  slug: 'testUpdated_white',
+  slug: 'testUpdated_white2',
+  value: '#ddd',
+}
+const updatedBaseValue2 = {
+  type: 'color',
+  group: 'testUpdated',
+  name: 'White 2',
+  slug: 'testUpdated_white2',
   value: '#ddd',
 }
