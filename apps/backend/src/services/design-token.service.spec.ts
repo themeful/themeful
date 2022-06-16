@@ -12,11 +12,11 @@ import { SyncService } from './sync.service'
 describe('DesignTokenService', () => {
   let service: DesignTokenService
   let syncService: SyncService
+  const fileSave = jest.spyOn(mockFileService, 'save')
 
   beforeEach(async () => {
     syncService = new SyncService()
 
-    jest.spyOn(mockFileService, 'save')
     jest.spyOn(mockFileService, 'aliasTokens$')
     jest.spyOn(mockFileService, 'designTokens$')
 
@@ -50,11 +50,8 @@ describe('DesignTokenService', () => {
       const withOneMore = clone(designTokens)
       withOneMore[newDesignToken.token] = clonedDesignToken
 
-      const fileSave = jest.spyOn(mockFileService, 'save')
-
       expect(service.create(clone(newDesignToken))).toEqual(true)
       expect(fileSave).toBeCalledWith('designTokens', withOneMore)
-      fileSave.mockClear()
     })
     it('should create one missing some data', () => {
       const clonedDesignToken: DesignTokenAPI = clone(newDesignToken2)
@@ -65,8 +62,6 @@ describe('DesignTokenService', () => {
 
       const withOneMore = clone(designTokens)
       withOneMore[newDesignToken2.token] = clonedDesignToken
-
-      const fileSave = jest.spyOn(mockFileService, 'save')
 
       expect(service.create(clone(newDesignToken2))).toEqual(true)
       expect(fileSave).toBeCalledWith('designTokens', withOneMore)
@@ -91,8 +86,6 @@ describe('DesignTokenService', () => {
       delete withOneUpdated['dtTestFontColorPrimary']
       withOneUpdated[updatedDesignToken.token] = clonedDesignToken
 
-      const fileSave = jest.spyOn(mockFileService, 'save')
-
       expect(service.update('dtTestFontColorPrimary', clone(updatedDesignToken))).toEqual(true)
       expect(fileSave).toBeCalledWith('designTokens', withOneUpdated)
     })
@@ -111,10 +104,8 @@ describe('DesignTokenService', () => {
       withOneUpdated[updatedDesignToken2.token].aliasTokens = oldToken.aliasTokens
       withOneUpdated[updatedDesignToken2.token].properties = oldToken.properties
 
-      const fileSave = jest.spyOn(mockFileService, 'save')
-
       expect(service.update('dtTestFontColorPrimary', clone(updatedDesignToken2))).toEqual(true)
-      expect(fileSave).nthCalledWith(7, 'designTokens', withOneUpdated)
+      expect(fileSave).toBeCalledWith('designTokens', withOneUpdated)
     })
 
     it('should not update one', () => {
@@ -144,8 +135,6 @@ describe('DesignTokenService', () => {
       withSplitted['dtTestFontColorPrimary'].aliasTokens = ['atTestButtonFontColor']
       withSplitted['dtSplittedToken'] = newToken
 
-      const fileSave = jest.spyOn(mockFileService, 'save')
-
       expect(service.split('dtTestFontColorPrimary', clone(newToken))).toEqual(true)
       expect(fileSave).toBeCalledWith('designTokens', withSplitted)
     })
@@ -172,7 +161,6 @@ describe('DesignTokenService', () => {
         'atTestBaseFontColor',
         'atTestButtonBackground',
       ]
-      const fileSave = jest.spyOn(mockFileService, 'save')
 
       expect(
         service.selectAliasTokens('dtTestFontColorPrimary', [
@@ -205,8 +193,6 @@ describe('DesignTokenService', () => {
 
       delete withOneLess['dtTestFontColorPrimary']
 
-      const fileSave = jest.spyOn(mockFileService, 'save')
-
       expect(service.delete('dtTestFontColorPrimary')).toEqual(true)
       expect(fileSave).toBeCalledWith('designTokens', withOneLess)
     })
@@ -238,7 +224,6 @@ describe('DesignTokenService', () => {
         'atTestBaseFontColor2',
         'atTestButtonBackground',
       ]
-      const fileSave = jest.spyOn(mockFileService, 'save')
 
       syncService.aliasTokens({
         action: 'update',

@@ -80,7 +80,7 @@ body {
 & {
   --dtTestActionBackground: #{$styleGuide2_brand_primary};
   --dtTestFontColorPrimary: #{$global_base_black};
-  --dtTestFontSize100: #{$styleGuide2_fontSize_normal};
+  --dtTestFontSize100: #{$styleGuide2_fontSize_primary};
 }
 `
       )
@@ -93,7 +93,7 @@ body {
 & {
   --dtTestActionBackground: #{$styleGuide2_brand_secondary};
   --dtTestFontColorPrimary: #{$global_base_white};
-  --dtTestFontSize100: #{$styleGuide2_fontSize_normal};
+  --dtTestFontSize100: #{$styleGuide2_fontSize_primary};
 }
 `
       )
@@ -132,7 +132,7 @@ html[data-brand-theme='styleGuide2_dark'] {
 & {
   --d12: #{$styleGuide2_brand_primary};
   --d34: #{$global_base_black};
-  --d56: #{$styleGuide2_fontSize_normal};
+  --d56: #{$styleGuide2_fontSize_primary};
 }
 `
       )
@@ -145,7 +145,7 @@ html[data-brand-theme='styleGuide2_dark'] {
 & {
   --d12: #{$styleGuide2_brand_secondary};
   --d34: #{$global_base_white};
-  --d56: #{$styleGuide2_fontSize_normal};
+  --d56: #{$styleGuide2_fontSize_primary};
 }
 `
       )

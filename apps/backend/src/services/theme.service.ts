@@ -113,11 +113,11 @@ export class ThemeService {
   }
 
   public createValue(theme, token, { media, style, direct }: MediaValueDetail): boolean {
-    if (!this.themes[theme]?.styles) {
+    if (!this.themes[theme]) {
       return false
     }
 
-    if (!this.themes[theme]?.styles[token]) {
+    if (!this.themes[theme].styles[token]) {
       this.themes[theme].styles[token] = {} as ThemeValue
     }
 
@@ -230,11 +230,16 @@ export class ThemeService {
   }
 
   private syncStyleGuideBases = (data: SyncData) => {
-    const currentClients = unique(Object.values(this.themes).map(({ styleGuide }) => styleGuide))
+    const currentStyleGuides = unique(
+      Object.values(this.themes).map(({ styleGuide }) => styleGuide)
+    )
 
     switch (data.action) {
       case 'update':
-        if (currentClients.includes(data.primary) && !currentClients.includes(data.secondary)) {
+        if (
+          currentStyleGuides.includes(data.primary) &&
+          !currentStyleGuides.includes(data.secondary)
+        ) {
           Object.keys(this.themes).forEach((slug) => {
             if (this.themes[slug].styleGuide === data.primary) {
               const newSlug = slugify([data.secondary, this.themes[slug].name])
@@ -249,7 +254,10 @@ export class ThemeService {
         }
         break
       case 'duplicate':
-        if (currentClients.includes(data.primary) && !currentClients.includes(data.secondary)) {
+        if (
+          currentStyleGuides.includes(data.primary) &&
+          !currentStyleGuides.includes(data.secondary)
+        ) {
           Object.keys(this.themes).forEach((slug) => {
             if (this.themes[slug].styleGuide === data.primary) {
               const newSlug = slugify([data.secondary, this.themes[slug].name])

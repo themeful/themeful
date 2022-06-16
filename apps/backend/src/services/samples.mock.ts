@@ -107,6 +107,18 @@ export const styleGuidesApi: FormatedStyleGuides = [
               },
             ],
           },
+          {
+            name: 'Font size',
+            styles: [
+              {
+                group: 'Font size',
+                name: 'Primary',
+                slug: 'fontSize_primary',
+                type: 'size',
+                value: '32px',
+              },
+            ],
+          },
         ],
         name: 'Size',
       },
@@ -244,7 +256,7 @@ export const themes: Themes = {
       },
       dtTestFontSize100: {
         default: {
-          style: 'styleGuide2_fontSize_normal',
+          style: 'styleGuide2_fontSize_primary',
         },
       },
     },
@@ -265,7 +277,7 @@ export const themes: Themes = {
       },
       dtTestFontSize100: {
         default: {
-          style: 'styleGuide2_fontSize_normal',
+          style: 'styleGuide2_fontSize_primary',
         },
       },
     },
@@ -337,6 +349,13 @@ export const styleGuides: StyleGuides = {
         type: 'size',
         group: 'base',
         slug: 'base_secondary',
+        value: '32px',
+      },
+      fontSize_primary: {
+        name: 'Primary',
+        type: 'size',
+        group: 'fontSize',
+        slug: 'fontSize_primary',
         value: '32px',
       },
     },

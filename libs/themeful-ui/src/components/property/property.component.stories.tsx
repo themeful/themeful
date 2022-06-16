@@ -81,7 +81,7 @@ propertyBox.args = {
       },
     },
     {
-      section: 'Client 1',
+      section: 'StyleGuide 1',
       extendedStyle: {
         name: 'Default',
         group: 'Fonts',
@@ -90,7 +90,7 @@ propertyBox.args = {
       },
     },
     {
-      section: 'Client 2',
+      section: 'StyleGuide 2',
       extendedStyle: { name: 'Stuff', group: 'base', type: 'font-size', value: '1rem' },
     },
     {

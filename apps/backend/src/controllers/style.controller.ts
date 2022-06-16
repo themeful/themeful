@@ -12,7 +12,7 @@ export class StyleController {
   }
 
   @Post(':styleGuide')
-  createWithClient(@Body() data: Style, @Param('styleGuide') styleGuide: string) {
+  createWithStyleGuide(@Body() data: Style, @Param('styleGuide') styleGuide: string) {
     return this.styleGuideService.create(data, styleGuide)
   }
 
@@ -22,7 +22,7 @@ export class StyleController {
   }
 
   @Patch(':key/:styleGuide')
-  updateClient(
+  updateStyleGuide(
     @Param('key') key: string,
     @Param('styleGuide') styleGuide: string,
     @Body() data: Style
@@ -36,7 +36,7 @@ export class StyleController {
   }
 
   @Delete(':key/:styleGuide')
-  removeWithClient(@Param('key') key: string, @Param('styleGuide') styleGuide: string) {
+  removeWithStyleGuide(@Param('key') key: string, @Param('styleGuide') styleGuide: string) {
     return this.styleGuideService.delete(key, styleGuide)
   }
 }

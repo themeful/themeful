@@ -35,7 +35,7 @@ describe('StyleController', () => {
   })
 
   it('should return true for createStyleWithStyleGuide', async () => {
-    expect(await controller.createWithClient(mockStyle, 'styleGuideTest')).toEqual(true)
+    expect(await controller.createWithStyleGuide(mockStyle, 'styleGuideTest')).toEqual(true)
   })
 
   it('should return true for updateStyle', async () => {
@@ -43,7 +43,7 @@ describe('StyleController', () => {
   })
 
   it('should return true for updateStyleWithStyleGuide', async () => {
-    expect(await controller.updateClient(styleSlug, 'styleGuideTest', mockStyle)).toEqual(true)
+    expect(await controller.updateStyleGuide(styleSlug, 'styleGuideTest', mockStyle)).toEqual(true)
   })
 
   it('should return true for deleteStyle', async () => {
@@ -51,6 +51,6 @@ describe('StyleController', () => {
   })
 
   it('should return true for deleteStyleWithStyleGuide', async () => {
-    expect(await controller.removeWithClient(styleSlug, 'styleGuideTest')).toEqual(true)
+    expect(await controller.removeWithStyleGuide(styleSlug, 'styleGuideTest')).toEqual(true)
   })
 })

@@ -93,6 +93,51 @@ describe('SyncService', () => {
     service.styleGuides(deleteData)
     service.aliasTokens(deleteData)
   })
+
+  it('should update styleGuideBases', (done) => {
+    const actionData = {
+      action: 'duplicate',
+      primary: 'old',
+      secondary: 'new',
+    } as SyncData
+    const myCallBack = (data: SyncData) => {
+      expect(data).toEqual(actionData)
+      done()
+    }
+
+    service.register('styleGuideBases', myCallBack)
+    service.styleGuideBases(actionData)
+  })
+
+  it('should update designTokens', (done) => {
+    const actionData = {
+      action: 'duplicate',
+      primary: 'old',
+      secondary: 'new',
+    } as SyncData
+    const myCallBack = (data: SyncData) => {
+      expect(data).toEqual(actionData)
+      done()
+    }
+
+    service.register('designTokens', myCallBack)
+    service.designTokens(actionData)
+  })
+
+  it('should update themes', (done) => {
+    const actionData = {
+      action: 'duplicate',
+      primary: 'old',
+      secondary: 'new',
+    } as SyncData
+    const myCallBack = (data: SyncData) => {
+      expect(data).toEqual(actionData)
+      done()
+    }
+
+    service.register('themes', myCallBack)
+    service.themes(actionData)
+  })
 })
 
 const syncData: SyncData = { values: ['item1', 'item2'], action: 'sync' }
