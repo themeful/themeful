@@ -1,5 +1,18 @@
 import { AliasTokens, DesignTokens, StyleGuides, Themes } from '@typings'
 
+export const config = {
+  paths: {
+    generatedPath: './test-sample/generated/',
+    dataPath: './test-sample/generated/',
+    themesPath: './test-sample/generated/',
+    libPath: './test-sample/components/',
+  },
+  global: {
+    baseFontSize: '16px',
+    shortDesignTokens: false,
+  },
+}
+
 export const themes: Themes = {
   styleGuide1_light: {
     name: 'Light',

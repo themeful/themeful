@@ -15,6 +15,7 @@ import {
   SyncService,
   ThemeService,
 } from './services'
+import { GeneratorService } from './services/generator.service'
 import { SocketGateway } from './socket.gateway'
 
 @Module({
@@ -28,6 +29,7 @@ import { SocketGateway } from './socket.gateway'
     AliasTokenService,
     DesignTokenService,
     StyleGuideService,
+    GeneratorService,
     ThemeService,
     SyncService,
     SocketGateway,

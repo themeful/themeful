@@ -33,4 +33,5 @@ export const mockConfigService = {
   themesPath: './test-sample/generated/',
   libPath: './test-sample/components/',
   shortDesignTokens: false,
+  baseFontSize: '16px',
 }

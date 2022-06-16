@@ -17,5 +17,6 @@
   "html.format.endWithNewline": true,
   "javascript.format.semicolons": "remove",
   "typescript.format.semicolons": "remove",
-  "prettier.semi": false
+  "prettier.semi": false,
+  "jestrunner.jestCommand": "pnpm jest"
 }

@@ -20,8 +20,8 @@ import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'js
 import * as hash from 'object-hash'
 import { combineLatest, debounceTime, map, Observable, ReplaySubject } from 'rxjs'
 import { sentenceCase } from 'sentence-case'
-import { designTokensScss, styleGuidesScss, themesScss, themesTs } from '../generators'
 import { ConfigService } from './config.service'
+import { GeneratorService } from './generator.service'
 
 @Injectable()
 export class FileService {
@@ -32,29 +32,43 @@ export class FileService {
   private _aliasTokens$ = new ReplaySubject<AliasTokens>(1)
   private _styleGuides$ = new ReplaySubject<StyleGuides>(1)
   private _config$ = new ReplaySubject<GlobalConfig>(1)
+  private initialized = false
 
-  constructor(private readonly config: ConfigService) {
-    this.preloadFiles()
-    this.setupPipes()
+  constructor(
+    private readonly config: ConfigService,
+    private readonly generator: GeneratorService
+  ) {}
+
+  private init() {
+    if (!this.initialized) {
+      this.initialized = true
+      this.preloadFiles()
+      this.setupPipes()
+    }
   }
 
   public themes$(): ReplaySubject<Themes> {
+    this.init()
     return this._themes$
   }
 
   public designTokens$(): ReplaySubject<DesignTokens> {
+    this.init()
     return this._designTokens$
   }
 
   public aliasTokens$(): ReplaySubject<AliasTokens> {
+    this.init()
     return this._aliasTokens$
   }
 
   public styleGuides$(): ReplaySubject<StyleGuides> {
+    this.init()
     return this._styleGuides$
   }
 
   public config$(): ReplaySubject<GlobalConfig> {
+    this.init()
     return this._config$
   }
 
@@ -74,6 +88,7 @@ export class FileService {
   }
 
   public styleGuidesApi$(): Observable<FormatedStyleGuides> {
+    this.init()
     return this._styleGuides$.pipe(
       map((styleGuides: StyleGuides): FormatedStyleGuides => {
         return Object.entries(styleGuides).map(([slug, data]: [string, StyleGuide]) => ({
@@ -87,6 +102,7 @@ export class FileService {
   }
 
   public save(filename: string, data: Data) {
+    this.init()
     const newHash = hash(data)
     if (newHash !== this.hashKeys[filename]) {
       this.hashKeys[filename] = newHash
@@ -99,12 +115,12 @@ export class FileService {
     combineLatest([this._themes$, this._styleGuides$])
       .pipe(debounceTime(100))
       .subscribe(([themes, styleGuides]) => {
-        themesTs(this.config.generatedPath, themes, styleGuides)
+        this.generator.themesTs(this.config.generatedPath, themes, styleGuides)
       })
     combineLatest([this._themes$, this._designTokens$, this._styleGuides$])
       .pipe(debounceTime(100))
       .subscribe(([themes, designTokens, styleGuides]) => {
-        themesScss(
+        this.generator.themesScss(
           this.config.themesPath,
           this.config.shortDesignTokens,
           themes,
@@ -115,7 +131,7 @@ export class FileService {
     combineLatest([this._themes$, this._designTokens$, this._aliasTokens$])
       .pipe(debounceTime(100))
       .subscribe(([themes, designTokens, aliasTokens]) => {
-        designTokensScss(
+        this.generator.designTokensScss(
           this.config.themesPath,
           this.config.shortDesignTokens,
           themes,
@@ -124,7 +140,7 @@ export class FileService {
         )
       })
     this._styleGuides$.pipe(debounceTime(100)).subscribe((styleGuides) => {
-      styleGuidesScss(this.config.themesPath, styleGuides)
+      this.generator.styleGuidesScss(this.config.themesPath, styleGuides)
     })
   }
 
