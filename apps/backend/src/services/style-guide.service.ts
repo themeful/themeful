@@ -111,6 +111,9 @@ export class StyleGuideService {
     { name = 'Global', baseFontSize }: StyleGuideBase
   ): boolean {
     const slug = currentSlug === 'global' ? 'global' : slugify([name])
+    if (!this.styleGuides[currentSlug] || (slug !== currentSlug && this.styleGuides[slug])) {
+      return false
+    }
 
     this.styleGuides[slug] = {
       ...this.styleGuides[currentSlug],
@@ -125,10 +128,9 @@ export class StyleGuideService {
         primary: currentSlug,
         secondary: slug,
       })
-      this.writeFiles(this.styleGuides)
-    } else {
-      this.writeFiles(this.styleGuides)
     }
+
+    this.writeFiles(this.styleGuides)
 
     return true
   }

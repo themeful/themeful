@@ -99,7 +99,7 @@ describe('FileService', () => {
 
   it('should return config', (done) => {
     service.config$().subscribe((result) => {
-      expect(result).toEqual({ baseFontSize: '16px', shortDesignTokens: false })
+      expect(result).toEqual({ baseFontSize: 16, shortDesignTokens: false })
       done()
     })
   })
@@ -171,7 +171,7 @@ describe('FileService', () => {
 
   it('should return config', (done) => {
     service.config$().subscribe((result) => {
-      expect(result).toEqual({ baseFontSize: '16px', shortDesignTokens: false })
+      expect(result).toEqual({ baseFontSize: 16, shortDesignTokens: false })
       done()
     })
   })

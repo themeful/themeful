@@ -12,5 +12,5 @@ export interface Paths {
 
 export interface GlobalConfig {
   shortDesignTokens: boolean
-  baseFontSize: string
+  baseFontSize: number
 }

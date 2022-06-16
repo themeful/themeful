@@ -13,7 +13,7 @@ designTokens$.next(designTokens)
 styleGuides$.next(styleGuides)
 themes$.next(themes)
 config$.next({
-  baseFontSize: '16px',
+  baseFontSize: 16,
   shortDesignTokens: false,
 })
 
@@ -31,5 +31,5 @@ export const mockConfigService = {
   themesPath: './test-sample/generated/',
   libPath: './test-sample/components/',
   shortDesignTokens: false,
-  baseFontSize: '16px',
+  baseFontSize: 16,
 }

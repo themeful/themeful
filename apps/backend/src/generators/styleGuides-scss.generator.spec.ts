@@ -28,6 +28,7 @@ $global_base_light: #ffffff;
 $styleGuide1_action_primary: #31ed31;
 $styleGuide1_action_secondary: #2ec22e;
 $styleGuide1_action_tertiary: #1e961e;
+$styleGuide1_base_secondary: 32px;
 $styleGuide2_action_primary: #ff5555;
 $styleGuide2_action_secondary: #d22828;
 $styleGuide3_base_primary: #2be053;

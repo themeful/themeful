@@ -6,7 +6,7 @@
     "libPath": "./sample/components/"
   },
   "global": {
-    "baseFontSize": "16px",
+    "baseFontSize": 16,
     "shortDesignTokens": false
   }
 }

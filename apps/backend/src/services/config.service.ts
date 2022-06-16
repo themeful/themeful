@@ -20,7 +20,7 @@ export class ConfigService {
             libPath: './sample/components/',
           },
           global: {
-            baseFontSize: '16px',
+            baseFontSize: 16,
             shortDesignTokens: false,
           },
         },
@@ -50,7 +50,7 @@ export class ConfigService {
     return this.config.global.shortDesignTokens
   }
 
-  public get baseFontSize(): string {
+  public get baseFontSize(): number {
     return this.config.global.baseFontSize
   }
 }

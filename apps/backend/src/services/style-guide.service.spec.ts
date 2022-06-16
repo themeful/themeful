@@ -43,7 +43,7 @@ describe('StyleGuideService', () => {
   describe('create', () => {
     it('should create one', () => {
       const clonedBaseValue = clone(newBaseValue)
-      clonedBaseValue.value = '#2be053'
+      clonedBaseValue.value = '16px'
 
       const withOneMore = clone(styleGuides)
 
@@ -57,7 +57,7 @@ describe('StyleGuideService', () => {
 
     it('should create one for styleGuide', () => {
       const clonedBaseValue = clone(newBaseValue)
-      clonedBaseValue.value = '#2be053'
+      clonedBaseValue.value = '16px'
 
       const withOneMore = clone(styleGuides)
 
@@ -200,14 +200,73 @@ describe('StyleGuideService', () => {
       expect(service.duplicate('styleGuide1', { name: 'Style Guide 4' })).toEqual(false)
     })
   })
+
+  describe('createStyleGuide', () => {
+    it('should create a styleGuide', () => {
+      const withOneMore = clone(styleGuides)
+      withOneMore['newCreatedOne'] = {
+        name: 'New Created One',
+        baseFontSize: 12,
+        styles: {},
+      }
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.createStyleGuide({ name: 'New Created One', baseFontSize: 12 })).toEqual(true)
+      expect(fileSave).toBeCalledWith('styleGuides', withOneMore)
+    })
+
+    it('should not create a styleGuide', () => {
+      expect(service.createStyleGuide({ name: 'Style Guide 1', baseFontSize: 12 })).toEqual(false)
+    })
+  })
+
+  describe('updateStyleGuide', () => {
+    it('should update a styleGuide', () => {
+      const updateStyleGuide = clone(styleGuides)
+      updateStyleGuide['updatedOne'] = {
+        name: 'Updated One',
+        baseFontSize: 12,
+        styles: clone(updateStyleGuide['styleGuide1'].styles),
+      }
+      delete updateStyleGuide['styleGuide1']
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(
+        service.updateStyleGuide('styleGuide1', { name: 'Updated One', baseFontSize: 12 })
+      ).toEqual(true)
+      expect(fileSave).toBeCalledWith('styleGuides', updateStyleGuide)
+    })
+
+    it('should not update a styleGuide', () => {
+      expect(
+        service.updateStyleGuide('styleGuideNotExist', { name: 'Style Guide 1', baseFontSize: 12 })
+      ).toEqual(false)
+    })
+  })
+
+  describe('deleteStyleGuide', () => {
+    it('should delete a styleGuide', () => {
+      const deleteStyleGuide = clone(styleGuides)
+
+      delete deleteStyleGuide['styleGuide2']
+      const fileSave = jest.spyOn(mockFileService, 'save')
+
+      expect(service.deleteStyleGuide('styleGuide2')).toEqual(true)
+      expect(fileSave).toBeCalledWith('styleGuides', deleteStyleGuide)
+    })
+
+    it('should not delete a styleGuide', () => {
+      expect(service.deleteStyleGuide('styleGuideNotExist')).toEqual(false)
+    })
+  })
 })
 
 const newBaseValue = {
   name: 'Primary',
-  type: 'color',
+  type: 'size',
   group: 'base',
   slug: 'base_primary',
-  value: '#2be053',
+  value: '16px',
 }
 
 const updatedBaseValue = {

@@ -8,7 +8,7 @@ export const config = {
     libPath: './test-sample/components/',
   },
   global: {
-    baseFontSize: '16px',
+    baseFontSize: 16,
     shortDesignTokens: false,
   },
 }
@@ -92,6 +92,23 @@ export const styleGuidesApi: FormatedStyleGuides = [
           },
         ],
         name: 'Color',
+      },
+      {
+        groups: [
+          {
+            name: 'Base',
+            styles: [
+              {
+                group: 'Base',
+                name: 'Secondary',
+                slug: 'base_secondary',
+                type: 'size',
+                value: '32px',
+              },
+            ],
+          },
+        ],
+        name: 'Size',
       },
     ],
   },
@@ -314,6 +331,13 @@ export const styleGuides: StyleGuides = {
         group: 'Action',
         slug: 'action_tertiary',
         value: '#1e961e',
+      },
+      base_secondary: {
+        name: 'Secondary',
+        type: 'size',
+        group: 'base',
+        slug: 'base_secondary',
+        value: '32px',
       },
     },
   },

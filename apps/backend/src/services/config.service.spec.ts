@@ -11,7 +11,7 @@ const config = {
     libPath: 'test/libPath',
   },
   global: {
-    baseFontSize: '16px',
+    baseFontSize: 16,
     shortDesignTokens: false,
   },
 }
@@ -55,8 +55,8 @@ describe('ConfigService', () => {
       expect(service.shortDesignTokens).toEqual(false)
     })
 
-    it('should return shortDesignTokens', () => {
-      expect(service.baseFontSize).toEqual('16px')
+    it('should return baseFontSize', () => {
+      expect(service.baseFontSize).toEqual(16)
     })
   })
 })
@@ -79,7 +79,7 @@ describe('ConfigService without config file', () => {
       expect(jsonfile.writeFileSync).toHaveBeenCalledWith(
         'themeful.json',
         {
-          global: { baseFontSize: '16px', shortDesignTokens: false },
+          global: { baseFontSize: 16, shortDesignTokens: false },
           paths: {
             dataPath: './sample/generated/',
             generatedPath: './sample/generated/',
