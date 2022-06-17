@@ -79,5 +79,5 @@
       }
     }
   },
-  "implicitDependencies": ["!themeful-ui"]
+  "implicitDependencies": ["!ui-lib"]
 }

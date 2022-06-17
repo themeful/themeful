@@ -5,10 +5,10 @@
 ![ci: frontend tests](https://github.com/themeful/themeful/actions/workflows/ci-test-frontend.yml/badge.svg)
 ![ci: backend tests](https://github.com/themeful/themeful/actions/workflows/ci-test-backend.yml/badge.svg)
 
-Frontend: `pnpm themeful-ui`
+Frontend: `pnpm ui-lib`
 
 Backend: `pnpm backend`
 
-Test: `pnpm nx run themeful-ui:test --test-name-pattern=`
+Test: `pnpm nx run ui-lib:test --test-name-pattern=`
 
-SnapShot Update: `pnpm nx run themeful-ui:test:update`
+SnapShot Update: `pnpm nx run ui-lib:test:update`

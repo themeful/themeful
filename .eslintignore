@@ -3,5 +3,5 @@ dist
 coverage
 www
 loader
-libs/themeful-ui/src/components.d.ts
+libs/ui-lib/src/components.d.ts
 apps/frontend/src/components.d.ts

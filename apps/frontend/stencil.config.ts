@@ -20,8 +20,8 @@ export const config: Config = {
     moduleNameMapper: {
       '@properties': '<rootDir>/../../libs/property-types/src/index.ts',
       '@typings': '<rootDir>/../../libs/typings/src/index.ts',
-      '@themeful-ui': '<rootDir>/../../libs/themeful-ui/src/index.ts',
-      '@themeful-ui/*': '<rootDir>/../../libs/themeful-ui/src/*',
+      '@ui': '<rootDir>/../../libs/ui-lib/src/index.ts',
+      '@ui/*': '<rootDir>/../../libs/ui-lib/src/*',
       '@utils': '<rootDir>/../../libs/utils/src/lib/index.ts',
       '@utils/*': '<rootDir>/../../libs/utils/src/lib/*',
     },

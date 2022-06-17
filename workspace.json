@@ -5,7 +5,7 @@
     "backend": "apps/backend",
     "frontend": "apps/frontend",
     "property-types": "libs/property-types",
-    "themeful-ui": "libs/themeful-ui",
+    "ui-lib": "libs/ui-lib",
     "typings": "libs/typings",
     "utils": "libs/utils"
   }

@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/themeful-ui/src",
+  "sourceRoot": "libs/ui-lib/src",
   "generators": {
     "@nxext/stencil:component": {
       "style": "scss"
@@ -10,12 +10,12 @@
   "targets": {
     "build": {
       "executor": "@nxext/stencil:build",
-      "outputs": ["dist/libs/themeful-ui"],
+      "outputs": ["dist/libs/ui-lib"],
       "options": {
         "projectType": "library",
-        "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
-        "configPath": "libs/themeful-ui/stencil.config.ts",
-        "outputPath": "dist/libs/themeful-ui"
+        "tsConfig": "libs/ui-lib/tsconfig.lib.json",
+        "configPath": "libs/ui-lib/stencil.config.ts",
+        "outputPath": "dist/libs/ui-lib"
       },
       "configurations": {
         "production": {
@@ -29,12 +29,12 @@
     },
     "serve": {
       "executor": "@nxext/stencil:build",
-      "outputs": ["dist/libs/themeful-ui"],
+      "outputs": ["dist/libs/ui-lib"],
       "options": {
         "projectType": "library",
-        "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
-        "configPath": "libs/themeful-ui/stencil.config.ts",
-        "outputPath": "dist/libs/themeful-ui"
+        "tsConfig": "libs/ui-lib/tsconfig.lib.json",
+        "configPath": "libs/ui-lib/stencil.config.ts",
+        "outputPath": "dist/libs/ui-lib"
       }
     },
     "test": {
@@ -42,8 +42,8 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "projectType": "library",
-        "configPath": "libs/themeful-ui/stencil.config.ts",
-        "outputPath": "dist/libs/themeful-ui"
+        "configPath": "libs/ui-lib/stencil.config.ts",
+        "outputPath": "dist/libs/ui-lib"
       },
       "configurations": {
         "update": {
@@ -57,20 +57,17 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/themeful-ui/**/*.ts",
-          "libs/themeful-ui/**/*.tsx"
-        ]
+        "lintFilePatterns": ["libs/ui-lib/**/*.ts", "libs/ui-lib/**/*.tsx"]
       }
     },
     "e2e": {
       "executor": "@nxext/stencil:e2e",
-      "outputs": ["dist/libs/themeful-ui"],
+      "outputs": ["dist/libs/ui-lib"],
       "options": {
         "projectType": "library",
-        "tsConfig": "libs/themeful-ui/tsconfig.lib.json",
-        "configPath": "libs/themeful-ui/stencil.config.ts",
-        "outputPath": "dist/libs/themeful-ui"
+        "tsConfig": "libs/ui-lib/tsconfig.lib.json",
+        "configPath": "libs/ui-lib/stencil.config.ts",
+        "outputPath": "dist/libs/ui-lib"
       }
     },
     "storybook": {
@@ -79,7 +76,7 @@
         "uiFramework": "@storybook/html",
         "port": 4400,
         "config": {
-          "configFolder": "libs/themeful-ui/.storybook"
+          "configFolder": "libs/ui-lib/.storybook"
         }
       },
       "configurations": {
@@ -96,12 +93,12 @@
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
-      "outputs": ["dist/storybook/themeful-ui"],
+      "outputs": ["dist/storybook/ui-lib"],
       "options": {
         "uiFramework": "@storybook/html",
-        "outputPath": "dist/storybook/themeful-ui",
+        "outputPath": "dist/storybook/ui-lib",
         "config": {
-          "configFolder": "libs/themeful-ui/.storybook"
+          "configFolder": "libs/ui-lib/.storybook"
         }
       },
       "configurations": {
@@ -111,5 +108,5 @@
       }
     }
   },
-  "tags": ["scope:themeful-ui"]
+  "tags": ["scope:ui-lib"]
 }

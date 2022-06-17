@@ -5,4 +5,4 @@
 /node_modules
 /www
 /loader
-libs/themeful-ui/src/components.d.ts
+libs/ui-lib/src/components.d.ts

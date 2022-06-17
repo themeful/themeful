@@ -1,10 +1,10 @@
 import { Component, h, Host, State } from '@stencil/core'
-import '@themeful-ui'
-import '@themeful-ui/components/button'
-import '@themeful-ui/components/toast'
-import '@themeful-ui/pages/style-guide-details'
-import '@themeful-ui/pages/style-guides'
-import '@themeful-ui/pages/themes'
+import '@ui'
+import '@ui/components/button'
+import '@ui/components/toast'
+import '@ui/pages/style-guide-details'
+import '@ui/pages/style-guides'
+import '@ui/pages/themes'
 import { APIService } from '../services'
 
 @Component({

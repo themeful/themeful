@@ -4,12 +4,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "run-p frontend backend",
-    "dev:ui": "run-p themeful-ui storybook",
+    "dev:ui": "run-p ui-lib storybook",
     "sample": "nx run backend:sample",
-    "themeful-ui": "nx run themeful-ui:build:watch",
+    "ui-lib": "nx run ui-lib:build:watch",
     "frontend": "nx run frontend:serve:watch",
     "backend": "nx run backend:serve",
-    "storybook": "nx run themeful-ui:storybook",
+    "storybook": "nx run ui-lib:storybook",
     "nx": "nx",
     "serve": "nx serve",
     "build": "nx build",
@@ -29,13 +29,13 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "build:themeful-ui": "nx run themeful-ui:build",
-    "watch:themeful-ui": "nx run themeful-ui:build:watch",
+    "build:ui-lib": "nx run ui-lib:build",
+    "watch:ui-lib": "nx run ui-lib:build:watch",
     "lint": "nx lint",
     "test": "nx test",
     "lint:all": "nx workspace-lint && nx run-many --target=lint --all",
     "test:all": "nx run-many --target=test --all",
-    "build:all": "nx run themeful-ui:build && nx run frontend:build && nx run backend:build"
+    "build:all": "nx run ui-lib:build && nx run frontend:build && nx run backend:build"
   },
   "private": true,
   "devDependencies": {
@@ -131,4 +131,3 @@
     "tslib": "^2.4.0"
   }
 }
-

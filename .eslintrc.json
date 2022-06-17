@@ -14,10 +14,10 @@
             "depConstraints": [
               {
                 "sourceTag": "scope:frontend",
-                "onlyDependOnLibsWithTags": ["scope:themeful-ui"]
+                "onlyDependOnLibsWithTags": ["scope:ui-lib"]
               },
               {
-                "sourceTag": "scope:themeful-ui",
+                "sourceTag": "scope:ui-lib",
                 "onlyDependOnLibsWithTags": ["scope:properties", "scope:utils", "scope:typings"]
               },
               {
