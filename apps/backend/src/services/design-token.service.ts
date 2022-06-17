@@ -2,21 +2,14 @@ import { Injectable } from '@nestjs/common'
 import { DesignToken, DesignTokenAPI, DesignTokens, SyncData } from '@typings'
 import { clone, slugify, sortMap, uuid } from '@utils'
 import { take } from 'rxjs'
-import { ConfigService } from './config.service'
 import { FileService } from './file.service'
 import { SyncService } from './sync.service'
 
 @Injectable()
 export class DesignTokenService {
   private designTokens: DesignTokens
-  private useShortDT: boolean
 
-  constructor(
-    private readonly syncService: SyncService,
-    private readonly config: ConfigService,
-    private readonly file: FileService
-  ) {
-    this.useShortDT = this.config.shortDesignTokens
+  constructor(private readonly syncService: SyncService, private readonly file: FileService) {
     this.syncService.register('aliasTokens', this.syncAliasTokens)
 
     this.file

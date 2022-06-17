@@ -29,6 +29,11 @@ describe('ThemefulMicrofrontend', () => {
                     Style Guides
                   </tf-button>
                 </stencil-route-link>
+                <stencil-route-link url="/components">
+                  <tf-button kind="selectable">
+                    Components
+                  </tf-button>
+                </stencil-route-link>
                 <tf-button class="mode-toggle" kind="selectable">
                   Light Mode
                 </tf-button>
@@ -42,6 +47,7 @@ describe('ThemefulMicrofrontend', () => {
                 <stencil-route component="tf-themes" url="/themes"></stencil-route>
                 <stencil-route component="tf-style-guides" url="/styleguides"></stencil-route>
                 <stencil-route component="tf-style-guide-details" url="/styleguide/:slug"></stencil-route>
+                <stencil-route component="tf-components" url="/components"></stencil-route>
                 <stencil-route exact="" url="/">
                   <stencil-router-redirect url="/themes"></stencil-router-redirect>
                 </stencil-route>
@@ -80,6 +86,11 @@ describe('ThemefulMicrofrontend', () => {
                   Style Guides
                 </tf-button>
               </stencil-route-link>
+              <stencil-route-link url="/components">
+                <tf-button kind="selectable">
+                  Components
+                </tf-button>
+              </stencil-route-link>
               <tf-button class="mode-toggle" kind="selectable">
                 Light Mode
               </tf-button>
@@ -93,6 +104,7 @@ describe('ThemefulMicrofrontend', () => {
               <stencil-route component="tf-themes" url="/themes"></stencil-route>
               <stencil-route component="tf-style-guides" url="/styleguides"></stencil-route>
               <stencil-route component="tf-style-guide-details" url="/styleguide/:slug"></stencil-route>
+              <stencil-route component="tf-components" url="/components"></stencil-route>
               <stencil-route exact="" url="/">
                 <stencil-router-redirect url="/themes"></stencil-router-redirect>
               </stencil-route>

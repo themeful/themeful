@@ -10,7 +10,6 @@ describe('GeneratorService', () => {
   const themesJson = clone(themes)
   const designTokensJson = clone(designTokens)
   const aliasTokensJson = clone(aliasTokens)
-  const styleGuidesJson = clone(styleGuides)
 
   beforeEach(async () => {
     jest.spyOn(generators, 'designTokensScss').mockImplementation()

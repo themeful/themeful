@@ -14,7 +14,7 @@ export default {
 export const styleGuides = (args) => {
   return (
     <div>
-      <div class="header">
+      <div class="header" style={{ marginBottom: '16px' }}>
         <h1>Style Guides</h1>
       </div>
       <div class="content">

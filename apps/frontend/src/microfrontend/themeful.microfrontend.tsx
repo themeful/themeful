@@ -2,6 +2,7 @@ import { Component, h, Host, State } from '@stencil/core'
 import '@ui'
 import '@ui/components/button'
 import '@ui/components/toast'
+import '@ui/pages/components'
 import '@ui/pages/style-guide-details'
 import '@ui/pages/style-guides'
 import '@ui/pages/themes'
@@ -66,6 +67,9 @@ export class ThemefulMicrofrontend {
               <stencil-route-link url="/styleguides">
                 <tf-button kind="selectable">Style Guides</tf-button>
               </stencil-route-link>
+              <stencil-route-link url="/components">
+                <tf-button kind="selectable">Components</tf-button>
+              </stencil-route-link>
               <tf-button class="mode-toggle" onClick={this.toogleMode} kind="selectable">
                 {this.mode === 'light' ? 'Dark' : 'Light'} Mode
               </tf-button>
@@ -98,6 +102,13 @@ export class ThemefulMicrofrontend {
                 component="tf-style-guide-details"
                 componentProps={{
                   styleGuides$: this.styleGuides$,
+                  onAction: this.onAction,
+                }}
+              />
+              <stencil-route
+                url="/components"
+                component="tf-components"
+                componentProps={{
                   onAction: this.onAction,
                 }}
               />

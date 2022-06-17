@@ -62,6 +62,8 @@ export namespace Components {
          */
         "value": string;
     }
+    interface TfComponents {
+    }
     interface TfDesignTokenForm {
         /**
           * Data for the form
@@ -363,6 +365,10 @@ export interface TfColorInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLTfColorInputElement;
 }
+export interface TfComponentsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLTfComponentsElement;
+}
 export interface TfDesignTokenFormCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLTfDesignTokenFormElement;
@@ -465,6 +471,12 @@ declare global {
     var HTMLTfColorInputElement: {
         prototype: HTMLTfColorInputElement;
         new (): HTMLTfColorInputElement;
+    };
+    interface HTMLTfComponentsElement extends Components.TfComponents, HTMLStencilElement {
+    }
+    var HTMLTfComponentsElement: {
+        prototype: HTMLTfComponentsElement;
+        new (): HTMLTfComponentsElement;
     };
     interface HTMLTfDesignTokenFormElement extends Components.TfDesignTokenForm, HTMLStencilElement {
     }
@@ -602,6 +614,7 @@ declare global {
         "tf-alias-token-form": HTMLTfAliasTokenFormElement;
         "tf-button": HTMLTfButtonElement;
         "tf-color-input": HTMLTfColorInputElement;
+        "tf-components": HTMLTfComponentsElement;
         "tf-design-token-form": HTMLTfDesignTokenFormElement;
         "tf-design-token-split-form": HTMLTfDesignTokenSplitFormElement;
         "tf-form-integration": HTMLTfFormIntegrationElement;
@@ -676,6 +689,12 @@ declare namespace LocalJSX {
           * Input value
          */
         "value"?: string;
+    }
+    interface TfComponents {
+        /**
+          * Event emitted when an action is triggered
+         */
+        "onAction"?: (event: TfComponentsCustomEvent<FormIntegrationActions>) => void;
     }
     interface TfDesignTokenForm {
         /**
@@ -1025,6 +1044,7 @@ declare namespace LocalJSX {
         "tf-alias-token-form": TfAliasTokenForm;
         "tf-button": TfButton;
         "tf-color-input": TfColorInput;
+        "tf-components": TfComponents;
         "tf-design-token-form": TfDesignTokenForm;
         "tf-design-token-split-form": TfDesignTokenSplitForm;
         "tf-form-integration": TfFormIntegration;
@@ -1056,6 +1076,7 @@ declare module "@stencil/core" {
             "tf-alias-token-form": LocalJSX.TfAliasTokenForm & JSXBase.HTMLAttributes<HTMLTfAliasTokenFormElement>;
             "tf-button": LocalJSX.TfButton & JSXBase.HTMLAttributes<HTMLTfButtonElement>;
             "tf-color-input": LocalJSX.TfColorInput & JSXBase.HTMLAttributes<HTMLTfColorInputElement>;
+            "tf-components": LocalJSX.TfComponents & JSXBase.HTMLAttributes<HTMLTfComponentsElement>;
             "tf-design-token-form": LocalJSX.TfDesignTokenForm & JSXBase.HTMLAttributes<HTMLTfDesignTokenFormElement>;
             "tf-design-token-split-form": LocalJSX.TfDesignTokenSplitForm & JSXBase.HTMLAttributes<HTMLTfDesignTokenSplitFormElement>;
             "tf-form-integration": LocalJSX.TfFormIntegration & JSXBase.HTMLAttributes<HTMLTfFormIntegrationElement>;

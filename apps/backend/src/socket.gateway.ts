@@ -50,7 +50,7 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
   }
 
   @SubscribeMessage('message')
-  handleMessage(client: Socket, payload: string): WsResponse<string> {
+  handleMessage(_client: Socket, payload: string): WsResponse<string> {
     // client.emit('msgToClient', 'Hello world!')
     this.wss.emit('update', 'Hello world!')
     return { event: 'msgToClient', data: `Hello world! ${payload}` }
