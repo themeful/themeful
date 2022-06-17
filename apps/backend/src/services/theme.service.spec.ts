@@ -12,6 +12,12 @@ describe('ThemeService', () => {
   let service: ThemeService
   let syncService: SyncService
   const fileSave = jest.spyOn(mockFileService, 'save')
+  const themeSlugs = [
+    'styleGuide1_light',
+    'styleGuide1_dark',
+    'styleGuide2_light',
+    'styleGuide2_dark',
+  ]
 
   beforeEach(async () => {
     syncService = new SyncService()
@@ -194,31 +200,134 @@ describe('ThemeService', () => {
     })
   })
 
-  // describe('get styleGuide changes from sync', () => {
-  //   it('should update a styleGuide', () => {
-  //     const withUpdatedStyleGuide = clone(themes)
+  describe('get styleGuide changes from sync', () => {
+    it('should update a style', () => {
+      const withUpdatedStyleGuide = clone(themes)
 
-  //     withUpdatedStyleGuide['styleGuide2_dark'].styles['dtActionBG'] = {
-  //       default: {
-  //         style: 'styleGuide2_brandnew_secondary',
-  //       },
-  //     }
+      withUpdatedStyleGuide['styleGuide1_light'].styles['dtTestActionBackground'] = {
+        default: {
+          style: 'global_base_light',
+        },
+      }
+      withUpdatedStyleGuide['styleGuide1_dark'].styles['dtTestActionBackground'] = {
+        default: {
+          style: 'global_base_light',
+        },
+      }
 
-  //     syncService.styleGuides({
-  //       action: 'update',
-  //       primary: 'styleGuide2_brand_secondary',
-  //       secondary: 'styleGuide2_brandnew_secondary',
-  //     })
-  //     expect(fileSave).toBeCalledWith('designTokens', withUpdatedStyleGuide)
-  //   })
+      syncService.styleGuides({
+        action: 'update',
+        primary: 'styleGuide1_action_primary',
+        secondary: 'global_base_light',
+      })
+      expect(fileSave).toBeCalledWith('themes', withUpdatedStyleGuide)
+    })
 
-  //   // it('should delete a styleGuide', () => {
-  //   //   const deletedStyleGuide = clone(themes)
+    it('should update a mediaQuery', () => {
+      const withUpdatedStyleGuide = clone(themes)
 
-  //   //   deletedStyleGuide['styleGuide1_dark'].styles['dtFontColorPrimary'] = {}
-  //   //   deletedStyleGuide['styleGuide2_dark'].styles['dtFontColorPrimary'] = {}
-  //   // })
-  // })
+      withUpdatedStyleGuide['styleGuide1_light'].styles['dtTestFontSize100'][
+        'global_mediaQuery_aboveDesktopNew'
+      ] = {
+        direct: {
+          value: '13px',
+          type: 'font-size',
+        },
+      }
+      delete withUpdatedStyleGuide['styleGuide1_light'].styles['dtTestFontSize100'][
+        'global_mediaQuery_aboveDesktop'
+      ]
+
+      syncService.styleGuides({
+        action: 'update',
+        primary: 'global_mediaQuery_aboveDesktop',
+        secondary: 'global_mediaQuery_aboveDesktopNew',
+      })
+      expect(fileSave).toBeCalledWith('themes', withUpdatedStyleGuide)
+    })
+  })
+
+  describe('get DesignToken changes from sync', () => {
+    it('should update a designToken', () => {
+      const withUpdatedDesignToken = clone(themes)
+
+      themeSlugs.forEach((theme) => {
+        withUpdatedDesignToken[theme].styles['dtTestActionBackgroundRenamed'] = clone(
+          withUpdatedDesignToken[theme].styles['dtTestActionBackground']
+        )
+        delete withUpdatedDesignToken[theme].styles['dtTestActionBackground']
+      })
+
+      syncService.designTokens({
+        action: 'update',
+        primary: 'dtTestActionBackground',
+        secondary: 'dtTestActionBackgroundRenamed',
+      })
+      expect(fileSave).toBeCalledWith('themes', withUpdatedDesignToken)
+    })
+
+    it('should split a designToken', () => {
+      const withSplittedDesignToken = clone(themes)
+
+      themeSlugs.forEach((theme) => {
+        withSplittedDesignToken[theme].styles['dtTestFontColorPrimarySplitted'] =
+          withSplittedDesignToken[theme].styles['dtTestFontColorPrimary']
+            ? clone(withSplittedDesignToken[theme].styles['dtTestFontColorPrimary'])
+            : {}
+      })
+
+      syncService.designTokens({
+        action: 'split',
+        primary: 'dtTestFontColorPrimary',
+        secondary: 'dtTestFontColorPrimarySplitted',
+      })
+      expect(fileSave).toBeCalledWith('themes', withSplittedDesignToken)
+    })
+  })
+
+  describe('syncStyleGuideBases', () => {
+    it('should update a StyleGuideBases', () => {
+      const withUpdatedStyleGuide = clone(themes)
+      const oldSlug = 'styleGuide1'
+      const newSlug = 'styleGuideUpdated'
+
+      withUpdatedStyleGuide[`${newSlug}_dark`] = clone(withUpdatedStyleGuide[`${oldSlug}_dark`])
+      withUpdatedStyleGuide[`${newSlug}_dark`].styleGuide = newSlug
+      delete withUpdatedStyleGuide[`${oldSlug}_dark`]
+      withUpdatedStyleGuide[`${newSlug}_light`] = clone(withUpdatedStyleGuide[`${oldSlug}_light`])
+      withUpdatedStyleGuide[`${newSlug}_light`].styleGuide = newSlug
+      delete withUpdatedStyleGuide[`${oldSlug}_light`]
+
+      syncService.styleGuideBases({
+        action: 'update',
+        primary: oldSlug,
+        secondary: newSlug,
+      })
+      expect(fileSave).nthCalledWith(105, 'themes', withUpdatedStyleGuide)
+    })
+
+    it('should duplicate a StyleGuideBases', () => {
+      const withDuplicatedStyleGuide = clone(themes)
+      const oldSlug = 'styleGuide1'
+      const newSlug = 'styleGuideDuplicated'
+
+      withDuplicatedStyleGuide[`${newSlug}_dark`] = clone(
+        withDuplicatedStyleGuide[`${oldSlug}_dark`]
+      )
+      withDuplicatedStyleGuide[`${newSlug}_dark`].styleGuide = newSlug
+      withDuplicatedStyleGuide[`${newSlug}_light`] = clone(
+        withDuplicatedStyleGuide[`${oldSlug}_light`]
+      )
+      withDuplicatedStyleGuide[`${newSlug}_light`].styleGuide = newSlug
+
+      syncService.styleGuideBases({
+        action: 'duplicate',
+        primary: oldSlug,
+        secondary: newSlug,
+      })
+      expect(fileSave).nthCalledWith(110, 'themes', withDuplicatedStyleGuide)
+    })
+  })
 })
 
 const newTheme: Theme = {

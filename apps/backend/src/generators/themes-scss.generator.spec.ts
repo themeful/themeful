@@ -45,7 +45,7 @@ body {
 }
 
 & {
-  --dtTestActionBackground: #{$styleGuide1_brand_secondary};
+  --dtTestActionBackground: #{$styleGuide1_action_primary};
   --dtTestFontColorPrimary: #{$global_base_black};
   --dtTestFontSize100: 12px;
   @include global_mediaQuery_aboveDesktop {
@@ -65,8 +65,8 @@ body {
 }
 
 & {
-  --dtTestActionBackground: #{$styleGuide1_brand_secondary};
-  --dtTestFontColorPrimary: #{$global_base_white};
+  --dtTestActionBackground: #{$styleGuide1_action_primary};
+  --dtTestFontColorPrimary: #{$global_base_light};
   --dtTestFontSize100: #{$styleGuide1_fontSize_primary};
 }
 `
@@ -78,7 +78,7 @@ body {
         `@import './styleGuides.scss';
 
 & {
-  --dtTestActionBackground: #{$styleGuide2_brand_primary};
+  --dtTestActionBackground: #{$styleGuide2_action_secondary};
   --dtTestFontColorPrimary: #{$global_base_black};
   --dtTestFontSize100: #{$styleGuide2_fontSize_primary};
 }
@@ -92,7 +92,7 @@ body {
 
 & {
   --dtTestActionBackground: #{$styleGuide2_brand_secondary};
-  --dtTestFontColorPrimary: #{$global_base_white};
+  --dtTestFontColorPrimary: #{$global_base_light};
   --dtTestFontSize100: #{$styleGuide2_fontSize_primary};
 }
 `
@@ -130,7 +130,7 @@ html[data-brand-theme='styleGuide2_dark'] {
         `@import './styleGuides.scss';
 
 & {
-  --d12: #{$styleGuide2_brand_primary};
+  --d12: #{$styleGuide2_action_secondary};
   --d34: #{$global_base_black};
   --d56: #{$styleGuide2_fontSize_primary};
 }
@@ -144,7 +144,7 @@ html[data-brand-theme='styleGuide2_dark'] {
 
 & {
   --d12: #{$styleGuide2_brand_secondary};
-  --d34: #{$global_base_white};
+  --d34: #{$global_base_light};
   --d56: #{$styleGuide2_fontSize_primary};
 }
 `

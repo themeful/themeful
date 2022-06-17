@@ -189,7 +189,7 @@ export const themes: Themes = {
     styles: {
       dtTestActionBackground: {
         default: {
-          style: 'styleGuide1_brand_secondary',
+          style: 'styleGuide1_action_primary',
         },
       },
       dtTestFontColorPrimary: {
@@ -197,7 +197,7 @@ export const themes: Themes = {
           style: 'global_base_black',
         },
         global_mediaQuery_notInStyleGuide: {
-          style: 'styleGuide1_brand_secondary',
+          style: 'styleGuide1_action_primary',
         },
       },
       dtTestFontSize100: {
@@ -225,12 +225,12 @@ export const themes: Themes = {
     styles: {
       dtTestActionBackground: {
         default: {
-          style: 'styleGuide1_brand_secondary',
+          style: 'styleGuide1_action_primary',
         },
       },
       dtTestFontColorPrimary: {
         default: {
-          style: 'global_base_white',
+          style: 'global_base_light',
         },
       },
       dtTestFontSize100: {
@@ -246,7 +246,7 @@ export const themes: Themes = {
     styles: {
       dtTestActionBackground: {
         default: {
-          style: 'styleGuide2_brand_primary',
+          style: 'styleGuide2_action_secondary',
         },
       },
       dtTestFontColorPrimary: {
@@ -272,7 +272,7 @@ export const themes: Themes = {
       },
       dtTestFontColorPrimary: {
         default: {
-          style: 'global_base_white',
+          style: 'global_base_light',
         },
       },
       dtTestFontSize100: {
