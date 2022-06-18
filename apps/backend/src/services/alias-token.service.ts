@@ -84,7 +84,7 @@ export class AliasTokenService {
 
   private writeFiles(aliasTokens: AliasTokens) {
     this.aliasTokens = sortMap(aliasTokens)
-    this.file.save('aliasTokens', aliasTokens)
+    this.file.save('aliasTokens', this.aliasTokens)
   }
 
   private parseLib(currentAliasTokens): AliasTokens {
@@ -92,13 +92,13 @@ export class AliasTokenService {
     const defaultsTerm = '^\\$at[^;]+!default;$'
     const output: AliasTokens = {}
     const defaults: { [token: string]: string } = {}
+    const results: FindResults = []
+    const defaultResults: FindResults = []
 
-    const results: FindResults = findSync({ term, flags: 'gm' }, this.config.libPath, '.s[a|c]ss$')
-    const defaultResults: FindResults = findSync(
-      { term: defaultsTerm, flags: 'gm' },
-      this.config.libPath,
-      '.s[a|c]ss$'
-    )
+    this.config.libPaths.forEach((path) => {
+      results.push(...findSync({ term, flags: 'gm' }, path, '.s[a|c]ss$'))
+      defaultResults.push(...findSync({ term: defaultsTerm, flags: 'gm' }, path, '.s[a|c]ss$'))
+    })
 
     for (const file of defaultResults) {
       if (file.matches) {

@@ -7,7 +7,7 @@ export interface Paths {
   generatedPath: string
   dataPath: string
   themesPath: string
-  libPath: string
+  libPaths: string[]
 }
 
 export interface GlobalConfig {

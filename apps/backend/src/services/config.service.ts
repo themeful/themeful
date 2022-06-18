@@ -17,7 +17,7 @@ export class ConfigService {
             generatedPath: './sample/generated/',
             dataPath: './sample/generated/',
             themesPath: './sample/generated/',
-            libPath: './sample/components/',
+            libPaths: ['./test-sample/first-lib/', './test-sample/second-lib/'],
           },
           global: {
             baseFontSize: 16,
@@ -28,6 +28,12 @@ export class ConfigService {
       )
     }
     this.config = readJsonFile(this.configFile)
+    this.config.paths = {
+      generatedPath: this.normalize(this.config.paths.generatedPath),
+      dataPath: this.normalize(this.config.paths.dataPath),
+      themesPath: this.normalize(this.config.paths.themesPath),
+      libPaths: this.normalizeList(this.config.paths.libPaths),
+    }
   }
 
   public get generatedPath(): string {
@@ -42,8 +48,8 @@ export class ConfigService {
     return this.config.paths.themesPath
   }
 
-  public get libPath(): string {
-    return this.config.paths.libPath
+  public get libPaths(): string[] {
+    return this.config.paths.libPaths
   }
 
   public get shortDesignTokens(): boolean {
@@ -52,5 +58,20 @@ export class ConfigService {
 
   public get baseFontSize(): number {
     return this.config.global.baseFontSize
+  }
+
+  private normalize(path: string): string {
+    return path ? `${path}${path.endsWith('/') ? '' : '/'}` : ''
+  }
+
+  private normalizeList(paths: string | string[]): string[] {
+    if (!paths) {
+      return []
+    }
+    if (Array.isArray(paths)) {
+      return paths.map(this.normalize)
+    } else {
+      return [this.normalize(paths)]
+    }
   }
 }

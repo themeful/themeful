@@ -5,7 +5,7 @@ export const config = {
     generatedPath: './test-sample/generated/',
     dataPath: './test-sample/generated/',
     themesPath: './test-sample/generated/',
-    libPath: './test-sample/components/',
+    libPaths: ['./test-sample/components/one-lib', './test-sample/components/other-lib'],
   },
   global: {
     baseFontSize: 16,

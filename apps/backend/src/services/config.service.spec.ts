@@ -6,9 +6,9 @@ import { ConfigService } from './config.service'
 const config = {
   paths: {
     generatedPath: 'test/generatedPath',
-    dataPath: 'test/dataPath',
+    dataPath: 'test/dataPath/',
     themesPath: 'test/themesPath',
-    libPath: 'test/libPath',
+    libPaths: ['./test-sample/components/one-lib', './test-sample/components/other-lib/'],
   },
   global: {
     baseFontSize: 16,
@@ -36,19 +36,22 @@ describe('ConfigService', () => {
     })
 
     it('should generatedPath defined', () => {
-      expect(service.generatedPath).toEqual('test/generatedPath')
+      expect(service.generatedPath).toEqual('test/generatedPath/')
     })
 
     it('should dataPath defined', () => {
-      expect(service.dataPath).toEqual('test/dataPath')
+      expect(service.dataPath).toEqual('test/dataPath/')
     })
 
     it('should themesPath defined', () => {
-      expect(service.themesPath).toEqual('test/themesPath')
+      expect(service.themesPath).toEqual('test/themesPath/')
     })
 
-    it('should libPath defined', () => {
-      expect(service.libPath).toEqual('test/libPath')
+    it('should libPaths defined', () => {
+      expect(service.libPaths).toEqual([
+        './test-sample/components/one-lib/',
+        './test-sample/components/other-lib/',
+      ])
     })
 
     it('should return shortDesignTokens', () => {
@@ -83,7 +86,7 @@ describe('ConfigService without config file', () => {
           paths: {
             dataPath: './sample/generated/',
             generatedPath: './sample/generated/',
-            libPath: './sample/components/',
+            libPaths: ['./test-sample/first-lib/', './test-sample/second-lib/'],
             themesPath: './sample/generated/',
           },
         },
