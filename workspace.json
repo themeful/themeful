@@ -5,8 +5,8 @@
     "backend": "apps/backend",
     "frontend": "apps/frontend",
     "property-types": "libs/property-types",
-    "ui-lib": "libs/ui-lib",
     "typings": "libs/typings",
+    "ui-lib": "libs/ui-lib",
     "utils": "libs/utils"
   }
 }
