@@ -8792,7 +8792,7 @@ packages:
       glob: 7.2.3
       infer-owner: 1.0.4
       lru-cache: 6.0.0
-      minipass: 3.1.6
+      minipass: 3.3.2
       minipass-collect: 1.0.2
       minipass-flush: 1.0.5
       minipass-pipeline: 1.2.4
@@ -12553,7 +12553,7 @@ packages:
       }
     engines: { node: '>= 8' }
     dependencies:
-      minipass: 3.1.6
+      minipass: 3.3.2
     dev: true
 
   /fs-monkey/1.0.3:
@@ -12833,7 +12833,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.1.2
+      minimatch: 3.0.5
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -14592,9 +14592,9 @@ packages:
     hasBin: true
     dependencies:
       async: 3.2.4
-      chalk: 4.1.2
+      chalk: 4.1.0
       filelist: 1.0.4
-      minimatch: 3.1.2
+      minimatch: 3.0.5
     dev: true
 
   /jest-changed-files/27.5.1:
@@ -16391,7 +16391,7 @@ packages:
       }
     engines: { node: '>= 8' }
     dependencies:
-      minipass: 3.1.6
+      minipass: 3.3.2
     dev: true
 
   /minipass-flush/1.0.5:
@@ -16401,7 +16401,7 @@ packages:
       }
     engines: { node: '>= 8' }
     dependencies:
-      minipass: 3.1.6
+      minipass: 3.3.2
     dev: true
 
   /minipass-pipeline/1.2.4:
@@ -16411,13 +16411,13 @@ packages:
       }
     engines: { node: '>=8' }
     dependencies:
-      minipass: 3.1.6
+      minipass: 3.3.2
     dev: true
 
-  /minipass/3.1.6:
+  /minipass/3.3.2:
     resolution:
       {
-        integrity: sha512-rty5kpw9/z8SX9dmxblFA6edItUmwJgMeYDZRrwlIVN27i8gysGbznJwUggw2V/FVqFSDdWy040ZPS811DYAqQ==,
+        integrity: sha512-Z2BWOv2d19zOhU6Roua5LXHzdPkLJsq0REESIf+kJy27EIgCRxRvYcf6Ww0OD8HlYATBzkeXL/0CCt7hrmUe2w==,
       }
     engines: { node: '>=8' }
     dependencies:
@@ -16431,7 +16431,7 @@ packages:
       }
     engines: { node: '>= 8' }
     dependencies:
-      minipass: 3.1.6
+      minipass: 3.3.2
       yallist: 4.0.0
     dev: true
 
@@ -19725,7 +19725,7 @@ packages:
       }
     hasBin: true
     dependencies:
-      glob: 7.2.3
+      glob: 7.1.4
     dev: true
 
   /ripemd160/2.0.2:
@@ -19793,7 +19793,7 @@ packages:
     peerDependencies:
       postcss: 8.x
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       concat-with-sourcemaps: 1.1.0
       cssnano: 5.1.12_postcss@8.4.14
       import-cwd: 3.0.0
@@ -20907,7 +20907,7 @@ packages:
       }
     engines: { node: '>= 8' }
     dependencies:
-      minipass: 3.1.6
+      minipass: 3.3.2
     dev: true
 
   /stable/0.1.8:
@@ -21523,7 +21523,7 @@ packages:
     dependencies:
       chownr: 2.0.0
       fs-minipass: 2.1.0
-      minipass: 3.1.6
+      minipass: 3.3.2
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
