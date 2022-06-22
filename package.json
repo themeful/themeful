@@ -104,7 +104,7 @@
     "style-loader": "^2.0.0",
     "ts-jest": "27.1.4",
     "ts-node": "10.8.1",
-    "typescript": "4.7.3",
+    "typescript": "4.7.4",
     "utf-8-validate": "^5.0.9",
     "workbox-build": "^6.5.3"
   },
