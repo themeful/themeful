@@ -36,7 +36,8 @@
     "lint:all": "nx workspace-lint && nx run-many --target=lint --all",
     "test:all": "nx run-many --target=test --all",
     "test:all:update": "nx run-many --target=test --all --update",
-    "build:all": "nx run ui-lib:build && nx run frontend:build && nx run backend:build"
+    "build:all": "nx run ui-lib:build && nx run frontend:build && nx run backend:build",
+    "prepare": "husky install"
   },
   "private": true,
   "devDependencies": {
@@ -120,7 +121,9 @@
     "camel-case": "^4.1.2",
     "colortranslator": "^1.9.2",
     "find": "^0.3.0",
+    "husky": "^8.0.1",
     "jsonfile": "^6.1.0",
+    "lint-staged": "^13.0.2",
     "object-hash": "^3.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.5",
@@ -130,5 +133,11 @@
     "socket.io-client": "^4.5.1",
     "sort-media-queries": "^0.2.2",
     "tslib": "^2.4.0"
+  },
+  "lint-staged": {
+    "*": [
+      "nx format:write --files",
+      "nx affected:lint --fix --uncommitted"
+    ]
   }
 }

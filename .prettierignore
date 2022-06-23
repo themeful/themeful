@@ -6,3 +6,5 @@
 /www
 /loader
 libs/ui-lib/src/components.d.ts
+sample/generated
+pnpm-lock.yaml

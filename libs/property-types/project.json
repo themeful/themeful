@@ -6,24 +6,17 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/property-types/**/*.ts",
-          "libs/property-types/**/*.tsx"
-        ]
+        "lintFilePatterns": ["libs/property-types/**/*.ts", "libs/property-types/**/*.tsx"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/property-types"
-      ],
+      "outputs": ["coverage/libs/property-types"],
       "options": {
         "jestConfig": "libs/property-types/jest.config.ts",
         "passWithNoTests": true
       }
     }
   },
-  "tags": [
-    "scope:properties"
-  ]
+  "tags": ["scope:properties"]
 }
