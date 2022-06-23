@@ -136,8 +136,7 @@
   },
   "lint-staged": {
     "*": [
-      "nx format:write --files",
-      "nx affected:lint --fix --uncommitted"
+      "nx format:write --files"
     ]
   }
 }
