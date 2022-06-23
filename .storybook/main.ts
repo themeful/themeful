@@ -1,12 +1,12 @@
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
-module.exports = {
+export const rootMain = {
   core: {
     builder: 'webpack5',
   },
   stories: [],
   addons: ['@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-postcss'],
-  babelDefault: (config) => {
+  babelDefault: (config: any) => {
     return {
       ...config,
       plugins: [
@@ -15,7 +15,7 @@ module.exports = {
       ],
     }
   },
-  webpackFinal: async (config, { configType }) => {
+  webpackFinal: async (config: any, { configType }: { configType: any }) => {
     const tsPaths = new TsconfigPathsPlugin({
       configFile: './tsconfig.base.json',
     })

@@ -1,5 +1,5 @@
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
-const rootMain = require('../../../.storybook/main')
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import { rootMain } from '../../../.storybook/main'
 
 module.exports = {
   ...rootMain,
@@ -8,11 +8,11 @@ module.exports = {
 
   stories: [...rootMain.stories, '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [...rootMain.addons],
-  babel: async (options) => ({
+  babel: async (options: any) => ({
     ...options,
     presets: [['@babel/typescript', { jsxPragma: 'h' }]],
   }),
-  webpackFinal: async (config, { configType }) => {
+  webpackFinal: async (config: any, { configType }: { configType: any }) => {
     if (rootMain.webpackFinal) {
       config = await rootMain.webpackFinal(config, { configType })
     }
