@@ -51,8 +51,12 @@ exports[`MultiSelectInputComponent renders with values 1`] = `
             Assigned
           </h4>
           <ul class="multi-select-input__scroll">
-            <li class="multi-select-input__item" draggable="true" title="Second Value"></li>
-            <li class="multi-select-input__item" draggable="true" title="Fourth Value"></li>
+            <li class="multi-select-input__item" draggable="true" title="Second Value">
+              Second Value
+            </li>
+            <li class="multi-select-input__item" draggable="true" title="Fourth Value">
+              Fourth Value
+            </li>
           </ul>
         </div>
       </div>

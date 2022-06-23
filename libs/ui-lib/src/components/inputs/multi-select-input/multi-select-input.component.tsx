@@ -62,6 +62,9 @@ export class MultiSelectInputComponent {
     this.items.forEach((item) => {
       this.nameMap[item] = camelCase2Words(item)
     })
+    this.value.forEach((item) => {
+      this.nameMap[item] = camelCase2Words(item)
+    })
   }
 
   private internalValidation = (): boolean => {
