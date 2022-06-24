@@ -21,7 +21,8 @@
       "@properties": ["libs/property-types/src/index.ts"],
       "@typings": ["libs/typings/src/index.ts"],
       "@ui": ["libs/ui-lib/src/index.ts"],
-      "@ui/*": ["libs/ui-lib/src/*"],
+      "@ui/components/*": ["libs/ui-lib/src/components/*"],
+      "@ui/pages/*": ["libs/ui-lib/src/pages/*"],
       "@utils": ["libs/utils/src/lib/index.ts"],
       "@utils/*": ["libs/utils/src/lib/*"]
     }
