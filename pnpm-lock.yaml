@@ -63,7 +63,7 @@ specifiers:
   jest: 27.5.1
   jsonfile: ^6.1.0
   kafkajs: ^2.0.2
-  lint-staged: ^13.0.2
+  lint-staged: ^13.0.3
   mqtt: ^4.3.7
   nats: ^2.7.1
   npm-run-all: ^4.1.5
@@ -107,7 +107,7 @@ dependencies:
   find: 0.3.0
   husky: 8.0.1
   jsonfile: 6.1.0
-  lint-staged: 13.0.2
+  lint-staged: 13.0.3
   object-hash: 3.0.0
   reflect-metadata: 0.1.13
   rxjs: 7.5.5
@@ -6972,7 +6972,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001359
-      electron-to-chromium: 1.4.168
+      electron-to-chromium: 1.4.170
       node-releases: 2.0.5
       update-browserslist-db: 1.0.4_browserslist@4.21.0
     dev: true
@@ -8450,8 +8450,8 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium/1.4.168:
-    resolution: {integrity: sha512-yz247hclRBaP8ABB1hf9kL7AMfa+yC2hB9F3XF8Y87VWMnYgq4QYvV6acRACcDkTDxfGQ4GYK/aZPQiuFMGbaA==}
+  /electron-to-chromium/1.4.170:
+    resolution: {integrity: sha512-rZ8PZLhK4ORPjFqLp9aqC4/S1j4qWFsPPz13xmWdrbBkU/LlxMcok+f+6f8YnQ57MiZwKtOaW15biZZsY5Igvw==}
     dev: true
 
   /elliptic/6.5.4:
@@ -9692,7 +9692,7 @@ packages:
       eslint: 7.32.0
       fs-extra: 9.1.0
       glob: 7.2.3
-      memfs: 3.4.6
+      memfs: 3.4.7
       minimatch: 3.1.2
       schema-utils: 2.7.0
       semver: 7.3.7
@@ -9724,7 +9724,7 @@ packages:
       eslint: 7.32.0
       fs-extra: 9.1.0
       glob: 7.2.3
-      memfs: 3.4.6
+      memfs: 3.4.7
       minimatch: 3.1.2
       schema-utils: 2.7.0
       semver: 7.3.7
@@ -9756,7 +9756,7 @@ packages:
       eslint: 7.32.0
       fs-extra: 9.1.0
       glob: 7.2.3
-      memfs: 3.4.6
+      memfs: 3.4.7
       minimatch: 3.1.2
       schema-utils: 2.7.0
       semver: 7.3.7
@@ -10038,7 +10038,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -12099,8 +12099,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/13.0.2:
-    resolution: {integrity: sha512-qQLfLTh9z34eMzfEHENC+QBskZfxjomrf+snF3xJ4BzilORbD989NLqQ00ughsF/A+PT41e87+WsMFabf9++pQ==}
+  /lint-staged/13.0.3:
+    resolution: {integrity: sha512-9hmrwSCFroTSYLjflGI8Uk+GWAwMB4OlpU4bMJEAT5d/llQwtYKoim4bLOyLCuWFAhWEupE0vkIFqtw/WIsPug==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -12461,8 +12461,8 @@ packages:
       mimic-fn: 3.1.0
     dev: true
 
-  /memfs/3.4.6:
-    resolution: {integrity: sha512-rH9mjopto6Wkr7RFuH9l9dk3qb2XGOcYKr7xMhaYqfzuJqOqhRrcFvfD7JMuPj6SLmPreh5+6eAuv36NFAU+Mw==}
+  /memfs/3.4.7:
+    resolution: {integrity: sha512-ygaiUSNalBX85388uskeCyhSAoOSgzBbtVCr9jA2RROssFL9Q19/ZXFqS+2Th2sr1ewNIWgFdLzLC3Yl1Zv+lw==}
     engines: {node: '>= 4.0.0'}
     dependencies:
       fs-monkey: 1.0.3
@@ -15066,7 +15066,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
@@ -15116,7 +15116,7 @@ packages:
     peerDependencies:
       postcss: 8.x
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       concat-with-sourcemaps: 1.1.0
       cssnano: 5.1.12_postcss@8.4.14
       import-cwd: 3.0.0
@@ -16714,10 +16714,10 @@ packages:
       typescript: '*'
       webpack: ^5.0.0
     dependencies:
-      chalk: 4.1.2
+      chalk: 4.1.0
       enhanced-resolve: 5.9.3
       micromatch: 4.0.5
-      semver: 7.3.4
+      semver: 7.3.7
       typescript: 4.7.4
       webpack: 5.73.0
     dev: true
@@ -17378,7 +17378,7 @@ packages:
     dependencies:
       colorette: 1.4.0
       mem: 8.1.1
-      memfs: 3.4.6
+      memfs: 3.4.7
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 3.1.1
@@ -17392,7 +17392,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       colorette: 2.0.19
-      memfs: 3.4.6
+      memfs: 3.4.7
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
