@@ -52,4 +52,5 @@ export interface ThemeName {
   styleGuide: string
   name: string
   key: string
+  single?: boolean
 }

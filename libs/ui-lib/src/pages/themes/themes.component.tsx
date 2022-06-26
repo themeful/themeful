@@ -44,7 +44,10 @@ export class ThemesComponent {
   private groups: string[]
   private config: GlobalConfig
   private formData$ = new Subject()
-  private styleGuideHeaders: { [styleGuide: string]: { name: string; count: number; slug: string } }
+  private styleGuideHeaders: {
+    [styleGuide: string]: { name: string; first: string; slug: string }
+  }
+  private styleGuideCount: { [styleGuide: string]: number } = {}
   private nav = [
     { label: 'Add Theme', callback: () => this.openThemeForm() },
     {
@@ -82,20 +85,23 @@ export class ThemesComponent {
         this.themeNames = []
         this.styleGuideHeaders = {}
         this.dt2at = {}
+        this.styleGuideCount = {}
+        Object.values(themes).forEach(({ styleGuide }) => {
+          this.styleGuideCount[styleGuide] = (this.styleGuideCount[styleGuide] || 0) + 1
+        })
         Object.keys(themes).forEach((key) => {
           this.themeNames.push({
             styleGuide: themes[key].styleGuide,
             name: themes[key].name,
+            single: this.styleGuideCount[themes[key].styleGuide] === 1,
             key,
           })
           if (this.styleGuideHeaders[themes[key].styleGuide] === undefined) {
             this.styleGuideHeaders[themes[key].styleGuide] = {
               name: sgNames[themes[key].styleGuide],
+              first: key,
               slug: themes[key].styleGuide,
-              count: 1,
             }
-          } else {
-            this.styleGuideHeaders[themes[key].styleGuide].count++
           }
         })
         const rows: DesignTokenRow[] = []
@@ -317,11 +323,13 @@ export class ThemesComponent {
         <tr class="design-tokens__row design-tokens__header">
           <th colSpan={2}></th>
           {Object.values(this.styleGuideHeaders).map((styleGuide) => (
-            <th colSpan={styleGuide.count}>
+            <th colSpan={this.styleGuideCount[styleGuide.slug]}>
               <h2>
                 <stencil-route-link url={`/styleguide/${styleGuide.slug}`}>
                   {styleGuide.name}
                 </stencil-route-link>
+                {this.styleGuideCount[styleGuide.slug] === 1 &&
+                  this.renderThemeMenu(styleGuide.first)}
               </h2>
             </th>
           ))}
@@ -335,23 +343,31 @@ export class ThemesComponent {
           </th>
           {this.themeNames.map((theme) => (
             <th>
-              <h2>
-                {theme.name}
-                <tf-menu
-                  items={[
-                    { label: 'Edit', icon: 'pen', callback: () => this.openThemeForm(theme.key) },
-                    {
-                      label: 'Duplicate',
-                      icon: 'copy',
-                      callback: () => this.openThemeDuplicateForm(theme.key),
-                    },
-                  ]}
-                />
-              </h2>
+              {!theme.single && (
+                <h2>
+                  {theme.name}
+                  {this.renderThemeMenu(theme.key)}
+                </h2>
+              )}
             </th>
           ))}
         </tr>
       </thead>
+    )
+  }
+
+  private renderThemeMenu(themeSlug: string): HTMLElement {
+    return (
+      <tf-menu
+        items={[
+          { label: 'Edit', icon: 'pen', callback: () => this.openThemeForm(themeSlug) },
+          {
+            label: 'Duplicate',
+            icon: 'copy',
+            callback: () => this.openThemeDuplicateForm(themeSlug),
+          },
+        ]}
+      />
     )
   }
 
