@@ -373,7 +373,7 @@ export class ThemesComponent {
 
   private renderDesignTokenRow(row: DesignTokenRow): HTMLElement {
     return (
-      <tr class="design-tokens__row">
+      <tr class="design-tokens__row" key={row.token}>
         <td>
           <h5 class="design-tokens__name">
             {row.name}
