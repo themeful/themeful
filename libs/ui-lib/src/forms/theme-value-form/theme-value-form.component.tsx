@@ -31,9 +31,9 @@ export class ThemeValueFormComponent {
   public componentWillLoad(): void {
     this.editMode = this.formData?.identifier?.media && true
     this.type = this.formData.type
-    this.toggle = this.formData.fields.direct ? 'direct' : 'style'
+    this.toggle = this.formData.fields?.direct ? 'direct' : 'style'
     if (this.toggle === 'style') {
-      this.selected = this.formData.fields.style
+      this.selected = this.formData.fields?.style
     }
   }
 
@@ -48,6 +48,11 @@ export class ThemeValueFormComponent {
     }, {})
     if (this.toggle === 'style') {
       values['style'] = this.selected
+    } else {
+      values['direct'] = {
+        value: values['direct'],
+        type: this.type,
+      }
     }
     return values
   }
