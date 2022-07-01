@@ -55,7 +55,7 @@ specifiers:
   eslint: ^7.32.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-import: 2.26.0
-  eslint-plugin-prettier: ^4.2.0
+  eslint-plugin-prettier: ^4.2.1
   eslint-plugin-react: ^7.30.1
   fastify-static: ^4.7.0
   find: ^0.3.0
@@ -74,7 +74,7 @@ specifiers:
   prettier: ^2.7.1
   react: ^17.0.2
   react-dom: ^17.0.2
-  redis: ^4.1.0
+  redis: ^4.1.1
   reflect-metadata: ^0.1.13
   rollup-plugin-node-polyfills: ^0.2.1
   run-parallel: ^1.2.0
@@ -123,7 +123,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.6.7
   '@grpc/proto-loader': 0.6.13
-  '@nestjs/microservices': 8.4.7_kilbg62hdqomnvagq24qgquxs4
+  '@nestjs/microservices': 8.4.7_by3gmydqjyodzt7ntx7xzyblay
   '@nestjs/schematics': 8.0.11_typescript@4.7.4
   '@nestjs/testing': 8.4.7_cga3l7ofmerz5xxtb6cdgyyoau
   '@nrwl/cli': 14.3.6
@@ -166,7 +166,7 @@ devDependencies:
   eslint: 7.32.0
   eslint-config-prettier: 8.5.0_eslint@7.32.0
   eslint-plugin-import: 2.26.0_ffi3uiz42rv3jyhs6cr7p7qqry
-  eslint-plugin-prettier: 4.2.0_7gsvg5lgwpfdww3i7smtqxamuy
+  eslint-plugin-prettier: 4.2.1_7gsvg5lgwpfdww3i7smtqxamuy
   eslint-plugin-react: 7.30.1_eslint@7.32.0
   fastify-static: 4.7.0
   jest: 27.5.1_vmyc4ztgpp735hh2c7pk3uzwa4
@@ -180,7 +180,7 @@ devDependencies:
   prettier: 2.7.1
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
-  redis: 4.1.0
+  redis: 4.1.1
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
   sass: 1.53.0
@@ -2171,7 +2171,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 8.4.7_rfiwcbffiuhkhhtbrxxsyxpam4
-      '@nestjs/microservices': 8.4.7_kilbg62hdqomnvagq24qgquxs4
+      '@nestjs/microservices': 8.4.7_by3gmydqjyodzt7ntx7xzyblay
       '@nestjs/platform-express': 8.4.7_7tsmhnugyerf5okgqzer2mfqme
       '@nestjs/websockets': 8.4.7_aheyi6luzvgwkvcv7ramv2w3ee
       '@nuxtjs/opencollective': 0.3.2
@@ -2186,7 +2186,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/8.4.7_kilbg62hdqomnvagq24qgquxs4:
+  /@nestjs/microservices/8.4.7_by3gmydqjyodzt7ntx7xzyblay:
     resolution: {integrity: sha512-JZX29tBWbbPa+Q06QcCbwKTyEsOFHAPrxgfEkRNwoaiEqqCsITT9w2n5bcz3vlUurdpy5dIgX3/almbitghbKg==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2233,7 +2233,7 @@ packages:
       kafkajs: 2.1.0
       mqtt: 4.3.7_22kvxa7zeyivx4jp72v2w3pkvy
       nats: 2.7.1
-      redis: 4.1.0
+      redis: 4.1.1
       reflect-metadata: 0.1.13
       rxjs: 7.5.5
       tslib: 2.4.0
@@ -2312,7 +2312,7 @@ packages:
     dependencies:
       '@nestjs/common': 8.4.7_rfiwcbffiuhkhhtbrxxsyxpam4
       '@nestjs/core': 8.4.7_vzgbk54jbofvw7s4p4l6wehcqq
-      '@nestjs/microservices': 8.4.7_kilbg62hdqomnvagq24qgquxs4
+      '@nestjs/microservices': 8.4.7_by3gmydqjyodzt7ntx7xzyblay
       '@nestjs/platform-express': 8.4.7_7tsmhnugyerf5okgqzer2mfqme
       tslib: 2.4.0
     dev: true
@@ -3015,48 +3015,48 @@ packages:
   /@protobufjs/utf8/1.1.0:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
-  /@redis/bloom/1.0.2_@redis+client@1.1.0:
+  /@redis/bloom/1.0.2_@redis+client@1.1.1:
     resolution: {integrity: sha512-EBw7Ag1hPgFzdznK2PBblc1kdlj5B5Cw3XwI9/oG7tSn85/HKy3X9xHy/8tm/eNXJYHLXHJL/pkwBpFMVVefkw==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.1.0
+      '@redis/client': 1.1.1
 
-  /@redis/client/1.1.0:
-    resolution: {integrity: sha512-xO9JDIgzsZYDl3EvFhl6LC52DP3q3GCMUer8zHgKV6qSYsq1zB+pZs9+T80VgcRogrlRYhi4ZlfX6A+bHiBAgA==}
+  /@redis/client/1.1.1:
+    resolution: {integrity: sha512-IGGyazghVYuqsXv7/AxzMS0HmCPj0JRQX4l0XZ52BdJTUv2lNSnPgfWEE65HnC2gZCEO7STyaJbNultn1i0Y3g==}
     engines: {node: '>=14'}
     dependencies:
       cluster-key-slot: 1.1.0
       generic-pool: 3.8.2
       yallist: 4.0.0
 
-  /@redis/graph/1.0.1_@redis+client@1.1.0:
+  /@redis/graph/1.0.1_@redis+client@1.1.1:
     resolution: {integrity: sha512-oDE4myMCJOCVKYMygEMWuriBgqlS5FqdWerikMoJxzmmTUErnTRRgmIDa2VcgytACZMFqpAOWDzops4DOlnkfQ==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.1.0
+      '@redis/client': 1.1.1
 
-  /@redis/json/1.0.3_@redis+client@1.1.0:
+  /@redis/json/1.0.3_@redis+client@1.1.1:
     resolution: {integrity: sha512-4X0Qv0BzD9Zlb0edkUoau5c1bInWSICqXAGrpwEltkncUwcxJIGEcVryZhLgb0p/3PkKaLIWkjhHRtLe9yiA7Q==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.1.0
+      '@redis/client': 1.1.1
 
-  /@redis/search/1.0.6_@redis+client@1.1.0:
+  /@redis/search/1.0.6_@redis+client@1.1.1:
     resolution: {integrity: sha512-pP+ZQRis5P21SD6fjyCeLcQdps+LuTzp2wdUbzxEmNhleighDDTD5ck8+cYof+WLec4csZX7ks+BuoMw0RaZrA==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.1.0
+      '@redis/client': 1.1.1
 
-  /@redis/time-series/1.0.3_@redis+client@1.1.0:
+  /@redis/time-series/1.0.3_@redis+client@1.1.1:
     resolution: {integrity: sha512-OFp0q4SGrTH0Mruf6oFsHGea58u8vS/iI5+NpYdicaM+7BgqBZH8FFvNZ8rYYLrUO/QRqMq72NpXmxLVNcdmjA==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.1.0
+      '@redis/client': 1.1.1
 
   /@rollup/plugin-babel/5.3.1_fb3qe53zzddvqjqqltveoanfhe:
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
@@ -5220,8 +5220,8 @@ packages:
   /@types/cors/2.8.12:
     resolution: {integrity: sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw==}
 
-  /@types/eslint-scope/3.7.3:
-    resolution: {integrity: sha512-PB3ldyrcnAicT35TWPs5IcwKD8S333HMaa2VVv4+wdvebJkjWuW/xESoB8IwRcog8HYVYamb1g/R31Qv5Bx03g==}
+  /@types/eslint-scope/3.7.4:
+    resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.3
       '@types/estree': 0.0.51
@@ -6985,7 +6985,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001361
-      electron-to-chromium: 1.4.174
+      electron-to-chromium: 1.4.176
       node-releases: 2.0.5
       update-browserslist-db: 1.0.4_browserslist@4.21.1
     dev: true
@@ -8458,8 +8458,8 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium/1.4.174:
-    resolution: {integrity: sha512-JER+w+9MV2MBVFOXxP036bLlNOnzbYAWrWU8sNUwoOO69T3w4564WhM5H5atd8VVS8U4vpi0i0kdoYzm1NPQgQ==}
+  /electron-to-chromium/1.4.176:
+    resolution: {integrity: sha512-92JdgyRlcNDwuy75MjuFSb3clt6DGJ2IXSpg0MCjKd3JV9eSmuUAIyWiGAp/EtT0z2D4rqbYqThQLV90maH3Zw==}
     dev: true
 
   /elliptic/6.5.4:
@@ -8986,8 +8986,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.0_7gsvg5lgwpfdww3i7smtqxamuy:
-    resolution: {integrity: sha512-w+EYWwMltYqlsirUG2LXROmC8cBIUSEpR4s/Oft8wX8Xm99FTfU+M+ehv47ZQbYPqD9ZAuCtZI6IuWw3Q004dw==}
+  /eslint-plugin-prettier/4.2.1_7gsvg5lgwpfdww3i7smtqxamuy:
+    resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       eslint: '>=7.28.0'
@@ -14804,15 +14804,15 @@ packages:
     dev: true
     optional: true
 
-  /redis/4.1.0:
-    resolution: {integrity: sha512-5hvJ8wbzpCCiuN1ges6tx2SAh2XXCY0ayresBmu40/SGusWHFW86TAlIPpbimMX2DFHOX7RN34G2XlPA1Z43zg==}
+  /redis/4.1.1:
+    resolution: {integrity: sha512-vVLYD0RMiDH4YQ1dtmtNU0RX5MAsvEA35Wj+4ZhrSNZXtGK87ktQ0lmI3O3Qn/omoIW456wfOUanqI/RNxagLw==}
     dependencies:
-      '@redis/bloom': 1.0.2_@redis+client@1.1.0
-      '@redis/client': 1.1.0
-      '@redis/graph': 1.0.1_@redis+client@1.1.0
-      '@redis/json': 1.0.3_@redis+client@1.1.0
-      '@redis/search': 1.0.6_@redis+client@1.1.0
-      '@redis/time-series': 1.0.3_@redis+client@1.1.0
+      '@redis/bloom': 1.0.2_@redis+client@1.1.1
+      '@redis/client': 1.1.1
+      '@redis/graph': 1.0.1_@redis+client@1.1.1
+      '@redis/json': 1.0.3_@redis+client@1.1.1
+      '@redis/search': 1.0.6_@redis+client@1.1.1
+      '@redis/time-series': 1.0.3_@redis+client@1.1.1
 
   /reflect-metadata/0.1.13:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
@@ -15098,7 +15098,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.2.3
+      glob: 7.1.4
     dev: true
 
   /ripemd160/2.0.2:
@@ -16752,7 +16752,7 @@ packages:
       chalk: 4.1.2
       enhanced-resolve: 5.10.0
       micromatch: 4.0.5
-      semver: 7.3.7
+      semver: 7.3.4
       typescript: 4.7.4
       webpack: 5.73.0
     dev: true
@@ -17611,7 +17611,7 @@ packages:
       webpack-cli:
         optional: true
     dependencies:
-      '@types/eslint-scope': 3.7.3
+      '@types/eslint-scope': 3.7.4
       '@types/estree': 0.0.51
       '@webassemblyjs/ast': 1.11.1
       '@webassemblyjs/wasm-edit': 1.11.1
