@@ -1,38 +1,38 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { ComponentsComponent } from './components.component'
+import { ComponentListComponent } from './component-list.component'
 
-describe('ComponentsComponent', () => {
+describe('ComponentListComponent', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [ComponentsComponent],
-      html: '<tf-components></tf-components>',
+      components: [ComponentListComponent],
+      html: '<tf-component-list></tf-component-list>',
     })
     expect(root).toEqualHtml(`
-      <tf-components>
+      <tf-component-list>
         <mock:shadow-root>
           <stencil-route-title pagetitle="Themeful - Components"></stencil-route-title>
           <tf-navigation size="small"></tf-navigation>
           List of Components
           <tf-form-integration></tf-form-integration>
         </mock:shadow-root>
-      </tf-components>
+      </tf-component-list>
     `)
   })
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [ComponentsComponent],
-      html: `<tf-components></tf-components>`,
+      components: [ComponentListComponent],
+      html: `<tf-component-list></tf-component-list>`,
     })
     expect(root).toEqualHtml(`
-      <tf-components>
+      <tf-component-list>
         <mock:shadow-root>
           <stencil-route-title pagetitle="Themeful - Components"></stencil-route-title>
           <tf-navigation size="small"></tf-navigation>
           List of Components
         <tf-form-integration></tf-form-integration>
         </mock:shadow-root>
-      </tf-components>
+      </tf-component-list>
     `)
   })
 })

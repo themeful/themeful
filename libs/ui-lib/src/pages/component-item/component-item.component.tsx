@@ -2,6 +2,8 @@ import { propertySelect } from '@properties'
 import { Component, Event, EventEmitter, Fragment, h, Host, Prop, State } from '@stencil/core'
 import {
   AliasTokens,
+  ComponentItemBundle,
+  Components,
   DesignTokenRow,
   DesignTokens,
   Dt2At,
@@ -13,7 +15,6 @@ import {
   KeyValues,
   StyleMap,
   Theme,
-  ThemeBundle,
   ThemeName,
   Themes,
 } from '@typings'
@@ -26,17 +27,21 @@ import '../../components/property'
 import '../../forms/form-integration'
 
 @Component({
-  tag: 'tf-themes',
+  tag: 'tf-component-item',
   styleUrl: 'themes.component.scss',
   shadow: true,
 })
-export class ThemesComponent {
+export class ComponentItemComponent {
   /** Style Guides */
-  @Prop() themeBundle$: Observable<ThemeBundle>
+  @Prop() componentBundle$: Observable<ComponentItemBundle>
+
+  /** Style Guide Slug */
+  @Prop() match: { params: { id: string } }
 
   @State() rows: DesignTokenRow[]
   private themeNames: ThemeName[]
   private themes: Themes
+  private components: Components
   private designTokens: DesignTokens
   private aliasTokens: AliasTokens
   private styleMap: StyleMap
@@ -74,63 +79,67 @@ export class ThemesComponent {
 
   public componentWillLoad(): void {
     this.sub.add(
-      this.themeBundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes, config]) => {
-        this.config = config
-        this.themes = themes
-        this.aliasTokens = aliasTokens
-        this.designTokens = designTokens
-        this.groups = []
-        const { styleMap, sgNames } = this.transformStyleGuides(styleGuides)
-        this.styleMap = styleMap
-        this.themeNames = []
-        this.styleGuideHeaders = {}
-        this.dt2at = {}
-        this.styleGuideCount = {}
-        Object.values(themes).forEach(({ styleGuide }) => {
-          this.styleGuideCount[styleGuide] = (this.styleGuideCount[styleGuide] || 0) + 1
-        })
-        Object.keys(themes).forEach((key) => {
-          this.themeNames.push({
-            styleGuide: themes[key].styleGuide,
-            name: themes[key].name,
-            single: this.styleGuideCount[themes[key].styleGuide] === 1,
-            key,
+      this.componentBundle$?.subscribe(
+        ([components, styleGuides, designTokens, aliasTokens, themes, config]) => {
+          this.config = config
+          this.themes = themes
+          this.components = components
+          console.log(this.components)
+          this.aliasTokens = aliasTokens
+          this.designTokens = designTokens
+          this.groups = []
+          const { styleMap, sgNames } = this.transformStyleGuides(styleGuides)
+          this.styleMap = styleMap
+          this.themeNames = []
+          this.styleGuideHeaders = {}
+          this.dt2at = {}
+          this.styleGuideCount = {}
+          Object.values(themes).forEach(({ styleGuide }) => {
+            this.styleGuideCount[styleGuide] = (this.styleGuideCount[styleGuide] || 0) + 1
           })
-          if (this.styleGuideHeaders[themes[key].styleGuide] === undefined) {
-            this.styleGuideHeaders[themes[key].styleGuide] = {
-              name: sgNames[themes[key].styleGuide],
-              first: key,
-              slug: themes[key].styleGuide,
+          Object.keys(themes).forEach((key) => {
+            this.themeNames.push({
+              styleGuide: themes[key].styleGuide,
+              name: themes[key].name,
+              single: this.styleGuideCount[themes[key].styleGuide] === 1,
+              key,
+            })
+            if (this.styleGuideHeaders[themes[key].styleGuide] === undefined) {
+              this.styleGuideHeaders[themes[key].styleGuide] = {
+                name: sgNames[themes[key].styleGuide],
+                first: key,
+                slug: themes[key].styleGuide,
+              }
             }
-          }
-        })
-        const rows: DesignTokenRow[] = []
-        Object.keys(designTokens).forEach((designToken) => {
-          this.dt2at[designToken] = designTokens[designToken].aliasTokens
-          if (!this.groups.includes(designTokens[designToken].group)) {
-            this.groups.push(designTokens[designToken].group)
-          }
-          const themeValues: ExtendedValueDetails[] = []
-          Object.values(themes).forEach((theme: Theme) => {
-            const themeValue: ExtendedValueDetails = []
-            if (theme.styles[designToken]) {
-              Object.entries(theme.styles[designToken]).forEach(([media, { style, direct }]) => {
-                const themeMedia: ExtendedValueDetail = {
-                  media,
-                  name: styleMap[media] ? styleMap[media].name : 'Default',
-                  global: styleMap[media] ? styleMap[media].global : false,
-                  style: style ? { ...styleMap[style], key: style } : undefined,
-                  direct,
-                }
-                themeValue.push(themeMedia)
-              })
-            }
-            themeValues.push(themeValue)
           })
-          rows.push({ ...designTokens[designToken], token: designToken, themeValues })
-        })
-        this.rows = rows
-      })
+          const rows: DesignTokenRow[] = []
+          Object.keys(designTokens).forEach((designToken) => {
+            this.dt2at[designToken] = designTokens[designToken].aliasTokens
+            if (!this.groups.includes(designTokens[designToken].group)) {
+              this.groups.push(designTokens[designToken].group)
+            }
+            const themeValues: ExtendedValueDetails[] = []
+            Object.values(themes).forEach((theme: Theme) => {
+              const themeValue: ExtendedValueDetails = []
+              if (theme.styles[designToken]) {
+                Object.entries(theme.styles[designToken]).forEach(([media, { style, direct }]) => {
+                  const themeMedia: ExtendedValueDetail = {
+                    media,
+                    name: styleMap[media] ? styleMap[media].name : 'Default',
+                    global: styleMap[media] ? styleMap[media].global : false,
+                    style: style ? { ...styleMap[style], key: style } : undefined,
+                    direct,
+                  }
+                  themeValue.push(themeMedia)
+                })
+              }
+              themeValues.push(themeValue)
+            })
+            rows.push({ ...designTokens[designToken], token: designToken, themeValues })
+          })
+          this.rows = rows
+        }
+      )
     )
   }
 

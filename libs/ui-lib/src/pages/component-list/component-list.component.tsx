@@ -1,6 +1,6 @@
-import { Component, Event, EventEmitter, h, Host } from '@stencil/core'
-import { FormIntegrationActions } from '@typings'
-import { Subject, Subscription } from 'rxjs'
+import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core'
+import { ComponentListBundle, FormIntegrationActions } from '@typings'
+import { Observable, Subject, Subscription } from 'rxjs'
 import '../../components/button'
 import '../../components/icon'
 import '../../components/menu'
@@ -9,11 +9,14 @@ import '../../components/property'
 import '../../forms/form-integration'
 
 @Component({
-  tag: 'tf-components',
+  tag: 'tf-component-list',
   styleUrl: 'components.component.scss',
   shadow: true,
 })
-export class ComponentsComponent {
+export class ComponentListComponent {
+  /** Style Guides */
+  @Prop() themeBundle$: Observable<ComponentListBundle>
+
   private formData$ = new Subject()
   private nav = []
 

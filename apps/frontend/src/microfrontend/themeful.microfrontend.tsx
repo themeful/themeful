@@ -1,11 +1,13 @@
 import { Component, h, Host, State } from '@stencil/core'
+import { ComponentItemBundle, ComponentListBundle, ThemeBundle } from '@typings'
 import '@ui'
 import '@ui/components/button'
 import '@ui/components/toast'
-import '@ui/pages/components'
+import '@ui/pages/component-list'
 import '@ui/pages/style-guide-details'
 import '@ui/pages/style-guides'
 import '@ui/pages/themes'
+import { Observable } from 'rxjs'
 import { APIService } from '../services'
 
 @Component({
@@ -16,7 +18,9 @@ import { APIService } from '../services'
 export class ThemefulMicrofrontend {
   private apiService: APIService
   private styleGuides$
-  private themeBundle$
+  private themeBundle$: Observable<ThemeBundle>
+  private componentListBundle$: Observable<ComponentListBundle>
+  private componentBundle$: Observable<ComponentItemBundle>
   private toast$
   @State() mode: string
 
@@ -24,6 +28,8 @@ export class ThemefulMicrofrontend {
     this.apiService = APIService.Instance
     this.styleGuides$ = this.apiService.styleGuides$
     this.themeBundle$ = this.apiService.themeBundle$
+    this.componentListBundle$ = this.apiService.componentListBundle$
+    this.componentBundle$ = this.apiService.componentBundle$
     this.toast$ = this.apiService.toast$
   }
 
@@ -107,8 +113,18 @@ export class ThemefulMicrofrontend {
               />
               <stencil-route
                 url="/components"
-                component="tf-components"
+                component="tf-component-list"
                 componentProps={{
+                  componentListBundle$: this.componentListBundle$,
+                  onAction: this.onAction,
+                }}
+              />
+
+              <stencil-route
+                url="/component/:id"
+                component="tf-component-item"
+                componentProps={{
+                  componentBundle$: this.componentBundle$,
                   onAction: this.onAction,
                 }}
               />

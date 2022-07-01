@@ -47,7 +47,8 @@ describe('ThemefulMicrofrontend', () => {
                 <stencil-route component="tf-themes" url="/themes"></stencil-route>
                 <stencil-route component="tf-style-guides" url="/styleguides"></stencil-route>
                 <stencil-route component="tf-style-guide-details" url="/styleguide/:slug"></stencil-route>
-                <stencil-route component="tf-components" url="/components"></stencil-route>
+                <stencil-route component="tf-component-list" url="/components"></stencil-route>
+                <stencil-route component="tf-component-item" url="/component/:id"></stencil-route>
                 <stencil-route exact="" url="/">
                   <stencil-router-redirect url="/themes"></stencil-router-redirect>
                 </stencil-route>
@@ -104,7 +105,8 @@ describe('ThemefulMicrofrontend', () => {
               <stencil-route component="tf-themes" url="/themes"></stencil-route>
               <stencil-route component="tf-style-guides" url="/styleguides"></stencil-route>
               <stencil-route component="tf-style-guide-details" url="/styleguide/:slug"></stencil-route>
-              <stencil-route component="tf-components" url="/components"></stencil-route>
+              <stencil-route component="tf-component-list" url="/components"></stencil-route>
+              <stencil-route component="tf-component-item" url="/component/:id"></stencil-route>
               <stencil-route exact="" url="/">
                 <stencil-router-redirect url="/themes"></stencil-router-redirect>
               </stencil-route>

@@ -1,0 +1,737 @@
+[
+  [
+    {
+      "name": "Global",
+      "slug": "global",
+      "baseFontSize": 16,
+      "types": [
+        {
+          "name": "Color",
+          "groups": [
+            {
+              "name": "Base",
+              "styles": [
+                {
+                  "name": "Black",
+                  "type": "color",
+                  "group": "Base",
+                  "value": "#333333",
+                  "slug": "base_black"
+                },
+                {
+                  "name": "Light",
+                  "type": "color",
+                  "group": "Base",
+                  "value": "#ffffff",
+                  "slug": "base_light"
+                }
+              ]
+            },
+            {
+              "name": "Gray",
+              "styles": [
+                {
+                  "name": "100",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.75)",
+                  "slug": "gray_100"
+                },
+                {
+                  "name": "200",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.60)",
+                  "slug": "gray_200"
+                },
+                {
+                  "name": "300",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.45)",
+                  "slug": "gray_300"
+                },
+                {
+                  "name": "400",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.30)",
+                  "slug": "gray_400"
+                },
+                {
+                  "name": "500",
+                  "type": "color",
+                  "group": "Gray",
+                  "value": "rgba(0, 0, 0, 0.15)",
+                  "slug": "gray_500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "MediaQuery",
+          "groups": [
+            {
+              "name": "Media query",
+              "styles": [
+                {
+                  "name": "Above Small Mobile",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 321px)",
+                  "slug": "mediaQuery_aboveSmallMobile"
+                },
+                {
+                  "name": "Above Mobile",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 664px)",
+                  "slug": "mediaQuery_aboveMobile"
+                },
+                {
+                  "name": "Above Tablet",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 992px)",
+                  "slug": "mediaQuery_aboveTablet"
+                },
+                {
+                  "name": "Above Desktop",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 1200px)",
+                  "slug": "mediaQuery_aboveDesktop"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Size",
+          "groups": [
+            {
+              "name": "Space",
+              "styles": [
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "Tiny",
+                  "value": "4px",
+                  "slug": "space_tiny"
+                },
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "Small",
+                  "value": "8px",
+                  "slug": "space_small"
+                },
+                {
+                  "name": "Small Medium",
+                  "type": "size",
+                  "group": "Space",
+                  "value": "0.75rem",
+                  "slug": "space_smallMedium"
+                },
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "Medium",
+                  "value": "16px",
+                  "slug": "space_medium"
+                },
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "Large",
+                  "value": "24px",
+                  "slug": "space_large"
+                },
+                {
+                  "type": "size",
+                  "group": "Space",
+                  "name": "X-Large",
+                  "value": "32px",
+                  "slug": "space_xlarge"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StyleGuide 1",
+      "slug": "styleGuide1",
+      "baseFontSize": 16,
+      "types": [
+        {
+          "name": "Font",
+          "groups": [
+            {
+              "name": "Font",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "font",
+                  "group": "Font",
+                  "value": "Verdana, Geneva, Tahoma, sans-serif",
+                  "slug": "font_primary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Color",
+          "groups": [
+            {
+              "name": "Action",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#31ed31",
+                  "slug": "action_primary"
+                },
+                {
+                  "name": "Secondary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#2ec22e",
+                  "slug": "action_secondary"
+                },
+                {
+                  "name": "Tertiary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#1e961e",
+                  "slug": "action_tertiary"
+                }
+              ]
+            },
+            {
+              "name": "Brand",
+              "styles": [
+                {
+                  "type": "color",
+                  "group": "Brand",
+                  "name": "Primary",
+                  "value": "#ff0000",
+                  "slug": "brand_primary"
+                },
+                {
+                  "name": "Secondary",
+                  "type": "color",
+                  "group": "Brand",
+                  "value": "#d42828",
+                  "slug": "brand_secondary"
+                },
+                {
+                  "name": "Tertiary",
+                  "type": "color",
+                  "group": "Brand",
+                  "value": "#af2323",
+                  "slug": "brand_tertiary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Font Size",
+          "groups": [
+            {
+              "name": "Content",
+              "styles": [
+                {
+                  "type": "font-size",
+                  "group": "content",
+                  "name": "Primary",
+                  "value": "1.2rem",
+                  "slug": "content_primary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "MediaQuery",
+          "groups": [
+            {
+              "name": "Media query",
+              "styles": [
+                {
+                  "name": "Above Desktop",
+                  "type": "mediaquery",
+                  "group": "Media query",
+                  "value": "screen and (min-width: 1100px)",
+                  "slug": "mediaQuery_aboveSmallDesktop"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StyleGuide 2",
+      "slug": "styleGuide2",
+      "baseFontSize": 16,
+      "types": [
+        {
+          "name": "Font",
+          "groups": [
+            {
+              "name": "Font",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "font",
+                  "group": "font",
+                  "value": "1.25rem/1.5rem 'Times New Roman', Times, serif",
+                  "slug": "font_primary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Color",
+          "groups": [
+            {
+              "name": "Action",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#ff5555",
+                  "slug": "action_primary"
+                },
+                {
+                  "name": "Secondary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#d22828",
+                  "slug": "action_secondary"
+                },
+                {
+                  "name": "Tertiary",
+                  "type": "color",
+                  "group": "Action",
+                  "value": "#9f1c1c",
+                  "slug": "action_tertiary"
+                }
+              ]
+            },
+            {
+              "name": "Brand",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "color",
+                  "group": "Brand",
+                  "value": "#577bf1",
+                  "slug": "brand_primary"
+                },
+                {
+                  "name": "Secondary",
+                  "type": "color",
+                  "group": "Brand",
+                  "value": "#4646ed",
+                  "slug": "brand_secondary"
+                },
+                {
+                  "name": "Tertiary",
+                  "type": "color",
+                  "group": "brand",
+                  "value": "#3f55b1",
+                  "slug": "brand_tertiary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Font Size",
+          "groups": [
+            {
+              "name": "Content",
+              "styles": [
+                {
+                  "type": "font-size",
+                  "group": "Content",
+                  "name": "Normal",
+                  "value": "0.9rem",
+                  "slug": "content_normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StyleGuide 3",
+      "slug": "styleGuide3",
+      "baseFontSize": 10,
+      "types": [
+        {
+          "name": "Color",
+          "groups": [
+            {
+              "name": "Base",
+              "styles": [
+                {
+                  "name": "Primary",
+                  "type": "color",
+                  "group": "Base",
+                  "value": "#2be053",
+                  "slug": "base_primary"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  {
+    "dtFontColorPrimary": {
+      "name": "Normal Font Color",
+      "type": "color",
+      "group": "content",
+      "description": "Font color for normal text",
+      "properties": ["color"],
+      "aliasTokens": [
+        "atBaseFontColor",
+        "atButtonFontColor1",
+        "atButtonFontColor2",
+        "atButtonFontColor3",
+        "atButtonFontColor4"
+      ]
+    },
+    "dtFontSize100": {
+      "name": "Normal Font Size",
+      "type": "font-size",
+      "group": "content",
+      "description": "Font size for normal text",
+      "properties": ["font-size"],
+      "aliasTokens": ["atButtonFontSize"]
+    },
+    "dtPrimaryFont": {
+      "name": "Primary Font",
+      "type": "font",
+      "group": "content",
+      "description": "Primary Font",
+      "properties": [],
+      "aliasTokens": []
+    },
+    "dtActionBg": {
+      "name": "Action Background",
+      "type": "color",
+      "group": "controls",
+      "description": "Background for action elements",
+      "properties": ["color", "background-color"],
+      "aliasTokens": ["atButtonBackground"]
+    },
+    "dtActionBgHover": {
+      "name": "Action Background Hover",
+      "type": "color",
+      "group": "controls",
+      "description": "Hover Background for action elements",
+      "properties": [],
+      "aliasTokens": ["atButtonBackgroundHover"]
+    },
+    "dtControlBorderRadius": {
+      "name": "Default Border Radius",
+      "type": "size",
+      "group": "controls",
+      "description": "Control Border Radius",
+      "properties": ["border-radius"],
+      "aliasTokens": ["atButtonBorderRadius"]
+    }
+  },
+  {
+    "atBaseFontColor": {
+      "component": null,
+      "files": null,
+      "properties": ["color"],
+      "extern": true,
+      "crawled": false
+    },
+    "atButtonBackground": {
+      "component": ["Button"],
+      "files": ["libs/components/src/lib/button/button.component.scss"],
+      "properties": ["background-color"],
+      "extern": true,
+      "crawled": true
+    },
+    "atButtonBackgroundHover": {
+      "component": ["Button"],
+      "files": ["sample/components/button/button.component.scss"],
+      "properties": ["background-color"],
+      "extern": false,
+      "crawled": true
+    },
+    "atButtonBorderRadius": {
+      "component": ["Button"],
+      "files": ["sample/components/button/button.component.scss"],
+      "properties": ["border-radius"],
+      "extern": false,
+      "crawled": true
+    },
+    "atButtonFontColor": {
+      "component": ["Button"],
+      "files": ["sample/components/button/button.component.scss"],
+      "properties": ["color"],
+      "extern": false,
+      "crawled": true
+    },
+    "atButtonFontSize": {
+      "component": ["Button"],
+      "files": ["sample/components/button/button.component.scss"],
+      "properties": ["font-size"],
+      "extern": false,
+      "crawled": true
+    },
+    "atButtonHorizontalSpace": {
+      "component": ["Button"],
+      "files": ["sample/components/button/button.component.scss"],
+      "properties": ["padding"],
+      "extern": false,
+      "crawled": true
+    },
+    "atButtonVerticalSpace": {
+      "component": ["Button"],
+      "files": ["sample/components/button/button.component.scss"],
+      "properties": ["padding"],
+      "extern": false,
+      "crawled": true
+    },
+    "atCardBackground": {
+      "component": ["Card"],
+      "files": ["sample/components/card/card.component.scss"],
+      "properties": ["background-color"],
+      "extern": false,
+      "crawled": true
+    }
+  },
+  {
+    "styleGuide1_dark": {
+      "name": "Dark",
+      "styleGuide": "styleGuide1",
+      "styles": {
+        "dtActionBg": {
+          "default": {
+            "style": "styleGuide1_action_tertiary"
+          }
+        },
+        "dtActionBgHover": {
+          "default": {
+            "style": "styleGuide1_action_secondary"
+          }
+        },
+        "dtControlBorderRadius": {
+          "default": {
+            "style": "global_space_tiny"
+          }
+        },
+        "dtFontColorPrimary": {
+          "default": {
+            "style": "global_base_light"
+          }
+        },
+        "dtFontSize100": {
+          "default": {
+            "style": "styleGuide1_content_primary"
+          },
+          "styleGuide1_mediaQuery_aboveSmallDesktop": {
+            "direct": {
+              "value": "13px",
+              "type": "font-size"
+            }
+          }
+        },
+        "dtPrimaryFont": {
+          "default": {
+            "style": "styleGuide1_font_primary"
+          }
+        }
+      }
+    },
+    "styleGuide1_light": {
+      "name": "Light",
+      "styleGuide": "styleGuide1",
+      "styles": {
+        "dtActionBg": {
+          "default": {
+            "style": "styleGuide1_action_primary"
+          }
+        },
+        "dtActionBgHover": {
+          "default": {
+            "style": "styleGuide1_action_secondary"
+          }
+        },
+        "dtControlBorderRadius": {
+          "default": {
+            "style": "global_space_small"
+          }
+        },
+        "dtFontColorPrimary": {
+          "default": {
+            "style": "global_base_black"
+          }
+        },
+        "dtFontSize100": {
+          "default": {
+            "style": "styleGuide1_content_primary"
+          }
+        },
+        "dtPrimaryFont": {
+          "default": {
+            "style": "styleGuide1_font_primary"
+          }
+        }
+      }
+    },
+    "styleGuide2_dark": {
+      "name": "Dark",
+      "styleGuide": "styleGuide2",
+      "styles": {
+        "dtActionBg": {
+          "default": {
+            "style": "styleGuide2_brand_tertiary"
+          }
+        },
+        "dtActionBgHover": {
+          "default": {
+            "style": "styleGuide2_brand_secondary"
+          }
+        },
+        "dtControlBorderRadius": {
+          "default": {
+            "style": "global_space_small"
+          }
+        },
+        "dtFontColorPrimary": {
+          "default": {
+            "style": "global_base_light"
+          }
+        },
+        "dtFontSize100": {
+          "default": {
+            "style": "styleGuide2_content_normal"
+          }
+        },
+        "dtPrimaryFont": {
+          "default": {
+            "style": "styleGuide2_font_primary"
+          }
+        }
+      }
+    },
+    "styleGuide2_light": {
+      "name": "Light",
+      "styleGuide": "styleGuide2",
+      "styles": {
+        "dtActionBg": {
+          "default": {
+            "style": "styleGuide2_brand_primary"
+          }
+        },
+        "dtActionBgHover": {
+          "default": {
+            "style": "styleGuide2_brand_secondary"
+          }
+        },
+        "dtControlBorderRadius": {
+          "default": {
+            "style": "global_space_tiny"
+          }
+        },
+        "dtFontColorPrimary": {
+          "default": {
+            "style": "global_base_black"
+          }
+        },
+        "dtFontSize100": {
+          "default": {
+            "style": "styleGuide2_content_normal"
+          }
+        },
+        "dtPrimaryFont": {
+          "default": {
+            "style": "styleGuide2_font_primary"
+          }
+        }
+      }
+    },
+    "styleGuide3_default": {
+      "name": "Default",
+      "styleGuide": "styleGuide3",
+      "styles": {
+        "dtActionBg": {
+          "default": {
+            "direct": {
+              "value": "#aaaaaa",
+              "type": "color"
+            }
+          },
+          "global_mediaQuery_aboveSmallMobile": {
+            "direct": {
+              "value": "rgba(180, 180, 180, 0.8)",
+              "type": "color"
+            }
+          }
+        },
+        "dtActionBgHover": {
+          "default": {
+            "style": "styleGuide3_base_primary"
+          }
+        },
+        "dtControlBorderRadius": {
+          "default": {
+            "style": "global_space_tiny"
+          },
+          "global_mediaQuery_aboveSmallMobile": {
+            "style": "global_space_small"
+          },
+          "global_mediaQuery_aboveMobile": {
+            "style": "global_space_medium"
+          },
+          "global_mediaQuery_aboveTablet": {
+            "style": "global_space_large"
+          }
+        },
+        "dtFontColorPrimary": {
+          "default": {
+            "style": "styleGuide3_base_primary"
+          }
+        },
+        "dtFontSize100": {
+          "global_mediaQuery_aboveSmallMobile": {
+            "direct": {
+              "type": "font-size",
+              "value": "1rem"
+            }
+          },
+          "global_mediaQuery_aboveMobile": {
+            "direct": {
+              "type": "font-size",
+              "value": "2rem"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "shortDesignTokens": false,
+    "baseFontSize": 16
+  }
+]
