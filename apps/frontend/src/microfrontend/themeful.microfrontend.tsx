@@ -16,14 +16,14 @@ import { APIService } from '../services'
 export class ThemefulMicrofrontend {
   private apiService: APIService
   private styleGuides$
-  private bundle$
+  private themeBundle$
   private toast$
   @State() mode: string
 
   constructor() {
     this.apiService = APIService.Instance
     this.styleGuides$ = this.apiService.styleGuides$
-    this.bundle$ = this.apiService.bundle$
+    this.themeBundle$ = this.apiService.themeBundle$
     this.toast$ = this.apiService.toast$
   }
 
@@ -85,7 +85,7 @@ export class ThemefulMicrofrontend {
                 url="/themes"
                 component="tf-themes"
                 componentProps={{
-                  bundle$: this.bundle$,
+                  themeBundle$: this.themeBundle$,
                   onAction: this.onAction,
                 }}
               />

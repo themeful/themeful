@@ -3,7 +3,7 @@
     "generatedPath": "./sample/generated/",
     "dataPath": "./sample/generated/",
     "themesPath": "./sample/generated/",
-    "libPaths": ["./sample/components/button/", "./sample/components/card"]
+    "libPaths": ["./sample/components/lib1/", "./sample/components/lib2"]
   },
   "global": {
     "baseFontSize": 16,

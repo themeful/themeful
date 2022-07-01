@@ -1,4 +1,5 @@
 export * from './alias-token.service'
+export * from './component.service'
 export * from './config.service'
 export * from './design-token.service'
 export * from './file.service'

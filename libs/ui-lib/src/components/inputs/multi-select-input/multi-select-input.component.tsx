@@ -1,5 +1,5 @@
 import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core'
-import { camelCase2Words } from '@utils'
+import { aliasToken2Words } from '@utils'
 
 @Component({
   tag: 'tf-multi-select-input',
@@ -60,10 +60,10 @@ export class MultiSelectInputComponent {
 
   public componentWillLoad(): void {
     this.items.forEach((item) => {
-      this.nameMap[item] = camelCase2Words(item)
+      this.nameMap[item] = aliasToken2Words(item)
     })
     this.value.forEach((item) => {
-      this.nameMap[item] = camelCase2Words(item)
+      this.nameMap[item] = aliasToken2Words(item)
     })
   }
 

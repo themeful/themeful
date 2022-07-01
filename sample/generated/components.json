@@ -1,24 +1,32 @@
-[
-  {
-    "id": "45678",
+{
+  "C3rHXN": {
     "name": "Button",
     "files": [
       {
-        "path": "sample/components/button/button.component.scss",
+        "path": "sample/components/lib1/button/button.component.scss",
         "ignored": false
       }
     ],
     "ignored": false
   },
-  {
-    "id": "09876",
+  "iX5ZPn": {
+    "name": "Teaser Card",
+    "files": [
+      {
+        "path": "sample/components/lib1/teaser-card/teaser-card.component.scss",
+        "ignored": false
+      }
+    ],
+    "ignored": false
+  },
+  "zBIt36": {
     "name": "Card",
     "files": [
       {
-        "path": "sample/components/card/card.component.scss",
+        "path": "sample/components/lib2/card/card.component.scss",
         "ignored": false
       }
     ],
     "ignored": false
   }
-]
+}

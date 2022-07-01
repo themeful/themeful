@@ -23,7 +23,7 @@ export class APIService {
   public styleGuides$ = new ReplaySubject<FormatedStyleGuides>(1)
   public aliasTokens$ = new ReplaySubject<AliasTokens>(1)
   public config$ = new ReplaySubject<GlobalConfig>(1)
-  public bundle$ = combineLatest([
+  public themeBundle$ = combineLatest([
     this.styleGuides$,
     this.designTokens$,
     this.aliasTokens$,

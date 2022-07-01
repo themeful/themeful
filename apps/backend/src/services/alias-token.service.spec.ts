@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { AliasTokenAPI } from '@typings'
 import { clone } from '@utils'
-import { FindResults } from '../utils'
+import { FindInResults } from '../utils'
 import * as utils from '../utils/system.util'
 import { AliasTokenService } from './alias-token.service'
 import { ConfigService } from './config.service'
@@ -20,7 +20,7 @@ describe('AliasTokenService', () => {
     jest.spyOn(mockFileService, 'save')
     jest.spyOn(mockFileService, 'aliasTokens$')
 
-    jest.spyOn(utils, 'findSync').mockImplementation(({ term }) => {
+    jest.spyOn(utils, 'findInSync').mockImplementation(({ term }) => {
       if (term.includes('default')) {
         return parseResultLine
       } else {
@@ -163,7 +163,7 @@ const updatedAliasToken: AliasTokenAPI = {
   crawled: false,
 }
 
-const parseResult: FindResults = [
+const parseResult: FindInResults = [
   {
     filename: 'libs/components/src/lib/button/button.component.scss',
     matches: [
@@ -174,7 +174,7 @@ const parseResult: FindResults = [
     line: [],
   },
 ]
-const parseResultLine: FindResults = [
+const parseResultLine: FindInResults = [
   {
     filename: 'libs/components/src/lib/button/button.component.scss',
     matches: [

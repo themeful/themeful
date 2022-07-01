@@ -1,0 +1,21 @@
+@import 'designTokens';
+
+$atTeaserCardBackground: #fff !default;
+
+.teaere-card {
+  background-color: $atTeaserCardBackground;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #333;
+  padding: 16px;
+  border-radius: 2px;
+  border: 1px solid #333;
+  max-width: 300px;
+
+  &__title {
+    margin-top: 0;
+  }
+
+  &__description {
+    font-size: 12px;
+  }
+}

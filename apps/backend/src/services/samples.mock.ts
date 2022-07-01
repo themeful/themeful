@@ -1,4 +1,11 @@
-import { AliasTokens, DesignTokens, FormatedStyleGuides, StyleGuides, Themes } from '@typings'
+import {
+  AliasTokens,
+  Components,
+  DesignTokens,
+  FormatedStyleGuides,
+  StyleGuides,
+  Themes,
+} from '@typings'
 
 export const config = {
   paths: {
@@ -10,6 +17,39 @@ export const config = {
   global: {
     baseFontSize: 16,
     shortDesignTokens: false,
+  },
+}
+
+export const components: Components = {
+  C3rHXN: {
+    name: 'Button',
+    files: [
+      {
+        path: 'test-sample/components/lib1/button/button.component.scss',
+        ignored: false,
+      },
+    ],
+    ignored: false,
+  },
+  iX5ZPn: {
+    name: 'Teaser Card',
+    files: [
+      {
+        path: 'test-sample/components/lib1/teaser-card/teaser-card.component.scss',
+        ignored: false,
+      },
+    ],
+    ignored: false,
+  },
+  zBIt36: {
+    name: 'Card',
+    files: [
+      {
+        path: 'test-sample/components/lib2/card/card.component.scss',
+        ignored: false,
+      },
+    ],
+    ignored: false,
   },
 }
 

@@ -16,13 +16,12 @@ describe('ComponentService', () => {
     jest.spyOn(mockFileService, 'save')
     jest.spyOn(mockFileService, 'components$')
 
-    jest.spyOn(utils, 'findSync').mockImplementation(({ term }) => {
-      if (term.includes('default')) {
-        return parseResultLine
-      } else {
-        return parseResult
-      }
-    })
+    jest
+      .spyOn(utils, 'findSync')
+      .mockReturnValue([
+        'libs/components/src/lib/button/button.component.scss',
+        'libs/components/src/lib/card/card.component.scss',
+      ])
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [

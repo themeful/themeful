@@ -1,7 +1,8 @@
-export type Components = Component[]
+export interface Components {
+  [id: string]: Component
+}
 
 export interface Component {
-  id: string
   name: string
   files: ComponentFile[]
   ignored: boolean

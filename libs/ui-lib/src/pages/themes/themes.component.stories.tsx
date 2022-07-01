@@ -6,7 +6,7 @@ import sample from './themes.sample.json'
 export default {
   title: 'Pages/Themes',
   args: {
-    bundle$: of(sample),
+    themeBundle$: of(sample),
     onAction: action('triggered action'),
   },
 }
