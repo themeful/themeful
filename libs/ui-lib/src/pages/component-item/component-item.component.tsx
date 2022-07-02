@@ -28,11 +28,11 @@ import '../../forms/form-integration'
 
 @Component({
   tag: 'tf-component-item',
-  styleUrl: 'themes.component.scss',
+  styleUrl: 'component-item.component.scss',
   shadow: true,
 })
 export class ComponentItemComponent {
-  /** Style Guides */
+  /** Component Item Bundle */
   @Prop() componentBundle$: Observable<ComponentItemBundle>
 
   /** Style Guide Slug */

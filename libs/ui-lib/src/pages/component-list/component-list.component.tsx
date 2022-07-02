@@ -1,5 +1,11 @@
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core'
-import { ComponentListBundle, FormIntegrationActions } from '@typings'
+import {
+  AliasTokens,
+  ComponentListBundle,
+  Components,
+  FormIntegrationActions,
+  Themes,
+} from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
 import '../../components/button'
 import '../../components/icon'
@@ -10,13 +16,16 @@ import '../../forms/form-integration'
 
 @Component({
   tag: 'tf-component-list',
-  styleUrl: 'components.component.scss',
+  styleUrl: 'component-list.component.scss',
   shadow: true,
 })
 export class ComponentListComponent {
-  /** Style Guides */
-  @Prop() themeBundle$: Observable<ComponentListBundle>
+  /** Component List Bundle */
+  @Prop() componentListBundle$: Observable<ComponentListBundle>
 
+  private themes: Themes
+  private components: Components
+  private aliasTokens: AliasTokens
   private formData$ = new Subject()
   private nav = []
 
@@ -31,8 +40,36 @@ export class ComponentListComponent {
     }
   }
 
+  public componentWillLoad(): void {
+    console.log('componentWillLoad', this.components)
+    this.sub.add(
+      this.componentListBundle$?.subscribe(([components, aliasTokens, themes]) => {
+        this.themes = themes
+        this.components = components
+        this.aliasTokens = aliasTokens
+        console.log(this.components, this.themes, this.aliasTokens)
+      })
+    )
+  }
+
   public disconnectedCallback(): void {
     this.sub.unsubscribe()
+  }
+
+  private renderComponents(): HTMLElement {
+    return (
+      <table>
+        {this.components &&
+          Object.entries(this.components).map(([id, component]) => (
+            <tr>
+              <td>
+                <stencil-route-link url={`/component/${id}`}>{component.name}</stencil-route-link>
+              </td>
+              <td> {id}</td>
+            </tr>
+          ))}
+      </table>
+    )
   }
 
   public render(): HTMLTfThemesElement {
@@ -40,7 +77,7 @@ export class ComponentListComponent {
       <Host>
         <stencil-route-title pageTitle="Themeful - Components" />
         <tf-navigation items={this.nav} size="small" />
-        List of Components
+        <div class="component-list__wrapper">{this.renderComponents()}</div>
         <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
       </Host>
     )

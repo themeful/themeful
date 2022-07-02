@@ -12,7 +12,9 @@ describe('ComponentListComponent', () => {
         <mock:shadow-root>
           <stencil-route-title pagetitle="Themeful - Components"></stencil-route-title>
           <tf-navigation size="small"></tf-navigation>
-          List of Components
+          <div class="component-list__wrapper">
+            <table></table>
+          </div>
           <tf-form-integration></tf-form-integration>
         </mock:shadow-root>
       </tf-component-list>
@@ -29,8 +31,10 @@ describe('ComponentListComponent', () => {
         <mock:shadow-root>
           <stencil-route-title pagetitle="Themeful - Components"></stencil-route-title>
           <tf-navigation size="small"></tf-navigation>
-          List of Components
-        <tf-form-integration></tf-form-integration>
+          <div class="component-list__wrapper">
+            <table></table>
+          </div>
+          <tf-form-integration></tf-form-integration>
         </mock:shadow-root>
       </tf-component-list>
     `)

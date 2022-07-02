@@ -74,6 +74,9 @@ export class APIService {
           case 'aliasTokens':
             this.aliasTokens$.next(data)
             break
+          case 'components':
+            this.components$.next(data)
+            break
           case 'config':
             this.config$.next(data)
             break
