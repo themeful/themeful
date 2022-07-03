@@ -1,5 +1,5 @@
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
-import { rootMain } from '../../../.storybook/main'
+import { rootMain, StorybookOptions, WebPackFinalConfig } from '../../../.storybook/main'
 
 module.exports = {
   ...rootMain,
@@ -7,14 +7,14 @@ module.exports = {
   core: { ...rootMain.core },
 
   stories: [...rootMain.stories, '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [...rootMain.addons],
-  babel: async (options: any) => ({
+  addons: [...(rootMain.addons ?? [])],
+  babel: async (options: StorybookOptions) => ({
     ...options,
     presets: [['@babel/typescript', { jsxPragma: 'h' }]],
   }),
-  webpackFinal: async (config: any, { configType }: { configType: any }) => {
+  webpackFinal: async (config: WebPackFinalConfig, options: StorybookOptions) => {
     if (rootMain.webpackFinal) {
-      config = await rootMain.webpackFinal(config, { configType })
+      config = await rootMain.webpackFinal(config, options)
     }
     const tsPaths = new TsconfigPathsPlugin({
       configFile: './tsconfig.base.json',
