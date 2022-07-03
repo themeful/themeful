@@ -7,18 +7,7 @@ describe('ComponentListComponent', () => {
       components: [ComponentListComponent],
       html: '<tf-component-list></tf-component-list>',
     })
-    expect(root).toEqualHtml(`
-      <tf-component-list>
-        <mock:shadow-root>
-          <stencil-route-title pagetitle="Themeful - Components"></stencil-route-title>
-          <tf-navigation size="small"></tf-navigation>
-          <div class="component-list__wrapper">
-            <table></table>
-          </div>
-          <tf-form-integration></tf-form-integration>
-        </mock:shadow-root>
-      </tf-component-list>
-    `)
+    expect(root).toMatchSnapshot()
   })
 
   it('renders with values', async () => {
@@ -26,17 +15,6 @@ describe('ComponentListComponent', () => {
       components: [ComponentListComponent],
       html: `<tf-component-list></tf-component-list>`,
     })
-    expect(root).toEqualHtml(`
-      <tf-component-list>
-        <mock:shadow-root>
-          <stencil-route-title pagetitle="Themeful - Components"></stencil-route-title>
-          <tf-navigation size="small"></tf-navigation>
-          <div class="component-list__wrapper">
-            <table></table>
-          </div>
-          <tf-form-integration></tf-form-integration>
-        </mock:shadow-root>
-      </tf-component-list>
-    `)
+    expect(root).toMatchSnapshot()
   })
 })

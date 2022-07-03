@@ -7,11 +7,7 @@ describe('StyleGuideDetailsComponent', () => {
       components: [StyleGuideDetailsComponent],
       html: '<tf-style-guide-details></tf-style-guide-details>',
     })
-    expect(root).toEqualHtml(`
-      <tf-style-guide-details>
-        <mock:shadow-root></mock:shadow-root>
-      </tf-style-guide-details>
-    `)
+    expect(root).toMatchSnapshot()
   })
 
   it('renders with values', async () => {
@@ -19,10 +15,6 @@ describe('StyleGuideDetailsComponent', () => {
       components: [StyleGuideDetailsComponent],
       html: `<tf-style-guide-details></tf-style-guide-details>`,
     })
-    expect(root).toEqualHtml(`
-      <tf-style-guide-details>
-        <mock:shadow-root></mock:shadow-root>
-      </tf-style-guide-details>
-    `)
+    expect(root).toMatchSnapshot()
   })
 })
