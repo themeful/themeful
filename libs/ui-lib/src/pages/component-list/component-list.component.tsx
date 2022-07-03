@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core'
+import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
 import {
   AliasTokens,
   ComponentListBundle,
@@ -23,8 +23,8 @@ export class ComponentListComponent {
   /** Component List Bundle */
   @Prop() componentListBundle$: Observable<ComponentListBundle>
 
+  @State() components: Components
   private themes: Themes
-  private components: Components
   private aliasTokens: AliasTokens
   private formData$ = new Subject()
   private nav = []
@@ -41,7 +41,6 @@ export class ComponentListComponent {
   }
 
   public componentWillLoad(): void {
-    console.log('componentWillLoad', this.components)
     this.sub.add(
       this.componentListBundle$?.subscribe(([components, aliasTokens, themes]) => {
         this.themes = themes
