@@ -1,9 +1,12 @@
 import { h } from '@stencil/core'
 import { action } from '@storybook/addon-actions'
+import { of } from 'rxjs'
+import sample from './component-list.sample.json'
 
 export default {
   title: 'Pages/Component List',
   args: {
+    componentListBundle$: of(sample),
     onAction: action('triggered action'),
   },
 }

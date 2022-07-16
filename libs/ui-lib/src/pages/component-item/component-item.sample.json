@@ -1,4 +1,36 @@
 [
+  {
+    "C3rHXN": {
+      "name": "Button",
+      "files": [
+        {
+          "path": "sample/components/lib1/button/button.component.scss",
+          "ignored": false
+        }
+      ],
+      "ignored": false
+    },
+    "iX5ZPn": {
+      "name": "Teaser Card",
+      "files": [
+        {
+          "path": "sample/components/lib1/teaser-card/teaser-card.component.scss",
+          "ignored": false
+        }
+      ],
+      "ignored": false
+    },
+    "zBIt36": {
+      "name": "Card",
+      "files": [
+        {
+          "path": "sample/components/lib2/card/card.component.scss",
+          "ignored": false
+        }
+      ],
+      "ignored": false
+    }
+  },
   [
     {
       "name": "Global",

@@ -6,7 +6,7 @@ import sample from './component-item.sample.json'
 export default {
   title: 'Pages/Component Item',
   args: {
-    themeBundle$: of(sample),
+    componentBundle$: of(sample),
     onAction: action('triggered action'),
   },
 }
