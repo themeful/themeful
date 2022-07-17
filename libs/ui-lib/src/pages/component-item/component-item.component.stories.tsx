@@ -18,7 +18,7 @@ export const componentItem = (args) => {
         <h1>Component Item</h1>
       </div>
       <div class="content">
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', height: '90vh' }}>
           <tf-component-item {...args} />
         </div>
       </div>

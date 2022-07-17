@@ -6,6 +6,7 @@
 .design-tokens {
   font: var(--tf-default-font);
   border-collapse: collapse;
+  position: relative;
 
   &__wrapper {
     width: 100%;
@@ -134,6 +135,13 @@
     text-align: center;
     padding-top: 8px;
   }
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--tf-content-bg-color);
 }
 
 a,
