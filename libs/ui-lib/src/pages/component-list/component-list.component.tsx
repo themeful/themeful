@@ -57,17 +57,16 @@ export class ComponentListComponent {
 
   private renderComponents(): HTMLElement {
     return (
-      <table>
-        {this.components &&
-          Object.entries(this.components).map(([id, component]) => (
-            <tr>
-              <td>
-                <stencil-route-link url={`/component/${id}`}>{component.name}</stencil-route-link>
-              </td>
-              <td> {id}</td>
-            </tr>
-          ))}
-      </table>
+      <div class="component-list__wrapper">
+        {Object.entries(this.components).map(([id, component]) => (
+          <stencil-route-link url={`/component/${id}`}>
+            <div class="component-list__item">
+              <span>{component.name}</span>
+              <span>{id}</span>
+            </div>
+          </stencil-route-link>
+        ))}
+      </div>
     )
   }
 
@@ -76,7 +75,7 @@ export class ComponentListComponent {
       <Host>
         <stencil-route-title pageTitle="Themeful - Components" />
         <tf-navigation items={this.nav} size="small" />
-        <div class="component-list__wrapper">{this.renderComponents()}</div>
+        {this.components && this.renderComponents()}
         <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
       </Host>
     )

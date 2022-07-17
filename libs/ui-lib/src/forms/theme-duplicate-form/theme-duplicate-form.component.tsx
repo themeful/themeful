@@ -64,7 +64,7 @@ export class ThemeDuplicateComponent {
   private nameValidation = (name: string): string | null =>
     name !== this.originName ? null : 'Please change the name'
 
-  public render(): HTMLTfThemeFormElement {
+  public render(): HTMLTfThemeDuplicateFormElement {
     return (
       <form class="form" onSubmit={this.save}>
         <h3>Duplicate: {this.originName}</h3>

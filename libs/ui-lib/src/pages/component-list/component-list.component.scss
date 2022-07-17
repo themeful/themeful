@@ -3,6 +3,26 @@
   height: 100%;
 }
 
-.component-list__wrapper {
-  padding: 16px;
+.component-list {
+  &__wrapper {
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  &__item {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 8px;
+  }
+}
+
+a,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
 }
