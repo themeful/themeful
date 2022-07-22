@@ -41,7 +41,7 @@
   },
   "private": true,
   "devDependencies": {
-    "@grpc/grpc-js": "^1.6.7",
+    "@grpc/grpc-js": "^1.6.8",
     "@grpc/proto-loader": "^0.6.13",
     "@nestjs/microservices": "^8.4.7",
     "@nestjs/schematics": "^8.0.11",
