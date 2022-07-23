@@ -79,7 +79,7 @@ specifiers:
   rollup-plugin-node-polyfills: ^0.2.1
   run-parallel: ^1.2.0
   rxjs: ^7.5.6
-  sass: ^1.53.0
+  sass: ^1.54.0
   sass-loader: ^10.3.1
   sentence-case: ^3.0.4
   short-unique-id: ^4.4.4
@@ -183,8 +183,8 @@ devDependencies:
   redis: 4.2.0
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
-  sass: 1.53.0
-  sass-loader: 10.3.1_sass@1.53.0+webpack@5.73.0
+  sass: 1.54.0
+  sass-loader: 10.3.1_sass@1.54.0+webpack@5.73.0
   stencil-fragment: 1.0.1
   style-loader: 2.0.0_webpack@5.73.0
   ts-jest: 27.1.4_pjqm657ptyooh3y3krzq2at6ne
@@ -2892,8 +2892,8 @@ packages:
       rollup-plugin-typescript2: 0.31.2_55kiftncucr43pz4hskma6yi2q
       rxjs: 6.6.7
       rxjs-for-await: 0.0.2_rxjs@6.6.7
-      sass: 1.53.0
-      sass-loader: 12.6.0_sass@1.53.0+webpack@5.73.0
+      sass: 1.54.0
+      sass-loader: 12.6.0_sass@1.54.0+webpack@5.73.0
       semver: 7.3.4
       source-map: 0.7.3
       source-map-loader: 3.0.1_webpack@5.73.0
@@ -3104,7 +3104,7 @@ packages:
       rxjs: 7.5.6
       rxjs-for-await: 1.0.0_rxjs@7.5.6
       tsconfig-paths: 3.14.1
-      vite: 2.9.14_7wyzyjpozas6rxhry35dnyjvyq
+      vite: 2.9.14_lmb6evske6did7zyvexu5gq6ia
     transitivePeerDependencies:
       - nx
     dev: true
@@ -7175,7 +7175,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001368
-      electron-to-chromium: 1.4.198
+      electron-to-chromium: 1.4.199
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.2
     dev: true
@@ -8648,8 +8648,8 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium/1.4.198:
-    resolution: {integrity: sha512-jwqQPdKGeAslcq8L+1SZZgL6uDiIDmTe9Gq4brsdWAH27y7MJ2g9Ue6MyST3ogmSM49EAQP7bype1V5hsuNrmQ==}
+  /electron-to-chromium/1.4.199:
+    resolution: {integrity: sha512-WIGME0Cs7oob3mxsJwHbeWkH0tYkIE/sjkJ8ML2BYmuRcjhRl/q5kVDXG7W9LOOKwzPU5M0LBlXRq9rlSgnNlg==}
     dev: true
 
   /elliptic/6.5.4:
@@ -11471,9 +11471,9 @@ packages:
     hasBin: true
     dependencies:
       async: 3.2.4
-      chalk: 4.1.2
+      chalk: 4.1.0
       filelist: 1.0.4
-      minimatch: 3.1.2
+      minimatch: 3.0.5
     dev: true
 
   /jest-changed-files/27.5.1:
@@ -15554,7 +15554,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.3.1_sass@1.53.0+webpack@5.73.0:
+  /sass-loader/10.3.1_sass@1.54.0+webpack@5.73.0:
     resolution: {integrity: sha512-y2aBdtYkbqorVavkC3fcJIUDGIegzDWPn3/LAFhsf3G+MzPKTJx37sROf5pXtUeggSVbNbmfj8TgRaSLMelXRA==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -15573,13 +15573,13 @@ packages:
       klona: 2.0.5
       loader-utils: 2.0.2
       neo-async: 2.6.2
-      sass: 1.53.0
+      sass: 1.54.0
       schema-utils: 3.1.1
       semver: 7.3.7
       webpack: 5.73.0
     dev: true
 
-  /sass-loader/12.6.0_sass@1.53.0+webpack@5.73.0:
+  /sass-loader/12.6.0_sass@1.54.0+webpack@5.73.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -15600,12 +15600,12 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.53.0
+      sass: 1.54.0
       webpack: 5.73.0
     dev: true
 
-  /sass/1.53.0:
-    resolution: {integrity: sha512-zb/oMirbKhUgRQ0/GFz8TSAwRq2IlR29vOUJZOx0l8sV+CkHUfHa4u5nqrG+1VceZp7Jfj59SVW9ogdhTvJDcQ==}
+  /sass/1.54.0:
+    resolution: {integrity: sha512-C4zp79GCXZfK0yoHZg+GxF818/aclhp9F48XBu/+bm9vXEVAYov9iU3FBVRMq3Hx3OA4jfKL+p2K9180mEh0xQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -17570,7 +17570,7 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /vite/2.9.14_7wyzyjpozas6rxhry35dnyjvyq:
+  /vite/2.9.14_lmb6evske6did7zyvexu5gq6ia:
     resolution: {integrity: sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -17591,7 +17591,7 @@ packages:
       postcss: 8.4.14
       resolve: 1.22.1
       rollup: 2.77.0
-      sass: 1.53.0
+      sass: 1.54.0
       stylus: 0.58.1
     optionalDependencies:
       fsevents: 2.3.2
