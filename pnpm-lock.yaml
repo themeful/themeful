@@ -79,7 +79,7 @@ specifiers:
   rollup-plugin-node-polyfills: ^0.2.1
   run-parallel: ^1.2.0
   rxjs: ^7.5.6
-  sass: ^1.53.0
+  sass: ^1.54.0
   sass-loader: ^10.3.1
   sentence-case: ^3.0.4
   short-unique-id: ^4.4.4
@@ -183,8 +183,8 @@ devDependencies:
   redis: 4.2.0
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
-  sass: 1.53.0
-  sass-loader: 10.3.1_sass@1.53.0+webpack@5.73.0
+  sass: 1.54.0
+  sass-loader: 10.3.1_sass@1.54.0+webpack@5.73.0
   stencil-fragment: 1.0.1
   style-loader: 2.0.0_webpack@5.73.0
   ts-jest: 27.1.4_pjqm657ptyooh3y3krzq2at6ne
@@ -2859,7 +2859,7 @@ packages:
       babel-plugin-transform-typescript-metadata: 0.3.2
       browserslist: 4.21.2
       bytes: 3.1.2
-      caniuse-lite: 1.0.30001368
+      caniuse-lite: 1.0.30001369
       chalk: 4.1.0
       chokidar: 3.5.3
       copy-webpack-plugin: 9.1.0_webpack@5.73.0
@@ -2892,8 +2892,8 @@ packages:
       rollup-plugin-typescript2: 0.31.2_55kiftncucr43pz4hskma6yi2q
       rxjs: 6.6.7
       rxjs-for-await: 0.0.2_rxjs@6.6.7
-      sass: 1.53.0
-      sass-loader: 12.6.0_sass@1.53.0+webpack@5.73.0
+      sass: 1.54.0
+      sass-loader: 12.6.0_sass@1.54.0+webpack@5.73.0
       semver: 7.3.4
       source-map: 0.7.3
       source-map-loader: 3.0.1_webpack@5.73.0
@@ -3104,7 +3104,7 @@ packages:
       rxjs: 7.5.6
       rxjs-for-await: 1.0.0_rxjs@7.5.6
       tsconfig-paths: 3.14.1
-      vite: 2.9.14_7wyzyjpozas6rxhry35dnyjvyq
+      vite: 2.9.14_lmb6evske6did7zyvexu5gq6ia
     transitivePeerDependencies:
       - nx
     dev: true
@@ -6644,7 +6644,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.2
-      caniuse-lite: 1.0.30001368
+      caniuse-lite: 1.0.30001369
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -6660,7 +6660,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.2
-      caniuse-lite: 1.0.30001368
+      caniuse-lite: 1.0.30001369
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -6673,7 +6673,7 @@ packages:
     hasBin: true
     dependencies:
       browserslist: 4.21.2
-      caniuse-lite: 1.0.30001368
+      caniuse-lite: 1.0.30001369
       normalize-range: 0.1.2
       num2fraction: 1.2.2
       picocolors: 0.2.1
@@ -7174,8 +7174,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001368
-      electron-to-chromium: 1.4.198
+      caniuse-lite: 1.0.30001369
+      electron-to-chromium: 1.4.199
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.2
     dev: true
@@ -7371,13 +7371,13 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.21.2
-      caniuse-lite: 1.0.30001368
+      caniuse-lite: 1.0.30001369
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
-  /caniuse-lite/1.0.30001368:
-    resolution: {integrity: sha512-wgfRYa9DenEomLG/SdWgQxpIyvdtH3NW8Vq+tB6AwR9e56iOIcu1im5F/wNdDf04XlKHXqIx4N8Jo0PemeBenQ==}
+  /caniuse-lite/1.0.30001369:
+    resolution: {integrity: sha512-OY1SBHaodJc4wflDIKnlkdqWzJZd1Ls/2zbVJHBSv3AT7vgOJ58yAhd2CN4d57l2kPJrgMb7P9+N1Mhy4tNSQA==}
     dev: true
 
   /capture-exit/2.0.0:
@@ -8648,8 +8648,8 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium/1.4.198:
-    resolution: {integrity: sha512-jwqQPdKGeAslcq8L+1SZZgL6uDiIDmTe9Gq4brsdWAH27y7MJ2g9Ue6MyST3ogmSM49EAQP7bype1V5hsuNrmQ==}
+  /electron-to-chromium/1.4.199:
+    resolution: {integrity: sha512-WIGME0Cs7oob3mxsJwHbeWkH0tYkIE/sjkJ8ML2BYmuRcjhRl/q5kVDXG7W9LOOKwzPU5M0LBlXRq9rlSgnNlg==}
     dev: true
 
   /elliptic/6.5.4:
@@ -10237,7 +10237,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -11471,7 +11471,7 @@ packages:
     hasBin: true
     dependencies:
       async: 3.2.4
-      chalk: 4.1.2
+      chalk: 4.1.0
       filelist: 1.0.4
       minimatch: 3.1.2
     dev: true
@@ -15554,7 +15554,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.3.1_sass@1.53.0+webpack@5.73.0:
+  /sass-loader/10.3.1_sass@1.54.0+webpack@5.73.0:
     resolution: {integrity: sha512-y2aBdtYkbqorVavkC3fcJIUDGIegzDWPn3/LAFhsf3G+MzPKTJx37sROf5pXtUeggSVbNbmfj8TgRaSLMelXRA==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -15573,13 +15573,13 @@ packages:
       klona: 2.0.5
       loader-utils: 2.0.2
       neo-async: 2.6.2
-      sass: 1.53.0
+      sass: 1.54.0
       schema-utils: 3.1.1
       semver: 7.3.7
       webpack: 5.73.0
     dev: true
 
-  /sass-loader/12.6.0_sass@1.53.0+webpack@5.73.0:
+  /sass-loader/12.6.0_sass@1.54.0+webpack@5.73.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -15600,12 +15600,12 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.53.0
+      sass: 1.54.0
       webpack: 5.73.0
     dev: true
 
-  /sass/1.53.0:
-    resolution: {integrity: sha512-zb/oMirbKhUgRQ0/GFz8TSAwRq2IlR29vOUJZOx0l8sV+CkHUfHa4u5nqrG+1VceZp7Jfj59SVW9ogdhTvJDcQ==}
+  /sass/1.54.0:
+    resolution: {integrity: sha512-C4zp79GCXZfK0yoHZg+GxF818/aclhp9F48XBu/+bm9vXEVAYov9iU3FBVRMq3Hx3OA4jfKL+p2K9180mEh0xQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -17008,10 +17008,10 @@ packages:
       typescript: '*'
       webpack: ^5.0.0
     dependencies:
-      chalk: 4.1.2
+      chalk: 4.1.0
       enhanced-resolve: 5.10.0
       micromatch: 4.0.5
-      semver: 7.3.4
+      semver: 7.3.7
       typescript: 4.7.4
       webpack: 5.73.0
     dev: true
@@ -17570,7 +17570,7 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /vite/2.9.14_7wyzyjpozas6rxhry35dnyjvyq:
+  /vite/2.9.14_lmb6evske6did7zyvexu5gq6ia:
     resolution: {integrity: sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -17591,7 +17591,7 @@ packages:
       postcss: 8.4.14
       resolve: 1.22.1
       rollup: 2.77.0
-      sass: 1.53.0
+      sass: 1.54.0
       stylus: 0.58.1
     optionalDependencies:
       fsevents: 2.3.2
