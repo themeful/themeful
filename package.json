@@ -74,7 +74,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "amqp-connection-manager": "^4.1.3",
-    "amqplib": "^0.10.0",
+    "amqplib": "^0.10.1",
     "autoprefixer": "^10.4.7",
     "bufferutil": "^4.0.6",
     "cache-manager": "^4.1.0",
@@ -112,7 +112,7 @@
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "4.7.4",
     "utf-8-validate": "^5.0.9",
-    "workbox-build": "^6.5.3"
+    "workbox-build": "^6.5.4"
   },
   "dependencies": {
     "@nestjs/common": "^8.4.7",
