@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { getProperty, propertyTypes } from '@properties'
 import {
   AliasTokens,
+  Components,
   Data,
   DesignTokens,
   ExtendedStyle,
@@ -25,12 +26,13 @@ import { GeneratorService } from './generator.service'
 
 @Injectable()
 export class FileService {
-  private filenames = ['designTokens', 'aliasTokens', 'styleGuides', 'themes']
+  private filenames = ['designTokens', 'aliasTokens', 'styleGuides', 'themes', 'components']
   private hashKeys: { [file: string]: string } = {}
   private _themes$ = new ReplaySubject<Themes>(1)
   private _designTokens$ = new ReplaySubject<DesignTokens>(1)
   private _aliasTokens$ = new ReplaySubject<AliasTokens>(1)
   private _styleGuides$ = new ReplaySubject<StyleGuides>(1)
+  private _components$ = new ReplaySubject<Components>(1)
   private _config$ = new ReplaySubject<GlobalConfig>(1)
   private initialized = false
 
@@ -65,6 +67,11 @@ export class FileService {
   public styleGuides$(): ReplaySubject<StyleGuides> {
     this.init()
     return this._styleGuides$
+  }
+
+  public components$(): ReplaySubject<Components> {
+    this.init()
+    return this._components$
   }
 
   public config$(): ReplaySubject<GlobalConfig> {

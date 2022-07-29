@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StyleGuideDetailsComponent renders 1`] = `
+<tf-style-guide-details>
+  <mock:shadow-root></mock:shadow-root>
+</tf-style-guide-details>
+`;
+
+exports[`StyleGuideDetailsComponent renders with values 1`] = `
+<tf-style-guide-details>
+  <mock:shadow-root></mock:shadow-root>
+</tf-style-guide-details>
+`;

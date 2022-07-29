@@ -18,7 +18,7 @@ export const styleGuides = (args) => {
         <h1>Style Guides</h1>
       </div>
       <div class="content">
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', height: '90vh' }}>
           <tf-style-guides {...args} />
         </div>
       </div>

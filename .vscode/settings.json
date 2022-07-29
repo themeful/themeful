@@ -14,5 +14,8 @@
   "javascript.format.semicolons": "remove",
   "typescript.format.semicolons": "remove",
   "prettier.semi": false,
-  "jestrunner.jestCommand": "pnpm jest"
+  "jestrunner.jestCommand": "pnpm jest",
+  "jest.autoRun": {
+    "onStartup": []
+  }
 }

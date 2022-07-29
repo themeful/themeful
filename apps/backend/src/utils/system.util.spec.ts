@@ -1,6 +1,6 @@
 import * as systemFind from 'find'
 import * as fs from 'fs'
-import { findSync } from './system.util'
+import { findInSync } from './system.util'
 
 describe('SystemUtils', () => {
   const term = '^\\$at[^;]+!default;$'
@@ -14,26 +14,28 @@ describe('SystemUtils', () => {
         'sample/components/card/card.component.scss',
       ])
   })
-  describe('findSync', () => {
+  describe('findInSync', () => {
     it('should return files', () => {
-      expect(findSync({ term, flags: 'gm' }, '/some/test/path', '.s[a|c]ss$')).toEqual(
-        findSyncResult
+      expect(findInSync({ term, flags: 'gm' }, '/some/test/path', '.s[a|c]ss$')).toEqual(
+        findInSyncResult
       )
     })
 
     it('should return files without filefilter', () => {
-      expect(findSync({ term, flags: 'gm' }, '/some/test/path', undefined)).toEqual(findSyncResult)
+      expect(findInSync({ term, flags: 'gm' }, '/some/test/path', undefined)).toEqual(
+        findInSyncResult
+      )
     })
 
     it('should return files with string pattern', () => {
-      expect(findSync('^\\$at[^;]+!default;$', '/some/test/path', '.s[a|c]ss$')).toEqual(
-        findSyncResult
+      expect(findInSync('^\\$at[^;]+!default;$', '/some/test/path', '.s[a|c]ss$')).toEqual(
+        findInSyncResult
       )
     })
   })
 })
 
-const findSyncResult = [
+const findInSyncResult = [
   {
     filename: 'sample/components/card/card.component.scss',
     lines: [

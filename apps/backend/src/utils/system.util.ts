@@ -1,12 +1,12 @@
 import * as systemFind from 'find'
 import { readFileSync } from 'fs'
 
-export interface FindResult {
+export interface FindInResult {
   filename: string
   matches: string[]
   line: string[] | null
 }
-export type FindResults = FindResult[]
+export type FindInResults = FindInResult[]
 
 function searchFile(data, content) {
   const match = content.match(data.regex),
@@ -66,7 +66,11 @@ function getMatchedFiles(pattern, files) {
   return matchedFiles
 }
 
-export const findSync = (pattern, directory, fileFilter): FindResults => {
+export const findInSync = (pattern, directory, fileFilter): FindInResults => {
   const files = systemFind.fileSync(getFileFilter(fileFilter), directory)
   return getMatchedFiles(pattern, files)
+}
+
+export const findSync = (directory, fileFilter): string[] => {
+  return systemFind.fileSync(getFileFilter(fileFilter), directory)
 }

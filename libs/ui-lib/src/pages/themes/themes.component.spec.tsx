@@ -7,20 +7,7 @@ describe('ThemesComponent', () => {
       components: [ThemesComponent],
       html: '<tf-themes></tf-themes>',
     })
-    expect(root).toEqualHtml(`
-      <tf-themes>
-        <mock:shadow-root>
-          <stencil-route-title pagetitle="Themeful - Themes"></stencil-route-title>
-          <tf-navigation size="small"></tf-navigation>
-          <div class="design-tokens__wrapper">
-            <table class="design-tokens">
-              <tbody></tbody>
-            </table>
-          </div>
-          <tf-form-integration></tf-form-integration>
-        </mock:shadow-root>
-      </tf-themes>
-    `)
+    expect(root).toMatchSnapshot()
   })
 
   it('renders with values', async () => {
@@ -28,19 +15,6 @@ describe('ThemesComponent', () => {
       components: [ThemesComponent],
       html: `<tf-themes></tf-themes>`,
     })
-    expect(root).toEqualHtml(`
-      <tf-themes>
-        <mock:shadow-root>
-          <stencil-route-title pagetitle="Themeful - Themes"></stencil-route-title>
-          <tf-navigation size="small"></tf-navigation>
-          <div class="design-tokens__wrapper">
-            <table class="design-tokens">
-              <tbody></tbody>
-            </table>
-          </div>
-        <tf-form-integration></tf-form-integration>
-        </mock:shadow-root>
-      </tf-themes>
-    `)
+    expect(root).toMatchSnapshot()
   })
 })

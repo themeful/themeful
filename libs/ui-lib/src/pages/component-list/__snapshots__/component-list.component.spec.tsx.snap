@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ComponentListComponent renders 1`] = `
+<tf-component-list>
+  <mock:shadow-root>
+    <stencil-route-title pagetitle="Themeful - Components"></stencil-route-title>
+    <tf-navigation size="small"></tf-navigation>
+    <tf-form-integration></tf-form-integration>
+  </mock:shadow-root>
+</tf-component-list>
+`;
+
+exports[`ComponentListComponent renders with values 1`] = `
+<tf-component-list>
+  <mock:shadow-root>
+    <stencil-route-title pagetitle="Themeful - Components"></stencil-route-title>
+    <tf-navigation size="small"></tf-navigation>
+    <tf-form-integration></tf-form-integration>
+  </mock:shadow-root>
+</tf-component-list>
+`;

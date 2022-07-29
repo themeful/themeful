@@ -8,6 +8,7 @@ import { StyleController } from './controllers/style.controller'
 import { ThemeController } from './controllers/theme.controller'
 import {
   AliasTokenService,
+  ComponentService,
   ConfigService,
   DesignTokenService,
   FileService,
@@ -28,6 +29,7 @@ import { SocketGateway } from './socket.gateway'
     ConfigService,
     AliasTokenService,
     DesignTokenService,
+    ComponentService,
     StyleGuideService,
     GeneratorService,
     ThemeService,

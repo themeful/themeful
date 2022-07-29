@@ -1,5 +1,8 @@
 import {
   AliasTokens,
+  ComponentItemBundle,
+  ComponentListBundle,
+  Components,
   DesignToken,
   DesignTokens,
   FormatedStyleGuides,
@@ -7,6 +10,7 @@ import {
   Style,
   StyleGuideBase,
   Theme,
+  ThemeBundle,
   Themes,
   ThemeValue,
 } from '@typings'
@@ -22,13 +26,27 @@ export class APIService {
   public designTokens$ = new ReplaySubject<DesignTokens>(1)
   public styleGuides$ = new ReplaySubject<FormatedStyleGuides>(1)
   public aliasTokens$ = new ReplaySubject<AliasTokens>(1)
+  public components$ = new ReplaySubject<Components>(1)
   public config$ = new ReplaySubject<GlobalConfig>(1)
-  public bundle$ = combineLatest([
+  public themeBundle$: Observable<ThemeBundle> = combineLatest([
     this.styleGuides$,
     this.designTokens$,
     this.aliasTokens$,
     this.themes$,
     this.config$,
+  ]).pipe(debounceTime(500), shareReplay(1))
+  public componentBundle$: Observable<ComponentItemBundle> = combineLatest([
+    this.components$,
+    this.styleGuides$,
+    this.designTokens$,
+    this.aliasTokens$,
+    this.themes$,
+    this.config$,
+  ]).pipe(debounceTime(500), shareReplay(1))
+  public componentListBundle$: Observable<ComponentListBundle> = combineLatest([
+    this.components$,
+    this.aliasTokens$,
+    this.themes$,
   ]).pipe(debounceTime(500), shareReplay(1))
 
   private constructor() {
@@ -55,6 +73,9 @@ export class APIService {
             break
           case 'aliasTokens':
             this.aliasTokens$.next(data)
+            break
+          case 'components':
+            this.components$.next(data)
             break
           case 'config':
             this.config$.next(data)

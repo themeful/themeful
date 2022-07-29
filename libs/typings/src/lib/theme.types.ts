@@ -3,7 +3,7 @@ import { GlobalConfig } from './config.types'
 import { DesignTokens } from './designToken.types'
 import { ExtendedStyle, FormatedStyleGuides } from './style.types'
 
-export type APIBundle = [FormatedStyleGuides, DesignTokens, AliasTokens, Themes, GlobalConfig]
+export type ThemeBundle = [FormatedStyleGuides, DesignTokens, AliasTokens, Themes, GlobalConfig]
 
 export interface Themes {
   [themeSlug: string]: Theme

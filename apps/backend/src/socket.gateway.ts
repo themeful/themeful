@@ -40,6 +40,9 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     this.fileService.aliasTokens$().subscribe((data) => {
       this.wss.emit('update', { msg: 'data', type: 'aliasTokens', data })
     })
+    this.fileService.components$().subscribe((data) => {
+      this.wss.emit('update', { msg: 'data', type: 'components', data })
+    })
     this.fileService.config$().subscribe((data) => {
       this.wss.emit('update', { msg: 'data', type: 'config', data })
     })

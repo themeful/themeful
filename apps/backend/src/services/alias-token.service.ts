@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { AliasToken, AliasTokenAPI, AliasTokens } from '@typings'
-import { sortMap, unique } from '@utils'
-import { take } from 'rxjs'
-import { FindResults, findSync } from '../utils'
+import { anycase2Words, sortMap, unique } from '@utils'
+import { map, merge, take, timer } from 'rxjs'
+import { FindInResults, findInSync } from '../utils'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
 import { SyncService } from './sync.service'
@@ -16,8 +16,7 @@ export class AliasTokenService {
     private readonly config: ConfigService,
     private readonly file: FileService
   ) {
-    this.file
-      .aliasTokens$()
+    merge(timer(2000).pipe(map(() => ({}))), this.file.aliasTokens$())
       .pipe(take(1))
       .subscribe((aliasTokens) => {
         this.aliasTokens = aliasTokens
@@ -92,12 +91,12 @@ export class AliasTokenService {
     const defaultsTerm = '^\\$at[^;]+!default;$'
     const output: AliasTokens = {}
     const defaults: { [token: string]: string } = {}
-    const results: FindResults = []
-    const defaultResults: FindResults = []
+    const results: FindInResults = []
+    const defaultResults: FindInResults = []
 
     this.config.libPaths.forEach((path) => {
-      results.push(...findSync({ term, flags: 'gm' }, path, '.s[a|c]ss$'))
-      defaultResults.push(...findSync({ term: defaultsTerm, flags: 'gm' }, path, '.s[a|c]ss$'))
+      results.push(...findInSync({ term, flags: 'gm' }, path, '.s[a|c]ss$'))
+      defaultResults.push(...findInSync({ term: defaultsTerm, flags: 'gm' }, path, '.s[a|c]ss$'))
     })
 
     for (const file of defaultResults) {
@@ -114,7 +113,7 @@ export class AliasTokenService {
     for (const file of results) {
       let component = file.filename.substring(file.filename.lastIndexOf('/'))
       component = component.substring(1, component.indexOf('.'))
-      component = component[0].toUpperCase() + component.slice(1)
+      component = anycase2Words(component)
       if (file.matches) {
         for (let match of file.matches) {
           match = match.replace(/\r?\n|\r|;/g, ' ')

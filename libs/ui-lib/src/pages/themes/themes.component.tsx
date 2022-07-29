@@ -2,7 +2,6 @@ import { propertySelect } from '@properties'
 import { Component, Event, EventEmitter, Fragment, h, Host, Prop, State } from '@stencil/core'
 import {
   AliasTokens,
-  APIBundle,
   DesignTokenRow,
   DesignTokens,
   Dt2At,
@@ -14,6 +13,7 @@ import {
   KeyValues,
   StyleMap,
   Theme,
+  ThemeBundle,
   ThemeName,
   Themes,
 } from '@typings'
@@ -32,7 +32,7 @@ import '../../forms/form-integration'
 })
 export class ThemesComponent {
   /** Style Guides */
-  @Prop() bundle$: Observable<APIBundle>
+  @Prop() themeBundle$: Observable<ThemeBundle>
 
   @State() rows: DesignTokenRow[]
   private themeNames: ThemeName[]
@@ -74,7 +74,7 @@ export class ThemesComponent {
 
   public componentWillLoad(): void {
     this.sub.add(
-      this.bundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes, config]) => {
+      this.themeBundle$?.subscribe(([styleGuides, designTokens, aliasTokens, themes, config]) => {
         this.config = config
         this.themes = themes
         this.aliasTokens = aliasTokens
