@@ -48,7 +48,7 @@ jobs:
           else
             echo "CHANGED_FILES=true" >> $GITHUB_ENV
           fi
-          echo "LABELS=dependencies" >> $GITHUB_ENV
+          echo "LABELS=dependencies,nrwl" >> $GITHUB_ENV
           echo "BRANCH=nrwl_update_$(date +'%Y_%m_%d')" >> $GITHUB_ENV
           echo "TITLE=NRWL Update $(date +'%d.%m.%Y')" >> $GITHUB_ENV
 

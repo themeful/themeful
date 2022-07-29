@@ -1,0 +1,58 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "assigneesFromCodeOwners": true,
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "automerge": true,
+      "labels": ["dependencies"]
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "breaking"]
+    }
+  ],
+  "ignoreDeps": [
+    "css-loader",
+    "style-loader",
+    "sass-loader",
+    "@nrwl/cli",
+    "@nrwl/eslint-plugin-nx",
+    "@nrwl/jest",
+    "@nrwl/nest",
+    "@nrwl/node",
+    "@nrwl/storybook",
+    "@nrwl/web",
+    "@nrwl/workspace",
+    "@nestjs/microservices",
+    "@nestjs/schematics",
+    "@nestjs/testing",
+    "@nestjs/common",
+    "@nestjs/core",
+    "@nestjs/platform-express",
+    "@nestjs/platform-socket.io",
+    "@nestjs/serve-static",
+    "@nestjs/websockets",
+    "@storybook/addon-actions",
+    "@storybook/addon-essentials",
+    "@storybook/addon-postcss",
+    "@storybook/addons",
+    "@storybook/builder-webpack5",
+    "@storybook/core-server",
+    "@storybook/html",
+    "@storybook/manager-webpack5",
+    "@storybook/theming",
+    "eslint",
+    "nx",
+    "react",
+    "react-dom",
+    "typescript",
+    "tslib",
+    "node"
+  ]
+}
