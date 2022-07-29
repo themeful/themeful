@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@grpc/grpc-js': ^1.6.8
-  '@grpc/proto-loader': ^0.6.13
+  '@grpc/grpc-js': 1.6.8
+  '@grpc/proto-loader': 0.6.13
   '@nestjs/common': 9.0.7
   '@nestjs/core': 9.0.7
   '@nestjs/microservices': ^8.4.7
@@ -20,12 +20,12 @@ specifiers:
   '@nrwl/storybook': 14.5.1
   '@nrwl/web': 14.5.1
   '@nrwl/workspace': 14.5.1
-  '@nxext/stencil': ^14.0.3
-  '@stencil/core': ^2.17.1
-  '@stencil/eslint-plugin': ^0.4.0
-  '@stencil/postcss': ^2.1.0
-  '@stencil/router': ^1.0.1
-  '@stencil/sass': ^1.5.2
+  '@nxext/stencil': 14.0.3
+  '@stencil/core': 2.17.1
+  '@stencil/eslint-plugin': 0.4.0
+  '@stencil/postcss': 2.1.0
+  '@stencil/router': 1.0.1
+  '@stencil/sass': 1.5.2
   '@storybook/addon-actions': 6.5.9
   '@storybook/addon-essentials': 6.5.9
   '@storybook/addon-postcss': ^2.0.0
@@ -37,64 +37,64 @@ specifiers:
   '@storybook/theming': 6.5.9
   '@types/jest': 27.4.1
   '@types/node': 18.6.2
-  '@types/socket.io': ^3.0.2
-  '@typescript-eslint/eslint-plugin': ^4.33.0
-  '@typescript-eslint/parser': ^4.33.0
-  amqp-connection-manager: ^4.1.3
-  amqplib: ^0.10.1
-  autoprefixer: ^10.4.7
-  bufferutil: ^4.0.6
-  cache-manager: ^4.1.0
-  camel-case: ^4.1.2
-  class-transformer: ^0.5.1
-  class-validator: ^0.13.2
-  colortranslator: ^1.9.2
+  '@types/socket.io': 3.0.2
+  '@typescript-eslint/eslint-plugin': 4.33.0
+  '@typescript-eslint/parser': 4.33.0
+  amqp-connection-manager: 4.1.3
+  amqplib: 0.10.1
+  autoprefixer: 10.4.7
+  bufferutil: 4.0.6
+  cache-manager: 4.1.0
+  camel-case: 4.1.2
+  class-transformer: 0.5.1
+  class-validator: 0.13.2
+  colortranslator: 1.9.2
   css-loader: ^5.2.7
-  cssnano: ^5.1.12
-  dotenv: ^16.0.1
+  cssnano: 5.1.12
+  dotenv: 16.0.1
   eslint: ^7.32.0
-  eslint-config-prettier: ^8.5.0
+  eslint-config-prettier: 8.5.0
   eslint-plugin-import: 2.26.0
-  eslint-plugin-prettier: ^4.2.1
-  eslint-plugin-react: ^7.30.1
-  fastify-static: ^4.7.0
-  find: ^0.3.0
-  husky: ^8.0.1
+  eslint-plugin-prettier: 4.2.1
+  eslint-plugin-react: 7.30.1
+  fastify-static: 4.7.0
+  find: 0.3.0
+  husky: 8.0.1
   jest: 27.5.1
-  jsonfile: ^6.1.0
-  kafkajs: ^2.1.0
-  lint-staged: ^13.0.3
-  mqtt: ^4.3.7
-  nats: ^2.7.1
-  npm-run-all: ^4.1.5
+  jsonfile: 6.1.0
+  kafkajs: 2.1.0
+  lint-staged: 13.0.3
+  mqtt: 4.3.7
+  nats: 2.7.1
+  npm-run-all: 4.1.5
   nx: 14.5.1
-  object-hash: ^3.0.0
-  postcss: ^8.4.14
-  postcss-flexbugs-fixes: ^5.0.2
-  prettier: ^2.7.1
+  object-hash: 3.0.0
+  postcss: 8.4.14
+  postcss-flexbugs-fixes: 5.0.2
+  prettier: 2.7.1
   react: ^17.0.2
   react-dom: ^17.0.2
-  redis: ^4.2.0
-  reflect-metadata: ^0.1.13
-  rollup-plugin-node-polyfills: ^0.2.1
-  run-parallel: ^1.2.0
-  rxjs: ^7.5.6
-  sass: ^1.54.0
+  redis: 4.2.0
+  reflect-metadata: 0.1.13
+  rollup-plugin-node-polyfills: 0.2.1
+  run-parallel: 1.2.0
+  rxjs: 7.5.6
+  sass: 1.54.0
   sass-loader: ^10.3.1
-  sentence-case: ^3.0.4
-  short-unique-id: ^4.4.4
+  sentence-case: 3.0.4
+  short-unique-id: 4.4.4
   socket.io: ^4.5.1
   socket.io-client: ^4.5.1
-  sort-media-queries: ^0.2.2
-  stencil-fragment: ^1.0.1
+  sort-media-queries: 0.2.2
+  stencil-fragment: 1.0.1
   style-loader: ^2.0.0
   ts-jest: 27.1.4
   ts-node: 10.9.1
-  tsconfig-paths-webpack-plugin: ^3.5.2
+  tsconfig-paths-webpack-plugin: 3.5.2
   tslib: ^2.4.0
   typescript: 4.7.4
-  utf-8-validate: ^5.0.9
-  workbox-build: ^6.5.4
+  utf-8-validate: 5.0.9
+  workbox-build: 6.5.4
 
 dependencies:
   '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
@@ -2486,19 +2486,6 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nrwl/devkit/14.4.3_nx@14.5.1:
-    resolution: {integrity: sha512-CFGWQyzrqs4q7YUk37E5Ca+HDj9qbhfw6oI/Omf42MitEpoEnWxVKy/h1pua6ykHn8ZDVvS7sp6nrmg+r6OmDA==}
-    peerDependencies:
-      nx: '>= 13.10 <= 15'
-    dependencies:
-      ejs: 3.1.8
-      ignore: 5.2.0
-      nx: 14.5.1
-      rxjs: 6.6.7
-      semver: 7.3.4
-      tslib: 2.4.0
-    dev: true
-
   /@nrwl/devkit/14.5.1_nx@14.5.1:
     resolution: {integrity: sha512-j/m9F5W/nLF/f/AlmbJU85DWQ8g9SOAxkFHz85i2QOUbThLzCYub890tRCms41n/Z07SRpKaWd6YS3skotpGqw==}
     peerDependencies:
@@ -3084,7 +3071,7 @@ packages:
       '@nxext/svelte':
         optional: true
     dependencies:
-      '@nrwl/devkit': 14.4.3_nx@14.5.1
+      '@nrwl/devkit': 14.5.1_nx@14.5.1
       '@nrwl/jest': 14.5.1_pkdspysklxghrnaxqyz3pfbxya
       '@nrwl/linter': 14.5.1_7n7qwlgxx7yzyu7fhzqm5waslm
       '@nrwl/storybook': 14.5.1_7vp35jsaxrv42pju62gqphmeja
