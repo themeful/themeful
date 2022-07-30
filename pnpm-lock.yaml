@@ -90,7 +90,7 @@ specifiers:
   style-loader: ^2.0.0
   ts-jest: 27.1.5
   ts-node: 10.9.1
-  tsconfig-paths-webpack-plugin: 3.5.2
+  tsconfig-paths-webpack-plugin: 4.0.0
   tslib: ^2.4.0
   typescript: 4.7.4
   utf-8-validate: 5.0.9
@@ -189,7 +189,7 @@ devDependencies:
   style-loader: 2.0.0_webpack@5.74.0
   ts-jest: 27.1.5_jm6546ohpm4h5jsgaz4ra4shga
   ts-node: 10.9.1_cyi3jronpmwutj7hw2n2p72xty
-  tsconfig-paths-webpack-plugin: 3.5.2
+  tsconfig-paths-webpack-plugin: 4.0.0
   typescript: 4.7.4
   utf-8-validate: 5.0.9
   workbox-build: 6.5.4
@@ -17020,11 +17020,28 @@ packages:
       tsconfig-paths: 3.14.1
     dev: true
 
+  /tsconfig-paths-webpack-plugin/4.0.0:
+    resolution: {integrity: sha512-fw/7265mIWukrSHd0i+wSwx64kYUSAKPfxRDksjKIYTxSAp9W9/xcZVBF4Kl0eqQd5eBpAQ/oQrc5RyM/0c1GQ==}
+    engines: {node: '>=10.13.0'}
+    dependencies:
+      chalk: 4.1.2
+      enhanced-resolve: 5.10.0
+      tsconfig-paths: 4.0.0
+    dev: true
+
   /tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
+      minimist: 1.2.6
+      strip-bom: 3.0.0
+    dev: true
+
+  /tsconfig-paths/4.0.0:
+    resolution: {integrity: sha512-SLBg2GBKlR6bVtMgJJlud/o3waplKtL7skmLkExomIiaAtLGtVsoXIqP3SYdjbcH9lq/KVv7pMZeCBpLYOit6Q==}
+    dependencies:
+      json5: 2.2.1
       minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
