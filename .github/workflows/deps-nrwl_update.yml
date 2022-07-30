@@ -15,23 +15,31 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 17
+          node-version: 16
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.7.1
 
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
 
       - name: NRWL Update
         id: nrwl_update
