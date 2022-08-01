@@ -21,7 +21,7 @@ specifiers:
   '@nrwl/web': 14.5.1
   '@nrwl/workspace': 14.5.1
   '@nxext/stencil': 14.0.4
-  '@stencil/core': 2.17.1
+  '@stencil/core': 2.17.2
   '@stencil/eslint-plugin': 0.4.0
   '@stencil/postcss': 2.1.0
   '@stencil/router': 1.0.1
@@ -103,7 +103,7 @@ dependencies:
   '@nestjs/platform-socket.io': 8.4.7_serg4t27xsyyteobgmhv7qpdiu
   '@nestjs/serve-static': 2.2.2_xxlaro4n3ygapuy65e43lboh2y
   '@nestjs/websockets': 8.4.7_honhkj7tbi2cr2mx5shw4t75zy
-  '@stencil/core': 2.17.1
+  '@stencil/core': 2.17.2
   camel-case: 4.1.2
   colortranslator: 1.9.2
   find: 0.3.0
@@ -134,11 +134,11 @@ devDependencies:
   '@nrwl/storybook': 14.5.1_7vp35jsaxrv42pju62gqphmeja
   '@nrwl/web': 14.5.1_f6jkwgp7c4sup6o42mcbgoay4a
   '@nrwl/workspace': 14.5.1_peykk3qq3boyvgru4rg25krr44
-  '@nxext/stencil': 14.0.4_6lgajucwiwgf5inoomqzq27vui
+  '@nxext/stencil': 14.0.4_rdtf4mrqa5sfl6awvknqjrl5bi
   '@stencil/eslint-plugin': 0.4.0_6kiettsgnups22qywh6qvr6hy4
-  '@stencil/postcss': 2.1.0_@stencil+core@2.17.1
+  '@stencil/postcss': 2.1.0_@stencil+core@2.17.2
   '@stencil/router': 1.0.1
-  '@stencil/sass': 1.5.2_@stencil+core@2.17.1
+  '@stencil/sass': 1.5.2_@stencil+core@2.17.2
   '@storybook/addon-actions': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
   '@storybook/addon-essentials': 6.5.9_hczg5n4ljdg5s7v5j4xv64wmyu
   '@storybook/addon-postcss': 2.0.0_webpack@5.74.0
@@ -3044,7 +3044,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nxext/stencil/14.0.4_6lgajucwiwgf5inoomqzq27vui:
+  /@nxext/stencil/14.0.4_rdtf4mrqa5sfl6awvknqjrl5bi:
     resolution: {integrity: sha512-cacDvbcmk5EWioaiBOML3pYZBo6BAgIItjg1AiSZ/9Ze9OZzcGYrZHDt0BryTyDcGbTbqccepN7dQeqyIau7ig==}
     peerDependencies:
       '@nrwl/angular': ^14.0.3
@@ -3078,7 +3078,7 @@ packages:
       '@nrwl/workspace': 14.5.1_peykk3qq3boyvgru4rg25krr44
       '@nxext/vite': 14.0.2_wuh52gwppyxmho6r2pjrxd55vi
       '@nxext/vitest': 14.0.1_nx@14.5.1
-      '@stencil/core': 2.17.1
+      '@stencil/core': 2.17.2
       ignore: 5.2.0
       tsconfig-paths: 3.14.1
     transitivePeerDependencies:
@@ -3373,8 +3373,8 @@ packages:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: false
 
-  /@stencil/core/2.17.1:
-    resolution: {integrity: sha512-ErjQsNALgZQ9SYeBHhqwL1UO+Zbptwl3kwrRJC2tGlc3G/T6UvPuaKr+PGsqI+CZGia+0+R5EELQvFu74mYeIg==}
+  /@stencil/core/2.17.2:
+    resolution: {integrity: sha512-IEqjIx0e00wwRnbFuzLVXXWpoadLHkDPNfqjkta2qt/MzmdC7oO6tYHXxvho45ehCYmEq3zFRh2TB1Ycv2vM5w==}
     engines: {node: '>=12.10.0', npm: '>=6.0.0'}
     hasBin: true
 
@@ -3397,12 +3397,12 @@ packages:
       typescript: 4.7.4
     dev: true
 
-  /@stencil/postcss/2.1.0_@stencil+core@2.17.1:
+  /@stencil/postcss/2.1.0_@stencil+core@2.17.2:
     resolution: {integrity: sha512-/e4TYEXErGaHxH0ocg620YqEMLuMLpK/Wg4MJsiJglrLZCZhU4XCX1N0SwxaIOUbEZ1Zh+AqQ++yMI92ilndEA==}
     peerDependencies:
       '@stencil/core': '>=2.0.0'
     dependencies:
-      '@stencil/core': 2.17.1
+      '@stencil/core': 2.17.2
       autoprefixer: 10.4.8_postcss@8.3.11
       postcss: 8.3.11
     dev: true
@@ -3414,12 +3414,12 @@ packages:
       '@stencil/state-tunnel': 1.0.1
     dev: true
 
-  /@stencil/sass/1.5.2_@stencil+core@2.17.1:
+  /@stencil/sass/1.5.2_@stencil+core@2.17.2:
     resolution: {integrity: sha512-nJ93pUSylsGsMX0eLmhxh1oEljcUjj5mYjhB9ziCdoaydAdjukrUoqDCC7tdVbOcBo2hKptQyWqCtETnBGYsXQ==}
     peerDependencies:
       '@stencil/core': '>=1.0.2'
     dependencies:
-      '@stencil/core': 2.17.1
+      '@stencil/core': 2.17.2
     dev: true
 
   /@stencil/state-tunnel/1.0.1:
@@ -15318,7 +15318,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
