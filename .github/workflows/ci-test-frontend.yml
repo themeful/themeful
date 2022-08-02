@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, edited, reopened]
 
 jobs:
-  ci-test-ui:
+  ci-test-frontend:
     runs-on: ubuntu-latest
 
     steps:
