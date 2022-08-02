@@ -20,7 +20,7 @@ specifiers:
   '@nrwl/storybook': 14.5.1
   '@nrwl/web': 14.5.1
   '@nrwl/workspace': 14.5.1
-  '@nxext/stencil': 14.0.4
+  '@nxext/stencil': 14.0.5
   '@stencil/core': 2.17.2
   '@stencil/eslint-plugin': 0.4.0
   '@stencil/postcss': 2.1.0
@@ -134,7 +134,7 @@ devDependencies:
   '@nrwl/storybook': 14.5.1_7vp35jsaxrv42pju62gqphmeja
   '@nrwl/web': 14.5.1_f6jkwgp7c4sup6o42mcbgoay4a
   '@nrwl/workspace': 14.5.1_peykk3qq3boyvgru4rg25krr44
-  '@nxext/stencil': 14.0.4_rdtf4mrqa5sfl6awvknqjrl5bi
+  '@nxext/stencil': 14.0.5_rdtf4mrqa5sfl6awvknqjrl5bi
   '@stencil/eslint-plugin': 0.4.0_6kiettsgnups22qywh6qvr6hy4
   '@stencil/postcss': 2.1.0_@stencil+core@2.17.2
   '@stencil/router': 1.0.1
@@ -3050,8 +3050,8 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nxext/stencil/14.0.4_rdtf4mrqa5sfl6awvknqjrl5bi:
-    resolution: {integrity: sha512-cacDvbcmk5EWioaiBOML3pYZBo6BAgIItjg1AiSZ/9Ze9OZzcGYrZHDt0BryTyDcGbTbqccepN7dQeqyIau7ig==}
+  /@nxext/stencil/14.0.5_rdtf4mrqa5sfl6awvknqjrl5bi:
+    resolution: {integrity: sha512-j8So9ltf1+5Eq9Vip+AQwtg/GVNsvwiVZRGp7UAMMMmzA/Ir3wqtN64AX1Nh/GajuTGrKPPahd8vSrzQlK5Gww==}
     peerDependencies:
       '@nrwl/angular': ^14.0.3
       '@nrwl/cypress': ^14.0.3
@@ -15324,7 +15324,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
