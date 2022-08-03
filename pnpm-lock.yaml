@@ -21,7 +21,7 @@ specifiers:
   '@nrwl/web': 14.5.2
   '@nrwl/workspace': 14.5.2
   '@nxext/stencil': 14.0.5
-  '@stencil/core': 2.17.2
+  '@stencil/core': 2.17.3
   '@stencil/eslint-plugin': 0.4.0
   '@stencil/postcss': 2.1.0
   '@stencil/router': 1.0.1
@@ -79,7 +79,7 @@ specifiers:
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
   rxjs: 7.5.6
-  sass: 1.54.0
+  sass: 1.54.1
   sass-loader: ^10.3.1
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
@@ -103,7 +103,7 @@ dependencies:
   '@nestjs/platform-socket.io': 8.4.7_serg4t27xsyyteobgmhv7qpdiu
   '@nestjs/serve-static': 2.2.2_xxlaro4n3ygapuy65e43lboh2y
   '@nestjs/websockets': 8.4.7_honhkj7tbi2cr2mx5shw4t75zy
-  '@stencil/core': 2.17.2
+  '@stencil/core': 2.17.3
   camel-case: 4.1.2
   colortranslator: 1.9.2
   find: 0.3.0
@@ -134,11 +134,11 @@ devDependencies:
   '@nrwl/storybook': 14.5.2_bhbbmut67uoe3xoffthkbod7ti
   '@nrwl/web': 14.5.2_euozpimackjekjgh2lmsch6rku
   '@nrwl/workspace': 14.5.2_peykk3qq3boyvgru4rg25krr44
-  '@nxext/stencil': 14.0.5_3j2tiyelmbtssrckm5htrbly4u
+  '@nxext/stencil': 14.0.5_qoh5edpr5qoas2cfcs54ttk3fq
   '@stencil/eslint-plugin': 0.4.0_6kiettsgnups22qywh6qvr6hy4
-  '@stencil/postcss': 2.1.0_@stencil+core@2.17.2
+  '@stencil/postcss': 2.1.0_@stencil+core@2.17.3
   '@stencil/router': 1.0.1
-  '@stencil/sass': 1.5.2_@stencil+core@2.17.2
+  '@stencil/sass': 1.5.2_@stencil+core@2.17.3
   '@storybook/addon-actions': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
   '@storybook/addon-essentials': 6.5.9_uc2cbmuudhrmnop5iaq275wx6m
   '@storybook/addon-postcss': 2.0.0_webpack@5.74.0
@@ -183,8 +183,8 @@ devDependencies:
   redis: 4.2.0
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
-  sass: 1.54.0
-  sass-loader: 10.3.1_sass@1.54.0+webpack@5.74.0
+  sass: 1.54.1
+  sass-loader: 10.3.1_sass@1.54.1+webpack@5.74.0
   stencil-fragment: 1.0.1
   style-loader: 2.0.0_webpack@5.74.0
   ts-jest: 27.1.5_5ad62742t534jpseix4ezmbr64
@@ -2900,8 +2900,8 @@ packages:
       rollup-plugin-postcss: 4.0.2_i7duc3lt6p42geuj2nwruihc6u
       rollup-plugin-typescript2: 0.31.2_oo3i3f3qmqiztdz5qgxrrjmd5e
       rxjs: 6.6.7
-      sass: 1.54.0
-      sass-loader: 12.6.0_sass@1.54.0+webpack@5.74.0
+      sass: 1.54.1
+      sass-loader: 12.6.0_sass@1.54.1+webpack@5.74.0
       semver: 7.3.4
       source-map: 0.7.3
       source-map-loader: 3.0.1_webpack@5.74.0
@@ -3059,7 +3059,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nxext/stencil/14.0.5_3j2tiyelmbtssrckm5htrbly4u:
+  /@nxext/stencil/14.0.5_qoh5edpr5qoas2cfcs54ttk3fq:
     resolution: {integrity: sha512-j8So9ltf1+5Eq9Vip+AQwtg/GVNsvwiVZRGp7UAMMMmzA/Ir3wqtN64AX1Nh/GajuTGrKPPahd8vSrzQlK5Gww==}
     peerDependencies:
       '@nrwl/angular': ^14.0.3
@@ -3093,7 +3093,7 @@ packages:
       '@nrwl/workspace': 14.5.2_peykk3qq3boyvgru4rg25krr44
       '@nxext/vite': 14.0.2_r2i5s4uoykt3o4674svvwy5m2y
       '@nxext/vitest': 14.0.1_nx@14.5.2
-      '@stencil/core': 2.17.2
+      '@stencil/core': 2.17.3
       ignore: 5.2.0
       tsconfig-paths: 3.14.1
     transitivePeerDependencies:
@@ -3112,7 +3112,7 @@ packages:
       rxjs: 7.5.6
       rxjs-for-await: 1.0.0_rxjs@7.5.6
       tsconfig-paths: 3.14.1
-      vite: 2.9.14_lmb6evske6did7zyvexu5gq6ia
+      vite: 2.9.14_3dtulcve3jkkbof5fm6axpz6om
     transitivePeerDependencies:
       - nx
     dev: true
@@ -3388,8 +3388,8 @@ packages:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: false
 
-  /@stencil/core/2.17.2:
-    resolution: {integrity: sha512-IEqjIx0e00wwRnbFuzLVXXWpoadLHkDPNfqjkta2qt/MzmdC7oO6tYHXxvho45ehCYmEq3zFRh2TB1Ycv2vM5w==}
+  /@stencil/core/2.17.3:
+    resolution: {integrity: sha512-qw2DZzOpyaltLLEfYRTj3n+XbvRtkmv4QQimYDJubC6jMY0NXK9r6H2+VyszdbbVmvK1D9GqZtyvY0NmOrztsg==}
     engines: {node: '>=12.10.0', npm: '>=6.0.0'}
     hasBin: true
 
@@ -3412,12 +3412,12 @@ packages:
       typescript: 4.7.4
     dev: true
 
-  /@stencil/postcss/2.1.0_@stencil+core@2.17.2:
+  /@stencil/postcss/2.1.0_@stencil+core@2.17.3:
     resolution: {integrity: sha512-/e4TYEXErGaHxH0ocg620YqEMLuMLpK/Wg4MJsiJglrLZCZhU4XCX1N0SwxaIOUbEZ1Zh+AqQ++yMI92ilndEA==}
     peerDependencies:
       '@stencil/core': '>=2.0.0'
     dependencies:
-      '@stencil/core': 2.17.2
+      '@stencil/core': 2.17.3
       autoprefixer: 10.4.8_postcss@8.3.11
       postcss: 8.3.11
     dev: true
@@ -3429,12 +3429,12 @@ packages:
       '@stencil/state-tunnel': 1.0.1
     dev: true
 
-  /@stencil/sass/1.5.2_@stencil+core@2.17.2:
+  /@stencil/sass/1.5.2_@stencil+core@2.17.3:
     resolution: {integrity: sha512-nJ93pUSylsGsMX0eLmhxh1oEljcUjj5mYjhB9ziCdoaydAdjukrUoqDCC7tdVbOcBo2hKptQyWqCtETnBGYsXQ==}
     peerDependencies:
       '@stencil/core': '>=1.0.2'
     dependencies:
-      '@stencil/core': 2.17.2
+      '@stencil/core': 2.17.3
     dev: true
 
   /@stencil/state-tunnel/1.0.1:
@@ -15334,7 +15334,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
@@ -15523,7 +15523,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.3.1_sass@1.54.0+webpack@5.74.0:
+  /sass-loader/10.3.1_sass@1.54.1+webpack@5.74.0:
     resolution: {integrity: sha512-y2aBdtYkbqorVavkC3fcJIUDGIegzDWPn3/LAFhsf3G+MzPKTJx37sROf5pXtUeggSVbNbmfj8TgRaSLMelXRA==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -15542,13 +15542,13 @@ packages:
       klona: 2.0.5
       loader-utils: 2.0.2
       neo-async: 2.6.2
-      sass: 1.54.0
+      sass: 1.54.1
       schema-utils: 3.1.1
       semver: 7.3.7
       webpack: 5.74.0
     dev: true
 
-  /sass-loader/12.6.0_sass@1.54.0+webpack@5.74.0:
+  /sass-loader/12.6.0_sass@1.54.1+webpack@5.74.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -15569,12 +15569,12 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.54.0
+      sass: 1.54.1
       webpack: 5.74.0
     dev: true
 
-  /sass/1.54.0:
-    resolution: {integrity: sha512-C4zp79GCXZfK0yoHZg+GxF818/aclhp9F48XBu/+bm9vXEVAYov9iU3FBVRMq3Hx3OA4jfKL+p2K9180mEh0xQ==}
+  /sass/1.54.1:
+    resolution: {integrity: sha512-GHJJr31Me32RjjUBagyzx8tzjKBUcDwo5239XANIRBq0adDu5iIG0aFO0i/TBb/4I9oyxkEv44nq/kL1DxdDhA==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -17561,7 +17561,7 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /vite/2.9.14_lmb6evske6did7zyvexu5gq6ia:
+  /vite/2.9.14_3dtulcve3jkkbof5fm6axpz6om:
     resolution: {integrity: sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -17582,7 +17582,7 @@ packages:
       postcss: 8.4.14
       resolve: 1.22.1
       rollup: 2.77.2
-      sass: 1.54.0
+      sass: 1.54.1
       stylus: 0.58.1
     optionalDependencies:
       fsevents: 2.3.2
