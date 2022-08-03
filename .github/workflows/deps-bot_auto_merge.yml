@@ -13,7 +13,7 @@ jobs:
   automerge-pr:
     runs-on: ubuntu-latest
 
-    if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'invalid') && contains(github.event.pull_request.labels.*.name, 'nrwl') }}
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'invalid') && !contains(github.event.pull_request.labels.*.name, 'breaking') }}
 
     steps:
       - name: Enable auto-merge for Dependency PRs

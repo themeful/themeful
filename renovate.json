@@ -9,12 +9,12 @@
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
       "automerge": true,
-      "labels": ["dependencies"]
+      "labels": ["dependencies", "renovate"]
     },
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["major"],
-      "labels": ["dependencies", "breaking"]
+      "labels": ["dependencies", "renovate", "breaking"]
     }
   ],
   "ignoreDeps": [
