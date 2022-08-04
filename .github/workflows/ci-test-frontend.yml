@@ -45,3 +45,6 @@ jobs:
 
       - name: Run frontend tests
         run: pnpm nx run frontend:test
+
+      - name: Run frontend build
+        run: pnpm nx run frontend:build:production
