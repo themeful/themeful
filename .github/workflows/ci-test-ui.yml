@@ -45,3 +45,6 @@ jobs:
 
       - name: Run ui tests
         run: pnpm nx run ui-lib:test
+
+      - name: Run storybook build
+        run: pnpm nx run ui-lib:build-storybook

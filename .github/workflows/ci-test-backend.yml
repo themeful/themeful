@@ -45,3 +45,11 @@ jobs:
 
       - name: Run backend tests
         run: pnpm nx run backend:test
+
+      - name: Add Dummy Assets
+        run: |
+          mkdir -p dist/apps/frontend/www
+          touch dist/apps/frontend/www/index.html
+
+      - name: Run backend build
+        run: pnpm nx run backend:build:production
