@@ -21,7 +21,7 @@ specifiers:
   '@nrwl/web': 14.5.4
   '@nrwl/workspace': 14.5.4
   '@nxext/stencil': 14.0.6
-  '@stencil/core': 2.17.0
+  '@stencil/core': 2.17.1
   '@stencil/eslint-plugin': 0.4.0
   '@stencil/postcss': 2.1.0
   '@stencil/router': 1.0.1
@@ -40,7 +40,7 @@ specifiers:
   '@types/socket.io': 3.0.2
   '@typescript-eslint/eslint-plugin': 4.33.0
   '@typescript-eslint/parser': 4.33.0
-  amqp-connection-manager: 4.1.3
+  amqp-connection-manager: 4.1.4
   amqplib: 0.10.1
   autoprefixer: 10.4.8
   bufferutil: 4.0.6
@@ -79,7 +79,7 @@ specifiers:
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
   rxjs: 7.5.6
-  sass: 1.54.2
+  sass: 1.54.3
   sass-loader: ^10.3.1
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
@@ -103,7 +103,7 @@ dependencies:
   '@nestjs/platform-socket.io': 8.4.7_serg4t27xsyyteobgmhv7qpdiu
   '@nestjs/serve-static': 2.2.2_xxlaro4n3ygapuy65e43lboh2y
   '@nestjs/websockets': 8.4.7_honhkj7tbi2cr2mx5shw4t75zy
-  '@stencil/core': 2.17.0
+  '@stencil/core': 2.17.1
   camel-case: 4.1.2
   colortranslator: 1.9.2
   find: 0.3.0
@@ -123,7 +123,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.6.8
   '@grpc/proto-loader': 0.7.0
-  '@nestjs/microservices': 8.4.7_l2bp2nxhu7nq4jo42jmwaszc64
+  '@nestjs/microservices': 8.4.7_fy6yq653gaudrp7lkzvlehptqm
   '@nestjs/schematics': 9.0.1_typescript@4.7.4
   '@nestjs/testing': 9.0.7_7jplvfrqbzzkmubb5s3pkhgsdy
   '@nrwl/cli': 14.5.4
@@ -134,11 +134,11 @@ devDependencies:
   '@nrwl/storybook': 14.5.4_hsduhaz2roh6svhhva5fusnst4
   '@nrwl/web': 14.5.4_iwcct42dmwomyrm2lbv42vvucu
   '@nrwl/workspace': 14.5.4_peykk3qq3boyvgru4rg25krr44
-  '@nxext/stencil': 14.0.6_55xnxnep535fs5dnmwwvjbrk5q
+  '@nxext/stencil': 14.0.6_nqdw6qvzkphtqaakkpvnwqa5ei
   '@stencil/eslint-plugin': 0.4.0_6kiettsgnups22qywh6qvr6hy4
-  '@stencil/postcss': 2.1.0_@stencil+core@2.17.0
+  '@stencil/postcss': 2.1.0_@stencil+core@2.17.1
   '@stencil/router': 1.0.1
-  '@stencil/sass': 1.5.2_@stencil+core@2.17.0
+  '@stencil/sass': 1.5.2_@stencil+core@2.17.1
   '@storybook/addon-actions': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
   '@storybook/addon-essentials': 6.5.9_uc2cbmuudhrmnop5iaq275wx6m
   '@storybook/addon-postcss': 2.0.0_webpack@5.74.0
@@ -153,7 +153,7 @@ devDependencies:
   '@types/socket.io': 3.0.2_22kvxa7zeyivx4jp72v2w3pkvy
   '@typescript-eslint/eslint-plugin': 4.33.0_3ekaj7j3owlolnuhj3ykrb7u7i
   '@typescript-eslint/parser': 4.33.0_hxadhbs2xogijvk7vq4t2azzbu
-  amqp-connection-manager: 4.1.3_amqplib@0.10.1
+  amqp-connection-manager: 4.1.4_amqplib@0.10.1
   amqplib: 0.10.1
   autoprefixer: 10.4.8_postcss@8.4.14
   bufferutil: 4.0.6
@@ -183,8 +183,8 @@ devDependencies:
   redis: 4.2.0
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
-  sass: 1.54.2
-  sass-loader: 10.3.1_sass@1.54.2+webpack@5.74.0
+  sass: 1.54.3
+  sass-loader: 10.3.1_sass@1.54.3+webpack@5.74.0
   stencil-fragment: 1.0.1
   style-loader: 2.0.0_webpack@5.74.0
   ts-jest: 27.1.5_5ad62742t534jpseix4ezmbr64
@@ -2180,7 +2180,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
-      '@nestjs/microservices': 8.4.7_l2bp2nxhu7nq4jo42jmwaszc64
+      '@nestjs/microservices': 8.4.7_fy6yq653gaudrp7lkzvlehptqm
       '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
       '@nestjs/websockets': 8.4.7_honhkj7tbi2cr2mx5shw4t75zy
       '@nuxtjs/opencollective': 0.3.2
@@ -2195,7 +2195,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/8.4.7_l2bp2nxhu7nq4jo42jmwaszc64:
+  /@nestjs/microservices/8.4.7_fy6yq653gaudrp7lkzvlehptqm:
     resolution: {integrity: sha512-JZX29tBWbbPa+Q06QcCbwKTyEsOFHAPrxgfEkRNwoaiEqqCsITT9w2n5bcz3vlUurdpy5dIgX3/almbitghbKg==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2235,7 +2235,7 @@ packages:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
       '@nestjs/core': 9.0.7_v54gig3qjbhvqlhq6vdsepizfq
       '@nestjs/websockets': 8.4.7_honhkj7tbi2cr2mx5shw4t75zy
-      amqp-connection-manager: 4.1.3_amqplib@0.10.1
+      amqp-connection-manager: 4.1.4_amqplib@0.10.1
       amqplib: 0.10.1
       cache-manager: 4.1.0
       iterare: 1.2.1
@@ -2321,7 +2321,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
       '@nestjs/core': 9.0.7_v54gig3qjbhvqlhq6vdsepizfq
-      '@nestjs/microservices': 8.4.7_l2bp2nxhu7nq4jo42jmwaszc64
+      '@nestjs/microservices': 8.4.7_fy6yq653gaudrp7lkzvlehptqm
       '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
       tslib: 2.4.0
     dev: true
@@ -2912,8 +2912,8 @@ packages:
       rollup-plugin-postcss: 4.0.2_i7duc3lt6p42geuj2nwruihc6u
       rollup-plugin-typescript2: 0.31.2_oo3i3f3qmqiztdz5qgxrrjmd5e
       rxjs: 6.6.7
-      sass: 1.54.2
-      sass-loader: 12.6.0_sass@1.54.2+webpack@5.74.0
+      sass: 1.54.3
+      sass-loader: 12.6.0_sass@1.54.3+webpack@5.74.0
       semver: 7.3.4
       source-map: 0.7.3
       source-map-loader: 3.0.1_webpack@5.74.0
@@ -3071,7 +3071,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nxext/stencil/14.0.6_55xnxnep535fs5dnmwwvjbrk5q:
+  /@nxext/stencil/14.0.6_nqdw6qvzkphtqaakkpvnwqa5ei:
     resolution: {integrity: sha512-fviWS37GA2YglZ+MUfSCEFDwwqVKTXZuuTc+Bnw5H5HlshlCvt5AJQHMJdMaOICu5I5nsT/C2asscczyIdPO6A==}
     peerDependencies:
       '@nrwl/angular': ^14.5.0
@@ -3105,7 +3105,7 @@ packages:
       '@nrwl/workspace': 14.5.4_peykk3qq3boyvgru4rg25krr44
       '@nxext/vite': 14.0.3_pz2rvhd2rhuolhz4wdbboapwqu
       '@nxext/vitest': 14.0.2_nx@14.5.4
-      '@stencil/core': 2.17.0
+      '@stencil/core': 2.17.1
       ignore: 5.2.0
       tsconfig-paths: 3.14.1
     transitivePeerDependencies:
@@ -3124,7 +3124,7 @@ packages:
       rxjs: 7.5.6
       rxjs-for-await: 1.0.0_rxjs@7.5.6
       tsconfig-paths: 3.14.1
-      vite: 2.9.14_4dv7cejq2cystfm733qhohus7q
+      vite: 2.9.14_fwbybkffje7nhcwurdeleej454
     transitivePeerDependencies:
       - nx
     dev: true
@@ -3400,8 +3400,8 @@ packages:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: false
 
-  /@stencil/core/2.17.0:
-    resolution: {integrity: sha512-KJJH097K2TJlJWj2LANWO0yXCidxOpv1L2MmtYqFxE443t75fxOhtKBZq6zebDaZj2DFGlUtV4pcM/uapfd8TQ==}
+  /@stencil/core/2.17.1:
+    resolution: {integrity: sha512-ErjQsNALgZQ9SYeBHhqwL1UO+Zbptwl3kwrRJC2tGlc3G/T6UvPuaKr+PGsqI+CZGia+0+R5EELQvFu74mYeIg==}
     engines: {node: '>=12.10.0', npm: '>=6.0.0'}
     hasBin: true
 
@@ -3424,12 +3424,12 @@ packages:
       typescript: 4.7.4
     dev: true
 
-  /@stencil/postcss/2.1.0_@stencil+core@2.17.0:
+  /@stencil/postcss/2.1.0_@stencil+core@2.17.1:
     resolution: {integrity: sha512-/e4TYEXErGaHxH0ocg620YqEMLuMLpK/Wg4MJsiJglrLZCZhU4XCX1N0SwxaIOUbEZ1Zh+AqQ++yMI92ilndEA==}
     peerDependencies:
       '@stencil/core': '>=2.0.0'
     dependencies:
-      '@stencil/core': 2.17.0
+      '@stencil/core': 2.17.1
       autoprefixer: 10.4.8_postcss@8.3.11
       postcss: 8.3.11
     dev: true
@@ -3441,12 +3441,12 @@ packages:
       '@stencil/state-tunnel': 1.0.1
     dev: true
 
-  /@stencil/sass/1.5.2_@stencil+core@2.17.0:
+  /@stencil/sass/1.5.2_@stencil+core@2.17.1:
     resolution: {integrity: sha512-nJ93pUSylsGsMX0eLmhxh1oEljcUjj5mYjhB9ziCdoaydAdjukrUoqDCC7tdVbOcBo2hKptQyWqCtETnBGYsXQ==}
     peerDependencies:
       '@stencil/core': '>=1.0.2'
     dependencies:
-      '@stencil/core': 2.17.0
+      '@stencil/core': 2.17.1
     dev: true
 
   /@stencil/state-tunnel/1.0.1:
@@ -6430,8 +6430,8 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /amqp-connection-manager/4.1.3_amqplib@0.10.1:
-    resolution: {integrity: sha512-wFc3oUbcDfmpSV/YxrsR9KrTXmFsZDzpdvfGCsAQfm6+5pl3VJyvxic44IYmqgb0oIvT0T5fWsmAr7zxfQvkTw==}
+  /amqp-connection-manager/4.1.4_amqplib@0.10.1:
+    resolution: {integrity: sha512-FR9mC71YDvugaKwxaxOWaS1PmPxFDN3gO7/zuzmCreFHxdJj4BpRVs/O1dRz2loEUl/JYIvz4B0vB3uaQsnVtg==}
     engines: {node: '>=10.0.0', npm: '>5.0.0'}
     peerDependencies:
       amqplib: '*'
@@ -15454,7 +15454,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
@@ -15643,7 +15643,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.3.1_sass@1.54.2+webpack@5.74.0:
+  /sass-loader/10.3.1_sass@1.54.3+webpack@5.74.0:
     resolution: {integrity: sha512-y2aBdtYkbqorVavkC3fcJIUDGIegzDWPn3/LAFhsf3G+MzPKTJx37sROf5pXtUeggSVbNbmfj8TgRaSLMelXRA==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -15662,13 +15662,13 @@ packages:
       klona: 2.0.5
       loader-utils: 2.0.2
       neo-async: 2.6.2
-      sass: 1.54.2
+      sass: 1.54.3
       schema-utils: 3.1.1
       semver: 7.3.7
       webpack: 5.74.0
     dev: true
 
-  /sass-loader/12.6.0_sass@1.54.2+webpack@5.74.0:
+  /sass-loader/12.6.0_sass@1.54.3+webpack@5.74.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -15689,12 +15689,12 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.54.2
+      sass: 1.54.3
       webpack: 5.74.0
     dev: true
 
-  /sass/1.54.2:
-    resolution: {integrity: sha512-wbVV26sejsCIbBScZZtNkvnrB/bVCQ8hSlZ01D9nzsVh9zLqCkWrlpvTb3YEb6xsuNi9cx75hncqwikHFSz7tw==}
+  /sass/1.54.3:
+    resolution: {integrity: sha512-fLodey5Qd41Pxp/Tk7Al97sViYwF/TazRc5t6E65O7JOk4XF8pzwIW7CvCxYVOfJFFI/1x5+elDyBIixrp+zrw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -17681,7 +17681,7 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /vite/2.9.14_4dv7cejq2cystfm733qhohus7q:
+  /vite/2.9.14_fwbybkffje7nhcwurdeleej454:
     resolution: {integrity: sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -17702,7 +17702,7 @@ packages:
       postcss: 8.4.14
       resolve: 1.22.1
       rollup: 2.77.2
-      sass: 1.54.2
+      sass: 1.54.3
       stylus: 0.58.1
     optionalDependencies:
       fsevents: 2.3.2
