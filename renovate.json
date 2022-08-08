@@ -47,6 +47,7 @@
     "@storybook/html",
     "@storybook/manager-webpack5",
     "@storybook/theming",
+    "@stencil/core",
     "eslint",
     "nx",
     "react",
