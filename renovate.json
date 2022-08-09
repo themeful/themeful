@@ -15,12 +15,31 @@
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["major"],
       "labels": ["dependencies", "renovate", "breaking"]
+    },
+    {
+      "matchPackagePatterns": [
+        "@stencil/core",
+        "css-loader",
+        "style-loader",
+        "sass-loader",
+        "@nestjs/microservices",
+        "@nestjs/testing",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint",
+        "react",
+        "react-dom",
+        "typescript",
+        "tslib",
+        "node",
+        "prettier"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "labels": ["dependencies", "renovate"],
+      "automerge": true
     }
   ],
   "ignoreDeps": [
-    "css-loader",
-    "style-loader",
-    "sass-loader",
     "@nrwl/cli",
     "@nrwl/eslint-plugin-nx",
     "@nrwl/jest",
@@ -47,13 +66,6 @@
     "@storybook/html",
     "@storybook/manager-webpack5",
     "@storybook/theming",
-    "@stencil/core",
-    "eslint",
-    "nx",
-    "react",
-    "react-dom",
-    "typescript",
-    "tslib",
-    "node"
+    "nx"
   ]
 }
