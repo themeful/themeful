@@ -73,7 +73,7 @@
     "@types/socket.io": "3.0.2",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
-    "amqp-connection-manager": "4.1.4",
+    "amqp-connection-manager": "4.1.5",
     "amqplib": "0.10.2",
     "autoprefixer": "10.4.8",
     "bufferutil": "4.0.6",
