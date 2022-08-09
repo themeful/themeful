@@ -5,7 +5,7 @@
   "packageRules": [
     {
       "matchPackagePatterns": ["*"],
-      "excludePackagePatterns": [
+      "excludePackageNames": [
         "@stencil/core",
         "css-loader",
         "style-loader",

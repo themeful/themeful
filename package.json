@@ -80,7 +80,7 @@
     "cache-manager": "4.1.0",
     "class-transformer": "0.5.1",
     "class-validator": "0.13.2",
-    "css-loader": "^5.2.7",
+    "css-loader": "6.7.1",
     "cssnano": "5.1.12",
     "dotenv": "16.0.1",
     "eslint": "^7.32.0",

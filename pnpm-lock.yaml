@@ -49,7 +49,7 @@ specifiers:
   class-transformer: 0.5.1
   class-validator: 0.13.2
   colortranslator: 1.9.2
-  css-loader: ^5.2.7
+  css-loader: 6.7.1
   cssnano: 5.1.12
   dotenv: 16.0.1
   eslint: ^7.32.0
@@ -160,7 +160,7 @@ devDependencies:
   cache-manager: 4.1.0
   class-transformer: 0.5.1
   class-validator: 0.13.2
-  css-loader: 5.2.7_webpack@5.74.0
+  css-loader: 6.7.1_webpack@5.74.0
   cssnano: 5.1.12_postcss@8.4.16
   dotenv: 16.0.1
   eslint: 7.32.0
@@ -15454,7 +15454,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
@@ -17105,7 +17105,7 @@ packages:
       chalk: 4.1.2
       enhanced-resolve: 5.10.0
       micromatch: 4.0.5
-      semver: 7.3.4
+      semver: 7.3.7
       typescript: 4.7.4
       webpack: 5.74.0
     dev: true
