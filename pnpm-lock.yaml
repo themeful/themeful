@@ -7,11 +7,11 @@ specifiers:
   '@nestjs/core': 9.0.7
   '@nestjs/microservices': ^8.4.7
   '@nestjs/platform-express': 9.0.7
-  '@nestjs/platform-socket.io': ^8.4.7
+  '@nestjs/platform-socket.io': 8.4.7
   '@nestjs/schematics': 9.0.1
-  '@nestjs/serve-static': ^2.2.2
+  '@nestjs/serve-static': 2.2.2
   '@nestjs/testing': 9.0.7
-  '@nestjs/websockets': ^8.4.7
+  '@nestjs/websockets': 8.4.7
   '@nrwl/cli': 14.5.4
   '@nrwl/eslint-plugin-nx': 14.5.4
   '@nrwl/jest': 14.5.4
@@ -52,7 +52,7 @@ specifiers:
   css-loader: 6.7.1
   cssnano: 5.1.12
   dotenv: 16.0.1
-  eslint: ^7.32.0
+  eslint: 7.32.0
   eslint-config-prettier: 8.5.0
   eslint-plugin-import: 2.26.0
   eslint-plugin-prettier: 4.2.1
@@ -72,26 +72,26 @@ specifiers:
   postcss: 8.4.16
   postcss-flexbugs-fixes: 5.0.2
   prettier: 2.7.1
-  react: ^17.0.2
-  react-dom: ^17.0.2
+  react: 17.0.2
+  react-dom: 17.0.2
   redis: 4.2.0
   reflect-metadata: 0.1.13
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
   rxjs: 7.5.6
   sass: 1.54.3
-  sass-loader: ^10.3.1
+  sass-loader: 10.3.1
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
   socket.io: 4.5.1
   socket.io-client: 4.5.1
   sort-media-queries: 0.2.2
   stencil-fragment: 1.0.1
-  style-loader: ^2.0.0
+  style-loader: 2.0.0
   ts-jest: 27.1.5
   ts-node: 10.9.1
   tsconfig-paths-webpack-plugin: 4.0.0
-  tslib: ^2.4.0
+  tslib: 2.4.0
   typescript: 4.7.4
   utf-8-validate: 5.0.9
   workbox-build: 6.5.4
@@ -1815,7 +1815,7 @@ packages:
     dependencies:
       '@jest/types': 27.5.1
       '@types/node': 18.6.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-message-util: 27.5.1
       jest-util: 27.5.1
       slash: 3.0.0
@@ -1912,7 +1912,7 @@ packages:
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
       '@types/node': 18.6.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       collect-v8-coverage: 1.0.1
       exit: 0.1.2
       glob: 7.2.3
@@ -1996,7 +1996,7 @@ packages:
       '@babel/core': 7.18.10
       '@jest/types': 27.5.1
       babel-plugin-istanbul: 6.1.1
-      chalk: 4.1.0
+      chalk: 4.1.2
       convert-source-map: 1.8.0
       fast-json-stable-stringify: 2.1.0
       graceful-fs: 4.2.10
@@ -2031,7 +2031,7 @@ packages:
       '@types/istanbul-reports': 3.0.1
       '@types/node': 18.6.2
       '@types/yargs': 16.0.4
-      chalk: 4.1.0
+      chalk: 4.1.2
     dev: true
 
   /@jridgewell/gen-mapping/0.1.1:
@@ -6805,7 +6805,7 @@ packages:
       '@types/babel__core': 7.1.19
       babel-plugin-istanbul: 6.1.1
       babel-preset-jest: 27.5.1_@babel+core@7.18.10
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       slash: 3.0.0
     transitivePeerDependencies:
@@ -10337,7 +10337,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -11583,7 +11583,7 @@ packages:
     hasBin: true
     dependencies:
       async: 3.2.4
-      chalk: 4.1.0
+      chalk: 4.1.2
       filelist: 1.0.4
       minimatch: 3.1.2
     dev: true
@@ -11605,7 +11605,7 @@ packages:
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
       '@types/node': 18.6.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       co: 4.6.0
       dedent: 0.7.0
       expect: 27.5.1
@@ -11667,7 +11667,7 @@ packages:
       '@jest/test-sequencer': 27.5.1
       '@jest/types': 27.5.1
       babel-jest: 27.5.1_@babel+core@7.18.10
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.3.2
       deepmerge: 4.2.2
       glob: 7.2.3
@@ -11708,7 +11708,7 @@ packages:
       '@jest/test-sequencer': 27.5.1
       '@jest/types': 27.5.1
       babel-jest: 27.5.1_@babel+core@7.18.10
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.3.2
       deepmerge: 4.2.2
       glob: 7.2.3
@@ -11758,7 +11758,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-get-type: 27.5.1
       jest-util: 27.5.1
       pretty-format: 27.5.1
@@ -11851,7 +11851,7 @@ packages:
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
       '@types/node': 18.6.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       co: 4.6.0
       expect: 27.5.1
       is-generator-fn: 2.1.0
@@ -11946,7 +11946,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       jest-haste-map: 27.5.1
       jest-pnp-resolver: 1.2.2_jest-resolve@27.5.1
@@ -11967,7 +11967,7 @@ packages:
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
       '@types/node': 18.6.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       emittery: 0.8.1
       graceful-fs: 4.2.10
       jest-docblock: 27.5.1
@@ -12083,7 +12083,7 @@ packages:
     dependencies:
       '@jest/types': 27.5.1
       '@types/node': 18.6.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.3.2
       graceful-fs: 4.2.10
       picomatch: 2.3.1
@@ -12095,7 +12095,7 @@ packages:
     dependencies:
       '@jest/types': 27.5.1
       camelcase: 6.3.0
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-get-type: 27.5.1
       leven: 3.1.0
       pretty-format: 27.5.1
