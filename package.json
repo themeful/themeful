@@ -115,7 +115,7 @@
     "workbox-build": "6.5.4"
   },
   "dependencies": {
-    "@fastify/static": "^6.5.0",
+    "@fastify/static": "6.5.0",
     "@nestjs/common": "9.0.7",
     "@nestjs/core": "9.0.7",
     "@nestjs/platform-express": "9.0.7",
