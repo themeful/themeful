@@ -87,7 +87,7 @@ specifiers:
   socket.io-client: 4.5.1
   sort-media-queries: 0.2.2
   stencil-fragment: 1.0.1
-  style-loader: 2.0.0
+  style-loader: 3.3.1
   ts-jest: 27.1.5
   ts-node: 10.9.1
   tsconfig-paths-webpack-plugin: 4.0.0
@@ -186,7 +186,7 @@ devDependencies:
   sass: 1.54.4
   sass-loader: 13.0.2_sass@1.54.4+webpack@5.74.0
   stencil-fragment: 1.0.1
-  style-loader: 2.0.0_webpack@5.74.0
+  style-loader: 3.3.1_webpack@5.74.0
   ts-jest: 27.1.5_5ad62742t534jpseix4ezmbr64
   ts-node: 10.9.1_cyi3jronpmwutj7hw2n2p72xty
   tsconfig-paths-webpack-plugin: 4.0.0
