@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@fastify/static': ^6.5.0
+  '@fastify/static': 6.5.0
   '@grpc/grpc-js': 1.6.9
   '@grpc/proto-loader': 0.7.0
   '@nestjs/common': 9.0.7
