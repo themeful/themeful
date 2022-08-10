@@ -104,7 +104,7 @@
     "rollup-plugin-node-polyfills": "0.2.1",
     "run-parallel": "1.2.0",
     "sass": "1.54.4",
-    "sass-loader": "10.3.1",
+    "sass-loader": "13.0.2",
     "stencil-fragment": "1.0.1",
     "style-loader": "2.0.0",
     "ts-jest": "27.1.5",
