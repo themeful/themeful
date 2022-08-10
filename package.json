@@ -115,11 +115,12 @@
     "workbox-build": "6.5.4"
   },
   "dependencies": {
+    "@fastify/static": "^6.5.0",
     "@nestjs/common": "9.0.7",
     "@nestjs/core": "9.0.7",
     "@nestjs/platform-express": "9.0.7",
     "@nestjs/platform-socket.io": "9.0.8",
-    "@nestjs/serve-static": "2.2.2",
+    "@nestjs/serve-static": "3.0.0",
     "@nestjs/websockets": "9.0.8",
     "@stencil/core": "2.17.1",
     "camel-case": "4.1.2",
