@@ -9,7 +9,7 @@ specifiers:
   '@nestjs/platform-express': 9.0.7
   '@nestjs/platform-socket.io': 9.0.8
   '@nestjs/schematics': 9.0.1
-  '@nestjs/serve-static': 2.2.2
+  '@nestjs/serve-static': 3.0.0
   '@nestjs/testing': 9.0.7
   '@nestjs/websockets': 9.0.8
   '@nrwl/cli': 14.5.4
@@ -101,7 +101,7 @@ dependencies:
   '@nestjs/core': 9.0.7_3ataqzkuo5tdcxtseq2v7nwkf4
   '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
   '@nestjs/platform-socket.io': 9.0.8_zdvkfy2rg63gnlcniwcwlo6csm
-  '@nestjs/serve-static': 2.2.2_xxlaro4n3ygapuy65e43lboh2y
+  '@nestjs/serve-static': 3.0.0_xxlaro4n3ygapuy65e43lboh2y
   '@nestjs/websockets': 9.0.8_d5loq7q3pt5cfhcdozcinvjjzy
   '@stencil/core': 2.17.1
   camel-case: 4.1.2
@@ -2295,15 +2295,15 @@ packages:
       - chokidar
     dev: true
 
-  /@nestjs/serve-static/2.2.2_xxlaro4n3ygapuy65e43lboh2y:
-    resolution: {integrity: sha512-3Mr+Q/npS3N7iGoF3Wd6Lj9QcjMGxbNrSqupi5cviM0IKrZ1BHl5qekW95rWYNATAVqoTmjGROAq+nKKpuUagQ==}
+  /@nestjs/serve-static/3.0.0_xxlaro4n3ygapuy65e43lboh2y:
+    resolution: {integrity: sha512-TpXjgs4136dQqWUjEcONqppqXDsrJhRkmKWzuBMOUAnP4HjHpNmlycvkHnDnWSoG2YD4a7Enh4ViYGWqCfHStA==}
     peerDependencies:
-      '@nestjs/common': ^6.0.0 || ^7.0.0 || ^8.0.0
-      '@nestjs/core': ^6.0.0 || ^7.0.0 || ^8.0.0
+      '@nestjs/common': ^9.0.0
+      '@nestjs/core': ^9.0.0
     dependencies:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
       '@nestjs/core': 9.0.7_3ataqzkuo5tdcxtseq2v7nwkf4
-      path-to-regexp: 0.1.7
+      path-to-regexp: 0.2.5
     dev: false
 
   /@nestjs/testing/9.0.7_7jplvfrqbzzkmubb5s3pkhgsdy:
@@ -13977,6 +13977,10 @@ packages:
 
   /path-to-regexp/0.1.7:
     resolution: {integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ==}
+
+  /path-to-regexp/0.2.5:
+    resolution: {integrity: sha512-l6qtdDPIkmAmzEO6egquYDfqQGPMRNGjYtrU13HAXb3YSRrt7HSb1sJY0pKp6o2bAa86tSB6iwaW2JbthPKr7Q==}
+    dev: false
 
   /path-to-regexp/3.2.0:
     resolution: {integrity: sha512-jczvQbCUS7XmS7o+y1aEO9OBVFeZBQ1MDSEqmO7xSoPgOPoowY/SxLpZ6Vh97/8qHZOteiCKb7gkG9gA2ZUxJA==}
