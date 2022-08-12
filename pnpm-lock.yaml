@@ -51,7 +51,7 @@ specifiers:
   class-validator: 0.13.2
   colortranslator: 1.9.2
   css-loader: 6.7.1
-  cssnano: 5.1.12
+  cssnano: 5.1.13
   dotenv: 16.0.1
   eslint: 7.32.0
   eslint-config-prettier: 8.5.0
@@ -163,7 +163,7 @@ devDependencies:
   class-transformer: 0.5.1
   class-validator: 0.13.2
   css-loader: 6.7.1_webpack@5.74.0
-  cssnano: 5.1.12_postcss@8.4.16
+  cssnano: 5.1.13_postcss@8.4.16
   dotenv: 16.0.1
   eslint: 7.32.0
   eslint-config-prettier: 8.5.0_eslint@7.32.0
@@ -3211,7 +3211,7 @@ packages:
       loader-utils: 2.0.2
       react-refresh: 0.10.0
       schema-utils: 3.1.1
-      source-map: 0.7.3
+      source-map: 0.7.4
       webpack: 5.74.0
       webpack-dev-server: 4.10.0_fdcxiyq5kdub4n6fayo4olsgzi
     dev: true
@@ -8266,7 +8266,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      cssnano: 5.1.12_postcss@8.4.16
+      cssnano: 5.1.13_postcss@8.4.16
       jest-worker: 27.5.1
       postcss: 8.4.16
       schema-utils: 4.0.0
@@ -8359,8 +8359,8 @@ packages:
       postcss: 8.4.16
     dev: true
 
-  /cssnano/5.1.12_postcss@8.4.16:
-    resolution: {integrity: sha512-TgvArbEZu0lk/dvg2ja+B7kYoD7BBCmn3+k58xD0qjrGHsFzXY/wKTo9M5egcUCabPol05e/PVoIu79s2JN4WQ==}
+  /cssnano/5.1.13_postcss@8.4.16:
+    resolution: {integrity: sha512-S2SL2ekdEz6w6a2epXn4CmMKU4K3KpcyXLKfAYc9UQQqJRkD/2eLUG0vJ3Db/9OvO5GuAdgXw3pFbR6abqghDQ==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
@@ -15471,7 +15471,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
@@ -15523,7 +15523,7 @@ packages:
     dependencies:
       chalk: 4.1.2
       concat-with-sourcemaps: 1.1.0
-      cssnano: 5.1.12_postcss@8.4.16
+      cssnano: 5.1.13_postcss@8.4.16
       import-cwd: 3.0.0
       p-queue: 6.6.2
       pify: 5.0.0
@@ -16678,7 +16678,7 @@ packages:
       safer-buffer: 2.1.2
       sax: 1.2.4
       semver: 6.3.0
-      source-map: 0.7.3
+      source-map: 0.7.4
     transitivePeerDependencies:
       - supports-color
     dev: true
