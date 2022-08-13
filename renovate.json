@@ -68,6 +68,7 @@
     "@nrwl/jest",
     "@nrwl/nest",
     "@nrwl/node",
+    "@nrwl/nx-cloud",
     "@nrwl/storybook",
     "@nrwl/web",
     "@nrwl/workspace",
