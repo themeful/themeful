@@ -68,7 +68,7 @@
       }
     },
     "release": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "rm -rf ./dist",
@@ -80,7 +80,7 @@
       }
     },
     "sample": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "pnpm nx run backend:release",
@@ -91,7 +91,7 @@
       }
     },
     "copy-assets": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "rm -rf assets ../../../dist/apps/backend/assets/",
@@ -99,6 +99,18 @@
         ],
         "cwd": "apps/backend/src",
         "parallel": false
+      }
+    },
+    "nrwl-update": {
+      "executor": "nx:run-commands",
+      "outputs": ["package.json", "pnpm-lock.yaml"],
+      "options": {
+        "commands": [
+          "nx migrate latest",
+          "pnpm install --no-frozen-lockfile",
+          "if [ -f 'migrations.json' ]; then nx migrate --run-migrations=migrations.json && pnpm install --no-frozen-lockfile; fi",
+          "rm -rf migrations.json"
+        ]
       }
     }
   },
