@@ -15,15 +15,18 @@
         "@nestjs/platform-socket.io",
         "@nestjs/serve-static",
         "@nestjs/websockets",
+        "@types/jest",
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
         "eslint",
+        "jest",
         "react",
         "react-dom",
         "typescript",
         "tslib",
         "node",
-        "prettier"
+        "prettier",
+        "ts-jest"
       ],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
@@ -47,9 +50,6 @@
         "@nestjs/platform-socket.io",
         "@nestjs/serve-static",
         "@nestjs/websockets",
-        "@typescript-eslint/eslint-plugin",
-        "@typescript-eslint/parser",
-        "eslint",
         "react",
         "react-dom",
         "typescript",
@@ -59,6 +59,38 @@
       ],
       "matchUpdateTypes": ["minor", "patch"],
       "labels": ["dependencies", "renovate"],
+      "automerge": true
+    },
+    {
+      "matchPackageNames": [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "labels": ["dependencies", "renovate"],
+      "groupName": "all non-major linting dependencies",
+      "groupSlug": "all-minor-linting-patch",
+      "automerge": true
+    },
+    {
+      "matchPackageNames": [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "labels": ["dependencies", "renovate"],
+      "groupName": "all non-major linting dependencies",
+      "groupSlug": "all-minor-linting-patch",
+      "automerge": true
+    },
+    {
+      "matchPackageNames": ["@types/jest", "jest", "ts-jest"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "labels": ["dependencies", "renovate"],
+      "groupName": "all non-major testing dependencies",
+      "groupSlug": "all-minor-testing-patch",
       "automerge": true
     }
   ],
