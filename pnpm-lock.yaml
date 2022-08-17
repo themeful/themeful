@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@fastify/static': 6.5.0
   '@grpc/grpc-js': 1.6.10
-  '@grpc/proto-loader': 0.7.1
+  '@grpc/proto-loader': 0.7.2
   '@nestjs/common': 9.0.7
   '@nestjs/core': 9.0.7
   '@nestjs/microservices': ^8.4.7
@@ -124,7 +124,7 @@ dependencies:
 
 devDependencies:
   '@grpc/grpc-js': 1.6.10
-  '@grpc/proto-loader': 0.7.1
+  '@grpc/proto-loader': 0.7.2
   '@nestjs/microservices': 8.4.7_c3jdt74pmpa54oztc7ymsh46x4
   '@nestjs/schematics': 9.0.1_typescript@4.7.4
   '@nestjs/testing': 9.0.7_7jplvfrqbzzkmubb5s3pkhgsdy
@@ -1789,16 +1789,17 @@ packages:
     resolution: {integrity: sha512-XTX5z/P5kH802MDoVm/rqOil0UwYEOEjf9+NPgfmm5UINIxDzwYaXfVR6z8svCBG8Hlbu/FzkXqhP8J5xaWzSQ==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
-      '@grpc/proto-loader': 0.7.1
+      '@grpc/proto-loader': 0.7.2
       '@types/node': 18.7.1
 
-  /@grpc/proto-loader/0.7.1:
-    resolution: {integrity: sha512-BAqfkpE9m0kOfDcp4f94FQGa3UeLbjzc/y2rNUOc8YkHlzFPFmTA9Disd20REIq4NRW/44wppYJLyJ0pBQjotQ==}
+  /@grpc/proto-loader/0.7.2:
+    resolution: {integrity: sha512-jCdyLIT/tdQ1zhrbTQnJNK5nbDf0GoBpy5jVNywBzzMDF+Vs6uEaHnfz46dMtDxkvwrF2hzk5Z67goliceH0sA==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
+      '@types/long': 4.0.2
       lodash.camelcase: 4.3.0
-      long: 5.2.0
+      long: 4.0.0
       protobufjs: 7.0.0
       yargs: 16.2.0
 
@@ -12479,6 +12480,9 @@ packages:
       slice-ansi: 4.0.0
       wrap-ansi: 6.2.0
     dev: false
+
+  /long/4.0.0:
+    resolution: {integrity: sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==}
 
   /long/5.2.0:
     resolution: {integrity: sha512-9RTUNjK60eJbx3uz+TEGF7fUr29ZDxR5QzXcyDpeSfeH28S9ycINflOgOlppit5U+4kNTe83KQnMEerw7GmE8w==}
