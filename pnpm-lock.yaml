@@ -80,7 +80,7 @@ specifiers:
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
   rxjs: 7.5.6
-  sass: 1.54.4
+  sass: 1.54.5
   sass-loader: 13.0.2
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
@@ -185,8 +185,8 @@ devDependencies:
   redis: 4.2.0
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
-  sass: 1.54.4
-  sass-loader: 13.0.2_sass@1.54.4+webpack@5.74.0
+  sass: 1.54.5
+  sass-loader: 13.0.2_sass@1.54.5+webpack@5.74.0
   stencil-fragment: 1.0.1
   style-loader: 3.3.1_webpack@5.74.0
   ts-jest: 27.1.5_5ad62742t534jpseix4ezmbr64
@@ -220,7 +220,7 @@ packages:
         optional: true
     dependencies:
       ajv: 8.11.0
-      ajv-formats: 2.1.1
+      ajv-formats: 2.1.1_ajv@8.11.0
       jsonc-parser: 3.0.0
       rxjs: 6.6.7
       source-map: 0.7.3
@@ -2824,8 +2824,8 @@ packages:
       rollup-plugin-postcss: 4.0.2_57znarxsqwmnneadci5z5fd5gu
       rollup-plugin-typescript2: 0.31.2_nm5mlcuxlwr6samvke7b2fz27i
       rxjs: 6.6.7
-      sass: 1.54.4
-      sass-loader: 12.6.0_sass@1.54.4+webpack@5.74.0
+      sass: 1.54.5
+      sass-loader: 12.6.0_sass@1.54.5+webpack@5.74.0
       semver: 7.3.4
       source-map: 0.7.3
       source-map-loader: 3.0.1_webpack@5.74.0
@@ -2989,7 +2989,7 @@ packages:
       rxjs: 7.5.6
       rxjs-for-await: 1.0.0_rxjs@7.5.6
       tsconfig-paths: 3.14.1
-      vite: 2.9.15_4l5qtkbga4wdydadcz25dgyfw4
+      vite: 2.9.15_uxh7diouulhkxcxzltp6wegahq
     transitivePeerDependencies:
       - nx
     dev: true
@@ -6247,8 +6247,10 @@ packages:
       ajv: 6.12.6
     dev: true
 
-  /ajv-formats/2.1.1:
+  /ajv-formats/2.1.1_ajv@8.11.0:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
+    peerDependencies:
+      ajv: ^8.0.0
     peerDependenciesMeta:
       ajv:
         optional: true
@@ -15275,7 +15277,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
@@ -15472,7 +15474,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/12.6.0_sass@1.54.4+webpack@5.74.0:
+  /sass-loader/12.6.0_sass@1.54.5+webpack@5.74.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -15493,11 +15495,11 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.54.4
+      sass: 1.54.5
       webpack: 5.74.0
     dev: true
 
-  /sass-loader/13.0.2_sass@1.54.4+webpack@5.74.0:
+  /sass-loader/13.0.2_sass@1.54.5+webpack@5.74.0:
     resolution: {integrity: sha512-BbiqbVmbfJaWVeOOAu2o7DhYWtcNmTfvroVgFXa6k2hHheMxNAeDHLNoDy/Q5aoaVlz0LH+MbMktKwm9vN/j8Q==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
@@ -15518,12 +15520,12 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.54.4
+      sass: 1.54.5
       webpack: 5.74.0
     dev: true
 
-  /sass/1.54.4:
-    resolution: {integrity: sha512-3tmF16yvnBwtlPrNBHw/H907j8MlOX8aTBnlNX1yrKx24RKcJGPyLhFUwkoKBKesR3unP93/2z14Ll8NicwQUA==}
+  /sass/1.54.5:
+    resolution: {integrity: sha512-p7DTOzxkUPa/63FU0R3KApkRHwcVZYC0PLnLm5iyZACyp15qSi32x7zVUhRdABAATmkALqgGrjCJAcWvobmhHw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -15598,7 +15600,7 @@ packages:
     dependencies:
       '@types/json-schema': 7.0.11
       ajv: 8.11.0
-      ajv-formats: 2.1.1
+      ajv-formats: 2.1.1_ajv@8.11.0
       ajv-keywords: 5.1.0_ajv@8.11.0
     dev: true
 
@@ -17480,7 +17482,7 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /vite/2.9.15_4l5qtkbga4wdydadcz25dgyfw4:
+  /vite/2.9.15_uxh7diouulhkxcxzltp6wegahq:
     resolution: {integrity: sha512-fzMt2jK4vQ3yK56te3Kqpkaeq9DkcZfBbzHwYpobasvgYmP2SoAr6Aic05CsB4CzCZbsDv4sujX3pkEGhLabVQ==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -17501,7 +17503,7 @@ packages:
       postcss: 8.4.16
       resolve: 1.22.1
       rollup: 2.77.3
-      sass: 1.54.4
+      sass: 1.54.5
       stylus: 0.59.0
     optionalDependencies:
       fsevents: 2.3.2
