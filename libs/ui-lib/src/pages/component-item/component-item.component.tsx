@@ -39,6 +39,7 @@ export class ComponentItemComponent {
   @Prop() match: { params: { id: string } }
 
   @State() rows: DesignTokenRow[]
+  @State() componentID: string
   private themeNames: ThemeName[]
   private themes: Themes
   private components: Components
@@ -78,13 +79,14 @@ export class ComponentItemComponent {
   }
 
   public componentWillLoad(): void {
+    this.componentID = this.match.params.id
     this.sub.add(
       this.componentBundle$?.subscribe(
         ([components, styleGuides, designTokens, aliasTokens, themes, config]) => {
           this.config = config
           this.themes = themes
           this.components = components
-          console.log(this.components)
+          console.log(this.componentID, this.components)
           this.aliasTokens = aliasTokens
           this.designTokens = designTokens
           this.groups = []
