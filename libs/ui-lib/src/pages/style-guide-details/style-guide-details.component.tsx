@@ -80,7 +80,7 @@ export class StyleGuideDetailsComponent {
     this.sub.add(
       this.styleGuides$?.subscribe((styleGuides) => {
         styleGuides.forEach((styleguide) => {
-          if (styleguide.slug === this.slug) {
+          if (styleguide.slug.toLowerCase() === this.slug) {
             this.styleGuide = styleguide
           }
         })

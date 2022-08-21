@@ -134,7 +134,7 @@ export class ThemefulMicrofrontend {
               ></tf-component-list>
             </Route>
             <Route
-              path={match('/component/:id')}
+              path={match('/component/:uuid')}
               render={({ uuid }) => (
                 <tf-component-item
                   {...{
