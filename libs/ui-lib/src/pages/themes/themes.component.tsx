@@ -19,6 +19,7 @@ import {
   Themes,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { href } from 'stencil-router-v2'
 import { Components } from '../../components'
 import '../../components/button'
 import '../../components/icon'
@@ -346,9 +347,7 @@ export class ThemesComponent {
           {Object.values(this.styleGuideHeaders || {}).map((styleGuide) => (
             <th colSpan={this.styleGuideCount[styleGuide.slug]}>
               <h2>
-                <stencil-route-link url={`/styleguide/${styleGuide.slug}`}>
-                  {styleGuide.name}
-                </stencil-route-link>
+                <a {...href(`/styleguide/${styleGuide.slug}`)}>{styleGuide.name}</a>
                 {this.styleGuideCount[styleGuide.slug] === 1 &&
                   this.renderThemeMenu(styleGuide.first)}
               </h2>

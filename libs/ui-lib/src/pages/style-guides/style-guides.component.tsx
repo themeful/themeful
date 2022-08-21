@@ -1,6 +1,5 @@
 import { propertySelect } from '@properties'
 import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
-import { RouterHistory } from '@stencil/router'
 import {
   ExtendedStyle,
   ExtendedStyleGuide,
@@ -11,11 +10,14 @@ import {
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { createRouter, href } from 'stencil-router-v2'
 import '../../components/icon'
 import '../../components/menu'
 import '../../components/navigation'
 import '../../components/property'
 import '../../forms/form-integration'
+
+const Router = createRouter()
 
 @Component({
   tag: 'tf-style-guides',
@@ -23,9 +25,6 @@ import '../../forms/form-integration'
   shadow: true,
 })
 export class StyleGuidesComponent {
-  /** History */
-  @Prop() history!: RouterHistory
-
   /** Style Guides */
   @Prop() styleGuides$!: Observable<ExtendedStyleGuides>
 
@@ -120,9 +119,7 @@ export class StyleGuidesComponent {
     return (
       <div class="style-guide">
         <h3>
-          <stencil-route-link url={`/styleguide/${styleGuide.slug}`}>
-            {styleGuide.name}
-          </stencil-route-link>
+          <a {...href(`/styleguide/${styleGuide.slug}`)}>{styleGuide.name}</a>
           <tf-menu
             items={[
               {
@@ -143,7 +140,7 @@ export class StyleGuidesComponent {
                 label: 'Show',
                 icon: 'search',
                 callback: () => {
-                  this.history.push(`/styleguide/${styleGuide.slug}`, {})
+                  Router.push(`/styleguide/${styleGuide.slug}`)
                 },
               },
               {

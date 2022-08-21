@@ -91,6 +91,7 @@ specifiers:
   socket.io-client: 4.5.1
   sort-media-queries: 0.2.2
   stencil-fragment: 1.0.1
+  stencil-router-v2: ^0.6.0
   style-loader: 3.3.1
   ts-jest: 27.1.5
   ts-node: 10.9.1
@@ -123,6 +124,7 @@ dependencies:
   socket.io: 4.5.1_22kvxa7zeyivx4jp72v2w3pkvy
   socket.io-client: 4.5.1_22kvxa7zeyivx4jp72v2w3pkvy
   sort-media-queries: 0.2.2
+  stencil-router-v2: 0.6.0_@stencil+core@2.17.1
   tslib: 2.4.0
 
 devDependencies:
@@ -3323,6 +3325,14 @@ packages:
   /@stencil/state-tunnel/1.0.1:
     resolution: {integrity: sha512-DYG8uROgL9hkjVTCtCfRBb0d3FwpiFB0muRrNZQ2X1Qo5hxMuNNji76/ILddqeq0AfgkKCW82xrMPDpy+rNIhQ==}
     dev: true
+
+  /@stencil/store/1.5.0_@stencil+core@2.17.1:
+    resolution: {integrity: sha512-fe5fCF6dgVlDM1iLRkkJUyUh0Tfx305asVGgMAJjIs7Q+x/b1pGgTLROm9Ibr53PZuFwr5Kg+4h9p4FLbYqHgA==}
+    peerDependencies:
+      '@stencil/core': '>=1.9.0'
+    dependencies:
+      '@stencil/core': 2.17.1
+    dev: false
 
   /@storybook/addon-actions/6.5.9_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-wDYm3M1bN+zcYZV3Q24M03b/P8DDpvj1oSoY6VLlxDAi56h8qZB/voeIS2I6vWXOB79C5tbwljYNQO0GsufS0g==}
@@ -16217,6 +16227,15 @@ packages:
   /stencil-fragment/1.0.1:
     resolution: {integrity: sha512-ih2X+LDaIB3ybQxXvtGeOS3BfwPB4ZJFuiQnv8Gf1JJGNZHB5XH54EyOa19g5brLQYdjPrzzLsgfuzUz8YWEkw==}
     dev: true
+
+  /stencil-router-v2/0.6.0_@stencil+core@2.17.1:
+    resolution: {integrity: sha512-E6ncNTIbFOleADelSQ7V/aSkZvdyTW8OKpPqxLi3AdUf8EwN0vZAMsIKHyPPS2hHLCh2/qNyVb/pbnzOszYBCw==}
+    peerDependencies:
+      '@stencil/core': '>=1.10.0'
+    dependencies:
+      '@stencil/core': 2.17.1
+      '@stencil/store': 1.5.0_@stencil+core@2.17.1
+    dev: false
 
   /store2/2.14.2:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
