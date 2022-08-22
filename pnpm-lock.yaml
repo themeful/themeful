@@ -23,7 +23,7 @@ specifiers:
   '@nrwl/web': 14.5.8
   '@nrwl/workspace': 14.5.8
   '@nxext/stencil': 14.0.6
-  '@stencil/core': 2.17.1
+  '@stencil/core': 2.17.4
   '@stencil/eslint-plugin': 0.4.0
   '@stencil/postcss': 2.1.0
   '@stencil/router': 1.0.1
@@ -105,7 +105,7 @@ dependencies:
   '@nestjs/platform-socket.io': 9.0.11_4fvbtwd4nc5mizljhr6jholdtq
   '@nestjs/serve-static': 3.0.0_xxlaro4n3ygapuy65e43lboh2y
   '@nestjs/websockets': 9.0.11_lwczkvnmapmsdfxfkrkqam2oea
-  '@stencil/core': 2.17.1
+  '@stencil/core': 2.17.4
   camel-case: 4.1.2
   colortranslator: 1.9.2
   find: 0.3.0
@@ -137,11 +137,11 @@ devDependencies:
   '@nrwl/storybook': 14.5.8_sqh5qrucludiddn6guwhntyuna
   '@nrwl/web': 14.5.8_rh75leuzhy27bgnvgemcq7tlqe
   '@nrwl/workspace': 14.5.8_peykk3qq3boyvgru4rg25krr44
-  '@nxext/stencil': 14.0.6_vtqemgxibexpz5vy7zsh3occda
+  '@nxext/stencil': 14.0.6_hay3m2bvladebwn2x75zgvwuyq
   '@stencil/eslint-plugin': 0.4.0_6kiettsgnups22qywh6qvr6hy4
-  '@stencil/postcss': 2.1.0_@stencil+core@2.17.1
+  '@stencil/postcss': 2.1.0_@stencil+core@2.17.4
   '@stencil/router': 1.0.1
-  '@stencil/sass': 1.5.2_@stencil+core@2.17.1
+  '@stencil/sass': 1.5.2_@stencil+core@2.17.4
   '@storybook/addon-actions': 6.5.9_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-essentials': 6.5.9_cnzpmwgljervkh4ijt45tire7a
   '@storybook/addon-postcss': 2.0.0_webpack@5.74.0
@@ -220,7 +220,7 @@ packages:
         optional: true
     dependencies:
       ajv: 8.11.0
-      ajv-formats: 2.1.1
+      ajv-formats: 2.1.1_ajv@8.11.0
       jsonc-parser: 3.0.0
       rxjs: 6.6.7
       source-map: 0.7.3
@@ -2936,7 +2936,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nxext/stencil/14.0.6_vtqemgxibexpz5vy7zsh3occda:
+  /@nxext/stencil/14.0.6_hay3m2bvladebwn2x75zgvwuyq:
     resolution: {integrity: sha512-fviWS37GA2YglZ+MUfSCEFDwwqVKTXZuuTc+Bnw5H5HlshlCvt5AJQHMJdMaOICu5I5nsT/C2asscczyIdPO6A==}
     peerDependencies:
       '@nrwl/angular': ^14.5.0
@@ -2970,7 +2970,7 @@ packages:
       '@nrwl/workspace': 14.5.8_peykk3qq3boyvgru4rg25krr44
       '@nxext/vite': 14.0.3_4sahxwdq45yzfn7c25si233dlm
       '@nxext/vitest': 14.0.2_nx@14.5.8
-      '@stencil/core': 2.17.1
+      '@stencil/core': 2.17.4
       ignore: 5.2.0
       tsconfig-paths: 3.14.1
     transitivePeerDependencies:
@@ -3265,8 +3265,8 @@ packages:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: false
 
-  /@stencil/core/2.17.1:
-    resolution: {integrity: sha512-ErjQsNALgZQ9SYeBHhqwL1UO+Zbptwl3kwrRJC2tGlc3G/T6UvPuaKr+PGsqI+CZGia+0+R5EELQvFu74mYeIg==}
+  /@stencil/core/2.17.4:
+    resolution: {integrity: sha512-SGRlHpjV1RyFvzw6jFMVKpLNox9Eds3VvpbpD2SW9CuxdLonHDSFtQks5zmT4zs1Rse9I6kFc2mFK/dHNTalkg==}
     engines: {node: '>=12.10.0', npm: '>=6.0.0'}
     hasBin: true
 
@@ -3289,12 +3289,12 @@ packages:
       typescript: 4.7.4
     dev: true
 
-  /@stencil/postcss/2.1.0_@stencil+core@2.17.1:
+  /@stencil/postcss/2.1.0_@stencil+core@2.17.4:
     resolution: {integrity: sha512-/e4TYEXErGaHxH0ocg620YqEMLuMLpK/Wg4MJsiJglrLZCZhU4XCX1N0SwxaIOUbEZ1Zh+AqQ++yMI92ilndEA==}
     peerDependencies:
       '@stencil/core': '>=2.0.0'
     dependencies:
-      '@stencil/core': 2.17.1
+      '@stencil/core': 2.17.4
       autoprefixer: 10.4.8_postcss@8.3.11
       postcss: 8.3.11
     dev: true
@@ -3306,12 +3306,12 @@ packages:
       '@stencil/state-tunnel': 1.0.1
     dev: true
 
-  /@stencil/sass/1.5.2_@stencil+core@2.17.1:
+  /@stencil/sass/1.5.2_@stencil+core@2.17.4:
     resolution: {integrity: sha512-nJ93pUSylsGsMX0eLmhxh1oEljcUjj5mYjhB9ziCdoaydAdjukrUoqDCC7tdVbOcBo2hKptQyWqCtETnBGYsXQ==}
     peerDependencies:
       '@stencil/core': '>=1.0.2'
     dependencies:
-      '@stencil/core': 2.17.1
+      '@stencil/core': 2.17.4
     dev: true
 
   /@stencil/state-tunnel/1.0.1:
@@ -6247,8 +6247,10 @@ packages:
       ajv: 6.12.6
     dev: true
 
-  /ajv-formats/2.1.1:
+  /ajv-formats/2.1.1_ajv@8.11.0:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
+    peerDependencies:
+      ajv: ^8.0.0
     peerDependenciesMeta:
       ajv:
         optional: true
@@ -15598,7 +15600,7 @@ packages:
     dependencies:
       '@types/json-schema': 7.0.11
       ajv: 8.11.0
-      ajv-formats: 2.1.1
+      ajv-formats: 2.1.1_ajv@8.11.0
       ajv-keywords: 5.1.0_ajv@8.11.0
     dev: true
 
