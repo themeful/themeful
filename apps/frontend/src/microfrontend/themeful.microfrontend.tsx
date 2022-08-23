@@ -68,6 +68,28 @@ export class ThemefulMicrofrontend {
     this.checkMode()
   }
 
+  private renderStyleGuideDetails = (params: {
+    [param: string]: string
+  }): Components.TfStyleGuideDetails => (
+    <tf-style-guide-details
+      {...({
+        slug: params['slug'],
+        styleGuides$: this.styleGuides$,
+        onAction: this.onAction,
+      } as Components.TfStyleGuideDetails)}
+    ></tf-style-guide-details>
+  )
+
+  private renderComponentDetails = (params: { [param: string]: string }) => (
+    <tf-component-item
+      {...({
+        uuid: params['uuid'],
+        componentBundle$: this.componentBundle$,
+        onAction: this.onAction,
+      } as Components.TfComponentItem)}
+    ></tf-component-item>
+  )
+
   public render(): HTMLThemefulMicrofrontendElement {
     return (
       <Host>
@@ -107,44 +129,22 @@ export class ThemefulMicrofrontend {
             </Route>
             <Route path="/styleguides">
               <tf-style-guides
-                {...{
+                {...({
                   styleGuides$: this.styleGuides$,
                   onAction: this.onAction,
-                }}
+                } as Components.TfStyleGuides)}
               ></tf-style-guides>
             </Route>
-            <Route
-              path={match('/styleguide/:slug')}
-              render={({ slug }) => (
-                <tf-style-guide-details
-                  {...{
-                    slug,
-                    styleGuides$: this.styleGuides$,
-                    onAction: this.onAction,
-                  }}
-                ></tf-style-guide-details>
-              )}
-            />
+            <Route path={match('/styleguide/:slug')} render={this.renderStyleGuideDetails} />
             <Route path="/components">
               <tf-component-list
-                {...{
+                {...({
                   componentListBundle$: this.componentListBundle$,
                   onAction: this.onAction,
-                }}
+                } as Components.TfComponentList)}
               ></tf-component-list>
             </Route>
-            <Route
-              path={match('/component/:uuid')}
-              render={({ uuid }) => (
-                <tf-component-item
-                  {...{
-                    uuid,
-                    componentBundle$: this.componentBundle$,
-                    onAction: this.onAction,
-                  }}
-                ></tf-component-item>
-              )}
-            />
+            <Route path={match('/component/:uuid')} render={this.renderComponentDetails} />
             <Route path="/" to="/themes" />
           </Router.Switch>
         </main>

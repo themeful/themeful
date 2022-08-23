@@ -32,7 +32,6 @@ import { ButtonKind } from '../../../libs/ui-lib/src/components/button/interface
 import { Observable } from 'rxjs'
 import { MenuItem } from '../../../libs/ui-lib/src/components/menu/menu.component'
 import { NavigationItem } from '../../../libs/ui-lib/src/components/navigation/navigation.component'
-import { RouterHistory } from '@stencil/router'
 export namespace Components {
   interface TfAliasTokenForm {
     /**
@@ -90,9 +89,9 @@ export namespace Components {
      */
     componentBundle$: Observable<ComponentItemBundle>
     /**
-     * Style Guide Slug
+     * Component UUID
      */
-    match: { params: { id: string } }
+    uuid: string
   }
   interface TfComponentList {
     /**
@@ -244,13 +243,9 @@ export namespace Components {
   }
   interface TfStyleGuideDetails {
     /**
-     * History
-     */
-    history: RouterHistory
-    /**
      * Style Guide Slug
      */
-    match: { params: { slug: string } }
+    slug: string
     /**
      * Style Guides
      */
@@ -269,10 +264,6 @@ export namespace Components {
     formData: StyleGuideFormData
   }
   interface TfStyleGuides {
-    /**
-     * History
-     */
-    history: RouterHistory
     /**
      * Style Guides
      */
@@ -735,13 +726,13 @@ declare namespace LocalJSX {
      */
     componentBundle$: Observable<ComponentItemBundle>
     /**
-     * Style Guide Slug
-     */
-    match: { params: { id: string } }
-    /**
      * Event emitted when an action is triggered
      */
     onAction?: (event: TfComponentItemCustomEvent<FormIntegrationActions>) => void
+    /**
+     * Component UUID
+     */
+    uuid: string
   }
   interface TfComponentList {
     /**
@@ -921,17 +912,13 @@ declare namespace LocalJSX {
   }
   interface TfStyleGuideDetails {
     /**
-     * History
-     */
-    history: RouterHistory
-    /**
-     * Style Guide Slug
-     */
-    match: { params: { slug: string } }
-    /**
      * Event emitted when an action is triggered
      */
     onAction?: (event: TfStyleGuideDetailsCustomEvent<FormIntegrationActions>) => void
+    /**
+     * Style Guide Slug
+     */
+    slug: string
     /**
      * Style Guides
      */
@@ -958,10 +945,6 @@ declare namespace LocalJSX {
     onAction?: (event: TfStyleGuideFormCustomEvent<StyleGuideFormAction>) => void
   }
   interface TfStyleGuides {
-    /**
-     * History
-     */
-    history: RouterHistory
     /**
      * Event emitted when an action is triggered
      */

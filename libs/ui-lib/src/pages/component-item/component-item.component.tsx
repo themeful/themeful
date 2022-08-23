@@ -38,7 +38,7 @@ export class ComponentItemComponent {
   /** Component Item Bundle */
   @Prop() componentBundle$!: Observable<ComponentItemBundle>
 
-  /** Style Guide Slug */
+  /** Component UUID */
   @Prop() uuid!: string
 
   @State() rows: DesignTokenRow[] = []
