@@ -12,25 +12,23 @@ export class OverlayComponent {
   @Prop() show = false
 
   /** Event emitted when the item is clicked */
-  @Event({ composed: false }) close: EventEmitter
+  @Event({ composed: false }) close!: EventEmitter
 
   private click = (): void => {
     this.close.emit()
   }
 
   public render(): HTMLTfOverlayElement {
-    if (this.show) {
-      return (
-        <div class="overlay__wrapper">
-          <div class="overlay__backdrop" onClick={this.click}></div>
-          <div class="overlay">
-            <tf-button class="overlay__close" size="icon" onClick={this.click}>
-              <tf-icon icon="close" />
-            </tf-button>
-            <slot />
-          </div>
+    return this.show ? (
+      <div class="overlay__wrapper">
+        <div class="overlay__backdrop" onClick={this.click}></div>
+        <div class="overlay">
+          <tf-button class="overlay__close" size="icon" onClick={this.click}>
+            <tf-icon icon="close" />
+          </tf-button>
+          <slot />
         </div>
-      )
-    }
+      </div>
+    ) : null
   }
 }

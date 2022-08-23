@@ -20,32 +20,32 @@ type ColorFormat = 'HEX' | 'HSL' | 'RGB'
   shadow: true,
 })
 export class ColorInputComponent {
-  private input: HTMLInputElement
-  private alpha: HTMLInputElement
-  private hue: HTMLInputElement
-  private pointer: HTMLElement
+  private input!: HTMLInputElement
+  private alpha!: HTMLInputElement
+  private hue!: HTMLInputElement
+  private pointer!: HTMLElement
   private trackMouseMove = false
   private tileOffset = { x: 0, y: 0 }
   private changeSource: 'input' | 'controls' = 'input'
 
   /** Element */
-  @Element() el: HTMLTfColorInputElement
+  @Element() el!: HTMLTfColorInputElement
 
   /** Input label */
-  @Prop() label: string
+  @Prop() label!: string
 
   /** Required input */
   @Prop() required = false
 
   /** Input value */
-  @Prop({ mutable: true }) value: string
+  @Prop({ mutable: true }) value!: string
 
   /** Input Event */
-  @Event({ composed: false }) inputChange: EventEmitter
+  @Event({ composed: false }) inputChange!: EventEmitter
 
   private touched = false
   private changed = false
-  private valid: boolean
+  private valid!: boolean
   private error = ''
 
   /** Validate value */
@@ -217,7 +217,7 @@ export class ColorInputComponent {
     return 'HEX'
   }
 
-  private trackPointer = (event): void => {
+  private trackPointer = (event: Event): void => {
     if (this.trackMouseMove) {
       if (event.type === 'mouseup') {
         this.trackMouseMove = false
@@ -262,7 +262,7 @@ export class ColorInputComponent {
               max="360"
               {...{
                 ref: (hue: HTMLInputElement) => (this.hue = hue),
-                onInput: (event) => {
+                onInput: (event: Event) => {
                   this.changeSource = 'controls'
                   this.hue$.next((event.target as HTMLInputElement).value)
                 },
@@ -275,7 +275,7 @@ export class ColorInputComponent {
               max="100"
               {...{
                 ref: (alpha: HTMLInputElement) => (this.alpha = alpha),
-                onInput: (event) => {
+                onInput: (event: Event) => {
                   this.changeSource = 'controls'
                   this.alpha$.next((event.target as HTMLInputElement).value)
                 },

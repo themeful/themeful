@@ -10,18 +10,18 @@ import '../../components/inputs/multi-select-input'
 })
 export class AliasTokenFormComponent {
   /** Data for the form */
-  @Prop() formData: AliasTokenFormData
+  @Prop() formData!: AliasTokenFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<DesignTokenFormAction>
+  @Event({ composed: false }) action!: EventEmitter<DesignTokenFormAction>
 
   @State() changed = false
-  @State() editMode: boolean
+  @State() editMode!: boolean
 
   private controls: { [key: string]: HTMLTfMultiSelectInputElement } = {}
 
   public componentWillLoad(): void {
-    this.editMode = this.formData.identifier && true
+    this.editMode = !!this.formData.identifier && true
   }
   public componentDidLoad(): void {
     this.action.emit({ action: 'open' })
@@ -29,7 +29,7 @@ export class AliasTokenFormComponent {
 
   private formValues = (): FormValues =>
     Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control.value
+      result[key] = control?.value
       return result
     }, {})
 

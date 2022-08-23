@@ -16,18 +16,18 @@ import '../../components/inputs/text-input'
 })
 export class DesignTokenSplitFormComponent {
   /** Data for the form */
-  @Prop() formData: DesignTokenSplitFormData
+  @Prop() formData!: DesignTokenSplitFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<DesignTokenFormAction>
+  @Event({ composed: false }) action!: EventEmitter<DesignTokenFormAction>
 
   @State() changed = false
 
   private controls: { [key: string]: HTMLTfMultiSelectInputElement | HTMLTfTextInputElement } = {}
-  private originName: string
+  private originName!: string
 
   public componentWillLoad(): void {
-    this.originName = this.formData.fields.name
+    this.originName = this.formData?.fields?.name as string
   }
   public componentDidLoad(): void {
     this.action.emit({ action: 'open' })
@@ -53,7 +53,7 @@ export class DesignTokenSplitFormComponent {
         this.action.emit({
           controller: 'designToken',
           action: 'split',
-          identifier: this.formData.identifier,
+          identifier: this.formData?.identifier as string,
           fields: this.formValues() as unknown as DesignTokenSplitFormFields,
         })
       } else if (valid) {

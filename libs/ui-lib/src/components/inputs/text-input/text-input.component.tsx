@@ -12,7 +12,7 @@ export class TextInputComponent {
   @Prop() type = 'text'
 
   /** Input label */
-  @Prop() label: string
+  @Prop() label!: string
 
   /** Required input */
   @Prop() required = false
@@ -21,23 +21,23 @@ export class TextInputComponent {
   @Prop() disabled = false
 
   /** Min input */
-  @Prop() minLength: number
+  @Prop() minLength!: number
 
   /** Max input */
-  @Prop() maxLength: number
+  @Prop() maxLength!: number
 
   /** Input value */
-  @Prop({ mutable: true }) value: string | number
+  @Prop({ mutable: true }) value!: string | number
 
   /** validation function */
-  @Prop() validation: (value: string | number) => string | null
+  @Prop() validation!: (value: string | number) => string | null
 
   /** Input Event */
-  @Event({ composed: false }) inputChange: EventEmitter
+  @Event({ composed: false }) inputChange!: EventEmitter
 
   @State() touched = false
   @State() changed = false
-  @State() valid: boolean
+  @State() valid!: boolean
   @State() error = ''
 
   /** Validate value */

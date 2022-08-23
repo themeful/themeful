@@ -8,7 +8,7 @@ import { SyncService } from './sync.service'
 
 @Injectable()
 export class StyleGuideService {
-  private styleGuides: StyleGuides
+  private styleGuides!: StyleGuides
 
   constructor(private readonly syncService: SyncService, private readonly file: FileService) {
     this.file
@@ -148,7 +148,7 @@ export class StyleGuideService {
 
   private reorder(styleGuide = 'global') {
     const specialeSortTypes = ['mediaquery']
-    const section = this.styleGuides[styleGuide].styles
+    const section: StyleMap = this.styleGuides[styleGuide].styles
     const convert = convertCSSLength(`${this.styleGuides[styleGuide].baseFontSize}px`)
     let newSection: StyleMap = {}
     let mediaqueries = Object.values(section)

@@ -22,7 +22,7 @@ export class ThemeFormComponent {
   private controls: { [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement } = {}
 
   public componentWillLoad(): void {
-    this.editMode = this.formData.identifier && true
+    this.editMode = !!this.formData.identifier && true
   }
 
   public componentDidLoad(): void {

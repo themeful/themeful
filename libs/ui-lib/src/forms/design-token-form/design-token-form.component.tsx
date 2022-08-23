@@ -17,20 +17,20 @@ import '../../components/inputs/text-input'
 })
 export class DesignTokenFormComponent {
   /** Data for the form */
-  @Prop() formData: DesignTokenFormData
+  @Prop() formData!: DesignTokenFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<DesignTokenFormAction>
+  @Event({ composed: false }) action!: EventEmitter<DesignTokenFormAction>
 
   @State() changed = false
-  @State() editMode: boolean
+  @State() editMode!: boolean
 
   private controls: {
     [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement | HTMLTfSuggestInputElement
   } = {}
 
   public componentWillLoad(): void {
-    this.editMode = this.formData.identifier && true
+    this.editMode = !!this.formData.identifier && true
   }
 
   public componentDidLoad(): void {

@@ -23,21 +23,21 @@ import '../../forms/form-integration'
 })
 export class StyleGuideDetailsComponent {
   /** History */
-  @Prop() history: RouterHistory
+  @Prop() history!: RouterHistory
 
   /** Style Guides */
-  @Prop() styleGuides$: Observable<ExtendedStyleGuides>
+  @Prop() styleGuides$!: Observable<ExtendedStyleGuides>
 
   /** Style Guide Slug */
-  @Prop() match: { params: { slug: string } }
+  @Prop() match!: { params: { slug: string } }
 
-  @State() styleGuide: ExtendedStyleGuide
+  @State() styleGuide!: ExtendedStyleGuide
   private formData$ = new Subject()
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
+  @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
 
-  private onAction = ({ detail }): void => {
+  private onAction = ({ detail }: { detail: any }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
       if (['duplicate', 'delete'].includes(detail.action)) {
@@ -47,7 +47,7 @@ export class StyleGuideDetailsComponent {
   }
 
   private sub = new Subscription()
-  private styleGuideGroups: { [styleguide: string]: string[] }
+  private styleGuideGroups!: { [styleguide: string]: string[] }
 
   private openStyleGuideForm = (styleGuide?: string, styleGuideBase?: StyleGuideBase): void => {
     this.formData$.next({
@@ -101,37 +101,36 @@ export class StyleGuideDetailsComponent {
   }
 
   public render(): HTMLTfStyleGuidesElement {
-    if (!this.styleGuide) {
-      return
-    }
     return (
-      <Host>
-        <stencil-route-title pageTitle={`Themeful - ${this.styleGuide.name}`} />
-        <tf-navigation
-          items={[
-            {
-              label: 'Edit Style Guide',
-              callback: () =>
-                this.openStyleGuideForm(this.styleGuide.slug, {
-                  name: this.styleGuide.name,
-                  baseFontSize: this.styleGuide.baseFontSize,
-                }),
-            },
-            {
-              label: 'Add Style',
-              callback: () => this.openStyleForm(this.styleGuide.slug),
-            },
-            {
-              label: 'Duplicate Style Guide',
-              callback: () =>
-                this.openStyleGuideDuplicateForm(this.styleGuide.slug, this.styleGuide.name),
-            },
-          ]}
-          size="small"
-        />
-        <div class="style-guide__wrapper">{this.renderStyleGuide(this.styleGuide)}</div>
-        <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
-      </Host>
+      this.styleGuide && (
+        <Host>
+          <stencil-route-title pageTitle={`Themeful - ${this.styleGuide.name}`} />
+          <tf-navigation
+            items={[
+              {
+                label: 'Edit Style Guide',
+                callback: () =>
+                  this.openStyleGuideForm(this.styleGuide.slug, {
+                    name: this.styleGuide.name,
+                    baseFontSize: this.styleGuide.baseFontSize,
+                  }),
+              },
+              {
+                label: 'Add Style',
+                callback: () => this.openStyleForm(this.styleGuide.slug),
+              },
+              {
+                label: 'Duplicate Style Guide',
+                callback: () =>
+                  this.openStyleGuideDuplicateForm(this.styleGuide.slug, this.styleGuide.name),
+              },
+            ]}
+            size="small"
+          />
+          <div class="style-guide__wrapper">{this.renderStyleGuide(this.styleGuide)}</div>
+          <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
+        </Host>
+      )
     )
   }
 

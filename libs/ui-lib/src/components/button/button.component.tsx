@@ -14,13 +14,13 @@ export class ButtonComponent {
   @Prop() kind: ButtonKind = 'secondary'
 
   /** Button size */
-  @Prop() size: 'small' | 'large' | 'icon'
+  @Prop() size!: 'small' | 'large' | 'icon'
 
   /** Active state */
   @Prop() active = false
 
   /** Disabled state */
-  @Prop() disabled: false
+  @Prop() disabled = false
 
   public render(): HTMLTfButtonElement {
     return (
