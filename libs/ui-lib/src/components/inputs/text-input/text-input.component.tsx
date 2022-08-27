@@ -21,16 +21,16 @@ export class TextInputComponent {
   @Prop() disabled = false
 
   /** Min input */
-  @Prop() minLength!: number
+  @Prop() minLength = 0
 
   /** Max input */
-  @Prop() maxLength!: number
+  @Prop() maxLength = 999999
 
   /** Input value */
   @Prop({ mutable: true }) value!: string | number
 
   /** validation function */
-  @Prop() validation!: (value: string | number) => string | null
+  @Prop() validation?: (value: string | number) => string | null
 
   /** Input Event */
   @Event({ composed: false }) inputChange!: EventEmitter
@@ -100,7 +100,7 @@ export class TextInputComponent {
         >
           <span class="text-input__label">{this.label}</span>
           <input
-            ref={(el: HTMLInputElement) => (this.input = el)}
+            ref={(el: HTMLInputElement | undefined) => (this.input = el as HTMLInputElement)}
             class="text-input__input"
             type={this.type}
             onInput={this.inputChanged}

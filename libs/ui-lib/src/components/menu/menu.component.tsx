@@ -20,7 +20,7 @@ export class MenuComponent {
   @State() open = false
 
   /** Input Event */
-  @Event({ composed: false }) itemClick: EventEmitter
+  @Event({ composed: false }) itemClick!: EventEmitter
 
   private click = (item: MenuItem): void => {
     this.open = false

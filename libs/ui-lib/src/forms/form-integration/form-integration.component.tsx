@@ -1,6 +1,7 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { FormIntegrationActions, FormIntegrations } from '@typings'
+import { FormIntegrationActions, FormIntegrations, StyleGuideIntegrationAction } from '@typings'
 import { Subject, Subscription } from 'rxjs'
+import { Components } from '../../components'
 import '../../components/overlay'
 import '../../forms/alias-token-form'
 import '../../forms/design-token-form'
@@ -21,10 +22,10 @@ export class FormIntegrationComponent {
   /** FormData */
   @Prop() formData$ = new Subject<FormIntegrations>()
   @State() show = false
-  @State() formData: FormIntegrations
+  @State() formData!: FormIntegrations
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
+  @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
 
   private sub = new Subscription()
   private args = {}
@@ -33,7 +34,7 @@ export class FormIntegrationComponent {
     this.show = false
   }
 
-  private onAction = ({ detail }): void => {
+  private onAction = ({ detail }: { detail: StyleGuideIntegrationAction }): void => {
     if (detail.action !== 'close') {
       this.action.emit({ ...detail, controller: detail.controller || this.formData.form })
     }
@@ -60,23 +61,25 @@ export class FormIntegrationComponent {
   private renderForm(form: string): HTMLElement {
     switch (form) {
       case 'styleguide':
-        return <tf-style-guide-form {...this.args} />
+        return <tf-style-guide-form {...(this.args as Components.TfStyleGuideForm)} />
       case 'styleguideDuplicate':
-        return <tf-style-guide-duplicate-form {...this.args} />
+        return (
+          <tf-style-guide-duplicate-form {...(this.args as Components.TfStyleGuideDuplicateForm)} />
+        )
       case 'style':
-        return <tf-style-form {...this.args} />
+        return <tf-style-form {...(this.args as Components.TfStyleForm)} />
       case 'theme':
-        return <tf-theme-form {...this.args} />
+        return <tf-theme-form {...(this.args as Components.TfThemeForm)} />
       case 'themeDuplicate':
-        return <tf-theme-duplicate-form {...this.args} />
+        return <tf-theme-duplicate-form {...(this.args as Components.TfThemeDuplicateForm)} />
       case 'themeValue':
-        return <tf-theme-value-form {...this.args} />
+        return <tf-theme-value-form {...(this.args as Components.TfThemeValueForm)} />
       case 'designToken':
-        return <tf-design-token-form {...this.args} />
+        return <tf-design-token-form {...(this.args as Components.TfDesignTokenForm)} />
       case 'designTokenSplit':
-        return <tf-design-token-split-form {...this.args} />
+        return <tf-design-token-split-form {...(this.args as Components.TfDesignTokenSplitForm)} />
       case 'aliasTokenSelect':
-        return <tf-alias-token-form {...this.args} />
+        return <tf-alias-token-form {...(this.args as Components.TfAliasTokenForm)} />
       default:
         return <div>Form is not defined</div>
     }

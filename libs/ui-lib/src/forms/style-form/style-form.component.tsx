@@ -1,5 +1,5 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { ExtendedStyle, StyleFormAction, StyleFormData } from '@typings'
+import { ExtendedStyle, StyleFormAction, StyleFormData, StyleIdentifier } from '@typings'
 import '../../components/button'
 import '../../components/inputs/color-input'
 import '../../components/inputs/select-input'
@@ -13,14 +13,14 @@ import '../../components/inputs/text-input'
 })
 export class StyleFormComponent {
   /** Data for the form */
-  @Prop() formData: StyleFormData
+  @Prop() formData!: StyleFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<StyleFormAction>
+  @Event({ composed: false }) action!: EventEmitter<StyleFormAction>
 
   @State() changed = false
-  @State() editMode: boolean
-  @State() type: string
+  @State() editMode!: boolean
+  @State() type!: string
 
   private controls: {
     [key: string]:
@@ -31,7 +31,7 @@ export class StyleFormComponent {
   } = {}
 
   public componentWillLoad(): void {
-    this.editMode = this.formData?.identifier?.style && true
+    this.editMode = !!this.formData?.identifier?.style && true
     this.type = this.formData.fields?.type || 'color'
   }
 
@@ -40,10 +40,13 @@ export class StyleFormComponent {
   }
 
   private formValues = (): { [key: string]: string | number } =>
-    Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control.value
-      return result
-    }, {})
+    Object.entries(this.controls).reduce(
+      (result: { [key: string]: string | number }, [key, control]) => {
+        result[key] = control.value
+        return result
+      },
+      {}
+    )
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
@@ -62,13 +65,13 @@ export class StyleFormComponent {
         if (this.editMode) {
           this.action.emit({
             action: 'update',
-            identifier: this.formData.identifier,
+            identifier: this.formData.identifier as StyleIdentifier,
             fields: this.formValues() as unknown as ExtendedStyle,
           })
         } else {
           this.action.emit({
             action: 'create',
-            identifier: this.formData.identifier,
+            identifier: this.formData.identifier as StyleIdentifier,
             fields: this.formValues() as unknown as ExtendedStyle,
           })
         }
@@ -84,7 +87,10 @@ export class StyleFormComponent {
 
   private remove = (): void => {
     if (this.editMode) {
-      this.action.emit({ action: 'delete', identifier: this.formData.identifier })
+      this.action.emit({
+        action: 'delete',
+        identifier: this.formData.identifier as StyleIdentifier,
+      })
     }
   }
 
@@ -93,7 +99,9 @@ export class StyleFormComponent {
       <form class="form" onSubmit={this.save}>
         <h3>{this.editMode ? 'Edit' : 'Create'} Style</h3>
         <tf-select-input
-          ref={(el: HTMLTfSelectInputElement) => (this.controls['type'] = el)}
+          ref={(el: HTMLTfSelectInputElement | undefined) =>
+            (this.controls['type'] = el as HTMLTfSelectInputElement)
+          }
           label="Type"
           items={this.formData.propertyTypes}
           value={this.formData.fields?.type}
@@ -105,30 +113,38 @@ export class StyleFormComponent {
           required
         />
         <tf-suggest-input
-          ref={(el: HTMLTfSuggestInputElement) => (this.controls['group'] = el)}
+          ref={(el: HTMLTfSuggestInputElement | undefined) =>
+            (this.controls['group'] = el as HTMLTfSuggestInputElement)
+          }
           label="Group"
           items={this.formData.groups}
-          value={this.formData.fields?.group}
+          value={this.formData.fields?.group as string}
           minLength={4}
         />
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.controls['name'] = el as HTMLTfTextInputElement)
+          }
           label="Name"
-          value={this.formData.fields?.name}
+          value={this.formData.fields?.name as string}
           minLength={3}
         />
         {this.type === 'color' ? (
           <tf-color-input
-            ref={(el: HTMLTfColorInputElement) => (this.controls['value'] = el)}
+            ref={(el: HTMLTfColorInputElement | undefined) =>
+              (this.controls['value'] = el as HTMLTfColorInputElement)
+            }
             label="Color"
             required
-            value={this.formData.fields?.value}
+            value={this.formData.fields?.value as string}
           />
         ) : (
           <tf-text-input
-            ref={(el: HTMLTfTextInputElement) => (this.controls['value'] = el)}
+            ref={(el: HTMLTfTextInputElement | undefined) =>
+              (this.controls['value'] = el as HTMLTfTextInputElement)
+            }
             label="Value"
-            value={this.formData.fields?.value}
+            value={this.formData.fields?.value as string}
             minLength={3}
           />
         )}

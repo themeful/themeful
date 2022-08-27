@@ -11,7 +11,7 @@ export class MultiSelectInputComponent {
   @Prop() type = 'text'
 
   /** Input label */
-  @Prop() label!: string
+  @Prop() label?: string
 
   /** Input suggest items */
   @Prop() items: string[] = []
@@ -20,10 +20,10 @@ export class MultiSelectInputComponent {
   @Prop() required = false
 
   /** Min input */
-  @Prop() minLength!: number
+  @Prop() minLength = 0
 
   /** Max input */
-  @Prop() maxLength!: number
+  @Prop() maxLength = 999999
 
   /** Input value */
   @Prop() value: string[] = []

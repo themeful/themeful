@@ -7,6 +7,23 @@ exports[`ComponentItemComponent renders 1`] = `
     <tf-navigation size="small"></tf-navigation>
     <div class="design-tokens__wrapper">
       <table class="design-tokens">
+        <thead>
+          <tr class="design-tokens__header design-tokens__row">
+            <th colspan="2"></th>
+          </tr>
+          <tr class="design-tokens__header design-tokens__row">
+            <th>
+              <h2 class="left">
+                Design Token
+              </h2>
+            </th>
+            <th>
+              <h2>
+                Alias Tokens
+              </h2>
+            </th>
+          </tr>
+        </thead>
         <tbody></tbody>
       </table>
     </div>
@@ -22,6 +39,23 @@ exports[`ComponentItemComponent renders with values 1`] = `
     <tf-navigation size="small"></tf-navigation>
     <div class="design-tokens__wrapper">
       <table class="design-tokens">
+        <thead>
+          <tr class="design-tokens__header design-tokens__row">
+            <th colspan="2"></th>
+          </tr>
+          <tr class="design-tokens__header design-tokens__row">
+            <th>
+              <h2 class="left">
+                Design Token
+              </h2>
+            </th>
+            <th>
+              <h2>
+                Alias Tokens
+              </h2>
+            </th>
+          </tr>
+        </thead>
         <tbody></tbody>
       </table>
     </div>

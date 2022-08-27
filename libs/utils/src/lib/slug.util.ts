@@ -13,11 +13,10 @@ export const aliasToken2Words = (input: string): string => {
 }
 
 export const deCamelCase = (input: string): string =>
-  input
-    .split(/(\d+|(?=[A-Z]))/)
-    .reduce((result, part) => {
+  (input.split(/(\d+|(?=[A-Z]))/) as string[])
+    .reduce((result: string[], part: string) => {
       if (part) {
-        result.push(part.charAt(0).toUpperCase() + part.substring(1))
+        result.push(`${part.charAt(0).toUpperCase()}${part.substring(1)}` as string)
       }
       return result
     }, [])

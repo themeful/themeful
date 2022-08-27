@@ -78,7 +78,7 @@ export class ColorInputComponent {
     }
   }
 
-  private setControls(newColor): void {
+  private setControls(newColor: string): void {
     const color = new ColorTranslator(this.valid ? newColor : 'hsl(180,50%,40%)')
     this.changeSource = 'input'
     this.input$.next(this.input.value)
@@ -261,7 +261,7 @@ export class ColorInputComponent {
               min="0"
               max="360"
               {...{
-                ref: (hue: HTMLInputElement) => (this.hue = hue),
+                ref: (hue: HTMLInputElement) => (this.hue = hue as HTMLInputElement),
                 onInput: (event: Event) => {
                   this.changeSource = 'controls'
                   this.hue$.next((event.target as HTMLInputElement).value)
@@ -297,7 +297,7 @@ export class ColorInputComponent {
           }}
         >
           <div
-            ref={(el: HTMLInputElement) => (this.pointer = el)}
+            ref={(el: HTMLDivElement | undefined) => (this.pointer = el as HTMLDivElement)}
             class="color-input__pointer"
           ></div>
         </div>
@@ -315,7 +315,7 @@ export class ColorInputComponent {
         >
           <span class="color-input__label">{this.label}</span>
           <input
-            ref={(input: HTMLInputElement) => (this.input = input)}
+            ref={(input: HTMLInputElement | undefined) => (this.input = input as HTMLInputElement)}
             class="color-input__input"
             type="text"
             onInput={this.inputChanged}

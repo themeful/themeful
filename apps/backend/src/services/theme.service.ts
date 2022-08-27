@@ -7,7 +7,7 @@ import { SyncService } from './sync.service'
 
 @Injectable()
 export class ThemeService {
-  private themes: Themes
+  private themes!: Themes
 
   constructor(private readonly syncService: SyncService, private readonly file: FileService) {
     this.syncService.register('styleGuideBases', this.syncStyleGuideBases)

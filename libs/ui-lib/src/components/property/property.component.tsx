@@ -11,16 +11,16 @@ import '../icon'
 })
 export class PropertyComponent {
   /** The extendedStyle */
-  @Prop() extendedStyle?: ExtendedStyle
+  @Prop() extendedStyle!: ExtendedStyle
 
   /** Show group */
-  @Prop() showGroup = true
+  @Prop() showGroup? = true
 
   /** Edit event*/
-  @Event({ composed: false }) edit: EventEmitter
+  @Event({ composed: false }) edit!: EventEmitter
 
   /** Mapped property */
-  @State() mappedProperty: PropertyType
+  @State() mappedProperty!: PropertyType
 
   private click = () => this.edit.emit()
 
@@ -43,7 +43,7 @@ export class PropertyComponent {
         </tf-button>
         {this.getTemplate()}
 
-        {this.extendedStyle.name && (
+        {this.extendedStyle?.name && (
           <div class="property__name" style={this.mappedProperty.styles.name}>
             {this.extendedStyle?.global && <tf-icon size="small" icon="globe" />}
             <span>{this.getName()}</span>

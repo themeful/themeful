@@ -1,5 +1,5 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { AliasTokenFormData, DesignTokenFormAction, FormValues } from '@typings'
+import { AliasTokenFormData, AliasTokenReturnFields, DesignTokenFormAction } from '@typings'
 import '../../components/button'
 import '../../components/inputs/multi-select-input'
 
@@ -27,11 +27,9 @@ export class AliasTokenFormComponent {
     this.action.emit({ action: 'open' })
   }
 
-  private formValues = (): FormValues =>
-    Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control?.value
-      return result
-    }, {})
+  private formValues = (): AliasTokenReturnFields => ({
+    selected: this.controls['selected'].value,
+  })
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
@@ -51,7 +49,7 @@ export class AliasTokenFormComponent {
           controller: 'designToken',
           action: 'updateAliasTokens',
           identifier: this.formData.identifier,
-          fields: this.formValues() as unknown as { selected: string[] },
+          fields: this.formValues(),
         })
       } else if (valid) {
         this.action.emit({ action: 'close' })
@@ -68,7 +66,9 @@ export class AliasTokenFormComponent {
       <form class="form" onSubmit={this.save}>
         <h3>Select Alias Tokens</h3>
         <tf-multi-select-input
-          ref={(el: HTMLTfMultiSelectInputElement) => (this.controls['selected'] = el)}
+          ref={(el: HTMLTfMultiSelectInputElement | undefined) =>
+            (this.controls['selected'] = el as HTMLTfMultiSelectInputElement)
+          }
           items={this.formData.aliasTokens}
           value={this.formData.fields?.selected}
         />

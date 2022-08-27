@@ -34,10 +34,13 @@ export class DesignTokenSplitFormComponent {
   }
 
   private formValues = (): FormValues =>
-    Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control.value
-      return result
-    }, {})
+    Object.entries(this.controls).reduce(
+      (result: { [key: string]: string | number }, [key, control]) => {
+        result[key] = control.value
+        return result
+      },
+      {}
+    )
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
@@ -66,7 +69,7 @@ export class DesignTokenSplitFormComponent {
     this.action.emit({ action: 'close' })
   }
 
-  private nameValidation = (name: string): string | null =>
+  private nameValidation = (name: string | number): string | null =>
     name !== this.originName ? null : 'Please change the name'
 
   public render(): HTMLTfDesignTokenSplitFormElement {
@@ -74,19 +77,25 @@ export class DesignTokenSplitFormComponent {
       <form class="form" onSubmit={this.save}>
         <h3>Split: {this.originName}</h3>
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.controls['name'] = el as HTMLTfTextInputElement)
+          }
           label="Name"
           value={`${this.formData.fields?.name} Copy`}
           validation={this.nameValidation}
           minLength={4}
         />
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['description'] = el)}
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.controls['description'] = el as HTMLTfTextInputElement)
+          }
           label="Description"
-          value={this.formData.fields?.description}
+          value={this.formData.fields?.description as string}
         />
         <tf-multi-select-input
-          ref={(el: HTMLTfMultiSelectInputElement) => (this.controls['selected'] = el)}
+          ref={(el: HTMLTfMultiSelectInputElement | undefined) =>
+            (this.controls['selected'] = el as HTMLTfMultiSelectInputElement)
+          }
           items={this.formData.aliasTokens}
           value={this.formData.fields?.selected}
         />

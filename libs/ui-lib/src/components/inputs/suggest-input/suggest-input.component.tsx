@@ -21,16 +21,16 @@ export class SuggestInputComponent {
   @Prop() disabled = false
 
   /** Min input */
-  @Prop() minLength!: number
+  @Prop() minLength = 0
 
   /** Max input */
-  @Prop() maxLength!: number
+  @Prop() maxLength = 9999
 
   /** Input value */
   @Prop({ mutable: true }) value!: string | number
 
   /** validation function */
-  @Prop() validation!: (input: string | number) => string | null
+  @Prop() validation?: (input: string | number) => string | null
 
   /** Input Event */
   @Event({ composed: false }) inputChange!: EventEmitter
@@ -106,7 +106,7 @@ export class SuggestInputComponent {
       >
         <span class="suggest-input__label">{this.label}</span>
         <input
-          ref={(el: HTMLInputElement) => (this.input = el)}
+          ref={(el: HTMLInputElement | undefined) => (this.input = el as HTMLInputElement)}
           class="suggest-input__input"
           type="text"
           list={this.dataListId}

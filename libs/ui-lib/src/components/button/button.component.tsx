@@ -14,7 +14,7 @@ export class ButtonComponent {
   @Prop() kind: ButtonKind = 'secondary'
 
   /** Button size */
-  @Prop() size!: 'small' | 'large' | 'icon'
+  @Prop() size?: 'small' | 'large' | 'icon'
 
   /** Active state */
   @Prop() active = false

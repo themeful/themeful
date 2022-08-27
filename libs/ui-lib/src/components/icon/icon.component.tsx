@@ -14,7 +14,7 @@ export class IconComponent {
   /**
    * The icon size
    */
-  @Prop() size!: 'small' | 'large'
+  @Prop() size?: 'small' | 'large'
 
   public render(): HTMLTfIconElement {
     return (

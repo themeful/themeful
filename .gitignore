@@ -4,8 +4,6 @@
 /dist
 /tmp
 /out-tsc
-libs/ui-lib/src/components.d.ts
-apps/frontend/src/components.d.ts
 apps/backend/src/assets
 
 # dependencies

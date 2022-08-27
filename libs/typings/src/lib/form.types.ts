@@ -1,5 +1,6 @@
 import { KeyValues } from './keyValue.types'
 import { ExtendedStyle, StyleGuideBase, StyleMap } from './style.types'
+import { DirectValue } from './theme.types'
 
 // --------- Common ------------
 export type FormActions =
@@ -140,6 +141,10 @@ export interface AliasTokenFormData {
   identifier: string
   aliasTokens: string[]
   fields?: { selected: string[] }
+}
+
+export interface AliasTokenReturnFields {
+  selected: string[]
 }
 
 export interface RescanAction {
@@ -283,8 +288,14 @@ export interface ThemeValueFormData {
 
 export interface ThemeValueFormFields {
   media: string
-  style?: string
   direct?: string
+  style?: string
+}
+
+export interface ThemeValueReturnFields {
+  media: string
+  style?: string
+  direct?: DirectValue
 }
 
 export type ThemeValueFormAction =
@@ -307,13 +318,13 @@ export interface ThemeValueIdentifier {
 export interface ThemeValueCreateAction {
   action: 'create'
   identifier: ThemeValueIdentifier
-  fields: ThemeValueFormFields
+  fields: ThemeValueReturnFields
 }
 
 export interface ThemeValueUpdateAction {
   action: 'update'
   identifier: ThemeValueIdentifier
-  fields: ThemeValueFormFields
+  fields: ThemeValueReturnFields
 }
 
 export interface ThemeValueDeleteAction {
