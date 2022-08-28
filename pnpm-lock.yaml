@@ -10169,7 +10169,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.1.2
+      minimatch: 3.0.5
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -16874,10 +16874,10 @@ packages:
       typescript: '*'
       webpack: ^5.0.0
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       enhanced-resolve: 5.10.0
       micromatch: 4.0.5
-      semver: 7.3.7
+      semver: 7.3.4
       typescript: 4.8.2
       webpack: 5.74.0
     dev: true
@@ -16928,7 +16928,7 @@ packages:
   /tsconfig-paths-webpack-plugin/3.5.2:
     resolution: {integrity: sha512-EhnfjHbzm5IYI9YPNVIxx1moxMI4bpHD2e0zTXeDNQcwjjRaGepP7IhTHJkyDBG0CAOoxRfe7jCG630Ou+C6Pw==}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       enhanced-resolve: 5.10.0
       tsconfig-paths: 3.14.1
     dev: true
