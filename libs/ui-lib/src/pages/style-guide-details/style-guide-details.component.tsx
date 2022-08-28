@@ -8,9 +8,11 @@ import {
   FormIntegrationActions,
   StyleGroup,
   StyleGuideBase,
+  StyleGuideIntegrationAction,
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { Components } from '../../components'
 import '../../components/button'
 import '../../components/navigation'
 import '../../components/property'
@@ -37,7 +39,7 @@ export class StyleGuideDetailsComponent {
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
 
-  private onAction = ({ detail }: { detail: any }): void => {
+  private onAction = ({ detail }: { detail: StyleGuideIntegrationAction }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
       if (['duplicate', 'delete'].includes(detail.action)) {
@@ -83,15 +85,18 @@ export class StyleGuideDetailsComponent {
             this.styleGuide = styleguide
           }
         })
-        this.styleGuideGroups = styleGuides.reduce((result, styleguide) => {
-          result[styleguide.slug] = []
-          styleguide.types.forEach((type) => {
-            type.groups.forEach((group) => {
-              result[styleguide.slug].push(group.name)
+        this.styleGuideGroups = styleGuides.reduce(
+          (result: { [key: string]: string[] }, styleguide) => {
+            result[styleguide.slug] = []
+            styleguide.types.forEach((type) => {
+              type.groups.forEach((group) => {
+                result[styleguide.slug].push(group.name)
+              })
             })
-          })
-          return result
-        }, {})
+            return result
+          },
+          {}
+        )
       })
     )
   }
@@ -128,7 +133,12 @@ export class StyleGuideDetailsComponent {
             size="small"
           />
           <div class="style-guide__wrapper">{this.renderStyleGuide(this.styleGuide)}</div>
-          <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
+          <tf-form-integration
+            {...({
+              formData$: this.formData$,
+              onAction: this.onAction,
+            } as Components.TfFormIntegration)}
+          />
         </Host>
       )
     )

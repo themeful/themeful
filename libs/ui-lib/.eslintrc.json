@@ -25,7 +25,16 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
       "rules": {
+        "@stencil/async-methods": "off", // causing issues with the async @Method() annotation
+        "react/no-unknown-property": "off",
+        "react/jsx-key": "off",
+        "@typescript-eslint/no-unused-vars": "error",
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {
@@ -39,15 +48,6 @@
             ]
           }
         ]
-      }
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {
-        "@stencil/async-methods": "off", // causing issues with the async @Method() annotation
-        "react/no-unknown-property": "off",
-        "react/jsx-key": "off"
       }
     },
     {
