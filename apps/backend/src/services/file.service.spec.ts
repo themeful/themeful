@@ -25,16 +25,16 @@ describe('FileService', () => {
     jest.spyOn(fs, 'unlinkSync').mockImplementation()
     jest.spyOn(fs, 'existsSync').mockReturnValue(true)
     jest.spyOn(jsonfile, 'writeFileSync').mockImplementation()
-    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: string) => {
-      if (filename.includes('themes')) {
+    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: jsonfile.Path) => {
+      if ((filename as string).includes('themes')) {
         return clone(themes)
-      } else if (filename.includes('designTokens')) {
+      } else if ((filename as string).includes('designTokens')) {
         return clone(designTokens)
-      } else if (filename.includes('aliasTokens')) {
+      } else if ((filename as string).includes('aliasTokens')) {
         return clone(aliasTokens)
-      } else if (filename.includes('styleGuides')) {
+      } else if ((filename as string).includes('styleGuides')) {
         return clone(styleGuides)
-      } else if (filename.includes('themeful.json')) {
+      } else if ((filename as string).includes('themeful.json')) {
         return clone(config)
       } else {
         return { some: 'object' }
@@ -122,16 +122,16 @@ describe('FileService', () => {
     const unsorted = clone(styleGuides)
     unsorted['global'].styles['base_light'].group = 'ABase'
 
-    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: string) => {
-      if (filename.includes('themes')) {
+    jest.spyOn(jsonfile, 'readFileSync').mockImplementation((filename: jsonfile.Path) => {
+      if ((filename as string).includes('themes')) {
         return clone(themes)
-      } else if (filename.includes('designTokens')) {
+      } else if ((filename as string).includes('designTokens')) {
         return clone(designTokens)
-      } else if (filename.includes('aliasTokens')) {
+      } else if ((filename as string).includes('aliasTokens')) {
         return clone(aliasTokens)
-      } else if (filename.includes('styleGuides')) {
+      } else if ((filename as string).includes('styleGuides')) {
         return clone(unsorted)
-      } else if (filename.includes('themeful.json')) {
+      } else if ((filename as string).includes('themeful.json')) {
         return clone(config)
       } else {
         return { some: 'object' }

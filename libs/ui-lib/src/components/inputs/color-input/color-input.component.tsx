@@ -63,10 +63,10 @@ export class ColorInputComponent {
   }
 
   private format: ColorFormat = 'HEX'
-  private hue$ = new Subject()
-  private alpha$ = new Subject()
-  private shade$ = new Subject()
-  private input$ = new Subject()
+  private hue$ = new Subject<string>()
+  private alpha$ = new Subject<string>()
+  private shade$ = new Subject<{ x: number; y: number }>()
+  private input$ = new Subject<string>()
   private sub = new Subscription()
 
   private validateColor(color: string): boolean {
@@ -81,7 +81,7 @@ export class ColorInputComponent {
   private setControls(newColor: string): void {
     const color = new ColorTranslator(this.valid ? newColor : 'hsl(180,50%,40%)')
     this.changeSource = 'input'
-    this.input$.next(this.input.value)
+    this.input$.next(this.input.value as string)
     this.hue.value = `${color.H}`
     this.alpha.value = `${(1 - color.A) * 100}`
     this.alpha$.next(this.alpha.value)
@@ -191,7 +191,7 @@ export class ColorInputComponent {
 
   private setInput = (color: ColorInput): void => {
     const colorObj = new ColorTranslator(color)
-    this.input$.next(colorObj[`${this.format}${colorObj.A < 1 ? 'A' : ''}`])
+    this.input$.next(colorObj[`${this.format}${colorObj.A < 1 ? 'A' : ''}`] as string)
   }
 
   private toggleFormat = () => {
@@ -217,7 +217,7 @@ export class ColorInputComponent {
     return 'HEX'
   }
 
-  private trackPointer = (event: Event): void => {
+  private trackPointer = (event: MouseEvent): void => {
     if (this.trackMouseMove) {
       if (event.type === 'mouseup') {
         this.trackMouseMove = false
@@ -249,6 +249,16 @@ export class ColorInputComponent {
     return this.valid
   }
 
+  private hueChanged = (event: Event) => {
+    this.changeSource = 'controls'
+    this.hue$.next((event.target as HTMLInputElement).value)
+  }
+
+  private alphaChanged = (event: Event) => {
+    this.changeSource = 'controls'
+    this.alpha$.next((event.target as HTMLInputElement).value)
+  }
+
   // =============== RENDER ===============
   private renderControls(): HTMLElement {
     return (
@@ -256,30 +266,22 @@ export class ColorInputComponent {
         <div class="color-input__control-row">
           <div class="color-input__controls">
             <input
+              ref={(hue: HTMLInputElement | undefined) => (this.hue = hue as HTMLInputElement)}
+              onInput={this.hueChanged}
               class="color-input__hue"
               type="range"
               min="0"
               max="360"
-              {...{
-                ref: (hue: HTMLInputElement) => (this.hue = hue as HTMLInputElement),
-                onInput: (event: Event) => {
-                  this.changeSource = 'controls'
-                  this.hue$.next((event.target as HTMLInputElement).value)
-                },
-              }}
             />
             <input
+              ref={(alpha: HTMLInputElement | undefined) =>
+                (this.alpha = alpha as HTMLInputElement)
+              }
+              onInput={this.alphaChanged}
               class="color-input__alpha"
               type="range"
               min="0"
               max="100"
-              {...{
-                ref: (alpha: HTMLInputElement) => (this.alpha = alpha),
-                onInput: (event: Event) => {
-                  this.changeSource = 'controls'
-                  this.alpha$.next((event.target as HTMLInputElement).value)
-                },
-              }}
             />
           </div>
           <div

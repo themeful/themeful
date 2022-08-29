@@ -6,6 +6,7 @@ import {
   DesignToken,
   DesignTokens,
   FormatedStyleGuides,
+  FormIntegrationActions,
   GlobalConfig,
   Style,
   StyleGuideBase,
@@ -15,7 +16,15 @@ import {
   ThemeValue,
 } from '@typings'
 import { http } from '@utils'
-import { combineLatest, debounceTime, Observable, ReplaySubject, shareReplay, Subject } from 'rxjs'
+import {
+  combineLatest,
+  debounceTime,
+  Observable,
+  of,
+  ReplaySubject,
+  shareReplay,
+  Subject,
+} from 'rxjs'
 import io from 'socket.io-client'
 
 export class APIService {
@@ -90,34 +99,74 @@ export class APIService {
     })
   }
 
-  public action({ action, controller, fields, identifier }): Observable<boolean> {
+  public action({
+    action,
+    controller,
+    fields,
+    identifier,
+  }: FormIntegrationActions): Observable<boolean> {
     switch (controller) {
       case 'styleguide':
-        return this.dispatchStyleGuide({ action, fields, identifier })
+        return this.dispatchStyleGuide({
+          action,
+          fields: fields as StyleGuideBase | string,
+          identifier: identifier as string,
+        })
       case 'style':
-        return this.dispatchStyle({ action, fields, identifier })
+        return this.dispatchStyle({
+          action,
+          fields: fields as Style | string,
+          identifier: identifier as {
+            style: string
+            styleGuide?: string
+          },
+        })
       case 'theme':
-        return this.dispatchTheme({ action, fields, identifier })
+        return this.dispatchTheme({
+          action,
+          fields: fields as Theme | string,
+          identifier: identifier as string,
+        })
       case 'themeValue':
-        return this.dispatchThemeValue({ action, fields, identifier })
+        return this.dispatchThemeValue({
+          action,
+          fields: fields as ThemeValue | string,
+          identifier: identifier as { theme: string; designToken: string; media: string },
+        })
       case 'aliasToken':
         return this.dispatchAliasToken({ action })
       case 'designToken':
-        return this.dispatchDesignToken({ action, fields, identifier })
+        return this.dispatchDesignToken({
+          action,
+          fields: fields as DesignToken | string | { selected: string[] },
+          identifier: identifier as string,
+        })
+      default:
+        return of(false)
     }
   }
 
   // Themes
-  private dispatchTheme({ action, fields, identifier }): Observable<boolean> {
+  private dispatchTheme({
+    action,
+    fields,
+    identifier,
+  }: {
+    action: string
+    fields: Theme | string
+    identifier: string
+  }): Observable<boolean> {
     switch (action) {
       case 'create':
-        return this.createTheme(fields)
+        return this.createTheme(fields as Theme)
       case 'update':
-        return this.updateTheme(identifier, fields)
+        return this.updateTheme(identifier, fields as Theme)
       case 'duplicate':
-        return this.duplicateTheme(identifier, fields)
+        return this.duplicateTheme(identifier, fields as string)
       case 'delete':
         return this.deleteTheme({ identifier })
+      default:
+        return of(false)
     }
   }
 
@@ -141,14 +190,24 @@ export class APIService {
   }
 
   // ThemeValues
-  private dispatchThemeValue({ action, fields, identifier }): Observable<boolean> {
+  private dispatchThemeValue({
+    action,
+    fields,
+    identifier,
+  }: {
+    action: string
+    fields: ThemeValue | string
+    identifier: { theme: string; designToken: string; media: string }
+  }): Observable<boolean> {
     switch (action) {
       case 'create':
-        return this.createThemeValue(identifier, fields)
+        return this.createThemeValue(identifier, fields as ThemeValue)
       case 'update':
-        return this.updateThemeValue(identifier, fields)
+        return this.updateThemeValue(identifier, fields as ThemeValue)
       case 'delete':
         return this.deleteThemeValue(identifier)
+      default:
+        return of(false)
     }
   }
 
@@ -187,14 +246,27 @@ export class APIService {
   }
 
   // StyleGuides
-  private dispatchStyle({ action, fields, identifier }): Observable<boolean> {
+  private dispatchStyle({
+    action,
+    fields,
+    identifier,
+  }: {
+    action: string
+    fields: Style | string
+    identifier: {
+      style: string
+      styleGuide?: string
+    }
+  }): Observable<boolean> {
     switch (action) {
       case 'create':
-        return this.createStyle(fields, identifier)
+        return this.createStyle(fields as Style, identifier as { styleGuide?: string })
       case 'update':
-        return this.updateStyle(identifier, fields)
+        return this.updateStyle(identifier, fields as Style)
       case 'delete':
         return this.deleteStyle(identifier)
+      default:
+        return of(false)
     }
   }
 
@@ -229,18 +301,31 @@ export class APIService {
   }
 
   // DesignTokens
-  private dispatchDesignToken({ action, fields, identifier }): Observable<boolean> {
+  private dispatchDesignToken({
+    action,
+    fields,
+    identifier,
+  }: {
+    action: string
+    fields: DesignToken | string | { selected: string[] }
+    identifier: string
+  }): Observable<boolean> {
     switch (action) {
       case 'create':
-        return this.createDesignToken(fields)
+        return this.createDesignToken(fields as DesignToken)
       case 'update':
-        return this.updateDesignToken(identifier, fields)
+        return this.updateDesignToken(identifier, fields as DesignToken)
       case 'delete':
         return this.deleteDesignToken(identifier)
       case 'split':
-        return this.splitDesignToken(identifier, { ...fields, aliasTokens: fields?.selected || [] })
+        return this.splitDesignToken(identifier, {
+          ...(fields as DesignToken),
+          aliasTokens: (fields as { selected: string[] }).selected || [],
+        })
       case 'updateAliasTokens':
-        return this.selectAliasTokens(identifier, fields?.selected || [])
+        return this.selectAliasTokens(identifier, (fields as { selected: string[] }).selected || [])
+      default:
+        return of(false)
     }
   }
 
@@ -273,16 +358,26 @@ export class APIService {
   }
 
   // StyleGuideBase
-  private dispatchStyleGuide({ action, fields, identifier }): Observable<boolean> {
+  private dispatchStyleGuide({
+    action,
+    fields,
+    identifier,
+  }: {
+    action: string
+    fields: StyleGuideBase | string
+    identifier: string
+  }): Observable<boolean> {
     switch (action) {
       case 'create':
-        return this.createStyleGuide(fields)
+        return this.createStyleGuide(fields as StyleGuideBase)
       case 'update':
-        return this.updateStyleGuide(identifier, fields)
+        return this.updateStyleGuide(identifier, fields as StyleGuideBase)
       case 'duplicate':
-        return this.duplicateStyleGuide(identifier, fields)
+        return this.duplicateStyleGuide(identifier, fields as string)
       case 'delete':
         return this.deleteStyleGuide(identifier)
+      default:
+        return of(false)
     }
   }
 
@@ -312,10 +407,12 @@ export class APIService {
   }
 
   // AliasTokens
-  private dispatchAliasToken({ action }): Observable<boolean> {
+  private dispatchAliasToken({ action }: { action: string }): Observable<boolean> {
     switch (action) {
       case 'rescan':
         return this.rescanAliasTokens()
+      default:
+        return of(false)
     }
   }
 

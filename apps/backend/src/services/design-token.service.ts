@@ -7,7 +7,7 @@ import { SyncService } from './sync.service'
 
 @Injectable()
 export class DesignTokenService {
-  private designTokens: DesignTokens
+  private designTokens!: DesignTokens
 
   constructor(private readonly syncService: SyncService, private readonly file: FileService) {
     this.syncService.register('aliasTokens', this.syncAliasTokens)
@@ -27,7 +27,7 @@ export class DesignTokenService {
   }
 
   public create(designToken: DesignTokenAPI): boolean {
-    if (this.designTokens[designToken.token]) {
+    if (this.designTokens[designToken.token as string]) {
       return false
     }
 
@@ -58,7 +58,7 @@ export class DesignTokenService {
   public update(token: string, designToken: DesignTokenAPI): boolean {
     if (
       !this.designTokens[token] ||
-      (token !== designToken.token && !!this.designTokens[designToken.token])
+      (token !== designToken.token && !!this.designTokens[designToken.token as string])
     ) {
       return false
     }
@@ -114,9 +114,9 @@ export class DesignTokenService {
       short,
     }
 
-    this.designTokens[oldToken].aliasTokens = this.designTokens[oldToken].aliasTokens.filter(
-      (aliasToken) => !designToken.aliasTokens.includes(aliasToken)
-    )
+    this.designTokens[oldToken].aliasTokens = (
+      this.designTokens[oldToken].aliasTokens || []
+    ).filter((aliasToken) => !designToken.aliasTokens?.includes(aliasToken))
 
     this.syncService.designTokens({
       action: 'split',
@@ -166,19 +166,19 @@ export class DesignTokenService {
     switch (data.action) {
       case 'update':
         Object.keys(this.designTokens).forEach((designToken) => {
-          let aliasTokens = this.designTokens[designToken].aliasTokens
-          if (aliasTokens.includes(data.primary)) {
+          let aliasTokens = this.designTokens[designToken].aliasTokens || []
+          if (aliasTokens.includes(data.primary as string)) {
             aliasTokens = aliasTokens.filter((aliasToken) => aliasToken !== data.primary)
-            aliasTokens.push(data.secondary)
+            aliasTokens.push(data.secondary as string)
             this.designTokens[designToken].aliasTokens = aliasTokens
           }
         })
         break
       default:
         Object.keys(this.designTokens).forEach((designToken) => {
-          this.designTokens[designToken].aliasTokens = this.designTokens[
-            designToken
-          ].aliasTokens.filter((aliasToken) => data.values.includes(aliasToken))
+          this.designTokens[designToken].aliasTokens = (
+            this.designTokens[designToken].aliasTokens || []
+          ).filter((aliasToken) => data.values?.includes(aliasToken))
         })
     }
 
@@ -192,14 +192,17 @@ export class DesignTokenService {
       }
       return aValue.group > bValue.group ? 1 : -1
     })
-    const usedUUIDs = []
+    const usedUUIDs: string[] = []
     Object.keys(this.designTokens).forEach((key) => {
-      if (!this.designTokens[key].short || usedUUIDs.includes(this.designTokens[key].short)) {
+      if (
+        !this.designTokens[key].short ||
+        usedUUIDs.includes(this.designTokens[key].short as string)
+      ) {
         this.designTokens[key].short = uuid()
       }
-      usedUUIDs.push(this.designTokens[key].short)
+      usedUUIDs.push(this.designTokens[key].short as string)
 
-      this.designTokens[key].aliasTokens = this.designTokens[key].aliasTokens.sort()
+      this.designTokens[key].aliasTokens = (this.designTokens[key].aliasTokens || []).sort()
     })
     this.file.save('designTokens', this.designTokens)
   }

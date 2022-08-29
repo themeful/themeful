@@ -41,6 +41,7 @@ specifiers:
   '@types/jest': 27.5.2
   '@types/jsonfile': ^6.1.0
   '@types/node': 18.7.1
+  '@types/object-hash': ^2.2.1
   '@typescript-eslint/eslint-plugin': 4.23.0
   '@typescript-eslint/parser': 4.23.0
   amqp-connection-manager: 4.1.6
@@ -157,6 +158,7 @@ devDependencies:
   '@types/jest': 27.5.2
   '@types/jsonfile': 6.1.0
   '@types/node': 18.7.1
+  '@types/object-hash': 2.2.1
   '@typescript-eslint/eslint-plugin': 4.23.0_emclcbf5mispsqpdqapfw2g2ii
   '@typescript-eslint/parser': 4.23.0_hxadhbs2xogijvk7vq4t2azzbu
   amqp-connection-manager: 4.1.6_amqplib@0.10.2
@@ -5578,6 +5580,10 @@ packages:
 
   /@types/npmlog/4.1.4:
     resolution: {integrity: sha512-WKG4gTr8przEZBiJ5r3s8ZIAoMXNbOgQ+j/d5O4X3x6kZJRLNvyUJuUK/KoG3+8BaOHPhp2m7WC6JKKeovDSzQ==}
+    dev: true
+
+  /@types/object-hash/2.2.1:
+    resolution: {integrity: sha512-i/rtaJFCsPljrZvP/akBqEwUP2y5cZLOmvO+JaYnz01aPknrQ+hB5MRcO7iqCUsFaYfTG8kGfKUyboA07xeDHQ==}
     dev: true
 
   /@types/parse-json/4.0.0:

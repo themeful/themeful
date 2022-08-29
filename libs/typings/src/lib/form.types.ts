@@ -12,6 +12,7 @@ export type FormActions =
 
 export type FormIntegrationActions =
   | StyleGuideIntegrationAction
+  | ThemeValueIntegrationAction
   | StyleIntegrationAction
   | ThemeIntegrationAction
   | DesignTokenIntegrationAction
@@ -48,6 +49,8 @@ export type StyleGuideFormAction =
 
 export type StyleGuideIntegrationAction = StyleGuideFormAction & {
   controller: 'styleguide'
+  identifier?: string
+  fields?: StyleGuideBase
 }
 
 export interface CloseAction {
@@ -101,6 +104,8 @@ export type StyleFormAction =
 
 export type StyleIntegrationAction = StyleFormAction & {
   controller: 'style'
+  identifier?: StyleIdentifier
+  fields?: ExtendedStyle
 }
 
 export interface StyleIdentifier {
@@ -131,6 +136,8 @@ export type AliasTokenFormAction = CloseAction | OpenAction | RescanAction
 
 export type AliasTokenIntegrationAction = AliasTokenFormAction & {
   controller: 'aliasToken'
+  identifier?: string
+  fields?: { selected: string[] }
 }
 
 export type AliasTokenIntegration = AliasTokenFormData & {
@@ -172,6 +179,8 @@ export type ThemeFormAction =
 
 export type ThemeIntegrationAction = ThemeFormAction & {
   controller: 'theme'
+  identifier?: string
+  fields?: { name: string; styleGuide: string }
 }
 
 export interface ThemeCreateAction {
@@ -241,6 +250,8 @@ export type DesignTokenFormAction =
 
 export type DesignTokenIntegrationAction = DesignTokenFormAction & {
   controller: 'designToken'
+  identifier?: string
+  fields?: DesignTokenFormFields
 }
 
 export interface DesignTokenCreateAction {
@@ -307,6 +318,8 @@ export type ThemeValueFormAction =
 
 export type ThemeValueIntegrationAction = ThemeValueFormAction & {
   controller: 'themeValue'
+  identifier?: ThemeValueIdentifier
+  fields?: ThemeValueReturnFields | string
 }
 
 export interface ThemeValueIdentifier {

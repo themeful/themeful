@@ -22,9 +22,7 @@ describe('SystemUtils', () => {
     })
 
     it('should return files without filefilter', () => {
-      expect(findInSync({ term, flags: 'gm' }, '/some/test/path', undefined)).toEqual(
-        findInSyncResult
-      )
+      expect(findInSync({ term, flags: 'gm' }, '/some/test/path')).toEqual(findInSyncResult)
     })
 
     it('should return files with string pattern', () => {

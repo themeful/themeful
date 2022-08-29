@@ -15,8 +15,8 @@ export function styleGuidesScss(path: string, styleGuides: StyleGuides): void {
       })
     }
   }
-  const attributes = []
-  const mediaqueriesAttr = []
+  const attributes: string[] = []
+  const mediaqueriesAttr: string[] = []
   output.forEach((attr) => {
     if (attr.type === 'mediaquery') {
       mediaqueriesAttr.push(`@mixin ${attr.key} {\n  @media ${attr.value} {\n    @content;\n  }\n}`)

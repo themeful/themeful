@@ -719,11 +719,11 @@ declare namespace LocalJSX {
         /**
           * Component Item Bundle
          */
-        "componentBundle$"?: Observable<ComponentItemBundle>;
+        "componentBundle$": Observable<ComponentItemBundle>;
         /**
           * Style Guide Slug
          */
-        "match"?: { params: { id: string } };
+        "match": { params: { id: string } };
         /**
           * Event emitted when an action is triggered
          */
@@ -733,7 +733,7 @@ declare namespace LocalJSX {
         /**
           * Component List Bundle
          */
-        "componentListBundle$"?: Observable<ComponentListBundle>;
+        "componentListBundle$": Observable<ComponentListBundle>;
         /**
           * Event emitted when an action is triggered
          */
@@ -1077,7 +1077,7 @@ declare namespace LocalJSX {
         /**
           * Toast msg
          */
-        "msg$"?: Observable<Toast>;
+        "msg$": Observable<Toast>;
         /**
           * Input Event
          */

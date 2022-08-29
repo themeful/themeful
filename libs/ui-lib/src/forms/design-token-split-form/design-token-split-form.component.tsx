@@ -34,13 +34,10 @@ export class DesignTokenSplitFormComponent {
   }
 
   private formValues = (): FormValues =>
-    Object.entries(this.controls).reduce(
-      (result: { [key: string]: string | number }, [key, control]) => {
-        result[key] = control.value
-        return result
-      },
-      {}
-    )
+    Object.entries(this.controls).reduce((result: { [key: string]: string }, [key, control]) => {
+      result[key] = control.value as string
+      return result
+    }, {})
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(

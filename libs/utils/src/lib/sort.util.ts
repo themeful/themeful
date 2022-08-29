@@ -10,5 +10,5 @@ export const sortMap = <T>(
             return a > b ? 1 : -1
           }
     )
-    .reduce((o, [k, v]) => ((o[k] = v), o), {})
+    .reduce((o: { [key: string]: T }, [k, v]) => ((o[k] = v), o), {})
 }

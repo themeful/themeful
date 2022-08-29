@@ -32,7 +32,7 @@ export class ThemeService {
           })
           this.syncStyleGuides({
             values: Object.entries(styleGuides).reduce(
-              (output, [slug, styleGuide]) => [
+              (output: string[], [slug, styleGuide]) => [
                 ...output,
                 ...Object.keys(styleGuide.styles).map((name) => `${slug}_${name}`),
               ],
@@ -112,7 +112,11 @@ export class ThemeService {
     return true
   }
 
-  public createValue(theme, token, { media, style, direct }: MediaValueDetail): boolean {
+  public createValue(
+    theme: string,
+    token: string,
+    { media, style, direct }: MediaValueDetail
+  ): boolean {
     if (!this.themes[theme]) {
       return false
     }
@@ -128,9 +132,9 @@ export class ThemeService {
   }
 
   public updateValue(
-    theme,
-    token,
-    media,
+    theme: string,
+    token: string,
+    media: string,
     { media: newMedia, style, direct }: MediaValueDetail
   ): boolean {
     const designToken = this.themes[theme]?.styles[token]
@@ -147,7 +151,7 @@ export class ThemeService {
     return true
   }
 
-  public deleteValue(theme, token, media): boolean {
+  public deleteValue(theme: string, token: string, media: string): boolean {
     const designToken = this.themes[theme]?.styles[token]
     if (!designToken || !designToken[media]) {
       return false
@@ -166,28 +170,33 @@ export class ThemeService {
           const themeName = slugify([theme.styleGuide, theme.name])
           Object.keys(theme.styles).forEach((designToken) => {
             Object.keys(this.themes[themeName].styles[designToken]).forEach((key) => {
-              if (key === data.primary) {
-                this.themes[themeName].styles[designToken][data.secondary] = clone(
-                  this.themes[themeName].styles[designToken][data.primary]
-                )
-                delete this.themes[themeName].styles[designToken][key]
-              } else if (this.themes[themeName].styles[designToken][key].style === data.primary) {
-                this.themes[themeName].styles[designToken][key].style = data.secondary
+              if (data.secondary) {
+                if (key === data.primary) {
+                  this.themes[themeName].styles[designToken][data.secondary] = clone(
+                    this.themes[themeName].styles[designToken][data.primary]
+                  )
+                  delete this.themes[themeName].styles[designToken][key]
+                } else if (this.themes[themeName].styles[designToken][key].style === data.primary) {
+                  this.themes[themeName].styles[designToken][key].style = data.secondary
+                }
               }
             })
           })
         })
+
         break
       default:
         Object.values(this.themes).forEach((theme) => {
           const themeName = slugify([theme.styleGuide, theme.name])
           Object.keys(theme.styles).forEach((designToken) => {
             Object.keys(this.themes[themeName].styles[designToken]).forEach((key) => {
-              if (!data.values.includes(key) && key !== 'default') {
+              if (!(data.values || []).includes(key) && key !== 'default') {
                 delete this.themes[themeName].styles[designToken][key]
               } else if (
                 this.themes[themeName].styles[designToken][key].style &&
-                !data.values.includes(this.themes[themeName].styles[designToken][key].style)
+                !(data.values || []).includes(
+                  this.themes[themeName].styles[designToken][key].style as string
+                )
               ) {
                 delete this.themes[themeName].styles[designToken][key]
               }
@@ -203,7 +212,7 @@ export class ThemeService {
       case 'update':
         Object.values(this.themes).forEach((theme) => {
           const themeName = slugify([theme.styleGuide, theme.name])
-          if (theme.styles[data.primary]) {
+          if (data.primary && data.secondary && theme.styles[data.primary]) {
             this.themes[themeName].styles[data.secondary] = theme.styles[data.primary]
             delete this.themes[themeName].styles[data.primary]
           }
@@ -211,7 +220,7 @@ export class ThemeService {
         break
       case 'split':
         Object.entries(this.themes).forEach(([themeName, theme]) => {
-          if (theme.styles[data.primary]) {
+          if (data.primary && data.secondary && theme.styles[data.primary]) {
             this.themes[themeName].styles[data.secondary] = clone(theme.styles[data.primary])
           }
         })
@@ -220,7 +229,7 @@ export class ThemeService {
         Object.values(this.themes).forEach((theme) => {
           const themeName = slugify([theme.styleGuide, theme.name])
           Object.keys(theme.styles).forEach((key) => {
-            if (!data.values.includes(key)) {
+            if (!(data.values || []).includes(key)) {
               delete this.themes[themeName].styles[key]
             }
           })
@@ -237,11 +246,13 @@ export class ThemeService {
     switch (data.action) {
       case 'update':
         if (
+          data.primary &&
+          data.secondary &&
           currentStyleGuides.includes(data.primary) &&
           !currentStyleGuides.includes(data.secondary)
         ) {
           Object.keys(this.themes).forEach((slug) => {
-            if (this.themes[slug].styleGuide === data.primary) {
+            if (data.primary && data.secondary && this.themes[slug].styleGuide === data.primary) {
               const newSlug = slugify([data.secondary, this.themes[slug].name])
               this.themes[newSlug] = this.changeSlug(
                 clone(this.themes[slug]),
@@ -255,11 +266,13 @@ export class ThemeService {
         break
       case 'duplicate':
         if (
+          data.primary &&
+          data.secondary &&
           currentStyleGuides.includes(data.primary) &&
           !currentStyleGuides.includes(data.secondary)
         ) {
           Object.keys(this.themes).forEach((slug) => {
-            if (this.themes[slug].styleGuide === data.primary) {
+            if (data.primary && data.secondary && this.themes[slug].styleGuide === data.primary) {
               const newSlug = slugify([data.secondary, this.themes[slug].name])
               this.themes[newSlug] = this.changeSlug(
                 clone(this.themes[slug]),
@@ -272,7 +285,7 @@ export class ThemeService {
         break
       default:
         Object.keys(this.themes).forEach((slug) => {
-          if (!data.values.includes(this.themes[slug].styleGuide)) {
+          if (data.values && !data.values.includes(this.themes[slug].styleGuide)) {
             delete this.themes[slug]
           }
         })

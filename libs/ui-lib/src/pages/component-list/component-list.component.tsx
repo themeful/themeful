@@ -4,9 +4,11 @@ import {
   ComponentListBundle,
   Components,
   FormIntegrationActions,
+  ThemeIntegrationAction,
   Themes,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { Components as ComponentTypes } from '../../components'
 import '../../components/button'
 import '../../components/icon'
 import '../../components/menu'
@@ -21,20 +23,20 @@ import '../../forms/form-integration'
 })
 export class ComponentListComponent {
   /** Component List Bundle */
-  @Prop() componentListBundle$: Observable<ComponentListBundle>
+  @Prop() componentListBundle$!: Observable<ComponentListBundle>
 
-  @State() components: Components
-  private themes: Themes
-  private aliasTokens: AliasTokens
+  @State() components!: Components
+  private themes!: Themes
+  private aliasTokens!: AliasTokens
   private formData$ = new Subject()
   private nav = []
 
   private sub = new Subscription()
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
+  @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
 
-  private onAction = ({ detail }): void => {
+  private onAction = ({ detail }: { detail: ThemeIntegrationAction }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
     }
@@ -76,7 +78,12 @@ export class ComponentListComponent {
         <stencil-route-title pageTitle="Themeful - Components" />
         <tf-navigation items={this.nav} size="small" />
         {this.components && this.renderComponents()}
-        <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
+        <tf-form-integration
+          {...({
+            formData$: this.formData$,
+            onAction: this.onAction,
+          } as ComponentTypes.TfFormIntegration)}
+        />
       </Host>
     )
   }

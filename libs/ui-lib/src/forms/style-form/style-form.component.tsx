@@ -104,7 +104,7 @@ export class StyleFormComponent {
           }
           label="Type"
           items={this.formData.propertyTypes}
-          value={this.formData.fields?.type}
+          value={this.formData.fields?.type as string}
           {...{
             onInputChange: ({ target }) => {
               this.type = (target as HTMLTfSelectInputElement).value as string

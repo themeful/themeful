@@ -72,6 +72,7 @@
     "@types/jest": "27.5.2",
     "@types/jsonfile": "^6.1.0",
     "@types/node": "18.7.1",
+    "@types/object-hash": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "4.23.0",
     "amqp-connection-manager": "4.1.6",
