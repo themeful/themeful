@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@fastify/static': 6.5.0
-  '@grpc/grpc-js': 1.6.10
+  '@grpc/grpc-js': 1.6.11
   '@grpc/proto-loader': 0.7.2
   '@nestjs/common': 9.0.7
   '@nestjs/core': 9.0.7
@@ -123,9 +123,9 @@ dependencies:
   tslib: 2.4.0
 
 devDependencies:
-  '@grpc/grpc-js': 1.6.10
+  '@grpc/grpc-js': 1.6.11
   '@grpc/proto-loader': 0.7.2
-  '@nestjs/microservices': 8.4.7_xamlloxdtj5vvd4dpxd6ryhosq
+  '@nestjs/microservices': 8.4.7_awv47xw4e6nxqyckdvzy35dmhe
   '@nestjs/schematics': 9.0.1_typescript@4.8.2
   '@nestjs/testing': 9.0.7_7jplvfrqbzzkmubb5s3pkhgsdy
   '@nrwl/cli': 14.5.10
@@ -220,7 +220,7 @@ packages:
         optional: true
     dependencies:
       ajv: 8.11.0
-      ajv-formats: 2.1.1
+      ajv-formats: 2.1.1_ajv@8.11.0
       jsonc-parser: 3.0.0
       rxjs: 6.6.7
       source-map: 0.7.3
@@ -1779,8 +1779,8 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@grpc/grpc-js/1.6.10:
-    resolution: {integrity: sha512-XTX5z/P5kH802MDoVm/rqOil0UwYEOEjf9+NPgfmm5UINIxDzwYaXfVR6z8svCBG8Hlbu/FzkXqhP8J5xaWzSQ==}
+  /@grpc/grpc-js/1.6.11:
+    resolution: {integrity: sha512-e/adiPjUxf5cKYiAlV4m+0jJS4k6g2w78X7WTZB3ISOBzcCwm+cwjB2dSRfBHbu46inGGzQMmWAmsgYLg8yT5g==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.2
@@ -2208,7 +2208,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
-      '@nestjs/microservices': 8.4.7_xamlloxdtj5vvd4dpxd6ryhosq
+      '@nestjs/microservices': 8.4.7_awv47xw4e6nxqyckdvzy35dmhe
       '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
       '@nestjs/websockets': 9.0.11_lwczkvnmapmsdfxfkrkqam2oea
       '@nuxtjs/opencollective': 0.3.2
@@ -2223,7 +2223,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/8.4.7_xamlloxdtj5vvd4dpxd6ryhosq:
+  /@nestjs/microservices/8.4.7_awv47xw4e6nxqyckdvzy35dmhe:
     resolution: {integrity: sha512-JZX29tBWbbPa+Q06QcCbwKTyEsOFHAPrxgfEkRNwoaiEqqCsITT9w2n5bcz3vlUurdpy5dIgX3/almbitghbKg==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2259,7 +2259,7 @@ packages:
       redis:
         optional: true
     dependencies:
-      '@grpc/grpc-js': 1.6.10
+      '@grpc/grpc-js': 1.6.11
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
       '@nestjs/core': 9.0.7_lt5bq4cyg2pmju7qakuqqndgwq
       '@nestjs/websockets': 9.0.11_lwczkvnmapmsdfxfkrkqam2oea
@@ -2349,7 +2349,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
       '@nestjs/core': 9.0.7_lt5bq4cyg2pmju7qakuqqndgwq
-      '@nestjs/microservices': 8.4.7_xamlloxdtj5vvd4dpxd6ryhosq
+      '@nestjs/microservices': 8.4.7_awv47xw4e6nxqyckdvzy35dmhe
       '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
       tslib: 2.4.0
     dev: true
@@ -6210,8 +6210,10 @@ packages:
       ajv: 6.12.6
     dev: true
 
-  /ajv-formats/2.1.1:
+  /ajv-formats/2.1.1_ajv@8.11.0:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
+    peerDependencies:
+      ajv: ^8.0.0
     peerDependenciesMeta:
       ajv:
         optional: true
@@ -15228,7 +15230,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
@@ -15551,7 +15553,7 @@ packages:
     dependencies:
       '@types/json-schema': 7.0.11
       ajv: 8.11.0
-      ajv-formats: 2.1.1
+      ajv-formats: 2.1.1_ajv@8.11.0
       ajv-keywords: 5.1.0_ajv@8.11.0
     dev: true
 
