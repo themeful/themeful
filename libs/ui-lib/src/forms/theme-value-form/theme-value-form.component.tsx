@@ -1,5 +1,11 @@
 import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core'
-import { ThemeValueFormAction, ThemeValueFormData, ThemeValueFormFields } from '@typings'
+import {
+  DirectValue,
+  ThemeValueFormAction,
+  ThemeValueFormData,
+  ThemeValueIdentifier,
+  ThemeValueReturnFields,
+} from '@typings'
 import '../../components/button'
 import '../../components/inputs/color-input'
 import '../../components/inputs/select-input'
@@ -13,14 +19,14 @@ import '../../components/property'
 })
 export class ThemeValueFormComponent {
   /** Data for the form */
-  @Prop() formData: ThemeValueFormData
+  @Prop() formData!: ThemeValueFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<ThemeValueFormAction>
+  @Event({ composed: false }) action!: EventEmitter<ThemeValueFormAction>
 
   @State() changed = false
-  @State() editMode: boolean
-  @State() type: string
+  @State() editMode!: boolean
+  @State() type!: string
   @State() selected = ''
   @State() toggle: 'style' | 'direct' = 'style'
 
@@ -29,11 +35,11 @@ export class ThemeValueFormComponent {
   } = {}
 
   public componentWillLoad(): void {
-    this.editMode = this.formData?.identifier?.media && true
+    this.editMode = !!this.formData?.identifier?.media && true
     this.type = this.formData.type
     this.toggle = this.formData.fields?.direct ? 'direct' : 'style'
     if (this.toggle === 'style') {
-      this.selected = this.formData.fields?.style
+      this.selected = this.formData.fields?.style as string
     }
   }
 
@@ -41,20 +47,28 @@ export class ThemeValueFormComponent {
     this.action.emit({ action: 'open' })
   }
 
-  private formValues = (): { [key: string]: string | number } => {
-    const values = Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control.value
-      return result
-    }, {})
+  private formValues = (): ThemeValueReturnFields => {
+    const values = Object.entries(this.controls).reduce(
+      (result: { [key: string]: string }, [key, control]) => {
+        result[key] = control.value as string
+        return result
+      },
+      {}
+    )
     if (this.toggle === 'style') {
-      values['style'] = this.selected
+      return {
+        media: values['media'],
+        style: this.selected,
+      }
     } else {
-      values['direct'] = {
-        value: values['direct'],
-        type: this.type,
+      return {
+        media: values['media'],
+        direct: {
+          value: values['direct'],
+          type: this.type,
+        } as DirectValue,
       }
     }
-    return values
   }
 
   private validate = (): Promise<boolean> => {
@@ -85,14 +99,14 @@ export class ThemeValueFormComponent {
         if (this.editMode) {
           this.action.emit({
             action: 'update',
-            identifier: this.formData.identifier,
-            fields: this.formValues() as unknown as ThemeValueFormFields,
+            identifier: this.formData.identifier as ThemeValueIdentifier,
+            fields: this.formValues(),
           })
         } else {
           this.action.emit({
             action: 'create',
-            identifier: this.formData.identifier,
-            fields: this.formValues() as unknown as ThemeValueFormFields,
+            identifier: this.formData.identifier as ThemeValueIdentifier,
+            fields: this.formValues(),
           })
         }
       } else if (valid) {
@@ -107,7 +121,10 @@ export class ThemeValueFormComponent {
 
   private remove = (): void => {
     if (this.editMode) {
-      this.action.emit({ action: 'delete', identifier: this.formData.identifier })
+      this.action.emit({
+        action: 'delete',
+        identifier: this.formData.identifier as ThemeValueIdentifier,
+      })
     }
   }
 
@@ -116,13 +133,15 @@ export class ThemeValueFormComponent {
       <form class="form" onSubmit={this.save}>
         <h3>{this.editMode ? 'Edit' : 'Create'} Theme Value</h3>
         <tf-select-input
-          ref={(el: HTMLTfSelectInputElement) => (this.controls['media'] = el)}
+          ref={(el: HTMLTfSelectInputElement | undefined) =>
+            (this.controls['media'] = el as HTMLTfSelectInputElement)
+          }
           label="Media"
           items={this.formData.medias.map(({ key, value }) => ({
             key,
             value: `${key.startsWith('global_') ? '(G) ' : ''}${value}`,
           }))}
-          value={this.formData.fields?.media}
+          value={this.formData.fields?.media as string}
           required
         />
         <div class="button-group">
@@ -155,20 +174,24 @@ export class ThemeValueFormComponent {
         {this.toggle === 'direct' &&
           (this.type === 'color' ? (
             <tf-color-input
-              ref={(el: HTMLTfColorInputElement) =>
-                this.type === 'color' ? (this.controls['direct'] = el) : el
+              ref={(el: HTMLTfColorInputElement | undefined) =>
+                this.type === 'color'
+                  ? (this.controls['direct'] = el as HTMLTfColorInputElement)
+                  : (el as HTMLTfColorInputElement)
               }
               label="Color"
               required
-              value={this.formData.fields?.direct}
+              value={this.formData.fields?.direct as string}
             />
           ) : (
             <tf-text-input
-              ref={(el: HTMLTfTextInputElement) =>
-                this.type !== 'color' ? (this.controls['direct'] = el) : el
+              ref={(el: HTMLTfTextInputElement | undefined) =>
+                this.type !== 'color'
+                  ? (this.controls['direct'] = el as HTMLTfTextInputElement)
+                  : (el as HTMLTfTextInputElement)
               }
               label="Value"
-              value={this.formData.fields?.direct}
+              value={this.formData.fields?.direct as string}
               required
             />
           ))}

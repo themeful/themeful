@@ -24,25 +24,25 @@ import '../../forms/form-integration'
 })
 export class StyleGuidesComponent {
   /** History */
-  @Prop() history: RouterHistory
+  @Prop() history!: RouterHistory
 
   /** Style Guides */
-  @Prop() styleGuides$: Observable<ExtendedStyleGuides>
+  @Prop() styleGuides$!: Observable<ExtendedStyleGuides>
 
-  @State() styleGuides: ExtendedStyleGuides
+  @State() styleGuides!: ExtendedStyleGuides
   private formData$ = new Subject()
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
+  @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
 
-  private onAction = ({ detail }): void => {
+  private onAction = ({ detail }: { detail: FormIntegrationActions }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
     }
   }
 
   private sub = new Subscription()
-  private styleGuideGroups: { [styleguide: string]: string[] }
+  private styleGuideGroups!: { [styleguide: string]: string[] }
 
   private openStyleGuideForm = (styleGuide?: string, styleGuideBase?: StyleGuideBase): void => {
     this.formData$.next({
@@ -74,15 +74,18 @@ export class StyleGuidesComponent {
     this.sub.add(
       this.styleGuides$?.subscribe((styleGuides) => {
         this.styleGuides = styleGuides
-        this.styleGuideGroups = styleGuides.reduce((result, styleguide) => {
-          result[styleguide.slug] = []
-          styleguide.types.forEach((type) => {
-            type.groups.forEach((group) => {
-              result[styleguide.slug].push(group.name)
+        this.styleGuideGroups = styleGuides.reduce(
+          (result: { [key: string]: string[] }, styleguide) => {
+            result[styleguide.slug] = []
+            styleguide.types.forEach((type) => {
+              type.groups.forEach((group) => {
+                result[styleguide.slug].push(group.name)
+              })
             })
-          })
-          return result
-        }, {})
+            return result
+          },
+          {}
+        )
       })
     )
   }

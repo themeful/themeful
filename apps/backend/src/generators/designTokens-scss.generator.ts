@@ -26,6 +26,8 @@ export function designTokensScss(
   })
 
   for (const designToken in designTokens) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     for (const aliasToken of designTokens[designToken].aliasTokens) {
       output.push({
         aliasToken,

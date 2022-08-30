@@ -11,18 +11,18 @@ import '../../components/inputs/text-input'
 })
 export class ThemeFormComponent {
   /** Data for the form */
-  @Prop() formData: ThemeFormData
+  @Prop() formData!: ThemeFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<ThemeFormAction>
+  @Event({ composed: false }) action!: EventEmitter<ThemeFormAction>
 
   @State() changed = false
-  @State() editMode: boolean
+  @State() editMode!: boolean
 
   private controls: { [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement } = {}
 
   public componentWillLoad(): void {
-    this.editMode = this.formData.identifier && true
+    this.editMode = !!this.formData.identifier && true
   }
 
   public componentDidLoad(): void {
@@ -30,10 +30,13 @@ export class ThemeFormComponent {
   }
 
   private formValues = (): FormValues =>
-    Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control.value
-      return result
-    }, {})
+    Object.entries(this.controls).reduce(
+      (result: { [key: string]: string | number }, [key, control]) => {
+        result[key] = control.value
+        return result
+      },
+      {}
+    )
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
@@ -52,7 +55,7 @@ export class ThemeFormComponent {
         if (this.editMode) {
           this.action.emit({
             action: 'update',
-            identifier: this.formData.identifier,
+            identifier: this.formData.identifier as string,
             fields: this.formValues() as unknown as { name: string; styleGuide: string },
           })
         } else {
@@ -73,7 +76,7 @@ export class ThemeFormComponent {
 
   private remove = (): void => {
     if (this.editMode) {
-      this.action.emit({ action: 'delete', identifier: this.formData.identifier })
+      this.action.emit({ action: 'delete', identifier: this.formData.identifier as string })
     }
   }
 
@@ -82,16 +85,20 @@ export class ThemeFormComponent {
       <form class="form" onSubmit={this.save}>
         <h3>{this.editMode ? 'Edit' : 'Create'} Theme</h3>
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.controls['name'] = el as HTMLTfTextInputElement)
+          }
           label="Name"
-          value={this.formData.fields?.name}
+          value={this.formData.fields?.name as string}
           required
         />
         <tf-select-input
-          ref={(el: HTMLTfSelectInputElement) => (this.controls['styleGuide'] = el)}
+          ref={(el: HTMLTfSelectInputElement | undefined) =>
+            (this.controls['styleGuide'] = el as HTMLTfSelectInputElement)
+          }
           label="Style Guide"
           items={this.formData.styleGuides}
-          value={this.formData.fields?.styleGuide}
+          value={this.formData.fields?.styleGuide as string}
           disabled={this.editMode}
           required
         />

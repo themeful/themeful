@@ -10,14 +10,14 @@ import { delay, filter, tap } from 'rxjs/operators'
 })
 export class ToastComponent {
   /** Toast msg */
-  @Prop() msg$: Observable<Toast>
+  @Prop() msg$!: Observable<Toast>
 
   @State() open = false
   @State() text = ''
   @State() status = ''
 
   /** Input Event */
-  @Event({ composed: false }) state: EventEmitter
+  @Event({ composed: false }) state!: EventEmitter
 
   private sub = new Subscription()
   private active$ = new Subject<boolean>()

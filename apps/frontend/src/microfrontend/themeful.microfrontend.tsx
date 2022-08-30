@@ -1,5 +1,10 @@
 import { Component, h, Host, State } from '@stencil/core'
-import { ComponentItemBundle, ComponentListBundle, ThemeBundle } from '@typings'
+import {
+  ComponentItemBundle,
+  ComponentListBundle,
+  FormIntegrationActions,
+  ThemeBundle,
+} from '@typings'
 import '@ui'
 import '@ui/components/button'
 import '@ui/components/toast'
@@ -9,6 +14,7 @@ import '@ui/pages/style-guide-details'
 import '@ui/pages/style-guides'
 import '@ui/pages/themes'
 import { Observable } from 'rxjs'
+import { Components } from '../components'
 import { APIService } from '../services'
 
 @Component({
@@ -23,7 +29,7 @@ export class ThemefulMicrofrontend {
   private componentListBundle$: Observable<ComponentListBundle>
   private componentBundle$: Observable<ComponentItemBundle>
   private toast$
-  @State() mode: string
+  @State() mode?: string
 
   constructor() {
     this.apiService = APIService.Instance
@@ -34,7 +40,7 @@ export class ThemefulMicrofrontend {
     this.toast$ = this.apiService.toast$
   }
 
-  private onAction = ({ detail }) => {
+  private onAction = ({ detail }: { detail: FormIntegrationActions }) => {
     if (!['open', 'close'].includes(detail.action)) {
       this.apiService.action(detail).subscribe((result) => {
         this.toast$.next({
@@ -83,7 +89,7 @@ export class ThemefulMicrofrontend {
             </nav>
           </div>
 
-          <tf-toast {...{ msg$: this.toast$ }} />
+          <tf-toast {...({ msg$: this.toast$ } as Components.TfToast)} />
         </header>
         <main>
           <stencil-router>

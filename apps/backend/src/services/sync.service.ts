@@ -6,11 +6,8 @@ export class SyncService {
   private stack: SyncStack = {}
 
   public register(scope: Scope, callback: Callback) {
-    if (!this.stack[scope]) {
-      this.stack[scope] = []
-    }
-    if (this.stack[scope].indexOf(callback) === -1) {
-      this.stack[scope].push(callback)
+    if (!this.stack[scope]?.includes(callback)) {
+      this.stack[scope] = [...(this.stack[scope] || []), callback]
     }
   }
 

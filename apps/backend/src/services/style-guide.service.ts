@@ -2,13 +2,15 @@ import { Injectable } from '@nestjs/common'
 import { ExtendedStyle, Style, StyleGuideBase, StyleGuides, StyleMap } from '@typings'
 import { clone, convertCSSLength, slugify, sortMap, unifyStyle } from '@utils'
 import { take } from 'rxjs'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import * as smq from 'sort-media-queries'
 import { FileService } from './file.service'
 import { SyncService } from './sync.service'
 
 @Injectable()
 export class StyleGuideService {
-  private styleGuides: StyleGuides
+  private styleGuides!: StyleGuides
 
   constructor(private readonly syncService: SyncService, private readonly file: FileService) {
     this.file
@@ -148,16 +150,16 @@ export class StyleGuideService {
 
   private reorder(styleGuide = 'global') {
     const specialeSortTypes = ['mediaquery']
-    const section = this.styleGuides[styleGuide].styles
+    const section: StyleMap = this.styleGuides[styleGuide].styles
     const convert = convertCSSLength(`${this.styleGuides[styleGuide].baseFontSize}px`)
     let newSection: StyleMap = {}
-    let mediaqueries = Object.values(section)
-      .filter((bv: Style) => bv.type === 'mediaquery')
-      .reduce((result: string[], item: Style) => {
+    const mediaqueries: string[] = Object.values(section)
+      .filter((bv: ExtendedStyle) => bv.type === 'mediaquery')
+      .reduce((result: string[], item: ExtendedStyle) => {
         result.push(item.value)
         return result
       }, [])
-    mediaqueries = smq(mediaqueries)
+    const sortedMQ: string[] = smq(mediaqueries)
 
     Object.keys(section).forEach((key: string) => {
       if (!specialeSortTypes.includes(section[key].type)) {
@@ -174,7 +176,7 @@ export class StyleGuideService {
       return aValue.type > bValue.type ? 1 : -1
     })
 
-    mediaqueries.forEach((mediaquery) => {
+    sortedMQ.forEach((mediaquery: string) => {
       const key = Object.keys(section).filter((key) => section[key].value === mediaquery)[0]
       newSection[key] = section[key]
     })

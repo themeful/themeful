@@ -18,6 +18,8 @@ import {
 } from '@typings'
 import { existsSync } from 'fs'
 import { readFileSync as readJsonFile, writeFileSync as writeJsonFile } from 'jsonfile'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import * as hash from 'object-hash'
 import { combineLatest, debounceTime, map, Observable, ReplaySubject } from 'rxjs'
 import { sentenceCase } from 'sentence-case'
@@ -88,6 +90,8 @@ export class FileService {
       const path = `${this.config.dataPath}${filename}.json`
       if (existsSync(path)) {
         const data = readJsonFile(path)
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         this[`_${filename}$`].next(data)
         this.hashKeys[filename] = hash(data)
       }
@@ -113,6 +117,8 @@ export class FileService {
     const newHash = hash(data)
     if (newHash !== this.hashKeys[filename]) {
       this.hashKeys[filename] = newHash
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       this[`_${filename}$`].next(data)
       writeJsonFile(`${this.config.dataPath}${filename}.json`, data, { spaces: 2 })
     }
@@ -176,7 +182,7 @@ export class FileService {
     const groups: GroupStyles[] = []
     const groupObj: StylesMap = Object.keys(data).reduce((result: StylesMap, key: string) => {
       const value = data[key] as ExtendedStyle
-      const group = sentenceCase(value.group)
+      const group = sentenceCase(value.group as string)
       value.group = group
       value.slug = key
       if (!result[group]) {
@@ -192,7 +198,7 @@ export class FileService {
           if (noSortTypes.includes(a.type)) {
             return 1
           }
-          return a.name > b.name ? 1 : -1
+          return (a.name as string) > (b.name as string) ? 1 : -1
         }),
       })
     })

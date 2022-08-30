@@ -10,18 +10,18 @@ import '../../components/inputs/text-input'
 })
 export class StyleGuideDuplicateFormComponent {
   /** Data for the form */
-  @Prop() formData: StyleGuideFormData
+  @Prop() formData!: StyleGuideFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<StyleGuideFormAction>
+  @Event({ composed: false }) action!: EventEmitter<StyleGuideFormAction>
 
   @State() changed = false
 
   private controls: { [key: string]: HTMLTfTextInputElement } = {}
-  private originName: string
+  private originName!: string
 
   public componentWillLoad(): void {
-    this.originName = this.formData.fields.name
+    this.originName = this.formData?.fields?.name as string
   }
 
   public componentDidLoad(): void {
@@ -29,10 +29,13 @@ export class StyleGuideDuplicateFormComponent {
   }
 
   private formValues = (): FormValues =>
-    Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control.value
-      return result
-    }, {})
+    Object.entries(this.controls).reduce(
+      (result: { [key: string]: string | number }, [key, control]) => {
+        result[key] = control.value
+        return result
+      },
+      {}
+    )
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
@@ -47,7 +50,7 @@ export class StyleGuideDuplicateFormComponent {
       if (dirty && valid) {
         this.action.emit({
           controller: 'styleguide',
-          identifier: this.formData.identifier,
+          identifier: this.formData.identifier as string,
           action: 'duplicate',
           fields: this.formValues() as unknown as { name: string },
         })
@@ -61,7 +64,7 @@ export class StyleGuideDuplicateFormComponent {
     this.action.emit({ action: 'close' })
   }
 
-  private nameValidation = (name: string): string | null =>
+  private nameValidation = (name: string | number): string | null =>
     name !== this.originName ? null : 'Please change the name'
 
   public render(): HTMLTfStyleGuideDuplicateFormElement {
@@ -69,7 +72,9 @@ export class StyleGuideDuplicateFormComponent {
       <form class="form" onSubmit={this.save}>
         <h3>Duplicate: {this.originName}</h3>
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.controls['name'] = el as HTMLTfTextInputElement)
+          }
           label="Name"
           value={`${this.formData.fields?.name} Copy`}
           validation={this.nameValidation}

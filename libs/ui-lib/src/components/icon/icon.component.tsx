@@ -9,12 +9,12 @@ export class IconComponent {
   /**
    * The icon name
    */
-  @Prop() icon: string
+  @Prop() icon!: string
 
   /**
    * The icon size
    */
-  @Prop() size: 'small' | 'large'
+  @Prop() size?: 'small' | 'large'
 
   public render(): HTMLTfIconElement {
     return (

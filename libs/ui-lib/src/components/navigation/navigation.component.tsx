@@ -16,7 +16,7 @@ export interface NavigationItem {
 })
 export class NavigationComponent {
   /** Navigation size */
-  @Prop() size: 'small' | 'large'
+  @Prop() size!: 'small' | 'large'
 
   /** Active state */
   @Prop() active = ''
@@ -25,11 +25,11 @@ export class NavigationComponent {
   @Prop() items: NavigationItem[] = []
 
   /** Input Event */
-  @Event({ composed: false }) itemClick: EventEmitter
+  @Event({ composed: false }) itemClick!: EventEmitter
 
   private click = (item: NavigationItem): void => {
     if (item.selectable) {
-      this.active = item.slug
+      this.active = item?.slug as string
     }
     if (item.callback !== undefined) {
       item.callback()

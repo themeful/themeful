@@ -9,7 +9,7 @@ import { SyncService } from './sync.service'
 
 @Injectable()
 export class AliasTokenService {
-  private aliasTokens: AliasTokens
+  private aliasTokens!: AliasTokens
 
   constructor(
     private readonly syncService: SyncService,
@@ -30,7 +30,9 @@ export class AliasTokenService {
     }
     aliasToken.crawled = false
     const token = aliasToken.token
-    delete aliasToken.token
+    delete aliasToken.default
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    delete (aliasToken as any).token
 
     this.aliasTokens[token] = aliasToken
     this.writeFiles(this.aliasTokens)
@@ -49,6 +51,8 @@ export class AliasTokenService {
       delete this.aliasTokens[token]
     }
     const newToken = aliasToken.token
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     delete aliasToken.token
 
     this.aliasTokens[newToken] = aliasToken
@@ -86,7 +90,7 @@ export class AliasTokenService {
     this.file.save('aliasTokens', this.aliasTokens)
   }
 
-  private parseLib(currentAliasTokens): AliasTokens {
+  private parseLib(currentAliasTokens: AliasTokens): AliasTokens {
     const term = '\\S+:[^;{]+\\$at[^;]+;'
     const defaultsTerm = '^\\$at[^;]+!default;$'
     const output: AliasTokens = {}
@@ -102,6 +106,8 @@ export class AliasTokenService {
     for (const file of defaultResults) {
       if (file.matches) {
         for (const line of file.matches) {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           const [, token, value] = line.match(/^\$(\S+):\s+(\S.*)\s+!default;$/i)
           if (token && value) {
             defaults[token] = value
@@ -132,19 +138,19 @@ export class AliasTokenService {
 
             output[token] = {
               ...current,
-              component: unique([...current.component, component]),
-              files: unique([...current.files, file.filename]),
-              properties: unique([...current.properties, property.trim()]),
+              component: unique([...(current.component || []), component]),
+              files: unique([...(current.files || []), file.filename]),
+              properties: unique([...(current.properties || []), property.trim()]),
             }
           })
         }
       }
     }
 
-    const extern = {}
+    const extern: AliasTokens = {}
     for (const key in currentAliasTokens) {
       if (currentAliasTokens[key].extern) {
-        extern[key] = currentAliasTokens[key]
+        extern[key] = currentAliasTokens[key] as AliasToken
       }
     }
     return { ...output, ...extern }

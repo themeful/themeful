@@ -9,7 +9,7 @@ export class SuggestInputComponent {
   private input!: HTMLInputElement
 
   /** Input label */
-  @Prop() label: string
+  @Prop() label!: string
 
   /** Input suggest items */
   @Prop() items: string[] = []
@@ -21,26 +21,26 @@ export class SuggestInputComponent {
   @Prop() disabled = false
 
   /** Min input */
-  @Prop() minLength: number
+  @Prop() minLength = 0
 
   /** Max input */
-  @Prop() maxLength: number
+  @Prop() maxLength = 9999
 
   /** Input value */
-  @Prop({ mutable: true }) value: string | number
+  @Prop({ mutable: true }) value!: string | number
 
   /** validation function */
-  @Prop() validation: (string) => string | null
+  @Prop() validation?: (input: string | number) => string | null
 
   /** Input Event */
-  @Event({ composed: false }) inputChange: EventEmitter
+  @Event({ composed: false }) inputChange!: EventEmitter
 
   @State() touched = false
   @State() changed = false
-  @State() valid: boolean
+  @State() valid!: boolean
   @State() error = ''
   private static counter = 0
-  private dataListId: string
+  private dataListId!: string
 
   /** Validate value */
   @Method()
@@ -106,7 +106,7 @@ export class SuggestInputComponent {
       >
         <span class="suggest-input__label">{this.label}</span>
         <input
-          ref={(el: HTMLInputElement) => (this.input = el)}
+          ref={(el: HTMLInputElement | undefined) => (this.input = el as HTMLInputElement)}
           class="suggest-input__input"
           type="text"
           list={this.dataListId}

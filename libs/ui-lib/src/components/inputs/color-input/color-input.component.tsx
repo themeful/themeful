@@ -20,32 +20,32 @@ type ColorFormat = 'HEX' | 'HSL' | 'RGB'
   shadow: true,
 })
 export class ColorInputComponent {
-  private input: HTMLInputElement
-  private alpha: HTMLInputElement
-  private hue: HTMLInputElement
-  private pointer: HTMLElement
+  private input!: HTMLInputElement
+  private alpha!: HTMLInputElement
+  private hue!: HTMLInputElement
+  private pointer!: HTMLElement
   private trackMouseMove = false
   private tileOffset = { x: 0, y: 0 }
   private changeSource: 'input' | 'controls' = 'input'
 
   /** Element */
-  @Element() el: HTMLTfColorInputElement
+  @Element() el!: HTMLTfColorInputElement
 
   /** Input label */
-  @Prop() label: string
+  @Prop() label!: string
 
   /** Required input */
   @Prop() required = false
 
   /** Input value */
-  @Prop({ mutable: true }) value: string
+  @Prop({ mutable: true }) value!: string
 
   /** Input Event */
-  @Event({ composed: false }) inputChange: EventEmitter
+  @Event({ composed: false }) inputChange!: EventEmitter
 
   private touched = false
   private changed = false
-  private valid: boolean
+  private valid!: boolean
   private error = ''
 
   /** Validate value */
@@ -63,10 +63,10 @@ export class ColorInputComponent {
   }
 
   private format: ColorFormat = 'HEX'
-  private hue$ = new Subject()
-  private alpha$ = new Subject()
-  private shade$ = new Subject()
-  private input$ = new Subject()
+  private hue$ = new Subject<string>()
+  private alpha$ = new Subject<string>()
+  private shade$ = new Subject<{ x: number; y: number }>()
+  private input$ = new Subject<string>()
   private sub = new Subscription()
 
   private validateColor(color: string): boolean {
@@ -78,10 +78,10 @@ export class ColorInputComponent {
     }
   }
 
-  private setControls(newColor): void {
+  private setControls(newColor: string): void {
     const color = new ColorTranslator(this.valid ? newColor : 'hsl(180,50%,40%)')
     this.changeSource = 'input'
-    this.input$.next(this.input.value)
+    this.input$.next(this.input.value as string)
     this.hue.value = `${color.H}`
     this.alpha.value = `${(1 - color.A) * 100}`
     this.alpha$.next(this.alpha.value)
@@ -191,7 +191,7 @@ export class ColorInputComponent {
 
   private setInput = (color: ColorInput): void => {
     const colorObj = new ColorTranslator(color)
-    this.input$.next(colorObj[`${this.format}${colorObj.A < 1 ? 'A' : ''}`])
+    this.input$.next(colorObj[`${this.format}${colorObj.A < 1 ? 'A' : ''}`] as string)
   }
 
   private toggleFormat = () => {
@@ -217,7 +217,7 @@ export class ColorInputComponent {
     return 'HEX'
   }
 
-  private trackPointer = (event): void => {
+  private trackPointer = (event: MouseEvent): void => {
     if (this.trackMouseMove) {
       if (event.type === 'mouseup') {
         this.trackMouseMove = false
@@ -249,6 +249,16 @@ export class ColorInputComponent {
     return this.valid
   }
 
+  private hueChanged = (event: Event) => {
+    this.changeSource = 'controls'
+    this.hue$.next((event.target as HTMLInputElement).value)
+  }
+
+  private alphaChanged = (event: Event) => {
+    this.changeSource = 'controls'
+    this.alpha$.next((event.target as HTMLInputElement).value)
+  }
+
   // =============== RENDER ===============
   private renderControls(): HTMLElement {
     return (
@@ -256,30 +266,22 @@ export class ColorInputComponent {
         <div class="color-input__control-row">
           <div class="color-input__controls">
             <input
+              ref={(hue: HTMLInputElement | undefined) => (this.hue = hue as HTMLInputElement)}
+              onInput={this.hueChanged}
               class="color-input__hue"
               type="range"
               min="0"
               max="360"
-              {...{
-                ref: (hue: HTMLInputElement) => (this.hue = hue),
-                onInput: (event) => {
-                  this.changeSource = 'controls'
-                  this.hue$.next((event.target as HTMLInputElement).value)
-                },
-              }}
             />
             <input
+              ref={(alpha: HTMLInputElement | undefined) =>
+                (this.alpha = alpha as HTMLInputElement)
+              }
+              onInput={this.alphaChanged}
               class="color-input__alpha"
               type="range"
               min="0"
               max="100"
-              {...{
-                ref: (alpha: HTMLInputElement) => (this.alpha = alpha),
-                onInput: (event) => {
-                  this.changeSource = 'controls'
-                  this.alpha$.next((event.target as HTMLInputElement).value)
-                },
-              }}
             />
           </div>
           <div
@@ -297,7 +299,7 @@ export class ColorInputComponent {
           }}
         >
           <div
-            ref={(el: HTMLInputElement) => (this.pointer = el)}
+            ref={(el: HTMLDivElement | undefined) => (this.pointer = el as HTMLDivElement)}
             class="color-input__pointer"
           ></div>
         </div>
@@ -315,7 +317,7 @@ export class ColorInputComponent {
         >
           <span class="color-input__label">{this.label}</span>
           <input
-            ref={(input: HTMLInputElement) => (this.input = input)}
+            ref={(input: HTMLInputElement | undefined) => (this.input = input as HTMLInputElement)}
             class="color-input__input"
             type="text"
             onInput={this.inputChanged}

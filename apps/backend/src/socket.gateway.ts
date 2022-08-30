@@ -14,7 +14,7 @@ import { FileService } from './services'
 
 @WebSocketGateway({ cors: true, serveClient: false })
 export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
-  @WebSocketServer() wss: Server
+  @WebSocketServer() wss!: Server
 
   private logger: Logger = new Logger('SocketGateway')
 

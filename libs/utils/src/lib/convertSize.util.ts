@@ -1,14 +1,18 @@
-const unit = (input) => {
-  return String(input).match(/[\d.\-+]*\s*(.*)/)[1] || ''
+const unit = (input: string | number): string => {
+  const match = `${input ?? ''}`.match(/[\d.\-+]*\s*(.*)/)
+  if (match) {
+    return match[1]
+  }
+  return ''
 }
 
-const unitLess = (length) => parseFloat(length)
+const unitLess = (length: string) => parseFloat(length)
 
-export const convertCSSLength = (baseFontSize) => {
+export const convertCSSLength = (baseFontSize: string) => {
   if (baseFontSize == null) {
     baseFontSize = '16px'
   }
-  return function (length, toUnit = 'px', fromContext = null, toContext = null) {
+  return function (length: string, toUnit = 'px', fromContext?: string, toContext?: string) {
     if (fromContext == null) {
       fromContext = baseFontSize
     }

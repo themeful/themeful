@@ -33,7 +33,7 @@
         "@stencil/async-methods": "off",
         "react/no-unknown-property": "off",
         "react/jsx-key": "off",
-        "@typescript-eslint/no-unused-vars": "warn"
+        "@typescript-eslint/no-unused-vars": "error"
       }
     },
     {

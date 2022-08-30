@@ -20,8 +20,8 @@ describe('AliasTokenService', () => {
     jest.spyOn(mockFileService, 'save')
     jest.spyOn(mockFileService, 'aliasTokens$')
 
-    jest.spyOn(utils, 'findInSync').mockImplementation(({ term }) => {
-      if (term.includes('default')) {
+    jest.spyOn(utils, 'findInSync').mockImplementation((pattern) => {
+      if ((pattern as { term: string }).term.includes('default')) {
         return parseResultLine
       } else {
         return parseResult
@@ -50,11 +50,13 @@ describe('AliasTokenService', () => {
   describe('create', () => {
     it('should create one', () => {
       const withOneMore = clone(aliasTokens)
+      const token = newAliasToken.token
       const clonedAliasToken = clone(newAliasToken)
-      delete clonedAliasToken.token
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (clonedAliasToken as any).token
       clonedAliasToken.crawled = false
 
-      withOneMore[newAliasToken.token] = clonedAliasToken
+      withOneMore[token] = clonedAliasToken
 
       expect(service.create(clone(newAliasToken))).toEqual(true)
       expect(mockFileService.save).toBeCalledWith('aliasTokens', withOneMore)
@@ -63,7 +65,7 @@ describe('AliasTokenService', () => {
     it('should not create one', () => {
       expect(
         service.create({
-          ...clone(aliasTokens).atTestButtonFontSize,
+          ...clone(aliasTokens['atTestButtonFontSize']),
           token: 'atTestButtonFontSize',
         })
       ).toEqual(false)
@@ -77,8 +79,8 @@ describe('AliasTokenService', () => {
   describe('update', () => {
     it('should update one', () => {
       const withOneUpdated = clone(aliasTokens)
-      const clonedAliasToken = clone(updatedAliasToken)
-      delete clonedAliasToken.token
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { token, ...clonedAliasToken } = clone(updatedAliasToken)
 
       delete withOneUpdated['atTestBaseFontColor']
       withOneUpdated[updatedAliasToken.token] = clonedAliasToken
@@ -93,7 +95,7 @@ describe('AliasTokenService', () => {
 
     it('should not update to existing one', () => {
       const existingOne = {
-        ...clone(aliasTokens).atTestButtonFontColor,
+        ...clone(aliasTokens)['atTestButtonFontColor'],
         token: 'atTestButtonFontColor',
       }
       expect(service.update('atTestBaseFontColor', existingOne)).toEqual(false)
@@ -126,8 +128,6 @@ describe('AliasTokenService', () => {
   describe('sync', () => {
     it('should sync update aliasTokens', () => {
       jest.spyOn(syncService, 'aliasTokens').mockImplementation()
-      const clonedAliasToken = clone(updatedAliasToken)
-      delete clonedAliasToken.token
       expect(service.update('atTestBaseFontColor', clone(updatedAliasToken))).toEqual(true)
 
       expect(syncService.aliasTokens).toHaveBeenCalledWith({

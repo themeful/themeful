@@ -8,7 +8,7 @@ import { FileService } from './file.service'
 
 @Injectable()
 export class ComponentService {
-  private components: Components
+  private components!: Components
 
   constructor(private readonly config: ConfigService, private readonly file: FileService) {
     merge(timer(2000).pipe(map(() => ({}))), this.file.components$())

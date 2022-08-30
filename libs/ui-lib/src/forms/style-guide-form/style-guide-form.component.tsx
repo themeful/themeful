@@ -10,18 +10,18 @@ import '../../components/inputs/text-input'
 })
 export class StyleGuideFormComponent {
   /** Data for the form */
-  @Prop() formData: StyleGuideFormData
+  @Prop() formData!: StyleGuideFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<StyleGuideFormAction>
+  @Event({ composed: false }) action!: EventEmitter<StyleGuideFormAction>
 
   @State() changed = false
-  @State() editMode: boolean
+  @State() editMode!: boolean
 
   private controls: { [key: string]: HTMLTfTextInputElement } = {}
 
   public componentWillLoad(): void {
-    this.editMode = this.formData.identifier && true
+    this.editMode = !!this.formData.identifier && true
   }
 
   public componentDidLoad(): void {
@@ -29,10 +29,13 @@ export class StyleGuideFormComponent {
   }
 
   private formValues = (): FormValues =>
-    Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control.value
-      return result
-    }, {})
+    Object.entries(this.controls).reduce(
+      (result: { [key: string]: string | number }, [key, control]) => {
+        result[key] = control.value
+        return result
+      },
+      {}
+    )
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
@@ -51,7 +54,7 @@ export class StyleGuideFormComponent {
         if (this.editMode) {
           this.action.emit({
             action: 'update',
-            identifier: this.formData.identifier,
+            identifier: this.formData.identifier as string,
             fields: this.formValues() as unknown as StyleGuideBase,
           })
         } else {
@@ -72,11 +75,11 @@ export class StyleGuideFormComponent {
 
   private remove = (): void => {
     if (this.editMode) {
-      this.action.emit({ action: 'delete', identifier: this.formData.identifier })
+      this.action.emit({ action: 'delete', identifier: this.formData.identifier as string })
     }
   }
 
-  private baseFontSizeValidation = (value): string | null =>
+  private baseFontSizeValidation = (value: string | number): string | null =>
     Number(value) > 0 ? null : 'Please enter a number'
 
   public render(): HTMLTfStyleGuideFormElement {
@@ -88,16 +91,20 @@ export class StyleGuideFormComponent {
         </h3>
         {this.formData.identifier !== 'global' && (
           <tf-text-input
-            ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
+            ref={(el: HTMLTfTextInputElement | undefined) =>
+              (this.controls['name'] = el as HTMLTfTextInputElement)
+            }
             label="Name"
-            value={this.formData.fields?.name}
+            value={this.formData.fields?.name as string}
             minLength={4}
           />
         )}
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['baseFontSize'] = el)}
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.controls['baseFontSize'] = el as HTMLTfTextInputElement)
+          }
           label="Base Font Size (px)"
-          value={this.formData.fields?.baseFontSize}
+          value={this.formData.fields?.baseFontSize as number}
           validation={this.baseFontSizeValidation}
         />
         <div class="form__controls">

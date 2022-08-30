@@ -15,10 +15,12 @@ import {
   KeyValues,
   StyleMap,
   Theme,
+  ThemeIntegrationAction,
   ThemeName,
   Themes,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { Components as ComponentTypes } from '../../components'
 import '../../components/button'
 import '../../components/icon'
 import '../../components/menu'
@@ -33,25 +35,26 @@ import '../../forms/form-integration'
 })
 export class ComponentItemComponent {
   /** Component Item Bundle */
-  @Prop() componentBundle$: Observable<ComponentItemBundle>
+  @Prop() componentBundle$!: Observable<ComponentItemBundle>
 
   /** Style Guide Slug */
-  @Prop() match: { params: { id: string } }
+  @Prop() match!: { params: { id: string } }
 
-  @State() rows: DesignTokenRow[]
-  private themeNames: ThemeName[]
-  private themes: Themes
-  private components: Components
-  private designTokens: DesignTokens
-  private aliasTokens: AliasTokens
-  private styleMap: StyleMap
+  @State() rows: DesignTokenRow[] = []
+  @State() componentID!: string
+  private themeNames: ThemeName[] = []
+  private themes: Themes = {}
+  private components: Components = {}
+  private designTokens: DesignTokens = {}
+  private aliasTokens: AliasTokens = {}
+  private styleMap?: StyleMap
   private dt2at: Dt2At = {}
-  private groups: string[]
-  private config: GlobalConfig
+  private groups: string[] = []
+  private config?: GlobalConfig
   private formData$ = new Subject()
   private styleGuideHeaders: {
     [styleGuide: string]: { name: string; first: string; slug: string }
-  }
+  } = {}
   private styleGuideCount: { [styleGuide: string]: number } = {}
   private nav = [
     { label: 'Add Theme', callback: () => this.openThemeForm() },
@@ -69,22 +72,23 @@ export class ComponentItemComponent {
   private sub = new Subscription()
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<FormIntegrationActions>
+  @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
 
-  private onAction = ({ detail }): void => {
+  private onAction = ({ detail }: { detail: ThemeIntegrationAction }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
     }
   }
 
   public componentWillLoad(): void {
+    this.componentID = this.match?.params?.id
     this.sub.add(
       this.componentBundle$?.subscribe(
         ([components, styleGuides, designTokens, aliasTokens, themes, config]) => {
           this.config = config
           this.themes = themes
           this.components = components
-          console.log(this.components)
+          console.log(this.componentID, this.components)
           this.aliasTokens = aliasTokens
           this.designTokens = designTokens
           this.groups = []
@@ -114,7 +118,7 @@ export class ComponentItemComponent {
           })
           const rows: DesignTokenRow[] = []
           Object.keys(designTokens).forEach((designToken) => {
-            this.dt2at[designToken] = designTokens[designToken].aliasTokens
+            this.dt2at[designToken] = designTokens[designToken].aliasTokens as string[]
             if (!this.groups.includes(designTokens[designToken].group)) {
               this.groups.push(designTokens[designToken].group)
             }
@@ -125,8 +129,8 @@ export class ComponentItemComponent {
                 Object.entries(theme.styles[designToken]).forEach(([media, { style, direct }]) => {
                   const themeMedia: ExtendedValueDetail = {
                     media,
-                    name: styleMap[media] ? styleMap[media].name : 'Default',
-                    global: styleMap[media] ? styleMap[media].global : false,
+                    name: styleMap[media] ? (styleMap[media].name as string) : 'Default',
+                    global: styleMap[media] ? (styleMap[media].global as boolean) : false,
                     style: style ? { ...styleMap[style], key: style } : undefined,
                     direct,
                   }
@@ -167,20 +171,30 @@ export class ComponentItemComponent {
   }
 
   private openThemeForm = (theme?: string): void => {
-    this.formData$.next({
-      form: 'theme',
-      identifier: theme,
-      styleGuides: Object.entries(this.styleGuideHeaders).map(([key, { name }]) => ({
-        key,
-        value: name,
-      })),
-      fields: {
-        name: this.themes[theme]?.name,
-        styleGuide: this.themes[theme]?.styleGuide,
-      },
-    })
+    if (theme !== undefined) {
+      this.formData$.next({
+        form: 'theme',
+        identifier: theme,
+        styleGuides: Object.entries(this.styleGuideHeaders).map(([key, { name }]) => ({
+          key,
+          value: name,
+        })),
+        fields: {
+          name: this.themes[theme]?.name,
+          styleGuide: this.themes[theme]?.styleGuide,
+        },
+      })
+    } else {
+      this.formData$.next({
+        form: 'theme',
+        styleGuides: Object.entries(this.styleGuideHeaders).map(([key, { name }]) => ({
+          key,
+          value: name,
+        })),
+      })
+    }
   }
-  private openThemeDuplicateForm = (theme?: string): void => {
+  private openThemeDuplicateForm = (theme: string): void => {
     this.formData$.next({
       form: 'themeDuplicate',
       identifier: theme,
@@ -299,7 +313,7 @@ export class ComponentItemComponent {
           this.styleMap[key].type === 'mediaquery' &&
           (!usedMedias.includes(key) || themeMedia?.media === key)
         ) {
-          medias.push({ key, value: this.styleMap[key].name })
+          medias.push({ key, value: this.styleMap[key].name as string })
         }
       }
     }
@@ -398,15 +412,15 @@ export class ComponentItemComponent {
             />
           </h5>
           <div class="design-tokens__desc">{row.description}</div>
-          {this.config.shortDesignTokens && (
+          {this.config?.shortDesignTokens && (
             <div>
               <pre>({row.token})</pre>
               <pre>Using: --{row.short}</pre>
             </div>
           )}
-          {!this.config.shortDesignTokens && <pre>--{row.token}</pre>}
+          {!this.config?.shortDesignTokens && <pre>--{row.token}</pre>}
         </td>
-        {row.aliasTokens.length > 0 && (
+        {row.aliasTokens && row.aliasTokens.length > 0 && (
           <td>
             <ul class="design-tokens__aliasTokens">
               {row.aliasTokens.slice(0, 4).map((aliasToken) => (
@@ -433,7 +447,7 @@ export class ComponentItemComponent {
           </td>
         )}
 
-        {row.aliasTokens.length === 0 && (
+        {row.aliasTokens && row.aliasTokens.length === 0 && (
           <td class="design-tokens__add-aliasTokens">
             <tf-button
               {...{
@@ -457,7 +471,7 @@ export class ComponentItemComponent {
                 )}
 
                 <tf-property
-                  {...{
+                  {...({
                     extendedStyle: themeMedia.style ?? themeMedia.direct,
                     onEdit: () =>
                       this.openThemeValueForm({
@@ -466,7 +480,7 @@ export class ComponentItemComponent {
                         themeIndex,
                         themeValue,
                       }),
-                  }}
+                  } as ComponentTypes.TfProperty)}
                   class="design-tokens__value"
                 ></tf-property>
               </Fragment>
@@ -499,7 +513,12 @@ export class ComponentItemComponent {
             <tbody>{this.rows && this.rows.map((row) => this.renderDesignTokenRow(row))}</tbody>
           </table>
         </div>
-        <tf-form-integration {...{ formData$: this.formData$, onAction: this.onAction }} />
+        <tf-form-integration
+          {...({
+            formData$: this.formData$,
+            onAction: this.onAction,
+          } as ComponentTypes.TfFormIntegration)}
+        />
       </Host>
     )
   }

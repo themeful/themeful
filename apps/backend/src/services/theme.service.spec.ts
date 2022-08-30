@@ -57,7 +57,7 @@ describe('ThemeService', () => {
     })
 
     it('should not create one', () => {
-      expect(service.create(clone(themes).styleGuide1_dark)).toEqual(false)
+      expect(service.create(clone(themes)['styleGuide1_dark'])).toEqual(false)
     })
   })
 
@@ -77,7 +77,7 @@ describe('ThemeService', () => {
     })
 
     it('should not update if alreay exist', () => {
-      expect(service.update('styleGuide2_dark', clone(themes).styleGuide1_dark)).toEqual(false)
+      expect(service.update('styleGuide2_dark', clone(themes)['styleGuide1_dark'])).toEqual(false)
     })
   })
 
@@ -132,7 +132,8 @@ describe('ThemeService', () => {
     })
 
     it('should one createValue with new DesignToken', () => {
-      const withOneValueMore = clone(themes)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const withOneValueMore: any = clone(themes)
       const themeName = 'styleGuide2_light'
       const designToken = 'dtTestFontColorPrimary2'
       const themeValue = { media: 'mediaQuery', style: 'some_style_slug' } as MediaValueDetail
@@ -162,7 +163,8 @@ describe('ThemeService', () => {
       const designToken = 'dtTestFontColorPrimary'
       const mediaQuery = 'default'
       const themeValue = { media: 'mediaQuery', style: 'some_style_slug' } as MediaValueDetail
-      delete withOneValueMore[themeName].styles[designToken]['default']
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (withOneValueMore[themeName].styles[designToken] as any)['default']
       withOneValueMore[themeName].styles[designToken][themeValue.media] = {
         style: themeValue.style,
       }
@@ -187,7 +189,8 @@ describe('ThemeService', () => {
       const themeName = 'styleGuide1_dark'
       const designToken = 'dtTestFontSize100'
       const mediaQuery = 'default'
-      delete withOneValueMore[themeName].styles[designToken]['default']
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (withOneValueMore[themeName].styles[designToken] as any)['default']
 
       expect(service.deleteValue(themeName, designToken, mediaQuery)).toEqual(true)
       expect(fileSave).toBeCalledWith('themes', withOneValueMore)
@@ -273,7 +276,8 @@ describe('ThemeService', () => {
         withSplittedDesignToken[theme].styles['dtTestFontColorPrimarySplitted'] =
           withSplittedDesignToken[theme].styles['dtTestFontColorPrimary']
             ? clone(withSplittedDesignToken[theme].styles['dtTestFontColorPrimary'])
-            : {}
+            : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ({} as any)
       })
 
       syncService.designTokens({

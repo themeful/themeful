@@ -1,3 +1,4 @@
+import { PropertyType } from '@typings'
 import { color } from './color.property'
 import { display } from './display.property'
 import { empty } from './empty.property'
@@ -9,7 +10,7 @@ import { font } from './font.property'
 import { mediaquery } from './mediaquery.property'
 import { size } from './size.property'
 
-const proeprties = {
+const properties: { [key: string]: PropertyType } = {
   color: color,
   font: font,
   'font-size': fontSize,
@@ -20,16 +21,16 @@ const proeprties = {
   size: size,
 }
 
-export const getProperty = (property: string | undefined) => {
+export const getProperty = (property: string | undefined): PropertyType => {
   if (property === undefined) {
     return empty
   }
-  return proeprties[property] ?? fallback
+  return properties[property] ?? fallback
 }
 
-export const propertyTypes = Object.keys(proeprties)
+export const propertyTypes = Object.keys(properties)
 
-export const propertySelect = Object.entries(proeprties).map(([key, { name }]) => ({
+export const propertySelect = Object.entries(properties).map(([key, { name }]) => ({
   key,
   value: name,
 }))

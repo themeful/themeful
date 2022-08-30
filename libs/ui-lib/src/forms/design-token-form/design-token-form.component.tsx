@@ -17,20 +17,20 @@ import '../../components/inputs/text-input'
 })
 export class DesignTokenFormComponent {
   /** Data for the form */
-  @Prop() formData: DesignTokenFormData
+  @Prop() formData!: DesignTokenFormData
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action: EventEmitter<DesignTokenFormAction>
+  @Event({ composed: false }) action!: EventEmitter<DesignTokenFormAction>
 
   @State() changed = false
-  @State() editMode: boolean
+  @State() editMode!: boolean
 
   private controls: {
     [key: string]: HTMLTfTextInputElement | HTMLTfSelectInputElement | HTMLTfSuggestInputElement
   } = {}
 
   public componentWillLoad(): void {
-    this.editMode = this.formData.identifier && true
+    this.editMode = !!this.formData.identifier && true
   }
 
   public componentDidLoad(): void {
@@ -38,10 +38,13 @@ export class DesignTokenFormComponent {
   }
 
   private formValues = (): FormValues =>
-    Object.entries(this.controls).reduce((result, [key, control]) => {
-      result[key] = control.value
-      return result
-    }, {})
+    Object.entries(this.controls).reduce(
+      (result: { [key: string]: string | number }, [key, control]) => {
+        result[key] = control.value
+        return result
+      },
+      {}
+    )
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
@@ -60,7 +63,7 @@ export class DesignTokenFormComponent {
         if (this.editMode) {
           this.action.emit({
             action: 'update',
-            identifier: this.formData.identifier,
+            identifier: this.formData.identifier as string,
             fields: this.formValues() as unknown as DesignTokenFormFields,
           })
         } else {
@@ -81,7 +84,7 @@ export class DesignTokenFormComponent {
 
   private remove = (): void => {
     if (this.editMode) {
-      this.action.emit({ action: 'delete', identifier: this.formData.identifier })
+      this.action.emit({ action: 'delete', identifier: this.formData?.identifier as string })
     }
   }
 
@@ -90,29 +93,37 @@ export class DesignTokenFormComponent {
       <form class="form" onSubmit={this.save}>
         <h3>{this.editMode ? 'Edit' : 'Create'} Design Token</h3>
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['name'] = el)}
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.controls['name'] = el as HTMLTfTextInputElement)
+          }
           label="Name"
-          value={this.formData.fields?.name}
+          value={this.formData.fields?.name as string}
           minLength={4}
         />
         <tf-suggest-input
-          ref={(el: HTMLTfSuggestInputElement) => (this.controls['group'] = el)}
+          ref={(el: HTMLTfSuggestInputElement | undefined) =>
+            (this.controls['group'] = el as HTMLTfSuggestInputElement)
+          }
           label="Group"
           items={this.formData.groups}
-          value={this.formData.fields?.group}
+          value={this.formData.fields?.group as string}
           minLength={4}
         />
         <tf-select-input
-          ref={(el: HTMLTfSelectInputElement) => (this.controls['type'] = el)}
+          ref={(el: HTMLTfSelectInputElement | undefined) =>
+            (this.controls['type'] = el as HTMLTfSelectInputElement)
+          }
           label="Type"
           items={this.formData.propertyTypes}
-          value={this.formData.fields?.type}
+          value={this.formData.fields?.type as string}
           required
         />
         <tf-text-input
-          ref={(el: HTMLTfTextInputElement) => (this.controls['description'] = el)}
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.controls['description'] = el as HTMLTfTextInputElement)
+          }
           label="Description"
-          value={this.formData.fields?.description}
+          value={this.formData.fields?.description as string}
         />
         <div class="form__controls">
           {this.editMode && (

@@ -13,7 +13,7 @@ export class SelectInputComponent {
   @Prop() type = 'text'
 
   /** Input label */
-  @Prop() label: string
+  @Prop() label!: string
 
   /** Input suggest items */
   @Prop() items: KeyValues = []
@@ -25,14 +25,14 @@ export class SelectInputComponent {
   @Prop() disabled = false
 
   /** Input value */
-  @Prop({ mutable: true }) value: string | number
+  @Prop({ mutable: true }) value!: string | number
 
   /** Input Event */
-  @Event({ composed: false }) inputChange: EventEmitter
+  @Event({ composed: false }) inputChange!: EventEmitter
 
   @State() touched = false
   @State() changed = false
-  @State() valid: boolean
+  @State() valid!: boolean
   @State() error = ''
 
   /** Validate value */
@@ -92,7 +92,7 @@ export class SelectInputComponent {
         >
           <span class="select-input__label">{this.label}</span>
           <select
-            ref={(el: HTMLSelectElement) => (this.input = el)}
+            ref={(el: HTMLSelectElement | undefined) => (this.input = el as HTMLSelectElement)}
             class="select-input__input"
             onChange={this.inputChanged}
             onBlur={this.blur}

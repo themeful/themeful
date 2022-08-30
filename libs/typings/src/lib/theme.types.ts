@@ -20,7 +20,7 @@ export interface ThemeValues {
 }
 
 export interface ThemeValue {
-  default?: ValueDetail
+  default: ValueDetail
   [media: string]: ValueDetail
 }
 

@@ -1,6 +1,8 @@
-import { DesignTokens, Style, StyleGuides, Themes } from '@typings'
+import { DesignTokens, ExtendedStyle, StyleGuide, StyleGuides, Themes } from '@typings'
 import { slugify } from '@utils'
 import { readdirSync, unlinkSync, writeFileSync } from 'fs'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import * as smq from 'sort-media-queries'
 
 export function themesScss(
@@ -11,19 +13,22 @@ export function themesScss(
   styleGuides: StyleGuides
 ): void {
   let storybookThemes = ''
-  const themeList = []
+  const themeList: string[] = []
 
   const mediaQueryMap: { media: string; key: string }[] = []
 
-  Object.entries(styleGuides).forEach(([slug, styleGuide]) => {
+  Object.entries(styleGuides).forEach(([slug, styleGuide]: [string, StyleGuide]) => {
     mediaQueryMap.push(
       ...Object.entries(styleGuide.styles)
-        .filter(([, item]: [string, Style]) => item.type === 'mediaquery')
-        .map(([key, item]: [string, Style]) => ({ media: item.value, key: `${slug}_${key}` }))
+        .filter(([, item]: [string, ExtendedStyle]) => item.type === 'mediaquery')
+        .map(([key, item]: [string, ExtendedStyle]) => ({
+          media: item.value,
+          key: `${slug}_${key}`,
+        }))
     )
   })
 
-  const mediaQueryOrder = smq(mediaQueryMap, 'media').map(({ key }) => key)
+  const mediaQueryOrder = smq(mediaQueryMap, 'media').map(({ key }: { key: string }) => key)
   for (const key in themes) {
     if (!styleGuides[themes[key].styleGuide]) {
       continue
@@ -43,13 +48,13 @@ export function themesScss(
               `  --${renderedToken}: ` +
               (themes[key].styles[designToken].default.style
                 ? `#{$${themes[key].styles[designToken].default.style}};\n`
-                : `${themes[key].styles[designToken].default.direct.value};\n`)
+                : `${themes[key].styles[designToken].default.direct?.value};\n`)
           } else {
             mediaQueries[media] = mediaQueries[media] ?? []
             mediaQueries[media].push(
               themes[key].styles[designToken][media].style
                 ? `--${renderedToken}: #{$${themes[key].styles[designToken][media].style}};`
-                : `--${renderedToken}: ${themes[key].styles[designToken][media].direct.value};`
+                : `--${renderedToken}: ${themes[key].styles[designToken][media].direct?.value};`
             )
           }
         })
@@ -57,7 +62,7 @@ export function themesScss(
     }
 
     const sorted: { [key: string]: string[] } = {}
-    mediaQueryOrder.forEach((mq) => {
+    mediaQueryOrder.forEach((mq: string) => {
       if (mediaQueries[mq]) {
         sorted[mq] = mediaQueries[mq]
       }
@@ -75,7 +80,7 @@ export function themesScss(
   readdirSync(path).forEach((file) => {
     if (/^theme_.*.scss$/.test(file)) {
       const match = file.match(/^theme_(.*).scss$/)
-      if (match[1] && !themeList.includes(match[1])) {
+      if (match && match[1] && !themeList.includes(match[1])) {
         unlinkSync(`${path}${file}`)
       }
     }

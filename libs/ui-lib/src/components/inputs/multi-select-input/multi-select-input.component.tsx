@@ -11,7 +11,7 @@ export class MultiSelectInputComponent {
   @Prop() type = 'text'
 
   /** Input label */
-  @Prop() label: string
+  @Prop() label?: string
 
   /** Input suggest items */
   @Prop() items: string[] = []
@@ -20,22 +20,22 @@ export class MultiSelectInputComponent {
   @Prop() required = false
 
   /** Min input */
-  @Prop() minLength: number
+  @Prop() minLength = 0
 
   /** Max input */
-  @Prop() maxLength: number
+  @Prop() maxLength = 999999
 
   /** Input value */
   @Prop() value: string[] = []
 
   /** Input Event */
-  @Event({ composed: false }) inputChange: EventEmitter
+  @Event({ composed: false }) inputChange!: EventEmitter
 
   @State() touched = false
   @State() changed = false
-  @State() valid: boolean
+  @State() valid!: boolean
   @State() error = ''
-  private element: { direction: string; index: number; value: string }
+  private element!: { direction: string; index: number; value: string }
   private nameMap: { [key: string]: string } = {}
 
   /** Validate value */
@@ -80,18 +80,18 @@ export class MultiSelectInputComponent {
     return this.valid
   }
 
-  private allowAdd = (event): void => {
+  private allowAdd = (event: Event): void => {
     event.preventDefault()
   }
 
   private add = (): void => {
     if (this.element.value !== null) {
       this.value = [...this.value, this.element.value]
-      this.element.value = null
+      this.element.value = ''
     }
   }
 
-  private addStart = (index): void => {
+  private addStart = (index: number): void => {
     this.element = {
       index,
       direction: 'add',
@@ -103,22 +103,22 @@ export class MultiSelectInputComponent {
   private addEnd = (): void => {
     if (this.element.value !== null) {
       this.items = [...this.items, this.element.value]
-      this.element.value = null
+      this.element.value = ''
     }
   }
 
-  private allowRemove = (event): void => {
+  private allowRemove = (event: Event): void => {
     event.preventDefault()
   }
 
   private remove = (): void => {
     if (this.element.value !== null) {
       this.items = [...this.items, this.element.value]
-      this.element.value = null
+      this.element.value = ''
     }
   }
 
-  private removeStart = (index): void => {
+  private removeStart = (index: number): void => {
     this.element = {
       index,
       direction: 'remove',
@@ -130,7 +130,7 @@ export class MultiSelectInputComponent {
   private removeEnd = (): void => {
     if (this.element.value !== null) {
       this.value = [...this.value, this.element.value]
-      this.element.value = null
+      this.element.value = ''
     }
   }
 

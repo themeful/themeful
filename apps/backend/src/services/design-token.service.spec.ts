@@ -69,7 +69,7 @@ describe('DesignTokenService', () => {
 
     it('should not create one', () => {
       const clonedDesignToken: DesignTokenAPI = {
-        ...clone(designTokens.dtTestActionBackground),
+        ...clone(designTokens['dtTestActionBackground']),
         token: 'dtTestActionBackground',
       }
       expect(service.create(clonedDesignToken)).toEqual(false)
@@ -116,7 +116,7 @@ describe('DesignTokenService', () => {
 
     it('should not update to existing one', () => {
       const clonedDesignToken: DesignTokenAPI = {
-        ...clone(designTokens.dtTestActionBackground),
+        ...clone(designTokens['dtTestActionBackground']),
         token: 'dtTestActionBackground',
       }
       expect(service.update('dtTestFontColorPrimary', clonedDesignToken)).toEqual(false)
@@ -220,7 +220,7 @@ describe('DesignTokenService', () => {
     it('should update a aliasToken', () => {
       const withUpdatedAliasToken = clone(designTokens)
 
-      withUpdatedAliasToken.dtTestFontColorPrimary.aliasTokens = [
+      withUpdatedAliasToken['dtTestFontColorPrimary'].aliasTokens = [
         'atTestBaseFontColor2',
         'atTestButtonBackground',
       ]
