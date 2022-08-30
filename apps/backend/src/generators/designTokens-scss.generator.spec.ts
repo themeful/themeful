@@ -55,7 +55,8 @@ $atButtonFontSize: var(--d56);
       const themeNoDefault = clone(themesJson)
       themeNoDefault['styleGuide1_light'].styles['dtTestActionBackground'] = {
         global_mediaQuery_aboveDesktop: { style: 'styleGuide1_brand_secondary' },
-      }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any
       delete themeNoDefault['styleGuide1_dark'].styles['dtTestFontSize100']
 
       const defaultAliasToken = clone(aliasTokensJson)

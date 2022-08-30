@@ -60,14 +60,14 @@ describe('StyleGuideService', () => {
 
       const withOneMore = clone(styleGuides)
 
-      withOneMore.styleGuide1.styles['base_primary'] = clonedBaseValue
+      withOneMore['styleGuide1'].styles['base_primary'] = clonedBaseValue
 
       expect(service.create(clone(newBaseValue), 'styleGuide1')).toEqual(true)
       expect(fileSave).toBeCalledWith('styleGuides', withOneMore)
     })
 
     it('should not create if value already exist', () => {
-      expect(service.create(clone(styleGuides).global.styles.base_light as Style)).toEqual(false)
+      expect(service.create(clone(styleGuides).global.styles['base_light'] as Style)).toEqual(false)
     })
 
     it('should not create if styleGuide does not exist', () => {
@@ -76,7 +76,10 @@ describe('StyleGuideService', () => {
 
     it('should not create if styleGuide value exist for styleGuide', () => {
       expect(
-        service.create(clone(styleGuides).styleGuide1.styles.action_primary as Style, 'styleGuide1')
+        service.create(
+          clone(styleGuides)['styleGuide1'].styles['action_primary'] as Style,
+          'styleGuide1'
+        )
       ).toEqual(false)
     })
   })
@@ -101,8 +104,8 @@ describe('StyleGuideService', () => {
 
       const withOneUpdated = clone(styleGuides)
 
-      delete withOneUpdated.styleGuide1.styles['action_primary']
-      withOneUpdated.styleGuide1.styles['testUpdated_white'] = clonedBaseValue
+      delete withOneUpdated['styleGuide1'].styles['action_primary']
+      withOneUpdated['styleGuide1'].styles['testUpdated_white'] = clonedBaseValue
 
       expect(service.update('action_primary', clone(updatedBaseValue), 'styleGuide1')).toEqual(true)
       expect(fileSave).toBeCalledWith('styleGuides', withOneUpdated)
@@ -124,7 +127,7 @@ describe('StyleGuideService', () => {
       expect(
         service.update(
           'brandTest_primary',
-          clone(styleGuides).styleGuide1.styles.action_secondary as Style,
+          clone(styleGuides)['styleGuide1'].styles['action_secondary'] as Style,
           'styleGuide1'
         )
       ).toEqual(false)
@@ -148,7 +151,7 @@ describe('StyleGuideService', () => {
     it('should delete a styleGuide value', () => {
       const withOneLess = clone(styleGuides)
 
-      delete withOneLess.styleGuide1.styles['action_secondary']
+      delete withOneLess['styleGuide1'].styles['action_secondary']
 
       expect(service.delete('action_secondary', 'styleGuide1')).toEqual(true)
       expect(mockFileService.save).toBeCalledWith('styleGuides', withOneLess)
