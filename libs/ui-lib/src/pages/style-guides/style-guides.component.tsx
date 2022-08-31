@@ -1,6 +1,5 @@
 import { propertySelect } from '@properties'
 import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
-import { RouterHistory } from '@stencil/router'
 import {
   ExtendedStyle,
   ExtendedStyleGuide,
@@ -11,11 +10,13 @@ import {
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { href, Router } from 'stencil-router-v2'
 import '../../components/icon'
 import '../../components/menu'
 import '../../components/navigation'
 import '../../components/property'
 import '../../forms/form-integration'
+import { RouterService } from '../../services'
 
 @Component({
   tag: 'tf-style-guides',
@@ -23,17 +24,22 @@ import '../../forms/form-integration'
   shadow: true,
 })
 export class StyleGuidesComponent {
-  /** History */
-  @Prop() history!: RouterHistory
-
+  private routerService: RouterService
   /** Style Guides */
   @Prop() styleGuides$!: Observable<ExtendedStyleGuides>
 
   @State() styleGuides!: ExtendedStyleGuides
   private formData$ = new Subject()
 
+  private Router: Router
+
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
+
+  constructor() {
+    this.routerService = RouterService.Instance
+    this.Router = this.routerService.getRouter()
+  }
 
   private onAction = ({ detail }: { detail: FormIntegrationActions }): void => {
     if (detail.action !== 'close') {
@@ -120,9 +126,7 @@ export class StyleGuidesComponent {
     return (
       <div class="style-guide">
         <h3>
-          <stencil-route-link url={`/styleguide/${styleGuide.slug}`}>
-            {styleGuide.name}
-          </stencil-route-link>
+          <a {...href(`/styleguide/${styleGuide.slug}`)}>{styleGuide.name}</a>
           <tf-menu
             items={[
               {
@@ -143,7 +147,7 @@ export class StyleGuidesComponent {
                 label: 'Show',
                 icon: 'search',
                 callback: () => {
-                  this.history.push(`/styleguide/${styleGuide.slug}`, {})
+                  this.Router.push(`/styleguide/${styleGuide.slug}`)
                 },
               },
               {

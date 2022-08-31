@@ -8,6 +8,7 @@ import {
   Themes,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { href } from 'stencil-router-v2'
 import { Components as ComponentTypes } from '../../components'
 import '../../components/button'
 import '../../components/icon'
@@ -61,12 +62,12 @@ export class ComponentListComponent {
     return (
       <div class="component-list__wrapper">
         {Object.entries(this.components).map(([id, component]) => (
-          <stencil-route-link url={`/component/${id}`}>
+          <a {...href(`/component/${id}`)}>
             <div class="component-list__item">
               <span>{component.name}</span>
               <span>{id}</span>
             </div>
-          </stencil-route-link>
+          </a>
         ))}
       </div>
     )

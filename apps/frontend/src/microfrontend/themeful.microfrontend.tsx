@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import { Component, h, Host, State } from '@stencil/core'
 import {
   ComponentItemBundle,
@@ -6,6 +7,7 @@ import {
   ThemeBundle,
 } from '@typings'
 import '@ui'
+import { RouterService } from '@ui'
 import '@ui/components/button'
 import '@ui/components/toast'
 import '@ui/pages/component-item'
@@ -14,6 +16,7 @@ import '@ui/pages/style-guide-details'
 import '@ui/pages/style-guides'
 import '@ui/pages/themes'
 import { Observable } from 'rxjs'
+import { href, match, Route, Router } from 'stencil-router-v2'
 import { Components } from '../components'
 import { APIService } from '../services'
 
@@ -24,12 +27,15 @@ import { APIService } from '../services'
 })
 export class ThemefulMicrofrontend {
   private apiService: APIService
+  private routerService: RouterService
   private styleGuides$
   private themeBundle$: Observable<ThemeBundle>
   private componentListBundle$: Observable<ComponentListBundle>
   private componentBundle$: Observable<ComponentItemBundle>
   private toast$
   @State() mode?: string
+
+  private Router: Router
 
   constructor() {
     this.apiService = APIService.Instance
@@ -38,6 +44,8 @@ export class ThemefulMicrofrontend {
     this.componentListBundle$ = this.apiService.componentListBundle$
     this.componentBundle$ = this.apiService.componentBundle$
     this.toast$ = this.apiService.toast$
+    this.routerService = RouterService.Instance
+    this.Router = this.routerService.getRouter()
   }
 
   private onAction = ({ detail }: { detail: FormIntegrationActions }) => {
@@ -64,25 +72,47 @@ export class ThemefulMicrofrontend {
     this.checkMode()
   }
 
+  private renderStyleGuideDetails = (params: {
+    [param: string]: string
+  }): Components.TfStyleGuideDetails => (
+    <tf-style-guide-details
+      {...({
+        slug: params['slug'],
+        styleGuides$: this.styleGuides$,
+        onAction: this.onAction,
+      } as Components.TfStyleGuideDetails)}
+    ></tf-style-guide-details>
+  )
+
+  private renderComponentDetails = (params: { [param: string]: string }) => (
+    <tf-component-item
+      {...({
+        uuid: params['uuid'],
+        componentBundle$: this.componentBundle$,
+        onAction: this.onAction,
+      } as Components.TfComponentItem)}
+    ></tf-component-item>
+  )
+
   public render(): HTMLThemefulMicrofrontendElement {
     return (
       <Host>
         <header>
-          <stencil-route-link url="/themes">
+          <a {...href('/themes')}>
             <img class="logo" src="/assets/themeful.svg" />
-          </stencil-route-link>
+          </a>
           <div class="navigation">
             <h1>Themeful</h1>
             <nav class="button-group nav-row">
-              <stencil-route-link url="/themes">
+              <a {...href('/themes')}>
                 <tf-button kind="selectable">Themes</tf-button>
-              </stencil-route-link>
-              <stencil-route-link url="/styleguides">
+              </a>
+              <a {...href('/styleguides')}>
                 <tf-button kind="selectable">Style Guides</tf-button>
-              </stencil-route-link>
-              <stencil-route-link url="/components">
+              </a>
+              <a {...href('/components')}>
                 <tf-button kind="selectable">Components</tf-button>
-              </stencil-route-link>
+              </a>
               <tf-button class="mode-toggle" onClick={this.toogleMode} kind="selectable">
                 {this.mode === 'light' ? 'Dark' : 'Light'} Mode
               </tf-button>
@@ -92,54 +122,35 @@ export class ThemefulMicrofrontend {
           <tf-toast {...({ msg$: this.toast$ } as Components.TfToast)} />
         </header>
         <main>
-          <stencil-router>
-            <stencil-route-switch scrollTopOffset={0}>
-              <stencil-route
-                url="/themes"
-                component="tf-themes"
-                componentProps={{
+          <this.Router.Switch>
+            <Route path="/themes">
+              <tf-themes
+                {...{
                   themeBundle$: this.themeBundle$,
                   onAction: this.onAction,
                 }}
-              />
-              <stencil-route
-                url="/styleguides"
-                component="tf-style-guides"
-                componentProps={{
+              ></tf-themes>
+            </Route>
+            <Route path="/styleguides">
+              <tf-style-guides
+                {...({
                   styleGuides$: this.styleGuides$,
                   onAction: this.onAction,
-                }}
-              />
-              <stencil-route
-                url="/styleguide/:slug"
-                component="tf-style-guide-details"
-                componentProps={{
-                  styleGuides$: this.styleGuides$,
-                  onAction: this.onAction,
-                }}
-              />
-              <stencil-route
-                url="/components"
-                component="tf-component-list"
-                componentProps={{
+                } as Components.TfStyleGuides)}
+              ></tf-style-guides>
+            </Route>
+            <Route path={match('/styleguide/:slug')} render={this.renderStyleGuideDetails} />
+            <Route path="/components">
+              <tf-component-list
+                {...({
                   componentListBundle$: this.componentListBundle$,
                   onAction: this.onAction,
-                }}
-              />
-
-              <stencil-route
-                url="/component/:id"
-                component="tf-component-item"
-                componentProps={{
-                  componentBundle$: this.componentBundle$,
-                  onAction: this.onAction,
-                }}
-              />
-              <stencil-route url="/" exact={true}>
-                <stencil-router-redirect url="/themes" />
-              </stencil-route>
-            </stencil-route-switch>
-          </stencil-router>
+                } as Components.TfComponentList)}
+              ></tf-component-list>
+            </Route>
+            <Route path={match('/component/:uuid')} render={this.renderComponentDetails} />
+            <Route path="/" to="/themes" />
+          </this.Router.Switch>
         </main>
       </Host>
     )

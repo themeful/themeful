@@ -20,6 +20,7 @@ import {
   Themes,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { href } from 'stencil-router-v2'
 import { Components as ComponentTypes } from '../../components'
 import '../../components/button'
 import '../../components/icon'
@@ -37,8 +38,8 @@ export class ComponentItemComponent {
   /** Component Item Bundle */
   @Prop() componentBundle$!: Observable<ComponentItemBundle>
 
-  /** Style Guide Slug */
-  @Prop() match!: { params: { id: string } }
+  /** Component UUID */
+  @Prop() uuid!: string
 
   @State() rows: DesignTokenRow[] = []
   @State() componentID!: string
@@ -81,14 +82,13 @@ export class ComponentItemComponent {
   }
 
   public componentWillLoad(): void {
-    this.componentID = this.match?.params?.id
     this.sub.add(
       this.componentBundle$?.subscribe(
         ([components, styleGuides, designTokens, aliasTokens, themes, config]) => {
           this.config = config
           this.themes = themes
           this.components = components
-          console.log(this.componentID, this.components)
+          console.log(this.uuid, this.components)
           this.aliasTokens = aliasTokens
           this.designTokens = designTokens
           this.groups = []
@@ -348,9 +348,7 @@ export class ComponentItemComponent {
           {Object.values(this.styleGuideHeaders).map((styleGuide) => (
             <th colSpan={this.styleGuideCount[styleGuide.slug]}>
               <h2>
-                <stencil-route-link url={`/styleguide/${styleGuide.slug}`}>
-                  {styleGuide.name}
-                </stencil-route-link>
+                <a {...href(`/styleguide/${styleGuide.slug}`)}>{styleGuide.name}</a>
                 {this.styleGuideCount[styleGuide.slug] === 1 &&
                   this.renderThemeMenu(styleGuide.first)}
               </h2>

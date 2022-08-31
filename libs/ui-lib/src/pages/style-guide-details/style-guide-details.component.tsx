@@ -1,6 +1,5 @@
 import { propertySelect } from '@properties'
 import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core'
-import { RouterHistory } from '@stencil/router'
 import {
   ExtendedStyle,
   ExtendedStyleGuide,
@@ -12,11 +11,13 @@ import {
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
+import { Router } from 'stencil-router-v2'
 import { Components } from '../../components'
 import '../../components/button'
 import '../../components/navigation'
 import '../../components/property'
 import '../../forms/form-integration'
+import { RouterService } from '../../services'
 
 @Component({
   tag: 'tf-style-guide-details',
@@ -24,26 +25,31 @@ import '../../forms/form-integration'
   shadow: true,
 })
 export class StyleGuideDetailsComponent {
-  /** History */
-  @Prop() history!: RouterHistory
-
+  private routerService: RouterService
   /** Style Guides */
   @Prop() styleGuides$!: Observable<ExtendedStyleGuides>
 
   /** Style Guide Slug */
-  @Prop() match!: { params: { slug: string } }
+  @Prop() slug!: string
 
   @State() styleGuide!: ExtendedStyleGuide
   private formData$ = new Subject()
 
+  private Router: Router
+
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
+
+  constructor() {
+    this.routerService = RouterService.Instance
+    this.Router = this.routerService.getRouter()
+  }
 
   private onAction = ({ detail }: { detail: StyleGuideIntegrationAction }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
       if (['duplicate', 'delete'].includes(detail.action)) {
-        this.history.push(`/styleguides`, {})
+        this.Router.push('/style-guides')
       }
     }
   }
@@ -81,7 +87,7 @@ export class StyleGuideDetailsComponent {
     this.sub.add(
       this.styleGuides$?.subscribe((styleGuides) => {
         styleGuides.forEach((styleguide) => {
-          if (styleguide.slug === this.match.params.slug) {
+          if (styleguide.slug.toLowerCase() === this.slug) {
             this.styleGuide = styleguide
           }
         })
