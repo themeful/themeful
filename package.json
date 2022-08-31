@@ -138,7 +138,7 @@
     "socket.io": "4.5.1",
     "socket.io-client": "4.5.1",
     "sort-media-queries": "0.2.2",
-    "stencil-router-v2": "^0.6.0",
+    "stencil-router-v2": "0.6.0",
     "tslib": "2.4.0"
   },
   "lint-staged": {

@@ -90,7 +90,7 @@ specifiers:
   socket.io-client: 4.5.1
   sort-media-queries: 0.2.2
   stencil-fragment: 1.0.1
-  stencil-router-v2: ^0.6.0
+  stencil-router-v2: 0.6.0
   style-loader: 3.3.1
   ts-jest: 27.1.5
   ts-node: 10.9.1
