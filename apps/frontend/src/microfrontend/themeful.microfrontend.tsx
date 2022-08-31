@@ -7,6 +7,7 @@ import {
   ThemeBundle,
 } from '@typings'
 import '@ui'
+import { RouterService } from '@ui'
 import '@ui/components/button'
 import '@ui/components/toast'
 import '@ui/pages/component-item'
@@ -15,11 +16,9 @@ import '@ui/pages/style-guide-details'
 import '@ui/pages/style-guides'
 import '@ui/pages/themes'
 import { Observable } from 'rxjs'
-import { createRouter, href, match, Route } from 'stencil-router-v2'
+import { href, match, Route, Router } from 'stencil-router-v2'
 import { Components } from '../components'
 import { APIService } from '../services'
-
-const Router = createRouter()
 
 @Component({
   tag: 'themeful-microfrontend',
@@ -28,12 +27,15 @@ const Router = createRouter()
 })
 export class ThemefulMicrofrontend {
   private apiService: APIService
+  private routerService: RouterService
   private styleGuides$
   private themeBundle$: Observable<ThemeBundle>
   private componentListBundle$: Observable<ComponentListBundle>
   private componentBundle$: Observable<ComponentItemBundle>
   private toast$
   @State() mode?: string
+
+  private Router: Router
 
   constructor() {
     this.apiService = APIService.Instance
@@ -42,6 +44,8 @@ export class ThemefulMicrofrontend {
     this.componentListBundle$ = this.apiService.componentListBundle$
     this.componentBundle$ = this.apiService.componentBundle$
     this.toast$ = this.apiService.toast$
+    this.routerService = RouterService.Instance
+    this.Router = this.routerService.getRouter()
   }
 
   private onAction = ({ detail }: { detail: FormIntegrationActions }) => {
@@ -118,7 +122,7 @@ export class ThemefulMicrofrontend {
           <tf-toast {...({ msg$: this.toast$ } as Components.TfToast)} />
         </header>
         <main>
-          <Router.Switch>
+          <this.Router.Switch>
             <Route path="/themes">
               <tf-themes
                 {...{
@@ -146,7 +150,7 @@ export class ThemefulMicrofrontend {
             </Route>
             <Route path={match('/component/:uuid')} render={this.renderComponentDetails} />
             <Route path="/" to="/themes" />
-          </Router.Switch>
+          </this.Router.Switch>
         </main>
       </Host>
     )

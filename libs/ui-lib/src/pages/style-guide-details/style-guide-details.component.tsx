@@ -11,14 +11,13 @@ import {
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
-import { createRouter } from 'stencil-router-v2'
+import { Router } from 'stencil-router-v2'
 import { Components } from '../../components'
 import '../../components/button'
 import '../../components/navigation'
 import '../../components/property'
 import '../../forms/form-integration'
-
-const Router = createRouter()
+import { RouterService } from '../../services'
 
 @Component({
   tag: 'tf-style-guide-details',
@@ -26,6 +25,7 @@ const Router = createRouter()
   shadow: true,
 })
 export class StyleGuideDetailsComponent {
+  private routerService: RouterService
   /** Style Guides */
   @Prop() styleGuides$!: Observable<ExtendedStyleGuides>
 
@@ -35,14 +35,21 @@ export class StyleGuideDetailsComponent {
   @State() styleGuide!: ExtendedStyleGuide
   private formData$ = new Subject()
 
+  private Router: Router
+
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
+
+  constructor() {
+    this.routerService = RouterService.Instance
+    this.Router = this.routerService.getRouter()
+  }
 
   private onAction = ({ detail }: { detail: StyleGuideIntegrationAction }): void => {
     if (detail.action !== 'close') {
       this.action.emit(detail)
       if (['duplicate', 'delete'].includes(detail.action)) {
-        Router.push('/style-guides')
+        this.Router.push('/style-guides')
       }
     }
   }

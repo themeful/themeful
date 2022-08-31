@@ -6,6 +6,7 @@ describe('ThemefulMicrofrontend', () => {
     const { root } = await newSpecPage({
       components: [ThemefulMicrofrontend],
       html: '<themeful-microfrontend></themeful-microfrontend>',
+      url: 'http://localhost/',
     })
     expect(root).toMatchSnapshot()
   })
@@ -14,6 +15,7 @@ describe('ThemefulMicrofrontend', () => {
     const { root } = await newSpecPage({
       components: [ThemefulMicrofrontend],
       html: `<themeful-microfrontend></themeful-microfrontend>`,
+      url: 'http://localhost/',
     })
     expect(root).toMatchSnapshot()
   })

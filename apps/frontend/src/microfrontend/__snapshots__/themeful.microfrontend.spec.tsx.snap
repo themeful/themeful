@@ -4,29 +4,29 @@ exports[`ThemefulMicrofrontend renders 1`] = `
 <themeful-microfrontend>
   <mock:shadow-root>
     <header>
-      <stencil-route-link url="/themes">
+      <a href="/themes">
         <img class="logo" src="/assets/themeful.svg">
-      </stencil-route-link>
+      </a>
       <div class="navigation">
         <h1>
           Themeful
         </h1>
         <nav class="button-group nav-row">
-          <stencil-route-link url="/themes">
+          <a href="/themes">
             <tf-button kind="selectable">
               Themes
             </tf-button>
-          </stencil-route-link>
-          <stencil-route-link url="/styleguides">
+          </a>
+          <a href="/styleguides">
             <tf-button kind="selectable">
               Style Guides
             </tf-button>
-          </stencil-route-link>
-          <stencil-route-link url="/components">
+          </a>
+          <a href="/components">
             <tf-button kind="selectable">
               Components
             </tf-button>
-          </stencil-route-link>
+          </a>
           <tf-button class="mode-toggle" kind="selectable">
             Light Mode
           </tf-button>
@@ -35,18 +35,7 @@ exports[`ThemefulMicrofrontend renders 1`] = `
       <tf-toast></tf-toast>
     </header>
     <main>
-      <stencil-router>
-        <stencil-route-switch scrolltopoffset="0">
-          <stencil-route component="tf-themes" url="/themes"></stencil-route>
-          <stencil-route component="tf-style-guides" url="/styleguides"></stencil-route>
-          <stencil-route component="tf-style-guide-details" url="/styleguide/:slug"></stencil-route>
-          <stencil-route component="tf-component-list" url="/components"></stencil-route>
-          <stencil-route component="tf-component-item" url="/component/:id"></stencil-route>
-          <stencil-route exact="" url="/">
-            <stencil-router-redirect url="/themes"></stencil-router-redirect>
-          </stencil-route>
-        </stencil-route-switch>
-      </stencil-router>
+      <tf-themes></tf-themes>
     </main>
   </mock:shadow-root>
 </themeful-microfrontend>
@@ -56,29 +45,29 @@ exports[`ThemefulMicrofrontend renders with values 1`] = `
 <themeful-microfrontend>
   <mock:shadow-root>
     <header>
-      <stencil-route-link url="/themes">
+      <a href="/themes">
         <img class="logo" src="/assets/themeful.svg">
-      </stencil-route-link>
+      </a>
       <div class="navigation">
         <h1>
           Themeful
         </h1>
         <nav class="button-group nav-row">
-          <stencil-route-link url="/themes">
+          <a href="/themes">
             <tf-button kind="selectable">
               Themes
             </tf-button>
-          </stencil-route-link>
-          <stencil-route-link url="/styleguides">
+          </a>
+          <a href="/styleguides">
             <tf-button kind="selectable">
               Style Guides
             </tf-button>
-          </stencil-route-link>
-          <stencil-route-link url="/components">
+          </a>
+          <a href="/components">
             <tf-button kind="selectable">
               Components
             </tf-button>
-          </stencil-route-link>
+          </a>
           <tf-button class="mode-toggle" kind="selectable">
             Light Mode
           </tf-button>
@@ -87,18 +76,7 @@ exports[`ThemefulMicrofrontend renders with values 1`] = `
       <tf-toast></tf-toast>
     </header>
     <main>
-      <stencil-router>
-        <stencil-route-switch scrolltopoffset="0">
-          <stencil-route component="tf-themes" url="/themes"></stencil-route>
-          <stencil-route component="tf-style-guides" url="/styleguides"></stencil-route>
-          <stencil-route component="tf-style-guide-details" url="/styleguide/:slug"></stencil-route>
-          <stencil-route component="tf-component-list" url="/components"></stencil-route>
-          <stencil-route component="tf-component-item" url="/component/:id"></stencil-route>
-          <stencil-route exact="" url="/">
-            <stencil-router-redirect url="/themes"></stencil-router-redirect>
-          </stencil-route>
-        </stencil-route-switch>
-      </stencil-router>
+      <tf-themes></tf-themes>
     </main>
   </mock:shadow-root>
 </themeful-microfrontend>

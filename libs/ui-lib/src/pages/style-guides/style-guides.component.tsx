@@ -10,14 +10,13 @@ import {
   StyleTypeGroup,
 } from '@typings'
 import { Observable, Subject, Subscription } from 'rxjs'
-import { createRouter, href } from 'stencil-router-v2'
+import { href, Router } from 'stencil-router-v2'
 import '../../components/icon'
 import '../../components/menu'
 import '../../components/navigation'
 import '../../components/property'
 import '../../forms/form-integration'
-
-const Router = createRouter()
+import { RouterService } from '../../services'
 
 @Component({
   tag: 'tf-style-guides',
@@ -25,14 +24,22 @@ const Router = createRouter()
   shadow: true,
 })
 export class StyleGuidesComponent {
+  private routerService: RouterService
   /** Style Guides */
   @Prop() styleGuides$!: Observable<ExtendedStyleGuides>
 
   @State() styleGuides!: ExtendedStyleGuides
   private formData$ = new Subject()
 
+  private Router: Router
+
   /** Event emitted when an action is triggered */
   @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
+
+  constructor() {
+    this.routerService = RouterService.Instance
+    this.Router = this.routerService.getRouter()
+  }
 
   private onAction = ({ detail }: { detail: FormIntegrationActions }): void => {
     if (detail.action !== 'close') {
@@ -140,7 +147,7 @@ export class StyleGuidesComponent {
                 label: 'Show',
                 icon: 'search',
                 callback: () => {
-                  Router.push(`/styleguide/${styleGuide.slug}`)
+                  this.Router.push(`/styleguide/${styleGuide.slug}`)
                 },
               },
               {

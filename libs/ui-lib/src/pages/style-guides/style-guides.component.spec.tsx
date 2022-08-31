@@ -6,6 +6,7 @@ describe('StyleGuidesComponent', () => {
     const { root } = await newSpecPage({
       components: [StyleGuidesComponent],
       html: '<tf-style-guides></tf-style-guides>',
+      url: 'http://localhost/',
     })
     expect(root).toMatchSnapshot()
   })
@@ -14,6 +15,7 @@ describe('StyleGuidesComponent', () => {
     const { root } = await newSpecPage({
       components: [StyleGuidesComponent],
       html: `<tf-style-guides></tf-style-guides>`,
+      url: 'http://localhost/',
     })
     expect(root).toMatchSnapshot()
   })
