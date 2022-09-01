@@ -104,7 +104,7 @@
     "redis": "4.3.0",
     "rollup-plugin-node-polyfills": "0.2.1",
     "run-parallel": "1.2.0",
-    "sass": "1.54.7",
+    "sass": "1.54.8",
     "sass-loader": "13.0.2",
     "stencil-fragment": "1.0.1",
     "style-loader": "3.3.1",

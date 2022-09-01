@@ -82,7 +82,7 @@ specifiers:
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
   rxjs: 7.5.6
-  sass: 1.54.7
+  sass: 1.54.8
   sass-loader: 13.0.2
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
@@ -191,8 +191,8 @@ devDependencies:
   redis: 4.3.0
   rollup-plugin-node-polyfills: 0.2.1
   run-parallel: 1.2.0
-  sass: 1.54.7
-  sass-loader: 13.0.2_sass@1.54.7+webpack@5.74.0
+  sass: 1.54.8
+  sass-loader: 13.0.2_sass@1.54.8+webpack@5.74.0
   stencil-fragment: 1.0.1
   style-loader: 3.3.1_webpack@5.74.0
   ts-jest: 27.1.5_vnhccswlnufoelt52lyvke3blm
@@ -2830,8 +2830,8 @@ packages:
       rollup-plugin-postcss: 4.0.2_57znarxsqwmnneadci5z5fd5gu
       rollup-plugin-typescript2: 0.31.2_accrhai6qopda76wnqb3pkewpq
       rxjs: 6.6.7
-      sass: 1.54.7
-      sass-loader: 12.6.0_sass@1.54.7+webpack@5.74.0
+      sass: 1.54.8
+      sass-loader: 12.6.0_sass@1.54.8+webpack@5.74.0
       semver: 7.3.4
       source-map: 0.7.3
       source-map-loader: 3.0.1_webpack@5.74.0
@@ -2995,7 +2995,7 @@ packages:
       rxjs: 7.5.6
       rxjs-for-await: 1.0.0_rxjs@7.5.6
       tsconfig-paths: 3.14.1
-      vite: 2.9.15_tyygmeoqw5rny7f6qk5xlyuse4
+      vite: 2.9.15_7lrrkovizbgycgnslqrvolzyii
     transitivePeerDependencies:
       - nx
     dev: true
@@ -15497,7 +15497,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/12.6.0_sass@1.54.7+webpack@5.74.0:
+  /sass-loader/12.6.0_sass@1.54.8+webpack@5.74.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -15518,11 +15518,11 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.54.7
+      sass: 1.54.8
       webpack: 5.74.0
     dev: true
 
-  /sass-loader/13.0.2_sass@1.54.7+webpack@5.74.0:
+  /sass-loader/13.0.2_sass@1.54.8+webpack@5.74.0:
     resolution: {integrity: sha512-BbiqbVmbfJaWVeOOAu2o7DhYWtcNmTfvroVgFXa6k2hHheMxNAeDHLNoDy/Q5aoaVlz0LH+MbMktKwm9vN/j8Q==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
@@ -15543,12 +15543,12 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.54.7
+      sass: 1.54.8
       webpack: 5.74.0
     dev: true
 
-  /sass/1.54.7:
-    resolution: {integrity: sha512-3q7MQz7sCpVG6TLhUfZwGOcd2/sm2ghYN2JEdRjNiW04ILdvahdo9GuAs+bxsxZ3hDCKv+wUT5w0iFWGU0CxlA==}
+  /sass/1.54.8:
+    resolution: {integrity: sha512-ib4JhLRRgbg6QVy6bsv5uJxnJMTS2soVcCp9Y88Extyy13A8vV0G1fAwujOzmNkFQbR3LvedudAMbtuNRPbQww==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -17520,7 +17520,7 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /vite/2.9.15_tyygmeoqw5rny7f6qk5xlyuse4:
+  /vite/2.9.15_7lrrkovizbgycgnslqrvolzyii:
     resolution: {integrity: sha512-fzMt2jK4vQ3yK56te3Kqpkaeq9DkcZfBbzHwYpobasvgYmP2SoAr6Aic05CsB4CzCZbsDv4sujX3pkEGhLabVQ==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -17541,7 +17541,7 @@ packages:
       postcss: 8.4.16
       resolve: 1.22.1
       rollup: 2.77.3
-      sass: 1.54.7
+      sass: 1.54.8
       stylus: 0.59.0
     optionalDependencies:
       fsevents: 2.3.2
