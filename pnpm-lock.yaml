@@ -44,7 +44,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 4.33.0
   '@typescript-eslint/parser': 4.33.0
   amqp-connection-manager: 4.1.6
-  amqplib: 0.10.2
+  amqplib: 0.10.3
   autoprefixer: 10.4.8
   bufferutil: 4.0.6
   cache-manager: 4.1.0
@@ -129,7 +129,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.6.12
   '@grpc/proto-loader': 0.7.2
-  '@nestjs/microservices': 8.4.7_vwbkmkg6mr6t6pn6a7l24e76cm
+  '@nestjs/microservices': 8.4.7_m3lo65ccmugvx6pvynij3avwmu
   '@nestjs/schematics': 9.0.1_typescript@4.7.4
   '@nestjs/testing': 9.0.7_7jplvfrqbzzkmubb5s3pkhgsdy
   '@nrwl/cli': 14.5.10
@@ -161,8 +161,8 @@ devDependencies:
   '@types/object-hash': 2.2.1
   '@typescript-eslint/eslint-plugin': 4.33.0_3ekaj7j3owlolnuhj3ykrb7u7i
   '@typescript-eslint/parser': 4.33.0_hxadhbs2xogijvk7vq4t2azzbu
-  amqp-connection-manager: 4.1.6_amqplib@0.10.2
-  amqplib: 0.10.2
+  amqp-connection-manager: 4.1.6_amqplib@0.10.3
+  amqplib: 0.10.3
   autoprefixer: 10.4.8_postcss@8.4.16
   bufferutil: 4.0.6
   cache-manager: 4.1.0
@@ -203,6 +203,16 @@ devDependencies:
   workbox-build: 6.5.4
 
 packages:
+
+  /@acuminous/bitsyntax/0.1.2:
+    resolution: {integrity: sha512-29lUK80d1muEQqiUsSo+3A0yP6CdspgC95EnKBMi22Xlwt79i/En4Vr67+cXhU+cZjbti3TgGGC5wy1stIywVQ==}
+    engines: {node: '>=0.8'}
+    dependencies:
+      buffer-more-ints: 1.0.0
+      debug: 4.3.4
+      safe-buffer: 5.1.2
+    transitivePeerDependencies:
+      - supports-color
 
   /@adobe/css-tools/4.0.1:
     resolution: {integrity: sha512-+u76oB43nOHrF4DDWRLWDCtci7f3QJoEBigemIdIeTi1ODqjx6Tad9NCVnPRwewWlKkVab5PlK8DCtPTyX7S8g==}
@@ -2211,7 +2221,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
-      '@nestjs/microservices': 8.4.7_vwbkmkg6mr6t6pn6a7l24e76cm
+      '@nestjs/microservices': 8.4.7_m3lo65ccmugvx6pvynij3avwmu
       '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
       '@nestjs/websockets': 9.0.11_lwczkvnmapmsdfxfkrkqam2oea
       '@nuxtjs/opencollective': 0.3.2
@@ -2226,7 +2236,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/8.4.7_vwbkmkg6mr6t6pn6a7l24e76cm:
+  /@nestjs/microservices/8.4.7_m3lo65ccmugvx6pvynij3avwmu:
     resolution: {integrity: sha512-JZX29tBWbbPa+Q06QcCbwKTyEsOFHAPrxgfEkRNwoaiEqqCsITT9w2n5bcz3vlUurdpy5dIgX3/almbitghbKg==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2266,8 +2276,8 @@ packages:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
       '@nestjs/core': 9.0.7_lt5bq4cyg2pmju7qakuqqndgwq
       '@nestjs/websockets': 9.0.11_lwczkvnmapmsdfxfkrkqam2oea
-      amqp-connection-manager: 4.1.6_amqplib@0.10.2
-      amqplib: 0.10.2
+      amqp-connection-manager: 4.1.6_amqplib@0.10.3
+      amqplib: 0.10.3
       cache-manager: 4.1.0
       iterare: 1.2.1
       kafkajs: 2.2.0
@@ -2352,7 +2362,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.0.7_mgy7w2bm3yhmntrbe3boyroj6m
       '@nestjs/core': 9.0.7_lt5bq4cyg2pmju7qakuqqndgwq
-      '@nestjs/microservices': 8.4.7_vwbkmkg6mr6t6pn6a7l24e76cm
+      '@nestjs/microservices': 8.4.7_m3lo65ccmugvx6pvynij3avwmu
       '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
       tslib: 2.4.0
     dev: true
@@ -6317,20 +6327,20 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /amqp-connection-manager/4.1.6_amqplib@0.10.2:
+  /amqp-connection-manager/4.1.6_amqplib@0.10.3:
     resolution: {integrity: sha512-RFbVdA6COw+968HpZAeR4KJtgcBeKR626MTQjgHRwolaHry4Gg4Z7dJHwHerqlYbv5dAP8VB29AXYwu+XZP3JQ==}
     engines: {node: '>=10.0.0', npm: '>5.0.0'}
     peerDependencies:
       amqplib: '*'
     dependencies:
-      amqplib: 0.10.2
+      amqplib: 0.10.3
       promise-breaker: 6.0.0
 
-  /amqplib/0.10.2:
-    resolution: {integrity: sha512-l8U1thHT5QRNJF6Fv6ZveMeHV/bl+3UROQBn/cLOwRfeV3F0syZxkjnumJCG4NMvqfy9wT7mCgwpPSq2fApRpA==}
+  /amqplib/0.10.3:
+    resolution: {integrity: sha512-UHmuSa7n8vVW/a5HGh2nFPqAEr8+cD4dEZ6u9GjP91nHfr1a54RyAKyra7Sb5NH7NBKOUlyQSMXIp0qAixKexw==}
     engines: {node: '>=10'}
     dependencies:
-      bitsyntax: 0.1.0
+      '@acuminous/bitsyntax': 0.1.2
       buffer-more-ints: 1.0.0
       readable-stream: 1.1.14
       url-parse: 1.5.10
@@ -6978,16 +6988,6 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
     optional: true
-
-  /bitsyntax/0.1.0:
-    resolution: {integrity: sha512-ikAdCnrloKmFOugAfxWws89/fPc+nw0OOG1IzIE72uSOg/A3cYptKCjSUhDTuj7fhsJtzkzlv7l3b8PzRHLN0Q==}
-    engines: {node: '>=0.8'}
-    dependencies:
-      buffer-more-ints: 1.0.0
-      debug: 2.6.9
-      safe-buffer: 5.1.2
-    transitivePeerDependencies:
-      - supports-color
 
   /bl/4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
