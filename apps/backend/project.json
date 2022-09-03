@@ -110,7 +110,8 @@
           "pnpm install --no-frozen-lockfile",
           "if [ -f 'migrations.json' ]; then nx migrate --run-migrations=migrations.json && pnpm install --no-frozen-lockfile; fi",
           "rm -rf migrations.json"
-        ]
+        ],
+        "parallel": false
       }
     }
   },

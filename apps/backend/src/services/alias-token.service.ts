@@ -31,8 +31,7 @@ export class AliasTokenService {
     aliasToken.crawled = false
     const token = aliasToken.token
     delete aliasToken.default
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (aliasToken as any).token
+    delete (aliasToken as Partial<AliasTokenAPI>).token
 
     this.aliasTokens[token] = aliasToken
     this.writeFiles(this.aliasTokens)

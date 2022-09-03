@@ -1,12 +1,12 @@
-name: 'Deps: NRWL Update'
+name: 'Deps: Package Update'
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
-  nrwl-update:
+  package-update:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,11 +41,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: NRWL Update
-        id: nrwl_update
+      - name: Package Update
+        id: package_update
         continue-on-error: true
         run: |
-          pnpm nrwl:update
+          pnpm upgrade
           pnpm format
 
       - name: Check for changes
@@ -55,12 +55,12 @@ jobs:
           else
             echo "CHANGED_FILES=true" >> $GITHUB_ENV
           fi
-          echo "LABELS=dependencies,nrwl" >> $GITHUB_ENV
-          echo "BRANCH=nrwl_update_$(date +'%Y_%m_%d')" >> $GITHUB_ENV
-          echo "TITLE=NRWL Update $(date +'%d.%m.%Y')" >> $GITHUB_ENV
+          echo "LABELS=dependencies" >> $GITHUB_ENV
+          echo "BRANCH=package_update_$(date +'%Y_%m_%d')" >> $GITHUB_ENV
+          echo "TITLE=Package Update $(date +'%d.%m.%Y')" >> $GITHUB_ENV
 
       - name: Add invalid Label
-        if: ${{ steps.nrwl_update.outcome == 'failure' }}
+        if: ${{ steps.package_update.outcome == 'failure' }}
         run: echo "LABELS=${{ env.LABELS }},invalid" >> $GITHUB_ENV
 
       - name: Create Branch
