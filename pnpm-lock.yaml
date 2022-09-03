@@ -86,8 +86,8 @@ specifiers:
   sass-loader: 13.0.2
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
-  socket.io: 4.5.1
-  socket.io-client: 4.5.1
+  socket.io: 4.5.2
+  socket.io-client: 4.5.2
   sort-media-queries: 0.2.2
   stencil-fragment: 1.0.1
   stencil-router-v2: 0.6.0
@@ -120,8 +120,8 @@ dependencies:
   rxjs: 7.5.6
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
-  socket.io: 4.5.1_22kvxa7zeyivx4jp72v2w3pkvy
-  socket.io-client: 4.5.1_22kvxa7zeyivx4jp72v2w3pkvy
+  socket.io: 4.5.2_22kvxa7zeyivx4jp72v2w3pkvy
+  socket.io-client: 4.5.2_22kvxa7zeyivx4jp72v2w3pkvy
   sort-media-queries: 0.2.2
   stencil-router-v2: 0.6.0_@stencil+core@2.17.4
   tslib: 2.4.0
@@ -15937,8 +15937,8 @@ packages:
   /socket.io-adapter/2.4.0:
     resolution: {integrity: sha512-W4N+o69rkMEGVuk2D/cvca3uYsvGlMwsySWV447y99gUPghxq42BxqLNMndb+a1mm/5/7NeXVQS7RLa2XyXvYg==}
 
-  /socket.io-client/4.5.1_22kvxa7zeyivx4jp72v2w3pkvy:
-    resolution: {integrity: sha512-e6nLVgiRYatS+AHXnOnGi4ocOpubvOUCGhyWw8v+/FxW8saHkinG6Dfhi9TU0Kt/8mwJIAASxvw6eujQmjdZVA==}
+  /socket.io-client/4.5.2_22kvxa7zeyivx4jp72v2w3pkvy:
+    resolution: {integrity: sha512-naqYfFu7CLDiQ1B7AlLhRXKX3gdeaIMfgigwavDzgJoIUYulc1qHH5+2XflTsXTPY7BlPH5rppJyUjhjrKQKLg==}
     engines: {node: '>=10.0.0'}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
@@ -15985,6 +15985,22 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  /socket.io/4.5.2_22kvxa7zeyivx4jp72v2w3pkvy:
+    resolution: {integrity: sha512-6fCnk4ARMPZN448+SQcnn1u8OHUC72puJcNtSgg2xS34Cu7br1gQ09YKkO1PFfDn/wyUE9ZgMAwosJed003+NQ==}
+    engines: {node: '>=10.0.0'}
+    dependencies:
+      accepts: 1.3.8
+      base64id: 2.0.0
+      debug: 4.3.4
+      engine.io: 6.2.0_22kvxa7zeyivx4jp72v2w3pkvy
+      socket.io-adapter: 2.4.0
+      socket.io-parser: 4.2.1
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: false
 
   /sockjs/0.3.24:
     resolution: {integrity: sha512-GJgLTZ7vYb/JtPSSZ10hsOYIvEYsjbNU+zPdIHcUaWVNUEPivzxku31865sSSud0Da0W4lEeOPlmw93zLQchuQ==}
