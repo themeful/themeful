@@ -101,7 +101,7 @@
     "prettier": "2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "redis": "4.3.0",
+    "redis": "4.3.1",
     "rollup-plugin-node-polyfills": "0.2.1",
     "run-parallel": "1.2.0",
     "sass": "1.54.8",
