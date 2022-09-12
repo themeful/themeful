@@ -122,7 +122,7 @@
     "@nestjs/platform-socket.io": "9.0.11",
     "@nestjs/serve-static": "3.0.0",
     "@nestjs/websockets": "9.0.11",
-    "@stencil/core": "2.17.4",
+    "@stencil/core": "2.18.0",
     "camel-case": "4.1.2",
     "colortranslator": "1.9.2",
     "find": "0.3.0",
