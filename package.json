@@ -76,7 +76,7 @@
     "@typescript-eslint/parser": "4.33.0",
     "amqp-connection-manager": "4.1.6",
     "amqplib": "0.10.3",
-    "autoprefixer": "10.4.10",
+    "autoprefixer": "10.4.11",
     "bufferutil": "4.0.6",
     "cache-manager": "4.1.0",
     "class-transformer": "0.5.1",
