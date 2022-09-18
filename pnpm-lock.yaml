@@ -2079,7 +2079,7 @@ packages:
     resolution: {integrity: sha512-/l/VWsdt/aBXgjshLWOFyFt3IVdYypu5y2Wn2rOO1un6nkqIn8SLXzgIMYXFyYsRWDyF5EthmKJMIdJvk08grg==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      '@sinclair/typebox': 0.24.41
+      '@sinclair/typebox': 0.24.42
     dev: true
 
   /@jest/source-map/27.5.1:
@@ -3529,8 +3529,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sinclair/typebox/0.24.41:
-    resolution: {integrity: sha512-TJCgQurls4FipFvHeC+gfAzb+GGstL0TDwYJKQVtTeSvJIznWzP7g3bAd5gEBlr8+bIxqnWS9VGVWREDhmE8jA==}
+  /@sinclair/typebox/0.24.42:
+    resolution: {integrity: sha512-d+2AtrHGyWek2u2ITF0lHRIv6Tt7X0dEHW+0rP+5aDCEjC3fiN2RBjrLD0yU0at52BcZbRGxLbAtXiR0hFCjYw==}
     dev: true
 
   /@sinonjs/commons/1.8.3:
@@ -4285,7 +4285,7 @@ packages:
       webpack: 5.74.0
       webpack-dev-middleware: 4.3.0_webpack@5.74.0
       webpack-hot-middleware: 2.25.2
-      webpack-virtual-modules: 0.4.4
+      webpack-virtual-modules: 0.4.5
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
@@ -5216,7 +5216,7 @@ packages:
       util-deprecate: 1.0.2
       webpack: 5.74.0
       webpack-dev-middleware: 4.3.0_webpack@5.74.0
-      webpack-virtual-modules: 0.4.4
+      webpack-virtual-modules: 0.4.5
     transitivePeerDependencies:
       - '@swc/core'
       - encoding
@@ -16128,7 +16128,7 @@ packages:
     peerDependencies:
       postcss: 8.x
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       concat-with-sourcemaps: 1.1.0
       cssnano: 5.1.13_postcss@8.4.16
       import-cwd: 3.0.0
@@ -18601,8 +18601,8 @@ packages:
       - supports-color
     dev: true
 
-  /webpack-virtual-modules/0.4.4:
-    resolution: {integrity: sha512-h9atBP/bsZohWpHnr+2sic8Iecb60GxftXsWNLLLSqewgIsGzByd2gcIID4nXcG+3tNe4GQG3dLcff3kXupdRA==}
+  /webpack-virtual-modules/0.4.5:
+    resolution: {integrity: sha512-8bWq0Iluiv9lVf9YaqWQ9+liNgXSHICm+rg544yRgGYaR8yXZTVBaHZkINZSB2yZSWo4b0F6MIxqJezVfOEAlg==}
     dev: true
 
   /webpack/4.46.0:
