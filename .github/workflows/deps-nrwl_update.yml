@@ -45,7 +45,6 @@ jobs:
         id: nrwl_update
         continue-on-error: true
         run: |
-          pnpm up @nxext/stencil@latest
           pnpm nrwl:update
           pnpm format
 
