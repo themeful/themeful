@@ -1,6 +1,5 @@
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core'
 import { ColorTranslator } from 'colortranslator'
-import { ColorInput } from 'colortranslator/dist/@types'
 import {
   combineLatest,
   debounceTime,
@@ -189,7 +188,7 @@ export class ColorInputComponent {
     this.sub.unsubscribe()
   }
 
-  private setInput = (color: ColorInput): void => {
+  private setInput = (color: any): void => {
     const colorObj = new ColorTranslator(color)
     this.input$.next(colorObj[`${this.format}${colorObj.A < 1 ? 'A' : ''}`] as string)
   }
