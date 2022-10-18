@@ -74,7 +74,8 @@
           "rm -rf ./dist",
           "pnpm nx run frontend:build:production",
           "pnpm nx run backend:copy-assets",
-          "pnpm nx run backend:build:production"
+          "pnpm nx run backend:build:production",
+          "pnpm nx run backend:copy-prod-assets"
         ],
         "parallel": false
       }
@@ -98,6 +99,16 @@
           "cp -ri ../../../dist/apps/frontend/www/ assets"
         ],
         "cwd": "apps/backend/src",
+        "parallel": false
+      }
+    },
+    "copy-prod-assets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf ./dist/apps/backend/assets/",
+          "cp -ri ./dist/apps/frontend/www/ ./dist/apps/backend/assets/"
+        ],
         "parallel": false
       }
     },

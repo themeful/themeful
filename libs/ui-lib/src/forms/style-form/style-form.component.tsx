@@ -22,6 +22,9 @@ export class StyleFormComponent {
   @State() editMode!: boolean
   @State() type!: string
 
+  private colorControl!: HTMLTfColorInputElement
+  private valueControl!: HTMLTfTextInputElement
+
   private controls: {
     [key: string]:
       | HTMLTfTextInputElement
@@ -53,11 +56,11 @@ export class StyleFormComponent {
       (controls) => controls.every((valid) => valid)
     )
 
-  private dirty = (): Promise<boolean> =>
-    Promise.all(Object.values(this.controls).map((control) => control.dirty())).then((controls) =>
-      controls.some((valid) => valid)
+  private dirty = (): Promise<boolean> => {
+    return Promise.all(Object.values(this.controls).map((control) => control.dirty())).then(
+      (controls) => controls.some((valid) => valid)
     )
-
+  }
   private save = async (event: Event): Promise<void> => {
     event.preventDefault()
     Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
@@ -108,6 +111,7 @@ export class StyleFormComponent {
           {...{
             onInputChange: ({ target }) => {
               this.type = (target as HTMLTfSelectInputElement).value as string
+              this.controls['value'] = this.type === 'color' ? this.colorControl : this.valueControl
             },
           }}
           required
@@ -129,25 +133,24 @@ export class StyleFormComponent {
           value={this.formData.fields?.name as string}
           minLength={3}
         />
-        {this.type === 'color' ? (
-          <tf-color-input
-            ref={(el: HTMLTfColorInputElement | undefined) =>
-              (this.controls['value'] = el as HTMLTfColorInputElement)
-            }
-            label="Color"
-            required
-            value={this.formData.fields?.value as string}
-          />
-        ) : (
-          <tf-text-input
-            ref={(el: HTMLTfTextInputElement | undefined) =>
-              (this.controls['value'] = el as HTMLTfTextInputElement)
-            }
-            label="Value"
-            value={this.formData.fields?.value as string}
-            minLength={3}
-          />
-        )}
+        <tf-color-input
+          ref={(el: HTMLTfColorInputElement | undefined) =>
+            (this.colorControl = el as HTMLTfColorInputElement)
+          }
+          label="Color"
+          required
+          style={{ display: this.type !== 'color' ? 'none' : 'block' }}
+          value={this.formData.fields?.value as string}
+        />
+        <tf-text-input
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.valueControl = el as HTMLTfTextInputElement)
+          }
+          style={{ display: this.type === 'color' ? 'none' : 'block' }}
+          label="Value"
+          value={this.formData.fields?.value as string}
+          minLength={3}
+        />
         <div class="form__controls">
           {this.editMode && (
             <tf-button kind="danger" onClick={this.remove}>
