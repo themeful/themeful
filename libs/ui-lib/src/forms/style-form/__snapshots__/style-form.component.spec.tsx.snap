@@ -76,6 +76,17 @@ exports[`StyleFormComponent renders 1`] = `
           </div>
         </mock:shadow-root>
       </tf-color-input>
+      <tf-text-input class="hidden">
+        <mock:shadow-root>
+          <label class="text-input">
+            <span class="text-input__label">
+              Value
+            </span>
+            <input class="text-input__input" type="text" value="#4b83be">
+            <p class="text-input__hint"></p>
+          </label>
+        </mock:shadow-root>
+      </tf-text-input>
       <div class="form__controls">
         <tf-button>
           <mock:shadow-root>

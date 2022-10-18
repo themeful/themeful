@@ -22,6 +22,9 @@ export class StyleFormComponent {
   @State() editMode!: boolean
   @State() type!: string
 
+  private colorControl!: HTMLTfColorInputElement
+  private valueControl!: HTMLTfTextInputElement
+
   private controls: {
     [key: string]:
       | HTMLTfTextInputElement
@@ -39,27 +42,34 @@ export class StyleFormComponent {
     this.action.emit({ action: 'open' })
   }
 
-  private formValues = (): { [key: string]: string | number } =>
-    Object.entries(this.controls).reduce(
+  private formValues = (): { [key: string]: string | number } => {
+    return Object.entries(this.controls).reduce(
       (result: { [key: string]: string | number }, [key, control]) => {
         result[key] = control.value
         return result
       },
       {}
     )
+  }
+
+  private changeType = ({ target }: { target: HTMLTfSelectInputElement }) => {
+    this.type = (target as HTMLTfSelectInputElement).value as string
+    this.controls['value'] = this.type === 'color' ? this.colorControl : this.valueControl
+  }
 
   private validate = (): Promise<boolean> =>
     Promise.all(Object.values(this.controls).map((control) => control.validate())).then(
       (controls) => controls.every((valid) => valid)
     )
 
-  private dirty = (): Promise<boolean> =>
-    Promise.all(Object.values(this.controls).map((control) => control.dirty())).then((controls) =>
-      controls.some((valid) => valid)
+  private dirty = (): Promise<boolean> => {
+    return Promise.all(Object.values(this.controls).map((control) => control.dirty())).then(
+      (controls) => controls.some((valid) => valid)
     )
-
+  }
   private save = async (event: Event): Promise<void> => {
     event.preventDefault()
+    this.controls['value'] = this.type === 'color' ? this.colorControl : this.valueControl
     Promise.all([this.dirty(), this.validate()]).then(([dirty, valid]) => {
       if (dirty && valid) {
         if (this.editMode) {
@@ -79,6 +89,10 @@ export class StyleFormComponent {
         this.action.emit({ action: 'close' })
       }
     })
+  }
+
+  private getHiddenClass = (isColor: boolean): string => {
+    return (this.type !== 'color') === isColor ? 'hidden' : ''
   }
 
   private cancel = (): void => {
@@ -106,9 +120,7 @@ export class StyleFormComponent {
           items={this.formData.propertyTypes}
           value={this.formData.fields?.type as string}
           {...{
-            onInputChange: ({ target }) => {
-              this.type = (target as HTMLTfSelectInputElement).value as string
-            },
+            onInputChange: this.changeType,
           }}
           required
         />
@@ -129,25 +141,24 @@ export class StyleFormComponent {
           value={this.formData.fields?.name as string}
           minLength={3}
         />
-        {this.type === 'color' ? (
-          <tf-color-input
-            ref={(el: HTMLTfColorInputElement | undefined) =>
-              (this.controls['value'] = el as HTMLTfColorInputElement)
-            }
-            label="Color"
-            required
-            value={this.formData.fields?.value as string}
-          />
-        ) : (
-          <tf-text-input
-            ref={(el: HTMLTfTextInputElement | undefined) =>
-              (this.controls['value'] = el as HTMLTfTextInputElement)
-            }
-            label="Value"
-            value={this.formData.fields?.value as string}
-            minLength={3}
-          />
-        )}
+        <tf-color-input
+          ref={(el: HTMLTfColorInputElement | undefined) =>
+            (this.colorControl = el as HTMLTfColorInputElement)
+          }
+          label="Color"
+          required
+          class={this.getHiddenClass(true)}
+          value={this.formData.fields?.value as string}
+        />
+        <tf-text-input
+          ref={(el: HTMLTfTextInputElement | undefined) =>
+            (this.valueControl = el as HTMLTfTextInputElement)
+          }
+          class={this.getHiddenClass(false)}
+          label="Value"
+          value={this.formData.fields?.value as string}
+          minLength={3}
+        />
         <div class="form__controls">
           {this.editMode && (
             <tf-button kind="danger" onClick={this.remove}>
