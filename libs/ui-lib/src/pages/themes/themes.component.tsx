@@ -47,6 +47,7 @@ export class ThemesComponent {
   private groups: string[] = []
   private config?: GlobalConfig
   private formData$ = new Subject()
+  private formStyleGuides: { key: string; value: string }[] = []
   private styleGuideHeaders?: {
     [styleGuide: string]: { name: string; first: string; slug: string }
   }
@@ -84,6 +85,9 @@ export class ThemesComponent {
         this.designTokens = designTokens
         this.groups = []
         const { styleMap, sgNames } = this.transformStyleGuides(styleGuides)
+        this.formStyleGuides = Object.entries(sgNames)
+          .filter(([key]) => key !== 'global')
+          .map(([key, value]) => ({ key, value }))
         this.styleMap = styleMap
         this.themeNames = []
         this.styleGuideHeaders = {}
@@ -169,10 +173,7 @@ export class ThemesComponent {
         this.formData$.next({
           form: 'theme',
           identifier: theme,
-          styleGuides: Object.entries(this.styleGuideHeaders || {}).map(([key, { name }]) => ({
-            key,
-            value: name,
-          })),
+          styleGuides: this.formStyleGuides,
           fields: {
             name: this.themes[theme].name,
             styleGuide: this.themes[theme].styleGuide,
@@ -181,10 +182,7 @@ export class ThemesComponent {
       } else {
         this.formData$.next({
           form: 'theme',
-          styleGuides: Object.entries(this.styleGuideHeaders || {}).map(([key, { name }]) => ({
-            key,
-            value: name,
-          })),
+          styleGuides: this.formStyleGuides,
         })
       }
     }

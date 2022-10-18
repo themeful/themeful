@@ -13,6 +13,29 @@ import {
 
 type ColorFormat = 'HEX' | 'HSL' | 'RGB'
 
+interface RGBObjectGeneric {
+  r: number | string
+  g: number | string
+  b: number | string
+  a?: number | string
+}
+
+interface HSLObjectGeneric {
+  h: number
+  s: number | string
+  l: number | string
+  a?: number
+}
+
+interface CMYKObjectGeneric {
+  c: number | string
+  m: number | string
+  y: number | string
+  k: number | string
+}
+type Color = RGBObjectGeneric | HSLObjectGeneric | CMYKObjectGeneric
+type ColorInput = string | Color
+
 @Component({
   tag: 'tf-color-input',
   styleUrl: 'color-input.component.scss',
@@ -188,7 +211,7 @@ export class ColorInputComponent {
     this.sub.unsubscribe()
   }
 
-  private setInput = (color: any): void => {
+  private setInput = (color: ColorInput): void => {
     const colorObj = new ColorTranslator(color)
     this.input$.next(colorObj[`${this.format}${colorObj.A < 1 ? 'A' : ''}`] as string)
   }

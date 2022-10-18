@@ -7,7 +7,6 @@
       "style": "scss"
     }
   },
-  "tags": ["scope:frontend"],
   "targets": {
     "build": {
       "executor": "@nxext/stencil:build",
@@ -79,5 +78,6 @@
       }
     }
   },
-  "implicitDependencies": ["!ui-lib"]
+  "implicitDependencies": ["ui-lib"],
+  "tags": ["scope:frontend"]
 }
