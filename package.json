@@ -74,7 +74,7 @@
     "@types/object-hash": "2.2.1",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
-    "amqp-connection-manager": "4.1.7",
+    "amqp-connection-manager": "4.1.8",
     "amqplib": "0.10.3",
     "autoprefixer": "10.4.12",
     "bufferutil": "4.0.7",
