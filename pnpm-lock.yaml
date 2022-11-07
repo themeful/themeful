@@ -4819,7 +4819,7 @@ packages:
       util-deprecate: 1.0.2
       watchpack: 2.4.0
       webpack: 4.46.0
-      ws: 8.10.0_3cxu5zja4e2r5wmvge7mdcljwq
+      ws: 8.11.0_3cxu5zja4e2r5wmvge7mdcljwq
       x-default-browser: 0.4.0
     transitivePeerDependencies:
       - '@storybook/mdx2-csf'
@@ -4898,7 +4898,7 @@ packages:
       util-deprecate: 1.0.2
       watchpack: 2.4.0
       webpack: 4.46.0
-      ws: 8.10.0_3cxu5zja4e2r5wmvge7mdcljwq
+      ws: 8.11.0_3cxu5zja4e2r5wmvge7mdcljwq
       x-default-browser: 0.4.0
     transitivePeerDependencies:
       - '@storybook/mdx2-csf'
@@ -6567,8 +6567,8 @@ packages:
       es6-shim: 0.35.6
       function.prototype.name: 1.1.5
       globalthis: 1.0.3
-      object.entries: 1.1.5
-      object.fromentries: 2.0.5
+      object.entries: 1.1.6
+      object.fromentries: 2.0.6
       object.getownpropertydescriptors: 2.1.4
       object.values: 1.1.5
       promise.allsettled: 1.0.5
@@ -9616,8 +9616,8 @@ packages:
       estraverse: 5.3.0
       jsx-ast-utils: 3.3.3
       minimatch: 3.1.2
-      object.entries: 1.1.5
-      object.fromentries: 2.0.5
+      object.entries: 1.1.6
+      object.fromentries: 2.0.6
       object.hasown: 1.1.1
       object.values: 1.1.5
       prop-types: 15.8.1
@@ -14272,8 +14272,8 @@ packages:
       object-keys: 1.1.1
     dev: true
 
-  /object.entries/1.1.5:
-    resolution: {integrity: sha512-TyxmjUoZggd4OrrU1W66FMDG6CuqJxsFvymeyXI51+vQLN67zYfZseptRge703kKQdo4uccgAKebXFcRCzk4+g==}
+  /object.entries/1.1.6:
+    resolution: {integrity: sha512-leTPzo4Zvg3pmbQ3rDK69Rl8GQvIqMWubrkxONG9/ojtFE2rD9fjMKfSI5BxW3osRH1m6VdzmqK8oAY9aT4x5w==}
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
@@ -14281,8 +14281,8 @@ packages:
       es-abstract: 1.20.4
     dev: true
 
-  /object.fromentries/2.0.5:
-    resolution: {integrity: sha512-CAyG5mWQRRiBU57Re4FKoTBjXfDoNwdFVH2Y1tS9PqCsfUTymAohOkEMSG3aRNKmv4lV3O7p1et7c187q6bynw==}
+  /object.fromentries/2.0.6:
+    resolution: {integrity: sha512-VciD13dswC4j1Xt5394WR4MzmAQmlgN72phd/riNp9vtD7tp4QQWJ0R4wvclXcafgcYK8veHRed2W6XeGBvcfg==}
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
@@ -18677,7 +18677,7 @@ packages:
       spdy: 4.0.2
       webpack: 5.74.0
       webpack-dev-middleware: 5.3.3_webpack@5.74.0
-      ws: 8.10.0_3cxu5zja4e2r5wmvge7mdcljwq
+      ws: 8.11.0_3cxu5zja4e2r5wmvge7mdcljwq
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -19155,8 +19155,8 @@ packages:
       bufferutil: 4.0.7
       utf-8-validate: 5.0.10
 
-  /ws/8.10.0_3cxu5zja4e2r5wmvge7mdcljwq:
-    resolution: {integrity: sha512-+s49uSmZpvtAsd2h37vIPy1RBusaLawVe8of+GyEPsaJTCMpj/2v8NpeK1SHXjBlQ95lQTmQofOJnFiLoaN3yw==}
+  /ws/8.11.0_3cxu5zja4e2r5wmvge7mdcljwq:
+    resolution: {integrity: sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
