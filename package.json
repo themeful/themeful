@@ -91,7 +91,7 @@
     "eslint-plugin-react": "7.31.11",
     "fastify-static": "4.7.0",
     "jest": "27.5.1",
-    "kafkajs": "2.2.2",
+    "kafkajs": "2.2.3",
     "mqtt": "4.3.7",
     "nats": "2.9.0",
     "npm-run-all": "4.1.5",
