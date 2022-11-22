@@ -86,7 +86,7 @@ specifiers:
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
   socket.io: 4.5.3
-  socket.io-client: 4.5.3
+  socket.io-client: 4.5.4
   sort-media-queries: 0.2.2
   stencil-fragment: 1.0.1
   stencil-router-v2: 0.6.0
@@ -120,7 +120,7 @@ dependencies:
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
   socket.io: 4.5.3_3cxu5zja4e2r5wmvge7mdcljwq
-  socket.io-client: 4.5.3_3cxu5zja4e2r5wmvge7mdcljwq
+  socket.io-client: 4.5.4_3cxu5zja4e2r5wmvge7mdcljwq
   sort-media-queries: 0.2.2
   stencil-router-v2: 0.6.0_@stencil+core@2.19.3
   tslib: 2.4.1
@@ -16852,8 +16852,8 @@ packages:
   /socket.io-adapter/2.4.0:
     resolution: {integrity: sha512-W4N+o69rkMEGVuk2D/cvca3uYsvGlMwsySWV447y99gUPghxq42BxqLNMndb+a1mm/5/7NeXVQS7RLa2XyXvYg==}
 
-  /socket.io-client/4.5.3_3cxu5zja4e2r5wmvge7mdcljwq:
-    resolution: {integrity: sha512-I/hqDYpQ6JKwtJOf5ikM+Qz+YujZPMEl6qBLhxiP0nX+TfXKhW4KZZG8lamrD6Y5ngjmYHreESVasVCgi5Kl3A==}
+  /socket.io-client/4.5.4_3cxu5zja4e2r5wmvge7mdcljwq:
+    resolution: {integrity: sha512-ZpKteoA06RzkD32IbqILZ+Cnst4xewU7ZYK12aS1mzHftFFjpoMz69IuhP/nL25pJfao/amoPI527KnuhFm01g==}
     engines: {node: '>=10.0.0'}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
