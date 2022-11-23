@@ -134,7 +134,7 @@
     "rxjs": "7.5.7",
     "sentence-case": "3.0.4",
     "short-unique-id": "4.4.4",
-    "socket.io": "4.5.3",
+    "socket.io": "4.5.4",
     "socket.io-client": "4.5.4",
     "sort-media-queries": "0.2.2",
     "stencil-router-v2": "0.6.0",

@@ -85,7 +85,7 @@ specifiers:
   sass-loader: 13.2.0
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
-  socket.io: 4.5.3
+  socket.io: 4.5.4
   socket.io-client: 4.5.4
   sort-media-queries: 0.2.2
   stencil-fragment: 1.0.1
@@ -119,7 +119,7 @@ dependencies:
   rxjs: 7.5.7
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
-  socket.io: 4.5.3_3cxu5zja4e2r5wmvge7mdcljwq
+  socket.io: 4.5.4_3cxu5zja4e2r5wmvge7mdcljwq
   socket.io-client: 4.5.4_3cxu5zja4e2r5wmvge7mdcljwq
   sort-media-queries: 0.2.2
   stencil-router-v2: 0.6.0_@stencil+core@2.19.3
@@ -16889,6 +16889,22 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  /socket.io/4.5.4_3cxu5zja4e2r5wmvge7mdcljwq:
+    resolution: {integrity: sha512-m3GC94iK9MfIEeIBfbhJs5BqFibMtkRk8ZpKwG2QwxV0m/eEhPIV4ara6XCF1LWNAus7z58RodiZlAH71U3EhQ==}
+    engines: {node: '>=10.0.0'}
+    dependencies:
+      accepts: 1.3.8
+      base64id: 2.0.0
+      debug: 4.3.4
+      engine.io: 6.2.1_3cxu5zja4e2r5wmvge7mdcljwq
+      socket.io-adapter: 2.4.0
+      socket.io-parser: 4.2.1
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: false
 
   /sockjs/0.3.24:
     resolution: {integrity: sha512-GJgLTZ7vYb/JtPSSZ10hsOYIvEYsjbNU+zPdIHcUaWVNUEPivzxku31865sSSud0Da0W4lEeOPlmw93zLQchuQ==}
