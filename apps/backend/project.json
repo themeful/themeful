@@ -1,16 +1,19 @@
 {
+  "name": "backend",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/backend/src",
   "targets": {
     "build": {
-      "executor": "@nrwl/node:webpack",
-      "outputs": ["dist/apps/backend"],
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{workspaceRoot}/dist/apps/backend"],
       "options": {
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/src/main.ts",
         "tsConfig": "apps/backend/tsconfig.app.json",
-        "assets": ["apps/backend/src/assets"]
+        "assets": ["apps/backend/src/assets"],
+        "target": "node",
+        "compiler": "tsc"
       },
       "configurations": {
         "production": {
@@ -54,7 +57,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/backend"],
+      "outputs": ["{workspaceRoot}/coverage/apps/backend"],
       "options": {
         "jestConfig": "apps/backend/jest.config.ts"
       },
@@ -114,7 +117,7 @@
     },
     "nrwl-update": {
       "executor": "nx:run-commands",
-      "outputs": ["package.json", "pnpm-lock.yaml"],
+      "outputs": ["{workspaceRoot}/package.json", "{workspaceRoot}/pnpm-lock.yaml"],
       "options": {
         "commands": [
           "nx migrate latest",
