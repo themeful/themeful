@@ -1,4 +1,5 @@
 {
+  "name": "ui-lib",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/ui-lib/src",
@@ -10,7 +11,7 @@
   "targets": {
     "build": {
       "executor": "@nxext/stencil:build",
-      "outputs": ["dist/libs/ui-lib"],
+      "outputs": ["{workspaceRoot}/dist/libs/ui-lib"],
       "options": {
         "projectType": "library",
         "tsConfig": "libs/ui-lib/tsconfig.lib.json",
@@ -29,7 +30,7 @@
     },
     "serve": {
       "executor": "@nxext/stencil:build",
-      "outputs": ["dist/libs/ui-lib"],
+      "outputs": ["{workspaceRoot}/dist/libs/ui-lib"],
       "options": {
         "projectType": "library",
         "tsConfig": "libs/ui-lib/tsconfig.lib.json",
@@ -62,7 +63,7 @@
     },
     "e2e": {
       "executor": "@nxext/stencil:e2e",
-      "outputs": ["dist/libs/ui-lib"],
+      "outputs": ["{workspaceRoot}/dist/libs/ui-lib"],
       "options": {
         "projectType": "library",
         "tsConfig": "libs/ui-lib/tsconfig.lib.json",
@@ -93,7 +94,7 @@
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
-      "outputs": ["dist/storybook/ui-lib"],
+      "outputs": ["{workspaceRoot}/dist/storybook/ui-lib"],
       "options": {
         "uiFramework": "@storybook/html",
         "outputPath": "dist/storybook/ui-lib",
