@@ -48,6 +48,7 @@ jobs:
           pnpm up @nxext/stencil@latest
           pnpm nrwl:update
           pnpm format
+          pnpm lint:all
 
       - name: Check for changes
         run: |

@@ -47,6 +47,7 @@ jobs:
         run: |
           pnpm upgrade
           pnpm format
+          pnpm lint:all
 
       - name: Check for changes
         run: |
