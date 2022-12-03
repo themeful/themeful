@@ -131,7 +131,7 @@
     "lint-staged": "13.0.4",
     "object-hash": "3.0.0",
     "reflect-metadata": "0.1.13",
-    "rxjs": "7.5.7",
+    "rxjs": "7.6.0",
     "sentence-case": "3.0.4",
     "short-unique-id": "4.4.4",
     "socket.io": "4.5.4",
