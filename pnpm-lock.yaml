@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@fastify/static': 6.6.0
   '@grpc/grpc-js': 1.8.0
-  '@grpc/proto-loader': 0.7.3
+  '@grpc/proto-loader': 0.7.4
   '@nestjs/common': 9.0.7
   '@nestjs/core': 9.0.7
   '@nestjs/microservices': ^8.4.7
@@ -127,7 +127,7 @@ dependencies:
 
 devDependencies:
   '@grpc/grpc-js': 1.8.0
-  '@grpc/proto-loader': 0.7.3
+  '@grpc/proto-loader': 0.7.4
   '@nestjs/microservices': 8.4.7_w4uajeuo7pkn2fjeckb5oxkf6e
   '@nestjs/schematics': 9.0.1_typescript@4.7.4
   '@nestjs/testing': 9.0.7_7jplvfrqbzzkmubb5s3pkhgsdy
@@ -1812,11 +1812,11 @@ packages:
     resolution: {integrity: sha512-ySMTXQuMvvswoobvN+0LsaPf7ITO2JVfJmHxQKI4cGehNrrUms+n81BlHEX7Hl/LExji6XE3fnI9U04GSkRruA==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
-      '@grpc/proto-loader': 0.7.3
+      '@grpc/proto-loader': 0.7.4
       '@types/node': 18.11.11
 
-  /@grpc/proto-loader/0.7.3:
-    resolution: {integrity: sha512-5dAvoZwna2Py3Ef96Ux9jIkp3iZ62TUsV00p3wVBPNX5K178UbNi8Q7gQVqwXT1Yq9RejIGG9G2IPEo93T6RcA==}
+  /@grpc/proto-loader/0.7.4:
+    resolution: {integrity: sha512-MnWjkGwqQ3W8fx94/c1CwqLsNmHHv2t0CFn+9++6+cDphC1lolpg9M2OU0iebIjK//pBNX9e94ho+gjx6vz39w==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
