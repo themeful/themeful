@@ -2,7 +2,7 @@ name: 'Deps: NRWL Update'
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * 1'
   workflow_dispatch:
 
 jobs:
@@ -49,6 +49,7 @@ jobs:
           pnpm nrwl:update
           pnpm format
           pnpm lint:all
+          pnpm nx run ui-lib:test
 
       - name: Check for changes
         run: |

@@ -2,7 +2,7 @@ name: 'Deps: Package Update'
 
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * 1,3,5'
   workflow_dispatch:
 
 jobs:
