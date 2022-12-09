@@ -80,7 +80,7 @@
     "bufferutil": "4.0.7",
     "cache-manager": "5.1.4",
     "class-transformer": "0.5.1",
-    "class-validator": "0.13.2",
+    "class-validator": "0.14.0",
     "css-loader": "6.7.2",
     "cssnano": "5.1.14",
     "dotenv": "16.0.3",
