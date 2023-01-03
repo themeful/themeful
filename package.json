@@ -126,7 +126,7 @@
     "camel-case": "4.1.2",
     "colortranslator": "1.9.4",
     "find": "0.3.0",
-    "husky": "8.0.2",
+    "husky": "8.0.3",
     "jsonfile": "6.1.0",
     "lint-staged": "13.1.0",
     "object-hash": "3.0.0",
