@@ -62,7 +62,7 @@ specifiers:
   eslint-plugin-react: 7.31.11
   fastify-static: 4.7.0
   find: 0.3.0
-  husky: 8.0.2
+  husky: 8.0.3
   jest: 27.5.1
   jsonfile: 6.1.0
   kafkajs: 2.2.3
@@ -111,7 +111,7 @@ dependencies:
   camel-case: 4.1.2
   colortranslator: 1.9.4
   find: 0.3.0
-  husky: 8.0.2
+  husky: 8.0.3
   jsonfile: 6.1.0
   lint-staged: 13.1.0
   object-hash: 3.0.0
@@ -10694,8 +10694,8 @@ packages:
     engines: {node: '>=12.20.0'}
     dev: false
 
-  /husky/8.0.2:
-    resolution: {integrity: sha512-Tkv80jtvbnkK3mYWxPZePGFpQ/tT3HNSs/sasF9P2YfkMezDl3ON37YN6jUUI4eTg5LcyVynlb6r4eyvOmspvg==}
+  /husky/8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: false
