@@ -26,7 +26,7 @@ specifiers:
   '@stencil/core': 2.20.0
   '@stencil/eslint-plugin': 0.4.0
   '@stencil/postcss': 2.1.0
-  '@stencil/sass': 2.0.1
+  '@stencil/sass': 2.0.2
   '@storybook/addon-actions': 6.5.9
   '@storybook/addon-essentials': 6.5.9
   '@storybook/addon-postcss': ^2.0.0
@@ -143,7 +143,7 @@ devDependencies:
   '@nxext/stencil': 15.0.0_cboor7kudy5zrqjgzmpzq6xalm
   '@stencil/eslint-plugin': 0.4.0_lzlm5ckq5yimbxfn5viix6ozby
   '@stencil/postcss': 2.1.0_@stencil+core@2.20.0
-  '@stencil/sass': 2.0.1_@stencil+core@2.20.0
+  '@stencil/sass': 2.0.2_@stencil+core@2.20.0
   '@storybook/addon-actions': 6.5.9_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-essentials': 6.5.9_zug7lbtyvsamzjzn7g44cyprkq
   '@storybook/addon-postcss': 2.0.0_webpack@5.75.0
@@ -3304,8 +3304,8 @@ packages:
       postcss: 8.3.11
     dev: true
 
-  /@stencil/sass/2.0.1_@stencil+core@2.20.0:
-    resolution: {integrity: sha512-66ZsqBIcK7B8Awjh7RfMVC6Q1OQPlQDNHqqBfMccH9iZiuUunDL9rzrIZAoUWHjjrxWocMMQR5YieTQSreC9DQ==}
+  /@stencil/sass/2.0.2_@stencil+core@2.20.0:
+    resolution: {integrity: sha512-+hdPubxA4cBEyJR0ge0aGl9FUr0y6e4yqcsfrxkocOT6Nv+Mi+QpfZ9kx1W3ECL640VRcHqQifPcnoauvmqPZg==}
     peerDependencies:
       '@stencil/core': '>=2.0.0'
     dependencies:
