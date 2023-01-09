@@ -69,7 +69,7 @@
     "@storybook/theming": "6.5.9",
     "@types/find": "0.2.1",
     "@types/jest": "27.5.2",
-    "@types/jsonfile": "6.1.0",
+    "@types/jsonfile": "6.1.1",
     "@types/node": "18.11.18",
     "@types/object-hash": "3.0.2",
     "@typescript-eslint/eslint-plugin": "4.33.0",
