@@ -51,7 +51,7 @@ specifiers:
   camel-case: 4.1.2
   class-transformer: 0.5.1
   class-validator: 0.14.0
-  colortranslator: 1.10.0
+  colortranslator: 1.10.1
   css-loader: 6.7.3
   cssnano: 5.1.14
   dotenv: 16.0.3
@@ -109,7 +109,7 @@ dependencies:
   '@nestjs/websockets': 9.2.1_rqfq72ucanq4zyorzhrd4caota
   '@stencil/core': 2.21.0
   camel-case: 4.1.2
-  colortranslator: 1.10.0
+  colortranslator: 1.10.1
   find: 0.3.0
   husky: 8.0.3
   jsonfile: 6.1.0
@@ -7734,8 +7734,8 @@ packages:
   /colorette/2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
 
-  /colortranslator/1.10.0:
-    resolution: {integrity: sha512-ql90gXDemkrFGkrPViaJgaqOd1xifoB5wKOX92YlJcmC0SEQaKp8mUxisrYSjCPaVaJewA8SLL0lGNAgpiFP7w==}
+  /colortranslator/1.10.1:
+    resolution: {integrity: sha512-+R87TgLFBGR+fZCJCoycP0XL/hXSasiwW/Lp57D1DfDL7PeI2HN8TP0wmMh0CNbzj3MIT8PG3PRqkbCCGXeRHw==}
     dev: false
 
   /combined-stream/1.0.8:
