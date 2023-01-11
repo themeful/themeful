@@ -59,7 +59,7 @@ specifiers:
   eslint-config-prettier: 8.6.0
   eslint-plugin-import: 2.26.0
   eslint-plugin-prettier: 4.2.1
-  eslint-plugin-react: 7.31.11
+  eslint-plugin-react: 7.32.0
   fastify-static: 4.7.0
   find: 0.3.0
   husky: 8.0.3
@@ -141,7 +141,7 @@ devDependencies:
   '@nrwl/web': 14.5.10_6xkxiz3dhudsp5k7i6go7fg2ei
   '@nrwl/workspace': 14.5.10_3ae4up6kbel5vy4yj6y3jmijvy
   '@nxext/stencil': 15.0.0_43yae5a2mkg363u332qt6o4eym
-  '@stencil/eslint-plugin': 0.4.0_lzlm5ckq5yimbxfn5viix6ozby
+  '@stencil/eslint-plugin': 0.4.0_c6xgzsg4bufdaa46twp5i5st5m
   '@stencil/postcss': 2.1.0_@stencil+core@2.21.0
   '@stencil/sass': 2.0.2_@stencil+core@2.21.0
   '@storybook/addon-actions': 6.5.9_biqbaboplfbrettd7655fr4n2y
@@ -174,7 +174,7 @@ devDependencies:
   eslint-config-prettier: 8.6.0_eslint@7.32.0
   eslint-plugin-import: 2.26.0_ffi3uiz42rv3jyhs6cr7p7qqry
   eslint-plugin-prettier: 4.2.1_ozbk2kvurlccjr7v3lif6xfrna
-  eslint-plugin-react: 7.31.11_eslint@7.32.0
+  eslint-plugin-react: 7.32.0_eslint@7.32.0
   fastify-static: 4.7.0
   jest: 27.5.1_vlz7txmp3ogov344ifmrfr7zsa
   kafkajs: 2.2.3
@@ -3276,7 +3276,7 @@ packages:
     engines: {node: '>=12.10.0', npm: '>=6.0.0'}
     hasBin: true
 
-  /@stencil/eslint-plugin/0.4.0_lzlm5ckq5yimbxfn5viix6ozby:
+  /@stencil/eslint-plugin/0.4.0_c6xgzsg4bufdaa46twp5i5st5m:
     resolution: {integrity: sha512-2tjDOjyh0DLt1NITII4s+rU1UwcomrbR/yei3fIU83l7PLNdZvBCSCopsXYyxaY/C37aYJQ0LR8edlLVEk6EUw==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3289,7 +3289,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 4.33.0_3ekaj7j3owlolnuhj3ykrb7u7i
       '@typescript-eslint/parser': 4.33.0_hxadhbs2xogijvk7vq4t2azzbu
       eslint: 7.32.0
-      eslint-plugin-react: 7.31.11_eslint@7.32.0
+      eslint-plugin-react: 7.32.0_eslint@7.32.0
       eslint-utils: 3.0.0_eslint@7.32.0
       tsutils: 3.0.0_typescript@4.7.4
       typescript: 4.7.4
@@ -9072,8 +9072,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-react/7.31.11_eslint@7.32.0:
-    resolution: {integrity: sha512-TTvq5JsT5v56wPa9OYHzsrOlHzKZKjV+aLgS+55NJP/cuzdiQPC7PfYoUjMoxlffKtvijpk7vA/jmuqRb9nohw==}
+  /eslint-plugin-react/7.32.0_eslint@7.32.0:
+    resolution: {integrity: sha512-vSBi1+SrPiLZCGvxpiZIa28fMEUaMjXtCplrvxcIxGzmFiYdsXQDwInEjuv5/i/2CTTxbkS87tE8lsQ0Qxinbw==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
