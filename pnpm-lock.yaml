@@ -57,7 +57,7 @@ specifiers:
   dotenv: 16.0.3
   eslint: 7.32.0
   eslint-config-prettier: 8.6.0
-  eslint-plugin-import: 2.27.0
+  eslint-plugin-import: 2.27.2
   eslint-plugin-prettier: 4.2.1
   eslint-plugin-react: 7.32.0
   fastify-static: 4.7.0
@@ -172,7 +172,7 @@ devDependencies:
   dotenv: 16.0.3
   eslint: 7.32.0
   eslint-config-prettier: 8.6.0_eslint@7.32.0
-  eslint-plugin-import: 2.27.0_ffi3uiz42rv3jyhs6cr7p7qqry
+  eslint-plugin-import: 2.27.2_ffi3uiz42rv3jyhs6cr7p7qqry
   eslint-plugin-prettier: 4.2.1_ozbk2kvurlccjr7v3lif6xfrna
   eslint-plugin-react: 7.32.0_eslint@7.32.0
   fastify-static: 4.7.0
@@ -9046,8 +9046,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.27.0_ffi3uiz42rv3jyhs6cr7p7qqry:
-    resolution: {integrity: sha512-g+25RejC0uMcimFhm55XGPkbXR5qJMZ8KRN9hEJrQ+9U1VLrt76IjHD3/+QKu/0h1Wm6S2a73DFK8UYZRmfnYg==}
+  /eslint-plugin-import/2.27.2_ffi3uiz42rv3jyhs6cr7p7qqry:
+    resolution: {integrity: sha512-/S1QaM52PzKy1C4c5Sw7hB6glROSUpMZ8RVREVC4se7z4AlyDxv0kU7uWkHc8aIVNb19oz86z7c6vdtuKUwLvw==}
     engines: {node: '>=4'}
     peerDependencies:
       '@typescript-eslint/parser': '*'
@@ -9059,6 +9059,7 @@ packages:
       '@typescript-eslint/parser': 4.33.0_hxadhbs2xogijvk7vq4t2azzbu
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
+      array.prototype.flatmap: 1.3.1
       debug: 3.2.7
       doctrine: 2.1.0
       eslint: 7.32.0
