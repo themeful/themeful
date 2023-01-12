@@ -57,7 +57,7 @@ specifiers:
   dotenv: 16.0.3
   eslint: 7.32.0
   eslint-config-prettier: 8.6.0
-  eslint-plugin-import: 2.27.2
+  eslint-plugin-import: 2.27.4
   eslint-plugin-prettier: 4.2.1
   eslint-plugin-react: 7.32.0
   fastify-static: 4.7.0
@@ -172,7 +172,7 @@ devDependencies:
   dotenv: 16.0.3
   eslint: 7.32.0
   eslint-config-prettier: 8.6.0_eslint@7.32.0
-  eslint-plugin-import: 2.27.2_ffi3uiz42rv3jyhs6cr7p7qqry
+  eslint-plugin-import: 2.27.4_ffi3uiz42rv3jyhs6cr7p7qqry
   eslint-plugin-prettier: 4.2.1_ozbk2kvurlccjr7v3lif6xfrna
   eslint-plugin-react: 7.32.0_eslint@7.32.0
   fastify-static: 4.7.0
@@ -9046,8 +9046,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.27.2_ffi3uiz42rv3jyhs6cr7p7qqry:
-    resolution: {integrity: sha512-/S1QaM52PzKy1C4c5Sw7hB6glROSUpMZ8RVREVC4se7z4AlyDxv0kU7uWkHc8aIVNb19oz86z7c6vdtuKUwLvw==}
+  /eslint-plugin-import/2.27.4_ffi3uiz42rv3jyhs6cr7p7qqry:
+    resolution: {integrity: sha512-Z1jVt1EGKia1X9CnBCkpAOhWy8FgQ7OmJ/IblEkT82yrFU/xJaxwujaTzLWqigewwynRQ9mmHfX9MtAfhxm0sA==}
     engines: {node: '>=4'}
     peerDependencies:
       '@typescript-eslint/parser': '*'
@@ -9071,6 +9071,7 @@ packages:
       minimatch: 3.1.2
       object.values: 1.1.6
       resolve: 1.22.1
+      semver: 6.3.0
       tsconfig-paths: 3.14.1
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
