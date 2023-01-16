@@ -140,7 +140,7 @@ devDependencies:
   '@nrwl/storybook': 14.5.10_qxqay3s3ojizedds5tncaekpei
   '@nrwl/web': 14.5.10_g6wubbspfrdphggpy75ndlcrcq
   '@nrwl/workspace': 14.5.10_vw5sx3cfhwwh5qv4s34i4d5xne
-  '@nxext/stencil': 15.0.0_rahtpz7rgcr4xdy7f4qnsdebka
+  '@nxext/stencil': 15.0.0_qfsivp2qdvq4fz3gpvhavexxwy
   '@stencil/eslint-plugin': 0.4.0_c6xgzsg4bufdaa46twp5i5st5m
   '@stencil/postcss': 2.1.0_@stencil+core@2.21.0
   '@stencil/sass': 2.0.2_@stencil+core@2.21.0
@@ -1807,7 +1807,7 @@ packages:
       '@fastify/send': 1.0.0
       content-disposition: 0.5.4
       fastify-plugin: 4.5.0
-      glob: 8.0.3
+      glob: 8.1.0
       p-limit: 3.1.0
       readable-stream: 4.3.0
     transitivePeerDependencies:
@@ -2532,8 +2532,8 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/devkit/15.5.0_friigstnlhuirqu4wr7dfbyroa:
-    resolution: {integrity: sha512-qJcOG1FpLhL1HpNm7kSZZ9JxGRjuwgciz2l348RZHUyFSA3fM/OeoygHS3E+Nl7OZQgjzFM3w7FtqvLJ4y5a3g==}
+  /@nrwl/devkit/15.5.1_friigstnlhuirqu4wr7dfbyroa:
+    resolution: {integrity: sha512-SETS7nOr5ady18+rNBCz4bGW64uSYcGmVbMTrYtbl/IZHIAAaTxqd7MoOcOVWfIPWbf2SfhXb6xBiSfo6cbzOQ==}
     peerDependencies:
       nx: '>= 14 <= 16'
     dependencies:
@@ -2664,15 +2664,15 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@nrwl/linter/15.5.0_jolas6fjb33bfgto7bnyw7etxi:
-    resolution: {integrity: sha512-30X6zr/LqGkVWeuvao9/c4JFWt+h1bb8PfksVynclLRT/Va9h9ukN02B8zl6DlqBczugW6L8TPnDJX9XEKpTNg==}
+  /@nrwl/linter/15.5.1_jolas6fjb33bfgto7bnyw7etxi:
+    resolution: {integrity: sha512-r+AHmPVBVtPOjyPL3YDJUQ1xlUuORC6HS3gJb7gh9zM2qFGRMqDemycUCNjSncDwOAs/SZJmAKBhHeUTRDQXEw==}
     peerDependencies:
       eslint: ^8.0.0
     peerDependenciesMeta:
       eslint:
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.5.0_friigstnlhuirqu4wr7dfbyroa
+      '@nrwl/devkit': 15.5.1_friigstnlhuirqu4wr7dfbyroa
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.7.4
       eslint: 7.32.0
       tmp: 0.2.1
@@ -2850,7 +2850,7 @@ packages:
       babel-plugin-transform-typescript-metadata: 0.3.2
       browserslist: 4.21.4
       bytes: 3.1.2
-      caniuse-lite: 1.0.30001443
+      caniuse-lite: 1.0.30001445
       chalk: 4.1.0
       chokidar: 3.5.3
       copy-webpack-plugin: 10.2.4_webpack@5.75.0
@@ -2994,7 +2994,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nxext/stencil/15.0.0_rahtpz7rgcr4xdy7f4qnsdebka:
+  /@nxext/stencil/15.0.0_qfsivp2qdvq4fz3gpvhavexxwy:
     resolution: {integrity: sha512-91jTj/D8I6MgkydnpJyDFZZLQoulvKbqh0Tc8pxOgCU5FOrzbpAFe1k2xUCylCzkDFE0u924bGqxEEsQFu/3WQ==}
     peerDependencies:
       '@nrwl/angular': ^15.3.0
@@ -3020,7 +3020,7 @@ packages:
     dependencies:
       '@nrwl/devkit': 15.3.0_friigstnlhuirqu4wr7dfbyroa
       '@nrwl/jest': 14.5.10_gloqu73g6srsiolwn6ro2ef5tm
-      '@nrwl/linter': 15.5.0_jolas6fjb33bfgto7bnyw7etxi
+      '@nrwl/linter': 15.5.1_jolas6fjb33bfgto7bnyw7etxi
       '@nrwl/storybook': 14.5.10_qxqay3s3ojizedds5tncaekpei
       '@nrwl/workspace': 14.5.10_vw5sx3cfhwwh5qv4s34i4d5xne
       '@stencil/core': 2.21.0
@@ -6699,7 +6699,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001443
+      caniuse-lite: 1.0.30001445
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -6715,7 +6715,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001443
+      caniuse-lite: 1.0.30001445
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -6728,7 +6728,7 @@ packages:
     hasBin: true
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001443
+      caniuse-lite: 1.0.30001445
       normalize-range: 0.1.2
       num2fraction: 1.2.2
       picocolors: 0.2.1
@@ -7237,7 +7237,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001443
+      caniuse-lite: 1.0.30001445
       electron-to-chromium: 1.4.284
       node-releases: 2.0.8
       update-browserslist-db: 1.0.10_browserslist@4.21.4
@@ -7440,13 +7440,13 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001443
+      caniuse-lite: 1.0.30001445
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
-  /caniuse-lite/1.0.30001443:
-    resolution: {integrity: sha512-jUo8svymO8+Mkj3qbUbVjR8zv8LUGpGkUM/jKvc9SO2BvjCI980dp9fQbf/dyLs6RascPzgR4nhAKFA4OHeSaA==}
+  /caniuse-lite/1.0.30001445:
+    resolution: {integrity: sha512-8sdQIdMztYmzfTMO6KfLny878Ln9c2M0fc7EH60IjlP4Dc4PiCy7K2Vl3ITmWgOyPgVQKa5x+UP/KqFsxj4mBg==}
     dev: true
 
   /capture-exit/2.0.0:
@@ -7947,7 +7947,7 @@ packages:
       globby: 12.2.0
       normalize-path: 3.0.0
       schema-utils: 4.0.0
-      serialize-javascript: 6.0.0
+      serialize-javascript: 6.0.1
       webpack: 5.75.0
     dev: true
 
@@ -8219,7 +8219,7 @@ packages:
       jest-worker: 27.5.1
       postcss: 8.4.21
       schema-utils: 4.0.0
-      serialize-javascript: 6.0.0
+      serialize-javascript: 6.0.1
       source-map: 0.6.1
       webpack: 5.75.0
     dev: true
@@ -8913,8 +8913,8 @@ packages:
     resolution: {integrity: sha512-wd6JXUmyHmt8T5a2xreUwKcGPq6f1f+WwIJkijUqiGcJz1qqnZgP6XIK+QyIWU5lT7imeNxUll48bziG+TSYcA==}
     dev: true
 
-  /es-get-iterator/1.1.2:
-    resolution: {integrity: sha512-+DTO8GYwbMCwbywjimwZMHp8AuYXOS2JZFWoi2AlPOS3ebnII9w/NLpNZtA7A0YLaVDw+O7KFCeoIV7OPvM7hQ==}
+  /es-get-iterator/1.1.3:
+    resolution: {integrity: sha512-sPZmqHBe6JIiTfN5q2pEi//TwxmAFHwj/XEuYjTuse78i8KxaqMTTzxPoFKuzRpDpTJ+0NAbpfenkmH2rePtuw==}
     dependencies:
       call-bind: 1.0.2
       get-intrinsic: 1.1.3
@@ -8924,6 +8924,7 @@ packages:
       is-set: 2.0.2
       is-string: 1.0.7
       isarray: 2.0.5
+      stop-iteration-iterator: 1.0.0
     dev: true
 
   /es-module-lexer/0.9.3:
@@ -9657,7 +9658,7 @@ packages:
   /filelist/1.0.4:
     resolution: {integrity: sha512-w1cEuf3S+DrLCQL7ET6kz+gmlJdbq9J7yXCSjK/OZCPA+qEN1WyF4ZAf0YYJa4/shHJra2t/d/r8SV4Ji+x+8Q==}
     dependencies:
-      minimatch: 5.1.2
+      minimatch: 5.1.4
     dev: true
 
   /fill-range/4.0.0:
@@ -10190,14 +10191,14 @@ packages:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
-  /glob/8.0.3:
-    resolution: {integrity: sha512-ull455NHSHI/Y1FqGaaYFaLGkNMMJbavMrEGFXG/PGrg6y7sutWHUHrz6gy6WEBH6akM1M414dWKCNs+IhKdiQ==}
+  /glob/8.1.0:
+    resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 5.1.2
+      minimatch: 5.1.4
       once: 1.4.0
     dev: false
 
@@ -11444,7 +11445,7 @@ packages:
   /iterate-value/1.0.2:
     resolution: {integrity: sha512-A6fMAio4D2ot2r/TYzr4yUWrmwNdsN5xL7+HUiyACE4DXm+q8HtPcnFTp+NnW3k4N05tZ7FVYFFb2CR13NxyHQ==}
     dependencies:
-      es-get-iterator: 1.1.2
+      es-get-iterator: 1.1.3
       iterate-iterator: 1.0.2
     dev: true
 
@@ -12808,8 +12809,8 @@ packages:
     dependencies:
       brace-expansion: 1.1.11
 
-  /minimatch/5.1.2:
-    resolution: {integrity: sha512-bNH9mmM9qsJ2X4r2Nat1B//1dJVcn3+iBLa3IgqJ7EbGaDNepL9QSHOxN4ng33s52VMMhhIfgCYDk3C4ZmlDAg==}
+  /minimatch/5.1.4:
+    resolution: {integrity: sha512-U0iNYXt9wALljzfnGkhFSy5sAC6/SCR3JrHrlsdJz4kF8MvhTRQNiC59iUi1iqsitV7abrNAJWElVL9pdnoUgw==}
     engines: {node: '>=10'}
     dependencies:
       brace-expansion: 2.0.1
@@ -15656,8 +15657,8 @@ packages:
       randombytes: 2.1.0
     dev: true
 
-  /serialize-javascript/6.0.0:
-    resolution: {integrity: sha512-Qr3TosvguFt8ePWqsvRfrKyQXIiW+nGbYpy8XK24NQHE83caxWt+mIymTT19DGFbNWNLfEwsrkSmN64lVWB9ag==}
+  /serialize-javascript/6.0.1:
+    resolution: {integrity: sha512-owoXEFjWRllis8/M1Q+Cw5k8ZH40e3zhp/ovX+Xr/vi1qj6QesbyXXViFbpNvWvPNAD62SutwEXavefrLJWj7w==}
     dependencies:
       randombytes: 2.1.0
     dev: true
@@ -16153,6 +16154,13 @@ packages:
       '@stencil/core': 2.21.0
       '@stencil/store': 1.5.0_@stencil+core@2.21.0
     dev: false
+
+  /stop-iteration-iterator/1.0.0:
+    resolution: {integrity: sha512-iCGQj+0l0HOdZ2AEeBADlsRC+vsnDsZsbdSiH1yNSjcfKM7fdpCMfqAL/dwF5BLiw/XhRft/Wax6zQbhq2BcjQ==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      internal-slot: 1.0.4
+    dev: true
 
   /store2/2.14.2:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
@@ -16671,7 +16679,7 @@ packages:
       '@jridgewell/trace-mapping': 0.3.17
       jest-worker: 27.5.1
       schema-utils: 3.1.1
-      serialize-javascript: 6.0.0
+      serialize-javascript: 6.0.1
       terser: 5.16.1
       webpack: 5.75.0
     dev: true
