@@ -40,7 +40,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "1.8.5",
+    "@grpc/grpc-js": "1.8.6",
     "@grpc/proto-loader": "0.7.4",
     "@nestjs/microservices": "^8.4.7",
     "@nestjs/schematics": "9.0.1",
@@ -101,7 +101,7 @@
     "prettier": "2.8.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "redis": "4.5.1",
+    "redis": "4.6.0",
     "rollup-plugin-node-polyfills": "0.2.1",
     "sass": "1.57.1",
     "sass-loader": "13.2.0",
