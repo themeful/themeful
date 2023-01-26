@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@fastify/static': 6.6.1
+  '@fastify/static': 6.7.0
   '@grpc/grpc-js': 1.8.7
   '@grpc/proto-loader': 0.7.4
   '@nestjs/common': 9.0.7
@@ -100,7 +100,7 @@ specifiers:
   workbox-build: 6.5.4
 
 dependencies:
-  '@fastify/static': 6.6.1
+  '@fastify/static': 6.7.0
   '@nestjs/common': 9.0.7_66pidaijumrtzyachnvfwzkz3e
   '@nestjs/core': 9.0.7_n3xuzotofxuoc326nxbbklqzf4
   '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
@@ -1800,8 +1800,8 @@ packages:
       - supports-color
     dev: false
 
-  /@fastify/static/6.6.1:
-    resolution: {integrity: sha512-sylhlmhclqwkyZy/SD5wzd4yjmMuqW8cRmfnuPXPhftZuEwJ8G2apm0kECQRnHJnk+W3Ksx2fpIHHcthzxNRTA==}
+  /@fastify/static/6.7.0:
+    resolution: {integrity: sha512-GYFDTSK83OL3mlzEDhgZXwFqPpGPiOsOr+dx63y2hcDF+NF4j1Ps2Swvmq/tMc5CFGoEDhkVN+P9fWG+/4a30Q==}
     dependencies:
       '@fastify/accept-negotiator': 1.1.0
       '@fastify/send': 1.0.0
