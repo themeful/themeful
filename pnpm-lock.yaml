@@ -94,7 +94,7 @@ specifiers:
   ts-jest: 27.1.5
   ts-node: 10.9.1
   tsconfig-paths-webpack-plugin: 4.0.0
-  tslib: 2.4.1
+  tslib: 2.5.0
   typescript: 4.7.4
   utf-8-validate: 6.0.2
   workbox-build: 6.5.4
@@ -123,7 +123,7 @@ dependencies:
   socket.io-client: 4.5.4_7bu325uvas3fiezt5gpuh2av6u
   sort-media-queries: 0.2.2
   stencil-router-v2: 0.6.0_@stencil+core@2.22.2
-  tslib: 2.4.1
+  tslib: 2.5.0
 
 devDependencies:
   '@grpc/grpc-js': 1.8.7
@@ -2480,7 +2480,7 @@ packages:
       ts-loader: 9.4.2_l2co7ao223gzrfox7yaiyzd7wu
       tsconfig-paths: 3.14.1
       tsconfig-paths-webpack-plugin: 3.5.2
-      tslib: 2.4.1
+      tslib: 2.5.0
       webpack: 5.75.0
       webpack-node-externals: 3.0.0
     transitivePeerDependencies:
@@ -2512,7 +2512,7 @@ packages:
       ignore: 5.2.4
       nx: 14.5.10
       semver: 7.3.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -2527,7 +2527,7 @@ packages:
       ignore: 5.2.4
       nx: 14.5.10
       semver: 7.3.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -2542,7 +2542,7 @@ packages:
       ignore: 5.2.4
       nx: 14.5.10
       semver: 7.3.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -2594,7 +2594,7 @@ packages:
       jest-util: 27.5.1
       resolve.exports: 1.1.0
       rxjs: 6.6.7
-      tslib: 2.4.1
+      tslib: 2.5.0
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -2651,7 +2651,7 @@ packages:
       eslint: 7.32.0
       nx: 14.5.10
       tmp: 0.2.1
-      tslib: 2.4.1
+      tslib: 2.5.0
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
@@ -2676,7 +2676,7 @@ packages:
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.7.4
       eslint: 7.32.0
       tmp: 0.2.1
-      tslib: 2.4.1
+      tslib: 2.5.0
     transitivePeerDependencies:
       - nx
       - typescript
@@ -2737,7 +2737,7 @@ packages:
       ts-node: 10.9.1_nv75g3i7xuh23du6z7qul3uiqi
       tsconfig-paths: 3.14.1
       tsconfig-paths-webpack-plugin: 3.5.2
-      tslib: 2.4.1
+      tslib: 2.5.0
       webpack: 5.75.0
       webpack-merge: 5.8.0
       webpack-node-externals: 3.0.0
@@ -2895,7 +2895,7 @@ packages:
       ts-node: 10.9.1_nv75g3i7xuh23du6z7qul3uiqi
       tsconfig-paths: 3.14.1
       tsconfig-paths-webpack-plugin: 3.5.2
-      tslib: 2.4.1
+      tslib: 2.5.0
       webpack: 5.75.0
       webpack-dev-server: 4.11.1_3p4xby5k32lus4jhv2iy4epvcm
       webpack-merge: 5.8.0
@@ -2967,7 +2967,7 @@ packages:
       rxjs: 6.6.7
       semver: 7.3.4
       tmp: 0.2.1
-      tslib: 2.4.1
+      tslib: 2.5.0
       yargs: 17.6.2
       yargs-parser: 21.0.1
     transitivePeerDependencies:
@@ -6176,7 +6176,7 @@ packages:
     resolution: {integrity: sha512-Zaw58gQxjQceJqhqybJi1oUDaORT8i2GTgwICPs8v/X/Pkx35FXQba69ldHVg5pQZ6YLKpROXgyHvBaCJOFXiA==}
     dependencies:
       pkg-dir: 5.0.0
-      tslib: 2.4.1
+      tslib: 2.5.0
       upath2: 3.1.19
     dev: true
 
@@ -7404,7 +7404,7 @@ packages:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
     dependencies:
       pascal-case: 3.1.2
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /camelcase-css/2.0.1:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
@@ -8680,7 +8680,7 @@ packages:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /dotenv-expand/5.1.0:
@@ -12468,7 +12468,7 @@ packages:
   /lower-case/2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /lowlight/1.20.0:
     resolution: {integrity: sha512-8Ktj+prEb1RoCPkEOrPMYUN/nCggB7qAWe3a7OpMjWQkh3l2RD5wKRQ+o8Q8YuI9RG/xs95waaI/E6ym/7NsTw==}
@@ -13051,7 +13051,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /node-abort-controller/3.0.1:
     resolution: {integrity: sha512-/ujIVxthRs+7q6hsdjHMaj8hRG9NuWmwrz+JdRwZ14jdFoKSkm+vDsCbF9PLpnSqjaWQJuTmVtcWHNLr+vrOFw==}
@@ -13258,7 +13258,7 @@ packages:
       tar-stream: 2.2.0
       tmp: 0.2.1
       tsconfig-paths: 3.14.1
-      tslib: 2.4.1
+      tslib: 2.5.0
       v8-compile-cache: 2.3.0
       yargs: 17.6.2
       yargs-parser: 21.0.1
@@ -13595,7 +13595,7 @@ packages:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /parent-module/1.0.1:
@@ -13681,7 +13681,7 @@ packages:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /pascalcase/0.1.1:
     resolution: {integrity: sha512-XHXfu/yOQRy9vYOtUDVMN60OEJjW013GoObG1o+xwQTpB9eYJX/BjXMsdW13ZDPruFhYYn0AG22w0xgQMwl3Nw==}
@@ -13725,7 +13725,7 @@ packages:
   /path-is-network-drive/1.0.20:
     resolution: {integrity: sha512-p5wCWlRB4+ggzxWshqHH9aF3kAuVu295NaENXmVhThbZPJQBeJdxZTP6CIoUR+kWHDUW56S9YcaO1gXnc/BOxw==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /path-key/2.0.1:
@@ -13749,7 +13749,7 @@ packages:
   /path-strip-sep/1.0.17:
     resolution: {integrity: sha512-+2zIC2fNgdilgV7pTrktY6oOxxZUo9x5zJYfTzxsGze5kSGDDwhA5/0WlBn+sUyv/WuuyYn3OfM+Ue5nhdQUgA==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /path-to-regexp/0.1.7:
@@ -15328,7 +15328,7 @@ packages:
       fs-extra: 10.1.0
       resolve: 1.22.1
       rollup: 2.79.1
-      tslib: 2.4.1
+      tslib: 2.5.0
       typescript: 4.7.4
     dev: true
 
@@ -15373,7 +15373,7 @@ packages:
   /rxjs/7.8.0:
     resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /safe-buffer/5.1.1:
     resolution: {integrity: sha512-kKvNJn6Mm93gAczWVJg7wH+wGYWNrDHdWvpUmHyEsgCtIwwo3bqPtV4tR5tuPaUhTOo/kvhVwd8XwwOllGYkbg==}
@@ -15641,7 +15641,7 @@ packages:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
       upper-case-first: 2.0.2
     dev: false
 
@@ -16996,6 +16996,9 @@ packages:
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
 
+  /tslib/2.5.0:
+    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+
   /tsutils/3.0.0_typescript@4.7.4:
     resolution: {integrity: sha512-LjHBWR0vWAUHWdIAoTjoqi56Kz+FDKBgVEuL+gVPG/Pv7QW5IdaDDeK9Txlr6U0Cmckp5EgCIq1T25qe3J6hyw==}
     engines: {node: '>= 6'}
@@ -17293,7 +17296,7 @@ packages:
       '@types/node': 18.11.18
       path-is-network-drive: 1.0.20
       path-strip-sep: 1.0.17
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /update-browserslist-db/1.0.10_browserslist@4.21.4:
@@ -17310,7 +17313,7 @@ packages:
   /upper-case-first/2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /uri-js/4.4.1:
