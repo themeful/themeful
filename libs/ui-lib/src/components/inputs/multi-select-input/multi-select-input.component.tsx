@@ -101,7 +101,7 @@ export class MultiSelectInputComponent {
   }
 
   private addEnd = (): void => {
-    if (this.element.value !== null) {
+    if (this.element.value !== null && this.element.value !== '') {
       this.items = [...this.items, this.element.value]
       this.element.value = ''
     }
@@ -128,7 +128,7 @@ export class MultiSelectInputComponent {
   }
 
   private removeEnd = (): void => {
-    if (this.element.value !== null) {
+    if (this.element.value !== null && this.element.value !== '') {
       this.value = [...this.value, this.element.value]
       this.element.value = ''
     }
