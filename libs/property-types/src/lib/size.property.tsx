@@ -14,6 +14,7 @@ export const size: PropertyType = {
             backgroundColor: 'hsl(213,73%,63%)',
             height: value,
             width: value,
+            display: parseInt(value) > 100 ? 'none' : 'block',
           }}
         ></div>
         <pre>{value}</pre>
