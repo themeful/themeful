@@ -77,7 +77,7 @@ specifiers:
   prettier: 2.8.3
   react: 18.2.0
   react-dom: 18.2.0
-  redis: 4.6.3
+  redis: 4.6.4
   reflect-metadata: 0.1.13
   rollup-plugin-node-polyfills: 0.2.1
   rxjs: 7.8.0
@@ -128,7 +128,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.8.7
   '@grpc/proto-loader': 0.7.4
-  '@nestjs/microservices': 8.4.7_pnbzxj37ixpgntywspz6gto36a
+  '@nestjs/microservices': 8.4.7_f6zdlvhxgzfmqdmdliorn2mwku
   '@nestjs/schematics': 9.0.1_typescript@4.7.4
   '@nestjs/testing': 9.0.7_7jplvfrqbzzkmubb5s3pkhgsdy
   '@nrwl/cli': 14.5.10
@@ -187,7 +187,7 @@ devDependencies:
   prettier: 2.8.3
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  redis: 4.6.3
+  redis: 4.6.4
   rollup-plugin-node-polyfills: 0.2.1
   sass: 1.57.1
   sass-loader: 13.2.0_sass@1.57.1+webpack@5.75.0
@@ -2230,7 +2230,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.0.7_66pidaijumrtzyachnvfwzkz3e
-      '@nestjs/microservices': 8.4.7_pnbzxj37ixpgntywspz6gto36a
+      '@nestjs/microservices': 8.4.7_f6zdlvhxgzfmqdmdliorn2mwku
       '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
       '@nestjs/websockets': 9.2.1_rqfq72ucanq4zyorzhrd4caota
       '@nuxtjs/opencollective': 0.3.2
@@ -2245,7 +2245,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/8.4.7_pnbzxj37ixpgntywspz6gto36a:
+  /@nestjs/microservices/8.4.7_f6zdlvhxgzfmqdmdliorn2mwku:
     resolution: {integrity: sha512-JZX29tBWbbPa+Q06QcCbwKTyEsOFHAPrxgfEkRNwoaiEqqCsITT9w2n5bcz3vlUurdpy5dIgX3/almbitghbKg==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2292,7 +2292,7 @@ packages:
       kafkajs: 2.2.3
       mqtt: 4.3.7_7bu325uvas3fiezt5gpuh2av6u
       nats: 2.11.0
-      redis: 4.6.3
+      redis: 4.6.4
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
       tslib: 2.4.0
@@ -2371,7 +2371,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.0.7_66pidaijumrtzyachnvfwzkz3e
       '@nestjs/core': 9.0.7_n3xuzotofxuoc326nxbbklqzf4
-      '@nestjs/microservices': 8.4.7_pnbzxj37ixpgntywspz6gto36a
+      '@nestjs/microservices': 8.4.7_f6zdlvhxgzfmqdmdliorn2mwku
       '@nestjs/platform-express': 9.0.7_xxlaro4n3ygapuy65e43lboh2y
       tslib: 2.4.0
     dev: true
@@ -3113,48 +3113,48 @@ packages:
   /@protobufjs/utf8/1.1.0:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
-  /@redis/bloom/1.2.0_@redis+client@1.5.4:
+  /@redis/bloom/1.2.0_@redis+client@1.5.5:
     resolution: {integrity: sha512-HG2DFjYKbpNmVXsa0keLHp/3leGJz1mjh09f2RLGGLQZzSHpkmZWuwJbAvo3QcRY8p80m5+ZdXZdYOSBLlp7Cg==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.5.4
+      '@redis/client': 1.5.5
 
-  /@redis/client/1.5.4:
-    resolution: {integrity: sha512-inTBWktJX6rRUCmhpVCnSb7pHOOiGCFIiy5IuEa0GgjcOJsKvw4zHkT9dfYm5UGoUi0I1c4i/f3ScMW5gkNpmQ==}
+  /@redis/client/1.5.5:
+    resolution: {integrity: sha512-fuMnpDYSjT5JXR9rrCW1YWA4L8N/9/uS4ImT3ZEC/hcaQRI1D/9FvwjriRj1UvepIgzZXthFVKMNRzP/LNL7BQ==}
     engines: {node: '>=14'}
     dependencies:
       cluster-key-slot: 1.1.2
       generic-pool: 3.9.0
       yallist: 4.0.0
 
-  /@redis/graph/1.1.0_@redis+client@1.5.4:
+  /@redis/graph/1.1.0_@redis+client@1.5.5:
     resolution: {integrity: sha512-16yZWngxyXPd+MJxeSr0dqh2AIOi8j9yXKcKCwVaKDbH3HTuETpDVPcLujhFYVPtYrngSco31BUcSa9TH31Gqg==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.5.4
+      '@redis/client': 1.5.5
 
-  /@redis/json/1.0.4_@redis+client@1.5.4:
+  /@redis/json/1.0.4_@redis+client@1.5.5:
     resolution: {integrity: sha512-LUZE2Gdrhg0Rx7AN+cZkb1e6HjoSKaeeW8rYnt89Tly13GBI5eP4CwDVr+MY8BAYfCg4/N15OUrtLoona9uSgw==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.5.4
+      '@redis/client': 1.5.5
 
-  /@redis/search/1.1.1_@redis+client@1.5.4:
+  /@redis/search/1.1.1_@redis+client@1.5.5:
     resolution: {integrity: sha512-pqCXTc5e7wJJgUuJiC3hBgfoFRoPxYzwn0BEfKgejTM7M/9zP3IpUcqcjgfp8hF+LoV8rHZzcNTz7V+pEIY7LQ==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.5.4
+      '@redis/client': 1.5.5
 
-  /@redis/time-series/1.0.4_@redis+client@1.5.4:
+  /@redis/time-series/1.0.4_@redis+client@1.5.5:
     resolution: {integrity: sha512-ThUIgo2U/g7cCuZavucQTQzA9g9JbDDY2f64u3AbAoz/8vE2lt2U37LamDUVChhaDA3IRT9R6VvJwqnUfTJzng==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
-      '@redis/client': 1.5.4
+      '@redis/client': 1.5.5
 
   /@rollup/plugin-babel/5.3.1_3dsfpkpoyvuuxyfgdbpn4j4uzm:
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
@@ -14943,15 +14943,15 @@ packages:
     dev: true
     optional: true
 
-  /redis/4.6.3:
-    resolution: {integrity: sha512-2UBX8APh9xIXotVwbt3/jUSeu9kwoke9fNzCMQppuQhmOUmEBkM73sdUifXiabjH7YUN0VireJcgw7ky4DnC+A==}
+  /redis/4.6.4:
+    resolution: {integrity: sha512-wi2tgDdQ+Q8q+PR5FLRx4QvDiWaA+PoJbrzsyFqlClN5R4LplHqN3scs/aGjE//mbz++W19SgxiEnQ27jnCRaA==}
     dependencies:
-      '@redis/bloom': 1.2.0_@redis+client@1.5.4
-      '@redis/client': 1.5.4
-      '@redis/graph': 1.1.0_@redis+client@1.5.4
-      '@redis/json': 1.0.4_@redis+client@1.5.4
-      '@redis/search': 1.1.1_@redis+client@1.5.4
-      '@redis/time-series': 1.0.4_@redis+client@1.5.4
+      '@redis/bloom': 1.2.0_@redis+client@1.5.5
+      '@redis/client': 1.5.5
+      '@redis/graph': 1.1.0_@redis+client@1.5.5
+      '@redis/json': 1.0.4_@redis+client@1.5.5
+      '@redis/search': 1.1.1_@redis+client@1.5.5
+      '@redis/time-series': 1.0.4_@redis+client@1.5.5
 
   /reflect-metadata/0.1.13:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
