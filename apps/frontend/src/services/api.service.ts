@@ -59,7 +59,7 @@ export class APIService {
   ]).pipe(debounceTime(500), shareReplay(1))
 
   private constructor() {
-    this.socket = io('http://localhost:3333')
+    this.socket = io('http://localhost:7333')
     this.startSocket()
   }
 
@@ -171,22 +171,22 @@ export class APIService {
   }
 
   public createTheme(theme: Theme): Observable<boolean> {
-    return http.post<Theme, boolean>('http://localhost:3333/api/theme', theme)
+    return http.post<Theme, boolean>('http://localhost:7333/api/theme', theme)
   }
 
   public updateTheme(identifier: string, theme: Theme): Observable<boolean> {
-    return http.patch<Theme, boolean>(`http://localhost:3333/api/theme/${identifier}`, theme)
+    return http.patch<Theme, boolean>(`http://localhost:7333/api/theme/${identifier}`, theme)
   }
 
   public duplicateTheme(identifier: string, name: string): Observable<boolean> {
     return http.patch<string, boolean>(
-      `http://localhost:3333/api/theme/${identifier}/duplicate`,
+      `http://localhost:7333/api/theme/${identifier}/duplicate`,
       name
     )
   }
 
   public deleteTheme({ identifier }: { identifier: string }): Observable<boolean> {
-    return http.delete<boolean>(`http://localhost:3333/api/theme/${identifier}`)
+    return http.delete<boolean>(`http://localhost:7333/api/theme/${identifier}`)
   }
 
   // ThemeValues
@@ -216,7 +216,7 @@ export class APIService {
     value: ThemeValue
   ): Observable<boolean> {
     return http.post<ThemeValue, boolean>(
-      `http://localhost:3333/api/theme/value/${theme}/${designToken}`,
+      `http://localhost:7333/api/theme/value/${theme}/${designToken}`,
       value
     )
   }
@@ -226,7 +226,7 @@ export class APIService {
     value: ThemeValue
   ): Observable<boolean> {
     return http.patch<ThemeValue, boolean>(
-      `http://localhost:3333/api/theme/value/${theme}/${designToken}/${media}`,
+      `http://localhost:7333/api/theme/value/${theme}/${designToken}/${media}`,
       value
     )
   }
@@ -241,7 +241,7 @@ export class APIService {
     media: string
   }): Observable<boolean> {
     return http.delete<boolean>(
-      `http://localhost:3333/api/theme/value/${theme}/${designToken}/${media}`
+      `http://localhost:7333/api/theme/value/${theme}/${designToken}/${media}`
     )
   }
 
@@ -271,7 +271,7 @@ export class APIService {
   }
 
   public createStyle(style: Style, { styleGuide }: { styleGuide?: string }): Observable<boolean> {
-    return http.post<Style, boolean>(`http://localhost:3333/api/style/${styleGuide ?? ''}`, style)
+    return http.post<Style, boolean>(`http://localhost:7333/api/style/${styleGuide ?? ''}`, style)
   }
 
   public updateStyle(
@@ -285,7 +285,7 @@ export class APIService {
     value: Style
   ): Observable<boolean> {
     return http.patch<Style, boolean>(
-      `http://localhost:3333/api/style/${style}/${styleGuide ?? ''}`,
+      `http://localhost:7333/api/style/${style}/${styleGuide ?? ''}`,
       value
     )
   }
@@ -297,7 +297,7 @@ export class APIService {
     style: string
     styleGuide?: string
   }): Observable<boolean> {
-    return http.delete<boolean>(`http://localhost:3333/api/style/${style}/${styleGuide ?? ''}`)
+    return http.delete<boolean>(`http://localhost:7333/api/style/${style}/${styleGuide ?? ''}`)
   }
 
   // DesignTokens
@@ -330,31 +330,31 @@ export class APIService {
   }
 
   public createDesignToken(fields: DesignToken): Observable<boolean> {
-    return http.post<DesignToken, boolean>(`http://localhost:3333/api/design-token`, fields)
+    return http.post<DesignToken, boolean>(`http://localhost:7333/api/design-token`, fields)
   }
 
   public selectAliasTokens(identifier: string, aliasTokens: string[]): Observable<boolean> {
     return http.patch<string[], boolean>(
-      `http://localhost:3333/api/design-token/${identifier}/aliasTokens`,
+      `http://localhost:7333/api/design-token/${identifier}/aliasTokens`,
       aliasTokens
     )
   }
 
   public updateDesignToken(identifier: string, fields: DesignToken): Observable<boolean> {
     return http.patch<DesignToken, boolean>(
-      `http://localhost:3333/api/design-token/${identifier}`,
+      `http://localhost:7333/api/design-token/${identifier}`,
       fields
     )
   }
   public splitDesignToken(identifier: string, fields: DesignToken): Observable<boolean> {
     return http.patch<DesignToken, boolean>(
-      `http://localhost:3333/api/design-token/${identifier}/split`,
+      `http://localhost:7333/api/design-token/${identifier}/split`,
       fields
     )
   }
 
   public deleteDesignToken(identifier: string): Observable<boolean> {
-    return http.delete<boolean>(`http://localhost:3333/api/design-token/${identifier}`)
+    return http.delete<boolean>(`http://localhost:7333/api/design-token/${identifier}`)
   }
 
   // StyleGuideBase
@@ -383,27 +383,27 @@ export class APIService {
 
   public createStyleGuide(styleGuideBase: StyleGuideBase): Observable<boolean> {
     return http.post<StyleGuideBase, boolean>(
-      `http://localhost:3333/api/style-guide`,
+      `http://localhost:7333/api/style-guide`,
       styleGuideBase
     )
   }
 
   public updateStyleGuide(identifier: string, styleGuideBase: StyleGuideBase): Observable<boolean> {
     return http.patch<StyleGuideBase, boolean>(
-      `http://localhost:3333/api/style-guide/${identifier}`,
+      `http://localhost:7333/api/style-guide/${identifier}`,
       styleGuideBase
     )
   }
 
   public duplicateStyleGuide(identifier: string, name: string): Observable<boolean> {
     return http.patch<string, boolean>(
-      `http://localhost:3333/api/style-guide/${identifier}/duplicate`,
+      `http://localhost:7333/api/style-guide/${identifier}/duplicate`,
       name
     )
   }
 
   public deleteStyleGuide(identifier: string): Observable<boolean> {
-    return http.delete<boolean>(`http://localhost:3333/api/style-guide/${identifier}`)
+    return http.delete<boolean>(`http://localhost:7333/api/style-guide/${identifier}`)
   }
 
   // AliasTokens
@@ -417,6 +417,6 @@ export class APIService {
   }
 
   public rescanAliasTokens(): Observable<boolean> {
-    return http.get<boolean>('http://localhost:3333/api/alias-token/rescan')
+    return http.get<boolean>('http://localhost:7333/api/alias-token/rescan')
   }
 }

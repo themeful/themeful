@@ -16,7 +16,7 @@
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "configPath": "apps/frontend/stencil.config.ts",
         "outputPath": "dist/apps/frontend",
-        "port": 3333
+        "port": 7333
       },
       "configurations": {
         "production": {
@@ -34,7 +34,7 @@
         "configPath": "apps/frontend/stencil.config.ts",
         "outputPath": "dist/apps/frontend",
         "proxyConfig": "apps/frontend/proxy.conf.json",
-        "port": 3340
+        "port": 7333
       },
       "configurations": {
         "watch": {

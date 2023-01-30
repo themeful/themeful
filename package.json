@@ -7,6 +7,7 @@
     "dev": "run-p frontend backend",
     "dev:ui": "run-p ui-lib storybook",
     "sample": "nx run backend:sample",
+    "tecdif": "nx run backend:tecdif",
     "ui-lib": "nx run ui-lib:build:watch",
     "frontend": "nx run frontend:serve:watch",
     "backend": "nx run backend:serve",

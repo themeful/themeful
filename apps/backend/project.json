@@ -91,6 +91,17 @@
         "parallel": false
       }
     },
+    "tecdif": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm nx run backend:release",
+          "rm -rf ../solar/themeful",
+          "cp -rf ./dist/apps/backend/ ../solar/themeful"
+        ],
+        "parallel": false
+      }
+    },
     "copy-assets": {
       "executor": "nx:run-commands",
       "options": {
