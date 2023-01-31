@@ -58,6 +58,7 @@ export class MenuComponent {
         >
           <tf-icon icon="menu" />
         </tf-button>
+        {this.open && <div class="backdrop" {...{ onClick: () => (this.open = false) }}></div>}
         {this.open && <div class="menu-items button-group">{this.items.map(this.renderItem)}</div>}
       </div>
     )

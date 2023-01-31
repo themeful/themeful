@@ -434,6 +434,7 @@ export class ThemesComponent {
                   {...{
                     onClick: () => this.openAliasTokenSelect(row.token),
                     title: 'select alias tokens',
+                    size: 'small',
                   }}
                 >
                   Edit Alias Tokens
@@ -449,6 +450,7 @@ export class ThemesComponent {
               {...{
                 onClick: () => this.openAliasTokenSelect(row.token),
                 title: 'select alias tokens',
+                size: 'small',
               }}
             >
               Add Alias Tokens
@@ -487,6 +489,7 @@ export class ThemesComponent {
                 onClick: () =>
                   this.openThemeValueForm({ designToken: row.token, themeIndex, themeValue }),
                 title: 'add value',
+                size: 'small',
                 class: 'design-tokens__add-value',
               }}
             >

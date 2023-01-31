@@ -1,5 +1,5 @@
 :host {
-  display: block;
+  display: inline-block;
 }
 
 .menu {
@@ -16,4 +16,13 @@
   flex-direction: column;
   overflow: hidden;
   border-radius: 4px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
 }
