@@ -42,7 +42,7 @@ export class TextInputComponent {
 
   /** Validate value */
   @Method()
-  public validate(): Promise<boolean> {
+  async validate(): Promise<boolean> {
     this.touched = true
     this.value = this.value || this.input.value
     return Promise.resolve(this.internalValidation())
@@ -50,7 +50,7 @@ export class TextInputComponent {
 
   /** Changed value */
   @Method()
-  public dirty(): Promise<boolean> {
+  async dirty(): Promise<boolean> {
     return Promise.resolve(this.changed)
   }
 

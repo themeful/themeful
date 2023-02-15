@@ -33,7 +33,7 @@ export class ThemefulMicrofrontend {
   private componentListBundle$: Observable<ComponentListBundle>
   private componentBundle$: Observable<ComponentItemBundle>
   private toast$
-  @State() mode?: string
+  @State() public mode?: string
 
   private Router: Router
 

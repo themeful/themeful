@@ -3,7 +3,7 @@
     "../../.eslintrc.json",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@stencil/recommended",
+    "plugin:@stencil-community/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
@@ -30,7 +30,7 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
       "rules": {
-        "@stencil/async-methods": "off",
+        "@stencil-community/async-methods": "off",
         "react/no-unknown-property": "off",
         "react/jsx-key": "off",
         "@typescript-eslint/no-unused-vars": "error"

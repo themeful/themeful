@@ -4,7 +4,7 @@ export interface StorybookConfig {
   core: {
     builder: 'webpack5'
   }
-  stories: string[]
+  stories?: string[]
   addons: string[]
   babel?: (config: StorybookOptions) => Promise<StorybookOptions>
   babelDefault: (config: StorybookOptions) => StorybookOptions
@@ -29,8 +29,8 @@ export const rootMain: StorybookConfig = {
   core: {
     builder: 'webpack5',
   },
-  stories: [],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-postcss'],
+
+  addons: ['@storybook/addon-actions', '@storybook/addon-postcss'],
   babelDefault: (config) => {
     return {
       ...config,

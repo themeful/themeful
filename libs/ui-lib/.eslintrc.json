@@ -3,7 +3,7 @@
     "../../.eslintrc.json",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@stencil/recommended",
+    "plugin:@stencil-community/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended" // should always be the last entry
   ],
@@ -31,7 +31,7 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
       "rules": {
-        "@stencil/async-methods": "off", // causing issues with the async @Method() annotation
+        "@stencil-community/async-methods": "off", // causing issues with the async @Method() annotation
         "react/no-unknown-property": "off",
         "react/jsx-key": "off",
         "@typescript-eslint/no-unused-vars": "error",
@@ -54,7 +54,7 @@
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
       "rules": {
-        "@stencil/async-methods": "off", // causing issues with the async @Method() annotation
+        "@stencil-community/async-methods": "off", // causing issues with the async @Method() annotation
         "react/no-unknown-property": "off",
         "react/jsx-key": "off"
       }
