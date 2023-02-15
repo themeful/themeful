@@ -66,7 +66,6 @@ specifiers:
   husky: 8.0.3
   ioredis: ^5.3.1
   jest: 27.5.1
-  jest-environment-jsdom: ^27.5.0
   jsonfile: 6.1.0
   kafkajs: 2.2.3
   lint-staged: 13.1.2
@@ -182,7 +181,6 @@ devDependencies:
   eslint-plugin-react: 7.32.2_eslint@8.34.0
   fastify-static: 4.7.0
   jest: 27.5.1_fxeapcfqu6wlbn2tqxoqmq4nm4
-  jest-environment-jsdom: 27.5.1_7bu325uvas3fiezt5gpuh2av6u
   kafkajs: 2.2.3
   mqtt: 4.3.7_7bu325uvas3fiezt5gpuh2av6u
   nats: 2.12.0
