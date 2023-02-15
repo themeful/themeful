@@ -1,5 +1,5 @@
 import * as systemFind from 'find'
-import { readFileSync } from 'fs'
+import { existsSync, readFileSync } from 'fs'
 
 export interface FindInResult {
   filename: string
@@ -81,4 +81,8 @@ export const findInSync = (
 
 export const findSync = (directory: string, fileFilter: string | RegExp): string[] => {
   return systemFind.fileSync(getFileFilter(fileFilter), directory)
+}
+
+export const exists = (path: string): boolean => {
+  return existsSync(path)
 }

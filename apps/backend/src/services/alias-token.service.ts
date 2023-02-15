@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { AliasToken, AliasTokenAPI, AliasTokens } from '@typings'
 import { anycase2Words, sortMap, unique } from '@utils'
-import { existsSync } from 'fs'
 import { map, merge, take, timer } from 'rxjs'
-import { FindInResults, findInSync } from '../utils'
+import { exists, FindInResults, findInSync } from '../utils'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
 import { SyncService } from './sync.service'
@@ -99,7 +98,7 @@ export class AliasTokenService {
     const defaultResults: FindInResults = []
 
     this.config.libPaths.forEach((path) => {
-      if (existsSync(path)) {
+      if (exists(path)) {
         results.push(...findInSync({ term, flags: 'gm' }, path, '.s[a|c]ss$'))
         defaultResults.push(...findInSync({ term: defaultsTerm, flags: 'gm' }, path, '.s[a|c]ss$'))
       } else {

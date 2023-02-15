@@ -28,6 +28,8 @@ describe('AliasTokenService', () => {
       }
     })
 
+    jest.spyOn(utils, 'exists').mockImplementation(() => true)
+
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         AliasTokenService,
