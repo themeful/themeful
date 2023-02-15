@@ -6,8 +6,8 @@ module.exports = {
 
   core: { ...rootMain.core },
 
-  stories: [...rootMain.stories, '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [...(rootMain.addons ?? [])],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-essentials', ...(rootMain.addons ?? [])],
   babel: async (options: StorybookOptions) => ({
     ...options,
     presets: [['@babel/typescript', { jsxPragma: 'h' }]],

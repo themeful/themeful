@@ -17,5 +17,8 @@
   "jestrunner.jestCommand": "pnpm jest",
   "jest.autoRun": {
     "onStartup": []
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

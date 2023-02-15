@@ -72,7 +72,7 @@ export class ColorInputComponent {
 
   /** Validate value */
   @Method()
-  public validate(): Promise<boolean> {
+  public async validate(): Promise<boolean> {
     this.touched = true
     this.value = this.value || this.input.value
     return Promise.resolve(this.internalValidation())
@@ -80,7 +80,7 @@ export class ColorInputComponent {
 
   /** Changed value */
   @Method()
-  public dirty(): Promise<boolean> {
+  public async dirty(): Promise<boolean> {
     return Promise.resolve(this.changed)
   }
 

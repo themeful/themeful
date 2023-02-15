@@ -35,9 +35,9 @@ import '../../forms/form-integration'
 })
 export class ThemesComponent {
   /** Style Guides */
-  @Prop() themeBundle$!: Observable<ThemeBundle>
+  @Prop() public themeBundle$!: Observable<ThemeBundle>
 
-  @State() rows?: DesignTokenRow[]
+  @State() public rows?: DesignTokenRow[]
   private themeNames?: ThemeName[]
   private themes?: Themes = {}
   private designTokens: DesignTokens = {}
@@ -68,7 +68,7 @@ export class ThemesComponent {
   private sub = new Subscription()
 
   /** Event emitted when an action is triggered */
-  @Event({ composed: false }) action!: EventEmitter<FormIntegrationActions>
+  @Event({ composed: false }) public action!: EventEmitter<FormIntegrationActions>
 
   private onAction = ({ detail }: { detail: ThemeIntegrationAction }): void => {
     if (detail.action !== 'close') {
@@ -137,7 +137,11 @@ export class ThemesComponent {
             }
             themeValues.push(themeValue)
           })
-          rows.push({ ...designTokens[designToken], token: designToken, themeValues })
+          rows.push({
+            ...designTokens[designToken],
+            token: designToken,
+            themeValues,
+          })
         })
         this.rows = rows
       })
@@ -379,7 +383,11 @@ export class ThemesComponent {
     return (
       <tf-menu
         items={[
-          { label: 'Edit', icon: 'pen', callback: () => this.openThemeForm(themeSlug) },
+          {
+            label: 'Edit',
+            icon: 'pen',
+            callback: () => this.openThemeForm(themeSlug),
+          },
           {
             label: 'Duplicate',
             icon: 'copy',
@@ -398,7 +406,11 @@ export class ThemesComponent {
             {row.name}
             <tf-menu
               items={[
-                { label: 'Edit', icon: 'pen', callback: () => this.openDesignTokenForm(row) },
+                {
+                  label: 'Edit',
+                  icon: 'pen',
+                  callback: () => this.openDesignTokenForm(row),
+                },
                 {
                   label: 'Split/Copy',
                   icon: 'copy',
@@ -487,7 +499,11 @@ export class ThemesComponent {
             <tf-button
               {...{
                 onClick: () =>
-                  this.openThemeValueForm({ designToken: row.token, themeIndex, themeValue }),
+                  this.openThemeValueForm({
+                    designToken: row.token,
+                    themeIndex,
+                    themeValue,
+                  }),
                 title: 'add value',
                 size: 'small',
                 class: 'design-tokens__add-value',
