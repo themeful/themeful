@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { Components } from '@typings'
 import { anycase2Words, longUuid, sortMap } from '@utils'
 import { map, merge, take, timer } from 'rxjs'
-import { findSync } from '../utils'
+import { exists, findSync } from '../utils'
 import { ConfigService } from './config.service'
 import { FileService } from './file.service'
 
@@ -47,7 +47,9 @@ export class ComponentService {
     const results: string[] = []
 
     this.config.libPaths.forEach((path) => {
-      results.push(...findSync(path, '.s[a|c]ss$'))
+      if (exists(path)) {
+        results.push(...findSync(path, '.s[a|c]ss$'))
+      }
     })
 
     results.forEach((file) => {
