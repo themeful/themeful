@@ -83,7 +83,7 @@ specifiers:
   reflect-metadata: 0.1.13
   rollup-plugin-node-polyfills: 0.2.1
   rxjs: 7.8.0
-  sass: 1.58.2
+  sass: 1.58.3
   sass-loader: 13.2.0
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
@@ -193,8 +193,8 @@ devDependencies:
   react-dom: 18.2.0_react@18.2.0
   redis: 4.6.4
   rollup-plugin-node-polyfills: 0.2.1
-  sass: 1.58.2
-  sass-loader: 13.2.0_sass@1.58.2+webpack@5.75.0
+  sass: 1.58.3
+  sass-loader: 13.2.0_sass@1.58.3+webpack@5.75.0
   stencil-fragment: 1.0.1
   style-loader: 3.3.1_webpack@5.75.0
   ts-jest: 27.1.5_j22lzoizerh26yhx3rtoqxu75q
@@ -3331,8 +3331,8 @@ packages:
       postcss-import: 14.1.0_postcss@8.4.21
       postcss-loader: 6.2.1_6jdsrmfenkuhhw3gx4zvjlznce
       rxjs: 6.6.7
-      sass: 1.58.2
-      sass-loader: 12.6.0_sass@1.58.2+webpack@5.75.0
+      sass: 1.58.3
+      sass-loader: 12.6.0_sass@1.58.3+webpack@5.75.0
       source-map-loader: 3.0.2_webpack@5.75.0
       style-loader: 3.3.1_webpack@5.75.0
       stylus: 0.55.0
@@ -16117,7 +16117,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/12.6.0_sass@1.58.2+webpack@5.75.0:
+  /sass-loader/12.6.0_sass@1.58.3+webpack@5.75.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -16138,11 +16138,11 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      sass: 1.58.2
+      sass: 1.58.3
       webpack: 5.75.0
     dev: true
 
-  /sass-loader/13.2.0_sass@1.58.2+webpack@5.75.0:
+  /sass-loader/13.2.0_sass@1.58.3+webpack@5.75.0:
     resolution: {integrity: sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
@@ -16163,12 +16163,12 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      sass: 1.58.2
+      sass: 1.58.3
       webpack: 5.75.0
     dev: true
 
-  /sass/1.58.2:
-    resolution: {integrity: sha512-2mbyOWOv/lhEXD6nVrQZQ4KT2DlwcODbTskM42EyqBAFUWOhiiYtAXZqjZz1ygzapYf+N+2GwfIH9M5FM4GUMg==}
+  /sass/1.58.3:
+    resolution: {integrity: sha512-Q7RaEtYf6BflYrQ+buPudKR26/lH+10EmO9bBqbmPh/KeLqv8bjpTNqxe71ocONqXq+jYiCbpPUmQMS+JJPk4A==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
