@@ -103,7 +103,7 @@
     "prettier": "2.8.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "redis": "4.6.4",
+    "redis": "4.6.5",
     "rollup-plugin-node-polyfills": "0.2.1",
     "sass": "1.58.3",
     "sass-loader": "13.2.0",
