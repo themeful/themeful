@@ -68,7 +68,7 @@ specifiers:
   jest: 27.5.1
   jest-environment-jsdom: 28.1.3
   jsonfile: 6.1.0
-  kafkajs: 2.2.3
+  kafkajs: 2.2.4
   lint-staged: 13.1.2
   mqtt: 4.3.7
   nats: 2.12.1
@@ -132,7 +132,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.8.11
   '@grpc/proto-loader': 0.7.5
-  '@nestjs/microservices': 9.3.9_yijubihf5awyr3al2vig5cwx3y
+  '@nestjs/microservices': 9.3.9_kicjjwmy73phyw3i4m43dyxbly
   '@nestjs/schematics': 9.0.4_typescript@4.9.5
   '@nestjs/testing': 9.3.9_cxzk3mfpwtv2pzfdoj4lpmi7pa
   '@nrwl/cli': 15.7.2
@@ -183,7 +183,7 @@ devDependencies:
   fastify-static: 4.7.0
   jest: 27.5.1_ui3vgvewpjf4tfqxgojrxq74xu
   jest-environment-jsdom: 28.1.3_2adebc2xdjqbcvbjxkodkhadp4
-  kafkajs: 2.2.3
+  kafkajs: 2.2.4
   mqtt: 4.3.7_2adebc2xdjqbcvbjxkodkhadp4
   nats: 2.12.1
   npm-run-all: 4.1.5
@@ -2405,7 +2405,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/microservices': 9.3.9_yijubihf5awyr3al2vig5cwx3y
+      '@nestjs/microservices': 9.3.9_kicjjwmy73phyw3i4m43dyxbly
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       '@nestjs/websockets': 9.3.9_pet6d6lsguwx67o66bd2kyfuqa
       '@nuxtjs/opencollective': 0.3.2
@@ -2419,7 +2419,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/9.3.9_yijubihf5awyr3al2vig5cwx3y:
+  /@nestjs/microservices/9.3.9_kicjjwmy73phyw3i4m43dyxbly:
     resolution: {integrity: sha512-G4EsQpOS3l2dWjJID+z/YyDPTx+SEq/5YQ/cC8XV9Hap1S0rEmo+Z1R2OdlUt+ZnkcJp7H0GIHiB0EjaYanmjA==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2464,7 +2464,7 @@ packages:
       cache-manager: 5.1.7
       ioredis: 5.3.1
       iterare: 1.2.1
-      kafkajs: 2.2.3
+      kafkajs: 2.2.4
       mqtt: 4.3.7_2adebc2xdjqbcvbjxkodkhadp4
       nats: 2.12.1
       reflect-metadata: 0.1.13
@@ -2556,7 +2556,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
       '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
-      '@nestjs/microservices': 9.3.9_yijubihf5awyr3al2vig5cwx3y
+      '@nestjs/microservices': 9.3.9_kicjjwmy73phyw3i4m43dyxbly
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       tslib: 2.5.0
     dev: true
@@ -12706,8 +12706,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /kafkajs/2.2.3:
-    resolution: {integrity: sha512-JmzIiLHE/TdQ7b4I2B/DNMtfhTh66fmEaEg7gGkyQXBC6f1A7I2jSjeUsVIJfC8d9YcEIURyBjtOEKBO5OHVhg==}
+  /kafkajs/2.2.4:
+    resolution: {integrity: sha512-j/YeapB1vfPT2iOIUn/vxdyKEuhuY2PxMBvf5JWux6iSaukAccrMtXEY/Lb7OvavDhOWME589bpLrEdnVHjfjA==}
     engines: {node: '>=14.0.0'}
 
   /kind-of/3.2.2:
