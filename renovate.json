@@ -94,6 +94,7 @@
     "@nrwl/cli",
     "@nrwl/eslint-plugin-nx",
     "@nrwl/jest",
+    "@nrwl/js",
     "@nrwl/nest",
     "@nrwl/node",
     "@nrwl/nx-cloud",
