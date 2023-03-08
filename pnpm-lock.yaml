@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@fastify/static': 6.9.0
-  '@grpc/grpc-js': 1.8.11
+  '@grpc/grpc-js': 1.8.12
   '@grpc/proto-loader': 0.7.5
   '@nestjs/common': 9.3.9
   '@nestjs/core': 9.3.9
@@ -130,9 +130,9 @@ dependencies:
   tslib: 2.5.0
 
 devDependencies:
-  '@grpc/grpc-js': 1.8.11
+  '@grpc/grpc-js': 1.8.12
   '@grpc/proto-loader': 0.7.5
-  '@nestjs/microservices': 9.3.9_kicjjwmy73phyw3i4m43dyxbly
+  '@nestjs/microservices': 9.3.9_iz57jpfn4biubzwehnf6q42v5q
   '@nestjs/schematics': 9.0.4_typescript@4.9.5
   '@nestjs/testing': 9.3.9_cxzk3mfpwtv2pzfdoj4lpmi7pa
   '@nrwl/cli': 15.8.1
@@ -1787,8 +1787,8 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@grpc/grpc-js/1.8.11:
-    resolution: {integrity: sha512-f/xC+6Z2QKsRJ+VSSFlt4hA5KSRm+PKvMWV8kMPkMgGlFidR6PeIkXrOasIY2roe+WROM6GFQLlgDKfeEZo2YQ==}
+  /@grpc/grpc-js/1.8.12:
+    resolution: {integrity: sha512-MbUMvpVvakeKhdYux6gbSIPJaFMLNSY8jw4PqLI+FFztGrQRrYYAnHlR94+ncBQQewkpXQaW449m3tpH/B/ZnQ==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.5
@@ -2405,7 +2405,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/microservices': 9.3.9_kicjjwmy73phyw3i4m43dyxbly
+      '@nestjs/microservices': 9.3.9_iz57jpfn4biubzwehnf6q42v5q
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       '@nestjs/websockets': 9.3.9_pet6d6lsguwx67o66bd2kyfuqa
       '@nuxtjs/opencollective': 0.3.2
@@ -2419,7 +2419,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/9.3.9_kicjjwmy73phyw3i4m43dyxbly:
+  /@nestjs/microservices/9.3.9_iz57jpfn4biubzwehnf6q42v5q:
     resolution: {integrity: sha512-G4EsQpOS3l2dWjJID+z/YyDPTx+SEq/5YQ/cC8XV9Hap1S0rEmo+Z1R2OdlUt+ZnkcJp7H0GIHiB0EjaYanmjA==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2455,7 +2455,7 @@ packages:
       nats:
         optional: true
     dependencies:
-      '@grpc/grpc-js': 1.8.11
+      '@grpc/grpc-js': 1.8.12
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
       '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
       '@nestjs/websockets': 9.3.9_pet6d6lsguwx67o66bd2kyfuqa
@@ -2556,7 +2556,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
       '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
-      '@nestjs/microservices': 9.3.9_kicjjwmy73phyw3i4m43dyxbly
+      '@nestjs/microservices': 9.3.9_iz57jpfn4biubzwehnf6q42v5q
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       tslib: 2.5.0
     dev: true
