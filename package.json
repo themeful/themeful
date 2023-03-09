@@ -56,7 +56,7 @@
     "@nrwl/storybook": "15.8.5",
     "@nrwl/web": "15.8.5",
     "@nrwl/workspace": "15.8.5",
-    "@nxext/stencil": "15.6.0",
+    "@nxext/stencil": "15.7.0",
     "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil/postcss": "2.1.0",
     "@stencil/sass": "3.0.0",
