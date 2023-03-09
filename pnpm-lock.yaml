@@ -23,7 +23,7 @@ specifiers:
   '@nrwl/storybook': 15.8.5
   '@nrwl/web': 15.8.5
   '@nrwl/workspace': 15.8.5
-  '@nxext/stencil': 15.6.0
+  '@nxext/stencil': 15.7.0
   '@stencil-community/eslint-plugin': ^0.5.0
   '@stencil/core': 3.1.0
   '@stencil/postcss': 2.1.0
@@ -145,7 +145,7 @@ devDependencies:
   '@nrwl/storybook': 15.8.5_jwmqcc2ceygiecgbznnteos3iu
   '@nrwl/web': 15.8.5_lvhyar4diloduwquecrxjrzaci
   '@nrwl/workspace': 15.8.5_64jebu3ilvs7epq3v3pc7ikc4m
-  '@nxext/stencil': 15.6.0_kunxaof5ip2dzixjcln2gqhxma
+  '@nxext/stencil': 15.7.0_kunxaof5ip2dzixjcln2gqhxma
   '@stencil-community/eslint-plugin': 0.5.0_yvbex7qcgje7wsfupspvekjz3m
   '@stencil/postcss': 2.1.0_@stencil+core@3.1.0
   '@stencil/sass': 3.0.0_@stencil+core@3.1.0
@@ -2675,10 +2675,10 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/devkit/15.6.3_nx@15.8.5+typescript@4.9.5:
-    resolution: {integrity: sha512-/JDvdzNxUM+C1PCZPCrvmFx+OfywqZdOq1GS9QR8C0VctTLG4D/SGSFD88O1SAdcbH/f1mMiBGfEYZYd23fghQ==}
+  /@nrwl/devkit/15.7.2_nx@15.8.5+typescript@4.9.5:
+    resolution: {integrity: sha512-HMGi7L6w2g4IrYwhb04snD8Zr24Z/gzau5i9WUNkwzrjeR1xAm0Cc9WRre221zaeohtK11gyBt7BerT1tgkNwA==}
     peerDependencies:
-      nx: '>= 14 <= 16'
+      nx: '>= 14.1 <= 16'
     dependencies:
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.9.5
       ejs: 3.1.8
@@ -3296,17 +3296,17 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nxext/stencil/15.6.0_kunxaof5ip2dzixjcln2gqhxma:
-    resolution: {integrity: sha512-UB0q+V/3lR7OGjlzLaTybxZ4QLgTRn7txSe4E6StoDaXRKJUqn1fQ5tvsOzotTAD849rq53qOzAuG+k3WYoWdw==}
+  /@nxext/stencil/15.7.0_kunxaof5ip2dzixjcln2gqhxma:
+    resolution: {integrity: sha512-56RIUhltVV/UwG2HFbQU+ckCOOOWNizroiz9oLtQpExp+YF/cS3mAz9KAzp/KjPj+NUUW5+ECvJNdUZrAprwrA==}
     peerDependencies:
-      '@nrwl/angular': ^15.6.0
-      '@nrwl/cypress': ^15.6.0
-      '@nrwl/jest': ^15.6.0
-      '@nrwl/linter': ^15.6.0
-      '@nrwl/react': ^15.6.0
-      '@nrwl/storybook': ^15.6.0
-      '@nrwl/workspace': ^15.6.0
-      '@nxext/svelte': ^15.1.0
+      '@nrwl/angular': ^15.7.0
+      '@nrwl/cypress': ^15.7.0
+      '@nrwl/jest': ^15.7.0
+      '@nrwl/linter': ^15.7.0
+      '@nrwl/react': ^15.7.0
+      '@nrwl/storybook': ^15.7.0
+      '@nrwl/workspace': ^15.7.0
+      '@nxext/svelte': ^15.7.0
       '@stencil/core': ^2.17.1
     peerDependenciesMeta:
       '@nrwl/angular':
@@ -3320,7 +3320,7 @@ packages:
       '@nxext/svelte':
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.6.3_nx@15.8.5+typescript@4.9.5
+      '@nrwl/devkit': 15.7.2_nx@15.8.5+typescript@4.9.5
       '@nrwl/jest': 14.5.10_xdaqgumjrxvfionkxqyemwvzri
       '@nrwl/linter': 15.8.5_l34erijjui55yek6q6hfyua524
       '@nrwl/storybook': 15.8.5_jwmqcc2ceygiecgbznnteos3iu
