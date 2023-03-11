@@ -71,7 +71,7 @@ specifiers:
   kafkajs: 2.2.4
   lint-staged: 13.2.0
   mqtt: 4.3.7
-  nats: 2.13.0
+  nats: 2.13.1
   npm-run-all: 4.1.5
   nx: 15.8.5
   object-hash: 3.0.0
@@ -84,7 +84,7 @@ specifiers:
   reflect-metadata: 0.1.13
   rollup-plugin-node-polyfills: 0.2.1
   rxjs: 7.8.0
-  sass: 1.59.1
+  sass: 1.59.2
   sass-loader: 13.2.0
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
@@ -132,7 +132,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.8.12
   '@grpc/proto-loader': 0.7.5
-  '@nestjs/microservices': 9.3.9_qrbkoxa57gov3bfi4c5ibwuq7i
+  '@nestjs/microservices': 9.3.9_6glox3dzwqhrd2k7l4dmzq62cu
   '@nestjs/schematics': 9.0.4_typescript@4.9.5
   '@nestjs/testing': 9.3.9_cxzk3mfpwtv2pzfdoj4lpmi7pa
   '@nrwl/cli': 15.8.5
@@ -185,7 +185,7 @@ devDependencies:
   jest-environment-jsdom: 28.1.3_2adebc2xdjqbcvbjxkodkhadp4
   kafkajs: 2.2.4
   mqtt: 4.3.7_2adebc2xdjqbcvbjxkodkhadp4
-  nats: 2.13.0
+  nats: 2.13.1
   npm-run-all: 4.1.5
   nx: 15.8.5
   postcss: 8.4.21
@@ -195,8 +195,8 @@ devDependencies:
   react-dom: 18.2.0_react@18.2.0
   redis: 4.6.5
   rollup-plugin-node-polyfills: 0.2.1
-  sass: 1.59.1
-  sass-loader: 13.2.0_sass@1.59.1+webpack@5.76.0
+  sass: 1.59.2
+  sass-loader: 13.2.0_sass@1.59.2+webpack@5.76.0
   stencil-fragment: 1.0.1
   style-loader: 3.3.1_webpack@5.76.0
   ts-jest: 27.1.5_j2k2u6637zulqcb6lkbxhafvtu
@@ -2420,7 +2420,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/microservices': 9.3.9_qrbkoxa57gov3bfi4c5ibwuq7i
+      '@nestjs/microservices': 9.3.9_6glox3dzwqhrd2k7l4dmzq62cu
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       '@nestjs/websockets': 9.3.9_pet6d6lsguwx67o66bd2kyfuqa
       '@nuxtjs/opencollective': 0.3.2
@@ -2434,7 +2434,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/9.3.9_qrbkoxa57gov3bfi4c5ibwuq7i:
+  /@nestjs/microservices/9.3.9_6glox3dzwqhrd2k7l4dmzq62cu:
     resolution: {integrity: sha512-G4EsQpOS3l2dWjJID+z/YyDPTx+SEq/5YQ/cC8XV9Hap1S0rEmo+Z1R2OdlUt+ZnkcJp7H0GIHiB0EjaYanmjA==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2481,7 +2481,7 @@ packages:
       iterare: 1.2.1
       kafkajs: 2.2.4
       mqtt: 4.3.7_2adebc2xdjqbcvbjxkodkhadp4
-      nats: 2.13.0
+      nats: 2.13.1
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
       tslib: 2.5.0
@@ -2571,7 +2571,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
       '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
-      '@nestjs/microservices': 9.3.9_qrbkoxa57gov3bfi4c5ibwuq7i
+      '@nestjs/microservices': 9.3.9_6glox3dzwqhrd2k7l4dmzq62cu
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       tslib: 2.5.0
     dev: true
@@ -3217,8 +3217,8 @@ packages:
       postcss-import: 14.1.0_postcss@8.4.21
       postcss-loader: 6.2.1_ynsp4hpcl6ftpkdbhj2ssg4tva
       rxjs: 6.6.7
-      sass: 1.59.1
-      sass-loader: 12.6.0_sass@1.59.1+webpack@5.76.0
+      sass: 1.59.2
+      sass-loader: 12.6.0_sass@1.59.2+webpack@5.76.0
       source-map-loader: 3.0.2_webpack@5.76.0
       style-loader: 3.3.1_webpack@5.76.0
       stylus: 0.55.0
@@ -13668,8 +13668,8 @@ packages:
       - supports-color
     dev: true
 
-  /nats/2.13.0:
-    resolution: {integrity: sha512-2ljzl1OS3DnfFLGDg91aiHeBXeARLeq9LFpOnCypRshjltIIT0v6VzXcKSR50rkdYfabSA3HwNZbwn/N0SVFYg==}
+  /nats/2.13.1:
+    resolution: {integrity: sha512-lHV/DQREZVHXtavlAI5fFA7XDyN2/LNBtnNX76mPQV9BIKpTehzYrD1Hw7t/1mV4AGdrJj6U60JkQ8AMrVc6Mg==}
     engines: {node: '>= 14.0.0'}
     dependencies:
       nkeys.js: 1.0.5
@@ -16052,7 +16052,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/12.6.0_sass@1.59.1+webpack@5.76.0:
+  /sass-loader/12.6.0_sass@1.59.2+webpack@5.76.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -16073,11 +16073,11 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      sass: 1.59.1
+      sass: 1.59.2
       webpack: 5.76.0
     dev: true
 
-  /sass-loader/13.2.0_sass@1.59.1+webpack@5.76.0:
+  /sass-loader/13.2.0_sass@1.59.2+webpack@5.76.0:
     resolution: {integrity: sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
@@ -16098,12 +16098,12 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      sass: 1.59.1
+      sass: 1.59.2
       webpack: 5.76.0
     dev: true
 
-  /sass/1.59.1:
-    resolution: {integrity: sha512-KUqJ1AJdXOs448ocHI9FLKXhCkuZbXtyY6hf1gQNJFp/sCSCjxJOLh27k1Ut7i84s4j0zfQW+rjmfW3VNU0JsA==}
+  /sass/1.59.2:
+    resolution: {integrity: sha512-jJyO6SmbzkJexF8MUorHx5tAilcgabioYxT/BHbY4+OvoqmbHxsYlrjZ8Adhqcgl6Zqwie0TgMXLCAmPFxXOuw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
