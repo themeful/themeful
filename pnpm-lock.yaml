@@ -8,11 +8,11 @@ specifiers:
   '@nestjs/core': 9.3.9
   '@nestjs/microservices': ^9.3.9
   '@nestjs/platform-express': 9.3.9
-  '@nestjs/platform-socket.io': 9.3.9
+  '@nestjs/platform-socket.io': 9.3.10
   '@nestjs/schematics': 9.0.4
   '@nestjs/serve-static': 3.0.1
   '@nestjs/testing': 9.3.9
-  '@nestjs/websockets': 9.3.9
+  '@nestjs/websockets': 9.3.10
   '@nrwl/cli': 15.8.5
   '@nrwl/eslint-plugin-nx': 15.8.5
   '@nrwl/jest': 14.5.10
@@ -105,11 +105,11 @@ specifiers:
 dependencies:
   '@fastify/static': 6.9.0
   '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-  '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
+  '@nestjs/core': 9.3.9_7a4ofz2by2wiumcvitcc6gb77m
   '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
-  '@nestjs/platform-socket.io': 9.3.9_xkx55jo2gxezkbh4pxxxls23ya
+  '@nestjs/platform-socket.io': 9.3.10_4bqi4pytcmx2gprgxpv4lda4lq
   '@nestjs/serve-static': 3.0.1_tdsjr37n247zbypv5fnzqwaj2q
-  '@nestjs/websockets': 9.3.9_pet6d6lsguwx67o66bd2kyfuqa
+  '@nestjs/websockets': 9.3.10_ux42no3tb5ly46tfdc674jfqgi
   '@stencil/core': 3.2.0
   camel-case: 4.1.2
   colortranslator: 1.10.2
@@ -132,7 +132,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.8.12
   '@grpc/proto-loader': 0.7.5
-  '@nestjs/microservices': 9.3.9_6glox3dzwqhrd2k7l4dmzq62cu
+  '@nestjs/microservices': 9.3.9_l63moknodcsncgt3v2gsec2dxq
   '@nestjs/schematics': 9.0.4_typescript@4.9.5
   '@nestjs/testing': 9.3.9_cxzk3mfpwtv2pzfdoj4lpmi7pa
   '@nrwl/cli': 15.8.5
@@ -2402,7 +2402,7 @@ packages:
       tslib: 2.5.0
       uid: 2.0.1
 
-  /@nestjs/core/9.3.9_llqwjdqbopvm5i7exgb6gxh3ra:
+  /@nestjs/core/9.3.9_7a4ofz2by2wiumcvitcc6gb77m:
     resolution: {integrity: sha512-9g1A1G9eirLXEpH21rc6dKb08zHc2+adhCRz8NW39hbejcsxxD72FApJzt4QBQAKvu862ixt/tdpStnFT7lOSw==}
     requiresBuild: true
     peerDependencies:
@@ -2421,9 +2421,9 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/microservices': 9.3.9_6glox3dzwqhrd2k7l4dmzq62cu
+      '@nestjs/microservices': 9.3.9_l63moknodcsncgt3v2gsec2dxq
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
-      '@nestjs/websockets': 9.3.9_pet6d6lsguwx67o66bd2kyfuqa
+      '@nestjs/websockets': 9.3.10_ux42no3tb5ly46tfdc674jfqgi
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
       iterare: 1.2.1
@@ -2435,7 +2435,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/9.3.9_6glox3dzwqhrd2k7l4dmzq62cu:
+  /@nestjs/microservices/9.3.9_l63moknodcsncgt3v2gsec2dxq:
     resolution: {integrity: sha512-G4EsQpOS3l2dWjJID+z/YyDPTx+SEq/5YQ/cC8XV9Hap1S0rEmo+Z1R2OdlUt+ZnkcJp7H0GIHiB0EjaYanmjA==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2473,8 +2473,8 @@ packages:
     dependencies:
       '@grpc/grpc-js': 1.8.12
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
-      '@nestjs/websockets': 9.3.9_pet6d6lsguwx67o66bd2kyfuqa
+      '@nestjs/core': 9.3.9_7a4ofz2by2wiumcvitcc6gb77m
+      '@nestjs/websockets': 9.3.10_ux42no3tb5ly46tfdc674jfqgi
       amqp-connection-manager: 4.1.11_amqplib@0.10.3
       amqplib: 0.10.3
       cache-manager: 5.1.7
@@ -2494,7 +2494,7 @@ packages:
       '@nestjs/core': ^9.0.0
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
+      '@nestjs/core': 9.3.9_7a4ofz2by2wiumcvitcc6gb77m
       body-parser: 1.20.1
       cors: 2.8.5
       express: 4.18.2
@@ -2503,17 +2503,17 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@nestjs/platform-socket.io/9.3.9_xkx55jo2gxezkbh4pxxxls23ya:
-    resolution: {integrity: sha512-fWlET24udsVjIolSjrIIj8vGqixnTXrQnrEKF1nqFpE8BW9O8Eji00Ih/A2z0MU/8fTHEiokyBIDAX5IKvhKzQ==}
+  /@nestjs/platform-socket.io/9.3.10_4bqi4pytcmx2gprgxpv4lda4lq:
+    resolution: {integrity: sha512-9dL419pGTDjVj4DGBJ7cseCX03eSRV/jKJVFjBE9EObYqX+6kgKZWoM2xabvY3pVPZf7yp9h0XNHF8oHU6GcNQ==}
     peerDependencies:
       '@nestjs/common': ^9.0.0
       '@nestjs/websockets': ^9.0.0
       rxjs: ^7.1.0
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/websockets': 9.3.9_pet6d6lsguwx67o66bd2kyfuqa
+      '@nestjs/websockets': 9.3.10_ux42no3tb5ly46tfdc674jfqgi
       rxjs: 7.8.0
-      socket.io: 4.6.0_2adebc2xdjqbcvbjxkodkhadp4
+      socket.io: 4.6.1_2adebc2xdjqbcvbjxkodkhadp4
       tslib: 2.5.0
     transitivePeerDependencies:
       - bufferutil
@@ -2553,7 +2553,7 @@ packages:
     dependencies:
       '@fastify/static': 6.9.0
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
+      '@nestjs/core': 9.3.9_7a4ofz2by2wiumcvitcc6gb77m
       path-to-regexp: 0.2.5
     dev: false
 
@@ -2571,14 +2571,14 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
-      '@nestjs/microservices': 9.3.9_6glox3dzwqhrd2k7l4dmzq62cu
+      '@nestjs/core': 9.3.9_7a4ofz2by2wiumcvitcc6gb77m
+      '@nestjs/microservices': 9.3.9_l63moknodcsncgt3v2gsec2dxq
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       tslib: 2.5.0
     dev: true
 
-  /@nestjs/websockets/9.3.9_pet6d6lsguwx67o66bd2kyfuqa:
-    resolution: {integrity: sha512-HbusWv+6rKtOLnppLZDCq5KfGMIVuItp1RPBzb/ObdMvDR5/TfMThSTtMVfTi8xnlBb7N36poeUX88oyJXQ5Iw==}
+  /@nestjs/websockets/9.3.10_ux42no3tb5ly46tfdc674jfqgi:
+    resolution: {integrity: sha512-o8Q8HL+4eU6AQ/O3Dd8kredPZSIli/Zcd8PJPfvQangUlMTmzfiV3mlrpKH1jM8aIGfcg25rtclmiNSdfBBIVw==}
     peerDependencies:
       '@nestjs/common': ^9.0.0
       '@nestjs/core': ^9.0.0
@@ -2590,8 +2590,8 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/core': 9.3.9_llqwjdqbopvm5i7exgb6gxh3ra
-      '@nestjs/platform-socket.io': 9.3.9_xkx55jo2gxezkbh4pxxxls23ya
+      '@nestjs/core': 9.3.9_7a4ofz2by2wiumcvitcc6gb77m
+      '@nestjs/platform-socket.io': 9.3.10_4bqi4pytcmx2gprgxpv4lda4lq
       iterare: 1.2.1
       object-hash: 3.0.0
       reflect-metadata: 0.1.13
@@ -16221,7 +16221,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /ripemd160/2.0.2:
@@ -16874,21 +16874,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /socket.io/4.6.0_2adebc2xdjqbcvbjxkodkhadp4:
-    resolution: {integrity: sha512-b65bp6INPk/BMMrIgVvX12x3Q+NqlGqSlTuvKQWt0BUJ3Hyy3JangBl7fEoWZTXbOKlCqNPbQ6MbWgok/km28w==}
-    engines: {node: '>=10.0.0'}
-    dependencies:
-      accepts: 1.3.8
-      base64id: 2.0.0
-      debug: 4.3.4
-      engine.io: 6.4.1_2adebc2xdjqbcvbjxkodkhadp4
-      socket.io-adapter: 2.5.2_2adebc2xdjqbcvbjxkodkhadp4
-      socket.io-parser: 4.2.2
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
   /socket.io/4.6.1_2adebc2xdjqbcvbjxkodkhadp4:
     resolution: {integrity: sha512-KMcaAi4l/8+xEjkRICl6ak8ySoxsYG+gG6/XfRCPJPQ/haCRIJBTL4wIl8YCsmtaBovcAXGLOShyVWQ/FG8GZA==}
     engines: {node: '>=10.0.0'}
@@ -16903,7 +16888,6 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
-    dev: false
 
   /sockjs/0.3.24:
     resolution: {integrity: sha512-GJgLTZ7vYb/JtPSSZ10hsOYIvEYsjbNU+zPdIHcUaWVNUEPivzxku31865sSSud0Da0W4lEeOPlmw93zLQchuQ==}
