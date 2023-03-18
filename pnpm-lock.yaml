@@ -84,7 +84,7 @@ specifiers:
   rollup-plugin-node-polyfills: 0.2.1
   rxjs: 7.8.0
   sass: 1.59.3
-  sass-loader: 13.2.0
+  sass-loader: 13.2.1
   sentence-case: 3.0.4
   short-unique-id: 4.4.4
   socket.io: 4.6.1
@@ -194,7 +194,7 @@ devDependencies:
   redis: 4.6.5
   rollup-plugin-node-polyfills: 0.2.1
   sass: 1.59.3
-  sass-loader: 13.2.0_sass@1.59.3+webpack@5.76.2
+  sass-loader: 13.2.1_sass@1.59.3+webpack@5.76.2
   stencil-fragment: 1.0.1
   style-loader: 3.3.2_webpack@5.76.2
   ts-jest: 27.1.5_np6pbpgzfou2ckcccz6raejwxq
@@ -16375,8 +16375,8 @@ packages:
       webpack: 5.76.2
     dev: true
 
-  /sass-loader/13.2.0_sass@1.59.3+webpack@5.76.2:
-    resolution: {integrity: sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==}
+  /sass-loader/13.2.1_sass@1.59.3+webpack@5.76.2:
+    resolution: {integrity: sha512-VQUrgUa5/waIzMrzyuko3sj5WD9NMsYph91cNICx+OaODbRtLl6To2fswLx8MH2qNxXFqRtpvdPQIa7mE93YOA==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       fibers: '>= 3.1.0'
