@@ -48,7 +48,7 @@ specifiers:
   amqplib: 0.10.3
   autoprefixer: 10.4.14
   bufferutil: 4.0.7
-  cache-manager: 5.1.7
+  cache-manager: 5.2.0
   camel-case: 4.1.2
   class-transformer: 0.5.1
   class-validator: 0.14.0
@@ -103,7 +103,7 @@ specifiers:
 
 dependencies:
   '@fastify/static': 6.9.0
-  '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
+  '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
   '@nestjs/core': 9.3.9_hc5ty52ghfab7odb4hetxu54ey
   '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
   '@nestjs/platform-socket.io': 9.3.10_4bqi4pytcmx2gprgxpv4lda4lq
@@ -131,7 +131,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.8.12
   '@grpc/proto-loader': 0.7.5
-  '@nestjs/microservices': 9.3.10_l63moknodcsncgt3v2gsec2dxq
+  '@nestjs/microservices': 9.3.10_d2iwid7sics7vtjguztpz3y67a
   '@nestjs/schematics': 9.0.4_typescript@5.0.2
   '@nestjs/testing': 9.3.9_4zbimefa4hzswm7tpk56ybxmw4
   '@nrwl/cli': 15.8.5
@@ -168,7 +168,7 @@ devDependencies:
   amqplib: 0.10.3
   autoprefixer: 10.4.14_postcss@8.4.21
   bufferutil: 4.0.7
-  cache-manager: 5.1.7
+  cache-manager: 5.2.0
   class-transformer: 0.5.1
   class-validator: 0.14.0
   css-loader: 6.7.3_webpack@5.76.2
@@ -2375,7 +2375,7 @@ packages:
       glob-to-regexp: 0.3.0
     dev: true
 
-  /@nestjs/common/9.3.9_nza3ix4qrkhc5teka4arycjvca:
+  /@nestjs/common/9.3.9_5ezc66h7azca7t7jxbenr4bfzy:
     resolution: {integrity: sha512-GshTD9Xz+wD2em6NyzU4NXw5IXMUmapgDgD+iuj6XL0258hvDwODmNk37mBBnZvTZlqER+krvIUKnS34etqF/A==}
     peerDependencies:
       cache-manager: <=5
@@ -2391,7 +2391,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      cache-manager: 5.1.7
+      cache-manager: 5.2.0
       class-transformer: 0.5.1
       class-validator: 0.14.0
       iterare: 1.2.1
@@ -2418,8 +2418,8 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
-      '@nestjs/microservices': 9.3.10_l63moknodcsncgt3v2gsec2dxq
+      '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
+      '@nestjs/microservices': 9.3.10_d2iwid7sics7vtjguztpz3y67a
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       '@nestjs/websockets': 9.3.10_ux42no3tb5ly46tfdc674jfqgi
       '@nuxtjs/opencollective': 0.3.2
@@ -2433,7 +2433,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/9.3.10_l63moknodcsncgt3v2gsec2dxq:
+  /@nestjs/microservices/9.3.10_d2iwid7sics7vtjguztpz3y67a:
     resolution: {integrity: sha512-w27CxGYFAt9hMTLq9oWxx2amd7TOISk2/F8KbIqWFnb9riWE6YTxjZm7q/SolOlflYUcCZUEEgXFZedY8vAS6w==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2470,12 +2470,12 @@ packages:
         optional: true
     dependencies:
       '@grpc/grpc-js': 1.8.12
-      '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
+      '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
       '@nestjs/core': 9.3.9_hc5ty52ghfab7odb4hetxu54ey
       '@nestjs/websockets': 9.3.10_ux42no3tb5ly46tfdc674jfqgi
       amqp-connection-manager: 4.1.11_amqplib@0.10.3
       amqplib: 0.10.3
-      cache-manager: 5.1.7
+      cache-manager: 5.2.0
       ioredis: 5.3.1
       iterare: 1.2.1
       kafkajs: 2.2.4
@@ -2491,7 +2491,7 @@ packages:
       '@nestjs/common': ^9.0.0
       '@nestjs/core': ^9.0.0
     dependencies:
-      '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
+      '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
       '@nestjs/core': 9.3.9_hc5ty52ghfab7odb4hetxu54ey
       body-parser: 1.20.1
       cors: 2.8.5
@@ -2508,7 +2508,7 @@ packages:
       '@nestjs/websockets': ^9.0.0
       rxjs: ^7.1.0
     dependencies:
-      '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
+      '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
       '@nestjs/websockets': 9.3.10_ux42no3tb5ly46tfdc674jfqgi
       rxjs: 7.8.0
       socket.io: 4.6.1_2adebc2xdjqbcvbjxkodkhadp4
@@ -2550,7 +2550,7 @@ packages:
         optional: true
     dependencies:
       '@fastify/static': 6.9.0
-      '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
+      '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
       '@nestjs/core': 9.3.9_hc5ty52ghfab7odb4hetxu54ey
       path-to-regexp: 0.2.5
     dev: false
@@ -2568,9 +2568,9 @@ packages:
       '@nestjs/platform-express':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
+      '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
       '@nestjs/core': 9.3.9_hc5ty52ghfab7odb4hetxu54ey
-      '@nestjs/microservices': 9.3.10_l63moknodcsncgt3v2gsec2dxq
+      '@nestjs/microservices': 9.3.10_d2iwid7sics7vtjguztpz3y67a
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       tslib: 2.5.0
     dev: true
@@ -2587,7 +2587,7 @@ packages:
       '@nestjs/platform-socket.io':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.9_nza3ix4qrkhc5teka4arycjvca
+      '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
       '@nestjs/core': 9.3.9_hc5ty52ghfab7odb4hetxu54ey
       '@nestjs/platform-socket.io': 9.3.10_4bqi4pytcmx2gprgxpv4lda4lq
       iterare: 1.2.1
@@ -7931,8 +7931,8 @@ packages:
       unset-value: 1.0.0
     dev: true
 
-  /cache-manager/5.1.7:
-    resolution: {integrity: sha512-2W43F4ruaYb7dSiCOqkKtpnmn51/3DqxbKMMTxHfLa6qtj1letd8rr17/P/c7D7wYViqQLa+LetLCoKSVwBN1w==}
+  /cache-manager/5.2.0:
+    resolution: {integrity: sha512-jwXDLtn8tQGS2vGDTKAhee2OhuX/2cgxlh97fqMnWp328VszIn064BFyKZ87dwp9GmlBFuHYfaVQehI85hFwIw==}
     dependencies:
       lodash.clonedeep: 4.5.0
       lru-cache: 7.18.3
