@@ -8,11 +8,11 @@ specifiers:
   '@nestjs/core': 9.3.9
   '@nestjs/microservices': ^9.3.11
   '@nestjs/platform-express': 9.3.9
-  '@nestjs/platform-socket.io': 9.3.11
+  '@nestjs/platform-socket.io': 9.3.12
   '@nestjs/schematics': 9.0.4
   '@nestjs/serve-static': 3.0.1
   '@nestjs/testing': 9.3.9
-  '@nestjs/websockets': 9.3.11
+  '@nestjs/websockets': 9.3.12
   '@nrwl/cli': 15.8.5
   '@nrwl/eslint-plugin-nx': 15.8.5
   '@nrwl/jest': 14.5.10
@@ -104,11 +104,11 @@ specifiers:
 dependencies:
   '@fastify/static': 6.9.0
   '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
-  '@nestjs/core': 9.3.9_kjp4qq4a4yav52hvuynjvynghi
+  '@nestjs/core': 9.3.9_74wxyhevqu5kejkykdkmswry5y
   '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
-  '@nestjs/platform-socket.io': 9.3.11_vk3rjlm3bmcyixhsq6yjughtr4
+  '@nestjs/platform-socket.io': 9.3.12_fd6ilfxcrmnkzpahfgcoz3lvbq
   '@nestjs/serve-static': 3.0.1_tdsjr37n247zbypv5fnzqwaj2q
-  '@nestjs/websockets': 9.3.11_3vglwbrcwb4skzf6iptb4zurlu
+  '@nestjs/websockets': 9.3.12_ogp23ao7ei32yr67gse266lpmq
   '@stencil/core': 3.2.0
   camel-case: 4.1.2
   colortranslator: 1.10.2
@@ -131,7 +131,7 @@ dependencies:
 devDependencies:
   '@grpc/grpc-js': 1.8.12
   '@grpc/proto-loader': 0.7.5
-  '@nestjs/microservices': 9.3.11_vtivzjzjzfg4xumixod5uh37la
+  '@nestjs/microservices': 9.3.11_7hfmc5nhw54g6hsfhuvq4s4uqa
   '@nestjs/schematics': 9.0.4_typescript@5.0.2
   '@nestjs/testing': 9.3.9_rsn5mr6s4ulcld3hw5hantql4i
   '@nrwl/cli': 15.8.5
@@ -2400,7 +2400,7 @@ packages:
       tslib: 2.5.0
       uid: 2.0.1
 
-  /@nestjs/core/9.3.9_kjp4qq4a4yav52hvuynjvynghi:
+  /@nestjs/core/9.3.9_74wxyhevqu5kejkykdkmswry5y:
     resolution: {integrity: sha512-9g1A1G9eirLXEpH21rc6dKb08zHc2+adhCRz8NW39hbejcsxxD72FApJzt4QBQAKvu862ixt/tdpStnFT7lOSw==}
     requiresBuild: true
     peerDependencies:
@@ -2419,9 +2419,9 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
-      '@nestjs/microservices': 9.3.11_vtivzjzjzfg4xumixod5uh37la
+      '@nestjs/microservices': 9.3.11_7hfmc5nhw54g6hsfhuvq4s4uqa
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
-      '@nestjs/websockets': 9.3.11_3vglwbrcwb4skzf6iptb4zurlu
+      '@nestjs/websockets': 9.3.12_ogp23ao7ei32yr67gse266lpmq
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
       iterare: 1.2.1
@@ -2433,7 +2433,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/microservices/9.3.11_vtivzjzjzfg4xumixod5uh37la:
+  /@nestjs/microservices/9.3.11_7hfmc5nhw54g6hsfhuvq4s4uqa:
     resolution: {integrity: sha512-LWNxfc6We1FaL417czjMAX3TIcrH7v3dtChjBBVI1OnTwa5WkUG60ybgc6oDJn8+vFZ3F7u1aHvNAsVFKpLELg==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2471,8 +2471,8 @@ packages:
     dependencies:
       '@grpc/grpc-js': 1.8.12
       '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
-      '@nestjs/core': 9.3.9_kjp4qq4a4yav52hvuynjvynghi
-      '@nestjs/websockets': 9.3.11_3vglwbrcwb4skzf6iptb4zurlu
+      '@nestjs/core': 9.3.9_74wxyhevqu5kejkykdkmswry5y
+      '@nestjs/websockets': 9.3.12_ogp23ao7ei32yr67gse266lpmq
       amqp-connection-manager: 4.1.11_amqplib@0.10.3
       amqplib: 0.10.3
       cache-manager: 5.2.0
@@ -2492,7 +2492,7 @@ packages:
       '@nestjs/core': ^9.0.0
     dependencies:
       '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
-      '@nestjs/core': 9.3.9_kjp4qq4a4yav52hvuynjvynghi
+      '@nestjs/core': 9.3.9_74wxyhevqu5kejkykdkmswry5y
       body-parser: 1.20.1
       cors: 2.8.5
       express: 4.18.2
@@ -2501,15 +2501,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@nestjs/platform-socket.io/9.3.11_vk3rjlm3bmcyixhsq6yjughtr4:
-    resolution: {integrity: sha512-e0x72fPZua6tZYHXPY6WhJXNq8xdoEowhCdVDCMVuMeprWD2o1tVpCY26w0YONRfbr8AY0qnHtEmCd5UZBHrmQ==}
+  /@nestjs/platform-socket.io/9.3.12_fd6ilfxcrmnkzpahfgcoz3lvbq:
+    resolution: {integrity: sha512-Zx992XJ9gUWjyxu48qfPXD+vVFWilMyoO/8M70eTKywQvst6Ch03rtdkGsQ1JDR2REAhPdiHlCx2UBXgPdEcmw==}
     peerDependencies:
       '@nestjs/common': ^9.0.0
       '@nestjs/websockets': ^9.0.0
       rxjs: ^7.1.0
     dependencies:
       '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
-      '@nestjs/websockets': 9.3.11_3vglwbrcwb4skzf6iptb4zurlu
+      '@nestjs/websockets': 9.3.12_ogp23ao7ei32yr67gse266lpmq
       rxjs: 7.8.0
       socket.io: 4.6.1_2adebc2xdjqbcvbjxkodkhadp4
       tslib: 2.5.0
@@ -2551,7 +2551,7 @@ packages:
     dependencies:
       '@fastify/static': 6.9.0
       '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
-      '@nestjs/core': 9.3.9_kjp4qq4a4yav52hvuynjvynghi
+      '@nestjs/core': 9.3.9_74wxyhevqu5kejkykdkmswry5y
       path-to-regexp: 0.2.5
     dev: false
 
@@ -2569,14 +2569,14 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
-      '@nestjs/core': 9.3.9_kjp4qq4a4yav52hvuynjvynghi
-      '@nestjs/microservices': 9.3.11_vtivzjzjzfg4xumixod5uh37la
+      '@nestjs/core': 9.3.9_74wxyhevqu5kejkykdkmswry5y
+      '@nestjs/microservices': 9.3.11_7hfmc5nhw54g6hsfhuvq4s4uqa
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       tslib: 2.5.0
     dev: true
 
-  /@nestjs/websockets/9.3.11_3vglwbrcwb4skzf6iptb4zurlu:
-    resolution: {integrity: sha512-IEKtAUeJOcHEvNg35DgnN9K9m1Iy+jcONkdyBqX+eeCDM+7wOn6qOFvs5FdYXL/LUUMBGnnskARF76mZRShnSw==}
+  /@nestjs/websockets/9.3.12_ogp23ao7ei32yr67gse266lpmq:
+    resolution: {integrity: sha512-DB0HubjjzOgoPrBdCt2MHhAc3OKBQSODdDhx336TVTGZt5utYV6rLNSaGShWK696fk0fuyLSBImT9PE7igh9tQ==}
     peerDependencies:
       '@nestjs/common': ^9.0.0
       '@nestjs/core': ^9.0.0
@@ -2588,8 +2588,8 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.3.9_5ezc66h7azca7t7jxbenr4bfzy
-      '@nestjs/core': 9.3.9_kjp4qq4a4yav52hvuynjvynghi
-      '@nestjs/platform-socket.io': 9.3.11_vk3rjlm3bmcyixhsq6yjughtr4
+      '@nestjs/core': 9.3.9_74wxyhevqu5kejkykdkmswry5y
+      '@nestjs/platform-socket.io': 9.3.12_fd6ilfxcrmnkzpahfgcoz3lvbq
       iterare: 1.2.1
       object-hash: 3.0.0
       reflect-metadata: 0.1.13
