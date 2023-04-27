@@ -47,6 +47,7 @@ jobs:
         run: |
           pnpm up @nxext/stencil@latest
           pnpm nrwl:update
+          pnpm up @nxext/stencil@latest
           pnpm format
           pnpm lint:all
           pnpm nx run ui-lib:test
