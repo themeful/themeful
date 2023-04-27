@@ -85,7 +85,7 @@
     "class-transformer": "0.5.1",
     "class-validator": "0.14.0",
     "css-loader": "6.7.3",
-    "cssnano": "5.1.15",
+    "cssnano": "6.0.0",
     "dotenv": "16.0.3",
     "eslint": "8.39.0",
     "eslint-config-prettier": "8.8.0",
