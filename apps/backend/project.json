@@ -19,7 +19,7 @@
         "production": {
           "optimization": true,
           "extractLicenses": false,
-          "generatePackageJson": true,
+          "generatePackageJson": false,
           "externalDependencies": "none",
           "inspect": false,
           "fileReplacements": [
