@@ -113,7 +113,7 @@
     "ts-jest": "27.1.5",
     "ts-node": "10.9.1",
     "tsconfig-paths-webpack-plugin": "4.0.1",
-    "typescript": "5.0.2",
+    "typescript": "5.0.4",
     "utf-8-validate": "6.0.3",
     "workbox-build": "6.5.4"
   },
