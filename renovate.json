@@ -20,12 +20,14 @@
         "@typescript-eslint/parser",
         "eslint",
         "jest",
+        "jest-environment-jsdom",
         "react",
         "react-dom",
         "typescript",
         "tslib",
         "node",
         "prettier",
+        "@nrwl/jest",
         "ts-jest"
       ],
       "matchUpdateTypes": ["minor", "patch"],
@@ -42,7 +44,9 @@
         "eslint",
         "@types/jest",
         "jest",
-        "ts-jest"
+        "jest-environment-jsdom",
+        "ts-jest",
+        "@nrwl/jest"
       ],
       "matchUpdateTypes": ["major"],
       "labels": ["dependencies", "renovate", "breaking"]
@@ -82,7 +86,13 @@
       "automerge": true
     },
     {
-      "matchPackageNames": ["@types/jest", "jest", "ts-jest"],
+      "matchPackageNames": [
+        "@types/jest",
+        "jest",
+        "ts-jest",
+        "jest-environment-jsdom",
+        "@nrwl/jest"
+      ],
       "matchUpdateTypes": ["major", "minor", "patch"],
       "labels": ["dependencies", "renovate"],
       "groupName": "all testing dependencies",
@@ -93,7 +103,6 @@
   "ignoreDeps": [
     "@nrwl/cli",
     "@nrwl/eslint-plugin-nx",
-    "@nrwl/jest",
     "@nrwl/js",
     "@nrwl/linter",
     "@nrwl/nest",
