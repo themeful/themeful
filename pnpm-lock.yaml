@@ -133,8 +133,8 @@ devDependencies:
     specifier: 2.1.0
     version: 2.1.0(@stencil/core@3.2.2)
   '@stencil/sass':
-    specifier: 3.0.1
-    version: 3.0.1(@stencil/core@3.2.2)
+    specifier: 3.0.2
+    version: 3.0.2(@stencil/core@3.2.2)
   '@storybook/addon-actions':
     specifier: 6.5.16
     version: 6.5.16(react-dom@18.2.0)(react@18.2.0)
@@ -208,8 +208,8 @@ devDependencies:
     specifier: 6.7.3
     version: 6.7.3(webpack@5.81.0)
   cssnano:
-    specifier: 6.0.0
-    version: 6.0.0(postcss@8.4.23)
+    specifier: 6.0.1
+    version: 6.0.1(postcss@8.4.23)
   dotenv:
     specifier: 16.0.3
     version: 16.0.3
@@ -3836,8 +3836,8 @@ packages:
       postcss: 8.3.11
     dev: true
 
-  /@stencil/sass@3.0.1(@stencil/core@3.2.2):
-    resolution: {integrity: sha512-nAcD7MyUy+gieodk/mMSqYE4FERWf2Hiun+QR+srnugpclP2MMRq/Ik1SGUcFrWj+L6lSvoCyWimSEigf9aSBg==}
+  /@stencil/sass@3.0.2(@stencil/core@3.2.2):
+    resolution: {integrity: sha512-T8hQreosCjZ6yZ7wJgZBrA1ytL4JMluY1dX6S1a/YgXclanvncvk6nGEpxRVVwRAvtkru0F5Qs+oheiL8nifRA==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0'
     dependencies:
@@ -8810,8 +8810,8 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /cssnano@6.0.0(postcss@8.4.23):
-    resolution: {integrity: sha512-RGlcbzGhzEBCHuQe3k+Udyj5M00z0pm9S+VurHXFEOXxH+y0sVrJH2sMzoyz2d8N1EScazg+DVvmgyx0lurwwA==}
+  /cssnano@6.0.1(postcss@8.4.23):
+    resolution: {integrity: sha512-fVO1JdJ0LSdIGJq68eIxOqFpIJrZqXUsBt8fkrBcztCQqAjQD51OhZp7tc0ImcbwXD4k7ny84QTV90nZhmqbkg==}
     engines: {node: ^14 || ^16 || >=18.0}
     peerDependencies:
       postcss: ^8.2.15
