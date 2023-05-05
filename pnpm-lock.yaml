@@ -7667,7 +7667,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001482
-      electron-to-chromium: 1.4.382
+      electron-to-chromium: 1.4.383
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
@@ -8028,7 +8028,7 @@ packages:
     resolution: {integrity: sha512-ct3ltplN8I9fOwUd8GrP8UQixwff129BkEtuWDKL5W45cQuLd19xqmTLu5ge78YDm/fdje6FMt0hGOhl0lii3A==}
     dependencies:
       '@types/validator': 13.7.15
-      libphonenumber-js: 1.10.28
+      libphonenumber-js: 1.10.30
       validator: 13.9.0
 
   /clean-css@4.2.4:
@@ -9290,8 +9290,8 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium@1.4.382:
-    resolution: {integrity: sha512-czMavlW52VIPgutbVL9JnZIZuFijzsG1ww/1z2Otu1r1q+9Qe2bTsH3My3sZarlvwyqHM6+mnZfEnt2Vr4dsIg==}
+  /electron-to-chromium@1.4.383:
+    resolution: {integrity: sha512-BQyvFauIMzCJqILViJNs0kIBEAlx1bYLS5CRLyJtlun1KAnZlhNSgyfyWifPWagQ5s8KYPY6BpNHZsEMkxZAQQ==}
     dev: true
 
   /elliptic@6.5.4:
@@ -13220,8 +13220,8 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /libphonenumber-js@1.10.28:
-    resolution: {integrity: sha512-1eAgjLrZA0+2Wgw4hs+4Q/kEBycxQo8ZLYnmOvZ3AlM8ImAVAJgDPlZtISLEzD1vunc2q8s2Pn7XwB7I8U3Kzw==}
+  /libphonenumber-js@1.10.30:
+    resolution: {integrity: sha512-PLGc+xfrQrkya/YK2/5X+bPpxRmyJBHM+xxz9krUdSgk4Vs2ZwxX5/Ow0lv3r9PDlDtNWb4u+it8MY5rZ0IyGw==}
 
   /license-webpack-plugin@4.0.2(webpack@5.82.0):
     resolution: {integrity: sha512-771TFWFD70G1wLTC4oU2Cw4qvtmNrIw+wRvBtn+okgHl7slJVi7zfNcdmqDL72BojM30VNJ2UHylr1o77U37Jw==}
