@@ -4,7 +4,7 @@ import { defineCustomElements } from '../../../dist/libs/ui-lib/loader'
 
 defineCustomElements()
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('storybook-root')
 const storyRoot = document.createElement('div')
 rootElement.parentElement.appendChild(storyRoot)
 
