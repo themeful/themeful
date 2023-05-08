@@ -128,7 +128,7 @@
     "@nestjs/platform-express",
     "@storybook/addon-actions",
     "@storybook/addon-essentials",
-    "@storybook/addon-postcss",
+    "@storybook/addon-styling",
     "@storybook/addons",
     "@storybook/builder-webpack5",
     "@storybook/core-server",
