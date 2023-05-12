@@ -68,7 +68,7 @@
     "@storybook/addons": "^7.0.9",
     "@storybook/core-server": "7.0.9",
     "@storybook/html": "7.0.9",
-    "@storybook/html-webpack5": "7.0.10",
+    "@storybook/html-webpack5": "7.0.11",
     "@storybook/theming": "7.0.9",
     "@types/find": "0.2.1",
     "@types/jest": "27.5.2",
