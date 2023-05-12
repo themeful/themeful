@@ -4360,7 +4360,7 @@ packages:
       '@storybook/router': 7.0.10(react-dom@18.2.0)(react@18.2.0)
       '@storybook/store': 7.0.10
       '@storybook/theming': 7.0.10(react-dom@18.2.0)(react@18.2.0)
-      '@types/node': 16.18.28
+      '@types/node': 16.18.29
       '@types/semver': 7.5.0
       babel-loader: 9.1.2(@babel/core@7.21.8)(webpack@5.82.1)
       babel-plugin-named-exports-order: 0.0.2
@@ -4508,7 +4508,7 @@ packages:
     dependencies:
       '@storybook/node-logger': 7.0.10
       '@storybook/types': 7.0.10
-      '@types/node': 16.18.28
+      '@types/node': 16.18.29
       '@types/pretty-hrtime': 1.0.1
       chalk: 4.1.2
       esbuild: 0.17.18
@@ -4534,7 +4534,7 @@ packages:
     dependencies:
       '@storybook/node-logger': 7.0.9
       '@storybook/types': 7.0.9
-      '@types/node': 16.18.28
+      '@types/node': 16.18.29
       '@types/pretty-hrtime': 1.0.1
       chalk: 4.1.2
       esbuild: 0.17.18
@@ -4581,7 +4581,7 @@ packages:
       '@storybook/telemetry': 7.0.9
       '@storybook/types': 7.0.9
       '@types/detect-port': 1.3.2
-      '@types/node': 16.18.28
+      '@types/node': 16.18.29
       '@types/node-fetch': 2.6.3
       '@types/pretty-hrtime': 1.0.1
       '@types/semver': 7.5.0
@@ -4621,7 +4621,7 @@ packages:
       '@storybook/core-common': 7.0.10
       '@storybook/node-logger': 7.0.10
       '@storybook/types': 7.0.10
-      '@types/node': 16.18.28
+      '@types/node': 16.18.29
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - supports-color
@@ -4714,7 +4714,7 @@ packages:
       '@storybook/global': 5.0.0
       '@storybook/html': 7.0.10(@babel/core@7.21.8)
       '@storybook/preset-html-webpack': 7.0.10(@babel/core@7.21.8)(esbuild@0.17.18)
-      '@types/node': 16.18.28
+      '@types/node': 16.18.29
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -4849,7 +4849,7 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@storybook/core-webpack': 7.0.10
-      '@types/node': 16.18.28
+      '@types/node': 16.18.29
       html-loader: 3.1.2(webpack@5.82.1)
       webpack: 5.82.1(esbuild@0.17.18)
     transitivePeerDependencies:
@@ -5284,8 +5284,8 @@ packages:
       form-data: 3.0.1
     dev: true
 
-  /@types/node@16.18.28:
-    resolution: {integrity: sha512-SNMfiPqsiPoYfmyi+2qnDO4nZyMIOCab/CW+Slcml0lhIzkOizYzWtt/A7tgB3TSitd+YJKi8fSC2Cpm/VCp7A==}
+  /@types/node@16.18.29:
+    resolution: {integrity: sha512-cal+XTYF4JBwG82kw3m9ktTOyUj7GXcO9i2o+t49y/OF+3asYfpHqTROF1UbV91e71g/UB5wNeL5hfqPthzp8Q==}
     dev: true
 
   /@types/node@18.16.7:
@@ -6465,7 +6465,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001486
-      electron-to-chromium: 1.4.391
+      electron-to-chromium: 1.4.392
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
@@ -7633,8 +7633,8 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium@1.4.391:
-    resolution: {integrity: sha512-GqydVV1+kUWY5qlEzaw34/hyWTApuQrHiGrcGA2Kk/56nEK44i+YUW45VH43JuZT0Oo7uY8aVtpPhBBZXEWtSA==}
+  /electron-to-chromium@1.4.392:
+    resolution: {integrity: sha512-TXQOMW9tnhIms3jGy/lJctLjICOgyueZFJ1KUtm6DTQ+QpxX3p7ZBwB6syuZ9KBuT5S4XX7bgY1ECPgfxKUdOg==}
     dev: true
 
   /emittery@0.10.2:
