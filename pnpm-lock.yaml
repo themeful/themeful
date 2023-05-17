@@ -4360,7 +4360,7 @@ packages:
       '@storybook/router': 7.0.12(react-dom@18.2.0)(react@18.2.0)
       '@storybook/store': 7.0.12
       '@storybook/theming': 7.0.12(react-dom@18.2.0)(react@18.2.0)
-      '@types/node': 16.18.30
+      '@types/node': 16.18.31
       '@types/semver': 7.5.0
       babel-loader: 9.1.2(@babel/core@7.21.8)(webpack@5.82.1)
       babel-plugin-named-exports-order: 0.0.2
@@ -4508,7 +4508,7 @@ packages:
     dependencies:
       '@storybook/node-logger': 7.0.12
       '@storybook/types': 7.0.12
-      '@types/node': 16.18.30
+      '@types/node': 16.18.31
       '@types/pretty-hrtime': 1.0.1
       chalk: 4.1.2
       esbuild: 0.17.19
@@ -4534,7 +4534,7 @@ packages:
     dependencies:
       '@storybook/node-logger': 7.0.9
       '@storybook/types': 7.0.9
-      '@types/node': 16.18.30
+      '@types/node': 16.18.31
       '@types/pretty-hrtime': 1.0.1
       chalk: 4.1.2
       esbuild: 0.17.19
@@ -4581,8 +4581,8 @@ packages:
       '@storybook/telemetry': 7.0.9
       '@storybook/types': 7.0.9
       '@types/detect-port': 1.3.2
-      '@types/node': 16.18.30
-      '@types/node-fetch': 2.6.3
+      '@types/node': 16.18.31
+      '@types/node-fetch': 2.6.4
       '@types/pretty-hrtime': 1.0.1
       '@types/semver': 7.5.0
       better-opn: 2.1.1
@@ -4621,7 +4621,7 @@ packages:
       '@storybook/core-common': 7.0.12
       '@storybook/node-logger': 7.0.12
       '@storybook/types': 7.0.12
-      '@types/node': 16.18.30
+      '@types/node': 16.18.31
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - supports-color
@@ -4714,7 +4714,7 @@ packages:
       '@storybook/global': 5.0.0
       '@storybook/html': 7.0.12(@babel/core@7.21.8)
       '@storybook/preset-html-webpack': 7.0.12(@babel/core@7.21.8)(esbuild@0.17.19)
-      '@types/node': 16.18.30
+      '@types/node': 16.18.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -4849,7 +4849,7 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@storybook/core-webpack': 7.0.12
-      '@types/node': 16.18.30
+      '@types/node': 16.18.31
       html-loader: 3.1.2(webpack@5.82.1)
       webpack: 5.82.1(esbuild@0.17.19)
     transitivePeerDependencies:
@@ -5277,15 +5277,15 @@ packages:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
     dev: true
 
-  /@types/node-fetch@2.6.3:
-    resolution: {integrity: sha512-ETTL1mOEdq/sxUtgtOhKjyB2Irra4cjxksvcMUR5Zr4n+PxVhsCD9WS46oPbHL3et9Zde7CNRr+WUNlcHvsX+w==}
+  /@types/node-fetch@2.6.4:
+    resolution: {integrity: sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==}
     dependencies:
       '@types/node': 18.16.10
       form-data: 3.0.1
     dev: true
 
-  /@types/node@16.18.30:
-    resolution: {integrity: sha512-Kmp/wBZk19Dn7uRiol8kF8agnf8m0+TU9qIwyfPmXglVxMlmiIz0VQSMw5oFgwhmD2aKTlfBIO5FtsVj3y7hKQ==}
+  /@types/node@16.18.31:
+    resolution: {integrity: sha512-KPXltf4z4g517OlVJO9XQ2357CYw7fvuJ3ZuBynjXC5Jos9i+K7LvFb7bUIwtJXSZj0vTp9Q6NJBSQpkwwO8Zw==}
     dev: true
 
   /@types/node@18.16.10:
@@ -6465,7 +6465,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001487
-      electron-to-chromium: 1.4.396
+      electron-to-chromium: 1.4.397
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
@@ -7633,8 +7633,8 @@ packages:
       jake: 10.8.6
     dev: true
 
-  /electron-to-chromium@1.4.396:
-    resolution: {integrity: sha512-pqKTdqp/c5vsrc0xUPYXTDBo9ixZuGY8es4ZOjjd6HD6bFYbu5QA09VoW3fkY4LF1T0zYk86lN6bZnNlBuOpdQ==}
+  /electron-to-chromium@1.4.397:
+    resolution: {integrity: sha512-jwnPxhh350Q/aMatQia31KAIQdhEsYS0fFZ0BQQlN9tfvOEwShu6ZNwI4kL/xBabjcB/nTy6lSt17kNIluJZ8Q==}
     dev: true
 
   /emittery@0.10.2:
@@ -7909,7 +7909,7 @@ packages:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
     dependencies:
       debug: 3.2.7
-      is-core-module: 2.12.0
+      is-core-module: 2.12.1
       resolve: 1.22.2
     transitivePeerDependencies:
       - supports-color
@@ -7964,7 +7964,7 @@ packages:
       eslint-import-resolver-node: 0.3.7
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.59.6)(eslint-import-resolver-node@0.3.7)(eslint@8.40.0)
       has: 1.0.3
-      is-core-module: 2.12.0
+      is-core-module: 2.12.1
       is-glob: 4.0.3
       minimatch: 3.1.2
       object.values: 1.1.6
@@ -8971,7 +8971,7 @@ packages:
       he: 1.2.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.17.3
+      terser: 5.17.4
     dev: true
 
   /html-webpack-plugin@5.5.1(webpack@5.82.1):
@@ -9333,8 +9333,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /is-core-module@2.12.0:
-    resolution: {integrity: sha512-RECHCBCd/viahWmwj6enj19sKbHfJrddi/6cBDsNTKbNq0f7VeaUkBo60BqzvPqo/W54ChS62Z5qyun7cfOMqQ==}
+  /is-core-module@2.12.1:
+    resolution: {integrity: sha512-Q4ZuBAe2FUsKtyQJoQHlvP8OvBERxO3jEmy1I7hcRXcJBGGHFh/aJBswbXuS9sgrDH2QUO8ilkwNPHvHMd8clg==}
     dependencies:
       has: 1.0.3
     dev: true
@@ -13306,7 +13306,7 @@ packages:
     resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
     hasBin: true
     dependencies:
-      is-core-module: 2.12.0
+      is-core-module: 2.12.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
@@ -13315,7 +13315,7 @@ packages:
     resolution: {integrity: sha512-iMDbmAWtfU+MHpxt/I5iWI7cY6YVEZUQ3MBgPQ++XD1PELuJHIl82xBmObyP2KyQmkNB2dsqF7seoQQiAn5yDQ==}
     hasBin: true
     dependencies:
-      is-core-module: 2.12.0
+      is-core-module: 2.12.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
@@ -13415,7 +13415,7 @@ packages:
       jest-worker: 26.6.2
       rollup: 2.79.1
       serialize-javascript: 4.0.0
-      terser: 5.17.3
+      terser: 5.17.4
     dev: true
 
   /rollup-plugin-typescript2@0.34.1(rollup@2.79.1)(typescript@5.0.4):
@@ -14393,12 +14393,12 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 3.1.2
       serialize-javascript: 6.0.1
-      terser: 5.17.3
+      terser: 5.17.4
       webpack: 5.82.1(esbuild@0.17.19)
     dev: true
 
-  /terser@5.17.3:
-    resolution: {integrity: sha512-AudpAZKmZHkG9jueayypz4duuCFJMMNGRMwaPvQKWfxKedh8Z2x3OCoDqIIi1xx5+iwx1u6Au8XQcc9Lke65Yg==}
+  /terser@5.17.4:
+    resolution: {integrity: sha512-jcEKZw6UPrgugz/0Tuk/PVyLAPfMBJf5clnGueo45wTweoV8yh7Q7PEkhkJ5uuUbC7zAxEcG3tqNr1bstkQ8nw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
