@@ -128,7 +128,7 @@
     "@nestjs/websockets": "9.4.1",
     "@stencil/core": "3.2.2",
     "camel-case": "4.1.2",
-    "colortranslator": "1.10.2",
+    "colortranslator": "2.0.0",
     "find": "0.3.0",
     "husky": "8.0.3",
     "ioredis": "5.3.2",
