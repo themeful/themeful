@@ -104,7 +104,7 @@ export class ColorInputComponent {
     const color = new ColorTranslator(this.valid ? newColor : 'hsl(180,50%,40%)')
     this.changeSource = 'input'
     this.input$.next(this.input.value as string)
-    this.hue.value = `${color.H}`
+    this.hue.value = Math.round(color.H).toFixed()
     this.alpha.value = `${(1 - color.A) * 100}`
     this.alpha$.next(this.alpha.value)
     this.hue$.next(this.hue.value)
