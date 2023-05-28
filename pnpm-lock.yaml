@@ -277,8 +277,8 @@ devDependencies:
     specifier: 1.62.1
     version: 1.62.1
   sass-loader:
-    specifier: 13.3.0
-    version: 13.3.0(sass@1.62.1)(webpack@5.84.1)
+    specifier: 13.3.1
+    version: 13.3.1(sass@1.62.1)(webpack@5.84.1)
   stencil-fragment:
     specifier: 1.0.1
     version: 1.0.1
@@ -4174,7 +4174,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       resolve-url-loader: 5.0.0
-      sass-loader: 13.3.0(sass@1.62.1)(webpack@5.84.1)
+      sass-loader: 13.3.1(sass@1.62.1)(webpack@5.84.1)
       style-loader: 3.3.3(webpack@5.84.1)
     transitivePeerDependencies:
       - fibers
@@ -13531,8 +13531,8 @@ packages:
       webpack: 5.84.1(esbuild@0.17.19)
     dev: true
 
-  /sass-loader@13.3.0(sass@1.62.1)(webpack@5.84.1):
-    resolution: {integrity: sha512-LeWNswSEujsZnwdn9AuA+Q5wZEAFlU+eORQsDKp35OtGAfFxYxpfk/Ylon+TGGkazSqxi2EHDTqdr3di8r7nCg==}
+  /sass-loader@13.3.1(sass@1.62.1)(webpack@5.84.1):
+    resolution: {integrity: sha512-cBTxmgyVA1nXPvIK4brjJMXOMJ2v2YrQEuHqLw3LylGb3gsR6jAvdjHMcy/+JGTmmIF9SauTrLLR7bsWDMWqgg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       fibers: '>= 3.1.0'
