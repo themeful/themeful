@@ -4102,7 +4102,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-inspector: 6.0.1(react@18.2.0)
+      react-inspector: 6.0.2(react@18.2.0)
       telejson: 7.1.0
       ts-dedent: 2.2.0
       uuid: 9.0.0
@@ -6589,7 +6589,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001495
-      electron-to-chromium: 1.4.421
+      electron-to-chromium: 1.4.422
       node-releases: 2.0.12
       update-browserslist-db: 1.0.11(browserslist@4.21.7)
     dev: true
@@ -7757,8 +7757,8 @@ packages:
       jake: 10.8.7
     dev: true
 
-  /electron-to-chromium@1.4.421:
-    resolution: {integrity: sha512-wZOyn3s/aQOtLGAwXMZfteQPN68kgls2wDAnYOA8kCjBvKVrW5RwmWVspxJYTqrcN7Y263XJVsC66VCIGzDO3g==}
+  /electron-to-chromium@1.4.422:
+    resolution: {integrity: sha512-OQMid0IRbJv27BhlPiBK8CfGzjeq4ZCBSmpwNi1abyS8w17/BajOUu7hBI49ptDTBCz9NRFbORhWvt41dF7dwg==}
     dev: true
 
   /emittery@0.10.2:
@@ -9068,8 +9068,8 @@ packages:
       whatwg-encoding: 2.0.0
     dev: true
 
-  /html-entities@2.3.4:
-    resolution: {integrity: sha512-TtiHkpRBqP40OzizVWjwBPBsiqchEZxAg/nys6D6lIpdoVLo7sWZ/5Sf/s4UaBHQ6pzUzEr3NiItvEoO46sPtQ==}
+  /html-entities@2.3.5:
+    resolution: {integrity: sha512-72TJlcMkYsEJASa/3HnX7VT59htM7iSHbH59NSZbtc+22Ap0Txnlx91sfeB+/A7wNZg7UxtZdhAW4y+/jimrdg==}
     dev: true
 
   /html-escaper@2.0.2:
@@ -13146,8 +13146,8 @@ packages:
       scheduler: 0.23.0
     dev: true
 
-  /react-inspector@6.0.1(react@18.2.0):
-    resolution: {integrity: sha512-cxKSeFTf7jpSSVddm66sKdolG90qURAX3g1roTeaN6x0YEbtWc8JpmFN9+yIqLNH2uEkYerWLtJZIXRIFuBKrg==}
+  /react-inspector@6.0.2(react@18.2.0):
+    resolution: {integrity: sha512-x+b7LxhmHXjHoU/VrFAzw5iutsILRoYyDq97EDYdFpPLcvqtEzk4ZSZSQjnFPbr5T57tLXnHcqFYoN1pI6u8uQ==}
     peerDependencies:
       react: ^16.8.4 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -15229,7 +15229,7 @@ packages:
       default-gateway: 6.0.3
       express: 4.18.2
       graceful-fs: 4.2.11
-      html-entities: 2.3.4
+      html-entities: 2.3.5
       http-proxy-middleware: 2.0.6(@types/express@4.17.17)
       ipaddr.js: 2.1.0
       launch-editor: 2.6.0
@@ -15255,7 +15255,7 @@ packages:
     resolution: {integrity: sha512-IK/0WAHs7MTu1tzLTjio73LjS3Ov+VvBKQmE8WPlJutgG5zT6Urgq/BbAdRrHTRpyzK0dvAvFh1Qg98akxgZpA==}
     dependencies:
       ansi-html-community: 0.0.8
-      html-entities: 2.3.4
+      html-entities: 2.3.5
       strip-ansi: 6.0.1
     dev: true
 
