@@ -116,7 +116,7 @@
     "tsconfig-paths-webpack-plugin": "4.0.1",
     "typescript": "5.0.4",
     "utf-8-validate": "6.0.3",
-    "workbox-build": "6.6.0"
+    "workbox-build": "7.0.0"
   },
   "dependencies": {
     "@fastify/static": "6.10.2",
