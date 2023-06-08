@@ -6280,7 +6280,7 @@ packages:
     dependencies:
       '@babel/core': 7.22.1
       find-cache-dir: 3.3.2
-      schema-utils: 4.0.1
+      schema-utils: 4.1.0
       webpack: 5.86.0(esbuild@0.17.19)
     dev: true
 
@@ -7059,7 +7059,7 @@ packages:
       glob-parent: 6.0.2
       globby: 12.2.0
       normalize-path: 3.0.0
-      schema-utils: 4.0.1
+      schema-utils: 4.1.0
       serialize-javascript: 6.0.1
       webpack: 5.86.0(esbuild@0.17.19)
     dev: true
@@ -7194,7 +7194,7 @@ packages:
       esbuild: 0.17.19
       jest-worker: 27.5.1
       postcss: 8.4.24
-      schema-utils: 4.0.1
+      schema-utils: 4.1.0
       serialize-javascript: 6.0.1
       source-map: 0.6.1
       webpack: 5.86.0(esbuild@0.17.19)
@@ -8506,7 +8506,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.2
+      schema-utils: 3.2.0
       webpack: 5.86.0(esbuild@0.17.19)
     dev: true
 
@@ -8627,7 +8627,7 @@ packages:
       memfs: 3.5.3
       minimatch: 3.1.2
       node-abort-controller: 3.1.1
-      schema-utils: 3.1.2
+      schema-utils: 3.2.0
       semver: 7.5.1
       tapable: 2.2.1
       typescript: 5.0.4
@@ -8654,7 +8654,7 @@ packages:
       memfs: 3.5.3
       minimatch: 3.1.2
       node-abort-controller: 3.1.1
-      schema-utils: 3.1.2
+      schema-utils: 3.2.0
       semver: 7.5.1
       tapable: 2.2.1
       typescript: 5.0.4
@@ -11317,7 +11317,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      schema-utils: 4.0.1
+      schema-utils: 4.1.0
       webpack: 5.86.0(esbuild@0.17.19)
     dev: true
 
@@ -13690,8 +13690,8 @@ packages:
       loose-envify: 1.4.0
     dev: true
 
-  /schema-utils@3.1.2:
-    resolution: {integrity: sha512-pvjEHOgWc9OWA/f/DE3ohBWTD6EleVLf7iFUkoSwAxttdBhB9QUebQgxER2kWueOvRJXPHNnyrvvh9eZINB8Eg==}
+  /schema-utils@3.2.0:
+    resolution: {integrity: sha512-0zTyLGyDJYd/MBxG1AhJkKa6fpEBds4OQO2ut0w7OYG+ZGhGea09lijvzsqegYSik88zc7cUtIlnnO+/BvD6gQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
       '@types/json-schema': 7.0.12
@@ -13699,8 +13699,8 @@ packages:
       ajv-keywords: 3.5.2(ajv@6.12.6)
     dev: true
 
-  /schema-utils@4.0.1:
-    resolution: {integrity: sha512-lELhBAAly9NowEsX0yZBlw9ahZG+sK/1RJ21EpzdYHKEs13Vku3LJ+MIPhh4sMs0oCCeufZQEQbMekiA4vuVIQ==}
+  /schema-utils@4.1.0:
+    resolution: {integrity: sha512-Jw+GZVbP5IggB2WAn6UHI02LBwGmsIeYN/lNbSMZyDziQ7jmtAUrqKqDja+W89YHVs+KL/3IkIMltAklqB1vAw==}
     engines: {node: '>= 12.13.0'}
     dependencies:
       '@types/json-schema': 7.0.12
@@ -14530,7 +14530,7 @@ packages:
       '@jridgewell/trace-mapping': 0.3.18
       esbuild: 0.17.19
       jest-worker: 27.5.1
-      schema-utils: 3.1.2
+      schema-utils: 3.2.0
       serialize-javascript: 6.0.1
       terser: 5.17.7
       webpack: 5.86.0(esbuild@0.17.19)
@@ -15196,7 +15196,7 @@ packages:
       memfs: 3.5.3
       mime-types: 2.1.35
       range-parser: 1.2.1
-      schema-utils: 4.0.1
+      schema-utils: 4.1.0
       webpack: 5.86.0(esbuild@0.17.19)
     dev: true
 
@@ -15236,7 +15236,7 @@ packages:
       open: 8.4.2
       p-retry: 4.6.2
       rimraf: 3.0.2
-      schema-utils: 4.0.1
+      schema-utils: 4.1.0
       selfsigned: 2.1.1
       serve-index: 1.9.1
       sockjs: 0.3.24
@@ -15316,7 +15316,7 @@ packages:
       loader-runner: 4.3.0
       mime-types: 2.1.35
       neo-async: 2.6.2
-      schema-utils: 3.1.2
+      schema-utils: 3.2.0
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.9(esbuild@0.17.19)(webpack@5.86.0)
       watchpack: 2.4.0
