@@ -281,8 +281,8 @@ devDependencies:
     specifier: 1.63.3
     version: 1.63.3
   sass-loader:
-    specifier: 13.3.1
-    version: 13.3.1(sass@1.63.3)(webpack@5.86.0)
+    specifier: 13.3.2
+    version: 13.3.2(sass@1.63.3)(webpack@5.86.0)
   stencil-fragment:
     specifier: 1.0.1
     version: 1.0.1
@@ -4292,7 +4292,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       resolve-url-loader: 5.0.0
-      sass-loader: 13.3.1(sass@1.63.3)(webpack@5.86.0)
+      sass-loader: 13.3.2(sass@1.63.3)(webpack@5.86.0)
       style-loader: 3.3.3(webpack@5.86.0)
     transitivePeerDependencies:
       - fibers
@@ -13630,8 +13630,8 @@ packages:
       webpack: 5.86.0(esbuild@0.17.19)
     dev: true
 
-  /sass-loader@13.3.1(sass@1.63.3)(webpack@5.86.0):
-    resolution: {integrity: sha512-cBTxmgyVA1nXPvIK4brjJMXOMJ2v2YrQEuHqLw3LylGb3gsR6jAvdjHMcy/+JGTmmIF9SauTrLLR7bsWDMWqgg==}
+  /sass-loader@13.3.2(sass@1.63.3)(webpack@5.86.0):
+    resolution: {integrity: sha512-CQbKl57kdEv+KDLquhC+gE3pXt74LEAzm+tzywcA0/aHZuub8wTErbjAoNI57rPUWRYRNC5WUnNl8eGJNbDdwg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       fibers: '>= 3.1.0'
@@ -13649,7 +13649,6 @@ packages:
       sass-embedded:
         optional: true
     dependencies:
-      klona: 2.0.6
       neo-async: 2.6.2
       sass: 1.63.3
       webpack: 5.86.0(esbuild@0.17.19)
