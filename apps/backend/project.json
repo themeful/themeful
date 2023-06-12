@@ -5,7 +5,7 @@
   "sourceRoot": "apps/backend/src",
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
+      "executor": "@nx/webpack:webpack",
       "outputs": ["{workspaceRoot}/dist/apps/backend"],
       "options": {
         "outputPath": "dist/apps/backend",
@@ -32,13 +32,12 @@
       },
       "dependsOn": [
         {
-          "target": "copy-assets",
-          "projects": "self"
+          "target": "copy-assets"
         }
       ]
     },
     "serve": {
-      "executor": "@nrwl/node:node",
+      "executor": "@nx/node:node",
       "options": {
         "buildTarget": "backend:build"
       },
@@ -49,14 +48,14 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/backend/**/*.ts", "apps/backend/**/*.tsx"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/apps/backend"],
       "options": {
         "jestConfig": "apps/backend/jest.config.ts"
