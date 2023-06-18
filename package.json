@@ -126,7 +126,7 @@
     "@nestjs/platform-socket.io": "9.4.3",
     "@nestjs/serve-static": "3.0.1",
     "@nestjs/websockets": "9.4.3",
-    "@stencil/core": "3.3.1",
+    "@stencil/core": "3.4.0",
     "camel-case": "4.1.2",
     "colortranslator": "2.0.0",
     "find": "0.3.0",
