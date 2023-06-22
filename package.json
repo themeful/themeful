@@ -124,7 +124,7 @@
     "@nestjs/core": "9.4.2",
     "@nestjs/platform-express": "9.4.2",
     "@nestjs/platform-socket.io": "10.0.2",
-    "@nestjs/serve-static": "3.0.1",
+    "@nestjs/serve-static": "4.0.0",
     "@nestjs/websockets": "10.0.2",
     "@stencil/core": "3.4.0",
     "camel-case": "4.1.2",
