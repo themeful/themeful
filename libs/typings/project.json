@@ -5,14 +5,14 @@
   "sourceRoot": "libs/typings/src",
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/typings/**/*.ts", "libs/typings/**/*.tsx"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/typings"],
       "options": {
         "jestConfig": "libs/typings/jest.config.ts",
