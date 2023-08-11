@@ -5271,7 +5271,7 @@ packages:
       chalk: 4.1.2
       esbuild: 0.17.19
       esbuild-register: 3.4.2(esbuild@0.17.19)
-      file-system-cache: 2.4.3
+      file-system-cache: 2.4.4
       find-up: 5.0.0
       fs-extra: 11.1.1
       glob: 8.1.0
@@ -5413,7 +5413,7 @@ packages:
       '@storybook/csf': 0.1.1
       '@storybook/types': 7.0.17
       fs-extra: 11.1.1
-      recast: 0.23.3
+      recast: 0.23.4
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - supports-color
@@ -5849,7 +5849,7 @@ packages:
       '@storybook/channels': 7.0.17
       '@types/babel__core': 7.20.1
       '@types/express': 4.17.17
-      file-system-cache: 2.4.3
+      file-system-cache: 2.4.4
     dev: true
 
   /@storybook/types@7.1.1:
@@ -9530,8 +9530,8 @@ packages:
       ramda: 0.29.0
     dev: true
 
-  /file-system-cache@2.4.3:
-    resolution: {integrity: sha512-wBJ+ysm8ma2m7bNYKu72ZZ02LfypRg00AYdG9w2sbpOsu9KgHGQ4mJEGoAWYjAr+C+9jf1Q1ZwBqTB4Rdz0upA==}
+  /file-system-cache@2.4.4:
+    resolution: {integrity: sha512-vCYhn8pb5nlC3Gs2FFCOkmf4NEg2Ym3ulJwkmS9o6p9oRShGj6CwTMFvpgZihBlsh373NaM0XgAgDHXQIlS4LQ==}
     dependencies:
       '@types/fs-extra': 11.0.1
       '@types/ramda': 0.29.3
@@ -14432,8 +14432,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /recast@0.23.3:
-    resolution: {integrity: sha512-HbCVFh2ANP6a09nzD4lx7XthsxMOJWKX5pIcUwtLrmeEIl3I0DwjCoVXDE0Aobk+7k/mS3H50FK4iuYArpcT6Q==}
+  /recast@0.23.4:
+    resolution: {integrity: sha512-qtEDqIZGVcSZCHniWwZWbRy79Dc6Wp3kT/UmDA2RJKBPg7+7k51aQBZirHmUGn5uvHf2rg8DkjizrN26k61ATw==}
     engines: {node: '>= 4'}
     dependencies:
       assert: 2.0.0
