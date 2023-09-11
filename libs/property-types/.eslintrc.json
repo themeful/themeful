@@ -28,7 +28,7 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
+      "extends": ["plugin:@nx/typescript"],
       "rules": {
         "@stencil-community/async-methods": "off",
         "react/no-unknown-property": "off",
