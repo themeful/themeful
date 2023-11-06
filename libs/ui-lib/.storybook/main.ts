@@ -3,15 +3,15 @@ import { rootMain, StorybookOptions, WebPackFinalConfig } from '../../../.storyb
 
 module.exports = {
   ...rootMain,
-
   core: { ...rootMain.core },
-
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials', ...(rootMain.addons ?? [])],
+
   babel: async (options: StorybookOptions) => ({
     ...options,
     presets: [['@babel/typescript', { jsxPragma: 'h' }]],
   }),
+
   webpackFinal: async (config: WebPackFinalConfig, options: StorybookOptions) => {
     if (rootMain.webpackFinal) {
       config = await rootMain.webpackFinal(config, options)
@@ -25,5 +25,9 @@ module.exports = {
       : (config.resolve.plugins = [tsPaths])
 
     return config
+  },
+
+  docs: {
+    autodocs: true,
   },
 }

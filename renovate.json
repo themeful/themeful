@@ -35,7 +35,7 @@
         "tslib",
         "node",
         "prettier",
-        "@nrwl/jest",
+        "@nx/jest",
         "ts-jest"
       ],
       "matchUpdateTypes": ["minor", "patch"],
@@ -54,7 +54,7 @@
         "jest",
         "jest-environment-jsdom",
         "ts-jest",
-        "@nrwl/jest"
+        "@nx/jest"
       ],
       "matchUpdateTypes": ["major"],
       "labels": ["dependencies", "renovate", "breaking"],
@@ -95,13 +95,7 @@
       "automerge": true
     },
     {
-      "matchPackageNames": [
-        "@types/jest",
-        "jest",
-        "ts-jest",
-        "jest-environment-jsdom",
-        "@nrwl/jest"
-      ],
+      "matchPackageNames": ["@types/jest", "jest", "ts-jest", "jest-environment-jsdom", "@nx/jest"],
       "matchUpdateTypes": ["major", "minor", "patch"],
       "labels": ["dependencies", "renovate"],
       "groupName": "all testing dependencies",
@@ -111,14 +105,14 @@
   ],
   "ignoreDeps": [
     "@nrwl/cli",
-    "@nrwl/eslint-plugin-nx",
-    "@nrwl/js",
-    "@nrwl/linter",
-    "@nrwl/nest",
-    "@nrwl/node",
-    "@nrwl/storybook",
-    "@nrwl/web",
-    "@nrwl/workspace",
+    "@nx/eslint-plugin",
+    "@nx/js",
+    "@nx/eslint",
+    "@nx/nest",
+    "@nx/node",
+    "@nx/storybook",
+    "@nx/web",
+    "@nx/workspace",
     "@nxext/stencil",
     "@nestjs/microservices",
     "@nestjs/schematics",
