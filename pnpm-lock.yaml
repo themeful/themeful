@@ -104,8 +104,8 @@ devDependencies:
     specifier: ~15.7.2
     version: 15.7.2(@typescript-eslint/parser@5.62.0)(eslint-config-prettier@8.10.0)(eslint@8.52.0)(nx@15.7.2)(typescript@5.2.2)
   '@nrwl/jest':
-    specifier: 14.5.10
-    version: 14.5.10(bufferutil@4.0.8)(nx@15.7.2)(ts-node@10.9.1)(typescript@5.2.2)(utf-8-validate@6.0.3)
+    specifier: 14.8.9
+    version: 14.8.9(@types/node@18.18.8)(nx@15.7.2)(ts-node@10.9.1)(typescript@5.2.2)
   '@nrwl/js':
     specifier: ~15.7.2
     version: 15.7.2(@swc/core@1.3.95)(eslint@8.52.0)(nx@15.7.2)(prettier@2.8.8)(typescript@5.2.2)
@@ -129,7 +129,7 @@ devDependencies:
     version: 15.7.2(@swc/core@1.3.95)(eslint@8.52.0)(prettier@2.8.8)(typescript@5.2.2)
   '@nxext/stencil':
     specifier: 15.7.0
-    version: 15.7.0(@nrwl/jest@14.5.10)(@nrwl/linter@15.9.4)(@nrwl/storybook@15.7.2)(@nrwl/workspace@15.7.2)(@stencil/core@3.4.2)(nx@15.7.2)(typescript@5.2.2)
+    version: 15.7.0(@nrwl/jest@14.8.9)(@nrwl/linter@15.9.4)(@nrwl/storybook@15.7.2)(@nrwl/workspace@15.7.2)(@stencil/core@3.4.2)(nx@15.7.2)(typescript@5.2.2)
   '@stencil-community/eslint-plugin':
     specifier: 0.6.0
     version: 0.6.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.52.0)(typescript@5.2.2)
@@ -1653,7 +1653,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.22.10
-      '@babel/generator': 7.21.9
+      '@babel/generator': 7.22.10
       '@babel/helper-environment-visitor': 7.22.5
       '@babel/helper-function-name': 7.22.5
       '@babel/helper-hoist-variables': 7.22.5
@@ -2491,7 +2491,7 @@ packages:
     dependencies:
       '@bcoe/v8-coverage': 0.2.3
       '@jest/console': 28.1.3
-      '@jest/test-result': 28.1.1
+      '@jest/test-result': 28.1.3
       '@jest/transform': 28.1.3
       '@jest/types': 28.1.3
       '@jridgewell/trace-mapping': 0.3.19
@@ -2507,7 +2507,7 @@ packages:
       istanbul-lib-source-maps: 4.0.1
       istanbul-reports: 3.1.6
       jest-message-util: 28.1.3
-      jest-util: 28.1.1
+      jest-util: 28.1.3
       jest-worker: 28.1.3
       slash: 3.0.0
       string-length: 4.0.2
@@ -3072,8 +3072,8 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/devkit@14.5.10(nx@15.7.2)(typescript@5.2.2):
-    resolution: {integrity: sha512-YVT0MRvyXwe0uczUZK4XUi1f2iLAqklFMfAoqwfgcgWToH8xN06NSlyUphD4eLHFgem3Sd0kimAJVsnse/PTlA==}
+  /@nrwl/devkit@14.8.9(nx@15.7.2)(typescript@5.2.2):
+    resolution: {integrity: sha512-C9PxTxTrVundP9xDbub7apkMPP1v1PSIu/d82VdOVnnU3Kvc2fRX2gafSdH+BMBP3SE4bIBblQI6gUuDXbYubw==}
     peerDependencies:
       nx: '>= 13.10 <= 15'
     dependencies:
@@ -3081,7 +3081,6 @@ packages:
       ejs: 3.1.9
       ignore: 5.2.4
       nx: 15.7.2(@swc/core@1.3.95)
-      semver: 7.3.4
       tslib: 2.6.2
     transitivePeerDependencies:
       - typescript
@@ -3151,31 +3150,28 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/jest@14.5.10(bufferutil@4.0.8)(nx@15.7.2)(ts-node@10.9.1)(typescript@5.2.2)(utf-8-validate@6.0.3):
-    resolution: {integrity: sha512-gGqghwDcpBhk8TNK2Gfp/5PWqnnAPUjNfSCOz39kk9ZBtsyloozGwjg/VEF3k2p9uCifRfAyZOpDrSdALxBpdA==}
+  /@nrwl/jest@14.8.9(@types/node@18.18.8)(nx@15.7.2)(ts-node@10.9.1)(typescript@5.2.2):
+    resolution: {integrity: sha512-TTfkwMKiecWAL4r6vkEZCoF+Z+zgeM9fusMEUOjgRZfb+YN1UlJf2B6SrmcsaKoKtEaTC1OEvPSWOZ9w3u/Adw==}
     dependencies:
-      '@jest/reporters': 27.5.1
-      '@jest/test-result': 27.5.1
-      '@nrwl/devkit': 14.5.10(nx@15.7.2)(typescript@5.2.2)
+      '@jest/reporters': 28.1.1
+      '@jest/test-result': 28.1.1
+      '@nrwl/devkit': 14.8.9(nx@15.7.2)(typescript@5.2.2)
       '@phenomnomnominal/tsquery': 4.1.1(typescript@5.2.2)
       chalk: 4.1.0
       dotenv: 10.0.0
       identity-obj-proxy: 3.0.0
-      jest-config: 27.5.1(bufferutil@4.0.8)(ts-node@10.9.1)(utf-8-validate@6.0.3)
-      jest-resolve: 27.5.1
-      jest-util: 27.5.1
+      jest-config: 28.1.1(@types/node@18.18.8)(ts-node@10.9.1)
+      jest-resolve: 28.1.1
+      jest-util: 28.1.1
       resolve.exports: 1.1.0
-      rxjs: 6.6.7
       tslib: 2.6.2
     transitivePeerDependencies:
-      - bufferutil
-      - canvas
+      - '@types/node'
       - node-notifier
       - nx
       - supports-color
       - ts-node
       - typescript
-      - utf-8-validate
     dev: true
 
   /@nrwl/jest@15.7.2(@types/node@18.18.8)(nx@15.7.2)(ts-node@10.9.1)(typescript@5.2.2):
@@ -3914,7 +3910,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nxext/stencil@15.7.0(@nrwl/jest@14.5.10)(@nrwl/linter@15.9.4)(@nrwl/storybook@15.7.2)(@nrwl/workspace@15.7.2)(@stencil/core@3.4.2)(nx@15.7.2)(typescript@5.2.2):
+  /@nxext/stencil@15.7.0(@nrwl/jest@14.8.9)(@nrwl/linter@15.9.4)(@nrwl/storybook@15.7.2)(@nrwl/workspace@15.7.2)(@stencil/core@3.4.2)(nx@15.7.2)(typescript@5.2.2):
     resolution: {integrity: sha512-56RIUhltVV/UwG2HFbQU+ckCOOOWNizroiz9oLtQpExp+YF/cS3mAz9KAzp/KjPj+NUUW5+ECvJNdUZrAprwrA==}
     peerDependencies:
       '@nrwl/angular': ^15.7.0
@@ -3939,7 +3935,7 @@ packages:
         optional: true
     dependencies:
       '@nrwl/devkit': 15.7.2(nx@15.7.2)(typescript@5.2.2)
-      '@nrwl/jest': 14.5.10(bufferutil@4.0.8)(nx@15.7.2)(ts-node@10.9.1)(typescript@5.2.2)(utf-8-validate@6.0.3)
+      '@nrwl/jest': 14.8.9(@types/node@18.18.8)(nx@15.7.2)(ts-node@10.9.1)(typescript@5.2.2)
       '@nrwl/linter': 15.9.4(@swc/core@1.3.95)(eslint@8.52.0)(nx@15.7.2)(typescript@5.2.2)
       '@nrwl/storybook': 15.7.2(@swc/core@1.3.95)(eslint@8.52.0)(nx@15.7.2)(prettier@2.8.8)(typescript@5.2.2)
       '@nrwl/workspace': 15.7.2(@swc/core@1.3.95)(eslint@8.52.0)(prettier@2.8.8)(typescript@5.2.2)
@@ -10985,9 +10981,9 @@ packages:
       jest-environment-node: 28.1.3
       jest-get-type: 28.0.2
       jest-regex-util: 28.0.2
-      jest-resolve: 28.1.1
+      jest-resolve: 28.1.3
       jest-runner: 28.1.3
-      jest-util: 28.1.1
+      jest-util: 28.1.3
       jest-validate: 28.1.3
       micromatch: 4.0.5
       parse-json: 5.2.0
@@ -11377,7 +11373,7 @@ packages:
       graceful-fs: 4.2.11
       jest-haste-map: 28.1.3
       jest-pnp-resolver: 1.2.3(jest-resolve@28.1.1)
-      jest-util: 28.1.1
+      jest-util: 28.1.3
       jest-validate: 28.1.3
       resolve: 1.22.4
       resolve.exports: 1.1.0
